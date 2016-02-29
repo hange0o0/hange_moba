@@ -1,0 +1,125 @@
+class DayGameManager{
+    private static _instance:DayGameManager;
+    public static getInstance():DayGameManager {
+        if (!this._instance)
+            this._instance = new DayGameManager();
+        return this._instance;
+    }
+
+    public constructor() {
+    }
+
+    public data;
+    public dataTime = 0;
+    public lastPKData;
+
+    public getCard(fun?){
+        //if(UM.server_game.choose)
+        //{
+        //    if(fun)
+        //        fun();
+        //    return
+        //}
+        //PKManager.getInstance().getCard(PKManager.PKType.DAY,function(choose){
+        //    UM.day_game.choose = choose;
+        //    if(fun)
+        //        fun();
+        //})
+    }
+
+    //choose :{list[],ring,index}
+    public pk(level,choose,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.level = level;
+        oo.choose = choose;
+        Net.addUser(oo);
+        Net.send(GameEvent.dayGame.pk_day_game,oo,function(data){
+            var msg = data.msg;
+            if(PKManager.getInstance().pkError(msg))
+                return;
+
+            if(msg.fail == 50)//文件未生成
+            {
+                self.data = null;
+                self.getDayGame(function(){
+                    Alert('今日数据已更新');
+
+                })
+                return;
+            }
+            if(msg.fail == 51)
+            {
+                Alert('不是打这关');
+                return;
+            }
+            if(msg.fail == 52)
+            {
+                Alert('已完成今日任务');
+                return;
+            }
+            if(msg.fail == 53)
+            {
+                Alert('体务不够');
+                return;
+            }
+
+            self.lastPKData = msg;
+            PKManager.getInstance().onPK(PKManager.PKType.DAY,msg);
+
+            if(fun)
+                fun();
+        });
+    }
+
+    public getDayGame(fun?){
+        if(this.data && DateUtil.isSameDay(this.dataTime))
+        {
+            if(fun)
+                fun();
+            return;
+        }
+        var self = this;
+        var oo:any = {};
+        //oo.serverid = LoginManager.getInstance().lastSever;
+        //Net.addUser(oo);
+        Net.send(GameEvent.dayGame.get_day_game,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail)//文件未生成
+            {
+                Alert('无法找到今日数据');
+                return;
+            }
+
+            self.data = JSON.parse(msg.content);
+            for(var i=0;i<self.data.levels.length;i++)
+            {
+                self.data.levels[i].game_data = JSON.parse(self.data.levels[i].game_data);
+            }
+            self.dataTime = TM.now();
+
+            if(fun)
+                fun();
+        });
+    }
+
+
+    public playBack(fun?){
+        if(this.lastPKData)
+        {
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            if(fun)
+                fun();
+            return;
+        }
+        if(UM.day_game.pkdata)
+        {
+            var self = this;
+            PKManager.getInstance().getReplayByType(PKManager.PKType.DAY,function(data){
+                self.lastPKData = data;
+                if(fun)
+                    fun();
+            })
+        }
+    }
+}

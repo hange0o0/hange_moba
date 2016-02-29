@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="DebugInputSkin" width="480" height="200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect height="100%" width="480" x="0" y="0" fillColor="0xFFFFFF"/>
+	<e:Button id="cancelBtn" label="取消" x="94" y="128"/>
+	<e:Button id="okBtn" label="确定" x="295" y="124"/>
+	<e:Rect height="50" width="406" x="31" y="48"/>
+	<e:TextInput id="inputText" x="37" y="52" width="394" textColor="0x000000" prompt="456"/>
+	<e:Label id="titleText" text="标签" x="21" y="4" width="428" textColor="0x000000" textAlign="center"/>
+</e:Skin>

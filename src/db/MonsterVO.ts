@@ -1,0 +1,134 @@
+class MonsterVO {
+    public static dataKey = 'monster_base';
+    public static key = 'id';
+    public static getObject(id: number): MonsterVO{
+        return CM.table[this.dataKey][id];
+    }
+
+
+    public id
+    public name
+    public des
+    public hp
+    public atk
+    public speed
+    public type
+    public cost
+    public wood
+    public collect
+    public kind//arr
+    public effect_kind //arr
+    public sn
+    public sn1
+    public sn2
+    public sn3
+    public sn4
+    public sn5
+    public sfn1
+    public sfn2
+    public sfn3
+    public sfn4
+    public sfn5
+
+    public constructor(data?: any) {
+        if(data)
+            this.fill(data);
+
+    }
+
+    public fill(data){
+        this.id = data.id;
+        this.name = data.name;
+        this.des = data.des;
+        this.hp = data.hp;
+        this.atk = data.atk;
+        this.speed = data.speed;
+        this.type = data.type;
+        this.cost = data.cost;
+        this.wood = data.wood;
+        this.collect = data.collect;
+        this.kind = data.kind;
+        this.effect_kind = data.effect_kind;
+
+        this.initSkill('sn',data);
+
+        this.initSkill('sn1',data);
+        this.initSkill('sn2',data);
+        this.initSkill('sn3',data);
+        this.initSkill('sn4',data);
+        this.initSkill('sn5',data);
+
+        this.initSkill('sfn1',data);
+        this.initSkill('sfn2',data);
+        this.initSkill('sfn3',data);
+        this.initSkill('sfn4',data);
+        this.initSkill('sfn5',data);
+    }
+
+    private initSkill(key,data){
+        this[key] = null;
+        var value = data[key];
+        if(value)
+        {
+            var arr = value.split('#');
+            this[key] = {};
+            this[key].name = arr[0];
+            this[key].des = arr[1];
+
+            if(key == 'sn')     //大绝
+                this[key].type = 0;
+            else if(key.substr(0,2) == 'sn') //小技
+                this[key].type = 1;
+            else        //辅助
+                this[key].type = 3;
+        }
+    }
+
+    public get thumb(){
+        return 'monster_thumb_' + this.id;
+    }
+
+    public get url(){
+        return 'monster_' + this.id;
+    }
+
+    //影响指定单位
+    public isEffect(id){
+        var vo = MonsterVO.getObject(id);
+        for(var i=0;i<vo.kind.length;i++)
+        {
+            if(this.effect_kind.indexOf(vo.kind[i]) != -1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //被指定单位影响
+    public isBeEffect(id){
+        var vo = MonsterVO.getObject(id);
+        for(var i=0;i<this.kind.length;i++)
+        {
+            if(vo.effect_kind.indexOf(this.kind[i]) != -1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //把影响变成文字
+    public effectWord(arr)
+    {
+        var arr2;
+        for(var i=0;i<arr.length;i++)
+        {
+            arr2.push(arr[i]);
+        }
+        return arr2;
+    }
+
+
+
+}
