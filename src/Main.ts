@@ -159,7 +159,35 @@ class Main extends eui.UILayer {
         else if(UM.openid == '1_10001')
             UM.landid = '1449732148';
 
-        DebugUI.getInstance().show();
+        if(Config.isDebug && _get['debug'] == 1)
+        {
+            Config.host = '172.17.196.195:90';
+        }
+
+        //DebugUI.getInstance().show();
+        var dataIn = {
+            vedio:1,
+            team1:{"list":[101,102,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}},
+            team2:{"list":[101,101,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}}
+        };
+        Net.send('test',dataIn,function(data) {
+            var msg = data.msg;
+
+            PKManager.getInstance().onPK('test',msg) ;
+            var baseData = PKManager.getInstance().getVedioBase(dataIn.vedio - 1);
+            VideoManager.getInstance().playVideo('test',1)
+
+            //console.log(PKManager.getInstance().getVedioBase(dataIn.vedio - 1));
+
+            //VideoCode.getInstance().initData(PKManager.getInstance().pkData[0]);
+            //Net.send('pk_vedio',baseData,function(data){
+            //	var msg = data.msg;
+            //	VideoManager.getInstance().initVideo(msg.pkdata);
+            //    VideoCode.getInstance().play();
+            //
+            //	//console.log(VideoManager.getInstance().dataArray);
+            //});
+        });
     }
 
     private onButtonClick(e: egret.TouchEvent) {

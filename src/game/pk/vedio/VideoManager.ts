@@ -10,11 +10,44 @@ class VideoManager {
 
     public index = 0;//当前的播放头
     public total = 0;//最终的次数
+    public baseData = {};//触发战斗的数据
     public dataArray = [];//数据内容
+
+    public videoData = {};//所有录象的集合
 
 
     public constructor() {
 
+    }
+
+    public cleanVideo(type){
+        this.videoData[type] = null;
+    }
+
+    //播放指定位置的动画
+    public playVideo(type,index){
+        var self = this;
+        if(!this.videoData[type])
+            this.videoData[type] = {};
+        if(this.videoData[type][index])
+        {
+            play();
+            return
+        }
+        var baseData = this.baseData = PKManager.getInstance().getVedioBase(index - 1);
+        Net.send(GameEvent.pkCore.pk_vedio,baseData,function(data){
+            var msg = data.msg;
+            self.videoData[type][index] = msg.pkdata;
+            play();
+
+        });
+
+        function play(){
+            VideoManager.getInstance().initVideo(self.videoData[type][index]);
+            VideoCode.getInstance().initData(baseData);
+            console.log(VideoManager.getInstance().dataArray);
+            VideoCode.getInstance().play(type == 'test');
+        }
     }
 
     public initVideo(data){
@@ -25,6 +58,8 @@ class VideoManager {
         this.dataArray.length = 0;
         this.dataArray.push([]);
         this.dataArray.push(temp);
+
+        //var skillArray;
         for(var i=0;i<len;i++)
         {
             var action = this.decode(array[i]);
@@ -35,7 +70,19 @@ class VideoManager {
             }
             else
             {
-                temp.push(action);
+                //if(action.type == 7)
+                //{
+                //    skillArray = [action];
+                //}
+                //else if(action.type == 9)
+                //{
+                //    temp.push(skillArray);
+                //    skillArray = null;
+                //}
+                //else if(skillArray)
+                //    skillArray.push(action);
+                //else
+                    temp.push(action);
             }
         }
         this.dataArray.pop();
@@ -51,19 +98,19 @@ class VideoManager {
             case 2: //转防御者
                 oo.id = Math.floor(str.substr(1));
                 break
-            case 3: //使用技能
-                oo.skillID = MyTool.str2Num(str.charAt(1));//技能的ID，对于攻击者来说，第几个技能
-                var temp = str.substr(2);
-                oo.action = [];
-                if(temp)
-                {
-                    var arr = temp.split('|');
-                    for(var i=0;i<arr.length;i++)
-                    {
-                        oo.action.push(this.decodeSkill(arr[i]))
-                    }
-                }
-                break
+            //case 3: //使用技能
+            //    oo.skillID = MyTool.str2Num(str.charAt(1));//技能的ID，对于攻击者来说，第几个技能
+            //    var temp = str.substr(2);
+            //    oo.action = [];
+            //    if(temp)
+            //    {
+            //        var arr = temp.split('|');
+            //        for(var i=0;i<arr.length;i++)
+            //        {
+            //            oo.action.push(this.decodeSkill(arr[i]))
+            //        }
+            //    }
+            //    break
             case 4: //改变攻击者的buffer(tag)
                 oo.tag = str.substr(1);
                 break
@@ -71,15 +118,26 @@ class VideoManager {
                 oo.times = Math.floor(str.substr(1));
                 break
             case 6: //本次攻击行为结束
+                break;
+
+
+            case 7: //单个技能开始
+                oo.skillID = MyTool.str2Num(str.charAt(1));//技能的ID，对于攻击者来说，第几个技能
+                break
+            case 8: //单个技能过程
+                this.decodeSkill(str.substr(1),oo);
+                break
+            case 9: //单个技能结束
                 break
         }
         return oo;
     }
 
     //处理一个技能行为
-    private decodeSkill(str){
+    private decodeSkill(str,oo){
         var type = str.charAt(0);
         var value = Math.floor(str.substr(1));
-        return {type:type,value:value};
+        oo.sType = type;
+        oo.value = value;
     }
 }

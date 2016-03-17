@@ -52,8 +52,8 @@ class UserManager {
         this.last_land = data.last_land;
         this.diamond = data.diamond;//'{"free":0,"rmb":0}'
         this.tec = data.tec;    //'{"main":{},"ring":{},"monster":{}}')
-        this.server_game = data.server_game; //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null}
-        this.server_game_equal = data.server_game_equal; //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"max":0,"time":0,"pkdata":null}
+        this.server_game = data.server_game; //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
+        this.server_game_equal = data.server_game_equal; //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"max":0,"time":0,"pkdata":null,"pk":0}
         this.main_game = data.main_game;  //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         this.day_game = data.day_game;  //'{"level":0,"free":0,"lasttime":0,"rmb":0,"times":0,"pkdata":null}');
         this.honor = data.honor;  //'{"monster":{},"ring":{},"task":{}}');

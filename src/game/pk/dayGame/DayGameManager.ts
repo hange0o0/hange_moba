@@ -60,7 +60,7 @@ class DayGameManager{
             }
             if(msg.fail == 53)
             {
-                Alert('体务不够');
+                Alert('体力不够');
                 return;
             }
 
@@ -87,7 +87,7 @@ class DayGameManager{
             var msg = data.msg;
             if(msg.fail)//文件未生成
             {
-                Alert('无法找到今日数据');
+                Alert(' 无法找到今日数据');
                 return;
             }
 

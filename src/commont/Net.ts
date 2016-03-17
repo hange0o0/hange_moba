@@ -45,6 +45,7 @@ class Net extends egret.EventDispatcher{
             var request = new egret.URLRequest('http://'+Config.host+'/gameindex.php');
         else
             var request = new egret.URLRequest('http://'+Config.host+'/userindex.php');
+        //var request = new egret.URLRequest('http://qxu1606510485.my3w.com/new_index.php');
         request.method = egret.URLRequestMethod.POST;
         request.data = this.getVariables(head,msg);
         if(Config.isDebug)
