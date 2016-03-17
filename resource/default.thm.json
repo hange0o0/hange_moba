@@ -14,9 +14,19 @@
     "resource/eui_skins/ToggleSwitchSkin.exml",
     "resource/eui_skins/VScrollBarSkin.exml",
     "resource/eui_skins/VSliderSkin.exml",
+    "src/commont/btns/Btn_b1Skin.exml",
+    "src/commont/btns/Btn_b2Skin.exml",
+    "src/commont/btns/Btn_close1Skin.exml",
+    "src/commont/btns/Btn_close2Skin.exml",
+    "src/commont/btns/Btn_d1Skin.exml",
+    "src/commont/btns/Btn_d2Skin.exml",
+    "src/commont/btns/Btn_r1Skin.exml",
+    "src/commont/btns/Btn_r2Skin.exml",
+    "src/commont/btns/Btn_r3Skin.exml",
     "src/debug/DebugInputSkin.exml",
     "src/debug/DebugUISkin.exml",
-    "src/debug/ScrollTestSkin.exml"
+    "src/debug/ScrollTestSkin.exml",
+    "src/login/LoginUISkin.exml"
   ],
   "skins": {
     "eui.Button": "resource/eui_skins/ButtonSkin.exml",

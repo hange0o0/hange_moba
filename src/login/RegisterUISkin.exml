@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="RegisterUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window1_jpg" x="0" y="17" width="480" height="315" scale9Grid="52,33,318,125"/>
+	<e:Label y="71" text="用户名：" x="63" size="22" textColor="0xC4A36A"/>
+	<e:TextInput x="159" skinName="MyTextInputSkin" y="59" height="45" id="nameText" width="280"/>
+	<e:Label y="128" textColor="0xC4A36A" size="22" text="密码：" x="85"/>
+	<e:TextInput id="passwordText1" skinName="MyTextInputSkin" y="116.5" width="280" height="45" x="159"/>
+	<e:Label y="184" textColor="0xC4A36A" size="22" text="密码确认：" x="41"/>
+	<e:TextInput id="passwordText2" width="280" y="173" skinName="MyTextInputSkin" height="45" x="159"/>
+	<e:Group y="267" horizontalCenter="0">
+		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="登陆" scaleX="0.9" scaleY="0.9" y="0" x="0"/>
+		<e:Button id="backBtn" scaleX="0.9" label="返回" skinName="Btn_d2Skin" scaleY="0.9" y="0" x="0"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Image source="window1_top_png" y="0" horizontalCenter="0"/>
+	<e:Label text="注册" y="11" size="22" horizontalCenter="0" textColor="0xAAA6A6"/>
+</e:Skin>
