@@ -34,7 +34,7 @@ class VideoManager {
             play();
             return
         }
-        var baseData = this.baseData = PKManager.getInstance().getVedioBase(index - 1);
+        var baseData = this.baseData = PKManager.getInstance().getVedioBase(index);
         Net.send(GameEvent.pkCore.pk_vedio,baseData,function(data){
             var msg = data.msg;
             self.videoData[type][index] = msg.pkdata;

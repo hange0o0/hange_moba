@@ -23,10 +23,15 @@
     "src/commont/btns/Btn_r1Skin.exml",
     "src/commont/btns/Btn_r2Skin.exml",
     "src/commont/btns/Btn_r3Skin.exml",
+    "src/commont/skin/MyTextInputSkin.exml",
     "src/debug/DebugInputSkin.exml",
     "src/debug/DebugUISkin.exml",
     "src/debug/ScrollTestSkin.exml",
-    "src/login/LoginUISkin.exml"
+    "src/login/ChooseServerUISkin.exml",
+    "src/login/LoginServerUISkin.exml",
+    "src/login/LoginUISkin.exml",
+    "src/login/RegisterServerUISkin.exml",
+    "src/login/RegisterUISkin.exml"
   ],
   "skins": {
     "eui.Button": "resource/eui_skins/ButtonSkin.exml",

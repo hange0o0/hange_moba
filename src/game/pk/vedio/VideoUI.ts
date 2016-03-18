@@ -54,27 +54,27 @@ class VideoUI extends game.BaseWindow {
             var VC = VideoCode.getInstance();
              var data = this.mvList.pop();
             if(data.atker != 1 && data.atker != 2)
-                data.atker = VC.getPlayerByID(data.atker).mvo.name;
+                data.atker = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
             for(var i=0;i<data.defender.length;i++)
             {
-                data.defender[i] = VC.getPlayerByID(data.defender[i]).mvo.name;
+                data.defender[i] = data.defender[i] + '[' + VC.getPlayerByID(data.defender[i]).mvo.id+']'+(VC.getPlayerByID(data.defender[i]).isPKing?'*':'');
             }
 
             if(data.skillID == 50)
             {
-                var str = data.atker + '攻击' + data.defender[0];
+                var str = data.atker + ' 攻击 ' + data.defender[0];
             }
             else if(data.skillID == 51)
             {
-                var str = data.atker + '秒杀' + data.defender[0];
+                var str = data.atker + ' 秒杀 ' + data.defender[0];
             }
             else if(data.skillID == 52)
             {
-                var str = data.atker + '回合结束时血量改变';
+                var str = data.atker + ' 回合结束时血量改变';
             }
             else if(data.skillID == 53)
             {
-                var str = data.atker + '对' + data.defender.join(',') + '进行加成';
+                var str = data.atker +  ' 对 ' + data.defender.join(',') + ' 进行加成';
             }
             else
             {

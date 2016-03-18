@@ -76,7 +76,6 @@ class PlayerVO {
             this.mp = 0;
     }
     public addMaxHp(v){
-        this.hp += v;
         this.maxHp += v;
     }
     public addAtk(v){
