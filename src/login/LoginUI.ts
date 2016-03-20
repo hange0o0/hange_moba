@@ -7,7 +7,7 @@ class LoginUI extends game.BaseUI {
 
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "LoginUISkin";
     }
 
 

@@ -18,6 +18,8 @@ class PKManager {
     public pkResult;
     public pkType;
     public pkData;
+    public team1Base;
+    public team2Base;
 
     //不同位置的加成值和比例
     public indexAdd(index)
@@ -110,6 +112,43 @@ class PKManager {
         this.pkType = type
         this.pkResult = data
         this.pkData = data.pkdata;
+        this.team1Base = data.team1base;
+        this.team2Base = data.team2base;
+        VideoManager.getInstance().cleanVideo(type);
+    }
 
+    public getVedioBase(index){
+        var oo = this.pkData[index];
+        if(!oo)
+            return null;
+        if(oo.team1base)
+        {
+            return oo;
+        }
+        oo.team1base = dealData(this.team1Base,oo.player1);
+        oo.team2base = dealData(this.team2Base,oo.player2);
+        return oo;
+
+
+        function dealData(data,base)
+        {
+            var o = {};
+            for(var s in data)
+            {
+                if(s == 'list')
+                    continue;
+                if(s == 'mb')
+                {
+                    o['mb'] = {};
+                    for(var i=0;i<base.length;i++)
+                    {
+                        o['mb'][base[i].mid] = data['mb'][base[i].mid];
+                    }
+                    continue;
+                }
+                o[s] = data[s];
+            }
+            return o;
+        }
     }
 }

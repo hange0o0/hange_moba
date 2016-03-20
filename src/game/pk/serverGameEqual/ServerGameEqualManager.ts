@@ -24,8 +24,8 @@ class ServerGameEqualManager{
         return level;
     }
 
-    public getCard(fun?){
-        if(UM.server_game_equal.choose)
+    public getCard(isagain,fun?){
+        if(UM.server_game_equal.choose && UM.server_game_equal.pk==0)
         {
             if(fun)
                 fun();
@@ -33,6 +33,7 @@ class ServerGameEqualManager{
         }
         var self = this;
         var oo:any = {};
+        oo.isagain = isagain
         Net.addUser(oo);
         Net.send(GameEvent.serverGameEqual.get_server_equal_card,oo,function(data){
             var msg = data.msg;

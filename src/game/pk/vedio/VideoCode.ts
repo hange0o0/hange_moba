@@ -17,28 +17,66 @@ class VideoCode{
     public targetIndex = 999999;
     public stopMV = false;//停止动画表现
     public playFlag = false;//是否继续播放
+    public isDebug = false;//
 
     public currentAction;
+    public skillStart;
+    public skillArray;
+    public skillData;
+
+    public playerObject = {};
 
     public constructor() {
-        this.player1 = new PlayerVO();
-        this.player2 = new PlayerVO();
+        //this.player1 = new PlayerVO();
+        //this.player2 = new PlayerVO();
     }
 
     public initData(roundData){
-        //{"hp":40000000,"mhp":4000000,"spd":5700,"atk":10000,"mid":107,"id":10}
-        this.player1.reset(roundData.player1[0])
-        this.player2.reset(roundData.player2[0])
+        this.playerObject = {};
+        for(var i=0;i<roundData.player1.length;i++)
+        {
+            var player = new PlayerVO(roundData.player1[i],roundData.team1base);
+            if(i==0)
+            {
+                player.isPKing = true;
+                this.player1 = player;
+            }
+
+            this.playerObject[player.id] = player
+        }
+        for(var i=0;i<roundData.player2.length;i++)
+        {
+            var player = new PlayerVO(roundData.player2[i],roundData.team2base);
+            if(i==0)
+            {
+                player.isPKing = true;
+                this.player2 = player;
+            }
+
+            this.playerObject[player.id] = player
+        }
+
+
         this.index = 0;
         this.index2 = 0;
         this.targetIndex = 999999;
         this.record.length = 0;
 
         this.stopMV = false;
+        this.skillStart = false;
     }
 
-    public play()
+    public getPlayerByID(id){
+        return this.playerObject[id]
+    }
+
+    public play(isDebug?)
     {
+        this.isDebug = isDebug;
+        if(isDebug)
+        {
+            this.stopMV = false;
+        }
         this.targetIndex = 999999;
         this.playFlag = true;
         this.stepOne();
@@ -53,6 +91,7 @@ class VideoCode{
     public run(index){
         this.stopMV = true;
         this.playFlag = true;
+        this.skillStart = false;
         if(this.record[index])//已有播放纪录
         {
             this.index = index;
@@ -141,29 +180,60 @@ class VideoCode{
                 this.stepOne();
                 break;
             }
-            case 3:
+            //case 3:
+            //{
+            //    if(this.stopMV)//只计算值，不表现动画
+            //    {
+            //        this.onMovieOver();
+            //    }
+            //    else
+            //    {
+            //        //表现动画,会通调用stepOne回来
+            //         VideoUI.getInstance().playSkill();
+            //    }
+            //    break;
+            //}
+            case 4:   //改变攻击者的buffer(tag)
             {
+                this.getPlayerByID(this.atker).tag =  action.tag;
+                this.stepOne();
+                break;
+            }
+            case 5:   //攻击者行动计数
+            {
+                this.getPlayerByID(this.atker).actionCount =  action.actionCount;
+                this.stepOne();
+                break;
+            }
+            case 7:   //技能开始
+            {
+                this.skillStart = true;
+                this.skillData = {atker:this.atker,skillID:action.skillID,defender:[]};
+                this.skillArray = [this.skillData];
+                this.stepOne();
+                break;
+            }
+            case 8:   //技能过程
+            {
+                if(this.skillData.defender.indexOf(this.defender) == -1)
+                {
+                    this.skillData.defender.push(this.defender);
+                }
+                this.onSkillValue(action);
+                this.stepOne();
+                break;
+            }
+            case 9:   //技能结果
+            {
+                this.skillStart = false;
                 if(this.stopMV)//只计算值，不表现动画
                 {
                     this.onMovieOver();
                 }
                 else
                 {
-                    //表现动画,会通调用stepOne回来
-                     VideoUI.getInstance().playSkill();
+                    VideoUI.getInstance().playSkill(this.skillArray);
                 }
-                break;
-            }
-            case 4:   //改变攻击者的buffer(tag)
-            {
-                this.getPlayer(this.atker).tag =  action.tag;
-                this.stepOne();
-                break;
-            }
-            case 5:   //攻击者行动计数
-            {
-                this.getPlayer(this.atker).tag =  action.actionCount;
-                this.stepOne();
                 break;
             }
             default :
@@ -174,92 +244,42 @@ class VideoCode{
     }
 
     public onMovieOver(){
-        this.onSkillValue(this.currentAction.action);
         this.stepOne();
     }
 
     //计算技能数值得
-    public onSkillValue(arr){
-        for(var i=0;i<arr.length;i++)
+    public onSkillValue(value){
+        var player = this.getPlayerByID(this.defender);
+        switch(value.sType)
         {
-            var value = arr[i];
-            switch(value.type)
+            case '1'://"HP"=>'1',
             {
-                case '1'://"HP"=>'1',
-                {
-                    this.getPlayer(this.atker).addHp(value.value);
-                    break;
-                }
-                case '2'://    "SPD"=>'2',,
-                {
-                    this.getPlayer(this.atker).addSpeed(value.value);
-                    break;
-                }
-                case '3'://    "ATK"=>'3',
-                {
-                    this.getPlayer(this.atker).addAtk(value.value);
-                    break;
-                }
-                case '4'://    "MHP"=>'4',
-                {
-                    this.getPlayer(this.atker).addMaxHp(value.value);
-                    break;
-                }
-                case '5'://    "MP"=>'5',
-                {
-                    this.getPlayer(this.atker).addMp(value.value);
-                    break;
-                }
-                case '6'://    "EHP"=>'6',
-                {
-                    this.getPlayer(this.defender).addHp(value.value);
-                    break;
-                }
-                case '7'://    "ESPD"=>'7',
-                {
-                    this.getPlayer(this.defender).addSpeed(value.value);
-                    break;
-                }
-                case '8': //    "EATK"=>'8',
-                {
-                    this.getPlayer(this.defender).addAtk(value.value);
-                    break;
-                }
-                case '9'://    "EMHP"=>'9',,
-                {
-                    this.getPlayer(this.defender).addMaxHp(value.value);
-                    break;
-                }
-                case 'A'://    "EMP"=>'A',
-                {
-                    this.getPlayer(this.defender).addMp(value.value);
-                    break;
-                }
-                case 'B': //    "MOMIAN"=>'B'//这个不是技能中的参数
-                {
-                    break;
-                }
-                case '@': //转换被攻击者
-                {
-                    this.defender = value.value;
-                    break;
-                }
+                this.skillData['hp' + this.defender] = (this.skillData['hp' + this.defender] || 0) + value.value;
+                player.addHp(value.value);
+                break;
+            }
+            case '2'://    "SPD"=>'2',,
+            {
+                player.addSpeed(value.value);
+                break;
+            }
+            case '3'://    "ATK"=>'3',
+            {
+                player.addAtk(value.value);
+                break;
+            }
+            case '4'://    "MHP"=>'4',
+            {
+                this.skillData['mhp' + this.defender] = (this.skillData['mhp' + this.defender] || 0) + value.value;
+                player.addMaxHp(value.value);
+                break;
+            }
+            case '5'://    "MP"=>'5',
+            {
+                this.skillData['mp' + this.defender] = (this.skillData['mp' + this.defender] || 0) + value.value;
+                player.addMp(value.value);
+                break;
             }
         }
-    }
-
-    //取对应的场上单位
-    private getPlayer(id)
-    {
-        if(this.atker < 10)//召唤师
-        {
-            if(id == 1)
-                return this.player1;
-            else
-                return this.player2;
-        }
-        if(this.atker < 30)
-            return this.player1;
-        return this.player2;
     }
 }

@@ -71,9 +71,15 @@ class MonsterVO {
         if(value)
         {
             var arr = value.split('#');
+            if(arr.length != 3)
+            {
+                console.log('error:'+this.id+'---'+key)
+                throw(new Error('init'));
+            }
             this[key] = {};
-            this[key].name = arr[0];
-            this[key].des = arr[1];
+            this[key].mv = arr[0];
+            this[key].name = arr[1];
+            this[key].des = arr[2];
 
             if(key == 'sn')     //大绝
                 this[key].type = 0;

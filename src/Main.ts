@@ -71,7 +71,8 @@ class Main extends eui.UILayer {
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
         RES.loadGroup("preload");
-        RES.loadGroup("gamepreload");
+        if(_get['debug'] == 2)
+            RES.loadGroup("gamepreload");
     }
     private isThemeLoadEnd: boolean = false;
     /**
@@ -154,12 +155,47 @@ class Main extends eui.UILayer {
 
 
         UM.openid = _get['openid'];
-        if(UM.openid == '1_10000')
-            UM.landid = '1449731763';
-        else if(UM.openid == '1_10001')
-            UM.landid = '1449732148';
+        //if(UM.openid == '1_10000')
+        //    UM.landid = '1449731763';
+        //else if(UM.openid == '1_10001')
+        //    UM.landid = '1449732148';
 
-        DebugUI.getInstance().show();
+        if(Config.isDebug && _get['debug'] == 1)
+        {
+            Config.host = '172.17.196.195:90';
+        }
+
+        if(_get['debug'] == 2)
+        {
+            LoginUI.getInstance().show();
+            return;
+        }
+
+        //DebugUI.getInstance().show();
+        //var dataIn = {
+        //    vedio:1,
+        //    team1:{"list":[101,102,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}},
+        //    team2:{"list":[101,101,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}}
+        //};
+        var dataIn = RES.getRes("test_data_json");
+        Net.send('test',dataIn,function(data) {
+            var msg = data.msg;
+
+            PKManager.getInstance().onPK('test',msg) ;
+            //var baseData = PKManager.getInstance().getVedioBase(dataIn.vedio - 1);
+            VideoManager.getInstance().playVideo('test',dataIn.vedio)
+
+            //console.log(PKManager.getInstance().getVedioBase(dataIn.vedio - 1));
+
+            //VideoCode.getInstance().initData(PKManager.getInstance().pkData[0]);
+            //Net.send('pk_vedio',baseData,function(data){
+            //	var msg = data.msg;
+            //	VideoManager.getInstance().initVideo(msg.pkdata);
+            //    VideoCode.getInstance().play();
+            //
+            //	//console.log(VideoManager.getInstance().dataArray);
+            //});
+        });
     }
 
     private onButtonClick(e: egret.TouchEvent) {
