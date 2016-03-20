@@ -11,11 +11,33 @@ class MainPageUI extends game.BaseUI {
     }
 
 
-    private txt:eui.Label
-    private img:eui.Image
-    private expBar:eui.ProgressBar
-    private scroller:eui.Scroller
-    private scrollGroup:eui.Group
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private forceText: eui.BitmapLabel;
+    private coinText: eui.Label;
+    private energyText: eui.Label;
+    private diamondText: eui.Label;
+    private feeText: eui.Label;
+    private levelText: eui.Label;
+    private taskGroup: eui.Group;
+    private taskText: eui.Label;
+    private videoBtn: eui.Group;
+    private rankBtn: eui.Group;
+    private friendBtn: eui.Group;
+    private collectBtn: eui.Group;
+    private honorBtn: eui.Group;
+    private tecBtn: eui.Group;
+    private bagBtn: eui.Group;
+    private leftBtn: eui.Image;
+    private rightBtn: eui.Image;
+    private scroller: eui.Scroller;
+    private scrollGroup: eui.Group;
+    private p0: MainPageItem;
+    private p1: MainPageItem;
+    private p2: MainPageItem;
+    private p3: MainPageItem;
+    private p4: MainPageItem;
+
 
     public childrenCreated() {
         super.childrenCreated();

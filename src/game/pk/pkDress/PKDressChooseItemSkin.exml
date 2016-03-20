@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKDressChooseItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="174" height="174">
+	<e:Image id="stateMC" source="head_border_light1_png" x="0" y="0"/>
+	<e:Image source="border4_png" y="35" id="headMC" width="100" height="100" mask="headMask" x="38"/>
+	<e:Rect x="38" y="35" ellipseWidth="100" id="headMask" width="100" height="100" ellipseHeight="100"/>
+	<e:Image source="head_border4_png" y="31" x="31" id="headBG"/>
+</e:Skin>

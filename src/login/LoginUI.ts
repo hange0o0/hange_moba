@@ -4,6 +4,13 @@ class LoginUI extends game.BaseUI {
         if (!this.instance) this.instance = new LoginUI();
         return this.instance;
     }
+    
+    private nameText: eui.TextInput;
+    private passwordText: eui.TextInput;
+    private loginBtn: eui.Button;
+    private tryBtn: eui.Button;
+    private registerBtn: eui.Button;
+
 
     public constructor() {
         super();

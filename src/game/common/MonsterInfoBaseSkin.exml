@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MonsterInfoBaseSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="0" top="0" bottom="0" locked="true">
+		<e:Image source="book_bg1_jpg" x="0" y="0"/>
+		<e:Image source="book_bg1_jpg" y="0" x="640" scaleX="-1"/>
+		<e:Image source="book_bg2_jpg" x="0" scale9Grid="40,25,240,289" top="350" bottom="0"/>
+		<e:Image source="book_bg2_jpg" x="640" scaleX="-1" scale9Grid="40,44,240,266" top="350" bottom="0"/>
+	</e:Group>
+</e:Skin>

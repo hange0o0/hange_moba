@@ -5,6 +5,13 @@ class RegisterServerUI extends game.BaseUI {
         return this.instance;
     }
 
+    private backBtn: eui.Button;
+    private registerBtn: eui.Button;
+    private nameText: eui.TextInput;
+    private random_btn: eui.Group;
+    private headGroup: eui.Group;
+    private headMC: eui.Image;
+
     public constructor() {
         super();
         this.skinName = "DebugUISkin";
