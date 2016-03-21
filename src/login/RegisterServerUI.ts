@@ -1,4 +1,4 @@
-class RegisterServerUI extends game.BaseUI {
+class RegisterServerUI extends game.BaseWindow {
     private static instance:RegisterServerUI;
     public static getInstance() {
         if (!this.instance) this.instance = new RegisterServerUI();
@@ -42,7 +42,7 @@ class RegisterServerUI extends game.BaseUI {
 
     private onClick(){
         var LM = LoginManager.getInstance();
-        if(!this.nameText.text || !BadWordsFilter.validateName(this.nameText.text))
+        if(!this.nameText.text || BadWordsFilter.validateName(this.nameText.text))
         {
             Alert('名字中含有非法字符');
             return;

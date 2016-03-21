@@ -1,4 +1,4 @@
-class RegisterUI extends game.BaseUI {
+class RegisterUI extends game.BaseWindow {
     private static instance:RegisterUI;
     public static getInstance() {
         if (!this.instance) this.instance = new RegisterUI();
