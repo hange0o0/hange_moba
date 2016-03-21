@@ -10,6 +10,12 @@ class RegisterUI extends game.BaseUI {
         this.skinName = "DebugUISkin";
     }
 
+    private nameText: eui.TextInput;
+    private passwordText1: eui.TextInput;
+    private passwordText2: eui.TextInput;
+    private backBtn: eui.Button;
+    private loginBtn: eui.Button;
+
 
     public childrenCreated() {
         super.childrenCreated();

@@ -678,6 +678,41 @@
 					"isFolder":false,
 					"key":"window2_png",
 					"name":"window2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"random_btn_png",
+					"name":"random_btn_png"
+				},
+				{
+					"isFolder":false,
+					"key":"note_icon_png",
+					"name":"note_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"line2_png",
+					"name":"line2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"border_light1_png",
+					"name":"border_light1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"border_light2_png",
+					"name":"border_light2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"border_light3_png",
+					"name":"border_light3_png"
+				},
+				{
+					"isFolder":false,
+					"key":"drop_png",
+					"name":"drop_png"
 				}
 			]
 		}

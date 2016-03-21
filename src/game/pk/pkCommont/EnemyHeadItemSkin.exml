@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="EnemyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="120" height="117">
+	<e:Image source="border2_png" x="0" y="12" scale9Grid="11,11,68,68" width="105" height="105"/>
+	<e:Image id="headMC" source="border4_png" x="6" y="18" width="92" height="92"/>
+	<e:Button id="closeBtn" x="75" skinName="Btn_close2Skin" y="0" scaleY="0.6" scaleX="0.6"/>
+</e:Skin>

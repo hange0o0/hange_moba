@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKDressUISkin" width="640" height="960" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" states="normal,simple" >
+	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<ns1:PKDressSimple id="simpleChoose" x="0" y="80" skinName="PKDressSimpleSkin" x.normal="0" visible.normal="false"/>
+	<ns1:PKDressChooseUI id="pkChooseMC" x="0" y="0" skinName="PKDressChooseUISkin" y.normal="80" visible.simple="false"/>
+	<e:Group id="mainGroup" x="0" top="80" bottom="80" top.normal="530" top.simple="164">
+		<e:Group x="0" y="457" width="640">
+			<e:Group x="0" y="0">
+				<ns1:PKDressItem id="d0" x="0" y="0" skinName="PKDressItemSkin"/>
+				<ns1:PKDressItem x="10" skinName="PKDressItemSkin" y="10" id="d1"/>
+				<ns1:PKDressItem id="d2" skinName="PKDressItemSkin" y="20" x="20"/>
+				<ns1:PKDressItem x="30" skinName="PKDressItemSkin" y="30" id="d3"/>
+				<ns1:PKDressItem id="d4" skinName="PKDressItemSkin" y="40" x="40"/>
+				<ns1:PKDressItem x="50" skinName="PKDressItemSkin" y="50" id="d5"/>
+				<ns1:PKDressItem id="d6" skinName="PKDressItemSkin" y="60" x="60"/>
+				<ns1:PKDressItem x="70" skinName="PKDressItemSkin" y="70" id="d7"/>
+				<ns1:PKDressItem id="d8" skinName="PKDressItemSkin" y="80" x="80"/>
+				<ns1:PKDressItem x="90" skinName="PKDressItemSkin" y="90" id="d9"/>
+				<e:layout>
+					<e:HorizontalLayout gap="-15"/>
+				</e:layout>
+			</e:Group>
+			<e:Image id="upBtn" source="btn_up_png" x="574" y="8"/>
+		</e:Group>
+		<e:Scroller id="scroller" width="640" x="0" y="535" height="100%">
+			<e:Group height="279">
+				<ns1:MonsterInfoBase x="0" y="0" skinName="MonsterInfoBaseSkin"/>
+			</e:Group>
+		</e:Scroller>
+		<e:layout>
+			<e:VerticalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="0" bottom="-43">
+		<e:Image source="fire_top_jpg" x="0" y="110" scaleY="-1"/>
+		<e:Group id="preBtn" x="19" y="5">
+			<e:Image source="arrow1_png" x="0" y="0"/>
+			<e:Label text="上一页" x="56" y="8" textColor="0xCC9900"/>
+		</e:Group>
+		<e:Group id="nextBtn" x="460" y="5">
+			<e:Label y="8" text="下一页" x="12" textColor="0xCC9900"/>
+			<e:Image source="arrow1_png" y="0" x="159" scaleX="-1"/>
+		</e:Group>
+		<e:Button id="chooseBtn" label="参战(1/2)" y="-4" skinName="Btn_r3Skin" horizontalCenter="0"/>
+	</e:Group>
+	<e:Image source="fu2_png" x="17" y="12.5"/>
+	<e:Image source="fu1_png" x="163" y="12.5"/>
+	<e:Label id="coinText" text="标签" x="56" y="14.5" textColor="0xCC9900"/>
+	<e:Label id="woodText" y="14.5" textColor="0xCC9900" text="标签" x="207"/>
+</e:Skin>

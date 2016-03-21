@@ -8,8 +8,8 @@
 	<e:Label y="184" textColor="0xC4A36A" size="22" text="密码确认：" x="41"/>
 	<e:TextInput id="passwordText2" width="280" y="173" skinName="MyTextInputSkin" height="45" x="159"/>
 	<e:Group y="267" horizontalCenter="0">
+		<e:Button id="backBtn" scaleX="0.9" label="返回" scaleY="0.9" y="0" x="0" skinName="Btn_d2Skin"/>
 		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="登陆" scaleX="0.9" scaleY="0.9" y="0" x="0"/>
-		<e:Button id="backBtn" scaleX="0.9" label="返回" skinName="Btn_d2Skin" scaleY="0.9" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>

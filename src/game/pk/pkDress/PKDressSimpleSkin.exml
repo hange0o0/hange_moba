@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKDressSimpleSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="84">
+	<e:Group x="573" y="14" width="56" height="56">
+		<e:Image source="btn_up_png" x="56" y="0" rotation="90"/>
+	</e:Group>
+	<e:Group x="11" y="15" width="56" height="56">
+		<e:Image source="btn_down_png" y="0" rotation="90" x="56"/>
+	</e:Group>
+	<e:Group y="5" horizontalCenter="0">
+		<ns1:PKDressSimpleItem id="h0" x="0" y="0" skinName="PKDressSimpleItemSkin"/>
+		<ns1:PKDressSimpleItem id="h1" skinName="PKDressSimpleItemSkin" y="10" x="10"/>
+		<ns1:PKDressSimpleItem x="20" skinName="PKDressSimpleItemSkin" y="20" id="h2"/>
+		<ns1:PKDressSimpleItem id="h3" skinName="PKDressSimpleItemSkin" y="30" x="30"/>
+		<ns1:PKDressSimpleItem x="40" skinName="PKDressSimpleItemSkin" y="40" id="h4"/>
+		<e:layout>
+			<e:HorizontalLayout gap="25"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

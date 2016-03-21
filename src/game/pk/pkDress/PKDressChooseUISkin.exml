@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKDressChooseUISkin" width="640" height="450" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:List id="list" height="282" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseItemSkin">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="数据11"/>
+				<e:Object label="数据21"/>
+				<e:Object label="数据31"/>
+			</e:Array>
+		</e:ArrayCollection>
+		<e:layout>
+			<e:TileLayout horizontalGap="-40" verticalGap="-40" paddingLeft="-10" paddingTop="-10"/>
+		</e:layout>
+	</e:List>
+	<e:Group id="pkBtn" y="356" x="198">
+		<e:Image source="btn_pk_png" y="6" scaleY="0.8" scaleX="0.8" x="0"/>
+		<e:Label text="开始PK" x="95" y="32" textColor="0xFADEA2"/>
+		<e:Image source="pk_icon_png" x="41" y="23" scaleX="0.7" scaleY="0.7"/>
+	</e:Group>
+	<e:Group y="292" horizontalCenter="0">
+		<e:Group x="0" y="0">
+			<e:Image source="bold_bg_png" x="0" y="0"/>
+			<e:RadioButton id="ringRadio1" label="单选框" x="36" y="14" skinName="MyRadioButtonSkin"/>
+		</e:Group>
+		<e:Group y="10" x="77">
+			<e:Image source="bold_bg_png" y="0" x="0"/>
+			<e:RadioButton id="ringRadio2" x="36" skinName="MyRadioButtonSkin" y="14" label="单选框"/>
+		</e:Group>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Label id="decText" text="标签" x="512" y="386" textColor="0xFF0000"/>
+	<e:Label id="addText" x="73" y="386" textColor="0xFF0000" text="标签"/>
+	<e:Rect height="800" width="640" x="0" y="282" fillAlpha="0.7"/>
+	<e:Image source="drop_png" x="258" y="298"/>
+	<e:Rect height="100" width="640" x="0" y="-100" fillAlpha="0.7"/>
+</e:Skin>

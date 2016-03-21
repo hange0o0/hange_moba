@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MainPageUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
+	<e:Group x="-2" y="0">
+		<e:Image source="fire_top_jpg" x="2" y="0"/>
+		<e:Image source="border_head_png" x="10" y="6"/>
+		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
+		<e:Image source="main_exp_jpg" x="2" y="116" width="640"/>
+		<e:Image source="icon_empty_png" x="0" y="76"/>
+		<e:Image source="border1_png" x="516" y="15" scale9Grid="21,15,70,9" height="40" width="120"/>
+		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="120" height="40" x="516"/>
+		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="150" height="40" x="333"/>
+		<e:Image source="border1_png" y="15" scale9Grid="21,15,70,9" width="150" height="40" x="333"/>
+		<e:Image source="icon_money_png" x="310" y="13"/>
+		<e:Image source="icon_pve_png" x="310" y="60"/>
+		<e:Image source="icon_token_png" x="491" y="60"/>
+		<e:Image source="icon_pvp_ticket_png" x="491" y="14"/>
+		<e:Label id="nameText" text="nick" x="124" y="16"/>
+		<e:BitmapLabel id="forceText" x="160" y="67" font="font_num4_fnt" text="12345" scaleY="1.8" scaleX="1.8"/>
+		<e:Image source="icon_power_png" x="114" y="60"/>
+		<e:Label id="coinText" text="123456789" x="350" y="22" size="24" textColor="0xCCCCCC"/>
+		<e:Label id="energyText" y="71" textColor="0xCCCCCC" size="24" text="123456789" x="350"/>
+		<e:Label id="diamondText" y="71" textColor="0xCCCCCC" size="24" text="1234567" x="533"/>
+		<e:Label id="feeText" y="22" textColor="0xCCCCCC" size="24" text="1234567" x="533"/>
+		<e:Label id="levelText" text="99" y="87" size="22" textColor="0xCCCCCC" horizontalCenter="-298"/>
+	</e:Group>
+	<e:Group id="taskGroup" x="0" y="123">
+		<e:Rect height="55" width="640" x="0" y="-1" fillAlpha="0.6" strokeWeight="1"/>
+		<e:Label id="taskText" text="任务：在10场无科技PK中取得6场胜利（12/99）" y="17" size="22" textColor="0x866E4B" horizontalCenter="0"/>
+		<e:Image source="note_icon_png" x="4" y="-1"/>
+	</e:Group>
+	<e:Group id="videoBtn" x="581" y="125">
+		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
+		<e:Image source="replay_mc_png" x="11" y="6"/>
+	</e:Group>
+	<e:Group x="0" bottom="0">
+		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>
+		<e:Group id="rankBtn" x="27.954545454545453" y="14.015151515151501">
+			<e:Image source="menu_icon_1_png" x="18" y="0"/>
+			<e:Image source="menu_icon_1_png" y="13" x="0"/>
+			<e:Label text="排行" x="2" y="79" textColor="0xCC9900"/>
+		</e:Group>
+		<e:Group id="friendBtn" x="526.969696969697" y="5.000000000000114">
+			<e:Image source="menu_icon_4_png" x="0" y="0"/>
+			<e:Label y="88" text="好友" x="18" textColor="0xCC9900"/>
+		</e:Group>
+		<e:Group id="collectBtn" x="116.96969696969697" y="0">
+			<e:Image source="menu_icon_2_png" x="0" y="0"/>
+			<e:Label y="93" text="收集" x="14" textColor="0xCC9900"/>
+		</e:Group>
+		<e:Group id="honorBtn" x="223.93939393939397" y="0.9848484848486123">
+			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
+			<e:Label y="92" text="成就" x="9" textColor="0xCC9900"/>
+		</e:Group>
+		<e:Group id="tecBtn" x="321.96969696969694" y="2.954545454545496">
+			<e:Image source="menu_icon_6_png" x="0" y="0"/>
+			<e:Label y="90" text="科技" x="18" textColor="0xCC9900"/>
+		</e:Group>
+		<e:Group id="bagBtn" x="423.93939393939394" y="4.015151515151729">
+			<e:Image source="menu_icon_5_png" x="0" y="0"/>
+			<e:Label y="89" text="背包" x="16" textColor="0xCC9900"/>
+		</e:Group>
+	</e:Group>
+	<e:Group x="16" top="180" bottom="150">
+		<e:Image id="leftBtn" source="left_btn_png" x="0" verticalCenter="0"/>
+		<e:Image id="rightBtn" source="left_btn_png" x="611" scaleX="-1" verticalCenter="0"/>
+		<e:Group horizontalCenter="0" width="480" height="100%" verticalCenter="0" maxHeight="480">
+			<e:Scroller id="scroller" width="480" x="0" bottom="40" top="0">
+				<e:Group id="scrollGroup">
+					<ns1:MainServerItem x="0" y="0" skinName="MainServerItemSkin"/>
+				</e:Group>
+			</e:Scroller>
+			<e:Group x="0" width="100%" height="30" bottom="0">
+				<ns1:MainPageItem id="p0" x="0" y="1" skinName="MainPageItemSkin"/>
+				<ns1:MainPageItem x="10" skinName="MainPageItemSkin" y="11" id="p1"/>
+				<ns1:MainPageItem id="p2" skinName="MainPageItemSkin" y="21" x="20"/>
+				<ns1:MainPageItem x="30" skinName="MainPageItemSkin" y="31" id="p3"/>
+				<ns1:MainPageItem id="p4" skinName="MainPageItemSkin" y="41" x="40"/>
+				<e:layout>
+					<e:HorizontalLayout gap="15" horizontalAlign="center"/>
+				</e:layout>
+			</e:Group>
+			<e:layout>
+				<e:BasicLayout/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+</e:Skin>

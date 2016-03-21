@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MainServerItemSkin" width="480" height="440" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="card_bg_png" y="67" horizontalCenter="0"/>
+	<e:Image source="main_item_bg_png" y="263" horizontalCenter="0" width="480"/>
+	<e:Image source="icon_pvp_2_png" y="272" x="10"/>
+	<e:Image source="icon_pvp_3_png" y="272" x="249"/>
+	<e:Group y="376" horizontalCenter="0">
+		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
+		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Image source="icon_rank_png" x="10" y="319"/>
+	<e:Group y="10" horizontalCenter="0">
+		<e:Image source="main_mc_png" y="0" x="0"/>
+		<e:Label text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E"/>
+		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Label id="totalText" text="局数：333" x="54" y="277" textColor="0xCC9900"/>
+	<e:Label id="scoreText" y="324" textColor="0xCC9900" text="积分：333" x="54"/>
+	<e:Label id="winText" y="277" textColor="0xCC9900" text="胜利：333" x="293"/>
+</e:Skin>
