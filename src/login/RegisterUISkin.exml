@@ -15,5 +15,5 @@
 		</e:layout>
 	</e:Group>
 	<e:Image source="window1_top_png" y="0" horizontalCenter="0"/>
-	<e:Label text="注册" y="11" size="22" horizontalCenter="0" textColor="0xAAA6A6"/>
+	<e:Label id="titleText" text="注册" y="11" size="22" horizontalCenter="0" textColor="0xAAA6A6"/>
 </e:Skin>

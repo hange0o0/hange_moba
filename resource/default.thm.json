@@ -36,7 +36,6 @@
     "src/game/pk/pkCommont/EnemyHeadItemSkin.exml",
     "src/game/pk/pkCommont/MyHeadItemSkin.exml",
     "src/game/pk/pkDress/PKDressChooseItemSkin.exml",
-    "src/game/pk/pkDress/PKDressChooseListSkin.exml",
     "src/game/pk/pkDress/PKDressChooseUISkin.exml",
     "src/game/pk/pkDress/PKDressItemSkin.exml",
     "src/game/pk/pkDress/PKDressSimpleItemSkin.exml",

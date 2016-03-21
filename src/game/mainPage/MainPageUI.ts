@@ -7,7 +7,7 @@ class MainPageUI extends game.BaseUI {
 
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "MainPageUISkin";
     }
 
 
@@ -41,25 +41,25 @@ class MainPageUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.img, this.onHead);
-        this.addBtnEvent(this.img, this.onDiamondAdd);
-        this.addBtnEvent(this.img, this.onForce);
-        this.addBtnEvent(this.img, this.onEnergyAdd);
+        this.addBtnEvent(this.headMC, this.onHead);
+        this.addBtnEvent(this.diamondText, this.onDiamondAdd);
+        this.addBtnEvent(this.forceText, this.onForce);
+        this.addBtnEvent(this.energyText, this.onEnergyAdd);
 
 
 
-        this.addBtnEvent(this.img, this.onFriend);
-        this.addBtnEvent(this.img, this.onCollect);
-        this.addBtnEvent(this.img, this.onBag);
-        this.addBtnEvent(this.img, this.onHonor);
-        this.addBtnEvent(this.img, this.onRank);
-        this.addBtnEvent(this.img, this.onTec);
+        this.addBtnEvent(this.friendBtn, this.onFriend);
+        this.addBtnEvent(this.collectBtn, this.onCollect);
+        this.addBtnEvent(this.bagBtn, this.onBag);
+        this.addBtnEvent(this.honorBtn, this.onHonor);
+        this.addBtnEvent(this.rankBtn, this.onRank);
+        this.addBtnEvent(this.tecBtn, this.onTec);
 
 
-        this.addBtnEvent(this.img, this.onMain);
-        this.addBtnEvent(this.img, this.onServer);
-        this.addBtnEvent(this.img, this.onServerEqual);
-        this.addBtnEvent(this.img, this.onDay);
+        //this.addBtnEvent(this.img, this.onMain);
+        //this.addBtnEvent(this.img, this.onServer);
+        //this.addBtnEvent(this.img, this.onServerEqual);
+        //this.addBtnEvent(this.img, this.onDay);
 
         EM.addEvent(GameEvent.client.coin_change,this.renewCoin,this);
         EM.addEvent(GameEvent.client.diamond_change,this.renewDiamond,this);
@@ -130,12 +130,12 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewMiddle(){
-        this.scrollGroup.removeChildren();
-        this.scrollGroup.addChild(this.img);
-        if(true)
-        {
-            this.scrollGroup.addChild(this.img);
-        }
+        //this.scrollGroup.removeChildren();
+        //this.scrollGroup.addChild(this.img);
+        //if(true)
+        //{
+        //    this.scrollGroup.addChild(this.img);
+        //}
     }
 
 
@@ -145,27 +145,26 @@ class MainPageUI extends game.BaseUI {
         this.renewCoin();
         this.renewExp();
         this.renewEnergy();
-        this.txt.text = UM.nick;
-        this.img.source = UM.head;
+        this.nameText.text = UM.nick;
+        this.headMC.source = UM.head;
     }
     public renewDiamond(){
-        this.txt.text = UM.diamond.free + '';
-        this.txt.text = UM.diamond.rmb + '';
+        this.diamondText.text = UM.diamond.free + '';
+        this.feeText.text = UM.diamond.rmb + '';
     }
     public renewForce(){
-        this.txt.text = UM.getForce() + '';
+        this.forceText.text = UM.getForce() + '';
     }
     public renewCoin(){
-        this.txt.text = NumberUtil.addNumSeparator(UM.coin);
+        this.coinText.text = NumberUtil.addNumSeparator(UM.coin);
     }
     public renewExp(){
-        this.expBar.maximum = UM.next_exp
-        this.expBar.value = Math.min(UM.exp,UM.next_exp);
-        this.txt.text = UM.level + '';
+        //this.expBar.maximum = UM.next_exp
+        //this.expBar.value = Math.min(UM.exp,UM.next_exp);
+        this.levelText.text = UM.level + '';
     }
     public renewEnergy(){
         UM.getEnergy();
-        this.txt.text = UM.energy.v + ''
-        this.txt.text = UM.energy.rmb + ''
+        this.energyText.text = UM.energy.v + '+' + UM.energy.rmb;
     }
 }

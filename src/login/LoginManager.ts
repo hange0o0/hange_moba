@@ -10,7 +10,7 @@ class LoginManager{
 
     public openid;
     public openKey;
-    public myServer; //我的服务器列表
+    public myServer; //我的服务器列表   {key:name}
     public lastLand;
     public serverList = {}; //所有服务器的集合
 
@@ -26,18 +26,40 @@ class LoginManager{
         this.myServer = oo.myServer;
     }
 
-    //取我不在的服务器列表
+    //测试名字是否合法
+    public testName(mail){
+        var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (filter.test(mail)) return true;
+        else {
+            Alert('用户名请输入您的电子邮件');
+            return false;
+        }
+    }
+    //测试密码是否合法
+    public testPassword(password){
+        var reg = /^[\w]{6,12}$/;
+        if(password.match(reg)){
+            return true;
+        }
+        else {
+            Alert('密码的格式为6-12位，只能是字母、数字和下划线');
+            return false;
+        }
+    }
+
+    //取我不在的服务器列表(分有号，无号，按time排序)
     public getAllServer(){
-        var arr = [];
+        var oo = {my:[],other:[]};
         for(var s in this.serverList)
         {
-             if(this.myServer && this.myServer.indexOf(s) != -1)
-                 continue;
-            arr.push(s);
+             if(this.myServer[s])//有号
+                 oo.my.push(this.serverList[s]);
+            else
+                 oo.other.push(this.serverList[s]);
         }
-        ArrayUtil.sortByField(arr,['serverid'],[0]);
-        return arr;
-
+        ArrayUtil.sortByField(oo.my,['serverid'],[1]);
+        ArrayUtil.sortByField(oo.other,['serverid'],[1]);
+        return oo;
     }
 
     private writeDB(){
@@ -52,7 +74,10 @@ class LoginManager{
         var self = this;
         var oo:any = {};
         oo.name = name;
-        oo.password = password;
+        if(this.lastPassword == password)
+            oo.password = password;
+        else
+            oo.password = md5.incode(password);
         Net.send(GameEvent.sys.login,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)
@@ -78,12 +103,15 @@ class LoginManager{
             self.openid = msg.userdata.id;
             self.openKey = msg.userdata.cdkey;
             self.lastLand = msg.userdata.last_land;
-            self.myServer = msg.userdata.server.split(',');
+            self.fillServer(msg.userdata.server);
+
 
 
             self.lastUser = name;
             self.lastPassword = null
             self.writeDB();
+
+            self.onUserLogin();
             if(fun)
                 fun();
         },true,2);
@@ -93,7 +121,7 @@ class LoginManager{
         var self = this;
         var oo:any = {};
         oo.name = name;
-        oo.password = password;
+        oo.password = md5.incode(password);
         Net.send(GameEvent.sys.register,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)
@@ -111,11 +139,13 @@ class LoginManager{
             self.openid = msg.id;
             self.openKey = msg.cdkey;
             self.lastLand = msg.last_land;
-            self.myServer = [];
+            self.myServer = {};
 
             self.lastUser = name;
             self.lastPassword = null
             self.writeDB();
+
+            self.onUserLogin();
             if(fun)
                 fun();
         },true,2);
@@ -142,11 +172,13 @@ class LoginManager{
             self.openid = msg.id;
             self.openKey = msg.cdkey;
             self.lastLand = msg.last_land;
-            self.myServer = [];
+            self.myServer = {};
 
             self.lastUser = msg.name;
             self.lastPassword = msg.password;
             self.writeDB();
+
+            self.onUserLogin();
             if(fun)
                 fun();
         },true,2);
@@ -159,7 +191,7 @@ class LoginManager{
         oo.name = name;
         oo.password = password;
 
-        oo.last_id = self.openid;
+        oo.last_name = self.lastUser;
         oo.last_password = self.lastPassword;
         Net.send(GameEvent.sys.re_register,oo,function(data){
             var msg = data.msg;
@@ -175,15 +207,42 @@ class LoginManager{
                 return;
             }
 
-            self.openKey = msg.cdkey;
-            self.lastLand = msg.last_land;
+
+            self.openid = msg.userdata.id;
+            self.openKey = msg.userdata.cdkey;
+            self.lastLand = msg.userdata.last_land;
+            self.fillServer(msg.userdata.server);
+
+
 
             self.lastUser = name;
             self.lastPassword = null
             self.writeDB();
+
+
+            self.onUserLogin();
             if(fun)
                 fun();
         },true,2);
+    }
+
+    private fillServer(server){
+        this.myServer = {};
+        var serverArr = server.split(',');
+        for(var i=0;i<serverArr.length;i++)
+        {
+            var arr = serverArr[i].split('|');
+            this.myServer[arr[0]] = this.myServer[arr[1]];
+            if(!this.lastSever && i == serverArr.length-1)
+            {
+                this.lastSever = arr[0];
+            }
+        }
+    }
+    private onUserLogin(){
+        RegisterUI.getInstance().hide();
+        LoginUI.getInstance().hide();
+        LoginServerUI.getInstance().show();
     }
 
     //----------------------------------以下是整个平台的用户管理------------------
@@ -247,12 +306,14 @@ class LoginManager{
             {
                 //没这个玩家，要新增
                //弹出填写玩家昵称的UI
-                if(Config.isDebug)
-                {
-                    self.registerServer(oo.id,1,serverid,function(){
-                        self.loginServer(serverid,fun);
-                    });
-                }
+                self.myServer[serverid] = null;
+                RegisterServerUI.getInstance().show();
+                //if(Config.isDebug)
+                //{
+                //    self.registerServer(oo.id,1,serverid,function(){
+                //        self.loginServer(serverid,fun);
+                //    });
+                //}
                 return;
             }
 
@@ -260,6 +321,10 @@ class LoginManager{
 
             self.lastSever = serverid;
             self.writeDB();
+
+
+            MainPageUI.getInstance().show();
+            LoginServerUI.getInstance().hide();
             if(fun)
                 fun();
         });
@@ -296,14 +361,14 @@ class LoginManager{
             {
                 Alert('已在该服务器上成功注册过了');
                 nick = msg.nick;
-                self.addUserServer(serverid,nick);
-                //todo:更新页面
-                return;
             }
 
             //UM.fill(msg.data);
 
             self.addUserServer(serverid,nick);
+            self.myServer[serverid] = nick;
+            LoginServerUI.getInstance().onShow();
+            RegisterServerUI.getInstance().hide();
             //self.lastSever = serverid;
             //self.writeDB();
             if(fun)

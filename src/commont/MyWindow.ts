@@ -6,7 +6,8 @@ function Alert(msg,title?,fun?){
     GameManager.container.addChild(panel);
 }
 
-function Confirm(msg,title?,funOK?,funNo?,btnWord=['取消','确定']){
+//fun(type){type:1确定，2：取消，3右上角关闭}
+function Confirm(msg,title?,funOK?,btnWord=['取消','确定']){
     var panel = new eui.Panel();
     panel.title = msg;
     panel.horizontalCenter = 0;

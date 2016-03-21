@@ -2,6 +2,9 @@ class MyTool {
     public constructor() {
     }
 
+    public static randomName(){
+        return  'n'+Math.floor(Math.random()*999999);
+    }
     public static removeMC(mc:any){
         if(mc.parent)
             mc.parent.removeChild(mc)
