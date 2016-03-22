@@ -4,7 +4,7 @@
 	<e:Image source="main_item_bg_png" y="263" horizontalCenter="0" width="480"/>
 	<e:Image source="icon_pvp_2_png" y="272" x="10"/>
 	<e:Image source="icon_pvp_3_png" y="272" x="249"/>
-	<e:Group y="376" horizontalCenter="0">
+	<e:Group y="376" horizontalCenter="0" id="btnGroup">
 		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>

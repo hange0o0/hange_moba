@@ -39,12 +39,19 @@ class MainPageUI extends game.BaseUI {
     private p4: MainPageItem;
 
 
+    private pageArray = [];
+    private currentPage= 0;
+    private startPos;
+
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.headMC, this.onHead);
         this.addBtnEvent(this.diamondText, this.onDiamondAdd);
         this.addBtnEvent(this.forceText, this.onForce);
         this.addBtnEvent(this.energyText, this.onEnergyAdd);
+
+        this.addBtnEvent(this.leftBtn, this.onLeft);
+        this.addBtnEvent(this.rightBtn, this.onRight);
 
 
 
@@ -67,7 +74,66 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.exp_change,this.renewExp,this);
         EM.addEvent(GameEvent.client.level_change,this.renewExp,this);
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
+
+        for(var i=0;i<=4;i++)
+        {
+              this.pageArray.push(this['p'+i]);
+        }
+
+
+        this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
     }
+
+    private onBegin(e:egret.TouchEvent){
+        if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
+        {
+            return;
+        }
+
+        this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+        this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+
+        this.startPos = {x:e.stageX,tx:this.scrollGroup.x};
+
+    }
+
+    private onMove(e:egret.TouchEvent){
+        if(!this.startPos.drag)
+        {
+            if(Math.abs(e.stageX - this.startPos.x) > 10)
+            {
+                this.startPos.drag = true;
+            }
+        }
+        if(this.startPos.drag)
+        {
+            this.scrollGroup.x = this.startPos.tx + e.stageX-this.startPos.x;
+        }
+    }
+
+    private onEnd(e:egret.TouchEvent){
+        this.scrollGroup.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+        this.scrollGroup.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+        if(Math.abs(this.scrollGroup.x - this.startPos.tx) > 150)//可翻页
+        {
+            if(this.scrollGroup.x > this.startPos.tx)//右移
+            {
+                this.onLeft();
+            }
+            else
+            {
+                this.onRight();
+            }
+
+        }
+        else
+        {
+            this.scrollToCurrentPage();
+        }
+
+    }
+
+
 
     private onHead(){
 
@@ -80,6 +146,16 @@ class MainPageUI extends game.BaseUI {
     }
     private onEnergyAdd(){
 
+    }
+    private onLeft(){
+        if(this.currentPage > 0)
+            this.currentPage --;
+        this.scrollToCurrentPage();
+    }
+    private onRight(){
+        if(this.currentPage < this.pageArray.length - 1)
+            this.currentPage ++;
+        this.scrollToCurrentPage();
     }
 
 
@@ -126,6 +202,11 @@ class MainPageUI extends game.BaseUI {
 
     public onShow(){
         this.renewTop();
+
+        this.renewTask();
+        this.renewPage();
+        this.scrollToCurrentPage();
+
         this.renewMiddle();
     }
 
@@ -145,6 +226,7 @@ class MainPageUI extends game.BaseUI {
         this.renewCoin();
         this.renewExp();
         this.renewEnergy();
+
         this.nameText.text = UM.nick;
         this.headMC.source = UM.head;
     }
@@ -161,10 +243,67 @@ class MainPageUI extends game.BaseUI {
     public renewExp(){
         //this.expBar.maximum = UM.next_exp
         //this.expBar.value = Math.min(UM.exp,UM.next_exp);
+
         this.levelText.text = UM.level + '';
     }
     public renewEnergy(){
         UM.getEnergy();
         this.energyText.text = UM.energy.v + '+' + UM.energy.rmb;
     }
+
+    public renewTask(){
+        var task = UM.honor.task;
+        if(task.doing)
+        {
+            this.taskGroup.visible = true;
+            var type = '修正场PK'
+            if(UM.honor.task.type == 'server_game')
+                type = '竞技场PK';
+            this.taskText.text = '任务：在'+task.targettotal+'场'+type+'中取得'+task.targetwin+'场胜利【战力+'+task.award+'】（'+task.win+'/'+task.total+'）';
+        }
+        else
+        {
+            this.taskGroup.visible = false;
+        }
+    }
+
+    public renewPage(){
+        if(this.currentPage == 0)
+            this.leftBtn.alpha = 0.5;
+        else
+            this.leftBtn.alpha = 1;
+
+        if(this.currentPage == this.pageArray.length - 1)
+            this.rightBtn.alpha = 0.5;
+        else
+            this.rightBtn.alpha = 1;
+
+        for(var i=0;i<this.pageArray.length;i++)
+        {
+            this.pageArray[i].data = this.currentPage == i;
+        }
+    }
+
+    public scrollToCurrentPage(nomovie=false){
+        egret.Tween.removeTweens(this.scrollGroup)
+        var targetX = this.currentPage * 640;
+        this.scroller.viewport.scrollV = 0;
+        if(nomovie)
+        {
+            this.scrollGroup.x = targetX;
+        }
+        else if(this.scrollGroup.x != targetX)
+        {
+            var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
+            tw.to({x:targetX}, 100*Math.abs(targetX-this.scrollGroup.x)/640);
+        }
+
+        switch(this.currentPage)
+        {
+            case 1:
+                break;
+        }
+    }
+
+
 }

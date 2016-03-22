@@ -6,6 +6,7 @@ class LoginServerUI extends game.BaseUI {
     }
     
     private loginBtn: eui.Button;
+    private backBtn: eui.Button;
     private nameText: eui.Label;
     private serverName: eui.Label;
 
@@ -20,7 +21,13 @@ class LoginServerUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.loginBtn, this.onClick);
+        this.addBtnEvent(this.backBtn, this.onBack);
         this.addBtnEvent(this.serverName, this.onServerChoose);
+    }
+
+    private onBack(){
+        this.hide();
+        LoginUI.getInstance().show();
     }
 
     public show(){
@@ -77,7 +84,7 @@ class LoginServerUI extends game.BaseUI {
         }
         else
         {
-            RegisterServerUI.getInstance().show();
+            RegisterServerUI.getInstance().show(this.serverid);
         }
 
     }

@@ -9,10 +9,12 @@ class TopUI extends game.BaseContainer {
 
 
     public childrenCreated() {
-
+        this.addBtnEvent(this.closeBtn,this.backBtnClick);
     }
-
-    public dataChange() {
-
+    public setTitle(name:string):void{
+        this.titleText.text = name;
+    }
+    private backBtnClick(event:egret.TouchEvent):void {
+        this.dispatchEventWith("hide");
     }
 }

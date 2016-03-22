@@ -51,7 +51,7 @@ class RegisterUI extends game.BaseWindow {
         {
             return;
         }
-        if(!LM.testPassword(this.passwordText1.text != this.passwordText2.text))
+        if(this.passwordText1.text != this.passwordText2.text)
         {
             Alert('两次输入密码不一致');
             return;

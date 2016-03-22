@@ -1,7 +1,7 @@
 class MyHeadItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "MyHeadItemSkin";
     }
 
     private headMC: eui.Image;

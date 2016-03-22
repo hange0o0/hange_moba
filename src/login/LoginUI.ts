@@ -23,18 +23,16 @@ class LoginUI extends game.BaseUI {
         this.addBtnEvent(this.loginBtn, this.onLogin);
         this.addBtnEvent(this.tryBtn, this.onTry);
         this.addBtnEvent(this.registerBtn, this.onRegister);
+    }
 
-
+    public onShow(){
         var LM = LoginManager.getInstance();
-        if(LM.lastUser)
-        {
-             this.nameText.text = LM.lastUser;
-            if(LM.lastPassword)
-            {
+        if(LM.lastUser) {
+            this.nameText.text = LM.lastUser;
+            if (LM.lastPassword) {
                 this.passwordText.text = LM.lastPassword;
             }
         }
-
     }
 
     private onLogin(){

@@ -160,7 +160,7 @@ class Main extends eui.UILayer {
         //else if(UM.openid == '1_10001')
         //    UM.landid = '1449732148';
 
-        if(Config.isDebug && _get['debug'] == 1)
+        if(Config.isDebug && _get['host'] == 'com')
         {
             Config.host = '172.17.196.195:90';
         }

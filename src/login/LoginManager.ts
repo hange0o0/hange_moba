@@ -136,9 +136,9 @@ class LoginManager{
                 return;
             }
 
-            self.openid = msg.id;
-            self.openKey = msg.cdkey;
-            self.lastLand = msg.last_land;
+            self.openid = msg.data.id;
+            self.openKey = msg.data.cdkey;
+            self.lastLand = msg.data.last_land;
             self.myServer = {};
 
             self.lastUser = name;
@@ -169,13 +169,13 @@ class LoginManager{
                 return;
             }
 
-            self.openid = msg.id;
-            self.openKey = msg.cdkey;
-            self.lastLand = msg.last_land;
+            self.openid = msg.data.id;
+            self.openKey = msg.data.cdkey;
+            self.lastLand = msg.data.last_land;
             self.myServer = {};
 
-            self.lastUser = msg.name;
-            self.lastPassword = msg.password;
+            self.lastUser = msg.data.name;
+            self.lastPassword = msg.data.password;
             self.writeDB();
 
             self.onUserLogin();
@@ -232,7 +232,7 @@ class LoginManager{
         for(var i=0;i<serverArr.length;i++)
         {
             var arr = serverArr[i].split('|');
-            this.myServer[arr[0]] = this.myServer[arr[1]];
+            this.myServer[arr[0]] = arr[1];
             if(!this.lastSever && i == serverArr.length-1)
             {
                 this.lastSever = arr[0];
@@ -307,7 +307,7 @@ class LoginManager{
                 //没这个玩家，要新增
                //弹出填写玩家昵称的UI
                 self.myServer[serverid] = null;
-                RegisterServerUI.getInstance().show();
+                RegisterServerUI.getInstance().show(serverid);
                 //if(Config.isDebug)
                 //{
                 //    self.registerServer(oo.id,1,serverid,function(){

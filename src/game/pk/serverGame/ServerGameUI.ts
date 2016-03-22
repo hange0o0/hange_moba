@@ -28,16 +28,50 @@ class ServerGameUI extends game.BaseUI {
 
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "ServerGameUISkin";
     }
 
 
     public childrenCreated() {
         super.childrenCreated();
-        //this.addBtnEvent(this, this.onClick);
+
+        this.topUI.setTitle('竞技场PK');
+        this.topUI.addEventListener('hide',this.hide,this);
+
+        this.addBtnEvent(this.chooseBtn0, this.onChoose1);
+        this.addBtnEvent(this.chooseBtn1, this.onChoose2);
+
+        this.enemyList.itemRenderer =  EnemyHeadItem;
+        this.myList0.itemRenderer =  MyHeadItem;
+        this.myList1.itemRenderer =  MyHeadItem;
     }
 
-    private onClick(){
+    public onShow(){
+        var data = UM.server_game;
+
+        //更新敌人
+        var enemyList = [];
+        for(var i=0;i<data.enemy.length;i++)
+        {
+            enemyList.push({id:data.enemy[i],type:1});
+        }
+        this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
+
+        //更
+        var chooseList1 = [];
+        for(var i=0;i<data.choose[0].length;i++)
+        {
+            enemyList.push({id:data.enemy[i],type:1});
+        }
+
+
+    }
+
+    private onChoose1(){
+
+    }
+
+    private onChoose2(){
 
     }
 }
