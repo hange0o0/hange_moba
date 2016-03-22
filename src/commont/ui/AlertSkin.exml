@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="AlertSkin" width="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window1_jpg" x="0" width="540" height="100%" y="0" scale9Grid="52,129,318,21"/>
+	<e:Group horizontalCenter="0" bottom="15">
+		<e:Button id="cancelBtn" y="4" label="按钮" x="0" skinName="Btn_d2Skin"/>
+		<e:Button id="okBtn" label="按钮" x="198" y="0" skinName="Btn_r2Skin"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>
+	<e:Button id="closeBtn" x="493" y="-17" skinName="Btn_close1Skin"/>
+	<e:Label id="text" text="标签标签标签标签" textColor="0xCDC9C4" left="50" right="50" top="50" bottom="120" textAlign="center"/>
+</e:Skin>

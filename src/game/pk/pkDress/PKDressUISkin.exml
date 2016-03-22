@@ -3,24 +3,20 @@
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<ns1:PKDressSimple id="simpleChoose" x="0" y="80" skinName="PKDressSimpleSkin" x.normal="0" visible.normal="false"/>
-	<ns1:PKDressChooseUI id="pkChooseMC" x="0" y="0" skinName="PKDressChooseUISkin" y.normal="80" visible.simple="false"/>
 	<e:Group id="mainGroup" x="0" top="80" bottom="80" top.normal="530" top.simple="164">
 		<e:Group x="0" y="457" width="640">
-			<e:Group x="0" y="0">
-				<ns1:PKDressItem id="d0" x="0" y="0" skinName="PKDressItemSkin"/>
-				<ns1:PKDressItem x="10" skinName="PKDressItemSkin" y="10" id="d1"/>
-				<ns1:PKDressItem id="d2" skinName="PKDressItemSkin" y="20" x="20"/>
-				<ns1:PKDressItem x="30" skinName="PKDressItemSkin" y="30" id="d3"/>
-				<ns1:PKDressItem id="d4" skinName="PKDressItemSkin" y="40" x="40"/>
-				<ns1:PKDressItem x="50" skinName="PKDressItemSkin" y="50" id="d5"/>
-				<ns1:PKDressItem id="d6" skinName="PKDressItemSkin" y="60" x="60"/>
-				<ns1:PKDressItem x="70" skinName="PKDressItemSkin" y="70" id="d7"/>
-				<ns1:PKDressItem id="d8" skinName="PKDressItemSkin" y="80" x="80"/>
-				<ns1:PKDressItem x="90" skinName="PKDressItemSkin" y="90" id="d9"/>
+			<e:List id="chooseList" height="70" width="565" x="0" y="0" itemRendererSkinName="PKDressItemSkin">
 				<e:layout>
 					<e:HorizontalLayout gap="-15"/>
 				</e:layout>
-			</e:Group>
+				<e:ArrayCollection>
+					<e:Array>
+						<e:Object label="1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+					</e:Array>
+				</e:ArrayCollection>
+			</e:List>
 			<e:Image id="upBtn" source="btn_up_png" x="574" y="8"/>
 		</e:Group>
 		<e:Scroller id="scroller" width="640" x="0" y="535" height="100%">
@@ -48,4 +44,6 @@
 	<e:Image source="fu1_png" x="163" y="12.5"/>
 	<e:Label id="coinText" text="标签" x="56" y="14.5" textColor="0xCC9900"/>
 	<e:Label id="woodText" y="14.5" textColor="0xCC9900" text="标签" x="207"/>
+	<e:Button id="viewBtn" x="449" y="-1" skinName="Btn_r1Skin" label="对手"/>
+	<ns1:PKDressChooseUI id="pkChooseMC" x="0" y="0" skinName="PKDressChooseUISkin" y.normal="80" visible.simple="false"/>
 </e:Skin>

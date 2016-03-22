@@ -7,18 +7,8 @@ class PKDressUI extends game.BaseUI {
     
     private topUI: TopUI;
     private simpleChoose: PKDressSimple;
-    private pkChooseMC: PKDressChooseUI;
     private mainGroup: eui.Group;
-    private d0: PKDressItem;
-    private d1: PKDressItem;
-    private d2: PKDressItem;
-    private d3: PKDressItem;
-    private d4: PKDressItem;
-    private d5: PKDressItem;
-    private d6: PKDressItem;
-    private d7: PKDressItem;
-    private d8: PKDressItem;
-    private d9: PKDressItem;
+    private chooseList: eui.List;
     private upBtn: eui.Image;
     private scroller: eui.Scroller;
     private preBtn: eui.Group;
@@ -26,6 +16,9 @@ class PKDressUI extends game.BaseUI {
     private chooseBtn: eui.Button;
     private coinText: eui.Label;
     private woodText: eui.Label;
+    private viewBtn: eui.Button;
+    private pkChooseMC: PKDressChooseUI;
+
 
 
 

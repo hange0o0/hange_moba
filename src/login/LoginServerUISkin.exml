@@ -1,8 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="LoginServerUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="bg_jpg" y="0" x="0"/>
-	<e:Button id="loginBtn" label="进入游戏" y="770" horizontalCenter="0" skinName="Btn_r2Skin"/>
-	<e:Button id="backBtn" label="返回" y="770" horizontalCenter="-200" skinName="Btn_d2Skin"/>
+	<e:Image source="bg_jpg" y="0" x="0"/>
+	<e:Group y="770" horizontalCenter="0">
+		<e:Button id="backBtn" label="返回" y="0" skinName="Btn_d2Skin" x="0"/>
+		<e:Button id="loginBtn" label="进入游戏" y="0" skinName="Btn_r2Skin" x="200"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>
 	<e:Label id="nameText" y="646" text="角色名：密码123456" horizontalCenter="0" textColor="0xE0B3B3"/>
 	<e:Group y="700" horizontalCenter="0">
 		<e:Image source="border6_png" y="0" scale9Grid="14,11,88,11" width="220" height="50" horizontalCenter="0"/>

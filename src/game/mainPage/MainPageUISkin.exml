@@ -5,7 +5,7 @@
 		<e:Image source="fire_top_jpg" x="2" y="0"/>
 		<e:Image source="border_head_png" x="10" y="6"/>
 		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
-		<e:Image source="main_exp_jpg" x="2" y="116" width="640"/>
+		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
 		<e:Image source="icon_empty_png" x="0" y="76"/>
 		<e:Image source="border1_png" x="516" y="15" scale9Grid="21,15,70,9" height="40" width="120"/>
 		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="120" height="40" x="516"/>
@@ -66,8 +66,14 @@
 		<e:Image id="rightBtn" source="left_btn_png" x="611" scaleX="-1" verticalCenter="0"/>
 		<e:Group horizontalCenter="0" width="480" height="100%" verticalCenter="0" maxHeight="480">
 			<e:Scroller id="scroller" width="480" x="0" bottom="40" top="0">
-				<e:Group id="scrollGroup">
-					<ns1:MainServerItem x="0" y="0" skinName="MainServerItemSkin"/>
+				<e:Group id="scrollGroupCon">
+					<e:Group id="scrollGroup" x="0" y="0">
+						<ns1:MainServerItem id="serverGame" x="0" y="0" skinName="MainServerItemSkin"/>
+						<ns1:MainServerItem id="serverGameEqual" skinName="MainServerItemSkin" y="10" x="10"/>
+						<e:layout>
+							<e:HorizontalLayout gap="160"/>
+						</e:layout>
+					</e:Group>
 				</e:Group>
 			</e:Scroller>
 			<e:Group x="0" width="100%" height="30" bottom="0">

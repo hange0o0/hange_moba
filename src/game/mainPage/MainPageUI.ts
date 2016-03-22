@@ -12,6 +12,7 @@ class MainPageUI extends game.BaseUI {
 
 
     private headMC: eui.Image;
+    private expBar: eui.Image;
     private nameText: eui.Label;
     private forceText: eui.BitmapLabel;
     private coinText: eui.Label;
@@ -31,12 +32,16 @@ class MainPageUI extends game.BaseUI {
     private leftBtn: eui.Image;
     private rightBtn: eui.Image;
     private scroller: eui.Scroller;
+    private scrollGroupCon: eui.Group;
     private scrollGroup: eui.Group;
+    private serverGame: MainServerItem;
+    private serverGameEqual: MainServerItem;
     private p0: MainPageItem;
     private p1: MainPageItem;
     private p2: MainPageItem;
     private p3: MainPageItem;
     private p4: MainPageItem;
+
 
 
     private pageArray = [];

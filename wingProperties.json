@@ -713,6 +713,11 @@
 					"isFolder":false,
 					"key":"drop_png",
 					"name":"drop_png"
+				},
+				{
+					"isFolder":false,
+					"key":"tips_jpg",
+					"name":"tips_jpg"
 				}
 			]
 		}
