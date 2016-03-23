@@ -20,10 +20,15 @@ class ServerGameUI extends game.BaseUI {
     private myTitleText0: eui.Label;
     private chooseBtn0: eui.Button;
     private myList0: eui.List;
+    private ringText0: eui.Label;
+    private ringText1: eui.Label;
     private myGroup1: eui.Group;
     private myTitleText1: eui.Label;
     private chooseBtn1: eui.Button;
     private myList1: eui.List;
+    private ringText2: eui.Label;
+    private ringText3: eui.Label;
+
 
 
     public constructor() {
