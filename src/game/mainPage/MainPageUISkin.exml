@@ -71,7 +71,7 @@
 						<ns1:MainServerItem id="serverGame" x="0" y="0" skinName="MainServerItemSkin"/>
 						<ns1:MainServerItem id="serverGameEqual" skinName="MainServerItemSkin" y="10" x="10"/>
 						<e:layout>
-							<e:HorizontalLayout gap="160"/>
+							<e:HorizontalLayout gap="20"/>
 						</e:layout>
 					</e:Group>
 				</e:Group>

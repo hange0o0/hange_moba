@@ -95,8 +95,9 @@ class SyncManager{
                         UM.honor.monster[ss] = value[ss];
                     }
                     break;
-                case 'sync_honor_task':
-                    UM.honor.task = value;
+                case 'sync_active_task':
+                    UM.active.task = value;
+                    EM.dispatch(GameEvent.client.task_change);
                     break;
                 case 'sync_award_force':
                     UM.award_force = value;

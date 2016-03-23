@@ -8,6 +8,7 @@ class GameEvent {
         friend_change:'friend_change',
         prop_change:'prop_change',
         force_change:'force_change',
+        task_change:'task_change',
         level_change:'level_change'
     };
 

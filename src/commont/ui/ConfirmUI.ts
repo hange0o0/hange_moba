@@ -1,4 +1,4 @@
-class AlertUI extends game.BaseWindow {
+class ConfirmUI extends game.BaseWindow {
     public constructor() {
         super();
         this.skinName = "AlertSkin";
@@ -11,22 +11,29 @@ class AlertUI extends game.BaseWindow {
 
     private textIn;
     private fun;
+    private btnWord;
 
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.okBtn, this.onClick);
-        MyTool.removeMC(this.closeBtn)
-        MyTool.removeMC(this.cancelBtn)
+        this.addBtnEvent(this.cancelBtn, this.onCancelClick);
+        this.addBtnEvent(this.closeBtn, this.onCloseClick);
     }
 
-    public show(v?,fun?){
+    public show(v?,fun?,btnWord?){
         this.textIn = v;
         this.fun = fun;
+        this.btnWord = btnWord;
         super.show();
     }
 
     public onShow(){
         this.text.text = this.textIn;
+        if(this.btnWord)
+        {
+            this.cancelBtn.label = this.btnWord[0];
+            this.okBtn.label = this.btnWord[1];
+        }
 
 
         var ww = GameManager.container.width;
@@ -38,6 +45,16 @@ class AlertUI extends game.BaseWindow {
     private onClick(){
         this.hide();
         if(this.fun)
-            this.fun();
+            this.fun(1);
+    }
+    private onCancelClick(){
+        this.hide();
+        if(this.fun)
+            this.fun(2);
+    }
+    private onCloseClick(){
+        this.hide();
+        if(this.fun)
+            this.fun(3);
     }
 }

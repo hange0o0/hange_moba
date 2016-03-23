@@ -21,6 +21,11 @@ class PKDressChooseUI extends game.BaseContainer {
     private replaceDragMC//代替拖动块显示的MC
 
 
+    private r1:eui.RadioButton
+    private r2:eui.RadioButton
+    private touchTimer
+    private ringInfo
+
 
 
     public childrenCreated() {
@@ -39,6 +44,31 @@ class PKDressChooseUI extends game.BaseContainer {
             mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onClick,this)
             MyTool.removeMC(mc);
         }
+
+        this.r1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
+        this.r2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
+    }
+
+    private onRing1Touch(){
+        this.stage.once(egret.TouchEvent.TOUCH_END,this.onRingTouchEnd,this);
+        //this.touchTimer = egret.setTimeout(this.showRingInfo,this,500,this.ringList[0]);
+    }
+    private onRing2Touch(){
+        this.stage.once(egret.TouchEvent.TOUCH_END,this.onRingTouchEnd,this);
+        //this.touchTimer = egret.setTimeout(this.showRingInfo,this,500,this.ringList[1]);
+    }
+
+    private showRingInfo(ringID){
+        this.ringInfo.visible = true;
+        //if(this.isEqual)
+        //    this.ringInfo.text = '' + RingVO.getObject(ringID).getLevelDes(RingVO.equalLevel);
+        //else
+            this.ringInfo.text = '' + RingVO.getObject(ringID).getLevelDes(UM.getRingLevel(ringID));
+    }
+
+    private onRingTouchEnd(){
+        egret.clearTimeout(this.touchTimer);
+        this.ringInfo.visible = false;
     }
 
     private onClick(e){

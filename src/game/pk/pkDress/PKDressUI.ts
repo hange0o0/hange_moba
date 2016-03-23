@@ -31,11 +31,9 @@ class PKDressUI extends game.BaseUI {
     private txt:eui.Label
     private img:eui.Image
     private list:eui.List
-    private r1:eui.RadioButton
-    private r2:eui.RadioButton
+
     private tab:eui.TabBar
 
-    private ringInfo
 
 
 
@@ -45,12 +43,16 @@ class PKDressUI extends game.BaseUI {
 
     public monsterList = [];
     public ringList = [];
-    public orginData; //卡组的原始数据
+
     public history = {};//历史记录
 
-    private touchTimer
 
     public isEqual = false;
+
+
+
+    public orginData; //卡组的原始数据
+    public pkType; //PK类型
     public selectedIndex;//记录上一次选择的TAB
 
     public constructor() {
@@ -58,17 +60,17 @@ class PKDressUI extends game.BaseUI {
         this.skinName = "DebugUISkin";
     }
 
-    public show(v?){
-        this.orginData = v;
+    public show(pkType?,selectIndex?){
+
+        this.pkType = pkType;
+        this.selectedIndex = selectIndex;
+        this.orginData = UM[pkType].choose;
         super.show();
     }
 
     public onShow(){
-        this.r1.selected = true;
-        this.selectedIndex = 1;
-        this.tab.selectedIndex = 1;
-        this.monsterList = this.orginData[this.tab.selectedIndex].list;
-        this.ringList = this.orginData[this.tab.selectedIndex].ring;
+        this.monsterList = this.orginData[this.selectedIndex].list;
+        this.ringList = this.orginData[this.selectedIndex].ring;
         this.reInitData();
     }
 
@@ -81,13 +83,12 @@ class PKDressUI extends game.BaseUI {
         this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
 
         this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
-        this.r1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
-        this.r2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
+
     }
 
     private onStart(){
-         var list = this.chooseUI.getChooseList();
-         var ring = this.r1.group.selectedValue;
+         //var list = this.chooseUI.getChooseList();
+         //var ring = this.r1.group.selectedValue;
     }
 
     private onListChange(){
@@ -98,51 +99,32 @@ class PKDressUI extends game.BaseUI {
     }
 
     private typeBarClick(){
-        var list = this.chooseUI.getChooseList();
-        var ring = this.r1.group.selectedValue;
-        this.history[this.selectedIndex] = {list:list,ring:ring};
+        //var list = this.chooseUI.getChooseList();
+        //var ring = this.r1.group.selectedValue;
+        //this.history[this.selectedIndex] = {list:list,ring:ring};
+        //
+        //this.selectedIndex = this.tab.selectedIndex;
+        //this.monsterList = this.orginData[this.tab.selectedIndex].list;
+        //this.ringList = this.orginData[this.tab.selectedIndex].ring;
+        //this.reInitData();
+        //
+        //var history = this.history[this.selectedIndex];
+        //if(history)
+        //{
+        //    if(this.ringList.indexOf(history.ring) == 1)
+        //        this.r2.selected = true;
+        //    else
+        //        this.r1.selected = true;
+        //
+        //    for(var i=0;i<history.list;i++)
+        //    {
 
-        this.selectedIndex = this.tab.selectedIndex;
-        this.monsterList = this.orginData[this.tab.selectedIndex].list;
-        this.ringList = this.orginData[this.tab.selectedIndex].ring;
-        this.reInitData();
-
-        var history = this.history[this.selectedIndex];
-        if(history)
-        {
-            if(this.ringList.indexOf(history.ring) == 1)
-                this.r2.selected = true;
-            else
-                this.r1.selected = true;
-
-            for(var i=0;i<history.list;i++)
-            {
-                this.chooseUI.addOne(history.list[i]);
-            }
-        }
+        //        this.chooseUI.addOne(history.list[i]);
+        //    }
+        //}
     }
 
-    private onRing1Touch(){
-        this.stage.once(egret.TouchEvent.TOUCH_END,this.onRingTouchEnd,this);
-        this.touchTimer = egret.setTimeout(this.showRingInfo,this,500,this.ringList[0]);
-    }
-    private onRing2Touch(){
-        this.stage.once(egret.TouchEvent.TOUCH_END,this.onRingTouchEnd,this);
-        this.touchTimer = egret.setTimeout(this.showRingInfo,this,500,this.ringList[1]);
-    }
 
-    private showRingInfo(ringID){
-        this.ringInfo.visible = true;
-        if(this.isEqual)
-            this.ringInfo.text = '' + RingVO.getObject(ringID).getLevelDes(RingVO.equalLevel);
-        else
-            this.ringInfo.text = '' + RingVO.getObject(ringID).getLevelDes(UM.getRingLevel(ringID));
-    }
-
-    private onRingTouchEnd(){
-        egret.clearTimeout(this.touchTimer);
-        this.ringInfo.visible = false;
-    }
 
     //得到当前用剩的资源
     public getCurrentResource(){
@@ -157,10 +139,10 @@ class PKDressUI extends game.BaseUI {
     }
 
     public reInitData(){
-        this.r1.value = this.ringList[0]
-        this.r2.value = this.ringList[1]
-        this.r1.label =  RingVO.getObject(this.ringList[0]).name;
-        this.r1.label =  RingVO.getObject(this.ringList[1]).name;
+        //this.r1.value = this.ringList[0]
+        //this.r2.value = this.ringList[1]
+        //this.r1.label =  RingVO.getObject(this.ringList[0]).name;
+        //this.r1.label =  RingVO.getObject(this.ringList[1]).name;
 
         this.selectMonster = this.monsterList[0];
         this.totalWood = 1;

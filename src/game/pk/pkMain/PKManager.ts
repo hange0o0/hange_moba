@@ -34,6 +34,19 @@ class PKManager {
         return null;
     }
 
+    //根据经验，返回所在等级
+    public getPKTableLevel(exp){
+        var level = 1;
+        for(var i=0;i<=20;i++)
+        {
+            if(exp >= Math.pow(2,i)*100)
+                level ++;
+            else
+                break;
+        }
+        return level;
+    }
+
     //PK通用报错处理
     public pkError(oo){
         if(oo.fail == 101)//没这个令牌

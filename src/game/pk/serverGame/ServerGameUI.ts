@@ -1,7 +1,7 @@
 class ServerGameUI extends game.BaseUI {
-    private static instance:DebugUI;
+    private static instance:ServerGameUI;
     public static getInstance() {
-        if (!this.instance) this.instance = new DebugUI();
+        if (!this.instance) this.instance = new ServerGameUI();
         return this.instance;
     }
     
@@ -51,27 +51,46 @@ class ServerGameUI extends game.BaseUI {
 
         //更新敌人
         var enemyList = [];
-        for(var i=0;i<data.enemy.length;i++)
+        if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.openid)
+            data.enemy.userinfo = {head:1,nick:'神秘人',level:'???',force:'???',win:'???',total:'???','exp':"???"}
+        for(var i=0;i<data.enemy.base.list.length;i++)
         {
-            enemyList.push({id:data.enemy[i],type:1});
+            enemyList.push({id:data.enemy.base.list[i],type:1});
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
+        var uf = data.enemy.userinfo;
+        this.nameText.text = uf.nick;
+        this.levelText.text = uf.level;
+        this.winText.text = uf.win;
+        this.rankText.text = uf.exp;
+        this.forceText.text = uf.force;
+        this.headMC.source = 'head_'+uf.head + '_jpg';
 
-        //更
+        //更新卡组1
         var chooseList1 = [];
-        for(var i=0;i<data.choose[0].length;i++)
+        for(var i=0;i<data.choose[0].list.length;i++)
         {
-            enemyList.push({id:data.enemy[i],type:1});
+            chooseList1.push({id:data.choose[0].list[i],type:1});
         }
+        this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
+
+
+        //更新卡组2
+        var chooseList2 = [];
+        for(var i=0;i<data.choose[1].list.length;i++)
+        {
+            chooseList2.push({id:data.choose[1].list[i],type:1});
+        }
+        this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
 
 
     }
 
     private onChoose1(){
-
+        PKDressUI.getInstance().show('server_game',UM.server_game.choose[0])
     }
 
     private onChoose2(){
-
+        PKDressUI.getInstance().show('server_game',UM.server_game.choose[1])
     }
 }

@@ -10,7 +10,10 @@ class MainPageItem extends game.BaseItem {
     }
 
     public dataChange() {
-        var oo = PKManager.getInstance().indexAdd(this.itemIndex);
-        var id = this.data;
+        if(this.data)
+            this.currentState = 'choose';
+        else
+            this.currentState = 'normal';
+
     }
 }

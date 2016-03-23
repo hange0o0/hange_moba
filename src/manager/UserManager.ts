@@ -32,6 +32,7 @@ class UserManager {
     public main_game: any;
     public day_game: any;
     public honor: any;
+    public active: any;
     public prop: any;
     public collect: any;
     public friends: any;
@@ -61,6 +62,7 @@ class UserManager {
         this.collect = data.collect;     //'{"level":{},"num":{}}')
         this.friends = data.friends; //'{"v":0,"t":0,"tk":0}');//好友相关 每人每天只可发送20条消息
         this.energy = data.energy; //  '{"v":0,"t":0,"rmb":0}'
+        this.active = data.active; //  '{task:{}}'
     }
 
     public getDiamond(){

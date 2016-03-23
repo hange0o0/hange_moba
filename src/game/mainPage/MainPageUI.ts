@@ -79,6 +79,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.exp_change,this.renewExp,this);
         EM.addEvent(GameEvent.client.level_change,this.renewExp,this);
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
+        EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
 
         for(var i=0;i<=4;i++)
         {
@@ -86,7 +87,10 @@ class MainPageUI extends game.BaseUI {
         }
 
 
+        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
+        this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
+
     }
 
     private onBegin(e:egret.TouchEvent){
@@ -136,6 +140,14 @@ class MainPageUI extends game.BaseUI {
             this.scrollToCurrentPage();
         }
 
+    }
+
+    //滚动后防止按钮事件被触发
+    private onTouchTap(e:egret.TouchEvent){
+        if(this.startPos && this.startPos.drag)
+        {
+            e.stopPropagation();
+        }
     }
 
 
@@ -246,9 +258,7 @@ class MainPageUI extends game.BaseUI {
         this.coinText.text = NumberUtil.addNumSeparator(UM.coin);
     }
     public renewExp(){
-        //this.expBar.maximum = UM.next_exp
-        //this.expBar.value = Math.min(UM.exp,UM.next_exp);
-
+        this.expBar.scrollRect = new egret.Rectangle(0,0,Math.min(UM.exp/UM.next_exp,1)*640,6)
         this.levelText.text = UM.level + '';
     }
     public renewEnergy(){
@@ -257,12 +267,12 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewTask(){
-        var task = UM.honor.task;
+        var task = UM.active.task;
         if(task.doing)
         {
             this.taskGroup.visible = true;
             var type = '修正场PK'
-            if(UM.honor.task.type == 'server_game')
+            if(task.type == 'server_game')
                 type = '竞技场PK';
             this.taskText.text = '任务：在'+task.targettotal+'场'+type+'中取得'+task.targetwin+'场胜利【战力+'+task.award+'】（'+task.win+'/'+task.total+'）';
         }
@@ -291,7 +301,7 @@ class MainPageUI extends game.BaseUI {
 
     public scrollToCurrentPage(nomovie=false){
         egret.Tween.removeTweens(this.scrollGroup)
-        var targetX = this.currentPage * 640;
+        var targetX = -this.currentPage * 500;
         this.scroller.viewport.scrollV = 0;
         if(nomovie)
         {
@@ -300,12 +310,18 @@ class MainPageUI extends game.BaseUI {
         else if(this.scrollGroup.x != targetX)
         {
             var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
-            tw.to({x:targetX}, 100*Math.abs(targetX-this.scrollGroup.x)/640);
+            tw.to({x:targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/500));
         }
 
         switch(this.currentPage)
         {
+            case 0:
+                this.serverGame.renew();
+                this.videoBtn.visible = UM.server_game.pkdata;
+                break;
             case 1:
+                this.serverGameEqual.renew();
+                this.videoBtn.visible = UM.server_game_equal.pkdata;
                 break;
         }
     }

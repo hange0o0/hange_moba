@@ -25,6 +25,8 @@
     "src/commont/btns/Btn_r3Skin.exml",
     "src/commont/skin/MyRadioButtonSkin.exml",
     "src/commont/skin/MyTextInputSkin.exml",
+    "src/commont/ui/AlertSkin.exml",
+    "src/commont/ui/TipsUISkin.exml",
     "src/commont/ui/TopUISkin.exml",
     "src/debug/DebugInputSkin.exml",
     "src/debug/DebugUISkin.exml",

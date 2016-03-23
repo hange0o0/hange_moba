@@ -48,7 +48,7 @@ class LoginUI extends game.BaseUI {
         }
         if(LM.lastPassword && LM.lastPassword == psw) {
             var self = this;
-            Confirm('检测到您已正使游客账号进行登录，转正式账号可防止游戏数据丢失，是否转正？', '提示', function (type) {
+            Confirm('检测到您已正使游客账号进行登录，转正式账号可防止游戏数据丢失，是否转正？', function (type) {
                 if (type == 1) {
                     RegisterUI.getInstance().show(1);
                 }
@@ -66,7 +66,7 @@ class LoginUI extends game.BaseUI {
         var LM = LoginManager.getInstance();
         if(LM.lastPassword)
         {
-            Confirm('检测到您已注册了一个游客账号，是否使用该账号继续登录？','提示',function(type){
+            Confirm('检测到您已注册了一个游客账号，是否使用该账号继续登录？',function(type){
                 if(type == 1)
                 {
                     LM.login(LM.lastUser,LM.lastPassword);
@@ -86,7 +86,7 @@ class LoginUI extends game.BaseUI {
     private onRegister(){
         var LM = LoginManager.getInstance();
         if(LM.lastPassword) {
-            Confirm('检测到您已正使游客账号，可转正该账号继续使用，是否转正？', '提示', function (type) {
+            Confirm('检测到您已正使游客账号，可转正该账号继续使用，是否转正？', function (type) {
                 if (type == 1) {
                     RegisterUI.getInstance().show(1);
                 }
