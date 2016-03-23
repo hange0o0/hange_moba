@@ -11,6 +11,7 @@ class PKDressUI extends game.BaseUI {
     private chooseList: eui.List;
     private upBtn: eui.Image;
     private scroller: eui.Scroller;
+    private infoMC: MonsterInfoBase;
     private preBtn: eui.Group;
     private nextBtn: eui.Group;
     private chooseBtn: eui.Button;
@@ -18,6 +19,7 @@ class PKDressUI extends game.BaseUI {
     private woodText: eui.Label;
     private viewBtn: eui.Button;
     private pkChooseMC: PKDressChooseUI;
+
 
 
 

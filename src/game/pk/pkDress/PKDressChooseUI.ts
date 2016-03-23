@@ -3,6 +3,13 @@ class PKDressChooseUI extends game.BaseContainer {
         super();
         this.skinName = "DebugUISkin";
     }
+    private list: eui.List;
+    private pkBtn: eui.Group;
+    private ringRadio1: eui.RadioButton;
+    private ringRadio2: eui.RadioButton;
+    private decText: eui.Label;
+    private addText: eui.Label;
+    private boxMC: eui.Image;
 
     private deleteMC:eui.Image
     private cancelMC1:eui.Image

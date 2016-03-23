@@ -6,8 +6,7 @@ class PKDressSimpleItem extends game.BaseItem {
 
     private stateMC: eui.Image;
     private headMC: eui.Image;
-    private headMask: eui.Rect;
-    private headBG: eui.Image;
+
 
 
     private txt: eui.Label;

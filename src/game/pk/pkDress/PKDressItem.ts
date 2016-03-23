@@ -4,7 +4,9 @@ class PKDressItem extends game.BaseItem {
         this.skinName = "DebugUISkin";
     }
 
-    private img:eui.Image;
+    private chooseMC: eui.Image;
+    private headMC: eui.Image;
+
 
     public index;
 

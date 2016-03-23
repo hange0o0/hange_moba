@@ -17,11 +17,11 @@
 					</e:Array>
 				</e:ArrayCollection>
 			</e:List>
-			<e:Image id="upBtn" source="btn_up_png" x="574" y="8"/>
+			<e:Image id="upBtn" source="btn_up_png" x="574" y="8" scaleY.simple="-1" y.simple="65"/>
 		</e:Group>
 		<e:Scroller id="scroller" width="640" x="0" y="535" height="100%">
 			<e:Group height="279">
-				<ns1:MonsterInfoBase x="0" y="0" skinName="MonsterInfoBaseSkin"/>
+				<ns1:MonsterInfoBase id="infoMC" x="0" y="0" skinName="MonsterInfoBaseSkin"/>
 			</e:Group>
 		</e:Scroller>
 		<e:layout>

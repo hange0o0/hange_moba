@@ -3,6 +3,13 @@ class PKDressSimple extends game.BaseContainer {
         super();
         this.skinName = "DebugUISkin";
     }
+    
+    private rightBtn: eui.Group;
+    private leftBtn: eui.Group;
+    private list: eui.List;
+
+
+    
 
     private deleteMC: eui.Image
     private cancelMC1: eui.Image

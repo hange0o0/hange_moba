@@ -33,6 +33,6 @@
 	<e:Label id="decText" text="标签" x="512" y="386" textColor="0xFF0000"/>
 	<e:Label id="addText" x="73" y="386" textColor="0xFF0000" text="标签"/>
 	<e:Rect height="800" width="640" x="0" y="282" fillAlpha="0.7"/>
-	<e:Image source="drop_png" x="258" y="298"/>
+	<e:Image id="boxMC" source="drop_png" x="258" y="298"/>
 	<e:Rect height="100" width="640" x="0" y="-100" fillAlpha="0.7"/>
 </e:Skin>

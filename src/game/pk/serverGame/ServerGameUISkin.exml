@@ -2,7 +2,7 @@
 <e:Skin class="ServerGameUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0">
+	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
 				<e:Image source="border_head_png" x="15" y="14" width="80" height="80"/>

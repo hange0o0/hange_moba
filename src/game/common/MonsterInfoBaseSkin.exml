@@ -6,4 +6,6 @@
 		<e:Image source="book_bg2_jpg" x="0" scale9Grid="40,25,240,289" top="350" bottom="0"/>
 		<e:Image source="book_bg2_jpg" x="640" scaleX="-1" scale9Grid="40,44,240,266" top="350" bottom="0"/>
 	</e:Group>
+	<e:Image source="card_bg_png" x="34" y="38" height="310" scale9Grid="72,75,87,71"/>
+	<e:Rect height="280" width="210" x="49" y="49" fillColor="0xFFFFFF"/>
 </e:Skin>
