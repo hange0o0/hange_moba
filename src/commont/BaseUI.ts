@@ -55,6 +55,7 @@ module game {
         * this.addBtnEvent(this.btn, this.btnClick);
         */ 
         public addBtnEvent(btn: egret.DisplayObject, fun:any, thisObject?:any):void{
+            btn.touchEnabled = true;
             btn.addEventListener(egret.TouchEvent.TOUCH_TAP,fun,thisObject || this);
         }
 

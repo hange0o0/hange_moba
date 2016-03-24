@@ -11,7 +11,6 @@ class PKDressUI extends game.BaseUI {
     private chooseList: eui.List;
     private upBtn: eui.Image;
     private scroller: eui.Scroller;
-    private infoMC: MonsterInfoBase;
     private preBtn: eui.Group;
     private nextBtn: eui.Group;
     private chooseBtn: eui.Button;
@@ -19,7 +18,6 @@ class PKDressUI extends game.BaseUI {
     private woodText: eui.Label;
     private viewBtn: eui.Button;
     private pkChooseMC: PKDressChooseUI;
-
 
 
 
@@ -62,11 +60,9 @@ class PKDressUI extends game.BaseUI {
         this.skinName = "DebugUISkin";
     }
 
-    public show(pkType?,selectIndex?){
-
-        this.pkType = pkType;
-        this.selectedIndex = selectIndex;
-        this.orginData = UM[pkType].choose;
+    public show(data?){
+        this.pkType = data;
+        this.orginData = data.data;
         super.show();
     }
 

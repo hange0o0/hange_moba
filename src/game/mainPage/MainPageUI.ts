@@ -87,7 +87,7 @@ class MainPageUI extends game.BaseUI {
         }
 
 
-        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        //this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
