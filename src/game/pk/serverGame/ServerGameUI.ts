@@ -4,7 +4,7 @@ class ServerGameUI extends game.BaseUI {
         if (!this.instance) this.instance = new ServerGameUI();
         return this.instance;
     }
-    
+
     private topUI: TopUI;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
@@ -30,7 +30,6 @@ class ServerGameUI extends game.BaseUI {
     private ringText3: eui.Label;
 
 
-
     public constructor() {
         super();
         this.skinName = "ServerGameUISkin";
@@ -49,6 +48,26 @@ class ServerGameUI extends game.BaseUI {
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
         this.myList1.itemRenderer =  MyHeadItem;
+
+        this.addBtnEvent(this.ringText0,this.onRing1);
+        this.addBtnEvent(this.ringText1,this.onRing2);
+        this.addBtnEvent(this.ringText2,this.onRing3);
+        this.addBtnEvent(this.ringText3,this.onRing4);
+
+        //this.enemyList.add
+    }
+
+    private onRing1(){
+
+    }
+    private onRing2(){
+
+    }
+    private onRing3(){
+
+    }
+    private onRing4(){
+
     }
 
     public onShow(){
@@ -69,7 +88,7 @@ class ServerGameUI extends game.BaseUI {
         this.winText.text = uf.win;
         this.rankText.text = uf.exp;
         this.forceText.text = uf.force;
-        this.headMC.source = 'head_'+uf.head + '_jpg';
+        this.headMC.source = MyTool.getHeadUrl(uf.head);
 
         //更新卡组1
         var chooseList1 = [];
@@ -78,6 +97,8 @@ class ServerGameUI extends game.BaseUI {
             chooseList1.push({id:data.choose[0].list[i],type:1});
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
+        this.ringText0.text = RingVO.getObject(data.choose[0].ring[0]).name
+        this.ringText1.text = RingVO.getObject(data.choose[0].ring[1]).name
 
 
         //更新卡组2
@@ -87,15 +108,17 @@ class ServerGameUI extends game.BaseUI {
             chooseList2.push({id:data.choose[1].list[i],type:1});
         }
         this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
+        this.ringText2.text = RingVO.getObject(data.choose[1].ring[0]).name
+        this.ringText3.text = RingVO.getObject(data.choose[1].ring[1]).name
 
 
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show('server_game',UM.server_game.choose[0])
+        PKDressUI.getInstance().show({type:'server_game',data:UM.server_game.choose[0]})
     }
 
     private onChoose2(){
-        PKDressUI.getInstance().show('server_game',UM.server_game.choose[1])
+        PKDressUI.getInstance().show({type:'server_game',data:UM.server_game.choose[1]})
     }
 }

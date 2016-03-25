@@ -5,6 +5,12 @@ class MyTool {
     public static randomName(){
         return  'n'+Math.floor(Math.random()*999999);
     }
+    public static getHeadUrl(id){
+        return   'head_'+1 + '_jpg'
+    }
+    public static getMonsterHead(id){
+        return   'head_'+1 + '_jpg'
+    }
     public static removeMC(mc:any){
         if(mc.parent)
             mc.parent.removeChild(mc)

@@ -21,31 +21,20 @@ class PKManager {
     public team1Base;
     public team2Base;
 
-    //不同位置的加成值和比例
-    public indexAdd(index)
-    {
-        index = index%4;
-        if(index == 0)
-            return {type:'hp',value:10};
-        else if(index == 1)
-            return {type:'atk',value:5};
-        else if(index == 2)
-            return {type:'speed',value:5};
-        return null;
-    }
+    ////不同位置的加成值和比例
+    //public indexAdd(index)
+    //{
+    //    index = index%4;
+    //    if(index == 0)
+    //        return {type:'hp',value:10};
+    //    else if(index == 1)
+    //        return {type:'atk',value:5};
+    //    else if(index == 2)
+    //        return {type:'speed',value:5};
+    //    return null;
+    //}
 
-    //根据经验，返回所在等级
-    public getPKTableLevel(exp){
-        var level = 1;
-        for(var i=0;i<=20;i++)
-        {
-            if(exp >= Math.pow(2,i)*100)
-                level ++;
-            else
-                break;
-        }
-        return level;
-    }
+
 
     //PK通用报错处理
     public pkError(oo){

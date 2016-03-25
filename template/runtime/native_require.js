@@ -59,6 +59,7 @@ var game_file_list = [
 	"bin-debug/game/pk/mainGame/MainGameUI.js",
 	"bin-debug/game/pk/pkCommont/EnemyHeadItem.js",
 	"bin-debug/game/pk/pkCommont/MyHeadItem.js",
+	"bin-debug/game/pk/pkCommont/PKTool.js",
 	"bin-debug/game/pk/pkDress/PKDressChooseItem.js",
 	"bin-debug/game/pk/pkDress/PKDressChooseUI.js",
 	"bin-debug/game/pk/pkDress/PKDressInfoUI.js",

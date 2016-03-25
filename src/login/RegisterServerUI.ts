@@ -54,7 +54,7 @@ class RegisterServerUI extends game.BaseWindow {
         if(!this.chooseHead)
         {
             this.headID = Math.floor(Math.random()*50);
-            this.headMC.source = 'head_'+this.headID + '_jpg';
+            this.headMC.source =MyTool.getHeadUrl(this.headID);
         }
         this.nameText.text = MyTool.randomName();
     }

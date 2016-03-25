@@ -14,11 +14,12 @@ class MyHeadItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-
+           this.headMC.mask = this.headMask;
     }
 
     public dataChange() {
-        var oo = PKManager.getInstance().indexAdd(this.itemIndex);
-        var id = this.data;
+        this.headMC.source = MyTool.getMonsterHead(this.data.id);
+        this.headBG.source = 'head_border'+(UM.getMonsterCollect(this.data.id) + 1)+'_png'
+        this.levelText.text = UM.getMonsterLevel(this.data.id);
     }
 }
