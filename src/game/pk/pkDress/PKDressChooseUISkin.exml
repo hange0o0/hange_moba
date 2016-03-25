@@ -1,38 +1,34 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressChooseUISkin" width="640" height="450" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:List id="list" height="282" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseItemSkin">
-		<e:ArrayCollection>
-			<e:Array>
-				<e:Object label="数据11"/>
-				<e:Object label="数据21"/>
-				<e:Object label="数据31"/>
-			</e:Array>
-		</e:ArrayCollection>
-		<e:layout>
-			<e:TileLayout horizontalGap="-40" verticalGap="-40" paddingLeft="-10" paddingTop="-10"/>
-		</e:layout>
-	</e:List>
-	<e:Group id="pkBtn" y="356" x="198">
-		<e:Image source="btn_pk_png" y="6" scaleY="0.8" scaleX="0.8" x="0"/>
-		<e:Label text="开始PK" x="95" y="32" textColor="0xFADEA2"/>
-		<e:Image source="pk_icon_png" x="41" y="23" scaleX="0.7" scaleY="0.7"/>
-	</e:Group>
-	<e:Group y="292" horizontalCenter="0">
-		<e:Group x="0" y="0">
-			<e:Image source="bold_bg_png" x="0" y="0"/>
-			<e:RadioButton id="ringRadio1" label="单选框" x="36" y="14" skinName="MyRadioButtonSkin"/>
+<e:Skin class="PKDressChooseUISkin" width="640" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Rect height="600" width="640" x="0" y="76" fillAlpha="0.7" locked="true"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group id="btnGrop" x="15" y="372">
+		<e:Group id="pkBtn" y="0" x="187">
+			<e:Image source="btn_pk_png" y="0" scaleY="0.8" scaleX="0.8" x="0"/>
+			<e:Label text="开始PK" x="95" y="26" textColor="0xFADEA2"/>
+			<e:Image source="pk_icon_png" x="41" y="17" scaleX="0.7" scaleY="0.7"/>
 		</e:Group>
-		<e:Group y="10" x="77">
-			<e:Image source="bold_bg_png" y="0" x="0"/>
-			<e:RadioButton id="ringRadio2" x="36" skinName="MyRadioButtonSkin" y="14" label="单选框"/>
+		<e:Group y="124" x="0">
+			<e:Image source="bold_bg_png" y="15" x="0"/>
+			<e:RadioButton id="ringRadio2" x="36" skinName="MyRadioButtonSkin" y="29" label="单选框"/>
 		</e:Group>
-		<e:layout>
-			<e:HorizontalLayout gap="20"/>
-		</e:layout>
+		<e:Group x="406" y="124">
+			<e:Image source="bold_bg_png" x="0" y="15"/>
+			<e:RadioButton id="ringRadio1" label="单选框" x="36" y="29" skinName="MyRadioButtonSkin"/>
+		</e:Group>
+		<e:Button id="backBtn" label="返回" x="231" y="101" skinName="Btn_b2Skin"/>
 	</e:Group>
-	<e:Label id="decText" text="标签" x="512" y="386" textColor="0xFF0000"/>
-	<e:Label id="addText" x="73" y="386" textColor="0xFF0000" text="标签"/>
-	<e:Rect height="800" width="640" x="0" y="282" fillAlpha="0.7"/>
-	<e:Image id="boxMC" source="drop_png" x="258" y="298"/>
-	<e:Rect height="100" width="640" x="0" y="-100" fillAlpha="0.7"/>
+	<e:Image id="boxMC" source="drop_png" x="258" y="395" visible="false"/>
+	<e:Image source="line_png" x="-5" bottom="0" width="650"/>
+	<ns1:MyHeadItem id="h1" x="25" y="98" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h2" y="98" x="184" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h3" y="98" x="342" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h4" y="98" x="500" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h5" y="236" x="25" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h9" y="374" x="25" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h10" y="374" x="500" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem x="624" y="330" id="h0" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h6" y="236" x="184" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h7" y="236" x="342" skinName="PKDressChooseItemSkin"/>
+	<ns1:MyHeadItem id="h8" y="236" x="500" skinName="PKDressChooseItemSkin"/>
 </e:Skin>

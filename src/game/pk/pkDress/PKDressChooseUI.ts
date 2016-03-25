@@ -3,13 +3,25 @@ class PKDressChooseUI extends game.BaseContainer {
         super();
         this.skinName = "DebugUISkin";
     }
-    private list: eui.List;
+    private topUI: TopUI;
+    private btnGrop: eui.Group;
     private pkBtn: eui.Group;
-    private ringRadio1: eui.RadioButton;
     private ringRadio2: eui.RadioButton;
-    private decText: eui.Label;
-    private addText: eui.Label;
+    private ringRadio1: eui.RadioButton;
+    private backBtn: eui.Button;
     private boxMC: eui.Image;
+    private h1: MyHeadItem;
+    private h2: MyHeadItem;
+    private h3: MyHeadItem;
+    private h4: MyHeadItem;
+    private h5: MyHeadItem;
+    private h9: MyHeadItem;
+    private h10: MyHeadItem;
+    private h0: MyHeadItem;
+    private h6: MyHeadItem;
+    private h7: MyHeadItem;
+    private h8: MyHeadItem;
+
 
     private deleteMC:eui.Image
     private cancelMC1:eui.Image
@@ -33,6 +45,21 @@ class PKDressChooseUI extends game.BaseContainer {
     private touchTimer
     private ringInfo
 
+
+    
+    
+    
+    
+    private headMC: PKDressChooseItem;
+    private joinBtn: eui.Image;
+    private typeText: eui.Label;
+    private nameText: eui.Label;
+    private forceText: eui.Label;
+    private coinText: eui.Label;
+    private woodText: eui.Label;
+    private useMC1: eui.Image;
+    private useMC2: eui.Image;
+    private useMC3: eui.Image;
 
 
     public childrenCreated() {
