@@ -1,4 +1,4 @@
-class PKDressChooseUI extends game.BaseContainer {
+class PKDressChooseUI extends game.BaseWindow {
     public constructor() {
         super();
         this.skinName = "DebugUISkin";
@@ -10,29 +10,27 @@ class PKDressChooseUI extends game.BaseContainer {
     private ringRadio1: eui.RadioButton;
     private backBtn: eui.Button;
     private boxMC: eui.Image;
-    private h1: MyHeadItem;
-    private h2: MyHeadItem;
-    private h3: MyHeadItem;
-    private h4: MyHeadItem;
-    private h5: MyHeadItem;
-    private h9: MyHeadItem;
-    private h10: MyHeadItem;
-    private h0: MyHeadItem;
-    private h6: MyHeadItem;
-    private h7: MyHeadItem;
-    private h8: MyHeadItem;
+    private h1: PKDressChooseItem;
+    private h2: PKDressChooseItem;
+    private h3: PKDressChooseItem;
+    private h4: PKDressChooseItem;
+    private h5: PKDressChooseItem;
+    private h9: PKDressChooseItem;
+    private h10: PKDressChooseItem;
+    private h6: PKDressChooseItem;
+    private h7: PKDressChooseItem;
+    private h8: PKDressChooseItem;
 
 
     private deleteMC:eui.Image
     private cancelMC1:eui.Image
     private cancelMC2:eui.Image
 
-
+    private dragMC: PKDressChooseItem;
     private posArray = [];
     private mcArray = [];
     public chooseList = []
 
-    private dragMC;
     private dragMCPos;
     private dragMCOrginPos;
     private dragMCStat;//0:普通，1垃圾，2还原块
@@ -50,26 +48,18 @@ class PKDressChooseUI extends game.BaseContainer {
     
     
     
-    private headMC: PKDressChooseItem;
-    private joinBtn: eui.Image;
-    private typeText: eui.Label;
-    private nameText: eui.Label;
-    private forceText: eui.Label;
-    private coinText: eui.Label;
-    private woodText: eui.Label;
-    private useMC1: eui.Image;
-    private useMC2: eui.Image;
-    private useMC3: eui.Image;
+   private posData:any
 
 
     public childrenCreated() {
         super.childrenCreated();
-        for(var i=0;i<10;i++)
+        this.posData = {};
+        for(var i=1;i<=10;i++)
         {
-            var posMC = this['pos'+i]
-            this.posArray.push(posMC);
+            //var posMC = this['pos'+i]
 
-            var mc = this['mc'+i]
+
+            var mc = this['h'+i]
             this.mcArray.push(mc);
             DragManager.getInstance().setDrag(mc);
             mc.addEventListener('start_drag',this.onStart,this)
@@ -77,10 +67,32 @@ class PKDressChooseUI extends game.BaseContainer {
             mc.addEventListener('end_drag',this.onEnd,this)
             mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onClick,this)
             MyTool.removeMC(mc);
+
+
+            this.posArray.push({x:mc.x,y:mc.y});
+            var line = Math.ceil(i/4);
+            if(!this.posData[line])
+            {
+                this.posData[line] = {};
+                this.posData[line].startY = mc.y;
+                this.posData[line].endY = mc.y + mc.height;
+            }
+            var index = i%4 || 4;
+            this.posData[line]['x'+index]  = mc.x
+            this.posData[line]['x_'+index]  = mc.x + mc.y
         }
 
         this.r1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
         this.r2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
+    }
+
+    public show(list?){
+        this.chooseList = list;
+        super.show();
+    }
+
+    public onShow(){
+        this.renewPos(true);
     }
 
     private onRing1Touch(){
@@ -111,9 +123,9 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private onStart(e){
         this.dragMC = e.currentTarget;
-        this.dragMC.parent.addChild(this.dragMC);
-        this.dragMCPos = this.chooseList.indexOf(this.dragMC);
-        this.dragMCOrginPos = this.dragMCPos;
+        //this.dragMC.parent.addChild(this.dragMC);
+        //this.dragMCPos = this.chooseList.indexOf(this.dragMC);
+        //this.dragMCOrginPos = this.dragMCPos;
         this.dragMCStat = 0;
 
         this.replaceDragMC.visible = true;
@@ -130,7 +142,7 @@ class PKDressChooseUI extends game.BaseContainer {
             this.renewPos();
             return;
         }
-        else  if(this.dragMCStat == 1)//移出垃圾桶
+        else if(this.dragMCStat == 1)//移出垃圾桶
         {
             this.deleteMC.source = 'bb';
             this.chooseList.splice(this.dragMCPos,0,this.dragMC)
@@ -138,23 +150,23 @@ class PKDressChooseUI extends game.BaseContainer {
             this.renewPos();
         }
 
-        if(this.cancelMC1.hitTestPoint(e.data.x,e.data.y) || this.cancelMC2.hitTestPoint(e.data.x,e.data.y))//移到还原上
-        {
-            if(this.dragMCStat == 2)//还在还原块上
-                return;
-            this.chooseList.splice(this.dragMCPos,1)
-            this.chooseList.splice(this.dragMCOrginPos,0,this.dragMC)
-            this.dragMCStat = 2;
-            this.renewPos();
-            return;
-        }
-        else  if(this.dragMCStat == 2)//移出还原
-        {
-            this.chooseList.splice(this.dragMCOrginPos,1)
-            this.chooseList.splice(this.dragMCPos,0,this.dragMC)
-            this.dragMCStat = 0;
-            this.renewPos();
-        }
+        //if(this.cancelMC1.hitTestPoint(e.data.x,e.data.y) || this.cancelMC2.hitTestPoint(e.data.x,e.data.y))//移到还原上
+        //{
+        //    if(this.dragMCStat == 2)//还在还原块上
+        //        return;
+        //    this.chooseList.splice(this.dragMCPos,1)
+        //    this.chooseList.splice(this.dragMCOrginPos,0,this.dragMC)
+        //    this.dragMCStat = 2;
+        //    this.renewPos();
+        //    return;
+        //}
+        //else  if(this.dragMCStat == 2)//移出还原
+        //{
+        //    this.chooseList.splice(this.dragMCOrginPos,1)
+        //    this.chooseList.splice(this.dragMCPos,0,this.dragMC)
+        //    this.dragMCStat = 0;
+        //    this.renewPos();
+        //}
 
         for(var i=0;i<this.mcArray.length;i++)
         {
@@ -172,6 +184,30 @@ class PKDressChooseUI extends game.BaseContainer {
                 break;
             }
         }
+    }
+
+    private testCurrentPos(x,y){
+        for(var i=1;i<=3;i++)
+        {
+            var data = this.posData[i];
+            if(data.startY < y && data.endY > y)//在某一行中
+            {
+                var line = i;
+                for(var i=1;i<=4;i++)
+                {
+                      if(x <this.posData[line]['x'+i])//左则
+                      {
+
+                      }
+                      if(x <this.posData[line]['x_'+i])//代替
+                      {
+
+                      }
+                }
+                break;
+            }
+        }
+        //没行为
     }
 
     //private removeDrag(){

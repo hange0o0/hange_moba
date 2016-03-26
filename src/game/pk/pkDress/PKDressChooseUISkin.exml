@@ -20,15 +20,14 @@
 	</e:Group>
 	<e:Image id="boxMC" source="drop_png" x="258" y="395" visible="false"/>
 	<e:Image source="line_png" x="-5" bottom="0" width="650"/>
-	<ns1:MyHeadItem id="h1" x="25" y="98" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h2" y="98" x="184" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h3" y="98" x="342" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h4" y="98" x="500" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h5" y="236" x="25" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h9" y="374" x="25" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h10" y="374" x="500" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem x="624" y="330" id="h0" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h6" y="236" x="184" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h7" y="236" x="342" skinName="PKDressChooseItemSkin"/>
-	<ns1:MyHeadItem id="h8" y="236" x="500" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h1" x="25" y="98" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h2" y="98" x="184" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h3" y="98" x="342" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h4" y="98" x="500" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h5" y="236" x="25" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h9" y="374" x="25" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h10" y="374" x="500" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h6" y="236" x="184" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h7" y="236" x="342" skinName="PKDressChooseItemSkin"/>
+	<ns1:PKDressChooseItem id="h8" y="236" x="500" skinName="PKDressChooseItemSkin"/>
 </e:Skin>

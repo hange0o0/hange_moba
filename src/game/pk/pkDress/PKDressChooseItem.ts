@@ -5,9 +5,8 @@ class PKDressChooseItem extends game.BaseItem {
     }
     
     private stateMC: eui.Image;
-    private headMC: eui.Image;
-    private headMask: eui.Rect;
-    private headBG: eui.Image;
+    private myHeadItem: MyHeadItem;
+
 
 
     private txt:eui.Label;
