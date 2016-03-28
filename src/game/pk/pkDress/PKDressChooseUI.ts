@@ -20,6 +20,26 @@ class PKDressChooseUI extends game.BaseWindow {
     private h6: PKDressChooseItem;
     private h7: PKDressChooseItem;
     private h8: PKDressChooseItem;
+    
+    private topUI: TopUI;
+    private btnGrop: eui.Group;
+    private pkBtn: eui.Group;
+    private ringRadio2: eui.RadioButton;
+    private ringRadio1: eui.RadioButton;
+    private backBtn: eui.Button;
+    private pkBtn2: eui.Button;
+    private boxMC: eui.Image;
+    private h1: PKDressChooseItem;
+    private h2: PKDressChooseItem;
+    private h3: PKDressChooseItem;
+    private h4: PKDressChooseItem;
+    private h5: PKDressChooseItem;
+    private h9: PKDressChooseItem;
+    private h10: PKDressChooseItem;
+    private h6: PKDressChooseItem;
+    private h7: PKDressChooseItem;
+    private h8: PKDressChooseItem;
+
 
 
     private deleteMC:eui.Image
