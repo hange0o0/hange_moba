@@ -19,7 +19,7 @@ class PKDressSimpleItem extends game.BaseItem {
     }
 
     public dataChange() {
-        var chooseArray = PKDressUI.getInstance().chooseUI.chooseList;
+        var chooseArray = []//PKDressUI.getInstance().chooseUI.chooseList;
         var chooseID = PKDressUI.getInstance().selectMonster;
         var vo = MonsterVO.getObject(this.data);
         this.img.source = vo.thumb;

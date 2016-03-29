@@ -43,8 +43,11 @@ class DragManager {
         }
         if(this.startPos.drag)
         {
-            this.currentDrag.x = e.stageX-this.startPos.x + this.dragDes.x;
-            this.currentDrag.y = e.stageY-this.startPos.y + this.dragDes.y;
+            if(!this.currentDrag.stopMove)
+            {
+                this.currentDrag.x = e.stageX-this.startPos.x + this.dragDes.x;
+                this.currentDrag.y = e.stageY-this.startPos.y + this.dragDes.y;
+            }
             this.currentDrag.dispatchEventWith('move_drag',false,{x:e.stageX,y:e.stageY});
         }
     }

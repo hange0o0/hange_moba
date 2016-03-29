@@ -16,6 +16,37 @@ class MyTool {
             mc.parent.removeChild(mc)
     }
 
+    //长按监听
+    public static addLongTouch(mc:any,fun,thisObj?){
+        mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,thisObj);
+
+        var timer = -1;
+        function onTouchStart(){
+            mc.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+            timer = egret.setTimeout(onTouchTimer,thisObj,800);
+        }
+        function onTouchTimer(){
+             fun.apply(thisObj);
+        }
+        function onTouchEnd(){
+            egret.clearTimeout(timer);
+        }
+    }
+
+    //双击监听
+    public static addDoubleTouch(mc:any,fun,thisObj?){
+        mc.addEventListener(egret.TouchEvent.TOUCH_TAP,onClick,thisObj,false,100);
+        var timer = -1;
+        function onClick(e){
+            if(egret.getTimer() - timer < 200)
+            {
+                e.stopPropagation();
+                fun.apply(thisObj);
+            }
+            timer = egret.getTimer();
+        }
+    }
+
     public static setHtml(txt,str){
         txt.textFlow = new egret.HtmlTextParser().parser(str);
     }

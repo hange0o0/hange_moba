@@ -135,6 +135,20 @@ class MonsterVO {
         return arr2;
     }
 
+     public getTypeName(){
+         var obj = {
+             1:'金',
+             2:'木',
+             3:'水',
+             4:'火',
+             5:'土'
+         }
+         return obj[this.type];
+     }
 
+    ////取我的对应宠物的战力加成
+    // public getMyForce(){
+    //     return UM.getMonsterLevel(this.id) + UM.getMainLevel(this.type)
+    // }
 
 }

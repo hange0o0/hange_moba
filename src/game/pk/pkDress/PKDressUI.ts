@@ -75,10 +75,15 @@ class PKDressUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
+
+        this.topUI.setTitle('调整位置&出战')
+        this.topUI.addEventListener('hide',this.hide,this);
+
+
         this.list.itemRenderer = PKDressItem;
 
         this.addBtnEvent(this.img, this.onStart);
-        this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
+        //this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
 
         this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
 
@@ -89,10 +94,10 @@ class PKDressUI extends game.BaseUI {
          //var ring = this.r1.group.selectedValue;
     }
 
-    private onListChange(){
+    public resetChoose(data){
 
         this.selectMonster = this.list.selectedItem;
-        this.chooseUI.renewMonster();
+        //this.chooseUI.renewMonster();
         this.infoUI.renew();
     }
 
@@ -127,7 +132,7 @@ class PKDressUI extends game.BaseUI {
     //得到当前用剩的资源
     public getCurrentResource(){
         var oo = {coin:this.totalCoin,wood:this.totalCoin}
-        var arr = this.chooseUI.chooseList;
+        var arr = []//this.chooseUI.chooseList;
         for(var i=0;i<arr.length;i++) {
             var vo = MonsterVO.getObject(arr[i].data);
             oo.coin -= vo.cost;
@@ -161,7 +166,7 @@ class PKDressUI extends game.BaseUI {
 
         //战力加成相关
         var fight = 0;
-        var list = this.chooseUI.getChooseList();
+        var list = []//this.chooseUI.getChooseList();
         var monsterRecord = {};
         var count = 0;
         for(var i=0;i<list.length;i++)

@@ -20,7 +20,7 @@ class PKDressInfoUI extends game.BaseContainer {
 
     private onChoose(){
         var PD = PKDressUI.getInstance();
-        PD.chooseUI.addOne(PD.selectMonster);
+        //PD.chooseUI.addOne(PD.selectMonster);
     }
 
     public renew(){
@@ -38,7 +38,7 @@ class PKDressInfoUI extends game.BaseContainer {
 
         var cost = PD.getCurrentResource();
         var vo = MonsterVO.getObject(monsterID);
-        var currentChoose = PD.chooseUI.getMonsterNum(monsterID);
+        var currentChoose =1// PD.chooseUI.getMonsterNum(monsterID);
         var max = Math.min(UM.getMonsterCollect(monsterID),3)
         this.img.visible = true; //选中按钮
         if(max <= currentChoose)

@@ -1,7 +1,15 @@
 class PKDressChooseUI extends game.BaseWindow {
+
+    private static instance:PKDressChooseUI;
+    public static getInstance() {
+        if (!this.instance) this.instance = new PKDressChooseUI();
+        return this.instance;
+    }
+
+
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "PKDressChooseUISkin";
     }
     private topUI: TopUI;
     private btnGrop: eui.Group;
@@ -22,24 +30,18 @@ class PKDressChooseUI extends game.BaseWindow {
     private h8: PKDressChooseItem;
 
 
-    private deleteMC:eui.Image
-    private cancelMC1:eui.Image
-    private cancelMC2:eui.Image
 
     private dragMC: PKDressChooseItem;
     private posArray = [];
-    private mcArray = [];
-    public chooseList = []
+    private mcArray = [];//没用到的MC
+    public dataIn//数据
 
-    private dragMCPos;
+    private overPos;
     private dragMCOrginPos;
     private dragMCStat;//0:普通，1垃圾，2还原块
 
-    private replaceDragMC//代替拖动块显示的MC
 
 
-    private r1:eui.RadioButton
-    private r2:eui.RadioButton
     private touchTimer
     private ringInfo
 
@@ -48,11 +50,18 @@ class PKDressChooseUI extends game.BaseWindow {
     
     
     
-   private posData:any
+   private posData:any //位置的初始数据
+   private point //重复利用的point节点
 
 
     public childrenCreated() {
         super.childrenCreated();
+
+        this.topUI.setTitle('调整位置&出战')
+        this.topUI.addEventListener('hide',this.hide,this);
+        this.addBtnEvent(this.pkBtn,this.onPK);
+        this.addBtnEvent(this.backBtn,this.onSet);
+
         this.posData = {};
         for(var i=1;i<=10;i++)
         {
@@ -60,13 +69,13 @@ class PKDressChooseUI extends game.BaseWindow {
 
 
             var mc = this['h'+i]
-            this.mcArray.push(mc);
+            //this.mcArray.push(mc);
             DragManager.getInstance().setDrag(mc);
             mc.addEventListener('start_drag',this.onStart,this)
             mc.addEventListener('move_drag',this.onMove,this)
             mc.addEventListener('end_drag',this.onEnd,this)
             mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onClick,this)
-            MyTool.removeMC(mc);
+            //MyTool.removeMC(mc);
 
 
             this.posArray.push({x:mc.x,y:mc.y});
@@ -82,16 +91,67 @@ class PKDressChooseUI extends game.BaseWindow {
             this.posData[line]['x_'+index]  = mc.x + mc.y
         }
 
-        this.r1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
-        this.r2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
+        this.ringRadio1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
+        this.ringRadio2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
     }
 
-    public show(list?){
-        this.chooseList = list;
+    private onPK(){
+        this.hide();
+    }
+
+    private onSet(){
+        PKDressUI.getInstance().resetChoose(this.getChooseData());
+        this.hide();
+    }
+
+    private getChooseData(){
+        var oo:any = {list:[]};
+        for(var i=0;i<this.mcArray.length;i++)
+        {
+             oo.list.push(this.mcArray[i].vo.id);
+        }
+        oo.ring = this.ringRadio1.group.selectedValue;
+        return oo;
+    }
+
+    public show(data?){
+        this.dataIn = data;
+        this.overPos = -1;
         super.show();
+        //PKDressChooseUI.getInstance().show({list:[101,101,101,101,101,101,101],ring:1,ring1:1,ring2:2})
     }
 
     public onShow(){
+        var list = this.dataIn.list;
+        this.cleanAll();
+        for(var i=1;i<=10;i++) {
+            var mc = this['h' + i]
+            if(list[i])
+            {
+                mc.data = {vo:MonsterVO.getObject(list[i]),type:2,state:0,index:i};
+                mc.visible = true;
+                mc['stopMove'] = false;
+                this.mcArray.push(mc);
+            }
+            else
+            {
+                mc.visible = false;
+            }
+        }
+
+        this.ringRadio1.value =  this.dataIn.ring1
+        this.ringRadio2.value =  this.dataIn.ring2
+        this.ringRadio1.label = RingVO.getObject(this.dataIn.ring1).name;
+        this.ringRadio2.label = RingVO.getObject(this.dataIn.ring2).name;
+        if(this.dataIn.ring == this.dataIn.ring1)
+        {
+            this.ringRadio1.selected = true;
+        }
+        else
+        {
+            this.ringRadio2.selected = true;
+        }
+
         this.renewPos(true);
     }
 
@@ -123,119 +183,129 @@ class PKDressChooseUI extends game.BaseWindow {
 
     private onStart(e){
         this.dragMC = e.currentTarget;
-        //this.dragMC.parent.addChild(this.dragMC);
-        //this.dragMCPos = this.chooseList.indexOf(this.dragMC);
-        //this.dragMCOrginPos = this.dragMCPos;
+        var index = this.mcArray.indexOf(this.dragMC);
+        this.mcArray.splice(index,1);
+        this.dragMCOrginPos = index;
         this.dragMCStat = 0;
 
-        this.replaceDragMC.visible = true;
+        this.renewPos();
     }
 
     private onMove(e){
-        if(this.deleteMC.hitTestPoint(e.data.x,e.data.y))//移到垃圾桶上
+        if(this.boxMC.hitTestPoint(e.data.x,e.data.y))//移到垃圾桶上
         {
             if(this.dragMCStat == 1)//还在垃圾桶上
                 return;
-            this.deleteMC.source = 'aa';
-            this.chooseList.splice(this.dragMCPos,1)
+            this.boxMC.source = 'aa';
             this.dragMCStat = 1;
-            this.renewPos();
             return;
         }
         else if(this.dragMCStat == 1)//移出垃圾桶
         {
-            this.deleteMC.source = 'bb';
-            this.chooseList.splice(this.dragMCPos,0,this.dragMC)
+            this.boxMC.source = 'bb';
             this.dragMCStat = 0;
-            this.renewPos();
         }
 
-        //if(this.cancelMC1.hitTestPoint(e.data.x,e.data.y) || this.cancelMC2.hitTestPoint(e.data.x,e.data.y))//移到还原上
-        //{
-        //    if(this.dragMCStat == 2)//还在还原块上
-        //        return;
-        //    this.chooseList.splice(this.dragMCPos,1)
-        //    this.chooseList.splice(this.dragMCOrginPos,0,this.dragMC)
-        //    this.dragMCStat = 2;
-        //    this.renewPos();
-        //    return;
-        //}
-        //else  if(this.dragMCStat == 2)//移出还原
-        //{
-        //    this.chooseList.splice(this.dragMCOrginPos,1)
-        //    this.chooseList.splice(this.dragMCPos,0,this.dragMC)
-        //    this.dragMCStat = 0;
-        //    this.renewPos();
-        //}
-
-        for(var i=0;i<this.mcArray.length;i++)
-        {
-            var mc = this.mcArray[i]
-            if(mc.hitTestPoint(e.data.x,e.data.y))
-            {
-                i = Math.max(i,this.chooseList.length-1);
-                if(i != this.dragMCPos)
-                {
-                    this.chooseList.splice(this.dragMCPos,1)
-                    this.chooseList.splice(i,0,this.dragMC);
-                    this.dragMCPos = i;
-                    this.renewPos();
-                }
-                break;
-            }
-        }
+        this.testCurrentPos(e.data.x,e.data.y);
     }
 
     private testCurrentPos(x,y){
+        this.point = this.globalToLocal(x,y,this.point)
+        x = this.point.x;
+        y = this.point.y;
+        var index2 = this.mcArray.indexOf(this.dragMC);
+        this.overPos = -1;
         for(var i=1;i<=3;i++)
         {
             var data = this.posData[i];
-            if(data.startY < y && data.endY > y)//在某一行中
+            if(data.startY < y && data.endY > y)//在某一行中    ;
             {
                 var line = i;
                 for(var i=1;i<=4;i++)
                 {
-                      if(x <this.posData[line]['x'+i])//左则
+                    var index = (line-1)*4 + i - 1;
+                      if(x <this.posData[line]['x'+i])//左则,插入
                       {
-
+                          if(index2 == -1)
+                          {
+                              this.mcArray.splice(index,0,this.dragMC);
+                              this.dragMC['stopMove'] = true;
+                              this.renewPos();
+                              console.log('inject:' + index);
+                          }
                       }
-                      if(x <this.posData[line]['x_'+i])//代替
+                      else if(x <this.posData[line]['x_'+i])//代替，发光
                       {
-
+                          if(index2 != -1)
+                          {
+                              this.mcArray.splice(index2,1);
+                          }
+                          console.log('over:' + index);
+                          this.overPos = index;
+                          this.dragMC['stopMove'] = false;
+                          this.renewPos();
                       }
                 }
                 break;
             }
         }
         //没行为
+        this.dragMC['stopMove'] = false;
+        if(index2 != -1)
+        {
+            this.mcArray.splice(index2,1);
+        }
+        this.renewPos();
     }
-
-    //private removeDrag(){
-    //
-    //}
 
     private onEnd(e){
         if(this.dragMCStat = 1) //移除了当前块
         {
-            this.mcArray.push(this.dragMC);
+            //this.mcArray.push(this.dragMC);
             egret.Tween.removeTweens(this.dragMC);
         }
+        else if(this.mcArray.indexOf(this.dragMC) == -1)//返回原位置
+        {
+            this.mcArray.splice(this.dragMCOrginPos,0,this.dragMC);
+        }
         this.dragMC = null;
-        this.replaceDragMC.visible = false;
         this.renewPos();
 
     }
 
     private renewPos(stopTween = false){
-        for(var i=0;i<this.chooseList.length;i++)
+        for(var i=0;i<this.mcArray.length;i++)
         {
-            var mc = this.chooseList[i];
+            var mc = this.mcArray[i];
             var posMC = this.posArray[i];
-            mc.index = i;
-            if(mc == this.dragMC)
+            console.log(mc.x,mc.y)
+            //mc.index = i;
+            //if(mc == this.dragMC)
+            //{
+            //    mc = this.replaceDragMC;
+            //}
+
+            if(mc == this.dragMC)//自己本身
             {
-                mc = this.replaceDragMC;
+                //this.mcArray[i].data.state = 1;
+                //this.mcArray[i].dataChange();
             }
+            else if(i == this.overPos && this.mcArray[i].data.state != 2)//经过发光
+            {
+                this.mcArray[i].data.state = 2;
+                this.mcArray[i].dataChange();
+            }
+            else if(this.dragMC && this.mcArray[i].data.vo.isEffect(this.dragMC.data.vo.id) && this.mcArray[i].data.state != 3)//有加成的发光
+            {
+                this.mcArray[i].data.state = 3;
+                this.mcArray[i].dataChange();
+            }
+            else if(this.mcArray[i].data.state != 0)//无发光
+            {
+                this.mcArray[i].data.state = 0;
+                this.mcArray[i].dataChange();
+            }
+
 
             if(posMC.x == mc.x &&  posMC.y == mc.y)
                 continue;
@@ -255,47 +325,11 @@ class PKDressChooseUI extends game.BaseWindow {
     }
 
     public cleanAll(){
-        while(this.chooseList.length > 0)
+        while(this.mcArray.length > 0)
         {
-            var mc = this.chooseList.pop();
-            this.mcArray.push(mc);
+            var mc = this.mcArray.pop();
             egret.Tween.removeTweens(mc);
         }
     }
 
-    public addOne(id){
-        var mc:any = this.mcArray.pop();
-        mc.data = id;
-        this.chooseList.push(mc);
-        this.renewPos(true);
-        this.renewMonster();
-    }
-
-    public renewMonster(){
-        for(var i=0;i<this.chooseList.length;i++) {
-            var mc = this.chooseList[i];
-            mc.dataChange();
-        }
-    }
-
-    //选中的怪物列表
-    public getChooseList(){
-        var arr = [];
-        for(var i=0;i<this.chooseList.length;i++) {
-            var mc = this.chooseList[i];
-            arr.push(mc.data);
-        }
-        return arr;
-    }
-
-    //选中的怪物数量
-    public getMonsterNum(id){
-        var count = 0;
-        for(var i=0;i<this.chooseList.length;i++) {
-            var mc = this.chooseList[i];
-            if(mc.data == id)
-                count ++;
-        }
-        return count;
-    }
 }
