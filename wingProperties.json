@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -718,6 +718,11 @@
 					"isFolder":false,
 					"key":"tips_jpg",
 					"name":"tips_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"line3_png",
+					"name":"line3_png"
 				}
 			]
 		}

@@ -6,18 +6,31 @@ class PKDressUI extends game.BaseUI {
     }
     
     private topUI: TopUI;
-    private simpleChoose: PKDressSimple;
-    private mainGroup: eui.Group;
-    private chooseList: eui.List;
-    private upBtn: eui.Image;
     private scroller: eui.Scroller;
-    private preBtn: eui.Group;
-    private nextBtn: eui.Group;
-    private chooseBtn: eui.Button;
+    private list1: eui.List;
+    private ringRadio0: eui.RadioButton;
+    private ringRadio1: eui.RadioButton;
+    private pkBtn: eui.Button;
+    private scroller2: eui.Scroller;
+    private list2: eui.List;
     private coinText: eui.Label;
     private woodText: eui.Label;
     private viewBtn: eui.Button;
-    private pkChooseMC: PKDressChooseUI;
+
+    
+    private topUI: TopUI;
+    private scroller: eui.Scroller;
+    private list1: eui.List;
+    private ringRadio0: eui.RadioButton;
+    private ringRadio1: eui.RadioButton;
+    private pkBtn: eui.Button;
+    private scroller2: eui.Scroller;
+    private list2: eui.List;
+    private coinText: eui.Label;
+    private woodText: eui.Label;
+    private viewBtn: eui.Button;
+    private enemyList: eui.List;
+
 
 
 
