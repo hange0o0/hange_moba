@@ -723,6 +723,21 @@
 					"isFolder":false,
 					"key":"line3_png",
 					"name":"line3_png"
+				},
+				{
+					"isFolder":false,
+					"key":"drop2_png",
+					"name":"drop2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"pk_bg_jpg",
+					"name":"pk_bg_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"fight_win_png",
+					"name":"fight_win_png"
 				}
 			]
 		}

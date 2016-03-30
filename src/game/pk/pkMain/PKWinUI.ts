@@ -4,6 +4,12 @@ class PKWinUI extends game.BaseUI {
         if (!this.instance) this.instance = new PKWinUI();
         return this.instance;
     }
+    
+    private desText: eui.Label;
+    private list: eui.List;
+    private okBtn: eui.Button;
+
+
 
     public constructor() {
         super();

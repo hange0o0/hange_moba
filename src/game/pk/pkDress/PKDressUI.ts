@@ -18,8 +18,10 @@ class PKDressUI extends game.BaseUI {
     private list2: eui.List;
     private coinText: eui.Label;
     private woodText: eui.Label;
+    private forceText: eui.Label;
     private viewBtn: eui.Button;
     private enemyList: eui.List;
+
 
 
 

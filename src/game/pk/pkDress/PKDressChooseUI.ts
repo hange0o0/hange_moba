@@ -14,8 +14,9 @@ class PKDressChooseUI extends game.BaseWindow {
 
     
     private topUI: TopUI;
-    private btnGrop: eui.Group;
+    private backBtn2: eui.Button;
     private pkBtn: eui.Group;
+    private btnGrop: eui.Group;
     private ringRadio2: eui.RadioButton;
     private ringRadio1: eui.RadioButton;
     private backBtn: eui.Button;
@@ -31,6 +32,7 @@ class PKDressChooseUI extends game.BaseWindow {
     private h6: PKDressChooseItem;
     private h7: PKDressChooseItem;
     private h8: PKDressChooseItem;
+
 
 
 

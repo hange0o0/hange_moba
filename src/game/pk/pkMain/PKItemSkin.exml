@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKItemSkin" xmlns:e="http://ns.egret.com/eui">
+	<e:Image source="border4_png" y="6" id="headMC" width="100" height="100" mask="headMask" x="6"/>
+	<e:Rect y="6" x="6" ellipseWidth="110" width="100" ellipseHeight="110" height="100" id="headMask"/>
+	<e:Image source="head_border1_png" x="0" y="0"/>
+</e:Skin>

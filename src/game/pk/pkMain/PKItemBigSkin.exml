@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKItemBigSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="200">
+	<e:Image source="card_bg_png" x="0" y="0" height="280" width="200"/>
+	<e:Image id="headMC" source="pk_bg_jpg" x="13" y="16" width="175" height="248"/>
+	<e:Image source="bar_bg_png" x="10" y="209" scale9Grid="19,1,120,10" width="180"/>
+	<e:Image id="liveBG" source="bar1_png" x="12" y="211" scale9Grid="18,1,114,6" width="175"/>
+	<e:Rect height="45" width="176" x="12" y="218" fillAlpha="0.6"/>
+	<e:Label id="nameText" text="标签" y="230" horizontalCenter="0" size="24" textColor="0xCCCCCC"/>
+</e:Skin>

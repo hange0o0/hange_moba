@@ -11,6 +11,16 @@ class PKMainUI extends game.BaseUI {
     }
 
 
+
+    private bg: eui.Image;
+    private vsMC: eui.Image;
+    private jumpBtn: eui.Button;
+    private item1: PKItemBig;
+    private item2: PKItemBig;
+
+
+
+
     public childrenCreated() {
         super.childrenCreated();
         //this.addBtnEvent(this, this.onClick);

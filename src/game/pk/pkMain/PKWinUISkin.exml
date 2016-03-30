@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKWinUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="pk_win_png" y="36" x="75"/>
+	<e:Image source="pk_win_png" y="36" scaleX="-1" x="565"/>
+	<e:Group y="328" horizontalCenter="0">
+		<e:Label id="desText" text="标签" y="0" textColor="0xFFFF00" x="111"/>
+		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
+			<e:ArrayCollection>
+				<e:Array>
+					<e:Object label="1"/>
+					<e:Object label="数据2"/>
+					<e:Object label="数据3"/>
+				</e:Array>
+			</e:ArrayCollection>
+			<e:layout>
+				<e:HorizontalLayout gap="10"/>
+			</e:layout>
+		</e:List>
+		<e:Button id="okBtn" label="返回" y="121" skinName="Btn_r2Skin" x="61"/>
+		<e:layout>
+			<e:VerticalLayout horizontalAlign="center" gap="15"/>
+		</e:layout>
+	</e:Group>
+	<e:Image source="fight_win_png" y="153" horizontalCenter="0"/>
+</e:Skin>

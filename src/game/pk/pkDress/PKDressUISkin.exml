@@ -30,10 +30,11 @@
 		<e:Image source="fu1_png" x="172.95454545454544" y="9.015151515151516"/>
 		<e:Label id="coinText" text="标签" x="65" y="9.015151515151516" textColor="0xCC9900"/>
 		<e:Label id="woodText" y="9.015151515151516" textColor="0xCC9900" text="标签" x="215"/>
+		<e:Label id="forceText" y="9" textColor="0xCC9900" text="标签" horizontalCenter="42"/>
 		<e:Button id="viewBtn" x="476.96969696969694" y="0" label="对手" skinName="Btn_r2Skin"/>
 		<e:Image source="line_png" x="0" y="57.04545454545455" width="650"/>
 	</e:Group>
-	<e:List y="80" x="13" itemRendererSkinName="EnemyHeadItemSkin" width="614" height="259" id="enemyList" visible.normal="false">
+	<e:List y="80" x="13" itemRendererSkinName="EnemyHeadItemSkin" width="614" height="259" id="enemyList" visible.normal="false" visible="false">
 		<e:layout>
 			<e:TileLayout/>
 		</e:layout>
