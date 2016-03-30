@@ -180,6 +180,7 @@ class UserManager {
     }
 
     public getMonsterCollect(monsterID){
+        return 3;
         var vo = MonsterVO.getObject(monsterID);
         var max = vo.collect;
         if(this.collect.level[monsterID])

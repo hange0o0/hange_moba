@@ -25,7 +25,6 @@ class DragManager {
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
 
-        console.log(e.localX)
         this.startPos = {x:e.stageX,y:e.stageY};
         this.dragDes = {x:this.currentDrag.x,y:this.currentDrag.y}
         if(this.currentDrag.lockCenter)

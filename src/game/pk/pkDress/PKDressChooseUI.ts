@@ -11,23 +11,7 @@ class PKDressChooseUI extends game.BaseWindow {
         super();
         this.skinName = "PKDressChooseUISkin";
     }
-    private topUI: TopUI;
-    private btnGrop: eui.Group;
-    private pkBtn: eui.Group;
-    private ringRadio2: eui.RadioButton;
-    private ringRadio1: eui.RadioButton;
-    private backBtn: eui.Button;
-    private boxMC: eui.Image;
-    private h1: PKDressChooseItem;
-    private h2: PKDressChooseItem;
-    private h3: PKDressChooseItem;
-    private h4: PKDressChooseItem;
-    private h5: PKDressChooseItem;
-    private h9: PKDressChooseItem;
-    private h10: PKDressChooseItem;
-    private h6: PKDressChooseItem;
-    private h7: PKDressChooseItem;
-    private h8: PKDressChooseItem;
+
     
     private topUI: TopUI;
     private btnGrop: eui.Group;
@@ -54,9 +38,9 @@ class PKDressChooseUI extends game.BaseWindow {
     private dragMC: PKDressChooseItem;
     private posArray = [];
     private mcArray = [];//没用到的MC
+    private listLength ;//没用到的MC
     public dataIn//数据
 
-    private overPos;
     private dragMCOrginPos;
     private dragMCStat;//0:普通，1垃圾，2还原块
 
@@ -79,6 +63,7 @@ class PKDressChooseUI extends game.BaseWindow {
 
         this.topUI.setTitle('调整位置&出战')
         this.topUI.addEventListener('hide',this.hide,this);
+        this.addBtnEvent(this.pkBtn2,this.onPKStart);
         this.addBtnEvent(this.pkBtn,this.onPK);
         this.addBtnEvent(this.backBtn,this.onSet);
 
@@ -108,18 +93,26 @@ class PKDressChooseUI extends game.BaseWindow {
             }
             var index = i%4 || 4;
             this.posData[line]['x'+index]  = mc.x
-            this.posData[line]['x_'+index]  = mc.x + mc.y
+            this.posData[line]['x_'+index]  = mc.x + mc.width
         }
 
         this.ringRadio1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
         this.ringRadio2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
     }
 
-    private onPK(){
+    private onPKStart(){
         this.hide();
+    }
+    private onPK(){
+        this.currentState = 'ready'
     }
 
     private onSet(){
+        if(this.currentState == 'ready')
+        {
+            this.currentState == 'normal'
+            return;
+        }
         PKDressUI.getInstance().resetChoose(this.getChooseData());
         this.hide();
     }
@@ -128,7 +121,7 @@ class PKDressChooseUI extends game.BaseWindow {
         var oo:any = {list:[]};
         for(var i=0;i<this.mcArray.length;i++)
         {
-             oo.list.push(this.mcArray[i].vo.id);
+             oo.list.push(this.mcArray[i].data.vo.id);
         }
         oo.ring = this.ringRadio1.group.selectedValue;
         return oo;
@@ -136,19 +129,19 @@ class PKDressChooseUI extends game.BaseWindow {
 
     public show(data?){
         this.dataIn = data;
-        this.overPos = -1;
         super.show();
         //PKDressChooseUI.getInstance().show({list:[101,101,101,101,101,101,101],ring:1,ring1:1,ring2:2})
     }
 
     public onShow(){
         var list = this.dataIn.list;
+        this.listLength = list.length;
         this.cleanAll();
         for(var i=1;i<=10;i++) {
             var mc = this['h' + i]
-            if(list[i])
+            if(list[i-1])
             {
-                mc.data = {vo:MonsterVO.getObject(list[i]),type:2,state:0,index:i};
+                mc.data = {vo:MonsterVO.getObject(list[i-1]),type:2,state:0,index:i};
                 mc.visible = true;
                 mc['stopMove'] = false;
                 this.mcArray.push(mc);
@@ -208,6 +201,9 @@ class PKDressChooseUI extends game.BaseWindow {
         this.dragMCOrginPos = index;
         this.dragMCStat = 0;
 
+        this.btnGrop.visible = false;
+        this.boxMC.visible = true;
+
         this.renewPos();
     }
 
@@ -234,7 +230,6 @@ class PKDressChooseUI extends game.BaseWindow {
         x = this.point.x;
         y = this.point.y;
         var index2 = this.mcArray.indexOf(this.dragMC);
-        this.overPos = -1;
         for(var i=1;i<=3;i++)
         {
             var data = this.posData[i];
@@ -244,27 +239,21 @@ class PKDressChooseUI extends game.BaseWindow {
                 for(var i=1;i<=4;i++)
                 {
                     var index = (line-1)*4 + i - 1;
-                      if(x <this.posData[line]['x'+i])//左则,插入
-                      {
-                          if(index2 == -1)
-                          {
-                              this.mcArray.splice(index,0,this.dragMC);
-                              this.dragMC['stopMove'] = true;
-                              this.renewPos();
-                              console.log('inject:' + index);
-                          }
-                      }
-                      else if(x <this.posData[line]['x_'+i])//代替，发光
-                      {
-                          if(index2 != -1)
-                          {
-                              this.mcArray.splice(index2,1);
-                          }
-                          console.log('over:' + index);
-                          this.overPos = index;
-                          this.dragMC['stopMove'] = false;
-                          this.renewPos();
-                      }
+                    if(index >= this.listLength) //无这个位置卡牌了
+                    {
+                         break
+                    }
+                    if(x < this.posData[line]['x_'+i] && x > this.posData[line]['x'+i])//在上方,插入
+                    {
+                        if(index2 == -1)
+                        {
+                            this.mcArray.splice(index,0,this.dragMC);
+                            this.dragMC['stopMove'] = true;
+                            this.renewPos();
+                        }
+
+                        return;
+                    }
                 }
                 break;
             }
@@ -279,10 +268,11 @@ class PKDressChooseUI extends game.BaseWindow {
     }
 
     private onEnd(e){
-        if(this.dragMCStat = 1) //移除了当前块
+        if(this.dragMCStat == 1) //移除了当前块
         {
             //this.mcArray.push(this.dragMC);
             egret.Tween.removeTweens(this.dragMC);
+            this.listLength --;
         }
         else if(this.mcArray.indexOf(this.dragMC) == -1)//返回原位置
         {
@@ -291,6 +281,9 @@ class PKDressChooseUI extends game.BaseWindow {
         this.dragMC = null;
         this.renewPos();
 
+        this.btnGrop.visible = true;
+        this.boxMC.visible = false;
+
     }
 
     private renewPos(stopTween = false){
@@ -298,7 +291,6 @@ class PKDressChooseUI extends game.BaseWindow {
         {
             var mc = this.mcArray[i];
             var posMC = this.posArray[i];
-            console.log(mc.x,mc.y)
             //mc.index = i;
             //if(mc == this.dragMC)
             //{
@@ -310,14 +302,9 @@ class PKDressChooseUI extends game.BaseWindow {
                 //this.mcArray[i].data.state = 1;
                 //this.mcArray[i].dataChange();
             }
-            else if(i == this.overPos && this.mcArray[i].data.state != 2)//经过发光
+            else if(this.dragMC && this.mcArray[i].data.vo.isEffect(this.dragMC.data.vo.id) && this.mcArray[i].data.state != 2)//有加成的发光
             {
                 this.mcArray[i].data.state = 2;
-                this.mcArray[i].dataChange();
-            }
-            else if(this.dragMC && this.mcArray[i].data.vo.isEffect(this.dragMC.data.vo.id) && this.mcArray[i].data.state != 3)//有加成的发光
-            {
-                this.mcArray[i].data.state = 3;
                 this.mcArray[i].dataChange();
             }
             else if(this.mcArray[i].data.state != 0)//无发光
@@ -339,7 +326,7 @@ class PKDressChooseUI extends game.BaseWindow {
             else
             {
                 var tw:egret.Tween = egret.Tween.get(mc);
-                tw.to({x:posMC.x,y:posMC.y}, 500);
+                tw.to({x:posMC.x,y:posMC.y}, 100);
             }
         }
     }

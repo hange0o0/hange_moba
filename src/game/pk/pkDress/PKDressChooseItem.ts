@@ -1,7 +1,7 @@
 class PKDressChooseItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "PKDressChooseItemSkin";
     }
     
     private stateMC: eui.Image;
@@ -14,6 +14,7 @@ class PKDressChooseItem extends game.BaseItem {
 
     }
 
+    //stat 0,无发光，1选中，2加成
     public dataChange(){
          this.myHeadItem.data = this.data;
 

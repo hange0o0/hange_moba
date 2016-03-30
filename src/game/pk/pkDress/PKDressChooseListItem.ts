@@ -1,7 +1,7 @@
 class PKDressChooseListItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "PKDressChooseListItem";
+        this.skinName = "PKDressChooseListItemSkin";
     }
 
     private headMC: PKDressChooseItem;
@@ -21,7 +21,7 @@ class PKDressChooseListItem extends game.BaseItem {
         super.childrenCreated();
         this.addBtnEvent(this.joinBtn,this.onJoin)
 
-        this.addBtnEvent(this,this.onClick);
+        //this.addBtnEvent(this,this.onClick);
         MyTool.addDoubleTouch(this,this.onDoubleClick,this)
         MyTool.addLongTouch(this,this.onLongTouch,this)
 
@@ -30,10 +30,11 @@ class PKDressChooseListItem extends game.BaseItem {
     private onJoin(e:egret.TouchEvent = null){
         if(e)
             e.stopImmediatePropagation();
+        PKDressUI.getInstance().addMonster(this.data.vo.id);
     }
 
-    private onClick(){ //显示加成位
-    }
+    //private onClick(){ //显示加成位
+    //}
 
     private onDoubleClick(){  //加入
         this.onJoin()
@@ -44,7 +45,7 @@ class PKDressChooseListItem extends game.BaseItem {
     }
 
     public dataChange(){
-         var vo:MonsterVO;
+         var vo:MonsterVO = this.data.vo;
         this.headMC.data = this.data
 
         this.typeText.text = vo.getTypeName();
