@@ -17,29 +17,29 @@ module game {
         public childrenCreated() {
         }
                     
-        public partAdded(partName:string, instance:any):void {
-            super.partAdded(partName, instance);
-        }
-        
-        public getImg(name:string):eui.Image{
-            return <eui.Image>this[name];
-        }
-
-        public getLabel(name: string): eui.Label {
-            return <eui.Label>this[name];
-        }
-
-        public getText(name: string): egret.TextField {
-            return <egret.TextField>this[name];
-        }
-
-        public getButton(name: string): eui.Button {
-            return <eui.Button>this[name];
-        }
-
-        public getItem(name: string): game.BaseItem {
-            return <game.BaseItem>this[name];
-        }
+        //public partAdded(partName:string, instance:any):void {
+        //    super.partAdded(partName, instance);
+        //}
+        //
+        //public getImg(name:string):eui.Image{
+        //    return <eui.Image>this[name];
+        //}
+        //
+        //public getLabel(name: string): eui.Label {
+        //    return <eui.Label>this[name];
+        //}
+        //
+        //public getText(name: string): egret.TextField {
+        //    return <egret.TextField>this[name];
+        //}
+        //
+        //public getButton(name: string): eui.Button {
+        //    return <eui.Button>this[name];
+        //}
+        //
+        //public getItem(name: string): game.BaseItem {
+        //    return <game.BaseItem>this[name];
+        //}
 
                 
         /*

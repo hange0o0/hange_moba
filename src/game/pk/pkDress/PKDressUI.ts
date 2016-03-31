@@ -90,6 +90,7 @@ class PKDressUI extends game.BaseUI {
 
         this.addBtnEvent(this.pkBtn, this.onStart);
         this.addBtnEvent(this.viewBtn, this.onView);
+        this.addBtnEvent(this.forceText, this.onForceText);
 
 
 
@@ -105,6 +106,13 @@ class PKDressUI extends game.BaseUI {
         this.enemyList.itemRenderer = EnemyHeadItem;
     }
 
+    private onForceText(){
+          if(this.forceText.textColor == 0xFF0000)
+          {
+              Alert('当出战单位种类较为单一时，会产生过载，整体战力-8%');
+          }
+
+    }
     private onList1Change(){
         this.list2.selectedIndex = -1;
         this.chooseMonster = this.list1.selectedItem.vo.id;
@@ -294,16 +302,21 @@ class PKDressUI extends game.BaseUI {
                     fight += 2;
             }
         }
-        //if(count*2 > list.length) //过载
-        //{
-        //    fight -= 8;
-        //    this.txt.textColor = 0xFF0000;
-        //}
-        //else
-        //{
-        //    this.txt.textColor = 0x000000;
-        //}
-        //this.txt.text = fight + ''
+        if(count*2 > list.length) //过载
+        {
+            fight -= 8;
+            this.forceText.textColor = 0xFF0000;
+            if(fight < 0)
+                this.forceText.text = '' + fight + '%' + '(过载)'
+            else
+                this.forceText.text = '+' + fight + '%' + '(过载)'
+        }
+        else
+        {
+            this.forceText.textColor = 0x00FF00;
+            this.forceText.text = '+' + fight + '%'
+        }
+
 
     }
 

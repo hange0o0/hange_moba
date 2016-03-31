@@ -5,4 +5,6 @@
 	<e:Button id="jumpBtn" label="跳过" y="590" skinName="Btn_d1Skin" horizontalCenter="0"/>
 	<ns1:PKItemBig id="item1" x="52" y="248" skinName="PKItemBigSkin"/>
 	<ns1:PKItemBig id="item2" skinName="PKItemBigSkin" y="248" x="387"/>
+	<e:Group id="enemyGroup" x="0" y="0"/>
+	<e:Group id="selfGroup" x="0" y="0"/>
 </e:Skin>

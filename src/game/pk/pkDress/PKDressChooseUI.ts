@@ -15,12 +15,12 @@ class PKDressChooseUI extends game.BaseWindow {
     
     private topUI: TopUI;
     private backBtn2: eui.Button;
-    private pkBtn: eui.Group;
+    private pkBtn2: eui.Group;
     private btnGrop: eui.Group;
     private ringRadio2: eui.RadioButton;
     private ringRadio1: eui.RadioButton;
     private backBtn: eui.Button;
-    private pkBtn2: eui.Button;
+    private pkBtn: eui.Button;
     private boxMC: eui.Image;
     private h1: PKDressChooseItem;
     private h2: PKDressChooseItem;
@@ -47,14 +47,6 @@ class PKDressChooseUI extends game.BaseWindow {
     private dragMCStat;//0:普通，1垃圾，2还原块
 
 
-
-    private touchTimer
-    private ringInfo
-
-
-    
-    
-    
     
    private posData:any //位置的初始数据
    private point //重复利用的point节点
@@ -68,6 +60,7 @@ class PKDressChooseUI extends game.BaseWindow {
         this.addBtnEvent(this.pkBtn2,this.onPKStart);
         this.addBtnEvent(this.pkBtn,this.onPK);
         this.addBtnEvent(this.backBtn,this.onSet);
+        this.addBtnEvent(this.backBtn2,this.onChangeNormal);
 
         this.posData = {};
         for(var i=1;i<=10;i++)
@@ -98,8 +91,8 @@ class PKDressChooseUI extends game.BaseWindow {
             this.posData[line]['x_'+index]  = mc.x + mc.width
         }
 
-        this.ringRadio1.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing1Touch,this);
-        this.ringRadio2.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onRing2Touch,this);
+        MyTool.addLongTouch(this.ringRadio1,this.showRingInfo1)
+        MyTool.addLongTouch(this.ringRadio2,this.showRingInfo2)
     }
 
     private onPKStart(){
@@ -107,14 +100,20 @@ class PKDressChooseUI extends game.BaseWindow {
     }
     private onPK(){
         this.currentState = 'ready'
+        this.pkBtn2.visible = true;
+        this.backBtn2.visible = true;
+        this.pkBtn.visible = false;
+        this.backBtn.visible = false;
     }
 
+    private onChangeNormal(){
+        this.currentState == 'normal'
+        this.pkBtn2.visible = false;
+        this.backBtn2.visible = false;
+        this.pkBtn.visible = true;
+        this.backBtn.visible = true;
+    }
     private onSet(){
-        if(this.currentState == 'ready')
-        {
-            this.currentState == 'normal'
-            return;
-        }
         PKDressUI.getInstance().resetChoose(this.getChooseData());
         this.hide();
     }
@@ -136,6 +135,8 @@ class PKDressChooseUI extends game.BaseWindow {
     }
 
     public onShow(){
+        this.onChangeNormal();
+
         var list = this.dataIn.list;
         this.listLength = list.length;
         this.cleanAll();
@@ -170,26 +171,12 @@ class PKDressChooseUI extends game.BaseWindow {
         this.renewPos(true);
     }
 
-    private onRing1Touch(){
-        this.stage.once(egret.TouchEvent.TOUCH_END,this.onRingTouchEnd,this);
-        //this.touchTimer = egret.setTimeout(this.showRingInfo,this,500,this.ringList[0]);
+    private showRingInfo1(){
+         console.log('ring info ' + this.ringRadio1.value)
     }
-    private onRing2Touch(){
-        this.stage.once(egret.TouchEvent.TOUCH_END,this.onRingTouchEnd,this);
-        //this.touchTimer = egret.setTimeout(this.showRingInfo,this,500,this.ringList[1]);
-    }
+    private showRingInfo2(){
+        console.log('ring info ' + this.ringRadio2.value)
 
-    private showRingInfo(ringID){
-        this.ringInfo.visible = true;
-        //if(this.isEqual)
-        //    this.ringInfo.text = '' + RingVO.getObject(ringID).getLevelDes(RingVO.equalLevel);
-        //else
-            this.ringInfo.text = '' + RingVO.getObject(ringID).getLevelDes(UM.getRingLevel(ringID));
-    }
-
-    private onRingTouchEnd(){
-        egret.clearTimeout(this.touchTimer);
-        this.ringInfo.visible = false;
     }
 
     private onClick(e){
@@ -205,6 +192,7 @@ class PKDressChooseUI extends game.BaseWindow {
 
         this.btnGrop.visible = false;
         this.boxMC.visible = true;
+        this.boxMC.source = 'drop_png';
 
         this.renewPos();
     }
@@ -214,13 +202,13 @@ class PKDressChooseUI extends game.BaseWindow {
         {
             if(this.dragMCStat == 1)//还在垃圾桶上
                 return;
-            this.boxMC.source = 'aa';
+            this.boxMC.source = 'drop2_png';
             this.dragMCStat = 1;
             return;
         }
         else if(this.dragMCStat == 1)//移出垃圾桶
         {
-            this.boxMC.source = 'bb';
+            this.boxMC.source = 'drop_png';
             this.dragMCStat = 0;
         }
 

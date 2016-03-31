@@ -1,7 +1,7 @@
 class PKItemBig extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "EnemyHeadItemSkin";
+        this.skinName = "PKItemBigSkin";
     }
 
     private headMC: eui.Image;
@@ -12,7 +12,6 @@ class PKItemBig extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-        this.addBtnEvent(this.closeBtn,this.onClose);
     }
 
     private onClose() {
@@ -21,8 +20,6 @@ class PKItemBig extends game.BaseItem {
 
     public dataChange() {
         this.headMC.source = MyTool.getMonsterHead(this.data.id);
-        if(this.data.type == 1) {
-            this.closeBtn.visible = false;
-        }
+
     }
 }
