@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKMainUISkin" width="640" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Image id="bg" source="pk_bg_jpg" x="0" y="117"/>
-	<e:Image id="vsMC" source="pk_vs_png" y="289" horizontalCenter="0"/>
+	<e:Image id="bg" source="pk_bg_jpg" x="320" y="400" anchorOffsetX="320" anchorOffsetY="280"/>
+	<e:Image id="vsMC" source="pk_vs_png" y="289" anchorOffsetX="120" anchorOffsetY="112" x="320"/>
 	<e:Button id="jumpBtn" label="跳过" y="590" skinName="Btn_d1Skin" horizontalCenter="0"/>
-	<ns1:PKItemBig id="item1" x="52" y="248" skinName="PKItemBigSkin"/>
-	<ns1:PKItemBig id="item2" skinName="PKItemBigSkin" y="248" x="387"/>
+	<ns1:PKItemBig id="item1" x="140" y="350" skinName="PKItemBigSkin" anchorOffsetX="100" anchorOffsetY="140"/>
+	<ns1:PKItemBig id="item2" skinName="PKItemBigSkin" y="350" x="500" anchorOffsetX="100" anchorOffsetY="140"/>
 	<e:Group id="enemyGroup" x="0" y="0"/>
 	<e:Group id="selfGroup" x="0" y="0"/>
 </e:Skin>

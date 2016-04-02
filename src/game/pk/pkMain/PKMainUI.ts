@@ -24,11 +24,15 @@ class PKMainUI extends game.BaseUI {
 
 
 
-    private dataIn;
+    //private dataIn;
     private stageHeight;
     private itemWidth = 114;
     private itemHeight = 110;
     private bgHeight = 560;
+
+    private card1X
+    private card2X
+    private cardY
 
 
 
@@ -36,19 +40,35 @@ class PKMainUI extends game.BaseUI {
     private itemEnemy = [];
     private itemSelf = [];
 
+    private pkList = [];
+
+    private cardIndex1;
+    private cardIndex2;
+    private timer;
+    private count;
+
 
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.jumpBtn, this.onJump);
+
+        this.card1X = this.item1.x
+        this.card2X = this.item2.x
+        this.enemyGroup.addChild(this.item2)
+        this.selfGroup.addChild(this.item1)
+        this.addChild(this.jumpBtn);
     }
 
     private onJump(){
-
+        this.stopAll();
+        this.showResult();
     }
 
-    public show(data?){
-        data = {"pkdata":[{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":1},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":1},"player1":[{"hp":100,"id":10,"mid":101},{"hp":100,"id":11,"mid":102},{"hp":100,"id":12,"mid":103}],"player2":[{"hp":100,"id":30,"mid":101},{"hp":100,"id":31,"mid":102},{"hp":100,"id":32,"mid":103}],"result":{"w":1,"hp":5}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":1},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":2},"player1":[{"hp":5,"id":10,"mid":101},{"hp":100,"id":11,"mid":102},{"hp":100,"id":12,"mid":103}],"player2":[{"hp":100,"id":31,"mid":102},{"hp":100,"id":32,"mid":103},{"hp":100,"id":33,"mid":104}],"result":{"w":2,"hp":91}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":3},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":2},"player1":[{"hp":100,"id":11,"mid":102},{"hp":100,"id":12,"mid":103},{"hp":100,"id":13,"mid":104}],"player2":[{"hp":91,"id":31,"mid":102},{"hp":100,"id":32,"mid":103},{"hp":100,"id":33,"mid":104}],"result":{"w":1,"hp":21}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":3},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":4},"player1":[{"hp":21,"id":11,"mid":102},{"hp":100,"id":12,"mid":103},{"hp":100,"id":13,"mid":104}],"player2":[{"hp":100,"id":32,"mid":103},{"hp":100,"id":33,"mid":104},{"hp":100,"id":34,"mid":105}],"result":{"w":2,"hp":74}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":5},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":4},"player1":[{"hp":100,"id":12,"mid":103},{"hp":100,"id":13,"mid":104},{"hp":100,"id":14,"mid":105}],"player2":[{"hp":74,"id":32,"mid":103},{"hp":100,"id":33,"mid":104},{"hp":100,"id":34,"mid":105}],"result":{"w":1,"hp":60}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":5},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":6},"player1":[{"hp":60,"id":12,"mid":103},{"hp":100,"id":13,"mid":104},{"hp":100,"id":14,"mid":105}],"player2":[{"hp":100,"id":33,"mid":104},{"hp":100,"id":34,"mid":105},{"hp":100,"id":35,"mid":106}],"result":{"w":2,"hp":39}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":7},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":6},"player1":[{"hp":100,"id":13,"mid":104},{"hp":100,"id":14,"mid":105},{"hp":100,"id":15,"mid":106}],"player2":[{"hp":39,"id":33,"mid":104},{"hp":100,"id":34,"mid":105},{"hp":100,"id":35,"mid":106}],"result":{"w":1,"hp":54}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":7},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":8},"player1":[{"hp":54,"id":13,"mid":104},{"hp":100,"id":14,"mid":105},{"hp":100,"id":15,"mid":106}],"player2":[{"hp":100,"id":34,"mid":105},{"hp":100,"id":35,"mid":106},{"hp":100,"id":36,"mid":107}],"result":{"w":2,"hp":61}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":9},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":8},"player1":[{"hp":100,"id":14,"mid":105},{"hp":100,"id":15,"mid":106},{"hp":100,"id":16,"mid":107}],"player2":[{"hp":61,"id":34,"mid":105},{"hp":100,"id":35,"mid":106},{"hp":100,"id":36,"mid":107}],"result":{"w":1,"hp":42}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":9},"team2":{"ac":["sm_101_f1","sm_106_f1","sm_105_d1"],"jr":10},"player1":[{"hp":42,"id":14,"mid":105},{"hp":100,"id":15,"mid":106},{"hp":100,"id":16,"mid":107}],"player2":[{"hp":100,"id":35,"mid":106},{"hp":100,"id":36,"mid":107},{"hp":100,"id":37,"mid":108}],"result":{"w":2,"hp":100}},{"team1":{"ac":["sm_101_f1","sm_106_f1","sm_105_d1"],"jr":11},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":10},"player1":[{"hp":100,"id":15,"mid":106},{"hp":100,"id":16,"mid":107},{"hp":100,"id":17,"mid":108}],"player2":[{"hp":100,"id":35,"mid":106,"add_speed":15},{"hp":100,"id":36,"mid":107},{"hp":100,"id":37,"mid":108}],"result":{"w":1,"hp":8}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":11},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":12},"player1":[{"hp":8,"id":15,"mid":106,"add_speed":15},{"hp":100,"id":16,"mid":107},{"hp":100,"id":17,"mid":108}],"player2":[{"hp":100,"id":36,"mid":107},{"hp":100,"id":37,"mid":108},{"hp":100,"id":38,"mid":101}],"result":{"w":2,"hp":25}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":13},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":12},"player1":[{"hp":100,"id":16,"mid":107},{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101}],"player2":[{"hp":25,"id":36,"mid":107},{"hp":100,"id":37,"mid":108},{"hp":100,"id":38,"mid":101}],"result":{"w":1,"hp":89}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":13},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":14},"player1":[{"hp":89,"id":16,"mid":107},{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101}],"player2":[{"hp":100,"id":37,"mid":108},{"hp":100,"id":38,"mid":101},{"hp":100,"id":39,"mid":101}],"result":{"w":1,"hp":35}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":13},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":15},"player1":[{"hp":35,"id":16,"mid":107},{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101}],"player2":[{"hp":100,"id":38,"mid":101},{"hp":100,"id":39,"mid":101}],"result":{"w":2,"hp":69}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":16},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":15},"player1":[{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101},{"hp":100,"id":19,"mid":101}],"player2":[{"hp":69,"id":38,"mid":101},{"hp":100,"id":39,"mid":101}],"result":{"w":1,"hp":35}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":16},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":17},"player1":[{"hp":35,"id":17,"mid":108},{"hp":100,"id":18,"mid":101},{"hp":100,"id":19,"mid":101}],"player2":[{"hp":100,"id":39,"mid":101}],"result":{"w":2,"hp":56}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":18},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":17},"player1":[{"hp":100,"id":18,"mid":101},{"hp":100,"id":19,"mid":101}],"player2":[{"hp":56,"id":39,"mid":101}],"result":{"w":1,"hp":63}}],"result":1,"team1base":{"rl":0,"r":1,"tl":null,"list":[101,102,103,104,105,106,107,108,101,101],"mb":{"101":{"hp":100,"atk":10,"speed":50},"102":{"hp":100,"atk":10,"speed":50},"103":{"hp":100,"atk":10,"speed":50},"104":{"hp":100,"atk":10,"speed":50},"105":{"hp":100,"atk":10,"speed":50},"106":{"hp":100,"atk":10,"speed":50},"107":{"hp":100,"atk":10,"speed":50},"108":{"hp":100,"atk":10,"speed":50}}},"team2base":{"rl":0,"r":1,"tl":null,"list":[101,102,103,104,105,106,107,108,101,101],"mb":{"101":{"hp":100,"atk":10,"speed":50},"102":{"hp":100,"atk":10,"speed":50},"103":{"hp":100,"atk":10,"speed":50},"104":{"hp":100,"atk":10,"speed":50},"105":{"hp":100,"atk":10,"speed":50},"106":{"hp":100,"atk":10,"speed":50},"107":{"hp":100,"atk":10,"speed":50},"108":{"hp":100,"atk":10,"speed":50}}}}
-        this.dataIn = data;
+    public show(){
+        //this.dataIn = PKManager.getInstance().pkData;//data;
+        this.pkList = PKManager.getInstance().pkList.concat();
+        this.cardIndex1 = -1;
+        this.cardIndex2 = -1;
         super.show();
     }
 
@@ -74,10 +94,11 @@ class PKMainUI extends game.BaseUI {
 
     private initView(){
         var stageHeight = this.stageHeight = this.stage.stageHeight;
-        this.bg.y =  (stageHeight - this.bgHeight)/2;
-        this.vsMC.y =  (stageHeight - 223)/2;
-        this.item1.y = this.item2.y = (stageHeight - 280)/2;
-        this.jumpBtn.y = this.bg.y + this.bgHeight - 100;
+        this.bg.y =  (stageHeight)/2;
+        this.vsMC.y =  (stageHeight)/2;
+        //this.item1.y = this.item2.y = (stageHeight - 280)/2;
+        this.jumpBtn.y = this.bg.y + this.bgHeight/2 - 80;
+        this.cardY =  this.bgHeight/2;
 
         this.bg.visible = false;
         this.vsMC.visible = false;
@@ -94,15 +115,15 @@ class PKMainUI extends game.BaseUI {
              this.freeItem(this.itemSelf.pop());
         }
 
-        this.enemyGroup.y = this.bg.y +120;
-        this.selfGroup.y = this.bg.y - 120;
+        this.enemyGroup.y = this.bg.y - this.bgHeight/2 + 120;
+        this.selfGroup.y = this.bg.y - this.bgHeight/2 - 120;
     }
 
     private addItemMovie(){
         var joinCD = 150;
-        var myTeam = this.dataIn.team1base.list
-        var y1 = this.bgHeight/2+120+this.itemHeight/2 +10
-        var y2 = this.bgHeight/2-120-this.itemHeight/2 -10
+        var myTeam = PKManager.getInstance().team1Base.list
+        var y1 = this.bgHeight/2+120+this.itemHeight/2 +50
+        var y2 = this.bgHeight/2-120-this.itemHeight/2 -50
         for(var i=0;i<myTeam.length;i++)
         {
             var item = this.getItem();
@@ -113,7 +134,7 @@ class PKMainUI extends game.BaseUI {
             this.addItemMV(item,this.selfGroup,joinCD*i + 200);
         }
 
-        var enemyTeam = this.dataIn.team1base.list
+        var enemyTeam = PKManager.getInstance().team2Base.list
         for(var i=0;i<enemyTeam.length;i++)
         {
             var item = this.getItem();
@@ -124,7 +145,21 @@ class PKMainUI extends game.BaseUI {
             this.addItemMV(item,this.enemyGroup,joinCD*i + 200);
         }
 
-        egret.setTimeout(this.onJoinFinish,this,Math.max(enemyTeam.length,myTeam.length)*joinCD + 600);
+        this.timer = egret.setTimeout(this.onJoinFinish,this,Math.max(enemyTeam.length,myTeam.length)*joinCD + 600);
+    }
+
+    //加入动画
+    private addItemMV(item,par,cd){
+        setTimeout(function(){
+            par.addChild(item);
+            item.scaleX = 3;
+            item.scaleY = 3;
+            item.alpha = 0;
+            var tw:egret.Tween = egret.Tween.get(item);
+            tw.to({alpha:0.5,scaleX:1,scaleY:1}, 300,egret.Ease.sineIn).call(function(){
+                item.alpha = 1;
+            })
+        },cd)
     }
 
     private getX(index)
@@ -140,13 +175,14 @@ class PKMainUI extends game.BaseUI {
 
     //双方都入场了
     private onJoinFinish(){
-        egret.Tween.get(this.selfGroup).to({y:this.bg.y}, 300)
-        egret.Tween.get(this.enemyGroup).to({y:this.bg.y}, 300)
+        egret.Tween.get(this.selfGroup).to({y:this.bg.y-this.bgHeight/2}, 300)
+        egret.Tween.get(this.enemyGroup).to({y:this.bg.y-this.bgHeight/2}, 300)
 
         this.vsMC.visible = true;
+        this.vsMC.alpha = 0;
         this.addItemMV(this.vsMC,this.vsMC.parent,200)
 
-        egret.setTimeout(this.changeLine,this,1000);
+        this.timer = egret.setTimeout(this.changeLine,this,1000);
     }
 
     //转成一条直线
@@ -164,12 +200,21 @@ class PKMainUI extends game.BaseUI {
             this.delayMove(item,640-this.getX2(i),0 - this.itemHeight/2,0);
         }
 
-        egret.Tween.get(this.vsMC).to({alpha:0,scaleX:2,scaleY:2}, 400).call(function(){
-            this.vsMC.visible = false;
-        },this)
+        this.bg.visible = true;
+        this.bg.scaleX = 0;
+        this.bg.scaleY = 0;
+        egret.Tween.get(this.bg).to({scaleX:1.2,scaleY:1.2}, 200).to({scaleX:1,scaleY:1}, 100).wait(500).call(function(){
+            egret.Tween.get(this.vsMC).to({alpha:0,scaleX:2,scaleY:2}, 400).call(function(){
+                this.vsMC.visible = false;
+            },this);
+        },this);
 
 
-        egret.setTimeout(this.playOne,this,1000);
+
+
+
+
+        this.timer = egret.setTimeout(this.playOne,this,1500);
     }
 
     private delayMove(item,x,y,cd){
@@ -178,28 +223,182 @@ class PKMainUI extends game.BaseUI {
             egret.Tween.get(item).to({y:y,x:x}, 300)
             return;
         }
-        egret.setTimeout(function(){
+        this.timer = egret.setTimeout(function(){
             egret.Tween.get(item).to({y:y,x:x}, 300)
         },this,cd);
 
     }
 
+    //开始播放动画
     private playOne(){
+        var oo = this.pkList.shift();
+        if(oo == null)//pk结束
+        {
+            this.showResult();
+             return;
+        }
+        this.jumpBtn.visible = true;
+        var player1 = oo.player1
+        var player2 = oo.player2
+        this.count = 0;
+        if(this.testJumpPK(player1,1))
+            this.count ++;
+        if(this.testJumpPK(player2,2))
+            this.count ++;
 
     }
 
-    //加入动画
-    private addItemMV(item,par,cd){
-        setTimeout(function(){
-            par.addChild(item);
-            item.scaleX = 3;
-            item.scaleY = 3;
-            item.alpha = 0;
+    //测试是否有进场动画
+    private testJumpPK(player,team){
+        var item,x,temp;
+        if(team == 1)
+        {
+            item =this.item1;
+            x = this.card1X;
+            temp = this.itemSelf[player.index]
+        }
+        else
+        {
+            item =this.item2;
+            x = this.card2X;
+            temp = this.itemEnemy[player.index]
+        }
+
+        if(this['cardIndex' + team] != player.index)
+        {
+            temp.parent.addChild(temp);
+            temp.scaleX = temp.scaleY = 1.2;
+
             var tw:egret.Tween = egret.Tween.get(item);
-            tw.to({alpha:0.3,scaleX:1,scaleY:1}, 300).call(function(){
-                item.alpha = 1;
-            })
-        },cd)
+            item.visible = true;
+            item.alpha = 1;
+            item.scaleX = 0.1;
+            item.scaleY = 0.4;
+            item.x = temp.x
+            item.y = temp.y
+            tw.to({scaleX:1,scaleY:1,x:x,y:this.cardY}, 400 + (player.index) - 2 * 20).wait(300).call(function(){
+                this.count --;
+                this.onPlayJumpFinish();
+            },this)
+            item.data = player;
+            this['cardIndex' + team] = player.index;
+             return true;
+        }
+        else
+        {
+            item.data = player;
+        }
+        return false;
     }
+
+    private onPlayJumpFinish(){
+        if(this.count == 0)
+        {
+            this.count = 2;
+            this.playerPK(1)
+            this.playerPK(2)
+        }
+    }
+
+    //PK动画
+    private playerPK(team){
+        var item,x,y
+
+        if(team == 1)
+        {
+            item =this.item1;
+            x = this.card2X;
+            y = this.cardY - 30;
+        }
+        else
+        {
+            item =this.item2;
+            x = this.card1X;
+            y = this.cardY - 60;
+        }
+        var tw:egret.Tween = egret.Tween.get(item);
+        tw.to({scaleX:1.2,scaleY:1.2,x:640/2,y:y}, 200).to({scaleX:1,scaleY:1,x:x,y:this.cardY}, 200).wait(300).call(function(){
+            this.count --;
+            this.onPlayPKFinish();
+        },this)
+    }
+
+    private onPlayPKFinish(){
+        if(this.count == 0)
+        {
+            this.count = 2;
+            this.item1.decHp(this.onDecHpFinish,this);
+            this.item2.decHp(this.onDecHpFinish,this);
+        }
+    }
+
+    //扣血动画
+    private onDecHpFinish(){
+        this.count --;
+        if(this.count == 0)
+        {
+            this.testPlayerBack(1);
+            this.testPlayerBack(2);
+        }
+    }
+
+
+    //3次胜利后回归动画
+    private testPlayerBack(team){
+        var item,x,temp
+        if(team == 1)
+        {
+            item =this.item1;
+            x = this.card1X;
+            temp = this.itemSelf[item.data.index]
+        }
+        else
+        {
+            item =this.item2;
+            x = this.card2X;
+            temp = this.itemEnemy[item.data.index]
+        }
+
+        if(item.data.after > 0)
+        {
+            var tw:egret.Tween = egret.Tween.get(item);
+            if(item.data.winCount == 3)   //回列表
+            {
+                temp.showWin3();
+                temp.scaleX = temp.scaleY = 1;
+                tw.to({alpha:0,scaleX:0.1,scaleY:0.1,x:temp.x,y:temp.y}, 300).call(function(){
+                    this.playOne();
+                },this)
+
+            }
+            else //回原位
+            {
+                tw.to({x:x}, 300,egret.Ease.sineOut).call(function(){
+                    this.playOne();
+                },this)
+            }
+        }
+        else
+        {
+            temp.scaleX = temp.scaleY = 1;
+        }
+
+    }
+
+    private stopAll()
+    {
+        egret.clearTimeout(this.timer);
+        egret.Tween.removeAllTweens()
+    }
+
+    private showResult()
+    {
+        if(PKManager.getInstance().pkResult.result)
+            console.log('win');
+        else
+            console.log('loss');
+    }
+
+
 
 }
