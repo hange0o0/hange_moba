@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="VideoUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="650">
+	<e:Image id="bg" source="pk_bg_jpg" x="0" y="0" locked="true"/>
+	<e:Rect height="132" width="640" x="0" y="518" locked="true"/>
+	<e:Image x="0" y="439" source="pk_bottm_png"/>
+	<e:Label id="nameText2" y="72" text="标签" textColor="0xA26E37" right="10" stroke="1"/>
+	<e:Label id="nameText1" text="标签" x="10" y="70" textColor="0xA26E37" stroke="1"/>
+	<ns1:VideoItem id="item1" y="130" skinName="VideoItemSkin" x="60"/>
+	<ns1:VideoItem id="item2" y="130" skinName="VideoItemSkin" x="380"/>
+	<e:BitmapLabel id="stateText1" x="56" y="420" font="result_fnt" text="wwwwwwwww"/>
+	<e:BitmapLabel id="stateText2" y="420" text="www" font="result_fnt" x="480"/>
+	<e:Image id="monster1" source="pk_bg_jpg" width="60" y="480" height="60" x="153"/>
+	<e:Image id="monster2" source="pk_bg_jpg" width="60" y="480" height="60" x="232"/>
+	<e:Image id="monster3" source="pk_bg_jpg" width="60" y="480" height="60" x="347"/>
+	<e:Image id="monster4" source="pk_bg_jpg" width="60" y="480" height="60" x="428"/>
+	<e:Image source="border2_png" y="486" right="40"/>
+	<e:Image source="border3_png" x="421" y="475"/>
+	<e:Image source="border3_png" y="475" x="340"/>
+	<e:Image source="border2_png" y="486" left="40"/>
+	<e:Image source="border3_png" y="475" x="226"/>
+	<e:Image source="border3_png" y="475" x="146"/>
+	<e:Image source="rate_bar_bg_png" y="580" horizontalCenter="0" width="530"/>
+	<e:Image id="rateBar" source="rate_ar_mc_png" y="601" horizontalCenter="0" width="480" scale9Grid="56,2,338,16"/>
+	<e:Image id="dragMC" source="rate_bar_drag_png" y="580" horizontalCenter="0"/>
+	<e:Image source="top_bg_jpg" y="1" x="0"/>
+	<e:Image source="line_png" x="-5" width="650" y="642"/>
+	<e:Button x="576" y="0" skinName="Btn_close1Skin" id="closeBtn"/>
+	<e:Label y="19" textColor="0xCA9800" horizontalCenter="0" text="标签" id="titleText" x="10"/>
+	<e:Label id="rateText" text="100/100" x="150" y="557" size="22" textColor="0x947741"/>
+	<e:Group id="videoBtn" x="408" y="553">
+		<e:Label id="videoText" y="4" textColor="0x947741" size="22" text="继续" x="36"/>
+		<e:Image id="videoIcon" source="replay_mc_png" x="0" y="0"/>
+	</e:Group>
+	<e:Image id="player1" source="pk_bg_jpg" x="45" y="491" width="80" height="80"/>
+	<e:Image id="player2" source="pk_bg_jpg" width="80" y="491" height="80" x="515"/>
+</e:Skin>

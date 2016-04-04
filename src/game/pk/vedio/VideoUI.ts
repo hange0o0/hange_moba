@@ -5,6 +5,28 @@ class VideoUI extends game.BaseWindow {
         return this.instance;
     }
 
+    private bg: eui.Image;
+    private nameText2: eui.Label;
+    private nameText1: eui.Label;
+    private item1: VideoItem;
+    private item2: VideoItem;
+    private stateText1: eui.BitmapLabel;
+    private stateText2: eui.BitmapLabel;
+    private monster1: eui.Image;
+    private monster2: eui.Image;
+    private monster3: eui.Image;
+    private monster4: eui.Image;
+    private rateBar: eui.Image;
+    private dragMC: eui.Image;
+    private closeBtn: eui.Button;
+    private titleText: eui.Label;
+    private rateText: eui.Label;
+    private videoBtn: eui.Group;
+    private videoText: eui.Label;
+    private videoIcon: eui.Image;
+    private player1: eui.Image;
+    private player2: eui.Image;
+
 
     private currentAction;
     private mvList;

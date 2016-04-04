@@ -4,6 +4,13 @@ class PKFailUI extends game.BaseUI {
         if (!this.instance) this.instance = new PKFailUI();
         return this.instance;
     }
+    
+    private desText: eui.Label;
+    private list: eui.List;
+    private btnGroup: eui.Group;
+    private backBtn: eui.Button;
+    private okBtn: eui.Button;
+
 
     public constructor() {
         super();

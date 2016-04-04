@@ -1,11 +1,11 @@
- class PKResultItem extends game.BaseItem {
+class PKResultItem2 extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "PKResultItemSkin";
+        this.skinName = "PKResultItem2kin";
     }
 
-    private mc: eui.Image;
-    private desText: eui.Label;
+    private item1: PKResultItem3;
+    private item2: PKResultItem3;
 
 
 
@@ -22,3 +22,5 @@
     public dataChange() {
     }
 }
+
+

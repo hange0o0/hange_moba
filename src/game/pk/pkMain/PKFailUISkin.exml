@@ -1,2 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKFailUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui"></e:Skin>
+<e:Skin class="PKFailUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="pk_fail_png" y="36" x="74"/>
+	<e:Image source="pk_fail_png" y="36" scaleX="-1" x="566"/>
+	<e:Image source="fight_fail_1_png" y="155" horizontalCenter="0"/>
+	<e:Group bottom="20" horizontalCenter="0" top="330" x="10" y="10">
+		<e:layout>
+			<e:VerticalLayout horizontalAlign="center" gap="15"/>
+		</e:layout>
+		<e:Label id="desText" y="0" textColor="0xFFFF00" text="标签" x="111"/>
+		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
+			<e:layout>
+				<e:HorizontalLayout gap="10"/>
+			</e:layout>
+			<e:ArrayCollection>
+				<e:Array>
+					<e:Object label="1"/>
+					<e:Object label="数据2"/>
+					<e:Object label="数据3"/>
+				</e:Array>
+			</e:ArrayCollection>
+		</e:List>
+		<e:Group id="btnGroup" x="65" y="175">
+			<e:Button id="backBtn" y="0" label="返回" x="0" skinName="Btn_b2Skin"/>
+			<e:Button id="okBtn" skinName="Btn_r2Skin" y="71" label="再试一次" x="0"/>
+			<e:layout>
+				<e:HorizontalLayout gap="30"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+</e:Skin>

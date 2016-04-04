@@ -2,7 +2,7 @@
 <e:Skin class="PKWinUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="pk_win_png" y="36" x="75"/>
 	<e:Image source="pk_win_png" y="36" scaleX="-1" x="565"/>
-	<e:Group y="328" horizontalCenter="0">
+	<e:Group horizontalCenter="0" top="330" bottom="20">
 		<e:Label id="desText" text="标签" y="0" textColor="0xFFFF00" x="111"/>
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
 			<e:ArrayCollection>

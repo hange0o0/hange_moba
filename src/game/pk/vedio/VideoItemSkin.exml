@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="VideoItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="card_bg_png" width="200" y="0" height="280" x="0"/>
+	<e:Image source="pk_bg_jpg" y="16" x="13" width="175" height="248" id="headMC"/>
+	<e:Image source="bar_bg_png" scale9Grid="19,1,120,10" y="209" width="180" x="10"/>
+	<e:Image id="hpBar" source="bar1_png" y="211" x="12" scale9Grid="18,1,114,6" width="175"/>
+	<e:Rect width="176" y="218" fillAlpha="0.6" height="45" x="12"/>
+	<e:Label id="atkText" y="237" text="12345" size="22" x="46" textColor="0xCC9900"/>
+	<e:Label id="hpText" y="188" text="123/4567" size="22" horizontalCenter="0" textColor="0x44AC24" stroke="1"/>
+	<e:Label id="speedText" y="237" textColor="0xCC9900" text="123" size="22" x="142"/>
+	<e:Image source="bar_bg_png" scale9Grid="19,1,120,10" y="220" width="180" x="10"/>
+	<e:Image id="mpBar" y="222" x="12" scale9Grid="18,1,114,6" width="175" source="bar2_png"/>
+	<e:Image source="card_icon_1_png" x="19" y="234" scaleY="0.6" scaleX="0.6"/>
+	<e:Image source="card_icon_3_png" x="118" y="234" scaleX="0.6" scaleY="0.6"/>
+</e:Skin>

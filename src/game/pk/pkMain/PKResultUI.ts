@@ -4,6 +4,10 @@ class PKResultUI extends game.BaseUI {
         if (!this.instance) this.instance = new PKResultUI();
         return this.instance;
     }
+    
+    private scrollGroup: eui.Group;
+    private list: eui.List;
+
 
     public constructor() {
         super();

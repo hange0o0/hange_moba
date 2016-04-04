@@ -9,7 +9,7 @@
 		"name":"js"
 	},
 	{
-		"keys":"btn_b1_png,btn_b1__png,btn_b2_png,btn_b2__png,btn_close1_png,btn_close1__png,btn_close2_png,btn_close2__png,btn_d1_png,btn_d2_png,btn_r1_png,btn_r1__png,btn_r2_png,btn_r2__png,btn_r3_png,btn_r3__png,border1_png,bg_jpg,main_button_bottom_jpg,window1_jpg,fire_top_jpg,top_bg_jpg,book_bg1_jpg,book_bg2_jpg,rate_bar_bg_png,window2_png,card_bg_png,bold_bg_png,rate_bar_drag_png,rate_ar_mc_png,window1_top_png,main_exp_jpg,bar2_png,bar_bg_png,bar1_png,line_png,main_item_bg_png,pk_vs_png,pk_result_line_png,pk_bottm_png,pk_fail_png,pk_win_png,border_head_png,border_light_png,border2_png,border3_png,border4_png,border5_png,border6_png,border7_png,border8_png,head_border_light1_png,head_border_light2_png,head_border_light3_png,head_border1_png,head_border2_png,head_border3_png,head_border4_png,head_border5_png,main_border_png,btn_down_png,btn_pk_png,btn_up_png,left_btn_png,tab1_png,tab2_png,icon_rank_png,icon_token_png,kulu_png,main_mc_png,menu_icon_1_png,menu_icon_2_png,menu_icon_3_png,menu_icon_4_png,menu_icon_5_png,menu_icon_6_png,pk_icon_png,point1_png,point2_png,radio_btn1_png,radio_btn2_png,red_point_png,replay_mc_png,stop_mc_png,view_mc_png,arrow1_png,arrow2_png,arrow3_png,arrow4_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu1_png,fu2_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_def_png,icon_empty_png,icon_lv_png,icon_money_png,icon_power_png,icon_pve_png,icon_pvp_2_png,icon_pvp_3_png,icon_pvp_ticket_png,fight_fail_1_png,font_num1_fnt,font_num2_fnt,font_num3_fnt,font_num4_fnt,icon_new_png,random_btn_png,note_icon_png,line2_png,border_light3_png,border_light1_png,border_light2_png,drop_png,tips_jpg,line3_png,drop2_png,fight_win_png",
+		"keys":"btn_b1_png,btn_b1__png,btn_b2_png,btn_b2__png,btn_close1_png,btn_close1__png,btn_close2_png,btn_close2__png,btn_d1_png,btn_d2_png,btn_r1_png,btn_r1__png,btn_r2_png,btn_r2__png,btn_r3_png,btn_r3__png,border1_png,bg_jpg,main_button_bottom_jpg,window1_jpg,fire_top_jpg,top_bg_jpg,book_bg1_jpg,book_bg2_jpg,rate_bar_bg_png,window2_png,card_bg_png,bold_bg_png,rate_bar_drag_png,rate_ar_mc_png,window1_top_png,main_exp_jpg,bar2_png,bar_bg_png,bar1_png,line_png,main_item_bg_png,pk_vs_png,pk_result_line_png,pk_bottm_png,pk_fail_png,pk_win_png,border_head_png,border_light_png,border2_png,border3_png,border4_png,border5_png,border6_png,border7_png,border8_png,head_border_light1_png,head_border_light2_png,head_border_light3_png,head_border1_png,head_border2_png,head_border3_png,head_border4_png,head_border5_png,main_border_png,btn_down_png,btn_pk_png,btn_up_png,left_btn_png,tab1_png,tab2_png,icon_rank_png,icon_token_png,kulu_png,main_mc_png,menu_icon_1_png,menu_icon_2_png,menu_icon_3_png,menu_icon_4_png,menu_icon_5_png,menu_icon_6_png,pk_icon_png,point1_png,point2_png,radio_btn1_png,radio_btn2_png,red_point_png,replay_mc_png,stop_mc_png,view_mc_png,arrow1_png,arrow2_png,arrow3_png,arrow4_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu1_png,fu2_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_def_png,icon_empty_png,icon_lv_png,icon_money_png,icon_power_png,icon_pve_png,icon_pvp_2_png,icon_pvp_3_png,icon_pvp_ticket_png,fight_fail_1_png,font_num1_fnt,font_num2_fnt,font_num3_fnt,font_num4_fnt,icon_new_png,random_btn_png,note_icon_png,line2_png,border_light3_png,border_light1_png,border_light2_png,drop_png,tips_jpg,line3_png,drop2_png,fight_win_png,result_fnt",
 		"name":"gamepreload"
 	}],
 	"resources":[
@@ -787,5 +787,10 @@
 		"name":"fight_win_png",
 		"type":"image",
 		"url":"game_assets/word/fight_win.png"
+	},
+	{
+		"name":"result_fnt",
+		"type":"font",
+		"url":"game_assets/word/result.fnt"
 	}]
 }
