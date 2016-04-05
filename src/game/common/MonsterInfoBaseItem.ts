@@ -12,7 +12,7 @@ class MonsterInfoBaseItem extends game.BaseItem {
 
     }
 
-    public dataChange(){
+    public dataChanged(){
         //var oo = PKManager.getInstance().indexAdd(this.itemIndex);
         //var id = this.data;
     }

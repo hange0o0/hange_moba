@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKResultItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="280" height="90" states="right_loss,left_win,left_loss,right_win"  
+<e:Skin class="PKResultItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="280" height="90" states="right_loss,left_win,left_loss,right_win"
         >
 	<e:Image source="border2_png" x="0" y="0" x.right_loss="190" y.right_loss="0" x.right_win="190"/>
 	<e:Image id="headMC" source="pk_bg_jpg" x="5" y="5" width="80" height="80" x.right_loss="195" y.right_loss="5" x.right_win="195"/>
@@ -7,7 +7,7 @@
 	<e:Image id="barMC" source="bar1_png" x="6" y="77" scale9Grid="18,1,114,6" width="78" x.right_loss="196" y.right_loss="77" x.right_win="196"/>
 	<e:BitmapLabel id="iconText" x.right_win="95" x.left_loss="95" x.left_win="95" y="4" font="result_fnt" text="lll" y.left_win="43" text.left_win="www" y.right_win="43" text.right_win="www" right.right_win="100" right.right_loss="100"/>
 	<e:Group x="100" y="53" right.right_loss="100" y.right_win="6" y.left_win="6" right.right_win="100">
-		<e:Image source="arrow4_png" x="0" y="0" y.left_win="7" y.right_win="7" height="35" fillMode="clip"/>
+		<e:Image id="arrowMC" source="arrow4_png" x="0" y="0" y.left_win="7" y.right_win="7" height="35" fillMode="clip"/>
 		<e:Label id="hpText" text="123456" x="22" y="4" textColor="0xFE7430" y.left_win="11" y.right_win="11" text.left_loss="12345"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>

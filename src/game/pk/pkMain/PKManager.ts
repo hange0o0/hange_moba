@@ -21,6 +21,7 @@ class PKManager {
     }
 
     public pkResult;
+    public pkAward;
     public pkType;
     public pkData;
     public team1Base;
@@ -124,6 +125,12 @@ class PKManager {
         this.pkData = data.pkdata;
         this.team1Base = data.team1base;
         this.team2Base = data.team2base;
+
+        this.pkAward = {
+            levelUp:true,
+            forceUp:true,
+            prop:[{id:1,num:2},{id:1,num:2},{id:1,num:2}]
+        }
         VideoManager.getInstance().cleanVideo(type);
 
         //表现动画，结果的数据

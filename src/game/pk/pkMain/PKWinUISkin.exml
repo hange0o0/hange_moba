@@ -5,13 +5,6 @@
 	<e:Group horizontalCenter="0" top="330" bottom="20">
 		<e:Label id="desText" text="标签" y="0" textColor="0xFFFF00" x="111"/>
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
-			<e:ArrayCollection>
-				<e:Array>
-					<e:Object label="1"/>
-					<e:Object label="数据2"/>
-					<e:Object label="数据3"/>
-				</e:Array>
-			</e:ArrayCollection>
 			<e:layout>
 				<e:HorizontalLayout gap="10"/>
 			</e:layout>

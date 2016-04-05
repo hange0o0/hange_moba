@@ -12,7 +12,7 @@ class FriendTalkItem extends game.BaseItem {
 
     }
 
-    public dataChange(){
+    public dataChanged(){
 
     }
 }

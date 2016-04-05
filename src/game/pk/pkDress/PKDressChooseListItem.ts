@@ -44,7 +44,7 @@ class PKDressChooseListItem extends game.BaseItem {
 
     }
 
-    public dataChange(){
+    public dataChanged(){
          var vo:MonsterVO = this.data.vo;
         this.headMC.data = this.data
 

@@ -12,7 +12,7 @@ class RankItem extends game.BaseItem {
 
     }
 
-    public dataChange(){
+    public dataChanged(){
 
     }
 }

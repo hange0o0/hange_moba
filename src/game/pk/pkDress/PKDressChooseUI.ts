@@ -290,17 +290,17 @@ class PKDressChooseUI extends game.BaseWindow {
             if(mc == this.dragMC)//自己本身
             {
                 //this.mcArray[i].data.state = 1;
-                //this.mcArray[i].dataChange();
+                //this.mcArray[i].dataChanged();
             }
             else if(this.dragMC && this.mcArray[i].data.vo.isEffect(this.dragMC.data.vo.id) && this.mcArray[i].data.state != 2)//有加成的发光
             {
                 this.mcArray[i].data.state = 2;
-                this.mcArray[i].dataChange();
+                this.mcArray[i].dataChanged();
             }
             else if(this.mcArray[i].data.state != 0)//无发光
             {
                 this.mcArray[i].data.state = 0;
-                this.mcArray[i].dataChange();
+                this.mcArray[i].dataChanged();
             }
 
 

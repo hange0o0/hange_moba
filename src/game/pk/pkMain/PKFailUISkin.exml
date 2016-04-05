@@ -12,13 +12,6 @@
 			<e:layout>
 				<e:HorizontalLayout gap="10"/>
 			</e:layout>
-			<e:ArrayCollection>
-				<e:Array>
-					<e:Object label="1"/>
-					<e:Object label="数据2"/>
-					<e:Object label="数据3"/>
-				</e:Array>
-			</e:ArrayCollection>
 		</e:List>
 		<e:Group id="btnGroup" x="65" y="175">
 			<e:Button id="backBtn" y="0" label="返回" x="0" skinName="Btn_b2Skin"/>

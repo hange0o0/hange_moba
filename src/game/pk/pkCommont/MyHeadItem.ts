@@ -18,7 +18,7 @@ class MyHeadItem extends game.BaseItem {
         MyTool.addTestBlock(this);
     }
 
-    public dataChange() {
+    public dataChanged() {
         var vo:MonsterVO = this.data.vo;
 
         this.headMC.source = vo.thumb;

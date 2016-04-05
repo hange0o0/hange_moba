@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKResultItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="border2_png" x="0" y="0"/>
-	<e:Image id="mc" source="pk_bg_jpg" x="5" y="5" width="80" height="80"/>
-	<e:Label id="desText" text="标签" y="93" textColor="0xFFFF00" size="22" horizontalCenter="0"/>
+	<e:Group id="group">
+		<e:Image source="border2_png" x="0" y="0"/>
+		<e:Image id="mc" source="pk_bg_jpg" x="5" y="5" width="80" height="80"/>
+		<e:Label id="desText" text="标签" y="93" textColor="0xFFFF00" size="22" horizontalCenter="0"/>
+	</e:Group>
 </e:Skin>

@@ -1,20 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKResultUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
-	<e:Scroller width="640" x="0" top="0" bottom="0">
+	<e:Scroller id="scroller" width="640" x="0" top="0" bottom="0">
 		<e:Group id="scrollGroup">
 			<e:Image source="pk_result_line_png" x="94" y="61"/>
 			<e:List id="list" width="640" x="0" y="222" itemRendererSkinName="PKResultItem2Skin">
 				<e:layout>
 					<e:VerticalLayout gap="10"/>
 				</e:layout>
-				<e:ArrayCollection>
-					<e:Array>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="1"/>
-					</e:Array>
-				</e:ArrayCollection>
 			</e:List>
 			<e:layout>
 				<e:VerticalLayout horizontalAlign="center"/>

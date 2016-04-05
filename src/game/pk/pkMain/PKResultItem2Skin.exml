@@ -3,5 +3,5 @@
 	<e:Rect height="2" width="600" x="20" y="118" fillColor="0x6A1414"/>
 	<ns1:PKResultItem3 id="item1" y="10" skinName="PKResultItem3Skin" x="20"/>
 	<ns1:PKResultItem3 id="item2" skinName="PKResultItem3Skin" y="10" right="20"/>
-	<e:Image source="view_mc_png" horizontalCenter="0" verticalCenter="10"/>
+	<e:Image id="viewBtn" source="view_mc_png" horizontalCenter="0" verticalCenter="10"/>
 </e:Skin>

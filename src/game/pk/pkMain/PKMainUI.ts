@@ -393,10 +393,11 @@ class PKMainUI extends game.BaseUI {
 
     private showResult()
     {
-        if(PKManager.getInstance().pkResult.result)
-            console.log('win');
-        else
-            console.log('loss');
+        PKResultUI.getInstance().show();
+        //if(PKManager.getInstance().pkResult.result)
+        //    console.log('win');
+        //else
+        //    console.log('loss');
     }
 
 

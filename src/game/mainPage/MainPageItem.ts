@@ -9,7 +9,7 @@ class MainPageItem extends game.BaseItem {
 
     }
 
-    public dataChange() {
+    public dataChanged() {
         if(this.data)
             this.currentState = 'choose';
         else

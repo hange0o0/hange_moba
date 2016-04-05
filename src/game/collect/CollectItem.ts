@@ -12,6 +12,6 @@ class CollectItem extends game.BaseItem {
 
     }
 
-    public dataChange(){
+    public dataChanged(){
     }
 }

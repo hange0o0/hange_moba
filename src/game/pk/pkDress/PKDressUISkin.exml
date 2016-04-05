@@ -38,12 +38,5 @@
 		<e:layout>
 			<e:TileLayout/>
 		</e:layout>
-		<e:ArrayCollection>
-			<e:Array>
-				<e:Object label="11"/>
-				<e:Object label="数据222"/>
-				<e:Object label="22"/>
-			</e:Array>
-		</e:ArrayCollection>
 	</e:List>
 </e:Skin>

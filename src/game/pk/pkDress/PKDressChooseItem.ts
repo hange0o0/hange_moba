@@ -15,7 +15,7 @@ class PKDressChooseItem extends game.BaseItem {
     }
 
     //stat 0,无发光，1选中，2加成
-    public dataChange(){
+    public dataChanged(){
          this.myHeadItem.data = this.data;
 
         if(this.data.stat)

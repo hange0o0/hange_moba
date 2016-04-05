@@ -18,7 +18,7 @@ class EnemyHeadItem extends game.BaseItem {
 
     }
 
-    public dataChange() {
+    public dataChanged() {
         this.headMC.source = MyTool.getMonsterHead(this.data.id);
           if(this.data.type == 1)
           {

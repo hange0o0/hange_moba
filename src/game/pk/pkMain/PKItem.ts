@@ -18,7 +18,7 @@ class PKItem extends game.BaseItem {
 
     }
 
-    public dataChange() {
+    public dataChanged() {
         this.headMC.source = MyTool.getMonsterHead(this.data.id);
     }
 }
