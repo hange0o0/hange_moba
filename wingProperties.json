@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -738,6 +738,11 @@
 					"isFolder":false,
 					"key":"pk_bg_jpg",
 					"name":"pk_bg_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"arrow5_png",
+					"name":"arrow5_png"
 				}
 			]
 		}
