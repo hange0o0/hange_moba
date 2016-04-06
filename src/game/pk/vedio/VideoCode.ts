@@ -5,8 +5,8 @@ class VideoCode{
         return this.instance;
     }
 
-    public player1;
-    public player2;
+    public player1;//场上玩家1
+    public player2; //场上玩家2
 
     public atker;
     public defender;
@@ -24,7 +24,7 @@ class VideoCode{
     public skillArray;
     public skillData;
 
-    public playerObject = {};
+    public playerObject = {}; //所有单位的集合
 
     public constructor() {
         //this.player1 = new PlayerVO();
@@ -43,6 +43,7 @@ class VideoCode{
             }
 
             this.playerObject[player.id] = player
+            player.displayMC = VideoUI.getInstance().getRelateMC(1,i)
         }
         for(var i=0;i<roundData.player2.length;i++)
         {
@@ -54,7 +55,16 @@ class VideoCode{
             }
 
             this.playerObject[player.id] = player
+            player.displayMC = VideoUI.getInstance().getRelateMC(2,i)
         }
+        //召唤师
+        this.playerObject[1] = new PlayerVO();
+        this.playerObject[1].id = 1;
+        this.playerObject[1].displayMC = VideoUI.getInstance().getRelateMC(1,3);
+
+        this.playerObject[2] = new PlayerVO();
+        this.playerObject[2].id = 2;
+        this.playerObject[2].displayMC = VideoUI.getInstance().getRelateMC(2,3);
 
 
         this.index = 0;

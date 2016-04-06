@@ -8,13 +8,24 @@ class MyTool {
     public static getHeadUrl(id){
         return   'head_'+1 + '_jpg'
     }
-    public static getMonsterHead(id){
-        return   'head_'+1 + '_jpg'
-    }
     public static removeMC(mc:any){
         if(mc.parent)
             mc.parent.removeChild(mc)
     }
+
+    //得到数据变化过程数组
+    public static getValueChangeArray(from,to,times,noInt=false){
+         var array = [];
+        for(var i=0;i<times;i++)
+        {
+           var v = from + (to - from)/times*(i + 1);
+            if(!noInt)
+                v = Math.floor(v);
+            array.push(v)
+        }
+        return array;
+    }
+
 
     //长按监听
     public static addLongTouch(mc:any,fun,thisObj?){

@@ -19,7 +19,7 @@ class EnemyHeadItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.headMC.source = MyTool.getMonsterHead(this.data.id);
+        this.headMC.source = this.data.vo.thumb
           if(this.data.type == 1)
           {
                this.closeBtn.visible = false;

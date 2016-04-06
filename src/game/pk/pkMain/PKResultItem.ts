@@ -33,5 +33,6 @@
             this.data.cd = 0;
         }
         this.visible = false;
+        this.desText.text = 'X100'
     }
 }

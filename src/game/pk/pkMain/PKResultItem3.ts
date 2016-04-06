@@ -49,8 +49,8 @@ class PKResultItem3 extends game.BaseItem {
         if(this.data.after > this.data.before)  //上升
         {
             this.hpText.text = (this.data.after - this.data.before)   + '';
-            this.hpText.textColor = 0x65FE36;
-            this.arrowMC.source = ''
+            this.hpText.textColor = 0x000000;
+            this.arrowMC.source = 'arrow5_png'
         }
         else
         {

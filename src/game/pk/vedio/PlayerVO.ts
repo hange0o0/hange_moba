@@ -11,8 +11,11 @@ class PlayerVO {
     public speed = 0;
 
     public mp = 0;
+    public maxMp = 0;
     public tag = '';
     public actionCount = 0;
+
+    public displayMC:any;  //关联的显示对象
 
     public constructor(oo?,oo2?) {
         if(oo)

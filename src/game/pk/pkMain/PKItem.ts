@@ -11,6 +11,7 @@ class PKItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
+        this.headMC.mask = this.headMask;
         //this.addBtnEvent(this.closeBtn,this.onClose);
     }
 
@@ -19,6 +20,7 @@ class PKItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.headMC.source = MyTool.getMonsterHead(this.data.id);
+        var vo = MonsterVO.getObject(this.data.mid)
+        this.headMC.source = vo.thumb
     }
 }

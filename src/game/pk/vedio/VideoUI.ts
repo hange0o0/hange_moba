@@ -27,22 +27,61 @@ class VideoUI extends game.BaseWindow {
     private player1: eui.Image;
     private player2: eui.Image;
 
+    private rateBarGroup
+
 
     private currentAction;
     private mvList;
+    private timer;
 
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "VideoUISkin";
     }
 
 
     public childrenCreated() {
         super.childrenCreated();
+        this.addBtnEvent(this.closeBtn,this.onClose)
+
+        this.rateBarGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onDrag,this);
+    }
+
+    //改变播放位置
+    private onDrag(e){
+
+    }
+
+    private onClose(){
+        this.hide();
+        egret.Tween.removeAllTweens();
+        egret.clearTimeout(this.timer);
     }
 
     public initData(){
+        this.nameText1.text = ''
+        this.nameText2.text = ''
+        this.bg.source;
+        this.rateBar.width = 480;
+    }
 
+    //取关联的显示对象
+    public getRelateMC(team,index):any{
+        if(team == 1)
+        {
+            if(index == 0)return this.item1
+            if(index == 1)return this.monster1
+            if(index == 2)return this.monster2
+            if(index == 3)return this.player1
+        }
+        else
+        {
+            if(index == 0)return this.item2
+            if(index == 1)return this.monster3
+            if(index == 2)return this.monster4
+            if(index == 3)return this.player2
+        }
+        return null;
     }
 
     public getPlayer(id){
