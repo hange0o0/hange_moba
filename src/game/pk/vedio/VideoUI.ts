@@ -37,7 +37,6 @@ class VideoUI extends game.BaseWindow {
         super.childrenCreated();
         this.addBtnEvent(this.closeBtn,this.onClose)
 
-        this.rateBarGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onDrag,this);
     }
 
     //改变播放位置
@@ -52,10 +51,10 @@ class VideoUI extends game.BaseWindow {
     }
 
     public initData(){
+        this.titleText.text = '第'+10+'回合'
         this.nameText1.text = ''
         this.nameText2.text = ''
         this.bg.source;
-        this.rateBar.width = 480;
     }
 
     //取关联的显示对象
@@ -83,6 +82,8 @@ class VideoUI extends game.BaseWindow {
 
     private onActionOver(){
         var VC = VideoCode.getInstance();
+        this.item1.showValueChange()
+        this.item2.showValueChange()
         VC.onMovieOver();
     }
 
@@ -114,30 +115,40 @@ class VideoUI extends game.BaseWindow {
                 data.defender[i] = data.defender[i] + '[' + VC.getPlayerByID(data.defender[i]).mvo.id+']'+(VC.getPlayerByID(data.defender[i]).isPKing?'*':'');
             }
 
-            if(data.skillID == 50)
+            if(VC.isDebug)
             {
-                var str = data.atker + ' 攻击 ' + data.defender[0];
+                this.debugShow(data);
+                return;
             }
-            else if(data.skillID == 51)
-            {
-                var str = data.atker + ' 秒杀 ' + data.defender[0];
-            }
-            else if(data.skillID == 52)
-            {
-                var str = data.atker + ' 回合结束时血量改变';
-            }
-            else if(data.skillID == 53)
-            {
-                var str = data.atker +  ' 对 ' + data.defender.join(',') + ' 进行加成';
-            }
-            else
-            {
-                var str = data.atker + '对' + data.defender.join(',') + '使用技能' + data.skillID ;
-            }
-            str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
-            console.log(str);
             this.playOneSkill();
         }
+    }
+
+    private debugShow(data){
+        var VC = VideoCode.getInstance();
+        if(data.skillID == 50)
+        {
+            var str = data.atker + ' 攻击 ' + data.defender[0];
+        }
+        else if(data.skillID == 51)
+        {
+            var str = data.atker + ' 秒杀 ' + data.defender[0];
+        }
+        else if(data.skillID == 52)
+        {
+            var str = data.atker + ' 回合结束时血量改变';
+        }
+        else if(data.skillID == 53)
+        {
+            var str = data.atker +  ' 对 ' + data.defender.join(',') + ' 进行加成';
+        }
+        else
+        {
+            var str = data.atker + '对' + data.defender.join(',') + '使用技能' + data.skillID ;
+        }
+        str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
+        console.log(str);
+        this.playOneSkill();
     }
 
 }

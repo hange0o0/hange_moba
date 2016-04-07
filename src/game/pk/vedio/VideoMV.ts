@@ -11,6 +11,12 @@ class VideoMV {
     public mv1(data){
         var vui = VideoUI.getInstance();
         var A = vui.getPlayer(data.atker);
+        var B = vui.getPlayer(data.defender);
+        var self = this;
+
+        this.userMove(A,B,function(){
+
+        })
     }
 
 

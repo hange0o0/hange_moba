@@ -11,7 +11,7 @@ class VideoCode{
     public atker;
     public defender;
 
-    public record = [];
+    //public record = [];
     public index = 0;
     public index2 = 0;
     public targetIndex = 999999;
@@ -70,7 +70,6 @@ class VideoCode{
         this.index = 0;
         this.index2 = 0;
         this.targetIndex = 999999;
-        this.record.length = 0;
 
         this.stopMV = false;
         this.skillStart = false;
@@ -102,20 +101,9 @@ class VideoCode{
         this.stopMV = true;
         this.playFlag = true;
         this.skillStart = false;
-        if(this.record[index])//已有播放纪录
-        {
-            this.index = index;
-            var oo = this.record[index]
-            this.player1.fromSave(oo.myData);
-            this.player2.fromSave(oo.otherData);
-            console.log(this);
-            VideoUI.getInstance().renewView();
-        }
-        else
-        {
-            this.targetIndex = index;
-            this.stepOne();
-        }
+
+        this.targetIndex = index;
+        this.stepOne();
     }
 
     //执行一步
@@ -139,7 +127,6 @@ class VideoCode{
             var oo:any = {};
             oo.myData = this.player1.getSave();
             oo.otherData = this.player2.getSave();
-            this.record[this.index] = oo;
 
             if(this.index >= this.targetIndex)//已播放到指定位置
             {
@@ -190,19 +177,6 @@ class VideoCode{
                 this.stepOne();
                 break;
             }
-            //case 3:
-            //{
-            //    if(this.stopMV)//只计算值，不表现动画
-            //    {
-            //        this.onMovieOver();
-            //    }
-            //    else
-            //    {
-            //        //表现动画,会通调用stepOne回来
-            //         VideoUI.getInstance().playSkill();
-            //    }
-            //    break;
-            //}
             case 4:   //改变攻击者的buffer(tag)
             {
                 this.getPlayerByID(this.atker).tag =  action.tag;

@@ -53,7 +53,7 @@ class VideoItem extends game.BaseItem {
     }
 
     //属性改变动画
-    public showNumberChange()
+    public showValueChange()
     {
         var player = this.player;
         if(player.hp != this.hp || player.maxHp != this.maxHp)
