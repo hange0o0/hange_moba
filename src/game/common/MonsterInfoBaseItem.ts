@@ -1,10 +1,11 @@
 class MonsterInfoBaseItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "MonsterInfoBaseItemSkin";
     }
 
     private img:eui.Image;
+    private txt:eui.Label;
 
     public index;
 
@@ -15,5 +16,10 @@ class MonsterInfoBaseItem extends game.BaseItem {
     public dataChanged(){
         //var oo = PKManager.getInstance().indexAdd(this.itemIndex);
         //var id = this.data;
+
+        var skill = this.data;
+        this.img.source = 'skill_icon' + skill.type
+       this.txt.text = skill.name + '：'+skill.des;
+
     }
 }

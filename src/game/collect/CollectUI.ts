@@ -5,9 +5,9 @@ class CollectUI extends game.BaseUI {
         return this.instance;
     }
 
-    private  typeTab: eui.TabBar;
+    private  list: eui.List;
+    private  scroller: eui.Scroller;
 
-    private selectIndex;
     public constructor() {
         super();
         this.skinName = "DebugUISkin";
@@ -18,39 +18,37 @@ class CollectUI extends game.BaseUI {
         super.childrenCreated();
         //this.addBtnEvent(this, this.onClick);
 
-        this.typeTab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
+        this.list.itemRenderer = CollectItem;
+        this.scroller.viewport = this.list;
+        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
 
     private typeBarClick(){
         this.renew();
     }
 
-    public show(index?){
-        this.selectIndex = index
+    public show(){
+        var self = this;
+        CollectManager.getInstance().getCollectMore(function(){
+            self.superShow();
+        })
+    }
+
+    private superShow(){
         super.show();
     }
 
     public onShow(){
-        if(this.selectIndex)
-        {
-            this.typeTab.selectedIndex = this.selectIndex - 1;
-        }
         this.renew();
     }
 
     public renew(){
-        if(this.typeTab.selectedIndex == 0)//碎片列表  （升级，分解）
-        {
-            this.renewList();
-        }
-        else if(this.typeTab.selectedIndex == 1)//抽奖
-        {
-            this.renewDraw();
-        }
+        this.renewList();
+        this.renewDraw();
     }
 
     public renewList(){
-
+        this.list.dataProvider = new eui.ArrayCollection(CollectManager.getInstance().getList())
     }
 
     public renewDraw(){

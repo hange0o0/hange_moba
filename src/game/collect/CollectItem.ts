@@ -9,6 +9,11 @@ class CollectItem extends game.BaseItem {
     public index;
 
     public childrenCreated(){
+        super.childrenCreated();
+        this.addBtnEvent(this,this.onClick)
+    }
+
+    private onClick(){
 
     }
 

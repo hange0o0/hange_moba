@@ -84,12 +84,12 @@ class MonsterInfoBase extends game.BaseContainer {
         for(var i=1;i<6;i++)
         {
             if(vo['sn' + i])
-                arr.push(vo);
+                arr.push(vo['sn' + i]);
         }
         for(var i=1;i<6;i++)
         {
             if(vo['sfn' + i])
-                arr.push(vo);
+                arr.push(vo['sfn' + i]);
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);
 

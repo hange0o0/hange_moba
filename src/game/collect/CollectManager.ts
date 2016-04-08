@@ -24,6 +24,20 @@ class CollectManager{
         return 120;
     }
 
+    public getList(){
+        var arr = [];
+        var mdata = CM.table[MonsterKindVO.dataKey];
+        for(var s in mdata)
+        {
+
+        }
+        for(var s in UM.collect.num)
+        {
+
+        }
+        return arr;
+    }
+
     //取更详细的碎片数据
     public getCollectMore(fun?){
         if(UM.collect.num)

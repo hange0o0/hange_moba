@@ -30,6 +30,17 @@ class GameManager {
         }
 
     }
+
+    //取现在到晚上12点还差的时间
+    public getZeroCD(){
+        var d= DateUtil.timeToChineseDate(TM.now());
+        d.setMinutes(0);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        d.setHours(24);
+
+        return Math.floor(d.getTime()/1000) - TM.now();
+    }
 }
 
 

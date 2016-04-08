@@ -86,7 +86,7 @@ class MonsterVO {
             else if(key.substr(0,2) == 'sn') //小技
                 this[key].type = 1;
             else        //辅助
-                this[key].type = 3;
+                this[key].type = 2;
         }
     }
 
