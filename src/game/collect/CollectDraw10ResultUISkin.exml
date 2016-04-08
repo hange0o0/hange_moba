@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CollectDraw10ResultUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="600">
+	<e:Image source="window2_png" x="0" width="600" top="0" bottom="0" scale9Grid="95,128,25,230"/>
+	<e:Label text="恭喜获得" y="30" textColor="0xD0C7AD" horizontalCenter="0"/>
+	<e:Button id="okBtn" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" bottom="40"/>
+	<e:List id="list" itemRendererSkinName="CollectItemSkin" top="90" bottom="120" horizontalCenter="0">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="数据1"/>
+				<e:Object label="数据2"/>
+				<e:Object label="数据3"/>
+				<e:Object label="null"/>
+				<e:Object label="null"/>
+				<e:Object label="数据1"/>
+				<e:Object label="数据2"/>
+				<e:Object label="数据3"/>
+				<e:Object label="null"/>
+				<e:Object label="null"/>
+			</e:Array>
+		</e:ArrayCollection>
+		<e:layout>
+			<e:TileLayout horizontalGap="10" requestedColumnCount="4"/>
+		</e:layout>
+	</e:List>
+</e:Skin>

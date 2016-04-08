@@ -5,8 +5,14 @@ class CollectUI extends game.BaseUI {
         return this.instance;
     }
 
-    private  list: eui.List;
-    private  scroller: eui.Scroller;
+    private topUI: TopUI;
+    private scroller: eui.Scroller;
+    private list: eui.List;
+    private splitBtn: eui.Button;
+    private tenBtn: eui.Button;
+    private oneBtn: eui.Button;
+    private numText: eui.Label;
+
 
     public constructor() {
         super();

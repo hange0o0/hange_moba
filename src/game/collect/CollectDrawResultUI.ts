@@ -10,12 +10,9 @@ class CollectDrawResultUI extends game.BaseWindow {
         this.skinName = "RegisterUISkin";
     }
 
-    private nameText: eui.TextInput;
-    private passwordText1: eui.TextInput;
-    private passwordText2: eui.TextInput;
-    private backBtn: eui.Button;
-    private loginBtn: eui.Button;
-    private titleText: eui.Label;
+    private itemMC: CollectItem;
+    private okBtn: eui.Button;
+
 
     private openType
 

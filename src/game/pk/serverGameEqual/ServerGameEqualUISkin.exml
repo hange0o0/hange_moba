@@ -7,6 +7,7 @@
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
 				<e:Image source="border_head_png" x="15" y="14" width="80" height="80"/>
 				<e:Label id="nameText" text="标签" x="107" y="18" textColor="0xCC9900"/>
+				<e:Label id="maxText" x="107" y="56" textColor="0xCC9900" text="标签"/>
 				<e:Label id="levelText" y="20" textColor="0xCC9900" text="12345" x="392"/>
 				<e:Label id="winText" y="65" textColor="0xCC9900" text="40.3%" x="392"/>
 				<e:Label id="rankText" y="65" textColor="0xCC9900" text="12345" x="538"/>

@@ -4,6 +4,25 @@ class MonsterInfoBase extends game.BaseContainer {
         super();
         this.skinName = "DebugUISkin";
     }
+    
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private atkText: eui.Label;
+    private speedText: eui.Label;
+    private kindText2: eui.Label;
+    private kindText: eui.Label;
+    private hpText: eui.Label;
+    private sGroup: eui.Group;
+    private s1: eui.Image;
+    private s2: eui.Image;
+    private s3: eui.Image;
+    private s4: eui.Image;
+    private typeText: eui.Label;
+    private woodIcon: eui.Image;
+    private woodText: eui.Label;
+    private coinText: eui.Label;
+    private list: eui.List;
+
 
     private group:eui.Group
     private txt:eui.Label

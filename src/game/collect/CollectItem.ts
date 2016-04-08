@@ -4,7 +4,13 @@ class CollectItem extends game.BaseItem {
         this.skinName = "DebugUISkin";
     }
 
-    private img:eui.Image;
+    private headMC: eui.Image;
+    private headMask: eui.Rect;
+    private headBG: eui.Image;
+    private numGroup: eui.Group;
+    private arrowMC: eui.Image;
+    private numText: eui.Label;
+
 
     public index;
 

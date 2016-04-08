@@ -743,6 +743,11 @@
 					"isFolder":false,
 					"key":"arrow5_png",
 					"name":"arrow5_png"
+				},
+				{
+					"isFolder":false,
+					"key":"soul_icon_png",
+					"name":"soul_icon_png"
 				}
 			]
 		}

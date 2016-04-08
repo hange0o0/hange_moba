@@ -7,6 +7,10 @@ class MonsterInfoBaseItem extends game.BaseItem {
     private img:eui.Image;
     private txt:eui.Label;
 
+    private icon: eui.Image;
+    private text: eui.Label;
+
+    
     public index;
 
     public childrenCreated(){

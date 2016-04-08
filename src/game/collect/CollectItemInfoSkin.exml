@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CollectItemInfoSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" x="3" y="0" scale9Grid="82,113,20,262"/>
+	<e:Label text="详情" y="30" textColor="0xD0C7AD" horizontalCenter="0"/>
+	<e:Button id="joinBtn" label="合成" y="165" horizontalCenter="20.5" skinName="Btn_r1Skin"/>
+	<e:Button id="moreBtn" horizontalCenter="-164.5" 
+		<e:Button id="splitBtn" y="0" label="分解" x="158" skinName="Btn_r1Skin"/>y="327" labe id="closeBtn" skinName="Btn关闭1Skin"/>
+	<e:Button id="splitBt/>
+	<e:Button id="lockBtn" y="374" horizontalCenter="-85.5" label="锁定" x="30" skinName="Btn_b1Skin"/>
+	<e:HSlider x="71" y="264" width="200"/>
+	<ns1:CollectItem id="itemMC" y="94" skinName="CollectItemSkin" horizontalCenter="0 id="rateText""/>
+</e:Skin> skinName="MyHSliderSkin"257256255254253
+	<e:Button label="按钮"/> x="290" y=" id="slider"20" skinName="Btn_close1Skin"3308322121314323324323 visible="false" visible="false" id="resultText"
