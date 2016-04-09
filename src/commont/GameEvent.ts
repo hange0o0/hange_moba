@@ -9,6 +9,7 @@ class GameEvent {
         prop_change:'prop_change',
         force_change:'force_change',
         task_change:'task_change',
+        collect_change:'collect_change',
         level_change:'level_change'
     };
 
@@ -86,6 +87,7 @@ class GameEvent {
         collect_more:'collect_more',
         collect_draw:'collect_draw',
         collect_up:'collect_up',
+        collect_lock:'collect_lock',
         collect_split:'collect_split'
     }
 

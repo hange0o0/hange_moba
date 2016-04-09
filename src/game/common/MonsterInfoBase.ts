@@ -24,11 +24,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private list: eui.List;
 
 
-    private group:eui.Group
-    private txt:eui.Label
-    private img:eui.Image
-    private list:eui.List
-    private scroller:eui.Scroller
+
 
 
     public childrenCreated() {
@@ -40,25 +36,39 @@ class MonsterInfoBase extends game.BaseContainer {
         var vo = MonsterVO.getObject(monsterID);
 
         //其本信息
-        this.img.source = vo.url;
-        this.img.source = 'monster_type_' + vo.type + '_png';
-        this.txt.text = vo.name;
-        this.txt.text = vo.des;
-        this.txt.text = vo.cost;
-        this.txt.text = vo.wood;
-        this.txt.text = vo.effectWord(vo.effect_kind).join('、');
-        this.txt.text = vo.effectWord(vo.kind).join('、');
+        this.headMC.source = vo.url;
+        this.typeText.text = MonsterKindVO.getObject(vo.type).world
+        this.nameText.text = vo.name;
+        //this.txt.text = vo.des;
+        this.coinText.text = 'X' + vo.cost;
+        if(vo.wood)
+        {
+            this.woodText.text = 'X' + vo.wood;
+            this.woodIcon.visible =  true;
+        }
+        else
+        {
+            this.woodText.text = ''
+            this.woodIcon.visible =  false;
+        }
+
+        this.kindText.text = '星象：'+vo.effectWord(vo.effect_kind).join('、');
+        this.kindText2.text ='加成星象：'+ vo.effectWord(vo.kind).join('、');
 
 
-        this.group.visible = false;
+        for(var i=1;i<=4;i++)
+        {
+            var mc = this['s' + i];
+            MyTool.removeMC(mc);
+        }
         if(!specialData.isNPC)
         {
-            this.group.visible = true;
             var star = UM.getMonsterCollect(monsterID);
-            for(var i=0;i<4;i++)
+            for(var i=1;i<=4;i++)
             {
-                var mc = this['star' + i];
-                mc.visible = star > i;
+                var mc = this['s' + i];
+                if(star > i)
+                    this.sGroup.addChild(mc);
             }
         }
 
@@ -81,20 +91,9 @@ class MonsterInfoBase extends game.BaseContainer {
         var atk = Math.round(vo.atk * (1+fightData.atk/100));
         var hp = Math.round(vo.hp * (1+fightData.hp/100));
         var speed = Math.round(vo.speed * (1+fightData.speed/100));
-        this.txt.text = NumberUtil.addNumSeparator(atk);
-        this.txt.text = NumberUtil.addNumSeparator(hp);
-        this.txt.text = NumberUtil.addNumSeparator(speed);
-        //MyTool.setHtml(this.txt,speed + ' <font color="#CCCCCC">(' + vo.speed + ')</font>')
-
-        ////显示位置加成
-        //if('index' in specialData)//在位置队列中
-        //{
-        //    var indexAdd = PKManager.getInstance().indexAdd(specialData.index);
-        //    if(indexAdd)//当前怪有位置加成
-        //    {
-        //
-        //    }
-        //}
+        this.atkText.text = NumberUtil.addNumSeparator(atk);
+        this.hpText.text = NumberUtil.addNumSeparator(hp);
+        this.speedText.text = NumberUtil.addNumSeparator(speed);
 
         //技能表现
         var arr = [];

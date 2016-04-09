@@ -26,16 +26,24 @@ class CollectManager{
 
     public getList(){
         var arr = [];
-        var mdata = CM.table[MonsterKindVO.dataKey];
+        var mdata = CM.table[MonsterVO.dataKey];
         for(var s in mdata)
         {
-
+            var vo = mdata[s];
+            var kindVO = MonsterKindVO.getObject(vo.type);
+            if(mdata[s].level<= UM.level)
+                arr.push(vo);
         }
-        for(var s in UM.collect.num)
-        {
-
-        }
+        ArrayUtil.sortByField(arr,['id'],[0]);
         return arr;
+    }
+
+    public isLock(id){
+        return UM.collect.lock.indexOf(id) != -1;
+    }
+
+    public getCollectNum(id){
+        return  UM.collect.num[id] || 0
     }
 
     //取更详细的碎片数据
@@ -71,7 +79,23 @@ class CollectManager{
                 return;
             }
 
-            msg.award//得到的碎片
+            var arr = []
+            for(var s in msg.award)
+            {
+                  var num = msg.award[s];
+                while(num--)
+                {
+                    arr.push(s);
+                }
+            }
+
+            EM.dispatchEventWith(GameEvent.client.collect_change)
+
+            if(times == 1)
+                CollectDrawResultUI.getInstance().show(arr[0]);
+            else
+                CollectDraw10ResultUI.getInstance().show(arr);
+
 
             if(fun)
                 fun();
@@ -95,6 +119,8 @@ class CollectManager{
                 Alert('升级所需数量不对');
                 return;
             }
+
+            EM.dispatchEventWith(GameEvent.client.collect_change)
             if(fun)
                 fun();
         });
@@ -114,6 +140,34 @@ class CollectManager{
                 return;
             }
 
+            EM.dispatchEventWith(GameEvent.client.collect_change)
+
+            if(fun)
+                fun(msg.num);
+        });
+    }
+
+    //
+    public lock(id,isLock,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.id = id;
+        oo.islock = isLock;
+        Net.addUser(oo);
+        Net.send(GameEvent.collect.collect_lock,oo,function(data){
+            var msg = data.msg;
+
+            var index = UM.collect.lock.indexOf(id);
+            if(isLock && index == -1)
+            {
+                UM.collect.lock.push(id)
+            }
+            else if(!isLock && index != -1)
+            {
+                UM.collect.lock.split(id,1);
+            }
+
+            EM.dispatchEventWith(GameEvent.client.collect_change)
             if(fun)
                 fun();
         });

@@ -14,8 +14,8 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Button id="splitBtn" label="一键拆解" x="11" y="894" skinName="Btn_r2Skin"/>
-	<e:Button id="tenBtn" y="890" label="十连抽" x="512" skinName="Btn_r1Skin"/>
-	<e:Button id="oneBtn" skinName="Btn_r1Skin" y="890" label="抽一次" x="391"/>
+	<e:Button id="tenBtn" y="890" label="十连抽(50)" x="512" skinName="Btn_r1Skin"/>
+	<e:Button id="oneBtn" skinName="Btn_r1Skin" y="890" label="抽一次(5)" x="391"/>
 	<e:Group y="901" right="260">
 		<e:Group x="0" y="0">
 			<e:Image source="icon_empty_png" x="0" y="0"/>

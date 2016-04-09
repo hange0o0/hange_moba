@@ -7,38 +7,28 @@ class CollectDraw10ResultUI extends game.BaseWindow {
 
     public constructor() {
         super();
-        this.skinName = "RegisterUISkin";
+        this.skinName = "CollectDraw10ResultUISkin";
     }
 
     private okBtn: eui.Button;
     private list: eui.List;
 
 
-    private openType
+    private data
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.loginBtn, this.onClick);
-        this.addBtnEvent(this.backBtn, this.hide);
+        this.addBtnEvent(this.okBtn, this.hide);
+
+        this.list.itemRenderer = CollectItem
     }
 
-    public show(v?){
-        this.openType = v;
+    public show(data?){
+        this.data = data;
         super.show();
     }
 
     public onShow(){
-        if(this.openType)//转正
-        {
-            this.titleText.text = '账号转正'
-        }
-        else
-        {
-            this.titleText.text = '注册账号'
-        }
-    }
-
-    private onClick(){
-
+        this.list.dataProvider = new eui.ArrayCollection(this.data);
     }
 }

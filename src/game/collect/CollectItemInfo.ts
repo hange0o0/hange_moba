@@ -7,7 +7,7 @@ class CollectItemInfo extends game.BaseWindow {
 
     public constructor() {
         super();
-        this.skinName = "RegisterUISkin";
+        this.skinName = "CollectItemInfoSkin";
     }
 
     private joinBtn: eui.Button;
@@ -15,34 +15,98 @@ class CollectItemInfo extends game.BaseWindow {
     private splitBtn: eui.Button;
     private lockBtn: eui.Button;
     private itemMC: CollectItem;
-    private slider: eui.Button;
+    private slider: eui.HSlider;
+
+    private txt: eui.Label;
 
 
-    private openType
+    private data
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.loginBtn, this.onClick);
-        this.addBtnEvent(this.backBtn, this.hide);
+        this.addBtnEvent(this.joinBtn, this.onJoin);
+        this.addBtnEvent(this.moreBtn, this.hide);
+        this.addBtnEvent(this.splitBtn, this.onSplit);
+        this.addBtnEvent(this.lockBtn, this.onLock);
+        this.addBtnEvent(this.itemMC, this.onMore);
+
+        this.slider.addEventListener(egret.Event.CHANGE,this.onChange,this)
     }
 
-    public show(v?){
-        this.openType = v;
+    private onChange(){
+        var now = CollectManager.getInstance().getCollectNum(this.data);
+        this.txt.text = now + '/' + this.slider.maximum
+        this.txt.text = '分解后可获得元素：' + this.slider.value*CollectManager.getInstance().splitNum
+    }
+
+    private onJoin(){
+        var self = this;
+        CollectManager.getInstance().levelUp(this.data,function(){
+            self.onShow();
+        })
+    }
+
+    private onMore(){
+
+    }
+
+    private onSplit(){
+        if(this.slider.value == 0)
+            return;
+        var self = this;
+        var oo = {}
+        oo[this.data] = this.slider.value;
+        CollectManager.getInstance().split(oo,function(){
+            self.onShow();
+        })
+    }
+
+    private onLock(){
+        var self = this;
+        var isLock = CollectManager.getInstance().isLock(this.data);
+        CollectManager.getInstance().lock(this.data,!isLock,function(){
+            self.onShow();
+        });
+    }
+
+    public show(data?){
+        this.data = data;
         super.show();
     }
 
     public onShow(){
-        if(this.openType)//转正
-        {
-            this.titleText.text = '账号转正'
+        this.itemMC.data = this.data;
+        var vo = MonsterVO.getObject(this.data);
+        var level = UM.getMonsterCollect(vo.id);
+
+        var need = CollectManager.getInstance().getLevelUpNeed(level + 1);
+        var now = CollectManager.getInstance().getCollectNum(vo.id);
+
+        this.slider.maximum = now;
+        this.slider.minimum = 0;
+        this.slider.value = now;
+
+
+        if(level < 4 && now>need){  //可升级
+            this.joinBtn.visible = true;
         }
         else
         {
-            this.titleText.text = '注册账号'
+            this.joinBtn.visible = false;
         }
+
+        if(CollectManager.getInstance().isLock(vo.id))
+        {
+              this.lockBtn.label = '解锁'
+              this.lockBtn.skinName = 'Btn_d1Skin'
+        }
+        else
+        {
+              this.lockBtn.label = '锁定'
+              this.lockBtn.skinName = 'Btn_b1Skin'
+        }
+
+        this.onChange()
     }
 
-    private onClick(){
-
-    }
 }

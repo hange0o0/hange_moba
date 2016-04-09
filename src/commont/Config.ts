@@ -17,4 +17,6 @@ class Config {
     public static serverEqualLevel = 5;
     public static serverLevel = 3;
     public static gambleLevel = 20;
+
+    public static cons = ['','白羊','金牛','双子','巨蟹','狮子','处女','天秤','天蝎','人马','摩羯','水瓶','双鱼']
 }
