@@ -3,5 +3,5 @@
 	<e:Image source="line2_png" x="0" width="640" bottom="0"/>
 	<e:Image source="top_bg_jpg" y="0" x="0"/>
 	<e:Button x="576" y="-1" skinName="Btn_close1Skin" id="closeBtn"/>
-	<e:Label id="titleText" text="标签" y="18" textColor="0xCA9800" horizontalCenter="0"/>
+	<e:Label id="titleText" text="标签" y="18" horizontalCenter="0" textColor="0xCC9900"/>
 </e:Skin>

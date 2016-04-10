@@ -68,8 +68,9 @@
 			<e:Scroller id="scroller" width="480" x="0" bottom="40" top="0" scrollPolicyH="off">
 				<e:Group id="scrollGroupCon">
 					<e:Group id="scrollGroup" x="0" y="0">
-						<ns1:MainServerItem id="serverGame" x="0" y="0" skinName="MainServerItemSkin"/>
-						<ns1:MainServerItem id="serverGameEqual" skinName="MainServerItemSkin" y="10" x="10"/>
+						<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
+						<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
+						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
 						<e:layout>
 							<e:HorizontalLayout gap="20"/>
 						</e:layout>
@@ -79,9 +80,7 @@
 			<e:Group x="0" width="100%" height="30" bottom="0">
 				<ns1:MainPageItem id="p0" x="0" y="1" skinName="MainPageItemSkin"/>
 				<ns1:MainPageItem x="10" skinName="MainPageItemSkin" y="11" id="p1"/>
-				<ns1:MainPageItem id="p2" skinName="MainPageItemSkin" y="21" x="20"/>
-				<ns1:MainPageItem x="30" skinName="MainPageItemSkin" y="31" id="p3"/>
-				<ns1:MainPageItem id="p4" skinName="MainPageItemSkin" y="41" x="40"/>
+				<ns1:MainPageItem id="p2" skinName="MainPageItemSkin" y="21" x="20"/>
 				<e:layout>
 					<e:HorizontalLayout gap="15" horizontalAlign="center"/>
 				</e:layout>

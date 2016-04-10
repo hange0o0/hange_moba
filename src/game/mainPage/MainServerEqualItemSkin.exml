@@ -14,7 +14,7 @@
 	<e:Image source="icon_rank_png" x="10" y="319"/>
 	<e:Group y="10" horizontalCenter="0">
 		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E"/>
+		<e:Label text="修正场" x="128" y="6" size="40" textColor="0xCCB48E"/>
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:layout>
 			<e:HorizontalLayout/>
@@ -23,4 +23,6 @@
 	<e:Label id="totalText" text="局数：333" x="54" y="277" textColor="0xCC9900"/>
 	<e:Label id="scoreText" y="324" textColor="0xCC9900" text="积分：333" x="54"/>
 	<e:Label id="winText" y="277" textColor="0xCC9900" text="胜利：333" x="293"/>
+	<e:Image y="319" x="255" source="card_battle_png"/>
+	<e:Label id="maxText" y="324" textColor="0xCC9900" text="连胜：333" x="293"/>
 </e:Skin>

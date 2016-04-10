@@ -4,9 +4,35 @@ class MyInfoUI extends game.BaseUI {
         if (!this.instance) this.instance = new MyInfoUI();
         return this.instance;
     }
+    
+    private topUI: TopUI;
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private setBtn: eui.Button;
+    private levelText: eui.Label;
+    private expText: eui.Label;
+    private forceText: eui.Label;
+    private forceText1: eui.Label;
+    private addForceBtn: eui.Group;
+    private forceText2: eui.Label;
+    private forceText3: eui.Label;
+    private energyText: eui.Label;
+    private reEnergyText: eui.Label;
+    private energyText2: eui.Label;
+    private addEnergyBtn: eui.Group;
+    private coinText: eui.Label;
+    private addCoinBtn: eui.Group;
+    private diamondText: eui.Label;
+    private addDiamondBtn: eui.Group;
+    private diamondFreeText: eui.Label;
+    private thisLoginText: eui.Label;
+    private lastLoginText: eui.Label;
+    private list: eui.List;
+
+
+
 
     private expBar: eui.Image;
-    private nameText: eui.Label;
 
 
     private timer:egret.Timer;

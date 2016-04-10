@@ -13,12 +13,12 @@
 	<e:Image source="border1_png" y="161.5" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
 	<e:Image source="border1_png" y="220" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
 	<e:Image x="33" y="363" height="60" width="581" source="border8_png" scale9Grid="67,24,8,88"/>
-	<e:Label id="nameText" text="标签" x="373" y="42"/>
-	<e:Label id="atkText" x="387" y="114" text="123"/>
-	<e:Label id="speedText" y="232" text="58" x="389"/>
-	<e:Label id="kindText2" y="375" text="标签" x="315"/>
-	<e:Label id="kindText" x="53" y="375" text="标签"/>
-	<e:Label id="hpText" x="386" y="173" text="1234"/>
+	<e:Label id="nameText" text="标签" x="373" y="42" textColor="0xCBC08A"/>
+	<e:Label id="atkText" x="387" y="114" text="123" textColor="0xCBC08A"/>
+	<e:Label id="speedText" y="232" text="58" x="389" textColor="0xCBC08A"/>
+	<e:Label id="kindText2" y="380" text="标签：标签、标签、标签" x="315" size="26" textColor="0xCC9900"/>
+	<e:Label id="kindText" x="53" y="380" text="标签：标签、标签" size="26" textColor="0xCC9900"/>
+	<e:Label id="hpText" x="386" y="173" text="1234" textColor="0xCBC08A"/>
 	<e:Image source="card_icon_3_png" x="316" y="223"/>
 	<e:Image source="card_icon_0_png" x="317" y="164"/>
 	<e:Image source="card_icon_1_png" x="317" y="109"/>
@@ -32,11 +32,11 @@
 		</e:layout>
 	</e:Group>
 	<e:Image source="icon_empty_png" x="313" y="32" scaleX="1.2" scaleY="1.2"/>
-	<e:Label id="typeText" x="329" y="48" text="标" size="22" width="20"/>
+	<e:Label id="typeText" x="329" y="48" text="标" size="22" width="20" textColor="0xCBC08A"/>
 	<e:Image source="fu2_png" x="316" y="300"/>
 	<e:Image id="woodIcon" source="fu1_png" x="469" y="303"/>
-	<e:Label id="woodText" x="523" y="305" text="X1"/>
-	<e:Label id="coinText" y="301" text="X12" x="359"/>
+	<e:Label id="woodText" x="523" y="305" text="X1" textColor="0xCBC08A"/>
+	<e:Label id="coinText" y="301" text="X12" x="359" textColor="0xCBC08A"/>
 	<e:List id="list" width="573" x="35" top="439" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="20">
 		<e:layout>
 			<e:VerticalLayout/>

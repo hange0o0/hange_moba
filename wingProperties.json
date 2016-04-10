@@ -748,6 +748,26 @@
 					"isFolder":false,
 					"key":"soul_icon_png",
 					"name":"soul_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"icon_add_png",
+					"name":"icon_add_png"
+				},
+				{
+					"isFolder":false,
+					"key":"icon_dec_png",
+					"name":"icon_dec_png"
+				},
+				{
+					"isFolder":false,
+					"key":"icon_server_png",
+					"name":"icon_server_png"
+				},
+				{
+					"isFolder":false,
+					"key":"card_battle_png",
+					"name":"card_battle_png"
 				}
 			]
 		}

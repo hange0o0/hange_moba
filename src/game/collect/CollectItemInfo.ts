@@ -10,14 +10,19 @@ class CollectItemInfo extends game.BaseWindow {
         this.skinName = "CollectItemInfoSkin";
     }
 
+    private itemMC: CollectItem;
+    private titleText: eui.Label;
     private joinBtn: eui.Button;
-    private moreBtn: eui.Button;
     private splitBtn: eui.Button;
     private lockBtn: eui.Button;
-    private itemMC: CollectItem;
+    private closeBtn: eui.Button;
     private slider: eui.HSlider;
+    private numText: eui.Label;
+    private resultText: eui.Label;
+    private addBtn: eui.Image;
+    private decBtn: eui.Image;
 
-    private txt: eui.Label;
+
 
 
     private data
@@ -25,7 +30,7 @@ class CollectItemInfo extends game.BaseWindow {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.joinBtn, this.onJoin);
-        this.addBtnEvent(this.moreBtn, this.hide);
+        this.addBtnEvent(this.closeBtn, this.hide);
         this.addBtnEvent(this.splitBtn, this.onSplit);
         this.addBtnEvent(this.lockBtn, this.onLock);
         this.addBtnEvent(this.itemMC, this.onMore);
@@ -35,8 +40,8 @@ class CollectItemInfo extends game.BaseWindow {
 
     private onChange(){
         var now = CollectManager.getInstance().getCollectNum(this.data);
-        this.txt.text = now + '/' + this.slider.maximum
-        this.txt.text = '分解后可获得元素：' + this.slider.value*CollectManager.getInstance().splitNum
+        this.numText.text = now + '/' + this.slider.maximum
+        this.resultText.text = '分解后可获得元素：' + this.slider.value*CollectManager.getInstance().splitNum
     }
 
     private onJoin(){

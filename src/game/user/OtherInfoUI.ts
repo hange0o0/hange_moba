@@ -4,9 +4,25 @@ class OtherInfoUI extends game.BaseUI {
         if (!this.instance) this.instance = new OtherInfoUI();
         return this.instance;
     }
+    
+    private topUI: TopUI;
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private friendBtn: eui.Button;
+    private levelText: eui.Label;
+    private forceText: eui.Label;
+    private mainGameText: eui.Label;
+    private serverLevelText: eui.Label;
+    private serverScroeText: eui.Label;
+    private serverRateText: eui.Label;
+    private serverEqualText: eui.Label;
+    private serverEqualScoreText: eui.Label;
+    private serverEqualRateText: eui.Label;
+    private serverEqualWinText: eui.Label;
+    private list: eui.List;
+
 
     private expBar: eui.Image;
-    private nameText: eui.Label;
 
 
     private dataIn;

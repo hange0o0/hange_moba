@@ -1,13 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="CollectItemInfoSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="window2_png" x="3" y="0" scale9Grid="82,113,20,262"/>
-	<e:Label text="详情" y="30" textColor="0xD0C7AD" horizontalCenter="0"/>
-	<e:Button id="joinBtn" label="合成" y="165" horizontalCenter="20.5" skinName="Btn_r1Skin"/>
-	<e:Button id="moreBtn" horizontalCenter="-164.5" 
-		<e:Button id="splitBtn" y="0" label="分解" x="158" skinName="Btn_r1Skin"/>y="327" labe id="closeBtn" skinName="Btn关闭1Skin"/>
-	<e:Button id="splitBt/>
-	<e:Button id="lockBtn" y="374" horizontalCenter="-85.5" label="锁定" x="30" skinName="Btn_b1Skin"/>
-	<e:HSlider x="71" y="264" width="200"/>
-	<ns1:CollectItem id="itemMC" y="94" skinName="CollectItemSkin" horizontalCenter="0 id="rateText""/>
-</e:Skin> skinName="MyHSliderSkin"257256255254253
-	<e:Button label="按钮"/> x="290" y=" id="slider"20" skinName="Btn_close1Skin"3308322121314323324323 visible="false" visible="false" id="resultText"
+	<e:Image source="window2_png" x="0" y="0" scale9Grid="100,141,112,184" width="400" height="520"/>
+	<ns1:CollectItem id="itemMC" y="95" skinName="CollectItemSkin" horizontalCenter="0"/>
+	<e:Label id="titleText" text="恭喜获得" y="30" textColor="0xD0C7AD" horizontalCenter="0"/>
+	<e:Group y="353" horizontalCenter="0">
+		<e:Button id="joinBtn" label="合成" y="0" skinName="Btn_r1Skin" x="0" width="130"/>
+		<e:Button id="splitBtn" skinName="Btn_r1Skin" y="10" label="分解" x="0" width="120"/>
+		<e:Button id="lockBtn" y="20" label="锁定" x="10" skinName="Btn_d1Skin"/>
+		<e:Button id="closeBtn" skinName="Btn_r1Skin" y="30" label="关闭" x="20"/>
+		<e:layout>
+			<e:TileLayout requestedColumnCount="2" horizontalGap="15"/>
+		</e:layout>
+	</e:Group>
+	<e:HSlider id="slider" y="280" width="240" skinName="MyHSliderSkin" horizontalCenter="0"/>
+	<e:Label id="numText" text="标签" y="255" size="20" textColor="0xD0C7AD" horizontalCenter="0"/>
+	<e:Label id="resultText" y="314" size="20" text="标签" textColor="0xD0C7AD" horizontalCenter="0"/>
+	<e:Image id="addBtn" source="icon_add_png" x="334" y="280"/>
+	<e:Image id="decBtn" source="icon_dec_png" x="37" y="281"/>
+</e:Skin>
