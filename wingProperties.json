@@ -746,8 +746,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"soul_icon_png",
-					"name":"soul_icon_png"
+					"key":"card_battle_png",
+					"name":"card_battle_png"
 				},
 				{
 					"isFolder":false,
@@ -766,8 +766,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"card_battle_png",
-					"name":"card_battle_png"
+					"key":"soul_icon_png",
+					"name":"soul_icon_png"
 				}
 			]
 		}

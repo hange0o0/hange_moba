@@ -16,9 +16,17 @@ class MyHeadItem extends game.BaseItem {
     public childrenCreated() {
            this.headMC.mask = this.headMask;
         MyTool.addTestBlock(this);
+        this.addBtnEvent(this,this.onClick);
+    }
+
+    private onClick(){
+        if(this.data.list)
+            MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
     public dataChanged() {
+        if(!this.data.vo)
+            this.data.vo = MonsterVO.getObject(this.data.id);
         var vo:MonsterVO = this.data.vo;
 
         this.headMC.source = vo.thumb;

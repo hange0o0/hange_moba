@@ -17,6 +17,11 @@ class MainGameManager{
         return level*200*(UM.main_game.kill.length+1);
     }
 
+    //该位置是否被杀了
+    public isKill(index){
+        return UM.main_game.kill.indexOf(index) != -1;
+    }
+
     public getCard(fun?){
         if(UM.main_game.choose)
         {

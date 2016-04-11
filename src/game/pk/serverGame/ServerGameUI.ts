@@ -30,6 +30,8 @@ class ServerGameUI extends game.BaseUI {
     private ringText3: eui.Label;
 
 
+    private enemyArray
+
     public constructor() {
         super();
         this.skinName = "ServerGameUISkin";
@@ -74,12 +76,26 @@ class ServerGameUI extends game.BaseUI {
         var data = UM.server_game;
 
         //更新敌人
-        var enemyList = [];
+        var enemyList = this.enemyArray = [];
         if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.openid)
             data.enemy.userinfo = {head:1,nick:'神秘人',level:'???',force:'???',win:'???',total:'???','exp':"???"}
+
+        var specialData:any = {
+            isBase:true
+        };
         for(var i=0;i<data.enemy.base.list.length;i++)
         {
-            enemyList.push({id:data.enemy.base.list[i],type:1});
+            var id = data.enemy.base.list[i];
+            enemyList.push({
+                vo: MonsterVO.getObject(id),
+                type:1,
+
+                id: id,
+                specialData: specialData,
+
+                index: i,
+                list:enemyList
+            });
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
         var uf = data.enemy.userinfo;
@@ -90,11 +106,22 @@ class ServerGameUI extends game.BaseUI {
         this.forceText.text = uf.force;
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 
+        specialData = {};
         //更新卡组1
         var chooseList1 = [];
         for(var i=0;i<data.choose[0].list.length;i++)
         {
-            chooseList1.push({id:data.choose[0].list[i],type:1});
+            var id = data.choose[0].list[i]
+            chooseList1.push({
+                vo: MonsterVO.getObject(id),
+                type:1,
+
+                id: id,
+                specialData: specialData,
+
+                index: i,
+                list:chooseList1
+            });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
         this.ringText0.text = RingVO.getObject(data.choose[0].ring[0]).name
@@ -105,7 +132,17 @@ class ServerGameUI extends game.BaseUI {
         var chooseList2 = [];
         for(var i=0;i<data.choose[1].list.length;i++)
         {
-            chooseList2.push({id:data.choose[1].list[i],type:1});
+            var id = data.choose[1].list[i]
+            chooseList2.push({
+                vo: MonsterVO.getObject(id),
+                type:1,
+
+                id: id,
+                specialData: specialData,
+
+                index: i,
+                list:chooseList2
+            });
         }
         this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
         this.ringText2.text = RingVO.getObject(data.choose[1].ring[0]).name
@@ -115,10 +152,10 @@ class ServerGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[0],enemy:UM.server_game.enemy.base.list})
+        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[0],enemy:this.enemyArray})
     }
 
     private onChoose2(){
-        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[1],enemy:UM.server_game.enemy.base.list})
+        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[1],enemy:this.enemyArray})
     }
 }

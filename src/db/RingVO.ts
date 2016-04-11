@@ -13,6 +13,8 @@ class RingVO {
     public begin
     public step
 
+    public tecType = 2;
+
     public constructor(data?: any) {
         if(data)
             this.fill(data);
@@ -27,8 +29,12 @@ class RingVO {
         this.step = data.step;
     }
 
-    public getLevelDes(level){
-        return  this.des;
+    public c(level){
+        return  this.des.replace(/\$\$/g,this.getRingAdd(level));
+    }
+
+    public getRingAdd(level){
+        return this.begin + level*this.step;
     }
 
 

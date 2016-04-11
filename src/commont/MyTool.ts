@@ -13,6 +13,39 @@ class MyTool {
             mc.parent.removeChild(mc)
     }
 
+    //得到最常用的10个怪
+    public static getCommonUse(list){
+        if(!list)
+            return [];
+        var obj = {};
+
+        var array = [];
+        for(var i=0;i<list.length;i++)
+        {
+            var temp = list[i].split(',');
+            for(var j=0;j<temp.length;j++)
+            {
+                var id = temp[j];
+                obj[id] =  (obj[id] || 0) + 1;
+            }
+        }
+
+        for(var s in obj)
+        {
+            array.push({id:s,num:obj})
+        }
+
+        ArrayUtil.sortByField(array,['num','id'],[1,0])
+        array[i].length = Math.min(10,array[i].length);
+        for(var i=0;i<array.length;i++)
+        {
+           array[i] = {vo:MonsterVO.getObject(array[i].id),type:1};
+        }
+
+        return array;
+    }
+
+
     //得到数据变化过程数组
     public static getValueChangeArray(from,to,times,noInt=false){
          var array = [];

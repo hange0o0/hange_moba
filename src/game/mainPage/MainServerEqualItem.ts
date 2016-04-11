@@ -4,12 +4,14 @@ class MainServerEqualItem extends game.BaseItem {
         this.skinName = "MainServerEqualItemSkin";
     }
 
+    private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
     private totalText: eui.Label;
     private scoreText: eui.Label;
     private winText: eui.Label;
-    private btnGroup: eui.Group;
+    private maxText: eui.Label;
+
 
 
     public index;
@@ -20,14 +22,14 @@ class MainServerEqualItem extends game.BaseItem {
     }
 
     private onRetry(){
-        var SM = ServerGameManager.getInstance();
+        var SM = ServerGameEqualManager.getInstance();
         SM.getCard(true,function(){
-            ServerGameUI.getInstance().show();
+            ServerGameEqualUI.getInstance().show();
         });
     }
     private onStart(){
-        var SM = ServerGameManager.getInstance();
-        var serverData = UM.server_game;
+        var SM = ServerGameEqualManager.getInstance();
+        var serverData = UM.server_game_equal;
         if(serverData.pk)//已PK过，不能再打
         {
             SM.getCard(false,onGetCard);
@@ -42,16 +44,17 @@ class MainServerEqualItem extends game.BaseItem {
         }
 
         function onGetCard(){
-            ServerGameUI.getInstance().show();
+            ServerGameEqualUI.getInstance().show();
         }
     }
 
     public renew() {
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
-        var serverData = UM.server_game;
+        var serverData = UM.server_game_equal;
         this.totalText.text = '局数：' + serverData.total;
         this.scoreText.text = '积分：' + serverData.exp;
         this.winText.text = '胜利：' + serverData.win;
+        this.maxText.text = '连胜：：' + serverData.max;
 
         MyTool.removeMC(this.retryBtn);
         if(serverData.pk)//已PK过，不能再打

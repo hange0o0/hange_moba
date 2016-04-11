@@ -82,8 +82,11 @@ class VideoUI extends game.BaseWindow {
 
     private onActionOver(){
         var VC = VideoCode.getInstance();
-        this.item1.showValueChange()
-        this.item2.showValueChange()
+        if(!VC.isDebug)
+        {
+            this.item1.showValueChange()
+            this.item2.showValueChange()
+        }
         VC.onMovieOver();
     }
 

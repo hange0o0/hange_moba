@@ -107,7 +107,7 @@ class PKDressChooseUI extends game.BaseWindow {
     }
 
     private onChangeNormal(){
-        this.currentState == 'normal'
+        this.currentState = 'normal'
         this.pkBtn2.visible = false;
         this.backBtn2.visible = false;
         this.pkBtn.visible = true;

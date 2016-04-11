@@ -31,24 +31,47 @@ class MyInfoUI extends game.BaseUI {
 
 
 
-
-    private expBar: eui.Image;
-
-
     private timer:egret.Timer;
 
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "MyInfoUISkin";
     }
 
 
 
     public childrenCreated() {
         super.childrenCreated();
+        this.topUI.setTitle('个人信息')
+        this.topUI.addEventListener('hide',this.hide,this);
+
+
         this.timer = new egret.Timer(1000);
         this.timer.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this);
-        //this.addBtnEvent(this, this.onClick);
+
+        this.addBtnEvent(this.setBtn, this.onSet);
+        this.addBtnEvent(this.addForceBtn, this.onAddForce);
+        this.addBtnEvent(this.addCoinBtn, this.onAddCoin);
+        this.addBtnEvent(this.addDiamondBtn, this.onAddDiamon);
+        this.addBtnEvent(this.addEnergyBtn, this.onAddEnergy);
+
+        this.list.itemRenderer = EnemyHeadItem;
+    }
+
+    private onSet(){
+
+    }
+    private onAddForce(){
+
+    }
+    private onAddCoin(){
+
+    }
+    private onAddDiamon(){
+
+    }
+    private onAddEnergy(){
+
     }
 
     private onTimer(){
@@ -58,13 +81,11 @@ class MyInfoUI extends game.BaseUI {
               this.renew();
         }
 
-        this.nameText.text = '下次体力回复:' + DateUtil.getStringBySecond(cd);
-        this.nameText.text = '本次游戏时间:' + DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000));
+        this.reEnergyText.text = '下次体力回复：' + DateUtil.getStringBySecond(cd);
+        this.thisLoginText.text = '本次游戏时间：' + DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000));
     }
 
-    private onClick(){
 
-    }
 
 
     public hide(){
@@ -80,34 +101,47 @@ class MyInfoUI extends game.BaseUI {
 
     public renew(){
 
-        this.expBar.source = MyTool.getHeadUrl(UM.head);
+        this.headMC.source = MyTool.getHeadUrl(UM.head);
 
         this.nameText.text = UM.nick;
-        this.nameText.text = 'LV.' + UM.level;
-        this.nameText.text = '战力:' + (UM.award_force + UM.tec_force) + '(科技+'+UM.tec_force+'，奖励+'+UM.award_force+')';
-        this.nameText.text = UM.exp + '/' + UM.next_exp;
-        this.expBar.width = 200 * UM.exp / UM.next_exp;
+        this.nameText.text = '等级：LV.' + UM.level;
+        this.levelText.text = '经验：' + UM.exp + '/' + UM.next_exp;
 
-        this.nameText.text = '体力:' + UM.getEnergy();
-        this.nameText.text = '金币:' + UM.coin;
-        this.nameText.text = '钻石:' + UM.diamond.rmb;
-        this.nameText.text = '点券:' + UM.diamond.free;
+        this.nameText.text = '战力：' + (UM.award_force + UM.tec_force)
+        this.forceText1.text = '科技战力：' + UM.getTecForce();
+        this.forceText2.text = '等级战力：' + UM.getLevelForce();
+        this.forceText3.text = '奖励战力：' + UM.award_force;
 
 
-        this.nameText.text = '上次登陆:' + DateUtil.formatDate('yyyy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land));
 
-    //    头像，呢称，等级，战力：X（科技+A，奖励+B）
-    //经验：123/456
-    //    体力：
-    //金币：
-    //元宝：
-    //点券：
-    //下次体力刷新：01:25:44
-    //    上次登录:2015-4-4 22:33:06
-    //    本次登录:2015-4-4 22:33:06
+        this.energyText.text = '体力：' + UM.energy.v + '/' + 50;
+        this.energyText2.text = '元体力：' + UM.energy.rmb;
 
-    //    主线进度
-    //    竞技场等级，胜利次数，总次数
-    //    无科技场等级，胜利次数，总次数，最高
+
+        this.coinText.text = '金币最近登陆：' + UM.coin;
+        this.diamondText.text = '钻石最近登陆：' + UM.diamond.rmb;
+        this.diamondFreeText.text = '点券最近登陆：' + UM.diamond.free;
+
+
+        this.lastLoginText.text = '最近登陆：' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land));
+
+        var specialData = {
+
+        };
+        var arr =  MyTool.getCommonUse(UM.pk_common.history);
+        for(var i=0;i<arr.length;i++){
+            arr[i] = {
+                vo: MonsterVO.getObject(arr[i]),
+                type: 1,
+
+                id: arr[i],
+                specialData: specialData,
+
+                index: i,
+                list:arr
+            }
+        }
+        this.list.dataProvider = new eui.ArrayCollection(arr)
+
     }
 }

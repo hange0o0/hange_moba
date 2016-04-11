@@ -23,6 +23,10 @@ class CollectUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
+
+        this.topUI.setTitle('收集列表')
+        this.topUI.addEventListener('hide',this.hide,this);
+
         this.addBtnEvent(this.splitBtn, this.onSplit);
         this.addBtnEvent(this.tenBtn, this.onDraw10);
         this.addBtnEvent(this.oneBtn, this.onDraw1);

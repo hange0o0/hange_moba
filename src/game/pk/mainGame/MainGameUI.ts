@@ -18,6 +18,7 @@ class MainGameUI extends game.BaseUI {
     private chooseBtn0: eui.Button;
 
 
+    private enemyArray;
 
     public constructor() {
         super();
@@ -49,24 +50,67 @@ class MainGameUI extends game.BaseUI {
 
     }
 
-    public onShow(){
-        var data = UM.server_game;
+    public show(){
+        var self = this;
+        var id = Math.ceil((UM.main_game.level + 1)/100);
+        CM.loadCache('main_game'+id+'_json',function(){
+            self.superShow();
+        })
+    }
 
-        this.levelText.text = '第'+(UM.main_game.level + 1)+'关'
+    private superShow(){
+        super.show();
+    }
+
+    public renewPrice(){
+        this.moneyText.text = '本次秒杀价格：' + MainGameManager.getInstance().getKillCost();
+    }
+
+    public onShow(){
+        var MM = MainGameManager.getInstance();
+        var data = UM.main_game;
+        this.topUI.setTitle('试练场PK-第'+(UM.main_game.level + 1)+'关');
+        this.renewPrice();
         //更新敌人
-        var enemyList = [];
+        var specialData:any = {
+            isNPC:true
+        };
+        var enemyList = this.enemyArray = [];
         var arr = MainGameVO.getObject(UM.main_game.level + 1).list;
         for(var i=0;i<arr.length;i++)
         {
-            enemyList.push({id:arr,type:2});
+            var id = arr[i]
+            enemyList.push({
+                vo: MonsterVO.getObject(id),
+                type:2,
+
+                id: id,
+                specialData: specialData,
+
+                index: i,
+                list:enemyList,
+
+                isKill:MM.isKill(i)
+            });
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
 
+        specialData = {};
         //更新卡组1
         var chooseList1 = [];
         for(var i=0;i<data.choose[0].list.length;i++)
         {
-            chooseList1.push({id:data.choose[0].list[i],type:1});
+            var id = data.choose[0].list[i]
+            chooseList1.push({
+                vo: MonsterVO.getObject(id),
+                type:1,
+
+                id: id,
+                specialData: specialData,
+
+                index: i,
+                list:chooseList1
+            });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
         this.ringText0.text = RingVO.getObject(data.choose[0].ring[0]).name;
@@ -75,7 +119,7 @@ class MainGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.server_game_equal.choose[0],enemy: MainGameVO.getObject(UM.main_game.level + 1).list})
+        PKDressUI.getInstance().show({pktype:'main_game',data:UM.main_game.choose[0],enemy: this.enemyArray})
     }
 
 }

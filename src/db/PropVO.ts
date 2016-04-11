@@ -22,5 +22,9 @@ class PropVO {
         this.propname = data.propname;
     }
 
+    public get thumb(){
+        return 'prop_thumb_' + this.id;
+    }
+
 
 }

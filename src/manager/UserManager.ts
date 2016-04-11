@@ -37,6 +37,7 @@ class UserManager {
     public collect: any;
     public friends: any;
     public energy: any;
+    public pk_common: any;
 
 
     public fill(data:any):void{
@@ -63,6 +64,7 @@ class UserManager {
         this.friends = data.friends; //'{"v":0,"t":0,"tk":0}');//好友相关 每人每天只可发送20条消息
         this.energy = data.energy; //  '{"v":0,"t":0,"rmb":0}'
         this.active = data.active; //  '{task:{}}'
+        this.pk_common = data.pk_common; //  '{history:{}}'
     }
 
     public getDiamond(){
@@ -98,6 +100,12 @@ class UserManager {
             this.friends.tk = Math.max(20,this.friends.tk);
             this.friends.t = TM.now();
         }
+    }
+
+    public addHistory(list){
+        this.pk_common.history.unshift(list);
+        if(this.pk_common.history.length > 20)
+            this.pk_common.history = 20;
     }
 
     //取道具数量
@@ -148,11 +156,11 @@ class UserManager {
         var monsterAdd = this.getTecAdd('monster',this.tec.monster[id]);
         oo.atk += typeAdd + monsterAdd;
         oo.hp += typeAdd + monsterAdd;
-        oo.speed += typeAdd + monsterAdd;
+        //oo.speed += typeAdd + monsterAdd;
         return oo;
     }
 
-    private getTecAdd(type,level=0){
+    public getTecAdd(type,level=0){
         if(!level)
             return 0;
         if(type == 'main')

@@ -85,9 +85,18 @@ class MonsterInfoBase extends game.BaseContainer {
         {
             if(specialData.isEqual)
                 fightData = {atk:300,hp:300,speed:300};
-            else
+            else if(specialData.isBase)
+                fightData = {atk:0,hp:0,speed:0};
+            else  //我自己
+            {
+                var force = (UM.award_force + UM.tec_force);
                 fightData = UM.getTecMonsterAdd(monsterID);
+                fightData.atk += force;
+                fightData.hp += force;
+            }
+
         }
+
         var atk = Math.round(vo.atk * (1+fightData.atk/100));
         var hp = Math.round(vo.hp * (1+fightData.hp/100));
         var speed = Math.round(vo.speed * (1+fightData.speed/100));

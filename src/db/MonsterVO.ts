@@ -6,6 +6,7 @@ class MonsterVO {
     }
 
 
+
     public id
     public name
     public des
@@ -127,7 +128,7 @@ class MonsterVO {
     //把影响变成文字
     public effectWord(arr)
     {
-        var arr2;
+        var arr2 = [];
         for(var i=0;i<arr.length;i++)
         {
             arr2.push(Config.cons[arr[i]]);

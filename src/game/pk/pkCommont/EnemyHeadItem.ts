@@ -11,18 +11,38 @@ class EnemyHeadItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-          this.addBtnEvent(this.closeBtn,this.onClose);
+          this.addBtnEvent(this.closeBtn,this.onKill);
+          this.addBtnEvent(this,this.onClick);
+
+        MyTool.addTestBlock(this);
     }
 
-    private onClose(){
-
+    private onKill(e:egret.TouchEvent){
+        e.stopImmediatePropagation();
+        var self = this;
+        MainGameManager.getInstance().kill(this.data.index,function(){
+            MainGameUI.getInstance().renewPrice();
+            self.data.isKill = true;
+            self.dataChanged();
+        })
+    }
+    private onClick(){
+        MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
+    //type == 1,显示基础
+    //type == 2,在主线PK中，会杀
     public dataChanged() {
+        if(!this.data.vo)
+            this.data.vo = MonsterVO.getObject(this.data.id);
         this.headMC.source = this.data.vo.thumb
-          if(this.data.type == 1)
-          {
-               this.closeBtn.visible = false;
-          }
+      if(this.data.type == 2)
+      {
+           this.closeBtn.visible = this.data.isKill;
+      }
+      else
+      {
+          this.closeBtn.visible = false;
+      }
     }
 }

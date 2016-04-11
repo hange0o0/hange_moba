@@ -80,12 +80,13 @@ class CollectItemInfo extends game.BaseWindow {
     }
 
     public onShow(){
+        var CM = CollectManager.getInstance();
         this.itemMC.data = this.data;
         var vo = MonsterVO.getObject(this.data);
         var level = UM.getMonsterCollect(vo.id);
 
-        var need = CollectManager.getInstance().getLevelUpNeed(level + 1);
-        var now = CollectManager.getInstance().getCollectNum(vo.id);
+        var need = CM.getLevelUpNeed(level + 1);
+        var now = CM.getCollectNum(vo.id);
 
         this.slider.maximum = now;
         this.slider.minimum = 0;
@@ -100,7 +101,7 @@ class CollectItemInfo extends game.BaseWindow {
             this.joinBtn.visible = false;
         }
 
-        if(CollectManager.getInstance().isLock(vo.id))
+        if(CM.isLock(vo.id))
         {
               this.lockBtn.label = '解锁'
               this.lockBtn.skinName = 'Btn_d1Skin'

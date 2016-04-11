@@ -11,6 +11,7 @@ class CollectItem extends game.BaseItem {
     private arrowMC: eui.Image;
     private numText: eui.Label;
 
+    private lockMC: eui.Image;
 
     public index;
 
@@ -25,12 +26,13 @@ class CollectItem extends game.BaseItem {
     }
 
     public dataChanged(){
+        var CM = CollectManager.getInstance();
         var vo = MonsterVO.getObject(this.data);
         var level = UM.getMonsterCollect(vo.id);
         this.headBG.source = 'head_border' + (level + 1) + '_png';
 
-        var need = CollectManager.getInstance().getLevelUpNeed(level + 1);
-        var now = CollectManager.getInstance().getCollectNum(vo.id);
+        var need = CM.getLevelUpNeed(level + 1);
+        var now = CM.getCollectNum(vo.id);
         MyTool.removeMC(this.arrowMC);
         if(level >= 4){  //已满级了
             this.numText.text = '' + now;
@@ -41,6 +43,8 @@ class CollectItem extends game.BaseItem {
                 this.numGroup.addChildAt(this.arrowMC,0);
             this.numText.text = now + '/' + need;
         }
+
+        this.lockMC.visible = CM.isLock(this.data);
     }
 
 

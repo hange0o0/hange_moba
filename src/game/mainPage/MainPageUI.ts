@@ -34,13 +34,13 @@ class MainPageUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollGroupCon: eui.Group;
     private scrollGroup: eui.Group;
+    private mainGame: MainMainItem;
     private serverGame: MainServerItem;
-    private serverGameEqual: MainServerItem;
+    private serverGameEqual: MainServerEqualItem;
     private p0: MainPageItem;
     private p1: MainPageItem;
     private p2: MainPageItem;
-    private p3: MainPageItem;
-    private p4: MainPageItem;
+
 
 
 
@@ -81,7 +81,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
 
-        for(var i=0;i<=4;i++)
+        for(var i=0;i<=2;i++)
         {
               this.pageArray.push(this['p'+i]);
         }
@@ -316,10 +316,14 @@ class MainPageUI extends game.BaseUI {
         switch(this.currentPage)
         {
             case 0:
+                this.mainGame.renew();
+                this.videoBtn.visible = UM.main_game.pkdata;
+                break;
+            case 1:
                 this.serverGame.renew();
                 this.videoBtn.visible = UM.server_game.pkdata;
                 break;
-            case 1:
+            case 2:
                 this.serverGameEqual.renew();
                 this.videoBtn.visible = UM.server_game_equal.pkdata;
                 break;

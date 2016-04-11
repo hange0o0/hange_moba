@@ -4,7 +4,7 @@
  *
  */
 class PopUpManager {
-    private static shape:egret.Shape;
+    private static shape:eui.Rect;
 	public constructor() {
 	}
 	
@@ -13,8 +13,14 @@ class PopUpManager {
         var hh = GameManager.container.height;
         if(!this.shape)
         {
-            this.shape = ShapeObject.createRect(0x000000,0,0,ww,hh);
-            this.shape.alpha = 0.7;
+
+            this.shape = new eui.Rect();
+            this.shape.width = 640;
+            this.shape.fillColor = 0;
+            this.shape.fillAlpha = 0.7;
+
+            this.shape.top = 0
+            this.shape.bottom = 0
             this.shape.touchEnabled = true;
         }
         var shape = this.shape;
@@ -45,7 +51,7 @@ class PopUpManager {
             if(this.shape.parent)
             {
                 index = this.shape.parent.getChildIndex(this.shape);
-                if(index == this.shape.parent.numChildren-1)//在最上层
+                if(index == this.shape.parent.numChildren-1 && index >0)//在最上层
                 {
                     this.shape.parent.swapChildrenAt(index,index-1)
                 }

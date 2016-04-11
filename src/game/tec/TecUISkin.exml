@@ -21,9 +21,9 @@
 		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="173" y="15" width="425" height="126" textColor="0xCC9900"/>
 	</e:Group>
 	<ns1:TopUI x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller width="640" x="0" top="390" bottom="0">
+	<e:Scroller id="scroller" width="640" x="0" top="390" bottom="0">
 		<e:Group>
-			<e:List height="200" width="640" x="0" y="0" itemRendererSkinName="TecItemSkin">
+			<e:List id="list" height="200" width="640" x="0" y="0" itemRendererSkinName="TecItemSkin">
 				<e:layout>
 					<e:TileLayout horizontalGap="20" paddingLeft="18" paddingTop="10"/>
 				</e:layout>
@@ -31,14 +31,15 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Image source="line_png" x="-5" y="134" width="650"/>
-	<e:Group x="5" y="77">
-		<e:Button id="tab1" label="按钮" x="0" y="0" skinName="Btn_d1Skin"/>
-		<e:Button id="tab2" skinName="Btn_r1Skin" y="10" label="按钮" x="10"/>
-		<e:Button id="tab3" y="20" label="按钮" x="20" skinName="Btn_d1Skin"/>
-		<e:layout>
-			<e:HorizontalLayout/>
-		</e:layout>
-	</e:Group>
+	<e:TabBar id="tab" height="50" width="312" x="5" y="77" itemRendererSkinName="MyTabItemSkin">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="通用"/>
+				<e:Object label="技能"/>
+				<e:Object label="卡牌"/>
+			</e:Array>
+		</e:ArrayCollection>
+	</e:TabBar>
 	<e:Group y="87" right="15">
 		<e:Image source="icon_money_png" y="0" x="0"/>
 		<e:Label id="myCoinText" y="6" textColor="0xCC9900" text="12,14355" x="52" size="26"/>
