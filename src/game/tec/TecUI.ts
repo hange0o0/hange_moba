@@ -6,6 +6,7 @@ class TecUI extends game.BaseUI {
     }
 
     private infoGroup: eui.Group;
+    private levelUpGroup: eui.Group;
     private levelUpBtn: eui.Button;
     private coinText: eui.Label;
     private propGroup1: eui.Group;
@@ -16,10 +17,17 @@ class TecUI extends game.BaseUI {
     private propMC2: eui.Image;
     private itemMC: TecItem;
     private desText: eui.Label;
+    private maxText: eui.Label;
+    private monsterGroup: eui.Group;
+    private atkText: eui.Label;
+    private infoBtn: eui.Button;
+    private hpText: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
     private tab: eui.TabBar;
     private myCoinText: eui.Label;
+
+
 
 
     private needCoin
