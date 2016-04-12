@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="RankUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bg_jpg" y="0" x="0"/>
+	<ns1:TopUI x="0" y="0" skinName="TopUISkin"/>
+	<e:Scroller top="146" x="0" bottom="0" width="640" id="scroller" y="10">
+		<e:Group>
+			<e:List id="list" width="640" itemRendererSkinName="TecItemSkin" x="0" top="0" bottom="370">
+				<e:layout>
+					<e:TileLayout horizontalGap="20" paddingTop="10" paddingLeft="18"/>
+				</e:layout>
+			</e:List>
+		</e:Group>
+	</e:Scroller>
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="77" id="tab" horizontalCenter="0">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="通用"/>
+				<e:Object label="技能"/>
+				<e:Object label="卡牌"/>
+				<e:Object label="null"/>
+				<e:Object label="null"/>
+			</e:Array>
+		</e:ArrayCollection>
+	</e:TabBar>
+	<e:Image source="line_png" width="650" y="138" x="-5"/>
+</e:Skin>

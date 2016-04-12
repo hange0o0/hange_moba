@@ -4,7 +4,9 @@ class BagItem extends game.BaseItem {
         this.skinName = "DebugUISkin";
     }
 
-    private img:eui.Image;
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+
 
     public index;
 

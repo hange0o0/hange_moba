@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="CollectItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="120" height="150">
-	<e:Image source="border4_png" y="4" id="headMC" width="100" height="100" mask="headMask" x="12"/>
-	<e:Rect ellipseWidth="100" y="4" x="12" width="100" ellipseHeight="100" height="100" id="headMask"/>
-	<e:Image source="head_border4_png" y="0" x="5" id="headBG"/>
+	<e:Image source="border4_png" y="4" id="headMC" width="100" height="100" mask="headMask" x="9"/>
+	<e:Rect ellipseWidth="100" y="4" x="9" width="100" ellipseHeight="100" height="100" id="headMask"/>
+	<e:Image source="head_border4_png" y="0" x="2" id="headBG"/>
 	<e:Group id="numGroup" x="0" y="116.96969696969697" width="120">
 		<e:Image id="arrowMC" source="arrow5_png" x="10.984848484848484" y="4.015151515151501"/>
-		<e:Label id="numText" text="2346/456" x="0" y="0" textAlign="center" size="24"/>
+		<e:Label id="numText" text="2346/456" x="0" y="0" textAlign="center" size="24" textColor="0xCC9900"/>
 		<e:layout>
 			<e:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Image id="lockMC" source="lock_icon_png" x="48" y="32" scaleX="0.6" scaleY="0.6"/>
+	<e:Image id="lockMC" source="lock_icon_png" x="45" y="32" scaleX="0.6" scaleY="0.6"/>
 </e:Skin>

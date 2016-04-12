@@ -4,6 +4,12 @@ class HonorUI extends game.BaseUI {
         if (!this.instance) this.instance = new HonorUI();
         return this.instance;
     }
+    
+    private topUI: TopUI;
+    private scroller: eui.Scroller;
+    private list: eui.List;
+    private tab: eui.TabBar;
+
 
     public constructor() {
         super();

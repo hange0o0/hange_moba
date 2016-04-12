@@ -4,6 +4,15 @@ class BagUI extends game.BaseUI {
         if (!this.instance) this.instance = new BagUI();
         return this.instance;
     }
+    
+    private infoGroup: eui.Group;
+    private itemMC: BagItem;
+    private desText: eui.Label;
+    private infoBtn: eui.Button;
+    private topUI: TopUI;
+    private scroller: eui.Scroller;
+    private list: eui.List;
+
 
     public constructor() {
         super();

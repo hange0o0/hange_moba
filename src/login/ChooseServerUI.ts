@@ -9,6 +9,17 @@ class ChooseServerUI extends game.BaseUI {
         super();
         this.skinName = "DebugUISkin";
     }
+    
+    
+    private headMC: eui.Image;
+    
+    
+    private titleText: eui.Label;
+    private scroller: eui.Scroller;
+    private list: eui.List;
+    private okBtn: eui.Button;
+
+
 
 
     public childrenCreated() {

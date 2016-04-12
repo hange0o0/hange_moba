@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="ChangeHeadUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="600" x="0"/>
+	<e:Label id="titleText" y="30" textColor="0xD0C7AD" horizontalCenter="0" text="恭喜获得" x="10"/>
+	<e:Scroller id="scroller" width="520" x="40" top="74" bottom="116">
+		<e:Group>
+			<e:List id="list" x="0" y="0" itemRendererSkinName="HeadItemSkin" width="100%">
+				<e:ArrayCollection>
+					<e:Array>
+						<e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
+						<e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/><e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
+						<e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
+					</e:Array>
+				</e:ArrayCollection>
+				<e:layout>
+					<e:TileLayout horizontalGap="15" requestedColumnCount="5" paddingLeft="5" verticalGap="20" paddingTop="20" paddingBottom="20"/>
+				</e:layout>
+			</e:List>
+		</e:Group>
+	</e:Scroller>
+	<e:Rect height="90" width="542" x="29" bottom="26" fillColor="0x130A05" fillAlpha="1"/>
+	<e:Button id="okBtn" scaleX="0.9" scaleY="0.9" horizontalCenter="0" label="确定" bottom="40" skinName="Btn_r3Skin"/>
+</e:Skin>

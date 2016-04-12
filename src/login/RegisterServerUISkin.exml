@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="window1_jpg" y="17" scale9Grid="52,33,318,125" width="480" height="330" x="0"/>
-	<e:Image source="window1_top_png" y="0" horizontalCenter="0"/>
-	<e:Label y="8" size="22" text="角色注册" textColor="0xAAA6A6" horizontalCenter="0"/>
-	<e:Group y="280" x="80">
-		<e:Button id="backBtn" y="0" scaleX="0.9" skinName="Btn_d2Skin" scaleY="0.9" label="返回" x="0"/>
-		<e:Button id="registerBtn" y="0" scaleX="0.9" skinName="Btn_r2Skin" scaleY="0.9" label="登陆" x="176"/>
+<e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520">
+	<e:Image y="0" width="520" height="360" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
+	<e:Rect height="60" width="490" x="15" y="16" fillColor="0xFFFFFF" fillAlpha="0.1" strokeWeight="1"/>
+	<e:Label y="33" size="24" text="角色注册" textColor="0xAAA6A6" horizontalCenter="0"/>
+	<e:Group y="275" horizontalCenter="0">
+		<e:Button id="backBtn" y="0" skinName="Btn_d2Skin" label="返回" x="0"/>
+		<e:Button id="registerBtn" y="0" skinName="Btn_r2Skin" label="登陆" x="176"/>
 	</e:Group>
-	<e:Group y="181" x="128">
+	<e:Group y="200" x="148">
 		<e:TextInput id="nameText" width="220" y="2" skinName="MyTextInputSkin" height="45" x="0"/>
 		<e:Group id="randomBtn" x="224" y="0">
 			<e:Image source="main_border_png" x="0" y="0" scaleX="0.4" scaleY="0.4"/>
 			<e:Image source="random_btn_png" x="9" y="10" scaleY="0.4" scaleX="0.4"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="headGroup" x="195" y="71">
+	<e:Group id="headGroup" y="98" horizontalCenter="0">
 		<e:Image source="border2_png" y="0" x="0"/>
 		<e:Image id="headMC" source="main_border_png" x="5" y="4" width="80" height="80"/>
 	</e:Group>

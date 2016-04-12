@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="HeadItemSkin" xmlns:e="http://ns.egret.com/eui" width="90" height="90" states="up,down" >
+	<e:Image source="border_light_png" y="-16" scale9Grid="33,31,38,26" width="120" height="120" x="-16" visible.up="false"/>
+	<e:Image source="border2_png" y="0" x="0"/>
+	<e:Image source="main_border_png" y="4" x="5" width="80" height="80" id="headMC"/>
+</e:Skin>
