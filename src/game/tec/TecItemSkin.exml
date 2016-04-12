@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="TecItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="105">
-	<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="105" height="105" x="0"/>
+<e:Skin class="TecItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="105" states="up,down" >
+	<e:Image source="border2_png" y="1" scale9Grid="11,11,68,68" width="105" height="105" x="0"/>
+	<e:Image source="border_light_png" x="-15" y="-15" width="135" height="135" scale9Grid="33,31,38,26" visible.up="false"/>
 	<e:Image source="border4_png" y="6" x="8" width="92" height="92" id="headMC"/>
 	<e:Label text="标签标签" x="0" y="110" size="26" width="105" textAlign="center" textColor="0xCC9900"/>
 	<e:Group id="levelGroup" y="69" x="-11">

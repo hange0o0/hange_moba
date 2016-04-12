@@ -768,6 +768,11 @@
 					"isFolder":false,
 					"key":"soul_icon_png",
 					"name":"soul_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"lock_icon_png",
+					"name":"lock_icon_png"
 				}
 			]
 		}

@@ -3,10 +3,10 @@
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="80">
 		<e:Group>
-			<ns1:MonsterInfoBase id="info" x="0" y="0" skinName="MonsterInfoBaseSkin" height="100%"/>
+			<ns1:MonsterInfoBase id="info" x="0" y="0" skinName="MonsterInfoBaseSkin"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="bottomGroup" x="0" y="895.0000000000001">
+	<e:Group id="bottomGroup" x="0" bottom="-43">
 		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="107.95454545454527"/>
 		<e:Group id="leftBtn" y="1.9696969696967699" x="20">
 			<e:Image source="arrow1_png" x="0" y="0"/>

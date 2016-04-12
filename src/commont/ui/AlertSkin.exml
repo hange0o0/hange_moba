@@ -9,5 +9,5 @@
 		</e:layout>
 	</e:Group>
 	<e:Button id="closeBtn" x="493" y="-17" skinName="Btn_close1Skin"/>
-	<e:Label id="text" text="标签标签标签标签" textColor="0xCDC9C4" left="50" right="50" top="50" bottom="120" textAlign="center"/>
+	<e:Label id="text" text="标签标签标签标签" left="50" right="50" top="50" bottom="120" textAlign="center" verticalAlign="middle" size="26" textColor="0xCC9900"/>
 </e:Skin>

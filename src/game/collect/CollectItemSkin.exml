@@ -10,4 +10,5 @@
 			<e:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
+	<e:Image id="lockMC" source="lock_icon_png" x="48" y="32" scaleX="0.6" scaleY="0.6"/>
 </e:Skin>

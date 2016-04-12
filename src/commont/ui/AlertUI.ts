@@ -27,6 +27,7 @@ class AlertUI extends game.BaseWindow {
 
     public onShow(){
         this.text.text = this.textIn;
+        this.okBtn.label = '确认'
 
 
         var ww = GameManager.container.width;
