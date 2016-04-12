@@ -4,7 +4,7 @@ class TecUI extends game.BaseUI {
         if (!this.instance) this.instance = new TecUI();
         return this.instance;
     }
-
+    private topUI: TopUI;
     private infoGroup: eui.Group;
     private levelUpGroup: eui.Group;
     private levelUpBtn: eui.Button;
@@ -45,7 +45,11 @@ class TecUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
+        this.topUI.setTitle('科技升级')
+        this.topUI.addEventListener('hide',this.hide,this);
+
         this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
+        this.addBtnEvent(this.infoBtn, this.onInfo);
 
         this.list.itemRenderer = TecItem;
         this.scroller.viewport = this.list;
@@ -79,7 +83,10 @@ class TecUI extends game.BaseUI {
         TecManager.getInstance().levelUp(data.tecType,data.id,function(){
             self.onSelect();
         });
+    }
 
+    private onInfo(){
+        MonsterList.getInstance().show([{id:this.list.selectedItem.id}]);
     }
 
     private onSelect():void {
@@ -90,48 +97,61 @@ class TecUI extends game.BaseUI {
         var TCM = TecManager.getInstance();
         var level,des
         this.itemMC.data = data;
+        this.monsterGroup.visible = false
         if(data.tecType == 1)//主
         {
-            level = UM.tec.main[data.id];
+            level = UM.tec.main[data.id] || 0;
             if(level >= TCM.maxLevel)
             {
                 this.desText.text = data.des.replace(/\$\$/g,UM.getTecAdd('main',level))
             }
             else
             {
-                this.desText.text = data.des.replace(/\$\$/g,UM.getTecAdd('main',level) + '(->' + UM.getTecAdd('main',level+1)+')')
+                this.desText.text = data.des.replace(/\$\$/g,'('+UM.getTecAdd('main',level) + ' → ' + UM.getTecAdd('main',level+1)+')')
             }
         }
         else if(data.tecType == 2)//技
         {
-            level = UM.tec.ring[data.id];
+            level = UM.tec.ring[data.id] || 0;
             if(level >= TCM.maxLevel)
             {
                 this.desText.text = data.des.replace(/\$\$/g,data.getRingAdd(level));
             }
             else
             {
-                this.desText.text = data.des.replace(/\$\$/g,data.getRingAdd(level) + '(->' + data.getRingAdd(level+1)+')')
+                this.desText.text = data.des.replace(/\$\$/g,'('+data.getRingAdd(level) + ' → ' + data.getRingAdd(level+1)+')')
             }
         }
         else//怪
         {
-            level = UM.tec.monster[data.id];
+            level = UM.tec.monster[data.id] || 0;
+            this.monsterGroup.visible = true;
+            this.desText.text = '';
             if(level >= TCM.maxLevel)
             {
-
+                this.atkText.text = '攻击加成：' + UM.getTecAdd('monster',level) +'%';
+                this.hpText.text = '生命加成：' + UM.getTecAdd('monster',level) +'%';
             }
             else
             {
+                this.atkText.text = '攻击加成：' + UM.getTecAdd('monster',level)+ '% → (' + UM.getTecAdd('monster',level+1)+'%)'
+                this.hpText.text = '生命加成：' + UM.getTecAdd('monster',level) + '% → (' + UM.getTecAdd('monster',level+1)+'%)'
 
             }
         }
 
         if(level >= TCM.maxLevel)
         {
+            this.levelUpGroup.visible = false;
+            this.maxText.visible = true;
             return;
         }
 
+        this.levelUpBtn.visible = true;
+        this.levelUpGroup.visible = true;
+        this.maxText.visible = false;
+
+        level ++;
         this.needCoin = TCM.needCoin(level);
         this.needProp1 = TCM.prop1ID(data.tecType)
         this.needProp2 = TCM.prop2ID(data.tecType)
@@ -140,7 +160,10 @@ class TecUI extends game.BaseUI {
 
         this.coinText.text = this.needCoin;
         if(this.needCoin > UM.coin)
+        {
             this.coinText.textColor = 0xFF0000;
+            this.levelUpBtn.visible = false;
+        }
         else
             this.coinText.textColor = 0xCC9900;
 
@@ -151,7 +174,10 @@ class TecUI extends game.BaseUI {
             this.propMC1.source = PropVO.getObject(this.needProp1).thumb;
             this.propText1.text = this.needPropNum1;
             if(this.needProp1 > UM.getPropNum(this.needProp1))
+            {
                 this.propText1.textColor = 0xFF0000;
+                this.levelUpBtn.visible = false;
+            }
             else
                 this.propText1.textColor = 0xCC9900;
         }
@@ -164,7 +190,10 @@ class TecUI extends game.BaseUI {
             this.propMC2.source = PropVO.getObject(this.needProp2).thumb;
             this.propText2.text = this.needPropNum2;
             if(this.needProp2 > UM.getPropNum(this.needProp2))
+            {
                 this.propText2.textColor = 0xFF0000;
+                this.levelUpBtn.visible = false;
+            }
             else
                 this.propText2.textColor = 0xCC9900;
         }

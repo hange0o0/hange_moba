@@ -26,21 +26,7 @@ class MainMainItem extends game.BaseItem {
         });
     }
     private onStart(){
-        var MM = MainGameManager.getInstance();
-        var mainData = UM.main_game;
-        if(!mainData.choose)//无卡牌数据
-        {
-            MM.getCard(onGetCard);
-        }
-        else//已有卡版数据
-        {
-            onGetCard();
-        }
-
-
-        function onGetCard(){
-            MainGameUI.getInstance().show();
-        }
+        MainGameManager.getInstance().openPKView();
     }
 
     public renew() {

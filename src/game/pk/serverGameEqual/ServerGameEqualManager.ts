@@ -11,6 +11,29 @@ class ServerGameEqualManager{
 
     public lastPKData;
 
+    //打开PK对战内容的表现
+    public openPKView(fun?){
+        var serverData = UM.server_game_equal;
+        if(serverData.pk)//已PK过，不能再打
+        {
+            this.getCard(false,onGetCard);
+        }
+        else if(serverData.choose)//已有卡版数据
+        {
+            onGetCard();
+        }
+        else
+        {
+            this.getCard(false,onGetCard);
+        }
+
+        function onGetCard(){
+            ServerGameEqualUI.getInstance().show();
+            if(fun)
+                fun();
+        }
+    }
+
     //根据经验，返回所在等级
     public  getPKTableLevel(exp){
         var level = 1;
@@ -66,6 +89,7 @@ class ServerGameEqualManager{
                 return;
             }
 
+            UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
             PKManager.getInstance().onPK(PKManager.PKType.SERVER_EQUAL,msg);
 

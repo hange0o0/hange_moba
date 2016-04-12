@@ -20,7 +20,7 @@ class PKItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        var vo = MonsterVO.getObject(this.data.mid)
+        var vo = this.data.vo;
         this.headMC.source = vo.thumb
     }
 }

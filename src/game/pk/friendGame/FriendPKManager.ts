@@ -73,6 +73,7 @@ class FriendPKManager{
                 Alert('清除数据出错');
                 return;
             }
+            UM.addHistory(choose.list.join(','));
             FriendManager.getInstance().getLog(fun,true);
             //self.pkArray[msg.data.id] = (msg.data);
             //
@@ -122,6 +123,7 @@ class FriendPKManager{
                 Alert('更新战绩出错');
             }
 
+            UM.addHistory(choose.list.join(','));
             self.lastPKData[logid] = msg.pkdata;
             FriendManager.getInstance().getLog(null,true);
             //self.pkArray[logid].content.ask_choose = msg.ask_choose;

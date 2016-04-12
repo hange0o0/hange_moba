@@ -104,10 +104,10 @@ class MyInfoUI extends game.BaseUI {
         this.headMC.source = MyTool.getHeadUrl(UM.head);
 
         this.nameText.text = UM.nick;
-        this.nameText.text = '等级：LV.' + UM.level;
-        this.levelText.text = '经验：' + UM.exp + '/' + UM.next_exp;
+        this.levelText.text = '等级：LV.' + UM.level;
+        this.expText.text = '经验：' + UM.exp + '/' + UM.next_exp;
 
-        this.nameText.text = '战力：' + (UM.award_force + UM.tec_force)
+        this.forceText.text = '战力：' + (UM.award_force + UM.tec_force)
         this.forceText1.text = '科技战力：' + UM.getTecForce();
         this.forceText2.text = '等级战力：' + UM.getLevelForce();
         this.forceText3.text = '奖励战力：' + UM.award_force;

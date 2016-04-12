@@ -1,7 +1,7 @@
 class CollectItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "CollectItemSkin";
     }
 
     private headMC: eui.Image;

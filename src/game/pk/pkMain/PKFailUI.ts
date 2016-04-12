@@ -31,12 +31,31 @@ class PKFailUI extends PKResultBase {
         PKResultUI.getInstance().hide();
     }
     private onRestart(){
-         Confirm('再次挑战需要耗费2点体力，是否继续？',function(type){
-              if(type == 1)
-              {
+        var self = this;
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType == PKManager.PKType.SERVER || PKM.pkType == PKManager.PKType.SERVER_EQUAL)
+        {
+            Confirm('再次挑战需要耗费2点体力，是否继续？',function(type){
+                if(type == 1)
+                {
+                    if(PKM.pkType == PKManager.PKType.SERVER){
+                        ServerGameManager.getInstance().openPKView(onOpenPKView);
+                    }
+                    else
+                    {
+                        ServerGameEqualManager.getInstance().openPKView(onOpenPKView);
+                    }
+                }
+            });
+        }
+        else if(PKM.pkType == PKManager.PKType.MAIN){
+            MainGameManager.getInstance().openPKView(onOpenPKView);
+        }
 
-              }
-         });
+        function onOpenPKView(){
+           self.onBack();
+        }
+
     }
 
     public renew(){
@@ -44,6 +63,16 @@ class PKFailUI extends PKResultBase {
         this.desText.text = ''
         this.list.visible = false;
         this.btnGroup.visible = false;
+
+        //var PKM = PKManager.getInstance();
+        //if(PKM.pkType == PKManager.PKType.SERVER || PKM.pkType == PKManager.PKType.SERVER_EQUAL)
+        //{
+        //    this.btnGroup.addChild(this.okBtn);
+        //}
+        //else
+        //{
+        //    this.btnGroup.addChild(this.okBtn);
+        //}
 
 
         this.step = 0;

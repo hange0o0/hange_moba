@@ -17,7 +17,7 @@ class CollectUI extends game.BaseUI {
     private listArr;
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "CollectUISkin";
     }
 
 
@@ -34,6 +34,8 @@ class CollectUI extends game.BaseUI {
         this.list.itemRenderer = CollectItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+
+        EM.addEvent(GameEvent.client.collect_change,this.renew,this);
     }
 
     private onSplit(){
@@ -49,6 +51,12 @@ class CollectUI extends game.BaseUI {
                 obj[id] = num;
                 count += num;
             }
+        }
+
+        if(count == 0)
+        {
+            Alert('没有可被拆解的元素');
+            return;
         }
 
 
@@ -117,6 +125,6 @@ class CollectUI extends game.BaseUI {
     }
 
     public renewDraw(){
-
+        this.numText.text = '' + UM.getPropNum(22);
     }
 }

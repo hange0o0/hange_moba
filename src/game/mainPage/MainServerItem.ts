@@ -26,24 +26,7 @@ class MainServerItem extends game.BaseItem {
         });
     }
     private onStart(){
-        var SM = ServerGameManager.getInstance();
-        var serverData = UM.server_game;
-        if(serverData.pk)//已PK过，不能再打
-        {
-            SM.getCard(false,onGetCard);
-        }
-        else if(serverData.choose)//已有卡版数据
-        {
-            onGetCard();
-        }
-        else
-        {
-            SM.getCard(false,onGetCard);
-        }
-
-        function onGetCard(){
-            ServerGameUI.getInstance().show();
-        }
+        ServerGameManager.getInstance().openPKView();
     }
 
     public renew() {

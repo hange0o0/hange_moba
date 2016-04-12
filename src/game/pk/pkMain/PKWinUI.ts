@@ -21,11 +21,11 @@ class PKWinUI extends PKResultBase {
         this._desText = this.desText;
         this._list = this.list;
         super.childrenCreated();
-        //this.addBtnEvent(this, this.onClick);
+        this.addBtnEvent(this.okBtn, this.onClick);
     }
 
     private onClick(){
-
+        PKResultUI.getInstance().hide();
     }
 
     public renew(){

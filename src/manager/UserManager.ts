@@ -168,7 +168,7 @@ class UserManager {
         if(type == 'monster')
         {
             var count = 0;
-            for(var i=1;i<=level;level ++)
+            for(var i=1;i<=level;i ++)
             {
                 count += Math.ceil((i + 1)/10);
             }

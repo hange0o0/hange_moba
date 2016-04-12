@@ -128,7 +128,12 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onStart(){
-        PKDressChooseUI.getInstance().show({list:this.chooseList,ring:this.ringRadio0.group.selectedValue,ring1:this.ringList[0],ring2:this.ringList[1]})
+        if(this.chooseList.length == 0)
+        {
+            Alert('请先选择出战单位');
+            return;
+        }
+        PKDressChooseUI.getInstance().show({list:this.chooseList,ring:this.ringRadio0.group.selectedValue,ring1:this.ringList[0],ring2:this.ringList[1],index:this.dataIn.index})
 
     }
     private onView(){
@@ -311,10 +316,14 @@ class PKDressUI extends game.BaseUI {
             else
                 this.forceText.text = '+' + fight + '%' + '(过载)'
         }
-        else
+        else if(fight > 0)
         {
             this.forceText.textColor = 0x00FF00;
             this.forceText.text = '+' + fight + '%'
+        }
+        else
+        {
+            this.forceText.text = '';
         }
 
 

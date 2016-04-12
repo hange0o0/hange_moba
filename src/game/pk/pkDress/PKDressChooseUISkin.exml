@@ -2,12 +2,7 @@
 <e:Skin class="PKDressChooseUISkin" width="640" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" states="normal,ready" >
 	<e:Rect height="600" width="640" x="0" y="76" fillAlpha="0.7" height.ready="1200" y.ready="-300"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" visible.ready="false"/>
-	<e:Button id="backBtn2" skinName="Btn_b2Skin" label="返回" y="472" x="241"/>
-	<e:Group id="pkBtn2" y="388" visible.normal="false" horizontalCenter="0">
-		<e:Image source="btn_pk_png" y="0" scaleY="0.8" scaleX="0.8" x="0"/>
-		<e:Label text="开始PK" x="95" y="26" textColor="0xFADEA2"/>
-		<e:Image source="pk_icon_png" x="41" y="17" scaleX="0.7" scaleY="0.7"/>
-	</e:Group>
+
 	<e:Group id="btnGrop" x="15" y="372">
 
 		<e:Group y="124" x="0">
@@ -19,8 +14,15 @@
 			<e:RadioButton id="ringRadio1" label="单选框" x="36" y="29" skinName="MyRadioButtonSkin"/>
 		</e:Group>
 		<e:Button id="backBtn" label="返回" x="231" y="101" skinName="Btn_b2Skin"/>
-		<e:Button id="pkBtn" x="231" label="开始PK" y="30" skinName="Btn_r2Skin" visible.ready="false"/>
+		<e:Button id="pkBtn" x="231" label="开始PK" y="30" skinName="Btn_r2Skin"/>
 	</e:Group>
+	<e:Group id="pkBtn2" y="388" horizontalCenter="0">
+		<e:Image source="btn_pk_png" y="0" scaleY="0.8" scaleX="0.8" x="0"/>
+		<e:Label text="开始PK" x="95" y="26" textColor="0xFADEA2"/>
+		<e:Image source="pk_icon_png" x="41" y="17" scaleX="0.7" scaleY="0.7"/>
+	</e:Group>
+    <e:Button id="backBtn2" skinName="Btn_b2Skin" label="返回调整" y="472" x="241"/>
+
 	<e:Image id="boxMC" source="drop_png" x="258" y="395" visible="false"/>
 	<e:Image source="line_png" x="-5" bottom="0" width="650" visible.ready="false"/>
 	<ns1:PKDressChooseItem id="h1" x="25" y="98" skinName="PKDressChooseItemSkin"/>

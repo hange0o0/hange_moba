@@ -22,6 +22,26 @@ class MainGameManager{
         return UM.main_game.kill.indexOf(index) != -1;
     }
 
+    //打开PK对战内容的表现
+    public openPKView(fun?){
+        var mainData = UM.main_game;
+        if(!mainData.choose)//无卡牌数据
+        {
+            this.getCard(onGetCard);
+        }
+        else//已有卡版数据
+        {
+            onGetCard();
+        }
+
+
+        function onGetCard(){
+            MainGameUI.getInstance().show();
+            if(fun)
+                fun();
+        }
+    }
+
     public getCard(fun?){
         if(UM.main_game.choose)
         {
@@ -58,6 +78,7 @@ class MainGameManager{
             if(PKManager.getInstance().pkError(msg))
                 return;
 
+            UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
 

@@ -46,6 +46,7 @@ class ServerGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         this.addBtnEvent(this.chooseBtn1, this.onChoose2);
+        this.addBtnEvent(this.headMC, this.onOtherInfo);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
@@ -57,6 +58,12 @@ class ServerGameUI extends game.BaseUI {
         this.addBtnEvent(this.ringText3,this.onRing4);
 
         //this.enemyList.add
+    }
+
+    private onOtherInfo(){
+        var gameid = UM.server_game.enemy.userinfo.gameid;
+        if(gameid && gameid != UM.openid)
+            OtherInfoUI.getInstance().showID(gameid);
     }
 
     private onRing1(){
@@ -152,10 +159,10 @@ class ServerGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[0],enemy:this.enemyArray})
+        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[0],enemy:this.enemyArray,index:0})
     }
 
     private onChoose2(){
-        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[1],enemy:this.enemyArray})
+        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[1],enemy:this.enemyArray,index:1})
     }
 }

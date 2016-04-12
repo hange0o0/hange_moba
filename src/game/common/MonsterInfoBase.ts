@@ -52,8 +52,8 @@ class MonsterInfoBase extends game.BaseContainer {
             this.woodIcon.visible =  false;
         }
 
-        this.kindText.text = '星象：'+vo.effectWord(vo.effect_kind).join('、');
-        this.kindText2.text ='加成星象：'+ vo.effectWord(vo.kind).join('、');
+        this.kindText.text = '星象：'+vo.effectWord(vo.kind).join('、');
+        this.kindText2.text ='加成：'+ vo.effectWord(vo.effect_kind).join('、');
 
 
         for(var i=1;i<=4;i++)

@@ -52,7 +52,7 @@ class CollectItemInfo extends game.BaseWindow {
     }
 
     private onMore(){
-
+        MonsterList.getInstance().show([{id:this.data}]);
     }
 
     private onSplit(){

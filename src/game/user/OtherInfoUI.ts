@@ -46,6 +46,15 @@ class OtherInfoUI extends game.BaseUI {
 
     }
 
+    public showID(id){
+        var FM = FriendManager.getInstance();
+        var self = this;
+        FM.getOtherInfoByID(id,function(){
+            self.show(FM.otherInfo[id]);
+        })
+
+    }
+
     public show(data?){
         this.dataIn = data;
         super.show();
@@ -67,18 +76,22 @@ class OtherInfoUI extends game.BaseUI {
 
         this.serverLevelText.text = '竞技场等级：' + ServerGameManager.getInstance().getPKTableLevel(dataIn.server_game.exp);
         this.serverScroeText.text = '积分：' + dataIn.server_game.exp
-        this.serverRateText.text = '胜率：' + (dataIn.server_game.win/(dataIn.server_game.total || 0)*100).toFixed(2) + '%';
+        this.serverRateText.text = '胜率：' + (dataIn.server_game.win/(dataIn.server_game.total || 1)*100).toFixed(2) + '%';
 
         this.serverEqualText.text = '竞技场等级：' + ServerGameManager.getInstance().getPKTableLevel(dataIn.server_game_equal.exp);
         this.serverEqualScoreText.text = '积分：' + dataIn.server_game_equal.exp
-        this.serverEqualRateText.text = '胜率：' + (dataIn.server_game_equal.win/(dataIn.server_game.server_game_equal || 0)*100).toFixed(2) + '%';
+        this.serverEqualRateText.text = '胜率：' + (dataIn.server_game_equal.win/(dataIn.server_game_equal.total || 1)*100).toFixed(2) + '%';
         this.serverEqualWinText.text = '最高连胜：' + dataIn.server_game_equal.max;
 
 
         var specialData = {
             isBase:true
         };
-        var arr =  MyTool.getCommonUse(dataIn.pk_common.history);
+
+        var history = [];
+        if(dataIn.pk_common)
+            history  = dataIn.pk_common.history;
+        var arr =  MyTool.getCommonUse(history);
         for(var i=0;i<arr.length;i++){
             arr[i] = {
                 vo: MonsterVO.getObject(arr[i]),

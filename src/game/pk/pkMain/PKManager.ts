@@ -88,6 +88,23 @@ class PKManager {
         return false;
     }
 
+    //PK的统一入口
+    public startPK(type,choose,fun?){
+        switch(type)
+        {
+            case PKManager.PKType.MAIN:
+                MainGameManager.getInstance().pk(choose,fun);
+                break
+            case PKManager.PKType.SERVER:
+                ServerGameManager.getInstance().pk(choose,fun);
+                break
+            case PKManager.PKType.SERVER_EQUAL:
+                ServerGameEqualManager.getInstance().pk(choose,fun);
+                break
+        }
+
+    }
+
     //取PK回放
     public getReplayByType(type,fun?){
         var self = this;

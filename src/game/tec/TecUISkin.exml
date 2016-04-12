@@ -3,7 +3,11 @@
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<e:Group id="infoGroup" x="0" y="145" height="245">
 		<e:Image source="book_bg2_jpg" x="0" y="0" height="245" scale9Grid="40,44,240,266" locked="true"/>
-		<e:Image source="book_bg2_jpg" y="0" x="640" scaleX="-1" height="245" scale9Grid="40,44,240,266" locked="true"/>
+		<e:Image source="book_bg2_jpg" y="0" x="640" scaleX="-1" height="245" scale9Grid="40,44,240,266" locked="true"/>
+
+
+
+
 		<e:Group id="levelUpGroup" x="34" y="164">
 			<e:Button id="levelUpBtn" label="升级" x="454" y="0" skinName="Btn_r1Skin"/>
 			<e:Image source="icon_money_png" x="0" y="13"/>
@@ -20,7 +24,7 @@
 			</e:Group>
 		</e:Group>
 		<ns1:TecItem id="itemMC" x="42" y="12" skinName="TecItemSkin"/>
-		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="173" y="15" width="425" height="126" textColor="0xCC9900" locked="true" visible="false"/>
+		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="173" y="15" width="425" height="126" textColor="0xCC9900" locked="true"/>
 		<e:Label id="maxText" y="188" textColor="0xCC9900" text="已达等级上限" size="26" horizontalCenter="0"/>
 		<e:Group id="monsterGroup" x="185" y="22">
 			<e:Label x="52" y="3" text="123" id="atkText" textColor="0xCC9900"/>
@@ -30,7 +34,7 @@
 			<e:Image source="card_icon_1_png" y="0" x="0" scaleX="0.8" scaleY="0.8"/>
 		</e:Group>
 	</e:Group>
-	<ns1:TopUI x="0" y="0" skinName="TopUISkin"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="390" bottom="0">
 		<e:Group>
 			<e:List id="list" height="200" width="640" x="0" y="0" itemRendererSkinName="TecItemSkin">
@@ -49,7 +53,8 @@
 				<e:Object label="卡牌"/>
 			</e:Array>
 		</e:ArrayCollection>
-	</e:TabBar>
+	</e:TabBar>
+
 	<e:Group y="87" right="15">
 		<e:Image source="icon_money_png" y="0" x="0"/>
 		<e:Label id="myCoinText" y="6" textColor="0xCC9900" text="12,14355" x="52" size="26"/>

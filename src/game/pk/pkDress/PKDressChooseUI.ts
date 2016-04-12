@@ -96,7 +96,12 @@ class PKDressChooseUI extends game.BaseWindow {
     }
 
     private onPKStart(){
-        this.hide();
+        var self = this
+        PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,this.getChooseData(),function(){
+            PKDressUI.getInstance().hide();
+            self.hide();
+            PKMainUI.getInstance().show();
+        })
     }
     private onPK(){
         this.currentState = 'ready'
@@ -125,6 +130,7 @@ class PKDressChooseUI extends game.BaseWindow {
              oo.list.push(this.mcArray[i].data.vo.id);
         }
         oo.ring = this.ringRadio1.group.selectedValue;
+        oo.index = this.dataIn.index;
         return oo;
     }
 

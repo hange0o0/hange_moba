@@ -153,7 +153,7 @@ class MainPageUI extends game.BaseUI {
 
 
     private onHead(){
-
+         MyInfoUI.getInstance().show();
     }
     private onDiamondAdd(){
 

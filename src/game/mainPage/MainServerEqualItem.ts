@@ -28,24 +28,8 @@ class MainServerEqualItem extends game.BaseItem {
         });
     }
     private onStart(){
-        var SM = ServerGameEqualManager.getInstance();
-        var serverData = UM.server_game_equal;
-        if(serverData.pk)//已PK过，不能再打
-        {
-            SM.getCard(false,onGetCard);
-        }
-        else if(serverData.choose)//已有卡版数据
-        {
-            onGetCard();
-        }
-        else
-        {
-            SM.getCard(false,onGetCard);
-        }
+        ServerGameEqualManager.getInstance().openPKView();
 
-        function onGetCard(){
-            ServerGameEqualUI.getInstance().show();
-        }
     }
 
     public renew() {

@@ -64,8 +64,11 @@ class PKDressChooseListItem extends game.BaseItem {
         this.coinText.text = vo.cost;
         this.woodText.text = vo.wood;
 
-        this.useMC1.visible = false;
-        this.useMC2.visible = false;
-        this.useMC3.visible = false;
+        var useNum = PKDressUI.getInstance().getMonsterNum(vo.id);
+        for(var i=1;i<=3;i++)
+        {
+            var mc = this['useMC' + i];
+            mc.visible = useNum>=i;
+        }
     }
 }
