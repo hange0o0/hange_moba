@@ -1,2 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="RankItemSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui"></e:Skin>
+<e:Skin class="RankItemSkin" width="640" height="70" currentState="up" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="up,selected" >
+	<e:Rect height="100%" width="100%" x="0" y="0" fillColor="0xCC9900" fillAlpha="0.5" visible.up="false"/>
+	<e:Image source="border2_png" y="5" x="80" width="60" height="60" x.up="94"/>
+	<e:Image source="pk_bg_jpg" y="10" id="headMC" width="50" height="50" x="86" x.up="100"/>
+	<e:Label id="nameText" text="标签" x="157" y="20" x.up="171"/>
+	<e:Label id="scoreText" text="标签" y="20" horizontalCenter="226"/>
+	<e:BitmapLabel id="numText2" x="23" y="17" font="font_num1_fnt" text="1" x.up="37"/>
+	<e:Label id="numText" text="标签" x.selected="6" y="20" horizontalCenter.up="-270"/>
+	<e:Rect height="1" width="640" x="0" y="69"/>
+</e:Skin>

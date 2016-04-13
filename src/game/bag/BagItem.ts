@@ -6,6 +6,9 @@ class BagItem extends game.BaseItem {
 
     private headMC: eui.Image;
     private nameText: eui.Label;
+    private numGroup: eui.Group;
+    private numText: eui.Label;
+
 
 
     public hideNum = false;
@@ -17,9 +20,16 @@ class BagItem extends game.BaseItem {
     public dataChanged(){
         var vo = PropVO.getObject(this.data.id);
         this.headMC.source = vo.thumb;
+        this.nameText.text = vo.propname
         if(this.hideNum)
-           this.nameText.text = vo.propname
+        {
+            this.numGroup.visible = false 
+        }
         else
-           this.nameText.text = vo.propname  + '\nX' + this.data.num
+        {
+            this.numGroup.visible = true 
+            this.numText.text = this.data.num
+        }
+           
     }
 }

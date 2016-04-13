@@ -25,4 +25,5 @@
 	<e:Label id="winText" y="277" textColor="0xCC9900" text="胜利：333" x="293"/>
 	<e:Image y="319" x="255" source="card_battle_png"/>
 	<e:Label id="maxText" y="324" textColor="0xCC9900" text="连胜：333" x="293"/>
+	<e:Label id="propNumText" text="当前入场券：123456" y="237" size="18" horizontalCenter="0"/>
 </e:Skin>

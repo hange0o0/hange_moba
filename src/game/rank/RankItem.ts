@@ -4,7 +4,12 @@ class RankItem extends game.BaseItem {
         this.skinName = "DebugUISkin";
     }
 
-    private img:eui.Image;
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private scoreText: eui.Label;
+    private numText2: eui.BitmapLabel;
+    private numText: eui.Label;
+
 
     public index;
 

@@ -26,7 +26,7 @@ class BagUI extends game.BaseUI {
         this.topUI.setTitle('道具列表')
         this.topUI.addEventListener('hide',this.hide,this);
 
-
+        this.itemMC.hideNum = true;
         this.addBtnEvent(this.infoBtn, this.onInfo);
 
         this.list.itemRenderer = BagItem;
@@ -45,7 +45,7 @@ class BagUI extends game.BaseUI {
         var data = this.list.selectedItem;
 
         this.itemMC.data = data;
-        this.desText.text = PropVO.getObject(data.id).propdes;
+        this.desText.text = PropVO.getObject(data.id).propdes + '\n当前数量：' + data.num;
 
 
         this.infoBtn.visible = false;

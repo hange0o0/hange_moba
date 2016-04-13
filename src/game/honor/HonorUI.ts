@@ -9,6 +9,9 @@ class HonorUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private list: eui.List;
     private tab: eui.TabBar;
+    private upBtn: eui.Group;
+    private downBtn: eui.Group;
+
 
 
     public constructor() {

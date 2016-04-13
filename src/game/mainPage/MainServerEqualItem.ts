@@ -11,6 +11,8 @@ class MainServerEqualItem extends game.BaseItem {
     private scoreText: eui.Label;
     private winText: eui.Label;
     private maxText: eui.Label;
+    private propNumText: eui.Label;
+
 
 
 
@@ -38,7 +40,9 @@ class MainServerEqualItem extends game.BaseItem {
         this.totalText.text = '局数：' + serverData.total;
         this.scoreText.text = '积分：' + serverData.exp;
         this.winText.text = '胜利：' + serverData.win;
-        this.maxText.text = '连胜：：' + serverData.max;
+        this.maxText.text = '连胜：' + serverData.max;
+        this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);
+
 
         MyTool.removeMC(this.retryBtn);
         if(serverData.pk)//已PK过，不能再打

@@ -1,2 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="HonorItemSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui"></e:Skin>
+<e:Skin class="HonorItemSkin" width="640" height="110" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,finish" >
+	<e:Image source="border2_png" y="10" scale9Grid="11,11,68,68" width="90" height="90" x="22"/>
+	<e:Image source="pk_bg_jpg" y="15" x="27" width="80" height="80" id="headMC"/>
+	<e:Label id="useText" text="使用：123456" x="129" y="13" size="24" x.finish="129" y.finish="24"/>
+	<e:Label id="winText" y="13" text="胜利：12345" x="333" size="24" x.finish="129" y.finish="59"/>
+	<e:Label id="rateText" y="78" size="24" text="123/456" x="468" visible.finish="false"/>
+	<e:Button id="awardBtn" label="领取" x="510" y="9" skinName="Btn_r1Skin" visible.finish="false"/>
+	<e:Rect height="1" width="640" x="0" y="109" locked="true"/>
+	<e:Image source="bar_bg_png" x="131" y="84" scale9Grid="19,5,120,2" width="325" height="15" visible.finish="false"/>
+	<e:Image id="barMC" source="bar2_png" x="134" y="86" scale9Grid="18,3,114,2" height="10" width="320" visible.finish="false"/>
+	<e:Group y="59" horizontalCenter="240">
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="132" y="46" visible.finish="false">
+		<e:Label y="3" size="24" text="奖励：" x="-3"/>
+		<e:Image source="icon_pvp_ticket_png" x="60" y="1" scaleX="0.7" scaleY="0.7"/>
+		<e:Label id="awardText" text="123456" x="92" y="4" size="22"/>
+	</e:Group>
+	<e:Label id="finishText" text="已完成" x="317" y="43" visible.normal="false" x.finish="518" y.finish="41"/>
+</e:Skin>
