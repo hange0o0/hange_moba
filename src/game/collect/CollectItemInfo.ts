@@ -39,20 +39,20 @@ class CollectItemInfo extends game.BaseWindow {
     }
 
     private onChange(){
-        var now = CollectManager.getInstance().getCollectNum(this.data);
+        var now = CollectManager.getInstance().getCollectNum(this.data.id);
         this.numText.text = now + '/' + this.slider.maximum
         this.resultText.text = '分解后可获得元素：' + this.slider.value*CollectManager.getInstance().splitNum
     }
 
     private onJoin(){
         var self = this;
-        CollectManager.getInstance().levelUp(this.data,function(){
+        CollectManager.getInstance().levelUp(this.data.id,function(){
             self.onShow();
         })
     }
 
     private onMore(){
-        MonsterList.getInstance().show([{id:this.data}]);
+        MonsterList.getInstance().show([{id:this.data.id}]);
     }
 
     private onSplit(){
@@ -60,7 +60,7 @@ class CollectItemInfo extends game.BaseWindow {
             return;
         var self = this;
         var oo = {}
-        oo[this.data] = this.slider.value;
+        oo[this.data.id] = this.slider.value;
         CollectManager.getInstance().split(oo,function(){
             self.onShow();
         })
@@ -68,8 +68,8 @@ class CollectItemInfo extends game.BaseWindow {
 
     private onLock(){
         var self = this;
-        var isLock = CollectManager.getInstance().isLock(this.data);
-        CollectManager.getInstance().lock(this.data,!isLock,function(){
+        var isLock = CollectManager.getInstance().isLock(this.data.id);
+        CollectManager.getInstance().lock(this.data.id,!isLock,function(){
             self.onShow();
         });
     }
@@ -82,7 +82,7 @@ class CollectItemInfo extends game.BaseWindow {
     public onShow(){
         var CM = CollectManager.getInstance();
         this.itemMC.data = this.data;
-        var vo = MonsterVO.getObject(this.data);
+        var vo = this.data;
         var level = UM.getMonsterCollect(vo.id);
 
         var need = CM.getLevelUpNeed(level + 1);

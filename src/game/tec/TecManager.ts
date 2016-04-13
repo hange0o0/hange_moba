@@ -56,20 +56,20 @@ class TecManager{
     }
 
     public prop1ID(type){
-        if(type == 'main')
+        if(type == 1)
             return  1;
-        else if(type == 'ring')
+        else if(type == 2)
             return  2;
-        else if(type == 'monster')
+        else if(type == 3)
             return  3;
     }
 
     public prop2ID(type){
-        if(type == 'main')
+        if(type == 1)
             return  11;
-        else if(type == 'ring')
+        else if(type == 2)
             return  12;
-        else if(type == 'monster')
+        else if(type == 3)
             return  13;
     }
 
@@ -122,7 +122,14 @@ class TecManager{
     public levelUp(type,id,fun?){
         var self = this;
         var oo:any = {};
-        oo.type = type;
+
+        if(type == 1)
+            oo.type = 'main';
+        else if(type == 2)
+            oo.type = 'ring';
+        else if(type == 3)
+            oo.type = 'monster';
+
         oo.id = id;
         Net.addUser(oo);
         Net.send(GameEvent.tec.levelup_tec,oo,function(data){

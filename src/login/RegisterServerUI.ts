@@ -54,11 +54,21 @@ class RegisterServerUI extends game.BaseWindow {
         if(!this.chooseHead)
         {
             this.headID = Math.floor(Math.random()*50);
-            this.headMC.source =MyTool.getHeadUrl(this.headID);
+            this.renewHead();
         }
         this.nameText.text = MyTool.randomName();
     }
-    private onHeadClick(){
 
+    private renewHead(){
+        this.headMC.source =MyTool.getHeadUrl(this.headID);
+    }
+
+    private onHeadClick(){
+        var self = this;
+         ChangeHeadUI.getInstance().show(this.headID,function(id){
+             self.headID = id;
+             self.chooseHead = true;
+             self.renewHead();
+         });
     }
 }

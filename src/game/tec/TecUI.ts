@@ -82,6 +82,7 @@ class TecUI extends game.BaseUI {
         var self = this;
         TecManager.getInstance().levelUp(data.tecType,data.id,function(){
             self.onSelect();
+            (<any>self.list.dataProvider).itemUpdated(data);
         });
     }
 

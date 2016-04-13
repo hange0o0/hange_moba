@@ -1,7 +1,7 @@
 class HonorItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "HonorItemSkin";
     }
 
     private img:eui.Image;

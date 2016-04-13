@@ -31,7 +31,7 @@ class CollectManager{
         {
             var vo = mdata[s];
             var kindVO = MonsterKindVO.getObject(vo.type);
-            if(mdata[s].level<= UM.level)
+            if(kindVO.level<= UM.level)
                 arr.push(vo);
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
@@ -82,10 +82,10 @@ class CollectManager{
             var arr = []
             for(var s in msg.award)
             {
-                  var num = msg.award[s];
+                var num = msg.award[s];
                 while(num--)
                 {
-                    arr.push(s);
+                    arr.push(MonsterVO.getObject(s));
                 }
             }
 
@@ -164,7 +164,7 @@ class CollectManager{
             }
             else if(!isLock && index != -1)
             {
-                UM.collect.lock.split(id,1);
+                UM.collect.lock.splice(index,1);
             }
 
             EM.dispatchEventWith(GameEvent.client.collect_change)

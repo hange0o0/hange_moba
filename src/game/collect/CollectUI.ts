@@ -44,7 +44,7 @@ class CollectUI extends game.BaseUI {
         var count = 0;
         for(var i=0;i<this.listArr.length;i++)
         {
-            var id = this.listArr[i];
+            var id = this.listArr[i].id;
             var num = CM.getCollectNum(id)
             if(num && !CM.isLock(id))
             {
@@ -61,7 +61,7 @@ class CollectUI extends game.BaseUI {
 
 
         var self = this;
-        Confirm('拆解所有的非锁定元素，可获得元素：'+count*CM.splitNum + '\n是否继续？',function(t){
+        Confirm('拆解所有的非锁定元素，\n可获得元素：'+count*CM.splitNum + '\n是否继续？',function(t){
             if(t == 1)
             {
                 CM.split(obj,function(num){

@@ -27,7 +27,7 @@ class CollectItem extends game.BaseItem {
 
     public dataChanged(){
         var CM = CollectManager.getInstance();
-        var vo = MonsterVO.getObject(this.data);
+        var vo = this.data;
         var level = UM.getMonsterCollect(vo.id);
         this.headBG.source = 'head_border' + (level + 1) + '_png';
 

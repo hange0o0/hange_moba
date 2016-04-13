@@ -49,6 +49,11 @@ class MainGameManager{
                 fun();
             return
         }
+        if(UM.getEnergy()<1)
+        {
+            Alert('体力不足1点，无法挑战');
+            return;
+        }
         var self = this;
         var oo:any = {};
         Net.addUser(oo);
@@ -127,6 +132,7 @@ class MainGameManager{
                 Alert('今天已领过奖了');
                 return;
             }
+            AwardUI.getInstance().show(msg.award);
             if(fun)
                 fun();
         });

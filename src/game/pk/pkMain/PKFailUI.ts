@@ -33,18 +33,21 @@ class PKFailUI extends PKResultBase {
     private onRestart(){
         var self = this;
         var PKM = PKManager.getInstance();
-        if(PKM.pkType == PKManager.PKType.SERVER || PKM.pkType == PKManager.PKType.SERVER_EQUAL)
+        if(PKM.pkType == PKManager.PKType.SERVER)
         {
             Confirm('再次挑战需要耗费2点体力，是否继续？',function(type){
                 if(type == 1)
                 {
-                    if(PKM.pkType == PKManager.PKType.SERVER){
-                        ServerGameManager.getInstance().openPKView(onOpenPKView);
-                    }
-                    else
-                    {
-                        ServerGameEqualManager.getInstance().openPKView(onOpenPKView);
-                    }
+                    ServerGameManager.getInstance().openPKView(onOpenPKView);
+                }
+            });
+        }
+        else if(PKM.pkType == PKManager.PKType.SERVER_EQUAL)
+        {
+            Confirm('再次挑战需要耗费2个入场券，是否继续？',function(type){
+                if(type == 1)
+                {
+                    ServerGameEqualManager.getInstance().openPKView(onOpenPKView);
                 }
             });
         }
