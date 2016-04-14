@@ -46,6 +46,9 @@ class GameEvent {
     public static tec = {
         levelup_tec:'levelup_tec'
     }
+    public static pay = {
+        buy_energy:'buy_energy'
+    }
 
     public static user = {
         get_other_info:'get_other_info'

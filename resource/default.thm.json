@@ -43,6 +43,7 @@
     "src/game/collect/CollectUISkin.exml",
     "src/game/common/AwardItemSkin.exml",
     "src/game/common/AwardUISkin.exml",
+    "src/game/common/BuyEnergyUISkin.exml",
     "src/game/common/MonsterInfoBaseItemSkin.exml",
     "src/game/common/MonsterInfoBaseSkin.exml",
     "src/game/honor/HonorItemSkin.exml",

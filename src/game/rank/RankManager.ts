@@ -11,6 +11,10 @@ class RankManager{
 
     }
 
+    public getRankList(rankType){
+         return this.rankData[rankType].data;
+    }
+
     //取排行榜数据
     public getRank(rankType,fun?){
         if(this.rankData[rankType] && (DateUtil.isSameDay(this.rankData[rankType].time) || TM.now() - this.rankData[rankType].getTime < 60*10))
@@ -41,7 +45,15 @@ class RankManager{
                 self.rankData[rankType].data = msg.rank;
                 self.rankData[rankType].time = TM.now();
             }
-            self.rankData[rankType].data = JSON.parse(self.rankData[rankType].data || '[]');
+            var arr = self.rankData[rankType].data = JSON.parse(self.rankData[rankType].data || '[]');
+            for(var i=0;i<arr.length;i++)
+            {
+                arr[i].index = i;
+                if(arr[i].gameid == UM.openid)
+                {
+                    arr[0].self = i;
+                }
+            }
 
             if(fun)
                 fun();

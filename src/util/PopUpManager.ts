@@ -48,13 +48,17 @@ class PopUpManager {
             var index = display.parent.getChildIndex(display);
             //GameManager.container.removeChildAt(index - 1);
             display.parent.removeChild(display);
-            if(this.shape.parent)
+            this.testShape();
+        }
+    }
+
+    public static testShape(){
+        if(this.shape.parent)
+        {
+            var index = this.shape.parent.getChildIndex(this.shape);
+            if(index == this.shape.parent.numChildren-1 && index >0)//在最上层
             {
-                index = this.shape.parent.getChildIndex(this.shape);
-                if(index == this.shape.parent.numChildren-1 && index >0)//在最上层
-                {
-                    this.shape.parent.swapChildrenAt(index,index-1)
-                }
+                this.shape.parent.swapChildrenAt(index,index-1)
             }
         }
     }

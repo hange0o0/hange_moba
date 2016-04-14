@@ -29,12 +29,16 @@ class RingVO {
         this.step = data.step;
     }
 
-    public c(level){
+    public getDes(level){
         return  this.des.replace(/\$\$/g,this.getRingAdd(level));
     }
 
     public getRingAdd(level){
         return this.begin + level*this.step;
+    }
+
+    public get thumb(){
+        return 'monster_thumb_' + this.id;
     }
 
 
