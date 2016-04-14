@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="ResourceUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group y="0" x="0">
+		<e:Rect width="640" y="0" height="50" x="0"/>
+		<e:Image source="border1_png" y="3" scale9Grid="21,15,70,9" width="120" height="40" x="358"/>
+		<e:Image source="border1_png" y="3" scale9Grid="21,15,70,9" width="120" height="40" x="511"/>
+		<e:Image source="border1_png" y="3" scale9Grid="21,15,70,9" width="111" height="40" x="213"/>
+		<e:Image source="icon_pve_png" y="3" x="193"/>
+		<e:Image source="icon_token_png" y="3" x="489"/>
+		<e:Image source="icon_pvp_ticket_png" y="3" x="335"/>
+		<e:Label id="energyText" y="11" textColor="0xCCCCCC" text="123456" size="24" x="230"/>
+		<e:Label id="diamondText" y="11" textColor="0xCCCCCC" text="1234567" size="24" x="528"/>
+		<e:Label id="feeText" y="11" textColor="0xCCCCCC" text="1234567" size="24" x="375"/>
+		<e:Image source="border1_png" y="3" scale9Grid="21,15,70,9" width="150" height="40" x="31"/>
+		<e:Image source="icon_money_png" y="4" x="10"/>
+		<e:Label id="coinText" y="11" textColor="0xCCCCCC" text="123456789" x="48" size="24"/>
+	</e:Group>
+</e:Skin>

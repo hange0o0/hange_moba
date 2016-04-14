@@ -44,7 +44,7 @@ class RankItem extends game.BaseItem {
         this.scoreText.text = this.data.value
         if(this.data.index < 10)
         {
-            this.numText2.text = this.data.index;
+            this.numText2.text = this.data.index + '';
             this.numText.text = '';
         }
         else

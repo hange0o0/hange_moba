@@ -14,8 +14,11 @@ class HonorUI extends game.BaseUI {
     private downBtn: eui.Group;
     private downText: eui.Label;
     private infoText: eui.Label;
-
+    private sortBtn: eui.Image;
+    private sortText: eui.Label;
+    private sortGroup: eui.Group;
     private sortList: eui.List;
+
 
 
 

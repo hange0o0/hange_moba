@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="HonorSortItemSkin" width="200" height="40" xmlns:e="http://ns.egret.com/eui" states="up,down" >
+	<e:Rect height="100%" width="100%" x="0" y="0" fillColor="0xFFFFFF" fillAlpha="0.3" visible.up="false" fillAlpha.down="0.2"/>
+	<e:Label text="{data.label}" horizontalCenter="0" size="26" verticalCenter="0" textColor.up="0xCC9900" textColor.down="0xCC9900"/>
+	<e:Rect height="1" width="200" x="0" y="39" fillColor="0x393838"/>
+</e:Skin>

@@ -92,7 +92,7 @@ class HonorManager{
         {
             data.award = false;
             data.awardV = -1;
-            return
+            return data;
         }
         var num = this.awardBase[awardLevel + 1].num
         if(oo.w >= num)
@@ -105,6 +105,7 @@ class HonorManager{
             data.award = false;
             data.awardV = num - oo.win;
         }
+        return data;
     }
 
 
