@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MainDayItemSkin" width="480" height="440" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="card_bg_png" y="67" horizontalCenter="0"/>
+	<e:Image source="main_item_bg_png" y="263" horizontalCenter="0" width="480"/>
+
+
+	<e:Group y="376" horizontalCenter="0" id="btnGroup">
+
+		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
+		<e:Button id="awardBtn" skinName="Btn_r2Skin" y="20" label="领奖" x="20"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+
+	<e:Group y="10" horizontalCenter="0">
+		<e:Image source="main_mc_png" y="0" x="0"/>
+		<e:Label text="今日挑战" x="128" y="6" size="40" textColor="0xCCB48E"/>
+		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+
+	<e:Label id="scoreText" y="324" textColor="0xCC9900" text="当前等级：12" horizontalCenter="0"/>
+
+</e:Skin>

@@ -101,6 +101,9 @@ class PKManager {
             case PKManager.PKType.SERVER_EQUAL:
                 ServerGameEqualManager.getInstance().pk(choose,fun);
                 break
+            case PKManager.PKType.DAY:
+                DayGameManager.getInstance().pk(choose,fun);
+                break
         }
 
     }

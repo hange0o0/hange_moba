@@ -81,7 +81,11 @@ class MyInfoUI extends game.BaseUI {
               this.renew();
         }
 
-        this.reEnergyText.text = '下次体力回复：' + DateUtil.getStringBySecond(cd);
+        if(UM.energy.vip)
+            this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+(30)+'点体力';
+        else
+            this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+(20)+'点体力';
+
         this.thisLoginText.text = '本次游戏时间：' + DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000));
     }
 

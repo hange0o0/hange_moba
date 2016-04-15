@@ -83,14 +83,14 @@ class LoginManager{
             if(msg.fail == 1)
             {
                 Alert('用户或密码错误');
-                if(Config.isDebug)
-                {
-                    self.register(name,password,function(){
-                        egret.setTimeout(function(){
-                            self.login(name,password,fun);
-                        },self,1000);
-                    });
-                }
+                //if(Config.isDebug)
+                //{
+                //    self.register(name,password,function(){
+                //        egret.setTimeout(function(){
+                //            self.login(name,password,fun);
+                //        },self,1000);
+                //    });
+                //}
                 return;
             }
 

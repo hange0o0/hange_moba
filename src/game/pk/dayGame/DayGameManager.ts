@@ -27,11 +27,12 @@ class DayGameManager{
         //})
     }
 
+
     //choose :{list[],ring,index}
-    public pk(level,choose,fun?){
+    public pk(choose,fun?){
         var self = this;
         var oo:any = {};
-        oo.level = level;
+        oo.level = UM.day_game.level + 1;
         oo.choose = choose;
         Net.addUser(oo);
         Net.send(GameEvent.dayGame.pk_day_game,oo,function(data){
@@ -92,10 +93,10 @@ class DayGameManager{
             }
 
             self.data = JSON.parse(msg.content);
-            for(var i=0;i<self.data.levels.length;i++)
-            {
-                self.data.levels[i].game_data = JSON.parse(self.data.levels[i].game_data);
-            }
+            //for(var i=0;i<self.data.levels.length;i++)
+            //{
+            //    self.data.levels[i].game_data = JSON.parse(self.data.levels[i].game_data);
+            //}
             self.dataTime = TM.now();
 
             if(fun)

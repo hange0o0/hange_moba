@@ -82,7 +82,7 @@ class MyTool {
         mc.addEventListener(egret.TouchEvent.TOUCH_TAP,onClick,thisObj,false,100);
         var timer = -1;
         function onClick(e){
-            if(egret.getTimer() - timer < 200)
+            if(egret.getTimer() - timer < 500)
             {
                 e.stopPropagation();
                 fun.apply(thisObj);

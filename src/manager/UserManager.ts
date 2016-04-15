@@ -67,7 +67,9 @@ class UserManager {
         this.pk_common = data.pk_common; //  '{history:{}}'
     }
 
-    public getDiamond(){
+    public getDiamond(rmb=false){
+        if(rmb)
+            return this.diamond.rmb;
         return this.diamond.free + this.diamond.rmb;
     }
 
@@ -78,7 +80,8 @@ class UserManager {
     public getEnergy(){
         if(!DateUtil.isSameDay(this.energy.t))
         {
-            this.energy.v = Math.min(50,this.energy.v + 30);
+            var v = this.energy.vip?30:20;
+            this.energy.v = Math.min(50,this.energy.v + v);
             this.energy.t = TM.now();
         }
         return this.energy.v + this.energy.rmb;

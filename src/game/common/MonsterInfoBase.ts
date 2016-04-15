@@ -29,6 +29,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
     public childrenCreated() {
         super.childrenCreated();
+        this.list.itemRenderer = MonsterInfoBaseItem;
     }
 
     public renew(monsterID,specialData?){
@@ -84,7 +85,7 @@ class MonsterInfoBase extends game.BaseContainer {
         else
         {
             if(specialData.isEqual)
-                fightData = {atk:300,hp:300,speed:300};
+                fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:Config.equalValue};
             else if(specialData.isBase)
                 fightData = {atk:0,hp:0,speed:0};
             else  //我自己

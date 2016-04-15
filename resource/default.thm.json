@@ -50,6 +50,7 @@
     "src/game/honor/HonorItemSkin.exml",
     "src/game/honor/HonorSortItemSkin.exml",
     "src/game/honor/HonorUISkin.exml",
+    "src/game/mainPage/MainDayItemSkin.exml",
     "src/game/mainPage/MainMainItemSkin.exml",
     "src/game/mainPage/MainPageItemSkin.exml",
     "src/game/mainPage/MainServerItemSkin.exml",

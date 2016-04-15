@@ -71,6 +71,7 @@
 						<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
 						<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
 						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
+						<ns1:MainDayItem id="dayGame" skinName="MainDayItemSkin"/>
 						<e:layout>
 							<e:HorizontalLayout gap="20"/>
 						</e:layout>
@@ -80,7 +81,10 @@
 			<e:Group x="0" width="100%" height="30" bottom="0">
 				<ns1:MainPageItem id="p0" x="0" y="1" skinName="MainPageItemSkin"/>
 				<ns1:MainPageItem x="10" skinName="MainPageItemSkin" y="11" id="p1"/>
-				<ns1:MainPageItem id="p2" skinName="MainPageItemSkin" y="21" x="20"/>
+				<ns1:MainPageItem id="p2" skinName="MainPageItemSkin" y="21" x="20"/>
+				<ns1:MainPageItem id="p3" skinName="MainPageItemSkin" y="21" x="20"/>
+
+
 				<e:layout>
 					<e:HorizontalLayout gap="15" horizontalAlign="center"/>
 				</e:layout>

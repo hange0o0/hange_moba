@@ -28,27 +28,27 @@ class HonorItem extends game.BaseItem {
     }
 
     public dataChanged(){
-        var oo;
+        //var oo;
         var HM = HonorManager.getInstance();
         var id = this.data.id;
         if(this.data.honorType == 1)//怪
         {
-            oo = UM.honor.monster[id];
+            //oo = UM.honor.monster[id];
             var mvo = MonsterVO.getObject(id);
             this.nameText.text = mvo.name;
             this.headMC.source = mvo.thumb;
         }
         else
         {
-            oo = UM.honor.ring[id];
+            //oo = UM.honor.ring[id];
             var rvo = RingVO.getObject(id);
             this.nameText.text = rvo.name;
             this.headMC.source = rvo.thumb;
         }
-        oo = oo ||  {t:0,w:0}
-        var awardLevel = oo.a || 0; //已领奖的等级
-        this.useText.text = '使用：' + oo.t;
-        this.winText.text = '胜利：' + oo.w;
+        //oo = oo ||  {t:0,w:0}
+        var awardLevel = this.data.level;
+        this.useText.text = '使用：' + this.data.t;
+        this.winText.text = '胜利：' + this.data.w;
 
         if(awardLevel == 5)
         {
@@ -61,9 +61,10 @@ class HonorItem extends game.BaseItem {
         }
         var award = HM.awardBase[awardLevel + 1]
 
-        this.rateText.text = award.num + '/' + oo.w
-        this.barMC.width = 325*Math.min(1,award.num/oo.w)
+        this.rateText.text = this.data.w + '/' + award.num;
+        this.barMC.width = 325*Math.min(1,this.data.w/award.num)
         this.awardText.text = 'X' + award.diamond;
+        this.awardBtn.visible = this.data.award
 
     }
 }

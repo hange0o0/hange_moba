@@ -50,6 +50,24 @@ class HonorUI extends game.BaseUI {
 
         this.addBtnEvent(this.upBtn,this.onUp);
         this.addBtnEvent(this.downBtn,this.onDown);
+        this.addBtnEvent(this.sortBtn,this.onSort);
+        this.addBtnEvent(this.sortText,this.onSort);
+
+        this.sortList.selectedIndex = 0;
+        this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
+    }
+
+    private onSelect(){
+        this.sortListFun(this.listArray);
+    }
+
+    private onSort(){
+        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideSort,this);
+        this.sortGroup.visible = true;
+    }
+
+    private onHideSort(){
+        this.sortGroup.visible = false;
     }
 
     private onUp(){
@@ -91,6 +109,7 @@ class HonorUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.onHideSort();
         this.renew();
     }
 
@@ -102,7 +121,7 @@ class HonorUI extends game.BaseUI {
         else
             arr = this.listArray = HM.getList2();
 
-        //this.sortListFun(arr,true);
+        this.sortListFun(arr,true);
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.scroller.viewport.scrollV = 0;
         this.renewBtn();
@@ -117,6 +136,7 @@ class HonorUI extends game.BaseUI {
 
     private sortListFun(arr,noDefault = false)
     {
+        this.sortText.text = this.sortList.selectedItem.label;
          switch(this.sortList.selectedIndex)
          {
              case 0:     //默认
@@ -143,7 +163,9 @@ class HonorUI extends game.BaseUI {
             return -1;
         if(a.t < b.t)
             return 1;
-        return this.sortByDefault(a,b);
+        if(a.id < b.id)
+            return -1;
+        return 1;
 
     }
     private sortByWin(a,b){
@@ -151,21 +173,27 @@ class HonorUI extends game.BaseUI {
             return -1;
         if(a.w < b.w)
             return 1;
-        return this.sortByDefault(a,b);
+        if(a.id < b.id)
+            return -1;
+        return 1;
     }
     private sortByRate(a,b){
         if(a.r > b.r)
             return -1;
         if(a.r < b.r)
             return 1;
-        return this.sortByDefault(a,b);
+        if(a.id < b.id)
+            return -1;
+        return 1;
     }
     private sortByState(a,b){
         if(a.awardV > b.awardV)
             return -1;
         if(a.awardV < b.awardV)
             return 1;
-        return this.sortByDefault(a,b);
+        if(a.id < b.id)
+            return -1;
+        return 1;
     }
 
     public renewBtn(){

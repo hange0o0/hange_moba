@@ -37,9 +37,11 @@ class MainPageUI extends game.BaseUI {
     private mainGame: MainMainItem;
     private serverGame: MainServerItem;
     private serverGameEqual: MainServerEqualItem;
+    private dayGame: MainDayItem;
     private p0: MainPageItem;
     private p1: MainPageItem;
     private p2: MainPageItem;
+    private p3: MainPageItem;
 
 
 
@@ -81,9 +83,11 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
 
-        for(var i=0;i<=2;i++)
+        for(var i=0;i<=3;i++)
         {
-              this.pageArray.push(this['p'+i]);
+            var mc = this['p'+i];
+            this.pageArray.push(mc);
+            this.addBtnEvent(mc,this.onPageClick)
         }
 
 
@@ -91,6 +95,23 @@ class MainPageUI extends game.BaseUI {
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
+    }
+
+    private onPageClick(e){
+        for(var i=0;i<=this.pageArray.length;i++)
+        {
+            var mc = this.pageArray[i];
+            if(mc == e.currentTarget)
+            {
+                if(i != this.currentPage)
+                {
+                    this.currentPage = i;
+                    this.scrollToCurrentPage();
+                    this.renewPage();
+                }
+                break;
+            }
+        }
     }
 
     private onBegin(e:egret.TouchEvent){
@@ -168,11 +189,13 @@ class MainPageUI extends game.BaseUI {
         if(this.currentPage > 0)
             this.currentPage --;
         this.scrollToCurrentPage();
+        this.renewPage();
     }
     private onRight(){
         if(this.currentPage < this.pageArray.length - 1)
             this.currentPage ++;
         this.scrollToCurrentPage();
+        this.renewPage();
     }
 
 
@@ -326,6 +349,10 @@ class MainPageUI extends game.BaseUI {
             case 2:
                 this.serverGameEqual.renew();
                 this.videoBtn.visible = UM.server_game_equal.pkdata;
+                break;
+            case 3:
+                this.dayGame.renew();
+                this.videoBtn.visible = UM.day_game.pkdata;
                 break;
         }
     }

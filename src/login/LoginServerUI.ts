@@ -61,6 +61,12 @@ class LoginServerUI extends game.BaseUI {
                 this.serverid = oo.other[0].serverid;
             }
         }
+        this.renewServer(this.serverid);
+    }
+
+    public renewServer(id){
+        this.serverid = id;
+        var LM = LoginManager.getInstance();
         this.serverName.text = LM.serverList[this.serverid].name;
         if(LM.myServer[this.serverid])
         {
@@ -72,8 +78,6 @@ class LoginServerUI extends game.BaseUI {
             this.nameText.text = '';
             this.loginBtn.label = '注册用户';
         }
-
-
     }
 
     private onClick(){
