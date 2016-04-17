@@ -11,7 +11,11 @@ class PKDressChooseItem extends game.BaseItem {
     public index;
 
     public childrenCreated(){
-
+        MyTool.addDoubleTouch(this,this.onDoubleClick,this)
+    }
+    
+    private onDoubleClick(){
+        
     }
 
     //stat 0,无发光，1选中，2加成

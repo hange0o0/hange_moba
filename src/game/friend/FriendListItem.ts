@@ -4,7 +4,12 @@ class FriendListItem extends game.BaseItem {
         this.skinName = "DebugUISkin";
     }
 
-    private img:eui.Image;
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private levelText: eui.Label;
+    private forceText: eui.Label;
+
+
 
     public index;
 

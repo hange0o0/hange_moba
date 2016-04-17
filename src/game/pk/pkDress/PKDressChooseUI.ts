@@ -77,18 +77,19 @@ class PKDressChooseUI extends game.BaseWindow {
             mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onClick,this)
             //MyTool.removeMC(mc);
 
+            var dec = 15;
 
             this.posArray.push({x:mc.x,y:mc.y});
             var line = Math.ceil(i/4);
             if(!this.posData[line])
             {
                 this.posData[line] = {};
-                this.posData[line].startY = mc.y;
-                this.posData[line].endY = mc.y + mc.height;
+                this.posData[line].startY = mc.y + dec;
+                this.posData[line].endY = mc.y + mc.height - dec;
             }
             var index = i%4 || 4;
-            this.posData[line]['x'+index]  = mc.x
-            this.posData[line]['x_'+index]  = mc.x + mc.width
+            this.posData[line]['x' + index] = mc.x + dec
+            this.posData[line]['x_' + index] = mc.x + mc.width - dec
         }
 
         MyTool.addLongTouch(this.ringRadio1,this.showRingInfo1)
@@ -152,7 +153,7 @@ class PKDressChooseUI extends game.BaseWindow {
             {
                 mc.data = {vo:MonsterVO.getObject(list[i-1]),type:2,state:0,index:i};
                 mc.visible = true;
-                mc['stopMove'] = false;
+//                mc['stopMove'] = false;
                 this.mcArray.push(mc);
             }
             else
@@ -191,6 +192,8 @@ class PKDressChooseUI extends game.BaseWindow {
 
     private onStart(e){
         this.dragMC = e.currentTarget;
+        this.dragMC.alpha = 0.5;
+        this.dragMC.parent.addChild(this.dragMC);
         var index = this.mcArray.indexOf(this.dragMC);
         this.mcArray.splice(index,1);
         this.dragMCOrginPos = index;
@@ -198,7 +201,7 @@ class PKDressChooseUI extends game.BaseWindow {
 
         this.btnGrop.visible = false;
         this.boxMC.visible = true;
-        this.boxMC.source = 'drop_png';
+        this.boxMC.source = 'drop2_png';
 
         this.renewPos();
     }
@@ -208,13 +211,13 @@ class PKDressChooseUI extends game.BaseWindow {
         {
             if(this.dragMCStat == 1)//还在垃圾桶上
                 return;
-            this.boxMC.source = 'drop2_png';
+            this.boxMC.source = 'drop_png';
             this.dragMCStat = 1;
             return;
         }
         else if(this.dragMCStat == 1)//移出垃圾桶
         {
-            this.boxMC.source = 'drop_png';
+            this.boxMC.source = 'drop2_png';
             this.dragMCStat = 0;
         }
 
@@ -244,7 +247,7 @@ class PKDressChooseUI extends game.BaseWindow {
                         if(index2 == -1)
                         {
                             this.mcArray.splice(index,0,this.dragMC);
-                            this.dragMC['stopMove'] = true;
+//                            this.dragMC['stopMove'] = true;
                             this.renewPos();
                         }
 
@@ -255,7 +258,7 @@ class PKDressChooseUI extends game.BaseWindow {
             }
         }
         //没行为
-        this.dragMC['stopMove'] = false;
+//        this.dragMC['stopMove'] = false;
         if(index2 != -1)
         {
             this.mcArray.splice(index2,1);
@@ -269,11 +272,14 @@ class PKDressChooseUI extends game.BaseWindow {
             //this.mcArray.push(this.dragMC);
             egret.Tween.removeTweens(this.dragMC);
             this.listLength --;
+            this.dragMC.visible = false
         }
         else if(this.mcArray.indexOf(this.dragMC) == -1)//返回原位置
         {
             this.mcArray.splice(this.dragMCOrginPos,0,this.dragMC);
         }
+        
+        this.dragMC.alpha = 1;
         this.dragMC = null;
         this.renewPos();
 
@@ -295,6 +301,7 @@ class PKDressChooseUI extends game.BaseWindow {
 
             if(mc == this.dragMC)//自己本身
             {
+                continue;
                 //this.mcArray[i].data.state = 1;
                 //this.mcArray[i].dataChanged();
             }
@@ -322,7 +329,19 @@ class PKDressChooseUI extends game.BaseWindow {
             else
             {
                 var tw:egret.Tween = egret.Tween.get(mc);
-                tw.to({x:posMC.x,y:posMC.y}, 100);
+                if(mc.y == posMC.y)
+                    tw.to({x:posMC.x,y:posMC.y}, 200);
+                else if(mc.y < posMC.y) //向下移
+                {
+                    mc.y = posMC.y;
+                    mc.x = posMC.x - 160;
+                    tw.to({ x: posMC.x},200);
+                }
+                else{
+                    mc.y = posMC.y;
+                    mc.x = posMC.x + 160;
+                    tw.to({ x: posMC.x },200); 
+                }
             }
         }
     }

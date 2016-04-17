@@ -827,5 +827,15 @@
 		"name":"lock_icon_png",
 		"type":"image",
 		"url":"game_assets/icons/lock_icon.png"
+	},
+	{
+		"name":"head_png",
+		"type":"image",
+		"url":"game_assets/cdn/head.png"
+	},
+	{
+		"name":"full_bg_jpg",
+		"type":"image",
+		"url":"game_assets/cdn/full_bg.jpg"
 	}]
 }

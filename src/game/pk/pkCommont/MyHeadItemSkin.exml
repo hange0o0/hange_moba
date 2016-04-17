@@ -5,6 +5,6 @@
 	<e:Image id="headBG" source="head_border4_png" x="5" y="0"/>
 	<e:Group id="levelGroup" x="0" y="68">
 		<e:Image source="icon_empty_png" x="0" y="0"/>
-		<e:Label id="levelText" text="60" y="12" size="22" textColor="0xCCCCCC" x="11"/>
+		<e:Label id="levelText" text="60" y="12" size="20" x="8" width="30" textAlign="center" textColor="0xCC9900"/>
 	</e:Group>
 </e:Skin>

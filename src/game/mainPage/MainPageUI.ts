@@ -20,6 +20,10 @@ class MainPageUI extends game.BaseUI {
     private diamondText: eui.Label;
     private feeText: eui.Label;
     private levelText: eui.Label;
+    private addCoinBtn: eui.Group;
+    private addEnergyBtn: eui.Group;
+    private addDiamondBtn: eui.Group;
+    private addFreeBtn: eui.Group;
     private taskGroup: eui.Group;
     private taskText: eui.Label;
     private videoBtn: eui.Group;
@@ -46,6 +50,7 @@ class MainPageUI extends game.BaseUI {
 
 
 
+
     private pageArray = [];
     private currentPage= 0;
     private startPos;
@@ -59,6 +64,10 @@ class MainPageUI extends game.BaseUI {
 
         this.addBtnEvent(this.leftBtn, this.onLeft);
         this.addBtnEvent(this.rightBtn, this.onRight);
+        this.addBtnEvent(this.addCoinBtn,this.onAddCoin);
+        this.addBtnEvent(this.addDiamondBtn,this.onAddDiamond);
+        this.addBtnEvent(this.addEnergyBtn,this.onAddEnergy);
+        this.addBtnEvent(this.addFreeBtn,this.onHonor);
 
 
 
@@ -96,6 +105,19 @@ class MainPageUI extends game.BaseUI {
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
     }
+    
+    private onAddCoin(){
+        ShopUI.getInstance().show('coin');
+    }
+    
+    private onAddDiamond() {
+        ShopUI.getInstance().show('diamond');
+    }
+    
+    private onAddEnergy() {
+        ShopUI.getInstance().show('energy');
+    }
+
 
     private onPageClick(e){
         for(var i=0;i<=this.pageArray.length;i++)
@@ -105,8 +127,9 @@ class MainPageUI extends game.BaseUI {
             {
                 if(i != this.currentPage)
                 {
+                    var noMV = Math.abs(i - this.currentPage)>1
                     this.currentPage = i;
-                    this.scrollToCurrentPage();
+                    this.scrollToCurrentPage(noMV);
                     this.renewPage();
                 }
                 break;

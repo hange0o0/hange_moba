@@ -7,22 +7,38 @@
 		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
 		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
 		<e:Image source="icon_empty_png" x="0" y="76"/>
-		<e:Image source="border1_png" x="516" y="15" scale9Grid="21,15,70,9" height="40" width="120"/>
-		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="120" height="40" x="516"/>
-		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="150" height="40" x="333"/>
-		<e:Image source="border1_png" y="15" scale9Grid="21,15,70,9" width="150" height="40" x="333"/>
-		<e:Image source="icon_money_png" x="310" y="13"/>
-		<e:Image source="icon_pve_png" x="310" y="60"/>
-		<e:Image source="icon_token_png" x="491" y="60"/>
-		<e:Image source="icon_pvp_ticket_png" x="491" y="14"/>
+		<e:Image source="border1_png" x="508" y="15" scale9Grid="21,15,70,9" height="40" width="120"/>
+		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="120" height="40" x="508"/>
+		<e:Image source="border1_png" y="63" scale9Grid="21,15,70,9" width="150" height="40" x="320"/>
+		<e:Image source="border1_png" y="15" scale9Grid="21,15,70,9" width="150" height="40" x="320"/>
+		<e:Image source="icon_money_png" x="297" y="13"/>
+		<e:Image source="icon_pve_png" x="297" y="60"/>
+		<e:Image source="icon_token_png" x="483" y="60"/>
+		<e:Image source="icon_pvp_ticket_png" x="483" y="14"/>
 		<e:Label id="nameText" text="nick" x="124" y="16"/>
 		<e:BitmapLabel id="forceText" x="160" y="67" font="font_num4_fnt" text="12345" scaleY="1.8" scaleX="1.8"/>
 		<e:Image source="icon_power_png" x="114" y="60"/>
-		<e:Label id="coinText" text="123456789" x="350" y="22" size="24" textColor="0xCCCCCC"/>
-		<e:Label id="energyText" y="71" textColor="0xCCCCCC" size="24" text="123456789" x="350"/>
-		<e:Label id="diamondText" y="71" textColor="0xCCCCCC" size="24" text="1234567" x="533"/>
-		<e:Label id="feeText" y="22" textColor="0xCCCCCC" size="24" text="1234567" x="533"/>
+		<e:Label id="coinText" text="123456789" x="339" y="22" size="24" textColor="0xCCCCCC"/>
+		<e:Label id="energyText" y="71" textColor="0xCCCCCC" size="24" text="123456789" x="339"/>
+		<e:Label id="diamondText" y="71" textColor="0xCCCCCC" size="24" text="1234567" x="527"/>
+		<e:Label id="feeText" y="22" textColor="0xCCCCCC" size="24" text="1234567" x="527"/>
 		<e:Label id="levelText" text="99" y="87" size="22" textColor="0xCCCCCC" horizontalCenter="-298"/>
+		<e:Group id="addCoinBtn" y="10" x="436">
+			<e:Image source="icon_empty_png" y="0" x="0"/>
+			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
+		</e:Group>
+		<e:Group id="addEnergyBtn" y="59" x="436">
+			<e:Image source="icon_empty_png" y="0" x="0"/>
+			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
+		</e:Group>
+		<e:Group id="addDiamondBtn" y="59" x="593">
+			<e:Image source="icon_empty_png" y="0" x="5"/>
+			<e:Image source="icon_add_png" y="6" x="13"/>
+		</e:Group>
+		<e:Group id="addFreeBtn" y="10" x="598">
+			<e:Image source="icon_empty_png" y="0" x="0"/>
+			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
+		</e:Group>
 	</e:Group>
 	<e:Group id="taskGroup" x="0" y="123">
 		<e:Rect height="55" width="640" x="0" y="-1" fillAlpha="0.6" strokeWeight="1"/>
@@ -69,9 +85,9 @@
 				<e:Group id="scrollGroupCon">
 					<e:Group id="scrollGroup" x="0" y="0">
 						<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
-						<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
-						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
 						<ns1:MainDayItem id="dayGame" skinName="MainDayItemSkin"/>
+						<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
+						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
 						<e:layout>
 							<e:HorizontalLayout gap="20"/>
 						</e:layout>
@@ -86,7 +102,7 @@
 
 
 				<e:layout>
-					<e:HorizontalLayout gap="15" horizontalAlign="center"/>
+					<e:HorizontalLayout gap="20" horizontalAlign="center"/>
 				</e:layout>
 			</e:Group>
 			<e:layout>

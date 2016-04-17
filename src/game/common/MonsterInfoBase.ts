@@ -38,7 +38,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
         //其本信息
         this.headMC.source = vo.url;
-        this.typeText.text = MonsterKindVO.getObject(vo.type).world
+        this.typeText.text = MonsterKindVO.getObject(vo.type).word
         this.nameText.text = vo.name;
         //this.txt.text = vo.des;
         this.coinText.text = 'X' + vo.cost;

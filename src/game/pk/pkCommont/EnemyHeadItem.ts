@@ -38,7 +38,7 @@ class EnemyHeadItem extends game.BaseItem {
         this.headMC.source = this.data.vo.thumb
       if(this.data.type == 2)
       {
-           this.closeBtn.visible = this.data.isKill;
+           this.closeBtn.visible = !this.data.isKill;
       }
       else
       {

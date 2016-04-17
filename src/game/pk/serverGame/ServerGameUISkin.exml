@@ -17,15 +17,8 @@
 				<e:Image source="icon_power_png" x="488" y="11"/>
 				<e:Image id="headMC" source="icon_power_png" x="18" y="17" width="72" height="72"/>
 				<e:List id="enemyList" height="259" width="614" x="11" y="114" itemRendererSkinName="EnemyHeadItemSkin">
-					<e:ArrayCollection>
-						<e:Array>
-							<e:Object label="11"/>
-							<e:Object label="数据222"/>
-							<e:Object label="22"/>
-						</e:Array>
-					</e:ArrayCollection>
 					<e:layout>
-						<e:TileLayout/>
+						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
 			</e:Group>
@@ -35,7 +28,7 @@
 				<e:Button id="chooseBtn0" label="选择" x="470" y="15" skinName="Btn_r2Skin"/>
 				<e:List id="myList0" y="77" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
-						<e:TileLayout/>
+						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>
@@ -49,7 +42,7 @@
 				<e:Button x="470" skinName="Btn_r2Skin" label="选择" y="15" id="chooseBtn1"/>
 				<e:List y="77" id="myList1" itemRendererSkinName="MyHeadItemSkin" width="614" height="239" x="14">
 					<e:layout>
-						<e:TileLayout/>
+						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>

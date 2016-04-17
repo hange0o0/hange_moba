@@ -9,7 +9,7 @@
 				<e:Label id="moneyText" text="标签" y="15" textColor="0xCC9900" left="65"/>
 				<e:List id="enemyList" height="259" width="614" x="13" y="77" itemRendererSkinName="EnemyHeadItemSkin">
 					<e:layout>
-						<e:TileLayout/>
+						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
 				<e:Image source="icon_money_png" x="13" y="12"/>
@@ -20,7 +20,7 @@
 
 				<e:List id="myList0" y="77" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
-						<e:TileLayout/>
+						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>

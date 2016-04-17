@@ -17,7 +17,7 @@ class RankManager{
 
     //取排行榜数据
     public getRank(rankType,fun?){
-        if(this.rankData[rankType] && (DateUtil.isSameDay(this.rankData[rankType].time) || TM.now() - this.rankData[rankType].getTime < 60*10))
+        if(this.rankData[rankType] && (DateUtil.isSameDay(this.rankData[rankType].time) || TM.now() - this.rankData[rankType].getTime < 60))
         {
             if(fun)
                 fun();

@@ -4,7 +4,11 @@
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="270" x="3" top="150" bottom="0" top.more="410">
 		<e:Group height="279">
-			<e:List id="list1" width="100%" x="1" y="62" minHeight="200"/>
+			<e:List id="list1" width="100%" x="1" y="62" minHeight="200">
+				<e:layout>
+					<e:TileLayout requestedColumnCount="2" paddingLeft="5" horizontalGap.more="10"/>
+				</e:layout>
+			</e:List>
 			<e:Group y="134" x="10" height="46">
 				<e:Image source="bold_bg_png" y="0" x="0" height="50"/>
 				<e:RadioButton x="36" skinName="MyRadioButtonSkin" y="14" label="单选框" id="ringRadio0"/>
@@ -15,7 +19,7 @@
 			</e:Group>
 			<e:Button id="pkBtn" x="241" label="调整队列  出战" y="111" skinName="Btn_r3Skin"/>
 			<e:layout>
-				<e:VerticalLayout horizontalAlign="center"/>
+				<e:VerticalLayout horizontalAlign="center" paddingTop="20"/>
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
@@ -34,9 +38,9 @@
 		<e:Button id="viewBtn" x="476.96969696969694" y="0" label="对手" skinName="Btn_r2Skin"/>
 		<e:Image source="line_png" x="0" y="57.04545454545455" width="650"/>
 	</e:Group>
-	<e:List y="80" x="13" itemRendererSkinName="EnemyHeadItemSkin" width="614" height="259" id="enemyList" visible.normal="false" visible="false">
+	<e:List y="80" x="13" itemRendererSkinName="EnemyHeadItemSkin" width="614" height="259" id="enemyList" visible.normal="false">
 		<e:layout>
-			<e:TileLayout/>
+			<e:TileLayout requestedColumnCount.more="5"/>
 		</e:layout>
 	</e:List>
 </e:Skin>

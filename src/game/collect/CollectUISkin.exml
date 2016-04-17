@@ -2,7 +2,7 @@
 <e:Skin class="CollectUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="80">
+	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="80" locked="true">
 		<e:Group>
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 
@@ -14,17 +14,22 @@
 	</e:Scroller>
 	<e:Group x="0" bottom="-43">
 		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="113"/>
-		<e:Button id="splitBtn" label="一键拆解" x="11" y="4" skinName="Btn_r2Skin"/>
-		<e:Button id="tenBtn" y="0" label="十连抽(50)" x="512" skinName="Btn_r1Skin"/>
-		<e:Button id="oneBtn" skinName="Btn_r1Skin" y="0" label="抽一次(5)" x="391"/>
-		<e:Group y="11" x="321">
+		<e:Group y="10" right="10">
 			<e:Group x="0" y="0">
 				<e:Image source="icon_empty_png" x="0" y="0"/>
 				<e:Image source="soul_icon_png" x="14" y="10"/>
 			</e:Group>
-			<e:Label id="numText" text="456" x="61" y="9" textColor="0xCC9900" textAlign="right" size="24"/>
+			<e:Label id="numText" text="456789" x="61" y="9" textColor="0xCC9900" textAlign="right" size="24"/>
 			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle"/>
+				<e:HorizontalLayout verticalAlign="middle" gap="0"/>
+			</e:layout>
+		</e:Group>
+		<e:Group x="5" y="5">
+			<e:Button id="oneBtn" y="0" label="抽一次(5)" x="0" skinName="Btn_r2Skin"/>
+			<e:Button id="tenBtn" y="0" label="十连抽(50)" x="168.03030303030303" skinName="Btn_r2Skin"/>
+			<e:Button id="splitBtn" label="一键拆解" x="272.04545454545456" y="0" skinName="Btn_b2Skin"/>
+			<e:layout>
+				<e:HorizontalLayout gap="5"/>
 			</e:layout>
 		</e:Group>
 	</e:Group>

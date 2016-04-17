@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FriendListUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Image source="line_png" width="650" y="134" x="-6"/>
+	<e:TabBar x="5" y="77" id="tab" itemRendererSkinName="MyTabItemSkin2">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="我的好友"/>
+				<e:Object label="好友消息"/>
+				<e:Object label="好友PK"/>
+			</e:Array>
+		</e:ArrayCollection>
+	</e:TabBar>
+	<e:Scroller id="scroller" width="640" x="0" top="145" bottom="0">
+		<e:Group>
+			<e:List id="list" height="200" width="200" x="68" y="56"/>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

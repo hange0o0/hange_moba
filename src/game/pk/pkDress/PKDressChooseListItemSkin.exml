@@ -3,19 +3,19 @@
 	<ns1:PKDressChooseItem id="headMC" x="58" y="3" skinName="PKDressChooseItemSkin"/>
 	<e:Image id="joinBtn" source="left_btn_png" x="0" y="0"/>
 	<e:Image source="icon_empty_png" x="168" y="-2"/>
-	<e:Label id="typeText" text="标" x="181" y="9" size="20"/>
-	<e:Label id="nameText" text="标签" x="220" y="4" width="93" size="26"/>
-	<e:Label id="forceText" width="93" y="45" text="标签" x="225" size="26"/>
-	<e:Label id="coinText" y="85" text="X10" x="210" size="26"/>
+	<e:Label id="typeText" text="标" x="181" y="9" size="20" textColor="0xCC9900"/>
+	<e:Label id="nameText" text="标签" x="220" y="4" width="93" size="26" textColor="0xCC9900"/>
+	<e:Label id="forceText" width="93" y="45" text="标签" x="225" size="26" textColor="0xCC9900"/>
+	<e:Label id="coinText" y="85" text="X10" x="210" size="26" textColor="0xCC9900"/>
 	<e:Image source="icon_power_png" x="176" y="38"/>
 	<e:Group x="270" y="84">
-		<e:Label id="woodText" y="1" text="X10" x="42" size="26"/>
+		<e:Label id="woodText" y="1" text="X10" x="42" size="26" textColor="0xCC9900"/>
 		<e:Image source="fu1_png" x="0" y="0"/>
 	</e:Group>
 	<e:Image source="fu2_png" x="173" y="84"/>
 	<e:Image source="line_png" x="-5" width="390" y="120"/>
-	<e:Image id="useMC1" source="point1_png" x="142" y="9" width="15" height="15"/>
-	<e:Image id="useMC2" source="point1_png" width="14" y="34" height="14" x="160"/>
-	<e:Image id="useMC3" source="point1_png" width="14" y="66" height="14" x="160"/>
+	<e:Image id="useMC1" x="142" y="9" width="15" height="15" source="point2_png"/>
+	<e:Image id="useMC2" width="14" y="34" height="14" x="160" source="point2_png"/>
+	<e:Image id="useMC3" width="14" y="66" height="14" x="160" source="point2_png"/>
 
 </e:Skin>

@@ -40,11 +40,11 @@
 		<e:List id="sortList" height="200" width="200" x="5" y="4" itemRendererSkinName="HonorSortItemSkin">
 			<e:ArrayCollection>
 				<e:Array>
-					<e:Object label="数据1"/>
-					<e:Object label="数据2"/>
-					<e:Object label="数据3"/>
-					<e:Object label="null"/>
-					<e:Object label="null"/>
+					<e:Object label="默认排序"/>
+					<e:Object label="使用次数排序"/>
+					<e:Object label="胜利次数排序"/>
+					<e:Object label="胜率排序"/>
+					<e:Object label="领奖状态排序"/>
 				</e:Array>
 			</e:ArrayCollection>
 			<e:layout>

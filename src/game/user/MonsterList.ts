@@ -109,9 +109,9 @@ class MonsterList extends game.BaseUI {
         for(var i=0;i<10;i++)
         {
             var mc = this['p' + i];
-            if(i<=max)
+            if(i<max)
             {
-                mc.visible = true;
+                this.pageGroup.addChild(mc);
                 if(i == current)//当前
                     mc.source = 'point2_png';
                 else
@@ -119,7 +119,7 @@ class MonsterList extends game.BaseUI {
             }
             else
             {
-                mc.visible = false;
+                MyTool.removeMC(mc);
             }
         }
     }

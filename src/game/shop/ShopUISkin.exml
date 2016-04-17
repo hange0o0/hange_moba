@@ -1,9 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="ShopUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" width="640" x="0" top="130" bottom="0" locked="true">
+	<e:Scroller id="scroller" width="640" x="0" top="130" bottom="0">
 		<e:Group>
-			<e:List id="list" height="200" width="200" x="100" y="64"/>
+			<e:List id="list" height="200" width="200" x="100" y="64">
+				<e:layout>
+					<e:VerticalLayout paddingTop="10" paddingBottom="10"/>
+				</e:layout>
+			</e:List>
 		</e:Group>
 	</e:Scroller>
 	<ns1:ResourceUI id="resourceUI" x="0" y="80" skinName="ResourceUISkin"/>

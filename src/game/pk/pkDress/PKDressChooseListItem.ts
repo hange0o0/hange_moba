@@ -24,6 +24,8 @@ class PKDressChooseListItem extends game.BaseItem {
         //this.addBtnEvent(this,this.onClick);
         MyTool.addDoubleTouch(this,this.onDoubleClick,this)
         MyTool.addLongTouch(this,this.onLongTouch,this)
+            
+        this.headMC.touchChildren = this.headMC.touchEnabled = false;
 
     }
 

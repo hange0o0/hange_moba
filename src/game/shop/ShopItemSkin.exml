@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="ShopItemSkin" width="640" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Button id="buyBtn" label="按钮" x="518" y="18" skinName="Btn_r1Skin"/>
-	<e:Label id="text1" text="标签" x="172" y="9"/>
-	<e:Label id="text2" text="标签" x="172" y="51"/>
+	<e:Button id="buyBtn" label="购买" x="520" y="18" skinName="Btn_r1Skin"/>
+	<e:Label id="text1" text="标签" x="114" y="16" size="26" textColor="0xCC9900"/>
+	<e:Label id="text2" text="标签" x="114" y="58" size="22" textColor="0xCC9900"/>
 	<e:Rect height="1" width="600" x="20" y="99" fillColor="0x9D965E"/>
+	<e:Image source="pk_bg_jpg" x="20" y="10" width="80" height="80"/>
 </e:Skin>

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FriendTalkItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="other,self" >
+	<e:Group x="40" y="0" right.self="40">
+		<e:Image source="border2_png" y="0" x="0" width="60" height="60" scale9Grid="11,11,68,68"/>
+		<e:Image source="pk_bg_jpg" y="5" id="headMC" width="50" height="50" x="6"/>
+	</e:Group>
+	<e:Label id="talkText" text="11" x="110" textColor="0xCC9900" size="22" top="20" bottom="10" right.self="110" textAlign.self="left" maxWidth="420" />
+	<e:Label id="dayText" text="sdfsdf" x="110" y="0" size="16" textColor="0x999999" right.self="110"/>
+</e:Skin>
