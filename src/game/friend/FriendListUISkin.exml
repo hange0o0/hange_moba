@@ -2,7 +2,7 @@
 <e:Skin class="FriendListUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Image source="line_png" width="650" y="134" x="-6"/>
-	<e:TabBar x="5" y="77" id="tab" itemRendererSkinName="MyTabItemSkin2">
+	<e:TabBar x="0" y="77" id="tab" itemRendererSkinName="MyTabItemSkin2">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="我的好友"/>
@@ -16,5 +16,5 @@
 			<e:List id="list" height="200" width="200" x="68" y="56"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Button id="searchBtn" label="查找好友" x="507" y="78" skinName="Btn_r3Skin"/>
+	<e:Button id="searchBtn" label="查找好友" x="480" y="77" skinName="Btn_r2Skin"/>
 </e:Skin>

@@ -6,7 +6,12 @@ class FriendPKItem extends game.BaseItem {
 
 
 
-    public index;
+    private headMC: eui.Image;
+    private nameText: eui.Label;
+    private btnGroup: eui.Group;
+    private refuseBtn: eui.Button;
+    private talkText: eui.Label;
+
 
     public childrenCreated(){
 

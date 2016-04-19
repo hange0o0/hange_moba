@@ -10,8 +10,10 @@ class FriendSearchUI extends game.BaseWindow {
         this.skinName = "FriendSearchUISkin";
     }
 
-    private itemMC: CollectItem;
+    private nameText: eui.TextInput;
+    private backBtn: eui.Button;
     private okBtn: eui.Button;
+
 
 
     private data

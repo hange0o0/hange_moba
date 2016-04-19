@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendLogItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="100">
+<e:Skin class="FriendLogItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="100" states="talk,log" >
 	<e:Group y="5" x="20">
 		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="90" height="90" x="0"/>
 		<e:Image id="headMC" source="pk_bg_jpg" y="5" width="80" height="80" x="5"/>
 	</e:Group>
 	<e:Label id="nameText" text="标签" x="119" y="14"/>
-	<e:Group id="infoGroup" x="117" y="50">
+	<e:Group id="infoGroup" x="117" y="50" visible.talk="false">
 		<e:Label id="levelText" y="8" text="123" x="43"/>
 		<e:Image source="icon_lv_png" x="0" y="3"/>
 		<e:Label id="forceText" text="12345" x="153" y="8"/>
 		<e:Image source="icon_power_png" x="103" y="0"/>
 	</e:Group>
 	<e:Group id="btnGroup" y="0" right="15" height="100">
-		<e:Button id="agreeBtn" label="同意" x="0" y="0" skinName="Btn_r1Skin"/>
-		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10"/>
+		<e:Button id="agreeBtn" label="同意" x="0" y="0" skinName="Btn_r1Skin" visible.talk="false"/>
+		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10" label.talk="回复"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="talkText" x="119" width="380" y="55" text="标签"/>
+	<e:Label id="talkText" x="119" width="380" y="55" text="标签" visible.log="false"/>
 </e:Skin>

@@ -1,2 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendPKItemSkin" width="480" height="300" xmlns:e="http://ns.egret.com/eui"></e:Skin>
+<e:Skin class="FriendPKItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="100" states="talk,log" >
+	<e:Group y="5" x="20">
+		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="90" height="90" x="0"/>
+		<e:Image id="headMC" source="pk_bg_jpg" y="5" width="80" height="80" x="5"/>
+	</e:Group>
+	<e:Label id="nameText" text="标签" x="119" y="14"/>
+	<e:Group id="btnGroup" y="0" right="15" height="100">
+		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10" label.talk="回复"/>
+		<e:layout>
+			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+	<e:Label id="talkText" x="119" width="380" y="55" text="标签" visible.log="false"/>
+</e:Skin>
