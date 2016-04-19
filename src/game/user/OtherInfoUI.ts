@@ -52,6 +52,14 @@ class OtherInfoUI extends game.BaseUI {
         FM.getOtherInfoByID(id,function(){
             self.show(FM.otherInfo[id]);
         })
+    }
+
+    public showNick(nick){
+        var FM = FriendManager.getInstance();
+        var self = this;
+        FM.getOtherInfoByNick(nick,function(){
+            self.show(FM.otherInfoNick[nick]);
+        })
 
     }
 

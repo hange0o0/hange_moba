@@ -11,8 +11,7 @@ class PKItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-        this.headMC.mask = this.headMask;
-        //this.addBtnEvent(this.closeBtn,this.onClose);
+        //this.headMC.mask = this.headMask;
     }
 
     private onClose() {

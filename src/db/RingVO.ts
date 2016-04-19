@@ -38,7 +38,7 @@ class RingVO {
     }
 
     public get thumb(){
-        return 'monster_thumb_' + this.id;
+        return 'head_png';
     }
 
 

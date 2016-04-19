@@ -10,6 +10,9 @@ class GameEvent {
         force_change:'force_change',
         task_change:'task_change',
         collect_change:'collect_change',
+        talk_change:'talk_change',
+        friend_log_change:'friend_log_change',
+        friend_pk_change:'friend_pk_change',
         level_change:'level_change'
     };
 

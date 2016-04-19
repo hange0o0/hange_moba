@@ -92,11 +92,11 @@ class MonsterVO {
     }
 
     public get thumb(){
-        return 'monster_thumb_' + this.id;
+        return 'head_png';
     }
 
     public get url(){
-        return 'monster_' + this.id;
+        return 'full_bg_jpg';
     }
 
     //影响指定单位

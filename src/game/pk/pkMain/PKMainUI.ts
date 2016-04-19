@@ -120,7 +120,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private addItemMovie(){
-        var joinCD = 150;
+        var joinCD = 100;
         var myTeam = PKManager.getInstance().team1Base.list
         var y1 = this.bgHeight/2+120+this.itemHeight/2 +50
         var y2 = this.bgHeight/2-120-this.itemHeight/2 -50
@@ -152,11 +152,14 @@ class PKMainUI extends game.BaseUI {
     private addItemMV(item,par,cd){
         setTimeout(function(){
             par.addChild(item);
+            var itemX = item.x;
+            item.x -= (320-item.x)/1;
+
             item.scaleX = 3;
             item.scaleY = 3;
             item.alpha = 0;
             var tw:egret.Tween = egret.Tween.get(item);
-            tw.to({alpha:0.5,scaleX:1,scaleY:1}, 300,egret.Ease.sineIn).call(function(){
+            tw.to({alpha:0.5,scaleX:1,scaleY:1,x:itemX}, 300,egret.Ease.sineIn).call(function(){
                 item.alpha = 1;
             })
         },cd)
@@ -231,6 +234,7 @@ class PKMainUI extends game.BaseUI {
 
     //开始播放动画
     private playOne(){
+        //console.log('playOne');
         var oo = this.pkList.shift();
         if(oo == null)//pk结束
         {
@@ -302,22 +306,25 @@ class PKMainUI extends game.BaseUI {
 
     //PK动画
     private playerPK(team){
-        var item,x,y
+        //console.log('playerPK')
+        var item,x,x2,y
 
         if(team == 1)
         {
             item =this.item1;
-            x = this.card2X;
+            x = 320-100;
+            x2 = this.card1X;
             y = this.cardY - 30;
         }
         else
         {
             item =this.item2;
-            x = this.card1X;
-            y = this.cardY - 60;
+            x = 320+100;
+            x2 = this.card2X;
+            y = this.cardY - 30;
         }
         var tw:egret.Tween = egret.Tween.get(item);
-        tw.to({scaleX:1.2,scaleY:1.2,x:640/2,y:y}, 200).to({scaleX:1,scaleY:1,x:x,y:this.cardY}, 200).wait(300).call(function(){
+        tw.to({scaleX:1.2,scaleY:1.2,x:x,y:y}, 200).to({scaleX:1,scaleY:1,x:x2,y:this.cardY}, 200).wait(200).call(function(){
             this.count --;
             this.onPlayPKFinish();
         },this)
@@ -368,14 +375,18 @@ class PKMainUI extends game.BaseUI {
                 temp.scaleX = temp.scaleY = 1;
                 tw.to({alpha:0,scaleX:0.1,scaleY:0.1,x:temp.x,y:temp.y}, 300).call(function(){
                     this.playOne();
+                    //console.log('win3')
                 },this)
 
             }
             else //回原位
             {
-                tw.to({x:x}, 300,egret.Ease.sineOut).call(function(){
+                tw.wait(50).call(function(){
                     this.playOne();
                 },this)
+                //console.log('win',item.data)
+                //this.playOne();
+
             }
         }
         else

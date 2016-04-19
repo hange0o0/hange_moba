@@ -773,6 +773,16 @@
 					"isFolder":false,
 					"key":"lock_icon_png",
 					"name":"lock_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"full_bg_jpg",
+					"name":"full_bg_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"head_png",
+					"name":"head_png"
 				}
 			]
 		}

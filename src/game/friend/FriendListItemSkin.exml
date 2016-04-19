@@ -10,8 +10,8 @@
 	<e:Label id="forceText" text="12345" x="270" y="58"/>
 	<e:Image source="icon_power_png" x="220" y="50"/>
 	<e:Group y="0" right="15" height="100">
-		<e:Button skinName="Btn_r1Skin" y="10" label="聊天" x="10"/>
-		<e:Button skinName="Btn_r1Skin" y="30" label="PK" x="30"/>
+		<e:Button id="talkBtn" skinName="Btn_r1Skin" y="10" label="聊天" x="10"/>
+		<e:Button id="pkBtn" skinName="Btn_r1Skin" y="30" label="发起PK" x="30"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>
