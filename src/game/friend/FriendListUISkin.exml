@@ -16,4 +16,5 @@
 			<e:List id="list" height="200" width="200" x="68" y="56"/>
 		</e:Group>
 	</e:Scroller>
+	<e:Button id="searchBtn" label="查找好友" x="507" y="78" skinName="Btn_r3Skin"/>
 </e:Skin>

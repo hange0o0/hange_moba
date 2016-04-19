@@ -6,7 +6,7 @@ class MyTool {
         return  'n'+Math.floor(Math.random()*999999);
     }
     public static getHeadUrl(id){
-        return   'head_'+1 + '_jpg'
+        return   'head_png'
     }
     public static removeMC(mc:any){
         if(mc.parent)

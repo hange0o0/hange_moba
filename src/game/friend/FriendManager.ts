@@ -7,12 +7,14 @@ class FriendManager{
     }
 
     public maxFriendNum = 30;
+    public maxTalk = 50;
+    public maxPK = 10;
     public lastGetFriend = 0;
     public lastGetLog = 0
     public friendList;
     public friendData = {};
     public logList
-    public pkArray = {};
+    public pkObject = {};
 
     public otherInfo = {};
     public otherInfoNick = {};
@@ -34,13 +36,19 @@ class FriendManager{
                 this.friendList = oo.friendList
                 this.friendData = oo.friendData
                 this.logList = oo.logList
-                this.pkArray = oo.pkArray
+                this.pkObject = oo.pkObject
             }
             else
             {
                 this.shareCreateDate = 0;
             }
         }
+    }
+
+    public getPKArray(){
+        var arr = ObjectUtil.objToArray(this.pkObject);
+        ArrayUtil.sortByField(arr,['id'],[1])
+        return  arr;
     }
 
     //取聊天记录
@@ -52,26 +60,14 @@ class FriendManager{
         this.initTalkSave(gameid);
         this.currentTalk[gameid] = {};
         this.currentTalk[gameid].list = this.talkSave[gameid].list.concat();
-        this.currentTalk[gameid].size = this.talkSave[gameid].size;
         return this.currentTalk[gameid].list;
-    }
-
-    //读历史记录
-    public longerTalkList(gameid){
-        var talkSave = this.talkSave[gameid];
-        if(this.currentTalk[gameid].size > 0)
-        {
-            this.currentTalk[gameid].size --;
-            var history = SharedObjectManager.instance.getMyValue('talkHistory_' + gameid + '_'+this.currentTalk[gameid].size) || [];
-            this.currentTalk[gameid].list = this.currentTalk[gameid].list.concat(history);
-        }
     }
 
     //初始化聊天记录
     private initTalkSave(gameid){
         if(this.talkSave[gameid])
             return;
-        this.talkSave[gameid] = SharedObjectManager.instance.getMyValue('talkData_'+gameid) || {list:[],size:0,lastID:0};
+        this.talkSave[gameid] = SharedObjectManager.instance.getMyValue('talkData_'+gameid) || {list:[],lastID:0};
     }
 
     //设置已查看过该玩家的聊天
@@ -136,14 +132,13 @@ class FriendManager{
             oo.stat = 1;
         arr.push(oo);
         ArrayUtil.sortByField(arr,['id'],[0]);
-        if(arr.length > 100)//太长，要分段保存
+        while(arr.length > 50)//过长的丢弃
         {
-            var newList =  arr.splice(50); //把50后面的去掉
-            SharedObjectManager.instance.setMyValue('talkHistory_' + gameid + '_'+talkSave.size,arr);
-            talkSave.size ++;
-            talkSave.list = newList;
+            arr.shift();
         }
         SharedObjectManager.instance.setMyValue('talkData_' + gameid,talkSave);
+
+        EM.dispatchEventWith(GameEvent.client.talk_change)
 
     }
 
@@ -155,7 +150,7 @@ class FriendManager{
         oo.friendList = this.friendList
         oo.friendData = this.friendData
         oo.logList = this.logList
-        oo.pkArray = this.pkArray
+        oo.pkObject = this.pkObject
         oo.shareCreateDate = this.shareCreateDate || TM.now()
         SharedObjectManager.instance.setMyValue('friendData',oo);
 
@@ -243,10 +238,11 @@ class FriendManager{
     }
 
     //请求
-    public apply(otherid,fun?){
+    public apply(otherid,des,fun?){
         var self = this;
         var oo:any = {};
         oo.otherid = otherid;
+        oo.des = des;
         Net.addUser(oo);
         Net.send(GameEvent.friend.friend_apply,oo,function(data){
             var msg = data.msg;
@@ -309,8 +305,8 @@ class FriendManager{
                 return;
             }
             FriendManager.getInstance().getLog(fun,true);
-            //if(fun)
-            //    fun();
+            if(fun)
+                fun();
         });
     }
 
@@ -383,7 +379,7 @@ class FriendManager{
         });
     }
     public getLog(fun?,force=false){
-        if(!force && this.logList && TM.now() - this.lastGetLog < 1)//10S CD             10
+        if(!force && this.logList && TM.now() - this.lastGetLog < 30)//30S CD             10
         {
             if(fun)
                 fun();
@@ -407,12 +403,16 @@ class FriendManager{
                     self.logList.push(msg.list[i]);
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);
+                    else
+                        EM.dispatchEventWith(GameEvent.client.friend_log_change)
                 }
                 else
                 {
-                   self.pkArray[msg.list[i].id] = msg.list[i];
+                   self.pkObject[msg.list[i].id] = msg.list[i];
+                    EM.dispatchEventWith(GameEvent.client.friend_pk_change)
                 }
             }
+            ArrayUtil.sortByField(self.logList,['id'],[1])
             self.saveToLocal();
             if(fun)
                 fun();

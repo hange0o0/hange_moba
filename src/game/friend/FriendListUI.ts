@@ -5,7 +5,12 @@ class FriendListUI extends game.BaseUI {
         return this.instance;
     }
 
-    private  typeTab: eui.TabBar;
+    private topUI: TopUI;
+    private tab: eui.TabBar;
+    private scroller: eui.Scroller;
+    private list: eui.List;
+    private searchBtn: eui.Button;
+
 
 
 
@@ -14,19 +19,28 @@ class FriendListUI extends game.BaseUI {
 
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "FriendListUISkin";
     }
 
 
     public childrenCreated() {
         super.childrenCreated();
 
-        this.typeTab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
-        //this.addBtnEvent(this, this.onClick);
+        super.childrenCreated();
+        this.topUI.setTitle('好友')
+        this.topUI.addEventListener('hide',this.hide,this);
+
+        this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
+        this.tab.selectedIndex = 0;
+
+        this.scroller.viewport = this.list;
+        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+
+        this.addBtnEvent(this.searchBtn, this.onSearch);
     }
 
-    private onClick(){
-
+    private onSearch(){
+        FriendSearchUI.getInstance().show();
     }
 
     private typeBarClick(){
@@ -41,35 +55,52 @@ class FriendListUI extends game.BaseUI {
     public onShow(){
         if(this.selectIndex)
         {
-            this.typeTab.selectedIndex = this.selectIndex - 1;
+            this.tab.selectedIndex = this.selectIndex - 1;
         }
         this.renew();
     }
 
     public renew(){
-        if(this.typeTab.selectedIndex == 0)//好友列表
+        var FM = FriendManager.getInstance();
+        var self = this;
+        this.list.dataProvider = new eui.ArrayCollection([]);
+        if(this.tab.selectedIndex == 0)//好友列表
         {
-            this.renewFriend()
+            FM.getList(function(){
+                self.renewFriend()
+            })
+
         }
-        else if(this.typeTab.selectedIndex == 1)//好友日志
+        else if(this.tab.selectedIndex == 1)//好友日志
         {
-            this.renewLog();
+            FM.getLog(function(){
+                self.renewLog()
+            })
         }
-        else if(this.typeTab.selectedIndex == 2)//最近PK
+        else if(this.tab.selectedIndex == 2)//最近PK
         {
-            this.renewPK();
+            FM.getLog(function(){
+                self.renewPK()
+            })
         }
     }
 
     private renewFriend(){
-
+        var FM = FriendManager.getInstance();
+        this.list.itemRenderer = FriendListItem;
+        this.list.dataProvider = new eui.ArrayCollection(FM.friendList)
     }
 
     private renewLog(){
-
+        var FM = FriendManager.getInstance();
+        this.list.itemRenderer = FriendLogItem;
+        this.list.dataProvider = new eui.ArrayCollection(FM.logList)
     }
 
     private renewPK(){
+        var FM = FriendManager.getInstance();
+        this.list.itemRenderer = FriendPKItem;
+        this.list.dataProvider = new eui.ArrayCollection(FM.getPKArray())
 
     }
 

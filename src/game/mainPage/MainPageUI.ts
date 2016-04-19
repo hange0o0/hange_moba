@@ -127,9 +127,9 @@ class MainPageUI extends game.BaseUI {
             {
                 if(i != this.currentPage)
                 {
-                    var noMV = Math.abs(i - this.currentPage)>1
+                    //var noMV = Math.abs(i - this.currentPage)>1
                     this.currentPage = i;
-                    this.scrollToCurrentPage(noMV);
+                    this.scrollToCurrentPage();
                     this.renewPage();
                 }
                 break;
@@ -356,7 +356,21 @@ class MainPageUI extends game.BaseUI {
         else if(this.scrollGroup.x != targetX)
         {
             var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
-            tw.to({x:targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/500));
+            var lastPage =  Math.floor(Math.max(0,-this.scrollGroup.x)/500);
+            var des = lastPage - this.currentPage
+            if(Math.abs(des) > 1)
+            {
+                des > 0?des--:des++;
+                this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
+                targetX = -(this.currentPage+des) * 500;
+                tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/500)).call(function(){
+                    this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
+                    this.scrollToCurrentPage(true);
+                },this);
+            }
+            else {
+                tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500));
+            }
         }
 
         switch(this.currentPage)

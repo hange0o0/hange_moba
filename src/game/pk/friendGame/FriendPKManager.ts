@@ -9,7 +9,7 @@ class FriendPKManager{
     public constructor() {
     }
 
-    //public pkArray = {};
+    //public pkObject = {};
     public cardObject = {};
     public lastPKData= {};  //用logid做Key
 
@@ -75,7 +75,7 @@ class FriendPKManager{
             }
             UM.addHistory(choose.list.join(','));
             FriendManager.getInstance().getLog(fun,true);
-            //self.pkArray[msg.data.id] = (msg.data);
+            //self.pkObject[msg.data.id] = (msg.data);
             //
             //if(fun)
             //    fun();
@@ -126,9 +126,9 @@ class FriendPKManager{
             UM.addHistory(choose.list.join(','));
             self.lastPKData[logid] = msg.pkdata;
             FriendManager.getInstance().getLog(null,true);
-            //self.pkArray[logid].content.ask_choose = msg.ask_choose;
-            //self.pkArray[logid].content.answer_choose = choose;
-            //self.pkArray[logid].content.result = msg.result;
+            //self.pkObject[logid].content.ask_choose = msg.ask_choose;
+            //self.pkObject[logid].content.answer_choose = choose;
+            //self.pkObject[logid].content.result = msg.result;
             PKManager.getInstance().onPK(PKManager.PKType.FRIEND,msg);
 
             if(fun)
@@ -147,10 +147,10 @@ class FriendPKManager{
         }
         var self = this;
         var oo:any = {};
-        var pkArray = FriendManager.getInstance().pkArray
-        oo.team1 = pkArray[logid].content.answer_choose;
-        oo.team2 = pkArray[logid].content.ask_choose;
-        oo.isequal = pkArray[logid].content.isequal;
+        var pkObject = FriendManager.getInstance().pkObject
+        oo.team1 = pkObject[logid].content.answer_choose;
+        oo.team2 = pkObject[logid].content.ask_choose;
+        oo.isequal = pkObject[logid].content.isequal;
         Net.send(GameEvent.pkCore.pk_result,oo,function(data){
             var msg = data.msg;
             self.lastPKData[logid] = msg.pkdata;
