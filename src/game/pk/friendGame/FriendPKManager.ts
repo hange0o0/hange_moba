@@ -41,11 +41,12 @@ class FriendPKManager{
         });
     }
 
-    public ask(otherid,choose,isequal,fun?){
+    public ask(otherid,othernick,choose,isequal,fun?){
         var self = this;
         var oo:any = {};
         oo.choose = choose;
         oo.otherid = otherid;
+        oo.othernick = othernick;
         oo.isequal = isequal;
         Net.addUser(oo);
         Net.send(GameEvent.friend.friend_pk_ask,oo,function(data){

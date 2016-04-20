@@ -5,11 +5,12 @@
 		<e:Image id="headMC" source="pk_bg_jpg" y="5" width="80" height="80" x="5"/>
 	</e:Group>
 	<e:Label id="nameText" text="标签" x="119" y="14"/>
-	<e:Group id="btnGroup" y="0" right="15" height="100">
+	<e:Group id="btnGroup" y="0" right="15" height="80">
 		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10" label.talk="回复"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
 	<e:Label id="talkText" x="119" width="380" y="55" text="标签" visible.log="false"/>
+	<e:Label id="dateText" text="剩余时间：20：20：20" bottom="2" right="0" textColor="0x9E9C9C" size="16"/>
 </e:Skin>

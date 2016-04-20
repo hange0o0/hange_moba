@@ -23,20 +23,6 @@ class PKDressUI extends game.BaseUI {
     private pkDressChooseUI: PKDressChooseUI;
 
 
-
-
-
-
-
-
-
-    
-    
-
-
-
-
-
     private totalWood = 1;
     private totalCoin = 100
 
@@ -78,6 +64,7 @@ class PKDressUI extends game.BaseUI {
     public onShow(){
         this.monsterList = this.orginData.list;
         this.ringList = this.orginData.ring;
+        this.dragBG.visible = false;
         this.reInitData();
     }
 
@@ -91,22 +78,44 @@ class PKDressUI extends game.BaseUI {
 
 
 
-        this.addBtnEvent(this.pkBtn, this.onStart);
+        this.addBtnEvent(this.pkBtn, this.onPKStart);
         this.addBtnEvent(this.viewBtn, this.onView);
         this.addBtnEvent(this.forceText, this.onForceText);
 
 
 
-        this.list2.itemRenderer = PKDressChooseListItem;
-        this.scroller2.viewport = this.list2;
-        this.scroller2.scrollPolicyH = eui.ScrollPolicy.OFF;
-        this.list2.addEventListener(egret.Event.CHANGE,this.onList2Change,this)
-
-        this.list1.itemRenderer = PKDressChooseItem;
+        this.list.itemRenderer = PKDressChooseListItem;
+        this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
-        this.list1.addEventListener(egret.Event.CHANGE,this.onList1Change,this)
+        this.list.addEventListener(egret.Event.CHANGE,this.onList2Change,this)
+
 
         this.enemyList.itemRenderer = EnemyHeadItem;
+    }
+
+    public onStartDrag(){
+        this.dragBG.visible = true;
+    }
+    public onEndDrag(arr){
+        this.dragBG.visible = false;
+        this.chooseList = arr;
+        this.renewList2();
+        this.renew();
+    }
+
+    private onPKStart(){
+        if(this.chooseList.length == 0)
+        {
+            Alert('请先选择出战单位');
+            return;
+        }
+        var chooseData = {list:this.chooseList,ring:this.ringRadio0.group.selectedValue,index:this.dataIn.index}
+        var self = this
+        PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
+            PKDressUI.getInstance().hide();
+            self.hide();
+            PKMainUI.getInstance().show();
+        })
     }
 
     private onForceText(){
@@ -114,31 +123,14 @@ class PKDressUI extends game.BaseUI {
           {
               Alert('当出战单位种类较为单一时，会产生过载，整体战力-8%');
           }
-
     }
-    private onList1Change(){
-        this.list2.selectedIndex = -1;
-        this.chooseMonster = this.list1.selectedItem.vo.id;
-        this.renewList1();
-        this.renewList2();
 
-    }
     private onList2Change(){
-        this.list1.selectedIndex = -1;
-        this.chooseMonster = this.list2.selectedItem.vo.id;
-        this.renewList1();
+        this.chooseMonster = this.list.selectedItem.vo.id;
+        this.renewChooseList();
         this.renewList2();
     }
 
-    private onStart(){
-        if(this.chooseList.length == 0)
-        {
-            Alert('请先选择出战单位');
-            return;
-        }
-        PKDressChooseUI.getInstance().show({list:this.chooseList,ring:this.ringRadio0.group.selectedValue,ring1:this.ringList[0],ring2:this.ringList[1],index:this.dataIn.index})
-
-    }
     private onView(){
         if(this.currentState == 'more')
             this.currentState = 'normal';
@@ -167,7 +159,7 @@ class PKDressUI extends game.BaseUI {
             return;
         }
         this.chooseList.push(mid);
-        this.renewList1();
+        this.renewChooseList();
         this.saveHistory();
     }
 
@@ -189,7 +181,7 @@ class PKDressUI extends game.BaseUI {
     public resetChoose(data){
         this.ringRadio0.group.selectedValue = data.ring;
         this.chooseList = data.list;
-        this.renewList1();
+        this.renewChooseList();
         this.saveHistory();
     }
 
@@ -221,11 +213,9 @@ class PKDressUI extends game.BaseUI {
         this.ringRadio0.group.selectedValue = data.ring;
         this.chooseList = data.list;
 
-        this.list1.selectedIndex = -1;
-        this.list2.selectedIndex = -1;
+        this.list.selectedIndex = -1;
         this.chooseMonster = null;
         this.scroller.viewport.scrollV = 0;
-        this.scroller2.viewport.scrollV = 0;
 
         this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
         if(!this.dataIn.enemy)
@@ -239,28 +229,24 @@ class PKDressUI extends game.BaseUI {
         }
 
 
-        this.renewList1();
+        this.renewChooseList();
         this.renewList2();
         this.renew();
     }
 
-    private renewList1(){
-        var arr = [];
-        var selectVO = MonsterVO.getObject(this.chooseMonster);
-        for(var i=0;i<this.chooseList.length;i++)
-        {
-            var oo:any = {};
-            var vo = MonsterVO.getObject(this.chooseList[i]);
-            oo.type = 2;
-            oo.state = 0
-            if(this.list1.selectedIndex != -1 && this.chooseMonster == this.chooseList[i])
-                oo.state = 1;
-            else if(selectVO && vo.isEffect(selectVO.id))
-                oo.state = 2;
-            oo.vo = vo;
-            arr.push(oo);
-        }
-        this.list1.dataProvider = new eui.ArrayCollection(arr);
+    private renewChooseList(){
+        //var arr = [];
+        //var selectVO = MonsterVO.getObject(this.chooseMonster);
+        //for(var i=0;i<this.chooseList.length;i++)
+        //{
+        //    var oo:any = {};
+        //    var vo = MonsterVO.getObject(this.chooseList[i]);
+        //    oo.type = 2;
+        //    oo.state = 0
+        //    oo.vo = vo;
+        //    arr.push(oo);
+        //}
+        this.pkDressChooseUI.renew(this.chooseList);
     }
 
     private renewList2(){
@@ -272,7 +258,7 @@ class PKDressUI extends game.BaseUI {
             var vo = MonsterVO.getObject(this.monsterList[i]);
             oo.type = 2;
             oo.state = 0
-            if(this.list2.selectedIndex != -1 && this.chooseMonster == this.monsterList[i])
+            if(this.list.selectedIndex != -1 && this.chooseMonster == this.monsterList[i])
                 oo.state = 1;
             else if(selectVO && vo.isEffect(selectVO.id))
                 oo.state = 2;
@@ -280,7 +266,7 @@ class PKDressUI extends game.BaseUI {
             oo.num = this.getMonsterNum(vo.id);
             arr.push(oo);
         }
-        this.list2.dataProvider = new eui.ArrayCollection(arr);
+        this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 
 

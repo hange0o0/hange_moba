@@ -463,6 +463,9 @@ class FriendManager{
             self.otherInfo[info.gameid] = info;
             self.otherInfoNick[info.nick] = info;
 
+            if(self.friendData[info.gameid])
+                self.friendData[info.gameid].info = info;
+
             if(fun)
                 fun();
         });

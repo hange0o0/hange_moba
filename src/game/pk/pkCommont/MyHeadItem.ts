@@ -8,7 +8,7 @@ class MyHeadItem extends game.BaseItem {
     private headMask: eui.Rect;
     private headBG: eui.Image;
     private levelGroup: eui.Group;
-    private levelText: eui.Label;
+    public levelText: eui.Label;
 
 
     public index;
@@ -20,11 +20,16 @@ class MyHeadItem extends game.BaseItem {
     }
 
     private onClick(){
-        if(this.data.list)
+        if(this.data && this.data.list)
             MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
     public dataChanged() {
+        if(!this.data)
+        {
+            return;
+        }
+
         if(!this.data.vo)
             this.data.vo = MonsterVO.getObject(this.data.id);
         var vo:MonsterVO = this.data.vo;

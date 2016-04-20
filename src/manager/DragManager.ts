@@ -13,6 +13,7 @@ class DragManager {
     private startPos;
     private currentDrag;
     private dragDes;
+
     //设置该MC可拖动
     public setDrag(mc,lockCenter=true){
         mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
@@ -20,6 +21,8 @@ class DragManager {
     }
 
     private onBegin(e:egret.TouchEvent){
+        if(e.currentTarget.stopDrag)
+            return;
 
         this.currentDrag = e.currentTarget;
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)

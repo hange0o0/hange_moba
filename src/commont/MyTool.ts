@@ -70,7 +70,7 @@ class MyTool {
             timer = egret.setTimeout(onTouchTimer,thisObj,800);
         }
         function onTouchTimer(){
-             fun.apply(thisObj);
+             fun.apply(thisObj,[mc]);
         }
         function onTouchEnd(){
             egret.clearTimeout(timer);

@@ -4,11 +4,13 @@
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
-			<e:Group id="enemyGroup" x="0" y="0" width="640" height="45">
+			<e:Group id="enemyGroup" x="0" y="0" width="640" height="80">
 				
 				<e:Label text="PK类型：" y="10" textColor="0xCC9900" x="15"/>
 				<e:RadioButton y="10" label="竞技场规则" skinName="MyRadioButtonSkin" id="ringRadio0" x="154"/>
-				<e:RadioButton x="317" label="修正场规则" y="10" skinName="MyRadioButtonSkin" id="ringRadio1"/>
+				<e:RadioButton x="317" label="修正场规则" y="10" skinName="MyRadioButtonSkin" id="ringRadio1"/>
+				<e:Label text="挑战宣言：" x="15" y="45" textColor="0xCC9900" size="26"/>
+				<e:TextInput id="inputText" x="155" y="38" skinName="MyTextInputSkin" width="473" maxChars="20" prompt="你可敢与我一战？！"/>
 			</e:Group>
 			<e:Group y="10" x="10" width="640" height="45" id="enemyGroup0">
 				<e:Label id="pkTypeText" y="10" textColor="0xCC9900" text="PK类型：竞技场规则" x="15"/>

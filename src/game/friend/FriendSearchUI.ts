@@ -25,7 +25,7 @@ class FriendSearchUI extends game.BaseWindow {
     }
 
     private onSearch(){
-        var nick;
+        var nick = this.nameText.text;
         if(!nick)
         {
             Alert('输入内容不能为空')
@@ -45,6 +45,6 @@ class FriendSearchUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.itemMC.data = this.data;
+        this.nameText.text = '';
     }
 }

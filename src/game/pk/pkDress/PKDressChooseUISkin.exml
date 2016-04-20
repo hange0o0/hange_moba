@@ -1,18 +1,22 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="235">
 	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="235" locked="true"/>
-	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="235" x="640" locked="true"/>
-
+	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="235" x="640" locked="true"/>
 
-	<e:Image id="boxMC" source="drop_png" y="230" horizontalCenter="0" visible="false"/>
-	<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="20" y="15"/>
-	<ns1:PKDressChooseItem id="h2" y="15" x="147" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h3" y="15" x="273" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h4" y="15" x="399" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" x="525" y="15"/>
-	<ns1:PKDressChooseItem id="h9" y="118" x="525" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h6" y="118" x="20" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h7" y="118" x="147" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h8" y="118" x="273" skinName="PKDressChooseItemSkin"/>
-	<ns1:PKDressChooseItem id="h10" y="118" x="399" skinName="PKDressChooseItemSkin"/>
+
+
+
+    <e:Group id="itemGroup" x="0" y="0">
+		<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="20" y="15"/>
+		<ns1:PKDressChooseItem id="h2" y="15" x="147" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h3" y="15" x="273" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h4" y="15" x="399" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" x="525" y="15"/>
+
+		<ns1:PKDressChooseItem id="h6" y="118" x="20" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h7" y="118" x="147" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h8" y="118" x="273" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h9" y="118" x="399" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h10" y="118" x="525" skinName="PKDressChooseItemSkin"/>
+	</e:Group>
 </e:Skin>
