@@ -9,46 +9,53 @@
 			</e:Group>
 			<e:Group id="myGroup0" x="0" y="391" height="360">
 				<e:Image source="line_png" x="-9" y="0" width="655"/>
+				<e:Group id="bg0" x="0" y="0" height="100%" visible="false">
+					<e:Image scale9Grid="40,44,240,266" y="0" height="360" x="0" source="book_bg1_jpg"/>
+					<e:Image y="0" scaleX="-1" scale9Grid="40,44,240,266" height="360" x="640" source="book_bg1_jpg"/>
+				</e:Group>
 				
 				
-				<e:List id="myList0" y="64" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
+				<e:List id="myList0" y="62" x="17" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Image source="bold_bg_png" y="312" x="88"/>
-				<e:Image source="bold_bg_png" y="312" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="325" textColor="0xCC9900"/>
-				<e:Label id="ringText1" y="324" textColor="0xCC9900" text="标签" x="394"/>
-				<e:Label text="PK卡组1" y="24" textColor="0xCC9900" horizontalCenter="0.5"/>
+				<e:Image source="bold_bg_png" y="301" x="88"/>
+				<e:Image source="bold_bg_png" y="301" x="351"/>
+				<e:Label id="ringText0" text="标签" x="129" y="314" textColor="0xCC9900"/>
+				<e:Label id="ringText1" y="313" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Label text="PK卡组1" y="28" textColor="0xCC9900" horizontalCenter="0.5"/>
 			</e:Group>
 			<e:Group x="10" y="401" height="360" id="myGroup1">
 				<e:Image source="line_png" width="655" y="0" x="-9"/>
-				<e:List y="77" x="14" width="614" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList1">
+				<e:Group x="0" y="0" height="100%" id="bg1">
+					<e:Image source="book_bg1_jpg" scale9Grid="40,44,240,266" y="0" height="360" x="0"/>
+					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="360" x="640"/>
+				</e:Group>
+				<e:List y="62" x="17" width="614" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList1">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label y="24" textColor="0xCC9900" text="PK卡组2" horizontalCenter="0.5" x="10"/>
-				<e:Image source="bold_bg_png" y="308" x="88"/>
-				<e:Image source="bold_bg_png" y="308" x="351"/>
-				<e:Label x="129" y="321" textColor="0xCC9900" text="标签" id="ringText2"/>
-				<e:Label id="ringText3" y="320" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Image source="bold_bg_png" y="301" x="88"/>
+				<e:Image source="bold_bg_png" y="301" x="351"/>
+				<e:Label x="129" y="314" textColor="0xCC9900" text="标签" id="ringText2"/>
+				<e:Label id="ringText3" y="313" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Label y="28" textColor="0xCC9900" text="PK卡组1" horizontalCenter="0.5"/>
 			</e:Group>
-			<e:Group id="myChooseGroup" x="20" y="411" height="360">
-				<e:Image source="line_png" width="655" y="0" x="-9"/>
-				<e:List y="73" x="14" width="614" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList2">
+			<e:Group id="myChooseGroup" x="20" y="411" height="280">
+				<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
+				<e:Image source="book_bg2_jpg" scale9Grid="40,44,240,266" y="0" height="100%" x="0"/>
+				<e:List y="0" x="10" width="620" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList2">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label id="chooseText" y="27" textColor="0xCC9900" text="我的选择：PK卡组2" x="20"/>
-				<e:Image source="bold_bg_png" y="15" x="307"/>
-				<e:Label x="348" y="30" textColor="0xCC9900" text="标签" id="ringText4"/>
-			</e:Group>
+				<e:Image id="chooseMC" source="pk_icon_png" x="460" y="-66"/>
+			</e:Group>
 			
 			<e:layout>
-				<e:VerticalLayout/>
+				<e:VerticalLayout gap="0"/>
 			</e:layout>
 		</e:Group>
 	</e:Scroller>

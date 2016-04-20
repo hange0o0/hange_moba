@@ -19,8 +19,8 @@ class PKDressUI extends game.BaseUI {
     private ringRadio0: eui.RadioButton;
     private ringRadio1: eui.RadioButton;
     private pkBtn: eui.Button;
-    private dragBG: eui.Rect;
     private pkDressChooseUI: PKDressChooseUI;
+
 
 
     private totalWood = 1;

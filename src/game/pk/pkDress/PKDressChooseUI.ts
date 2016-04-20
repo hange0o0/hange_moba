@@ -17,6 +17,20 @@ class PKDressChooseUI extends game.BaseContainer {
     private h8: PKDressChooseItem;
     private h9: PKDressChooseItem;
     private h10: PKDressChooseItem;
+    private spliceGroup: eui.Group;
+    private a1: eui.Image;
+    private a2: eui.Image;
+    private a3: eui.Image;
+    private a4: eui.Image;
+    private a5: eui.Image;
+    private a6: eui.Image;
+    private a7: eui.Image;
+    private a8: eui.Image;
+    private a9: eui.Image;
+    private a10: eui.Image;
+    private a11: eui.Image;
+    private a12: eui.Image;
+
 
 
 

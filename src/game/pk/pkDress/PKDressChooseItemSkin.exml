@@ -2,5 +2,5 @@
 <e:Skin class="PKDressChooseItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" width="95" height="91">
 	<e:Image id="stateMC" source="head_border_light1_png" x="-22" y="-28" scaleX="0.8" scaleY="0.8"/>
 	<ns1:MyHeadItem id="myHeadItem" x="0" y="1" skinName="MyHeadItemSkin" scaleX="0.8" scaleY="0.8"/>
-	<e:Button id="deleteBtn" label="移除" skinName="Btn_d1Skin" scaleX="0.8" scaleY="0.8" horizontalCenter="0" bottom="0"/>
+	<e:Button id="deleteBtn" label="移除" scaleX="0.7" scaleY="0.7" horizontalCenter="-25.900000000000002" bottom="-8.199999999999996" skinName="Btn_close2Skin"/>
 </e:Skin>
