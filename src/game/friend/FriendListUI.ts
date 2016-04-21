@@ -5,11 +5,13 @@ class FriendListUI extends game.BaseUI {
         return this.instance;
     }
 
+    private infoText: eui.Label;
     private topUI: TopUI;
+    private searchBtn: eui.Button;
     private tab: eui.TabBar;
     private scroller: eui.Scroller;
     private list: eui.List;
-    private searchBtn: eui.Button;
+
 
 
 
