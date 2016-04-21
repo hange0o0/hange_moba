@@ -91,16 +91,19 @@ class Net extends egret.EventDispatcher{
                 switch (data.error)
                 {
                     case 1:
-                        Alert('版本不对');
+                        Alert('版本不对',refresh);
+                        GameManager.getInstance().stopTimer();
                         break;
                     case 2:
-                        Alert('用户验证失败');
+                        Alert('用户验证失败',refresh);
+                        GameManager.getInstance().stopTimer();
                         break;
                     case 3:
-                        Alert('通信出错');
+                        Alert('通信出错',refresh);
                         break;
                     case 4:
-                        Alert('用户数据写入失败');
+                        Alert('用户数据写入失败',refresh);
+                        GameManager.getInstance().stopTimer();
                         break;
                 }
                 return;
@@ -120,6 +123,10 @@ class Net extends egret.EventDispatcher{
             loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);
             Alert('通信失败');
         }
+        function refresh(){
+            location.reload();
+        }
+
 
         loader.addEventListener(egret.Event.COMPLETE, onComplete, this);
         loader.addEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);

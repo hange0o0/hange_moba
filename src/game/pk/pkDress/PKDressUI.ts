@@ -34,6 +34,7 @@ class PKDressUI extends game.BaseUI {
 
 
     public isEqual = false;
+    public specialData = {isEqual:false};
     public dataIn;
     public orginData; //卡组的原始数据
     public pkType; //PK类型
@@ -54,6 +55,7 @@ class PKDressUI extends game.BaseUI {
         this.pkType = data.pktype;
         this.orginData = data.data;
         this.isEqual = data.isEqual;
+        this.specialData.isEqual = this.isEqual;
 
         this.key = this.orginData.list.join(',') + '|' + this.orginData.ring.join(',');
 
@@ -64,7 +66,6 @@ class PKDressUI extends game.BaseUI {
     public onShow(){
         this.monsterList = this.orginData.list;
         this.ringList = this.orginData.ring;
-        this.dragBG.visible = false;
         this.reInitData();
     }
 
@@ -87,21 +88,14 @@ class PKDressUI extends game.BaseUI {
         this.list.itemRenderer = PKDressChooseListItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
-        this.list.addEventListener(egret.Event.CHANGE,this.onList2Change,this)
 
 
         this.enemyList.itemRenderer = EnemyHeadItem;
+
+        this.pkDressChooseUI.addEventListener('change',this.onChooseChange,this)
+        this.pkDressChooseUI.specialData = this.specialData;
     }
 
-    public onStartDrag(){
-        this.dragBG.visible = true;
-    }
-    public onEndDrag(arr){
-        this.dragBG.visible = false;
-        this.chooseList = arr;
-        this.renewList2();
-        this.renew();
-    }
 
     private onPKStart(){
         if(this.chooseList.length == 0)
@@ -125,12 +119,6 @@ class PKDressUI extends game.BaseUI {
           }
     }
 
-    private onList2Change(){
-        this.chooseMonster = this.list.selectedItem.vo.id;
-        this.renewChooseList();
-        this.renewList2();
-    }
-
     private onView(){
         if(this.currentState == 'more')
             this.currentState = 'normal';
@@ -140,27 +128,19 @@ class PKDressUI extends game.BaseUI {
     }
 
     public addMonster(mid){
-        var vo = MonsterVO.getObject(mid);
-        var max = Math.min(UM.getMonsterCollect(mid),3);
-        if(max<= this.getMonsterNum(mid))
+        if(this.chooseList.length > 0)
         {
-            ShowTips('已达上限');
+            Alert('每次战斗最多可出10张卡');
             return;
         }
-        var ro = this.getCurrentResource();
-        if(vo.wood > ro.wood)
-        {
-            ShowTips('木不够');
-            return;
-        }
-        if(vo.cost > ro.coin)
-        {
-            ShowTips('钱不够');
-            return;
-        }
-        this.chooseList.push(mid);
-        this.renewChooseList();
+        this.pkDressChooseUI.addItem(mid);
+    }
+    
+    private onChooseChange(){
+        this.chooseList = this.pkDressChooseUI.getList();
         this.saveHistory();
+        this.renew();
+        this.renewList();
     }
 
     //怪物被使用次数
@@ -178,19 +158,13 @@ class PKDressUI extends game.BaseUI {
         SharedObjectManager.instance.setMyValue('dress_history',this.history);
     }
 
-    public resetChoose(data){
-        this.ringRadio0.group.selectedValue = data.ring;
-        this.chooseList = data.list;
-        this.renewChooseList();
-        this.saveHistory();
-    }
 
     //得到当前用剩的资源
     public getCurrentResource(){
         var oo = {coin:this.totalCoin,wood:this.totalWood}
-        var arr = []//this.chooseUI.chooseList;
+        var arr = this.chooseList
         for(var i=0;i<arr.length;i++) {
-            var vo = MonsterVO.getObject(arr[i].data);
+            var vo = MonsterVO.getObject(arr[i]);
             oo.coin -= vo.cost;
             oo.wood -= vo.wood;
         }
@@ -229,43 +203,32 @@ class PKDressUI extends game.BaseUI {
         }
 
 
-        this.renewChooseList();
-        this.renewList2();
+        this.pkDressChooseUI.renew(this.chooseList);
+        this.renewList();
         this.renew();
     }
 
-    private renewChooseList(){
-        //var arr = [];
-        //var selectVO = MonsterVO.getObject(this.chooseMonster);
-        //for(var i=0;i<this.chooseList.length;i++)
-        //{
-        //    var oo:any = {};
-        //    var vo = MonsterVO.getObject(this.chooseList[i]);
-        //    oo.type = 2;
-        //    oo.state = 0
-        //    oo.vo = vo;
-        //    arr.push(oo);
-        //}
-        this.pkDressChooseUI.renew(this.chooseList);
-    }
 
-    private renewList2(){
+    private renewList(){
         var arr = [];
         var selectVO = MonsterVO.getObject(this.chooseMonster);
+
+        var ro = this.getCurrentResource();
         for(var i=0;i<this.monsterList.length;i++)
         {
              var oo:any = {};
             var vo = MonsterVO.getObject(this.monsterList[i]);
-            oo.type = 2;
-            oo.state = 0
-            if(this.list.selectedIndex != -1 && this.chooseMonster == this.monsterList[i])
-                oo.state = 1;
-            else if(selectVO && vo.isEffect(selectVO.id))
-                oo.state = 2;
+
             oo.vo = vo;
+            oo.id = vo.id;
+            oo.specialData =  this.specialData;
             oo.num = this.getMonsterNum(vo.id);
+            oo.index = i;
+            oo.list = arr;
+            oo.ro = ro;
             arr.push(oo);
         }
+
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 

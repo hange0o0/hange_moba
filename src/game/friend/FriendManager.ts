@@ -22,7 +22,6 @@ class FriendManager{
     public shareCreateDate = 0; //shareObject里面的数据只保存一天
 
     public talkSave = {};//最近的记录历史聊天到本地
-    public currentTalk = {};//拿到的聊天记录
 
     public constructor() {
         var oo = SharedObjectManager.instance.getMyValue('friendData');
@@ -45,6 +44,13 @@ class FriendManager{
         }
     }
 
+    public showPKUI(id){
+        var FPKM = FriendPKManager.getInstance();
+        FPKM.getCard(id,function(){
+            FriendPKAskUI.getInstance().show(FPKM.cardObject[id]);
+        })
+    }
+
     public getPKArray(){
         var arr = ObjectUtil.objToArray(this.pkObject);
         ArrayUtil.sortByField(arr,['id'],[1])
@@ -53,14 +59,12 @@ class FriendManager{
 
     //取聊天记录
     public getTalkList(gameid){
-        if(this.currentTalk[gameid])
+        if(this.talkSave[gameid])
         {
-            return this.currentTalk[gameid].list;
+            return this.talkSave[gameid].list;
         }
         this.initTalkSave(gameid);
-        this.currentTalk[gameid] = {};
-        this.currentTalk[gameid].list = this.talkSave[gameid].list.concat();
-        return this.currentTalk[gameid].list;
+        return this.talkSave[gameid].list
     }
 
     //初始化聊天记录
@@ -238,11 +242,11 @@ class FriendManager{
     }
 
     //请求
-    public apply(otherid,des,fun?){
+    public apply(otherid,fun?){
         var self = this;
         var oo:any = {};
         oo.otherid = otherid;
-        oo.des = des;
+        //oo.des = des;
         Net.addUser(oo);
         Net.send(GameEvent.friend.friend_apply,oo,function(data){
             var msg = data.msg;
@@ -271,6 +275,7 @@ class FriendManager{
                Alert('对方好友数量已达最大值');
                 return;
             }
+            ShowTips('请求已发送')
             if(fun)
                 fun();
         });
@@ -280,7 +285,7 @@ class FriendManager{
         var self = this;
         var oo:any = {};
         oo.otherid = otherid;
-        oo.talk = talk;
+        oo.talk = talk
         Net.addUser(oo);
         Net.send(GameEvent.friend.friend_talk,oo,function(data){
             var msg = data.msg;
@@ -395,24 +400,34 @@ class FriendManager{
             if(!self.logList)
             self.logList = [];
             var now = TM.now();
+            var logChange = false;
+            var pkChange = false;
             for(var i=0;i<msg.list.length;i++)
             {
+                msg.list[i].id = Math.floor(msg.list[i].id);
+                msg.list[i].time = Math.floor(msg.list[i].time);
                 if(msg.list[i].type != 2)
                 {
                     self.removeLog(msg.list[i].id);
                     self.logList.push(msg.list[i]);
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);
-                    else
-                        EM.dispatchEventWith(GameEvent.client.friend_log_change)
+                    logChange = true;
+
                 }
                 else
                 {
                    self.pkObject[msg.list[i].id] = msg.list[i];
-                    EM.dispatchEventWith(GameEvent.client.friend_pk_change)
+                    pkChange = true;
                 }
             }
-            ArrayUtil.sortByField(self.logList,['id'],[1])
+            if(logChange)
+            {
+                ArrayUtil.sortByField(self.logList,['id'],[1])
+                EM.dispatchEventWith(GameEvent.client.friend_log_change)
+            }
+            if(pkChange)
+                EM.dispatchEventWith(GameEvent.client.friend_pk_change)
             self.saveToLocal();
             if(fun)
                 fun();
@@ -458,6 +473,11 @@ class FriendManager{
         //oo.serverid =  LoginManager.getInstance().lastSever;
         Net.send(GameEvent.user.get_other_info,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('该用户不存在')
+                return;
+            }
             var info = msg.info;
             info.getTime = TM.now();
             self.otherInfo[info.gameid] = info;
@@ -485,6 +505,11 @@ class FriendManager{
         //oo.serverid =  LoginManager.getInstance().lastSever;
         Net.send(GameEvent.user.get_other_info,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('该用户不存在')
+                return;
+            }
             var info = msg.info;
             info.getTime = TM.now();
             self.otherInfo[info.gameid] = info;

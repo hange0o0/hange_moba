@@ -49,7 +49,7 @@ class FriendLogItem extends game.BaseItem {
 
     public dataChanged(){
         this.headMC.source = MyTool.getHeadUrl(this.data.head);
-        this.btnGroup.visible = false;
+        this.btnGroup.visible = true;
         this.nameText.text = this.data.content.nick;
         if(this.data.type == 3)  //聊天
         {

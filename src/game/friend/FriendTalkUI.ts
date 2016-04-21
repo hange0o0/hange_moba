@@ -14,9 +14,6 @@ class FriendTalkUI extends game.BaseUI {
     public openid;
     public otherHead;
     public otherNick;
-    public talkData;
-
-    private timer;
 
     public constructor() {
         super();
@@ -37,16 +34,18 @@ class FriendTalkUI extends game.BaseUI {
 
         this.addBtnEvent(this.sendBtn, this.onClick);
 
-        this.timer = new egret.Timer(1000);
-        this.timer.addEventListener(egret.TimerEvent.TIMER,this.onTimer)
+        EM.addEvent(GameEvent.client.talk_change,this.renew,this)
+        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
     }
 
     private onTimer(){
+        if(!this.stage)
+            return;
         FriendManager.getInstance().getLog();  //底层有30S取一次的限制
     }
     private onClick(){
         var FM = FriendManager.getInstance();
-        if(UM.getFriendTalk()  >= FM.maxTalk)
+        if(UM.getFriendTalk() <= 0)
         {
             Alert('今天的聊天次数已用完')
             return;
@@ -55,34 +54,45 @@ class FriendTalkUI extends game.BaseUI {
     }
 
     public hide(){
-        this.timer.stop();
         super.hide();
     }
 
     public show(id?){
         this.openid = id;
+        var self = this;
+        FriendManager.getInstance().getLog(function(){
+            self.superShow()
+        })
+    }
+
+    private superShow(){
         super.show();
     }
 
     public onShow(){
-        this.timer.start();
         var FM = FriendManager.getInstance();
-        var data = this.talkData = FM.getTalkList(this.openid);
-        this.otherHead = data.head;
-        this.otherNick = data.nick;
+
+        if(FM.friendData[this.openid])
+        {
+            var info = FM.friendData[this.openid].info;
+            this.otherHead = info.head;
+            this.otherNick = info.nick;
+        }
 
         this.topUI.setTitle('私聊-'+this.otherNick);
         this.renew();
     }
 
-
-
     private renew(){
+        if(!this.stage)
+            return;
+
         var FM = FriendManager.getInstance();
-        var arr = this.talkData.list;
+        var arr = FM.getTalkList(this.openid);
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.once(egret.Event.RENDER,function(){
-            this.scroller.viewport.scrollV = Math.min(0,this.scroller.viewport.contentHeight - this.scroller.height);
+            this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+            console.log(this.scroller.viewport.scrollV)
         },this)
 
         this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'

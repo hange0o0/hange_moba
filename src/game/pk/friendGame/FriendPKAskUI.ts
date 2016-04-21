@@ -63,6 +63,7 @@ class FriendPKAskUI extends game.BaseUI {
     public show(data?,isAnswer?){
         this.data = data;
         this.isAnswer = isAnswer;
+
         super.show();
     }
 

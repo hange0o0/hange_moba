@@ -4,11 +4,13 @@ class OtherInfoUI extends game.BaseUI {
         if (!this.instance) this.instance = new OtherInfoUI();
         return this.instance;
     }
-    
+
     private topUI: TopUI;
     private headMC: eui.Image;
     private nameText: eui.Label;
     private friendBtn: eui.Button;
+    private talkBtn: eui.Button;
+    private pkBtn: eui.Button;
     private levelText: eui.Label;
     private forceText: eui.Label;
     private mainGameText: eui.Label;
@@ -20,6 +22,7 @@ class OtherInfoUI extends game.BaseUI {
     private serverEqualRateText: eui.Label;
     private serverEqualWinText: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -38,12 +41,23 @@ class OtherInfoUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.friendBtn, this.onFriend);
+        this.addBtnEvent(this.talkBtn, this.onTalk);
+        this.addBtnEvent(this.pkBtn, this.onPK);
 
         this.list.itemRenderer = EnemyHeadItem;
     }
 
+    private onTalk(){
+       FriendTalkUI.getInstance().show(this.dataIn.gameid);
+    }
+    private onPK(){
+        FriendManager.getInstance().showPKUI(this.dataIn.gameid)
+    }
     private onFriend(){
-
+        var self = this;
+        FriendManager.getInstance().apply(this.dataIn.gameid,function(){
+            self.friendBtn.visible = false;
+        })
     }
 
     public showID(id){
@@ -65,10 +79,36 @@ class OtherInfoUI extends game.BaseUI {
 
     public show(data?){
         this.dataIn = data;
+        var FM = FriendManager.getInstance();
+        if(FM.friendList)
+            super.show();
+        else
+        {
+            var self = this;
+            FM.getList(function(){
+                self.superShow()
+            })
+        }
+    }
+
+    private superShow(){
         super.show();
     }
 
     public onShow(){
+        var FM = FriendManager.getInstance();
+        if(FM.friendData[this.dataIn.gameid])
+        {
+            this.friendBtn.visible = false;
+            this.talkBtn.visible = true;
+            this.pkBtn.visible = true;
+        }
+        else
+        {
+            this.talkBtn.visible = false;
+            this.pkBtn.visible = false;
+            this.friendBtn.visible = true;
+        }
         this.renew();
     }
 

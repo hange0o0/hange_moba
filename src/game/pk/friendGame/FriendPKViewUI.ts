@@ -58,7 +58,6 @@ class FriendPKViewUI extends game.BaseUI {
         if(this.isAnswer)
         {
             this.topUI.setTitle('好友应战')
-            MyTool.removeMC(this.enemyGroup)
             this.scrollerGroup.addChildAt(this.enemyGroup0,0);
             if(this.data.content.isequal)
                 this.pkTypeText.text = '使用规则：修正场规则';
@@ -69,7 +68,6 @@ class FriendPKViewUI extends game.BaseUI {
         {
             this.topUI.setTitle('挑战好友')
             MyTool.removeMC(this.enemyGroup0)
-            this.scrollerGroup.addChildAt(this.enemyGroup,0)
         }
 
         var data = this.data.content.from_list;

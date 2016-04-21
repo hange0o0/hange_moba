@@ -7,7 +7,6 @@ class FriendTalkItem extends game.BaseItem {
     private headMC: eui.Image;
     private talkText: eui.Label;
     private dayText: eui.Label;
-    private moreBtn: eui.Button;
 
 
 
@@ -15,11 +14,6 @@ class FriendTalkItem extends game.BaseItem {
 
     public childrenCreated(){
         super.childrenCreated();
-        this.addBtnEvent(this.moreBtn,this.onMore);
-    }
-
-    private onMore(){
-
     }
 
     public dataChanged(){
@@ -29,13 +23,13 @@ class FriendTalkItem extends game.BaseItem {
         }
         else if(this.data.stat == 1) //自己
         {
-            this.currentState = 'self';
-            this.headMC.source = MyTool.getHeadUrl(UM.head);
+            this.currentState = 'other';
+            this.headMC.source = MyTool.getHeadUrl(FriendTalkUI.getInstance().otherHead);
         }
         else
         {
-            this.currentState = 'other';
-            this.headMC.source = MyTool.getHeadUrl(FriendTalkUI.getInstance().otherHead);
+            this.currentState = 'self';
+            this.headMC.source = MyTool.getHeadUrl(UM.head);
         }
 
         this.talkText.text = this.data.talk;

@@ -60,6 +60,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onJump(){
+        this.hide();
         this.stopAll();
         this.showResult();
     }

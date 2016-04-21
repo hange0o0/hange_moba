@@ -9,6 +9,8 @@
 				<e:Image id="headMC" source="pk_bg_jpg" y="9" x="6" width="80" height="80"/>
 				<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCC9900"/>
 				<e:Button id="friendBtn" label="加好友" x="440" y="0" skinName="Btn_r1Skin"/>
+				<e:Button id="talkBtn" skinName="Btn_r1Skin" label="加好友" y="10" x="450"/>
+				<e:Button id="pkBtn" skinName="Btn_r1Skin" label="加好友" y="20" x="460"/>
 			</e:Group>
 			<e:Group x="78" y="237">
 				<e:Label id="levelText" y="7" text="等级：LV.32" x="60" textColor="0xCC9900"/>

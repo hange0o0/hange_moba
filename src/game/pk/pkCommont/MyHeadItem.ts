@@ -36,7 +36,9 @@ class MyHeadItem extends game.BaseItem {
 
         this.headMC.source = vo.thumb;
         if(this.data.borderValue)
-        this.headBG.source = 'head_border'+(UM.getMonsterCollect(vo.id) + 1)+'_png'
+            this.headBG.source = 'head_border'+(this.data.borderValue)+'_png'
+        else
+            this.headBG.source = 'head_border'+(UM.getMonsterCollect(vo.id) + 1)+'_png'
 
         if(this.data.type == 1) //一般情况下显示头像
         {

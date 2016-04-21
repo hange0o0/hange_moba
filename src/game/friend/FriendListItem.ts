@@ -23,17 +23,18 @@ class FriendListItem extends game.BaseItem {
     }
 
     private onTalk(){
-        FriendTalkUI.getInstance().show(this.data.id)
+        FriendTalkUI.getInstance().show(this.data)
     }
 
     private onPK(){
-
+         FriendManager.getInstance().showPKUI(this.data)
     }
 
     public dataChanged(){
-        this.headMC.source = MyTool.getHeadUrl(this.data.head);
-        this.nameText.text = this.data.nick;
-        this.levelText.text = this.data.level;
-        this.forceText.text = this.data.force;
+        var data = FriendManager.getInstance().friendData[this.data].info;
+        this.headMC.source = MyTool.getHeadUrl(data.head);
+        this.nameText.text = data.nick;
+        this.levelText.text = data.level;
+        this.forceText.text = data.force;
     }
 }

@@ -23,11 +23,12 @@ class SendTalkUI extends game.BaseWindow {
         super.childrenCreated();
         this.addBtnEvent(this.cancelBtn, this.hide);
         this.addBtnEvent(this.sendBtn, this.onSend);
+        this.editText.restrict = "^\\\\\"\'"
     }
 
     private onSend(){
         var self = this;
-        FriendManager.getInstance().talk(this.openid,this.editText,function(){
+        FriendManager.getInstance().talk(this.openid,this.editText.text,function(){
              self.hide();
         })
     }

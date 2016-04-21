@@ -63,13 +63,17 @@ class MyTool {
     //长按监听
     public static addLongTouch(mc:any,fun,thisObj?){
         mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,thisObj);
-
+        var x,y;
         var timer = -1;
-        function onTouchStart(){
-            mc.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+        function onTouchStart(e){
+            mc.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
             timer = egret.setTimeout(onTouchTimer,thisObj,800);
+            x = e.stageX
+            y = e.stageY
         }
         function onTouchTimer(){
+            if(Math.abs(x - GameManager.stageX) > 10 || Math.abs(y - GameManager.stageY) > 10)
+                return;
              fun.apply(thisObj,[mc]);
         }
         function onTouchEnd(){

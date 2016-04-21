@@ -15,7 +15,24 @@ class GameManager {
 	}
 	
     public static stage:egret.Stage;
+    public static stageX;
+    public static stageY;
     public static container:egret.DisplayObjectContainer;
+
+
+    public init(){
+        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onTouchMove,this);
+    }
+
+    public stopTimer(){
+        this.timeID.stop();
+    }
+
+    private onTouchMove(e){
+        GameManager.stageX = e.stageX;
+        GameManager.stageY = e.stageY;
+    }
+
 
     private timerun(): void {
         var now = TM.now();
@@ -28,7 +45,7 @@ class GameManager {
             EM.dispatch(GameEvent.client.energy_change);
 
         }
-
+        EM.dispatch(egret.TimerEvent.TIMER);
     }
 
     //取现在到晚上12点还差的时间

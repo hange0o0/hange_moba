@@ -74,6 +74,7 @@ class FriendPKManager{
                 Alert('清除数据出错');
                 return;
             }
+            self.cardObject[otherid] = null
             UM.addHistory(choose.list.join(','));
             FriendManager.getInstance().getLog(fun,true);
             //self.pkObject[msg.data.id] = (msg.data);

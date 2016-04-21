@@ -52,6 +52,8 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private outPos
 
+    public specialData;
+
 
     public childrenCreated() {
         super.childrenCreated();
@@ -87,6 +89,17 @@ class PKDressChooseUI extends game.BaseContainer {
             //this.posData[line]['x' + index] = mc.x + dec
             //this.posData[line]['x_' + index] = mc.x + mc.width - dec
         }
+
+        for(var i=1;i<=12;i++)
+        {
+            var a = this['a' + i];
+            this.addBtnEvent(a,this.onSplice)
+            this.splicaArray.push(a);
+            var index = i-1;
+            if(index>5)
+                index--;
+            a.index = index;
+        }
     }
 
     private onDelete(e){
@@ -95,15 +108,17 @@ class PKDressChooseUI extends game.BaseContainer {
         this.mcArray.splice(index,1);
         this.listLength --;
 
+        this.selectIndex = -1;
         this.mcArray.push(item);
         item.data = null;
         item.x = this.outPos.x;
         item.y = this.outPos.y;
         this.renewPos();
+        this.dispatchEventWith('change');
     }
 
     //插入
-    private onSplic(e){
+    private onSplice(e){
         var item = e.currentTarget;
         var index = item.index;
         var selectItem = this.mcArray[this.selectIndex];
@@ -119,6 +134,7 @@ class PKDressChooseUI extends game.BaseContainer {
             this.mcArray.splice(index,0,selectItem);
         }
         this.renewPos([selectItem]);
+        this.dispatchEventWith('change');
     }
 
     private renewSplice(){
@@ -181,6 +197,7 @@ class PKDressChooseUI extends game.BaseContainer {
                 this.selectIndex = -1;
                 this.renewPos([selectItem]);
             }
+            this.dispatchEventWith('change');
         }
     }
 
@@ -193,7 +210,7 @@ class PKDressChooseUI extends game.BaseContainer {
             var mc = this['h' + i]
             if(list[i-1])
             {
-                mc.data = {vo:MonsterVO.getObject(list[i-1]),type:2,state:0,index:i};
+                mc.data = {id:list[i-1],specialData:this.specialData,vo:MonsterVO.getObject(list[i-1]),type:2,state:0,index:i};
             }
             else
             {
@@ -214,7 +231,10 @@ class PKDressChooseUI extends game.BaseContainer {
         for(var i=0;i<this.mcArray.length;i++) {
             var mc = this.mcArray[i];
             if(mc.data)
+            {
                 chooseList.push(mc.data);
+            }
+
         }
         var index = chooseList.indexOf(target.data);
         MonsterList.getInstance().show(chooseList,index)
@@ -238,33 +258,6 @@ class PKDressChooseUI extends game.BaseContainer {
         {
             var mc = this.mcArray[i];
             var posMC = this.posArray[i];
-            //mc.index = i;
-            //if(mc == this.dragMC)
-            //{
-            //    mc = this.replaceDragMC;
-            //}
-
-            //if(mc == this.dragMC)//自己本身
-            //{
-            //    this.h12.visible = true;
-            //    mc =  this.h12;
-            //    mc.x = posMC.x;
-            //    mc.y = posMC.y;
-            //    continue;
-            //    //this.mcArray[i].data.state = 1;
-            //    //this.mcArray[i].dataChanged();
-            //}
-            //else if(this.dragMC && this.mcArray[i].data.vo.isEffect(this.dragMC.data.vo.id) && this.mcArray[i].data.state != 2)//有加成的发光
-            //{
-            //    this.mcArray[i].data.state = 2;
-            //    this.mcArray[i].dataChanged();
-            //}
-            //else if(this.mcArray[i].data.state != 0)//无发光
-            //{
-            //    this.mcArray[i].data.state = 0;
-            //    this.mcArray[i].dataChanged();
-            //}
-
             if(!posMC)
             {
                 posMC = this.posArray[9];
@@ -295,8 +288,6 @@ class PKDressChooseUI extends game.BaseContainer {
                     this.mvItem.data = mc.data;
                     this.mvItem.x = mc.x;
                     this.mvItem.y = mc.y;
-
-                    console.log(this.mvItem.y)
 
                     if(mc.y < posMC.y) //向下移
                     {
@@ -331,6 +322,24 @@ class PKDressChooseUI extends game.BaseContainer {
             var mc = this.mcArray.pop();
             egret.Tween.removeTweens(mc);
         }
+    }
+
+    public addItem(mid){
+        var mc = this.mcArray[this.listLength];
+        mc.data = {vo:MonsterVO.getObject(mid),type:2,state:0,id:mid,specialData:this.specialData};
+        this.listLength ++;
+        this.renewSplice();
+        this.dispatchEventWith('change');
+    }
+
+    public getList(){
+        var chooseList = [];
+        for(var i=0;i<this.mcArray.length;i++) {
+            var mc = this.mcArray[i];
+            if(mc.data)
+                chooseList.push(mc.data.vo.id);
+        }
+        return chooseList;
     }
 
 }

@@ -15,10 +15,12 @@ class PKDressChooseItem extends game.BaseItem {
     public childrenCreated(){
         //MyTool.addDoubleTouch(this,this.onDoubleClick,this)
         this.addBtnEvent(this.deleteBtn,this.onClick)
+        MyTool.addTestBlock(this.deleteBtn)
     }
     
     private onClick(e){
         e.stopImmediatePropagation();
+        console.log('deleted')
         this.dispatchEventWith('deleted');
     }
 

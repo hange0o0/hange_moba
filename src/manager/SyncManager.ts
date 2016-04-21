@@ -25,7 +25,7 @@ class SyncManager{
                     UM.diamond = value;
                     EM.dispatch(GameEvent.client.diamond_change);
                     break;
-                case 'sync_friend':
+                case 'sync_friends':
                     UM.friends = value;
                     EM.dispatch(GameEvent.client.friend_change);
                     break;

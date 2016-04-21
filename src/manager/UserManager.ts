@@ -99,8 +99,8 @@ class UserManager {
     private resetFriend(){
         if(!DateUtil.isSameDay(this.friends.t))
         {
-            this.friends.v = Math.max(10,this.friends.v);
-            this.friends.tk = Math.max(20,this.friends.tk);
+            this.friends.v = Math.max(FriendManager.getInstance().maxPK,this.friends.v);
+            this.friends.tk = Math.max(FriendManager.getInstance().maxTalk,this.friends.tk);
             this.friends.t = TM.now();
         }
     }
