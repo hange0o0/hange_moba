@@ -24,15 +24,17 @@ class FriendPKItem extends game.BaseItem {
         var FPKM = FriendPKManager.getInstance();
         if(this.state == 3)//看录像
         {
-
+            FPKM.playBack(this.data.id,function(){
+                PKMainUI.getInstance().show();
+            });
         }
         else if(this.state == 2) //应战
         {
-
+            FriendPKAskUI.getInstance().show(this.data,true);
         }
         else //等待
         {
-
+            FriendPKViewUI.getInstance().show(this.data);
         }
     }
 

@@ -19,6 +19,9 @@ class FriendListUI extends game.BaseUI {
 
     private  selectIndex;
 
+    private infoCount
+    private infoType
+
     public constructor() {
         super();
         this.skinName = "FriendListUISkin";
@@ -39,6 +42,33 @@ class FriendListUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
         this.addBtnEvent(this.searchBtn, this.onSearch);
+        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
+    }
+
+    private onTimer(){
+        if(!this.stage)
+            return;
+        this.infoCount --;
+        if(this.infoCount <=0)
+        {
+            this.infoCount = 5;
+            this.infoType ++;
+            if(this.infoType > 1)
+                this.infoType = 0
+            this.renewInfo();
+        }
+    }
+
+    private renewInfo(){
+        var FM = FriendManager.getInstance();
+        if(this.infoType == 0)
+        {
+            this.infoText.text = '好友数量：' + FM.friendList.length + '/' + FM.maxFriendNum;
+        }
+        else
+        {
+            this.infoText.text = '今日PK：' + UM.getFriendPKTimes() + '/' + FM.maxPK;
+        }
     }
 
     private onSearch(){
@@ -50,7 +80,15 @@ class FriendListUI extends game.BaseUI {
     }
 
     public show(index?){
-        this.selectIndex = index
+        this.selectIndex = index;
+
+        var self = this;
+        FriendManager.getInstance().getList(function(){
+            self.superShow()
+        })
+    }
+
+    private superShow(){
         super.show();
     }
 
@@ -60,6 +98,9 @@ class FriendListUI extends game.BaseUI {
             this.tab.selectedIndex = this.selectIndex - 1;
         }
         this.renew();
+        this.infoCount = 5;
+        this.infoType = 0
+        this.renewInfo();
     }
 
     public renew(){

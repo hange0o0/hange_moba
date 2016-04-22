@@ -23,6 +23,8 @@ class FriendManager{
 
     public talkSave = {};//最近的记录历史聊天到本地
 
+    private getCD//取消息中
+
     public constructor() {
         var oo = SharedObjectManager.instance.getMyValue('friendData');
         if(oo)
@@ -45,9 +47,18 @@ class FriendManager{
     }
 
     public showPKUI(id){
+        var self = this;
         var FPKM = FriendPKManager.getInstance();
         FPKM.getCard(id,function(){
-            FriendPKAskUI.getInstance().show(FPKM.cardObject[id]);
+            var oo = {
+                otherid:id,
+                othernick:self.friendData[id].info.nick,
+                content:{
+                    from_list:FPKM.cardObject[id]
+                }
+            };
+
+            FriendPKAskUI.getInstance().show(oo);
         })
     }
 
@@ -243,6 +254,11 @@ class FriendManager{
 
     //请求
     public apply(otherid,fun?){
+        if(this.friendList.length >= this.maxFriendNum)
+        {
+            ShowTips('好友数量已达最大值');
+            return;
+        }
         var self = this;
         var oo:any = {};
         oo.otherid = otherid;
@@ -336,6 +352,11 @@ class FriendManager{
 
 
     public agree(logid,fun?){
+        if(this.friendList.length >= this.maxFriendNum)
+        {
+            ShowTips('好友数量已达最大值');
+            return;
+        }
         var self = this;
         var oo:any = {};
         oo.logid = logid;
@@ -384,21 +405,25 @@ class FriendManager{
         });
     }
     public getLog(fun?,force=false){
+
         if(!force && this.logList && TM.now() - this.lastGetLog < 30)//30S CD             10
         {
             if(fun)
                 fun();
             return;
         }
+        if(!force && TM.now() - this.getCD<3)// 3S内不会重复发消息
+            return;
         var self = this;
         var oo:any = {};
         oo.lasttime = this.lastGetLog;
+        this.getCD = TM.now();
         Net.addUser(oo);
         Net.send(GameEvent.friend.friend_log,oo,function(data){
             var msg = data.msg;
             self.lastGetLog = TM.now();
             if(!self.logList)
-            self.logList = [];
+                self.logList = [];
             var now = TM.now();
             var logChange = false;
             var pkChange = false;

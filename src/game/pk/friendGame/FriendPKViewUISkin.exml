@@ -6,6 +6,7 @@
 		<e:Group id="scrollerGroup">
 			<e:Group y="10" x="10" width="640" height="45" id="enemyGroup0">
 				<e:Label id="pkTypeText" y="10" textColor="0xCC9900" text="PK类型：竞技场规则" x="15"/>
+				<e:Label id="timeText" y="9" textColor="0xCC9900" text="PK类型：竞技场规则" right="6"/>
 			</e:Group>
 			<e:Group id="myGroup0" x="0" y="391" height="360">
 				<e:Image source="line_png" x="-9" y="0" width="655"/>

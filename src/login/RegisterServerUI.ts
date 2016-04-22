@@ -28,6 +28,8 @@ class RegisterServerUI extends game.BaseWindow {
         this.addBtnEvent(this.registerBtn, this.onClick);
         this.addBtnEvent(this.randomBtn, this.onRandom);
         this.addBtnEvent(this.headGroup, this.onHeadClick);
+
+        this.nameText.restrict = "^\\\\\"\'"
     }
 
     public show(serverID?){

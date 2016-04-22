@@ -6,7 +6,9 @@ class PKManager {
         SERVER_EQUAL:'server_game_equal',
         DAY:'day_game',
         REPLAY:'replay',
-        FRIEND:'friend'
+        FRIEND:'friend',  //包括ask 和 answer
+        FRIEND_ASK:'friend_ask',
+        FRIEND_ANSWER:'friend_answer'
     };
 
     public static getInstance():PKManager {
@@ -104,7 +106,15 @@ class PKManager {
             case PKManager.PKType.DAY:
                 DayGameManager.getInstance().pk(choose,fun);
                 break
+            case PKManager.PKType.FRIEND_ASK:
+                FriendPKManager.getInstance().ask(choose,fun);
+                break
+            case PKManager.PKType.FRIEND_ANSWER:
+                FriendPKManager.getInstance().answer(choose,fun);
+                break
         }
+
+        //{"head":"friend_log","msg":{"list":[{"id":"20","from_gameid":"1_10011","to_gameid":"1_10015","type":"2","content":{"talk":null,"from_list":[{"list":[302,104,206,508],"ring":[5,19]},{"list":[208,308,305,103],"ring":[4,18]}],"ask_choose":{"list":[302],"ring":{"id":5,"level":0},"fight":-8,"force":9,"stec":{},"tec":{"302":{"hp":11,"atk":11,"spd":0}}},"isequal":null,"fromnick":"n572397","tonick":"n682787"},"time":"1461294012"}]},"runtime":0.000785827636719,"debug":[],"server_time":1461294012}   1461294012
 
     }
 

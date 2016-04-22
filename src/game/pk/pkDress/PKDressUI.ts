@@ -106,9 +106,16 @@ class PKDressUI extends game.BaseUI {
         var chooseData = {list:this.chooseList,ring:this.ringRadio0.group.selectedValue,index:this.dataIn.index}
         var self = this
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
-            PKDressUI.getInstance().hide();
             self.hide();
-            PKMainUI.getInstance().show();
+            if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
+            {
+                ShowTips('PK请求已发送');
+            }
+            else
+            {
+                PKMainUI.getInstance().show();
+            }
+
         })
     }
 
@@ -128,7 +135,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public addMonster(mid){
-        if(this.chooseList.length > 0)
+        if(this.chooseList.length >= 10)
         {
             Alert('每次战斗最多可出10张卡');
             return;

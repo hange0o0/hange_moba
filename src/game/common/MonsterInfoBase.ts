@@ -9,8 +9,6 @@ class MonsterInfoBase extends game.BaseContainer {
     private nameText: eui.Label;
     private atkText: eui.Label;
     private speedText: eui.Label;
-    private kindText2: eui.Label;
-    private kindText: eui.Label;
     private hpText: eui.Label;
     private sGroup: eui.Group;
     private s1: eui.Image;
@@ -52,10 +50,6 @@ class MonsterInfoBase extends game.BaseContainer {
             this.woodText.text = ''
             this.woodIcon.visible =  false;
         }
-
-        this.kindText.text = '星象：'+vo.effectWord(vo.kind).join('、');
-        this.kindText2.text ='加成：'+ vo.effectWord(vo.effect_kind).join('、');
-
 
         for(var i=1;i<=4;i++)
         {

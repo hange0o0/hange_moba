@@ -60,8 +60,6 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onJump(){
-        this.hide();
-        this.stopAll();
         this.showResult();
     }
 
@@ -405,6 +403,8 @@ class PKMainUI extends game.BaseUI {
 
     private showResult()
     {
+        this.hide();
+        this.stopAll();
         PKResultUI.getInstance().show();
         //if(PKManager.getInstance().pkResult.result)
         //    console.log('win');

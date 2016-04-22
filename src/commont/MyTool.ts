@@ -37,10 +37,6 @@ class MyTool {
 
         ArrayUtil.sortByField(array,['num','id'],[1,0])
         array.length = Math.min(10,array.length);
-        for(var i=0;i<array.length;i++)
-        {
-           array[i] = {vo:MonsterVO.getObject(array[i].id),type:1};
-        }
 
         return array;
     }

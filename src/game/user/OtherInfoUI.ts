@@ -142,10 +142,10 @@ class OtherInfoUI extends game.BaseUI {
         var arr =  MyTool.getCommonUse(history);
         for(var i=0;i<arr.length;i++){
             arr[i] = {
-                vo: MonsterVO.getObject(arr[i]),
+                vo: MonsterVO.getObject(arr[i].id),
                 type: 1,
 
-                id: arr[i],
+                id: arr[i].id,
                 specialData: specialData,
 
                 index: i,

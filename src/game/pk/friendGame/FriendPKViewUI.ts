@@ -10,6 +10,7 @@ class FriendPKViewUI extends game.BaseUI {
     private scrollerGroup: eui.Group;
     private enemyGroup0: eui.Group;
     private pkTypeText: eui.Label;
+    private timeText: eui.Label;
     private myGroup0: eui.Group;
     private bg0: eui.Group;
     private myList0: eui.List;
@@ -27,8 +28,8 @@ class FriendPKViewUI extends game.BaseUI {
 
 
 
+
     private data;
-    private isAnswer;
     private specialData;
     public constructor() {
         super();
@@ -38,49 +39,48 @@ class FriendPKViewUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
+        this.topUI.setTitle('等待好友应战')
         this.topUI.addEventListener('hide',this.hide,this);
         //this.addBtnEvent(this, this.onClick);
 
         //this.inputText.addEventListener(egret.Event.CHANGE,this.onTextChange)
+
+        this.myList0.itemRenderer =  MyHeadItem;
+        this.myList1.itemRenderer =  MyHeadItem;
+        this.myList2.itemRenderer =  MyHeadItem;
+        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
     }
 
-    private onClick(){
-
+    private onTimer(){
+        if(!this.stage)
+            return;
+        this.timeText.text = 'PK截至时间：'+ DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
     }
 
-    public show(data?,isAnswer?){
-         this.data = data;
-         this.isAnswer = isAnswer;
+
+    public show(data?){
+        this.data = data;
         super.show();
     }
 
     public onShow(){
-        if(this.isAnswer)
-        {
-            this.topUI.setTitle('好友应战')
-            this.scrollerGroup.addChildAt(this.enemyGroup0,0);
-            if(this.data.content.isequal)
-                this.pkTypeText.text = '使用规则：修正场规则';
-            else
-                this.pkTypeText.text = '使用规则：竞技场规则';
-        }
+        if(this.data.content.isequal)
+            this.pkTypeText.text = '使用规则：修正场规则';
         else
-        {
-            this.topUI.setTitle('挑战好友')
-            MyTool.removeMC(this.enemyGroup0)
-        }
+            this.pkTypeText.text = '使用规则：竞技场规则';
+        this.onTimer();
 
         var data = this.data.content.from_list;
         var specialData:any = this.specialData = {};
-        if(this.isAnswer && this.data.content.isequal)
+        if(this.data.content.isequal)
         {
             specialData.isEqual = true;
         }
         //更新卡组1
         var chooseList1 = [];
-        for(var i=0;i<data.choose[0].list.length;i++)
+        for(var i=0;i<data[0].list.length;i++)
         {
-            var id = data.choose[0].list[i]
+            var id = data[0].list[i]
             chooseList1.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
@@ -93,15 +93,15 @@ class FriendPKViewUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.ringText0.text = RingVO.getObject(data.choose[0].ring[0]).name
-        this.ringText1.text = RingVO.getObject(data.choose[0].ring[1]).name
+        this.ringText0.text = RingVO.getObject(data[0].ring[0]).name
+        this.ringText1.text = RingVO.getObject(data[0].ring[1]).name
 
 
         //更新卡组2
         var chooseList2 = [];
-        for(var i=0;i<data.choose[1].list.length;i++)
+        for(var i=0;i<data[1].list.length;i++)
         {
-            var id = data.choose[1].list[i]
+            var id = data[1].list[i]
             chooseList2.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
@@ -114,7 +114,46 @@ class FriendPKViewUI extends game.BaseUI {
             });
         }
         this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
-        this.ringText2.text = RingVO.getObject(data.choose[1].ring[0]).name
-        this.ringText3.text = RingVO.getObject(data.choose[1].ring[1]).name
+        this.ringText2.text = RingVO.getObject(data[1].ring[0]).name
+        this.ringText3.text = RingVO.getObject(data[1].ring[1]).name
+
+         //我选中的卡组
+        var myChoose = this.data.content.ask_choose;
+        var index = myChoose.index || 0;
+        var ringIndex = 0;
+        MyTool.removeMC(this.myChooseGroup)
+        this.scrollerGroup.addChildAt(this.myChooseGroup,2 + index);
+        this.bg0.visible = false;
+        this.bg1.visible = false;
+        if(index == 0)
+        {
+            this.bg0.visible = true;
+            if(myChoose.ring.id == data[0].ring[1])
+                ringIndex = 1
+        }
+        else
+        {
+            this.bg1.visible = true;
+            if(myChoose.ring.id == data[1].ring[1])
+                ringIndex = 1
+        }
+
+        var chooseList3 = [];
+        for(var i=0;i<myChoose.list.length;i++)
+        {
+            var id = myChoose.list[i]
+            chooseList3.push({
+                vo: MonsterVO.getObject(id),
+                type:1,
+
+                id: id,
+                specialData: specialData,
+
+                index: i,
+                list:chooseList3
+            });
+        }
+        this.myList2.dataProvider = new eui.ArrayCollection(chooseList1);
+        this.chooseMC.x = 200 + ringIndex * 300;
     }
 }

@@ -70,15 +70,15 @@ class PKFailUI extends PKResultBase {
         this.list.visible = false;
         this.btnGroup.visible = false;
 
-        //var PKM = PKManager.getInstance();
-        //if(PKM.pkType == PKManager.PKType.SERVER || PKM.pkType == PKManager.PKType.SERVER_EQUAL)
-        //{
-        //    this.btnGroup.addChild(this.okBtn);
-        //}
-        //else
-        //{
-        //    this.btnGroup.addChild(this.okBtn);
-        //}
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType == PKManager.PKType.REPLAY)
+        {
+            MyTool.removeMC(this.okBtn)
+        }
+        else
+        {
+            this.btnGroup.addChild(this.okBtn);
+        }
 
 
         this.step = 0;

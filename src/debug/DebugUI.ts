@@ -242,30 +242,30 @@ class DebugUI extends game.BaseUI {
 			}
 			case this.btn12:
 			{
-				DebugInput.getInstance().show(function(arr){
-						var list = arr[0];
-						var ring = arr[1];
-						var index = arr[2];
-					var otherid = arr[3];
-					var isequal = arr[4];
-					FriendPKManager.getInstance().ask(otherid,{list:[list],ring:ring,index:index},isequal,function(){
-						console.log(JSON.stringify(FriendPKManager.getInstance()))
-					})
-				},'list#ring#index#otherid#isequal');
+				//DebugInput.getInstance().show(function(arr){
+				//		var list = arr[0];
+				//		var ring = arr[1];
+				//		var index = arr[2];
+				//	var otherid = arr[3];
+				//	var isequal = arr[4];
+				//	FriendPKManager.getInstance().ask(otherid,{list:[list],ring:ring,index:index},isequal,function(){
+				//		console.log(JSON.stringify(FriendPKManager.getInstance()))
+				//	})
+				//},'list#ring#index#otherid#isequal');
 				break;
 			}
 			case this.btn13:
 			{
 				//FriendPKManager.getInstance().playBack(6);
-				DebugInput.getInstance().show(function(arr){
-					var list = arr[0];
-					var ring = arr[1];
-					var index = arr[2];
-					var logid = arr[3];
-					FriendPKManager.getInstance().answer(logid,{list:[list],ring:ring,index:index},function(){
-						console.log(JSON.stringify(FriendPKManager.getInstance()))
-					})
-				},'list#ring#index#logid');
+				//DebugInput.getInstance().show(function(arr){
+				//	var list = arr[0];
+				//	var ring = arr[1];
+				//	var index = arr[2];
+				//	var logid = arr[3];
+				//	FriendPKManager.getInstance().answer(logid,{list:[list],ring:ring,index:index},function(){
+				//		console.log(JSON.stringify(FriendPKManager.getInstance()))
+				//	})
+				//},'list#ring#index#logid');
 				break;
 			}
 		}

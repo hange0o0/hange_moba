@@ -31,7 +31,6 @@ class MyInfoUI extends game.BaseUI {
 
 
 
-    private timer:egret.Timer;
 
     public constructor() {
         super();
@@ -46,8 +45,6 @@ class MyInfoUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
 
-        this.timer = new egret.Timer(1000);
-        this.timer.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this);
 
         this.addBtnEvent(this.setBtn, this.onSet);
         this.addBtnEvent(this.addForceBtn, this.onAddForce);
@@ -56,6 +53,8 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.addEnergyBtn, this.onAddEnergy);
 
         this.list.itemRenderer = EnemyHeadItem;
+
+        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
     }
 
     private onSet(){
@@ -75,6 +74,8 @@ class MyInfoUI extends game.BaseUI {
     }
 
     private onTimer(){
+        if(!this.stage)
+            return;
         var cd = GameManager.getInstance().getZeroCD();
         if(cd == 0)
         {
@@ -93,12 +94,10 @@ class MyInfoUI extends game.BaseUI {
 
 
     public hide(){
-        this.timer.stop();
         super.hide();
     }
 
     public onShow(){
-        this.timer.start();
         this.renew();
         this.onTimer();
     }
@@ -135,10 +134,10 @@ class MyInfoUI extends game.BaseUI {
         var arr =  MyTool.getCommonUse(UM.pk_common.history);
         for(var i=0;i<arr.length;i++){
             arr[i] = {
-                vo: MonsterVO.getObject(arr[i]),
+                vo: MonsterVO.getObject(arr[i].id),
                 type: 1,
 
-                id: arr[i],
+                id: arr[i].id,
                 specialData: specialData,
 
                 index: i,

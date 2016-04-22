@@ -23,6 +23,8 @@ class RegisterUI extends game.BaseWindow {
         super.childrenCreated();
         this.addBtnEvent(this.loginBtn, this.onClick);
         this.addBtnEvent(this.backBtn, this.hide);
+
+        this.nameText.restrict = "^\\\\\"\'"
     }
 
     public show(v?){
