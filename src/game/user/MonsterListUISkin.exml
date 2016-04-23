@@ -10,14 +10,14 @@
 		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="107.95454545454527"/>
 		<e:Group id="leftBtn" y="1.9696969696967699" x="20">
 			<e:Image source="arrow1_png" x="0" y="0"/>
-			<e:Label text="上一个" x="54.015151515151516" y="8.030303030302889" textColor="0xCBB46B"/>
+			<e:Label text="上一个" x="54.015151515151516" y="0" textColor="0xCBB46B" height="100%" textAlign="center" verticalAlign="middle"/>
 		</e:Group>
 		<e:Group id="rightBtn" y="-1.1368683772161603e-13" x="475">
 			<e:Image source="arrow1_png" y="0" x="145" scaleX="-1"/>
-			<e:Label y="10.984848484848271" textColor="0xCBB46B" text="下一个" x="0"/>
+			<e:Label y="0" textColor="0xCBB46B" text="下一个" x="0" height="100%" verticalAlign="middle"/>
 		</e:Group>
-		<e:Label id="pageText" text="1/11" y="29" textColor="0xCBB46B" size="22" horizontalCenter="0"/>
-		<e:Group id="pageGroup" y="4" horizontalCenter="0">
+		<e:Label id="pageText" text="1/11" y="35" textColor="0xCBB46B" size="16" horizontalCenter="1.5"/>
+		<e:Group id="pageGroup" y="13" horizontalCenter="1">
 			<e:Image id="p0" source="point1_png" x="0" y="0" scaleX="0.3" scaleY="0.3"/>
 			<e:Image source="point1_png" y="10" x="10" scaleX="0.3" scaleY="0.3" id="p1"/>
 			<e:Image source="point1_png" y="20" x="20" scaleX="0.3" scaleY="0.3" id="p2"/>

@@ -20,7 +20,7 @@ class FriendSearchUI extends game.BaseWindow {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.okBtn, this.hide);
+        this.addBtnEvent(this.backBtn, this.hide);
         this.addBtnEvent(this.okBtn, this.onSearch);
     }
 

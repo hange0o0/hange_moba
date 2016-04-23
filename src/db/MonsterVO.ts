@@ -83,11 +83,11 @@ class MonsterVO {
             this[key].des = arr[2];
 
             if(key == 'sn')     //大绝
-                this[key].type = 0;
-            else if(key.substr(0,2) == 'sn') //小技
                 this[key].type = 1;
-            else        //辅助
+            else if(key.substr(0,2) == 'sn') //小技
                 this[key].type = 2;
+            else        //辅助
+                this[key].type = 3;
         }
     }
 

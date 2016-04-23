@@ -27,6 +27,7 @@ class MyHeadItem extends game.BaseItem {
     public dataChanged() {
         if(!this.data)
         {
+            this.headBG.source = null;
             return;
         }
 

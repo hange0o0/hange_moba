@@ -291,7 +291,7 @@ class MainPageUI extends game.BaseUI {
         this.renewEnergy();
 
         this.nameText.text = UM.nick;
-        this.headMC.source = UM.head;
+        this.headMC.source = MyTool.getHeadUrl(UM.head);
     }
     public renewDiamond(){
         this.diamondText.text = UM.diamond.free + '';
