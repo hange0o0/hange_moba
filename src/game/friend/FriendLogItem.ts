@@ -13,6 +13,8 @@ class FriendLogItem extends game.BaseItem {
     private agreeBtn: eui.Button;
     private refuseBtn: eui.Button;
     private talkText: eui.Label;
+    private dateText: eui.Label;
+
 
 
 
@@ -64,6 +66,8 @@ class FriendLogItem extends game.BaseItem {
             this.forceText.text = this.data.content.force;
 
         }
+
+        this.dateText.text = '' + DateUtil.formatDate('MM-dd hh:mm:ss',DateUtil.timeToChineseDate(this.data.time));
 
     }
 }

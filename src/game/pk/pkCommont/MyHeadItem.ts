@@ -27,7 +27,8 @@ class MyHeadItem extends game.BaseItem {
     public dataChanged() {
         if(!this.data)
         {
-            this.headBG.source = null;
+            this.headMC.source = null;
+            this.headBG.source = 'head_border1_png';
             return;
         }
 

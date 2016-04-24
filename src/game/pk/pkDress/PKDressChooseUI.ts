@@ -114,6 +114,7 @@ class PKDressChooseUI extends game.BaseContainer {
         item.x = this.outPos.x;
         item.y = this.outPos.y;
         this.renewPos();
+        this.renewSplice();
         this.dispatchEventWith('change');
     }
 
@@ -135,6 +136,7 @@ class PKDressChooseUI extends game.BaseContainer {
         }
         this.selectIndex = -1;
         this.renewPos([selectItem]);
+        this.renewSplice();
         this.dispatchEventWith('change');
     }
 

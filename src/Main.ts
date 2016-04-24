@@ -174,13 +174,16 @@ class Main extends eui.UILayer {
 
         //DebugUI.getInstance().show();
         //var dataIn = {
-        //    vedio:1,
+        //    vedio:1,   //从0开始
         //    team1:{"list":[101,102,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}},
         //    team2:{"list":[101,101,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}}
         //};
+
         var dataIn = RES.getRes("test_data_json");
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
+            if(dataIn.vedio == -1)
+                return;
 
             PKManager.getInstance().onPK('test',msg) ;
             //var baseData = PKManager.getInstance().getVedioBase(dataIn.vedio - 1);

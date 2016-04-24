@@ -3,7 +3,7 @@
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
 	<e:Scroller width="640" x="0" top="80" bottom="0">
-		<e:Group>
+		<e:Group id="scrollGroup">
 			<e:Group x="74" y="102" height="100">
 				<e:Image source="border2_png" y="4" x="0"/>
 				<e:Image id="headMC" source="pk_bg_jpg" y="9" x="6" width="80" height="80"/>

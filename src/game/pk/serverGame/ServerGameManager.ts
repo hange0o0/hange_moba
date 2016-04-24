@@ -76,6 +76,7 @@ class ServerGameManager{
                 return;
             }
 
+            UM.server_game.pk = 0;
             UM.server_game.choose = msg.choose;
             UM.server_game.enemy = msg.enemy;
             if(fun)

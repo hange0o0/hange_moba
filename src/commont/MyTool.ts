@@ -63,7 +63,7 @@ class MyTool {
         var timer = -1;
         function onTouchStart(e){
             mc.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
-            timer = egret.setTimeout(onTouchTimer,thisObj,800);
+            timer = egret.setTimeout(onTouchTimer,thisObj,600);
             x = e.stageX
             y = e.stageY
         }

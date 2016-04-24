@@ -82,7 +82,7 @@ class MonsterList extends game.BaseUI {
             this.bottomGroup.visible = true;
             this.scroller.bottom = 80;
         }
-
+        this.info.setMinHeight(this.scroller.height);
         this.renew();
     }
 

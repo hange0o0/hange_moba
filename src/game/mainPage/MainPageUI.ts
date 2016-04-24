@@ -70,6 +70,9 @@ class MainPageUI extends game.BaseUI {
         this.addBtnEvent(this.addFreeBtn,this.onHonor);
 
 
+        this.addBtnEvent(this.videoBtn,this.onVideo);
+
+
 
         this.addBtnEvent(this.friendBtn, this.onFriend);
         this.addBtnEvent(this.collectBtn, this.onCollect);
@@ -106,10 +109,29 @@ class MainPageUI extends game.BaseUI {
 
     }
     
+    private onVideo(){
+        var PM = PKManager.getInstance()
+        switch(this.currentPage)
+        {
+            case 0:
+                PM.playBack(PKManager.PKType.MAIN);
+                break;
+            case 1:
+                PM.playBack(PKManager.PKType.DAY);
+                break;
+            case 2:
+                PM.playBack(PKManager.PKType.SERVER);
+                break;
+            case 3:
+                PM.playBack(PKManager.PKType.SERVER_EQUAL);
+                break;
+        }
+    }
+
     private onAddCoin(){
         ShopUI.getInstance().show('coin');
     }
-    
+
     private onAddDiamond() {
         ShopUI.getInstance().show('diamond');
     }
@@ -380,17 +402,18 @@ class MainPageUI extends game.BaseUI {
                 this.videoBtn.visible = UM.main_game.pkdata;
                 break;
             case 1:
-                this.serverGame.renew();
-                this.videoBtn.visible = UM.server_game.pkdata;
-                break;
-            case 2:
-                this.serverGameEqual.renew();
-                this.videoBtn.visible = UM.server_game_equal.pkdata;
-                break;
-            case 3:
                 this.dayGame.renew();
                 this.videoBtn.visible = UM.day_game.pkdata;
                 break;
+            case 2:
+                this.serverGame.renew();
+                this.videoBtn.visible = UM.server_game.pkdata;
+                break;
+            case 3:
+                this.serverGameEqual.renew();
+                this.videoBtn.visible = UM.server_game_equal.pkdata;
+                break;
+
         }
     }
 

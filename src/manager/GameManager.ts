@@ -22,6 +22,7 @@ class GameManager {
 
     public init(){
         GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onTouchMove,this);
+        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onTouchMove,this);
     }
 
     public stopTimer(){

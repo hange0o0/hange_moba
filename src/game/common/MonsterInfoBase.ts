@@ -30,6 +30,10 @@ class MonsterInfoBase extends game.BaseContainer {
         this.list.itemRenderer = MonsterInfoBaseItem;
     }
 
+    public setMinHeight(v){
+        this.minHeight = v
+    }
+
     public renew(monsterID,specialData?){
         specialData = specialData || {};
         var vo = MonsterVO.getObject(monsterID);

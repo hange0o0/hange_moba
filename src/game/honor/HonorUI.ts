@@ -58,7 +58,7 @@ class HonorUI extends game.BaseUI {
     }
 
     private onSelect(){
-        this.sortListFun(this.listArray);
+        this.resort()
     }
 
     private onSort(){

@@ -118,6 +118,25 @@ class PKManager {
 
     }
 
+    //PK回放的统一入口
+    public playBack(type){
+        switch(type)
+        {
+            case PKManager.PKType.MAIN:
+                MainGameManager.getInstance().playBack();
+                break;
+            case PKManager.PKType.SERVER:
+                ServerGameManager.getInstance().playBack()
+                break;
+            case PKManager.PKType.SERVER_EQUAL:
+                ServerGameEqualManager.getInstance().playBack()
+                break;
+            case PKManager.PKType.DAY:
+                DayGameManager.getInstance().playBack()
+                break;
+        }
+    }
+
     //取PK回放
     public getReplayByType(type,fun?){
         var self = this;

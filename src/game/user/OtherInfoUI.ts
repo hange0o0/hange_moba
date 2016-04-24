@@ -6,11 +6,16 @@ class OtherInfoUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private scrollGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
     private friendBtn: eui.Button;
     private talkBtn: eui.Button;
     private pkBtn: eui.Button;
+    private friendGroup: eui.Group;
+    private friendText: eui.Label;
+    private friendWin: eui.Label;
+    private friendFail: eui.Label;
     private levelText: eui.Label;
     private forceText: eui.Label;
     private mainGameText: eui.Label;
@@ -22,6 +27,7 @@ class OtherInfoUI extends game.BaseUI {
     private serverEqualRateText: eui.Label;
     private serverEqualWinText: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -96,12 +102,36 @@ class OtherInfoUI extends game.BaseUI {
     }
 
     public onShow(){
+
+        this.renew();
+    }
+
+    private renew(){
+       var dataIn = this.dataIn
+
         var FM = FriendManager.getInstance();
-        if(FM.friendData[this.dataIn.gameid])
+        MyTool.removeMC(this.friendGroup)
+        if(FM.friendData[this.dataIn.gameid])//是好友
         {
             this.friendBtn.visible = false;
             this.talkBtn.visible = true;
             this.pkBtn.visible = true;
+            this.scrollGroup.addChildAt(this.friendGroup,1);
+            var info = FM.friendData[this.dataIn.gameid].pk
+            if(info.friend_key.indexOf(this.dataIn.gameid) == 0)
+            {
+                var win = info.win1;
+                var fail = info.win2;
+            }
+            else
+            {
+                var win = info.win2;
+                var fail = info.win1;
+            }
+            var rate = (win/((win + fail) || 1)*100).toFixed(2);
+            this.friendWin.text = '胜利：' + win
+            this.friendFail.text = '失败：' + fail
+            this.friendText.text = '好友PK：(胜率：'+rate+'%)'
         }
         else
         {
@@ -109,11 +139,7 @@ class OtherInfoUI extends game.BaseUI {
             this.pkBtn.visible = false;
             this.friendBtn.visible = true;
         }
-        this.renew();
-    }
 
-    private renew(){
-       var dataIn = this.dataIn
 
         this.headMC.source = MyTool.getHeadUrl(dataIn.head);
         this.nameText.text = dataIn.nick;
