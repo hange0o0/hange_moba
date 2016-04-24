@@ -18,16 +18,17 @@
 				<e:Image source="line_png" x="-9" y="0" width="655"/>
 
 
-				<e:List id="myList0" y="77" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
+				<e:List id="myList0" y="68" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Image source="bold_bg_png" y="323" x="88"/>
-				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCC9900"/>
-				<e:Label id="ringText1" y="335" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Image source="bold_bg_png" y="314" x="88"/>
+				<e:Image source="bold_bg_png" y="314" x="351"/>
+				<e:Label id="ringText0" text="标签" x="129" y="327" textColor="0xCC9900"/>
+				<e:Label id="ringText1" y="326" textColor="0xCC9900" text="标签" x="394"/>
 				<e:Button id="chooseBtn0" label="开始PK" y="386" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				<e:Label textColor="0xCC9900" y="19" text="我的卡组" horizontalCenter="0"/>
 			</e:Group>
 
 			<e:layout>

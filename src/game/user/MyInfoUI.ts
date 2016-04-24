@@ -61,16 +61,17 @@ class MyInfoUI extends game.BaseUI {
 
     }
     private onAddForce(){
-
+        TecUI.getInstance().show();
     }
     private onAddCoin(){
-
+        ShopUI.getInstance().show('coin');
     }
-    private onAddDiamon(){
 
+    private onAddDiamon(){
+        ShopUI.getInstance().show('diamond');
     }
     private onAddEnergy(){
-
+        ShopUI.getInstance().show('energy');
     }
 
     private onTimer(){

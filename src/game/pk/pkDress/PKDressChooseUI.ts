@@ -133,6 +133,7 @@ class PKDressChooseUI extends game.BaseContainer {
             this.mcArray.splice(this.selectIndex,1);
             this.mcArray.splice(index,0,selectItem);
         }
+        this.selectIndex = -1;
         this.renewPos([selectItem]);
         this.dispatchEventWith('change');
     }
@@ -221,6 +222,7 @@ class PKDressChooseUI extends game.BaseContainer {
         
         this.mvItem.visible = false
         this.renewPos(null,true);
+        this.renewSplice();
     }
 
 
