@@ -5,7 +5,7 @@
 	<e:Label y="33" size="24" text="角色注册" textColor="0xAAA6A6" horizontalCenter="0"/>
 	<e:Group y="275" horizontalCenter="0">
 		<e:Button id="backBtn" y="0" skinName="Btn_d2Skin" label="返回" x="0"/>
-		<e:Button id="registerBtn" y="0" skinName="Btn_r2Skin" label="登陆" x="176"/>
+		<e:Button id="registerBtn" y="0" skinName="Btn_r2Skin" label="注册" x="176"/>
 	</e:Group>
 	<e:Group y="200" x="148">
 		<e:TextInput id="nameText" width="220" y="2" skinName="MyTextInputSkin" height="45" x="0"/>

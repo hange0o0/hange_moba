@@ -5,8 +5,12 @@ class ChooseServerUI extends game.BaseUI {
         return this.instance;
     }
 
-    private list1;
-    private list2;
+    private okBtn: eui.Button;
+    private myGroup: eui.Group;
+    private list1: eui.List;
+    private otherGroup: eui.Group;
+    private list2: eui.List;
+
 
 
     private serverid;

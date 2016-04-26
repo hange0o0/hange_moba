@@ -1,2 +1,43 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ChooseServerUISkin" width="640" height="800" xmlns:e="http://ns.egret.com/eui"></e:Skin>
+<e:Skin class="ChooseServerUISkin" width="640" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="640"/>
+	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="0" text="请选择服务器" x="10"/>
+	<e:Button bottom="40" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
+	<e:Scroller width="551" height="600" x="44" y="87">
+		<e:Group>
+			<e:Group id="myGroup" x="0" y="0">
+				<e:Label text="我的服务器：" x="0" y="0" textColor="0xCC9900"/>
+				<e:List id="list1" width="550" x="0" y="40" itemRendererSkinName="ChooseServerItemSkin">
+					<e:ArrayCollection>
+						<e:Array>
+							<e:Object label="数据1"/>
+							<e:Object label="数据2"/>
+							<e:Object label="数据3"/>
+						</e:Array>
+					</e:ArrayCollection>
+					<e:layout>
+						<e:TileLayout horizontalGap="20" verticalGap="10"/>
+					</e:layout>
+				</e:List>
+			</e:Group>
+			<e:Group id="otherGroup" x="0" y="160">
+				<e:Label text="最新服务器：" x="0" y="0" textColor="0xCC9900"/>
+				<e:List id="list2" width="550" x="0" y="40" itemRendererSkinName="ChooseServerItemSkin">
+					<e:ArrayCollection>
+						<e:Array>
+							<e:Object label="数据1"/>
+							<e:Object label="数据2"/>
+							<e:Object label="数据3"/>
+						</e:Array>
+					</e:ArrayCollection>
+					<e:layout>
+						<e:TileLayout horizontalGap="20" verticalGap="10"/>
+					</e:layout>
+				</e:List>
+			</e:Group>
+			<e:layout>
+				<e:VerticalLayout gap="50"/>
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

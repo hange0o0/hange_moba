@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="LoginServerUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="bg_jpg" y="0" x="0"/>
-	<e:Group y="770" horizontalCenter="0">
-		<e:Button id="backBtn" label="返回" y="0" skinName="Btn_d2Skin" x="0"/>
-		<e:Button id="loginBtn" label="进入游戏" y="0" skinName="Btn_r2Skin" x="200"/>
-		<e:layout>
-			<e:HorizontalLayout gap="30"/>
-		</e:layout>
+<e:Skin class="LoginServerUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Image source="bg_jpg" y="0" x="0"/>
+	<e:Group bottom="120" horizontalCenter="0" width="400">
+		<e:Group y="124" horizontalCenter="0">
+			<e:Button id="loginBtn" label="进入游戏" y="0" skinName="Btn_r2Skin" x="200"/>
+			<e:layout>
+				<e:HorizontalLayout gap="30"/>
+			</e:layout>
+		</e:Group>
+		<e:Label id="nameText" y="0" text="角色名：密码123456" textColor="0xE0B3B3" horizontalCenter="0"/>
+		<ns1:ChooseServerItem id="serverItem" y="39" skinName="ChooseServerItemSkin" horizontalCenter="0"/>
 	</e:Group>
-	<e:Label id="nameText" y="646" text="角色名：密码123456" horizontalCenter="0" textColor="0xE0B3B3"/>
-	<e:Group y="700" horizontalCenter="0">
-		<e:Image source="border6_png" y="0" scale9Grid="14,11,88,11" width="220" height="50" horizontalCenter="0"/>
-		<e:Label id="serverName" text="密码123456" horizontalCenter="0" size="26" verticalCenter="0" textColor="0xCC9900"/>
-	</e:Group>
+	<e:Label id="backBtn" text="&lt;返回" x="11" textColor="0x999999" bottom="10" italic="true"/>
 </e:Skin>

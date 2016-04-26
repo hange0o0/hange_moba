@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="ChangeHeadUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="600" x="0"/>
-	<e:Label id="titleText" y="30" textColor="0xD0C7AD" horizontalCenter="0" text="恭喜获得" x="10"/>
+	<e:Label id="titleText" y="30" textColor="0xD0C7AD" horizontalCenter="0" text="请选择头像" x="10"/>
 	<e:Scroller id="scroller" width="520" x="40" top="74" bottom="116">
 		<e:Group>
 			<e:List id="list" x="0" y="0" itemRendererSkinName="HeadItemSkin" width="100%">

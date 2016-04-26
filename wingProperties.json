@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -783,6 +783,66 @@
 					"isFolder":false,
 					"key":"head_png",
 					"name":"head_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build1_png",
+					"name":"build1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build2_png",
+					"name":"build2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build3_png",
+					"name":"build3_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build4_png",
+					"name":"build4_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build5_png",
+					"name":"build5_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build6_png",
+					"name":"build6_png"
+				},
+				{
+					"isFolder":false,
+					"key":"build7_png",
+					"name":"build7_png"
+				},
+				{
+					"isFolder":false,
+					"key":"H20010a1_png",
+					"name":"H20010a1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"H20031a0_png",
+					"name":"H20031a0_png"
+				},
+				{
+					"isFolder":false,
+					"key":"H20031a1_png",
+					"name":"H20031a1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"H20031a2_png",
+					"name":"H20031a2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"H29002a0_png",
+					"name":"H29002a0_png"
 				}
 			]
 		}

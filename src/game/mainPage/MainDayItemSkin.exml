@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainDayItemSkin" width="480" height="440" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="MainDayItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="card_bg_png" y="86" horizontalCenter="-105"/>
 
 
-	<e:Group y="376" horizontalCenter="0" id="btnGroup">
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="0">
 
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>

@@ -5,6 +5,8 @@ class ChooseServerItem extends game.BaseItem {
     }
 
 
+    private serverName: eui.Label;
+
     public index;
 
     public childrenCreated() {

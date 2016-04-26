@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainMainItemSkin" width="480" height="440" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="card_bg_png" y="87" horizontalCenter="-108"/>
-	<e:Group y="376" horizontalCenter="0" id="btnGroup">
+<e:Skin class="MainMainItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="68" y="56" source="build3_png"/>
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="0">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:Button id="awardBtn" skinName="Btn_r2Skin" y="20" label="领奖" x="20"/>
 		<e:layout>
@@ -15,6 +15,14 @@
 		<e:layout>
 			<e:HorizontalLayout/>
 		</e:layout>
-	</e:Group>
-	<e:Label id="scoreText" y="67" textColor="0xCC9900" text="当前等级：12" horizontalCenter="119"/>
+	</e:Group>
+	<e:Image y="319" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
+	<e:Label id="scoreText" y="349" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" horizontalCenter="0.5"/>
+	<e:Label id="awardText0" y="415" text="X123456" x="82" size="22" textColor="0xCCB48E"/>
+	<e:Label id="awardText1" y="415" text="X321" x="247" size="22" textColor="0xCCB48E"/>
+	<e:Label x="375" y="415" text="X32" id="awardText2" size="22" textColor="0xCCB48E"/>
+	<e:Image source="icon_money_png" x="33" y="406"/>
+	<e:Image source="icon_pvp_2_png" x="194" y="406"/>
+	<e:Image source="icon_pve_png" x="322" y="406"/>
+	<e:Rect height="1" width="400" x="48" y="393" fillColor="0x494747"/>
 </e:Skin>

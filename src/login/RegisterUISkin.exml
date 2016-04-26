@@ -10,7 +10,7 @@
 	<e:TextInput id="passwordText2" width="280" y="207" skinName="MyTextInputSkin" height="45" x="171"/>
 	<e:Group y="285" horizontalCenter="0">
 		<e:Button id="backBtn" label="返回" y="0" x="0" skinName="Btn_d2Skin"/>
-		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="登陆" y="0" x="0"/>
+		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="注册" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
