@@ -101,12 +101,14 @@ class TecManager{
         return arr;
     }
 
-    public getList3(){
+    public getList3(fillMonster){
         var arr = [];
         var mdata = CM.table[MonsterVO.dataKey];
         for(var s in mdata)
         {
             var vo = mdata[s];
+            if(fillMonster && vo.type != fillMonster)
+                continue;
             var kindVO = MonsterKindVO.getObject(vo.type);
             if(kindVO.level<= UM.level)
                 arr.push({

@@ -106,7 +106,7 @@ class PKDressUI extends game.BaseUI {
         var chooseData = {list:this.chooseList,ring:this.ringRadio0.group.selectedValue,index:this.dataIn.index}
         var self = this
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
-            self.hide();
+            self.closeRelate();
             if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
             {
                 ShowTips('PK请求已发送');
@@ -117,6 +117,31 @@ class PKDressUI extends game.BaseUI {
             }
 
         })
+    }
+
+    private closeRelate(){
+        this.hide();
+         switch(this.pkType)
+         {
+             case PKManager.PKType.MAIN:
+                 MainGameUI.getInstance().hide();
+                 break
+             case PKManager.PKType.SERVER:
+                 ServerGameUI.getInstance().hide();
+                 break
+             case PKManager.PKType.SERVER_EQUAL:
+                 ServerGameEqualUI.getInstance().hide();
+                 break
+             case PKManager.PKType.DAY:
+                 DayGameUI.getInstance().hide();
+                 break
+             case PKManager.PKType.FRIEND_ASK:
+                 FriendPKAskUI.getInstance().hide();
+                 break
+             case PKManager.PKType.FRIEND_ANSWER:
+                 FriendPKAskUI.getInstance().hide();
+                 break
+         }
     }
 
     private onForceText(){

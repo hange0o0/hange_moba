@@ -43,6 +43,17 @@ class FriendListUI extends game.BaseUI {
 
         this.addBtnEvent(this.searchBtn, this.onSearch);
         EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
+        EM.addEventListener(GameEvent.client.friend_log_change,this.renewLogE,this)
+        EM.addEventListener(GameEvent.client.friend_pk_change,this.renewPKE,this)
+    }
+
+    private renewLogE(){
+        this.renewLog()
+        this.renewInfo();
+    }
+    private renewPKE(){
+        this.renewPK()
+        this.renewInfo();
     }
 
     private onTimer(){
@@ -97,16 +108,17 @@ class FriendListUI extends game.BaseUI {
         {
             this.tab.selectedIndex = this.selectIndex - 1;
         }
-        this.renew();
+
         this.infoCount = 5;
         this.infoType = 0
-        this.renewInfo();
+        this.renew();
     }
 
     public renew(){
         var FM = FriendManager.getInstance();
         var self = this;
         this.list.dataProvider = new eui.ArrayCollection([]);
+        this.renewInfo();
         if(this.tab.selectedIndex == 0)//好友列表
         {
             FM.getList(function(){

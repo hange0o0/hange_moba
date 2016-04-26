@@ -27,7 +27,11 @@ class TecUI extends game.BaseUI {
     private tab: eui.TabBar;
     private myCoinText: eui.Label;
 
-
+    private fillAllGroup: eui.Group;
+    private fillBtn: eui.Image;
+    private fillText: eui.Label;
+    private fillGroup: eui.Group;
+    private fillList: eui.List;
 
 
     private needCoin
@@ -36,7 +40,8 @@ class TecUI extends game.BaseUI {
     private needPropNum1
     private needPropNum2
 
-
+    private fillMonster = 0;
+    
     public constructor() {
         super();
         this.skinName = "TecUISkin";
@@ -59,7 +64,36 @@ class TecUI extends game.BaseUI {
         this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
         this.tab.selectedIndex = 0;
 
+        this.addBtnEvent(this.fillBtn,this.onFill);
+        this.addBtnEvent(this.fillText,this.onFill);
         EM.addEvent(GameEvent.client.coin_change,this.renewCoin,this);
+        this.fillList.selectedIndex = 0;
+        this.fillList.addEventListener(egret.Event.CHANGE,this.onSelectFill,this)
+    }
+
+    private onSelectFill(){
+       this.fillMonster = this.fillList.selectedItem.id
+        this.renewList();
+    }
+    private onFill(){
+        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideFill,this);
+        this.fillGroup.visible = true;
+        var arr = [{id:0,label:'全部属性'}];
+        var mdata = CM.table[MonsterKindVO.dataKey];
+        for(var s in mdata)
+        {
+            var vo = mdata[s];
+            if(vo.level<= UM.level)
+                arr.push({
+                    id:vo.id,
+                    label:'【'+vo.word+'】属性'
+                });
+        }
+        this.fillList.dataProvider = new eui.ArrayCollection(arr)
+    }
+
+    private onHideFill(){
+        this.fillGroup.visible = false;
     }
 
     private onLevelUp(){
@@ -220,7 +254,7 @@ class TecUI extends game.BaseUI {
         var TCM = TecManager.getInstance();
         this.list.selectedIndex = -1;
         var arr;
-
+        this.fillAllGroup.visible = false;
         switch(this.tab.selectedIndex)
         {
             case 0:
@@ -230,7 +264,9 @@ class TecUI extends game.BaseUI {
                 arr = TCM.getList2();
                 break;
             case 2:
-                arr = TCM.getList3();
+                arr = TCM.getList3(this.fillMonster);
+                this.fillAllGroup.visible = true;
+                this.fillText.text = this.fillList.selectedItem.label;
                 break;
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);
