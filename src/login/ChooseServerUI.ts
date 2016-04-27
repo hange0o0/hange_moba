@@ -6,10 +6,12 @@ class ChooseServerUI extends game.BaseUI {
     }
 
     private okBtn: eui.Button;
+    private scrollerGroup: eui.Group;
     private myGroup: eui.Group;
     private list1: eui.List;
     private otherGroup: eui.Group;
     private list2: eui.List;
+
 
 
 
@@ -24,6 +26,8 @@ class ChooseServerUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
         //this.addBtnEvent(this, this.onClick);
+        this.list1.itemRenderer = ChooseServerItem
+        this.list2.itemRenderer = ChooseServerItem
     }
 
     private onSelect1(){
@@ -59,8 +63,33 @@ class ChooseServerUI extends game.BaseUI {
             if(my[i].id == this.serverid)
             {
                 selectIndex = i
+                break;
             }
         }
+
+        if(my.length == 0)
+        {
+            MyTool.removeMC(this.myGroup);
+        }
+        else
+        {
+            this.scrollerGroup.addChildAt(this.myGroup,0);
+            this.list1.dataProvider = new eui.ArrayCollection(my);
+            this.list1.selectedIndex  =  selectIndex;
+        }
+
+        if(other.length == 0)
+        {
+            MyTool.removeMC(this.otherGroup);
+        }
+        else
+        {
+            this.scrollerGroup.addChild(this.otherGroup);
+            this.list2.dataProvider = new eui.ArrayCollection(other);
+            this.list2.selectedIndex  =  -1;
+        }
+
+
 
         if(selectIndex == -1)
         {
@@ -70,10 +99,10 @@ class ChooseServerUI extends game.BaseUI {
                 if(other[i].id == this.serverid)
                 {
                     selectIndex = i
+                    this.list2.selectedIndex  =  selectIndex;
+                    break;
                 }
             }
         }
-
-
     }
 }

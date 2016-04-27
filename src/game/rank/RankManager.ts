@@ -44,6 +44,15 @@ class RankManager{
             {
                 self.rankData[rankType].data = msg.rank;
                 self.rankData[rankType].time = TM.now();
+
+                //今天文件已生成，清空不是同一天的历史记录
+                for(var s in self.rankData)
+                {
+                    if(s != rankType && self.rankData[s] && !DateUtil.isSameDay(self.rankData[s].time))
+                    {
+                        self.rankData[s] = null;
+                    }
+                }
             }
             var arr = self.rankData[rankType].data = JSON.parse(self.rankData[rankType].data || '[]');
             for(var i=0;i<arr.length;i++)
@@ -54,6 +63,8 @@ class RankManager{
                     arr[0].self = i;
                 }
             }
+
+
 
             if(fun)
                 fun();

@@ -18,15 +18,23 @@ class FriendListItem extends game.BaseItem {
 
     public childrenCreated(){
          super.childrenCreated()
+
         this.addBtnEvent(this.talkBtn,this.onTalk)
         this.addBtnEvent(this.pkBtn,this.onPK)
+        this.addBtnEvent(this,this.onClick)
     }
 
-    private onTalk(){
+    private onClick(){
+        OtherInfoUI.getInstance().showID(this.data)
+    }
+
+    private onTalk(e){
+        e.stopImmediatePropagation()
         FriendTalkUI.getInstance().show(this.data)
     }
 
-    private onPK(){
+    private onPK(e){
+        e.stopImmediatePropagation()
          FriendManager.getInstance().showPKUI(this.data)
     }
 

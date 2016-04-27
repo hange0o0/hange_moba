@@ -220,7 +220,7 @@ class FriendManager{
     }
 
     public getList(fun?){
-        if(this.friendList && TM.now() - this.lastGetFriend < 1)//5分钟CD     5*60
+        if(this.friendList && TM.now() - this.lastGetFriend < 5*60)//5分钟CD     5*60
         {
             if(fun)
                 fun();
@@ -434,7 +434,8 @@ class FriendManager{
                 if(msg.list[i].type != 2)
                 {
                     self.removeLog(msg.list[i].id);
-                    self.logList.push(msg.list[i]);
+                    if(msg.list[i].to_gamid == UM.openid)//只有对方发我的才显示在日志中
+                        self.logList.push(msg.list[i]);
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);
                     logChange = true;

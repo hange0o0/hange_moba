@@ -97,6 +97,7 @@
     "src/game/user/MyInfoUISkin.exml",
     "src/game/user/OtherInfoUISkin.exml",
     "src/login/ChangeHeadUISkin.exml",
+    "src/login/ChooseServerItemSkin.exml",
     "src/login/ChooseServerUISkin.exml",
     "src/login/HeadItemSkin.exml",
     "src/login/LoginServerUISkin.exml",
