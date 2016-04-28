@@ -4,7 +4,7 @@ class MonsterInfoBase extends game.BaseContainer {
         super();
         this.skinName = "DebugUISkin";
     }
-    
+
     private headMC: eui.Image;
     private nameText: eui.Label;
     private atkText: eui.Label;
@@ -15,6 +15,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private s2: eui.Image;
     private s3: eui.Image;
     private s4: eui.Image;
+    private typeGroup: eui.Group;
     private typeText: eui.Label;
     private woodIcon: eui.Image;
     private woodText: eui.Label;
@@ -23,11 +24,40 @@ class MonsterInfoBase extends game.BaseContainer {
 
 
 
+     private vo;
 
 
     public childrenCreated() {
         super.childrenCreated();
         this.list.itemRenderer = MonsterInfoBaseItem;
+        this.addBtnEvent(this.typeGroup,this.onTypeClick)
+    }
+
+    public onTypeClick(){
+        var str = '属性相克时，伤害+8%\n'
+        var mkvo = MonsterKindVO.getObject(this.vo.type);
+        if(mkvo.restrain.length > 0)
+            str += '【'+ mkvo.word + '】克制：' + changeWord(mkvo.restrain).join('、') + '\n'
+        else
+            str += '【'+ mkvo.word + '】克制：无\n';
+
+        var beRestrain = mkvo.getBeRestrain();
+        if(beRestrain.length > 0)
+            str += '克制【'+mkvo.word + '】：' + changeWord(beRestrain).join('、')
+        else
+            str += '克制【'+mkvo.word + '】：无';
+
+
+        Alert(str);
+
+        function changeWord(arr){
+            var temp = [];
+           for(var i=0;i<arr.length;i++)
+           {
+               temp.push(MonsterKindVO.getObject(arr[i]).word)
+           }
+            return temp;
+        }
     }
 
     public setMinHeight(v){
@@ -36,7 +66,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
     public renew(monsterID,specialData?){
         specialData = specialData || {};
-        var vo = MonsterVO.getObject(monsterID);
+        var vo = this.vo = MonsterVO.getObject(monsterID);
 
         //其本信息
         this.headMC.source = vo.url;

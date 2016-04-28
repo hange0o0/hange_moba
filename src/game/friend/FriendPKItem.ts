@@ -17,10 +17,19 @@ class FriendPKItem extends game.BaseItem {
 
     public childrenCreated(){
         super.childrenCreated();
-        this.addBtnEvent(this.refuseBtn,this.onClick)
+        this.addBtnEvent(this.refuseBtn,this.onClickBtn)
+        this.addBtnEvent(this,this.onClick)
     }
 
     private onClick(){
+        if(this.data.from_gameid == UM.openid)//我请求的
+            OtherInfoUI.getInstance().showID(this.data.to_gameid)
+        else
+            OtherInfoUI.getInstance().showID(this.data.from_gameid)
+    }
+
+    private onClickBtn(e){
+        e.stopImmediatePropagation()
         var FPKM = FriendPKManager.getInstance();
         if(this.state == 3)//看录像
         {

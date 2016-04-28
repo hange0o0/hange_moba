@@ -71,7 +71,7 @@ class PKFailUI extends PKResultBase {
         this.btnGroup.visible = false;
 
         var PKM = PKManager.getInstance();
-        if(PKM.pkType == PKManager.PKType.REPLAY)
+        if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND_ANSWER)
         {
             MyTool.removeMC(this.okBtn)
         }

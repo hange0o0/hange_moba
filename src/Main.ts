@@ -180,6 +180,11 @@ class Main extends eui.UILayer {
         //};
 
         var dataIn = RES.getRes("test_data_json");
+        if(_get['host'] == 'com')
+            Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php'
+        else
+            Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
+
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
             if(dataIn.vedio == -1)

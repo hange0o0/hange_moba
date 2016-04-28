@@ -8,8 +8,8 @@ class FriendListItem extends game.BaseItem {
     private nameText: eui.Label;
     private levelText: eui.Label;
     private forceText: eui.Label;
-    private talkBtn: eui.Button;
     private pkBtn: eui.Button;
+    private moreBtn: eui.Button;
 
 
 
@@ -18,15 +18,23 @@ class FriendListItem extends game.BaseItem {
 
     public childrenCreated(){
          super.childrenCreated()
-        this.addBtnEvent(this.talkBtn,this.onTalk)
+
+        this.addBtnEvent(this.moreBtn,this.onMore)
         this.addBtnEvent(this.pkBtn,this.onPK)
+        //this.addBtnEvent(this,this.onClick)
     }
 
-    private onTalk(){
-        FriendTalkUI.getInstance().show(this.data)
+    private onClick(){
+        OtherInfoUI.getInstance().showID(this.data)
     }
 
-    private onPK(){
+    private onMore(e){
+        e.stopImmediatePropagation()
+        OtherInfoUI.getInstance().showID(this.data)
+    }
+
+    private onPK(e){
+        e.stopImmediatePropagation()
          FriendManager.getInstance().showPKUI(this.data)
     }
 

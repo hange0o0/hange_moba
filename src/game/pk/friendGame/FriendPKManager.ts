@@ -138,7 +138,7 @@ class FriendPKManager{
             }
 
             UM.addHistory(choose.list.join(','));
-            self.lastPKData[self.logid] = msg.pkdata;
+            self.lastPKData[self.logid] = msg//.pkdata;
             FriendManager.getInstance().getLog(null,true);
             //self.pkObject[logid].content.ask_choose = msg.ask_choose;
             //self.pkObject[logid].content.answer_choose = choose;
@@ -167,7 +167,7 @@ class FriendPKManager{
         oo.isequal = pkObject[logid].content.isequal;
         Net.send(GameEvent.pkCore.pk_result,oo,function(data){
             var msg = data.msg;
-            self.lastPKData[logid] = msg.pkdata;
+            self.lastPKData[logid] = msg//.pkdata;
             PKManager.getInstance().onPK(PKManager.PKType.REPLAY,msg);
             if(fun)
                 fun();

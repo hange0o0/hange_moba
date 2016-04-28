@@ -27,9 +27,11 @@
 		<e:layout>
 			<e:HorizontalLayout horizontalAlign="center"/>
 		</e:layout>
+	</e:Group>
+	<e:Group id="typeGroup" x="313" y="32">
+		<e:Image source="icon_empty_png" x="0" y="0" scaleX="1.2" scaleY="1.2"/>
+		<e:Label id="typeText" x="16" y="16" text="标" size="22" width="20" textColor="0xCBC08A"/>
 	</e:Group>
-	<e:Image source="icon_empty_png" x="313" y="32" scaleX="1.2" scaleY="1.2"/>
-	<e:Label id="typeText" x="329" y="48" text="标" size="22" width="20" textColor="0xCBC08A"/>
 	<e:Image source="fu2_png" x="316" y="300"/>
 	<e:Image id="woodIcon" source="fu1_png" x="469" y="303"/>
 	<e:Label id="woodText" x="523" y="305" text="X1" textColor="0xCBC08A"/>

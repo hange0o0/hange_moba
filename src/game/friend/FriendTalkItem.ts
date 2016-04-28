@@ -17,11 +17,7 @@ class FriendTalkItem extends game.BaseItem {
     }
 
     public dataChanged(){
-        if(this.data == 'longer')
-        {
-            this.currentState = 'longer'
-        }
-        else if(this.data.stat == 1) //自己
+        if(this.data.stat == 1) //自己
         {
             this.currentState = 'other';
             this.headMC.source = MyTool.getHeadUrl(FriendTalkUI.getInstance().otherHead);

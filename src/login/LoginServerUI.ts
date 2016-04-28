@@ -68,7 +68,7 @@ class LoginServerUI extends game.BaseUI {
     public renewServer(id){
         this.serverid = id;
         var LM = LoginManager.getInstance();
-        this.serverName.text = LM.serverList[this.serverid].name;
+        this.serverItem.data = LM.serverList[this.serverid];
         if(LM.myServer[this.serverid])
         {
             this.nameText.text = LM.myServer[this.serverid];
@@ -95,6 +95,6 @@ class LoginServerUI extends game.BaseUI {
     }
 
     private onServerChoose(){
-
+         ChooseServerUI.getInstance().show(this.serverid);
     }
 }

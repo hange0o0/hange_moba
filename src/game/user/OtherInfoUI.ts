@@ -11,6 +11,7 @@ class OtherInfoUI extends game.BaseUI {
     private nameText: eui.Label;
     private friendBtn: eui.Button;
     private talkBtn: eui.Button;
+    private deleteBtn: eui.Button;
     private pkBtn: eui.Button;
     private friendGroup: eui.Group;
     private friendText: eui.Label;
@@ -33,6 +34,7 @@ class OtherInfoUI extends game.BaseUI {
 
 
 
+
     private dataIn;
     public constructor() {
         super();
@@ -49,10 +51,22 @@ class OtherInfoUI extends game.BaseUI {
         this.addBtnEvent(this.friendBtn, this.onFriend);
         this.addBtnEvent(this.talkBtn, this.onTalk);
         this.addBtnEvent(this.pkBtn, this.onPK);
+        this.addBtnEvent(this.deleteBtn, this.onDelete);
 
         this.list.itemRenderer = EnemyHeadItem;
     }
 
+    private onDelete(){
+        var self = this;
+        Confirm('确定删除该好友吗？',function(b){
+            if(b == 1)
+            {
+                FriendManager.getInstance().delete(self.dataIn.gameid,function(){
+                    self.renew();
+                })
+            }
+        })
+    }
     private onTalk(){
        FriendTalkUI.getInstance().show(this.dataIn.gameid);
     }
@@ -116,18 +130,25 @@ class OtherInfoUI extends game.BaseUI {
             this.friendBtn.visible = false;
             this.talkBtn.visible = true;
             this.pkBtn.visible = true;
+            this.deleteBtn.visible = true;
             this.scrollGroup.addChildAt(this.friendGroup,1);
-            var info = FM.friendData[this.dataIn.gameid].pk
-            if(info.friend_key.indexOf(this.dataIn.gameid) == 0)
+            var info = FM.friendData[this.dataIn.gameid].pk;
+            var win =0;
+            var fail =0;
+            if(info)
             {
-                var win = info.win1;
-                var fail = info.win2;
+                if(info.friend_key.indexOf(this.dataIn.gameid) == 0)
+                {
+                    win = Math.floor(info.win1);
+                    fail = Math.floor(info.win2);
+                }
+                else
+                {
+                    win = Math.floor(info.win2);
+                    fail = Math.floor(info.win1);
+                }
             }
-            else
-            {
-                var win = info.win2;
-                var fail = info.win1;
-            }
+
             var rate = (win/((win + fail) || 1)*100).toFixed(2);
             this.friendWin.text = '胜利：' + win
             this.friendFail.text = '失败：' + fail
@@ -137,6 +158,7 @@ class OtherInfoUI extends game.BaseUI {
         {
             this.talkBtn.visible = false;
             this.pkBtn.visible = false;
+            this.deleteBtn.visible = false;
             this.friendBtn.visible = true;
         }
 

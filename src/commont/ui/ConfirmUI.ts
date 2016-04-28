@@ -29,6 +29,8 @@ class ConfirmUI extends game.BaseWindow {
 
     public onShow(){
         this.text.text = this.textIn;
+        if(this.text.numLines > 1)
+            this.text.textAlign = 'left'
         if(this.btnWord)
         {
             this.cancelBtn.label = this.btnWord[0];

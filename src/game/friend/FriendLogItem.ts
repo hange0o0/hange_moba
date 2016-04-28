@@ -24,9 +24,15 @@ class FriendLogItem extends game.BaseItem {
         super.childrenCreated()
         this.addBtnEvent(this.agreeBtn,this.onAgree)
         this.addBtnEvent(this.refuseBtn,this.onRefuse)
+        this.addBtnEvent(this,this.onClick)
     }
 
-    private onAgree(){
+    private onClick(){
+        OtherInfoUI.getInstance().showID(this.data.from_gameid)
+    }
+
+    private onAgree(e){
+            e.stopImmediatePropagation()
         var FM = FriendManager.getInstance();
         var self = this;
         FM.agree(this.data.id,function(){
@@ -34,11 +40,15 @@ class FriendLogItem extends game.BaseItem {
         })
     }
 
-    private onRefuse(){
+    private onRefuse(e){
+        e.stopImmediatePropagation()
         var FM = FriendManager.getInstance();
         if(this.data.type == 3)  //聊天
         {
-             FriendTalkUI.getInstance().show(this.data.from);
+            if(UM.openid == this.data.from_gameid)
+                 FriendTalkUI.getInstance().show(this.data.to_gameid);
+            else
+                 FriendTalkUI.getInstance().show(this.data.from_gameid);
         }
         else
         {
@@ -50,13 +60,18 @@ class FriendLogItem extends game.BaseItem {
     }
 
     public dataChanged(){
+        var FM = FriendManager.getInstance();
         this.headMC.source = MyTool.getHeadUrl(this.data.head);
         this.btnGroup.visible = true;
         this.nameText.text = this.data.content.nick;
         if(this.data.type == 3)  //聊天
         {
-            this.currentState = 'talk';
+
             this.talkText.text =  StringUtil.getString(this.data.content.talk,this.talkText);
+            if(FM.friendData[this.data.from_gameid]) //是好友
+                this.currentState = 'talk';
+            else
+                this.currentState = 'talk2';
         }
         else
         {

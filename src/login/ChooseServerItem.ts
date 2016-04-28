@@ -14,10 +14,10 @@ class ChooseServerItem extends game.BaseItem {
     }
 
     public dataChanged() {
-         var a = this.data.name;
+        this.serverName.text = this.data.name
         //if(LoginManager.getInstance().myServer[this.data.id])
         //{
-        //
+        //    this.currentState = ''
         //}
     }
 }

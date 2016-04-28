@@ -25,5 +25,16 @@ class MonsterKindVO {
         this.word = data.word;
     }
 
+    public getBeRestrain(){
+        var arr = [];
+        var data = CM.table[MonsterKindVO.dataKey];
+         for(var s in data)
+         {
+             if(data[s].restrain.indexOf(this.id) != -1)
+                arr.push(s)
+         }
+        return arr;
+    }
+
 
 }

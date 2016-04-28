@@ -6,14 +6,20 @@ class CollectUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private numText: eui.Label;
+    private fillAllGroup: eui.Group;
+    private fillBtn: eui.Image;
+    private fillText: eui.Label;
+    private fillGroup: eui.Group;
+    private fillList: eui.List;
     private scroller: eui.Scroller;
     private list: eui.List;
     private splitBtn: eui.Button;
-    private tenBtn: eui.Button;
     private oneBtn: eui.Button;
-    private numText: eui.Label;
+    private tenBtn: eui.Button;
 
 
+    private fillMonster = 0;
     private listArr;
     public constructor() {
         super();
@@ -36,6 +42,36 @@ class CollectUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
         EM.addEvent(GameEvent.client.collect_change,this.renew,this);
+
+        this.addBtnEvent(this.fillBtn,this.onFill);
+        this.addBtnEvent(this.fillText,this.onFill);
+        this.fillList.selectedIndex = 0;
+        this.fillList.addEventListener(egret.Event.CHANGE,this.onSelectFill,this)
+    }
+
+    private onSelectFill(){
+        this.fillMonster = this.fillList.selectedItem.id
+        this.renewList();
+    }
+    private onFill(){
+        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideFill,this);
+        this.fillGroup.visible = true;
+        var arr = [{id:0,label:'全部属性'}];
+        var mdata = CM.table[MonsterKindVO.dataKey];
+        for(var s in mdata)
+        {
+            var vo = mdata[s];
+            if(vo.level<= UM.level)
+                arr.push({
+                    id:vo.id,
+                    label:'【'+vo.word+'】属性'
+                });
+        }
+        this.fillList.dataProvider = new eui.ArrayCollection(arr)
+    }
+
+    private onHideFill(){
+        this.fillGroup.visible = false;
     }
 
     private onSplit(){
@@ -115,12 +151,20 @@ class CollectUI extends game.BaseUI {
     }
 
     public renew(){
-        this.listArr = CollectManager.getInstance().getList();
+
+
         this.renewList();
         this.renewDraw();
     }
 
     public renewList(){
+        this.listArr = CollectManager.getInstance().getList(this.fillMonster);
+        this.fillGroup.visible = false;
+        if(this.fillMonster == 0)
+            this.fillText.text = '全部'
+        else
+            this.fillText.text = this.fillList.selectedItem.label;
+
         this.list.dataProvider = new eui.ArrayCollection(this.listArr)
     }
 

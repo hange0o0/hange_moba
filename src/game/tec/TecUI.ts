@@ -4,7 +4,6 @@ class TecUI extends game.BaseUI {
         if (!this.instance) this.instance = new TecUI();
         return this.instance;
     }
-    private topUI: TopUI;
     private infoGroup: eui.Group;
     private levelUpGroup: eui.Group;
     private levelUpBtn: eui.Button;
@@ -22,16 +21,18 @@ class TecUI extends game.BaseUI {
     private atkText: eui.Label;
     private infoBtn: eui.Button;
     private hpText: eui.Label;
+    private topUI: TopUI;
     private scroller: eui.Scroller;
     private list: eui.List;
     private tab: eui.TabBar;
+    private coinGroup: eui.Group;
     private myCoinText: eui.Label;
-
     private fillAllGroup: eui.Group;
     private fillBtn: eui.Image;
     private fillText: eui.Label;
     private fillGroup: eui.Group;
     private fillList: eui.List;
+
 
 
     private needCoin
@@ -255,6 +256,7 @@ class TecUI extends game.BaseUI {
         this.list.selectedIndex = -1;
         var arr;
         this.fillAllGroup.visible = false;
+        this.coinGroup.visible = true;
         switch(this.tab.selectedIndex)
         {
             case 0:
@@ -266,7 +268,13 @@ class TecUI extends game.BaseUI {
             case 2:
                 arr = TCM.getList3(this.fillMonster);
                 this.fillAllGroup.visible = true;
-                this.fillText.text = this.fillList.selectedItem.label;
+                this.fillGroup.visible = false;
+                if(this.fillMonster == 0)
+                    this.fillText.text = '全部'
+                else
+                    this.fillText.text = this.fillList.selectedItem.label;
+                this.coinGroup.visible = false;
+
                 break;
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);

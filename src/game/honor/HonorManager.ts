@@ -103,7 +103,7 @@ class HonorManager{
         else
         {
             data.award = false;
-            data.awardV = num - oo.win;
+            data.awardV = 100000 - (num - oo.w);
         }
         return data;
     }

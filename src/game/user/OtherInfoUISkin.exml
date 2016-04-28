@@ -9,8 +9,9 @@
 				<e:Image id="headMC" source="pk_bg_jpg" y="9" x="6" width="80" height="80"/>
 				<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCC9900"/>
 				<e:Button id="friendBtn" label="加好友" x="440" y="0" skinName="Btn_r1Skin"/>
-				<e:Button id="talkBtn" skinName="Btn_r1Skin" label="聊天" y="0" x="440"/>
-				<e:Button id="pkBtn" skinName="Btn_r1Skin" label="挑战" y="60" x="440"/>
+				<e:Button id="talkBtn" skinName="Btn_r1Skin" label="聊天" y="47" x="240"/>
+				<e:Button id="deleteBtn" skinName="Btn_r1Skin" label="删除" y="47" x="346"/>
+				<e:Button id="pkBtn" skinName="Btn_r1Skin" label="挑战" y="47" x="128"/>
 			</e:Group>
 			<e:Group id="friendGroup" x="78" y="237">
 				<e:Label id="friendText" y="7" text="好友PK：(胜率：56.73%)" x="60" textColor="0xCC9900"/>
