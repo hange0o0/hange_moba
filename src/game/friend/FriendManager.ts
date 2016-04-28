@@ -78,6 +78,15 @@ class FriendManager{
         return this.talkSave[gameid].list
     }
 
+    public getTalkInfo(gameid){
+        if(this.talkSave[gameid])
+        {
+            return this.talkSave[gameid];
+        }
+        this.initTalkSave(gameid);
+        return this.talkSave[gameid]
+    }
+
     //初始化聊天记录
     private initTalkSave(gameid){
         if(this.talkSave[gameid])
@@ -217,6 +226,7 @@ class FriendManager{
         {
             this.friendList.splice(index,1);
         }
+        delete this.friendData[otherid]
     }
 
     public getList(fun?){
@@ -434,7 +444,7 @@ class FriendManager{
                 if(msg.list[i].type != 2)
                 {
                     self.removeLog(msg.list[i].id);
-                    if(msg.list[i].to_gamid == UM.openid)//只有对方发我的才显示在日志中
+                    if(msg.list[i].to_gameid == UM.openid)//只有对方发我的才显示在日志中
                         self.logList.push(msg.list[i]);
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);

@@ -294,6 +294,7 @@ class LoginManager{
         oo.id = this.openid;
         oo.cdkey = this.openKey;
         Net.getInstance().serverID = serverid;
+        Net.getInstance().serverHost = this.serverList[serverid].host;
         Net.send(GameEvent.sys.login_server,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)
@@ -339,6 +340,7 @@ class LoginManager{
         oo.cdkey = this.openKey;
 
         Net.getInstance().serverID = serverid;
+        Net.getInstance().serverHost = this.serverList[serverid].host;
         Net.send(GameEvent.sys.register_server,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)

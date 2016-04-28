@@ -17,8 +17,8 @@ class MonsterVO {
     public cost
     public wood
     public collect
-    public kind//arr
-    public effect_kind //arr
+    //public kind//arr
+    //public effect_kind //arr
     public sn
     public sn1
     public sn2
@@ -48,8 +48,8 @@ class MonsterVO {
         this.cost = data.cost;
         this.wood = data.wood;
         this.collect = data.collect;
-        this.kind = data.kind;
-        this.effect_kind = data.effect_kind;
+        //this.kind = data.kind;
+        //this.effect_kind = data.effect_kind;
 
         this.initSkill('sn',data);
 
@@ -99,53 +99,53 @@ class MonsterVO {
         return 'full_bg_jpg';
     }
 
-    //影响指定单位
-    public isEffect(id){
-        var vo = MonsterVO.getObject(id);
-        for(var i=0;i<vo.kind.length;i++)
-        {
-            if(this.effect_kind.indexOf(vo.kind[i]) != -1)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    ////影响指定单位
+    //public isEffect(id){
+    //    var vo = MonsterVO.getObject(id);
+    //    for(var i=0;i<vo.kind.length;i++)
+    //    {
+    //        if(this.effect_kind.indexOf(vo.kind[i]) != -1)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
+    //
+    ////被指定单位影响
+    //public isBeEffect(id){
+    //    var vo = MonsterVO.getObject(id);
+    //    for(var i=0;i<this.kind.length;i++)
+    //    {
+    //        if(vo.effect_kind.indexOf(this.kind[i]) != -1)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
+    //
+    ////把影响变成文字
+    //public effectWord(arr)
+    //{
+    //    var arr2 = [];
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //        arr2.push(Config.cons[arr[i]]);
+    //    }
+    //    return arr2;
+    //}
 
-    //被指定单位影响
-    public isBeEffect(id){
-        var vo = MonsterVO.getObject(id);
-        for(var i=0;i<this.kind.length;i++)
-        {
-            if(vo.effect_kind.indexOf(this.kind[i]) != -1)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //把影响变成文字
-    public effectWord(arr)
-    {
-        var arr2 = [];
-        for(var i=0;i<arr.length;i++)
-        {
-            arr2.push(Config.cons[arr[i]]);
-        }
-        return arr2;
-    }
-
-     public getTypeName(){
-         var obj = {
-             1:'金',
-             2:'木',
-             3:'水',
-             4:'火',
-             5:'土'
-         }
-         return obj[this.type];
-     }
+     //public getTypeName(){
+     //    var obj = {
+     //        1:'金',
+     //        2:'木',
+     //        3:'水',
+     //        4:'火',
+     //        5:'土'
+     //    }
+     //    return obj[this.type];
+     //}
 
     ////取我的对应宠物的战力加成
     // public getMyForce(){

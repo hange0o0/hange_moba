@@ -95,6 +95,6 @@ class LoginServerUI extends game.BaseUI {
     }
 
     private onServerChoose(){
-
+         ChooseServerUI.getInstance().show(this.serverid);
     }
 }

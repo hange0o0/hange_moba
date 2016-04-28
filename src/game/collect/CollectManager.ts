@@ -24,12 +24,14 @@ class CollectManager{
         return 120;
     }
 
-    public getList(){
+    public getList(fillMonster){
         var arr = [];
         var mdata = CM.table[MonsterVO.dataKey];
         for(var s in mdata)
         {
             var vo = mdata[s];
+            if(fillMonster && vo.type != fillMonster)
+                continue;
             var kindVO = MonsterKindVO.getObject(vo.type);
             if(kindVO.level<= UM.level)
                 arr.push(vo);

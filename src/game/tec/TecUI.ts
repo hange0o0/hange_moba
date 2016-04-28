@@ -269,9 +269,10 @@ class TecUI extends game.BaseUI {
                 arr = TCM.getList3(this.fillMonster);
                 this.fillAllGroup.visible = true;
                 this.fillGroup.visible = false;
-                this.fillText.text = this.fillList.selectedItem.label;
                 if(this.fillMonster == 0)
                     this.fillText.text = '全部'
+                else
+                    this.fillText.text = this.fillList.selectedItem.label;
                 this.coinGroup.visible = false;
 
                 break;

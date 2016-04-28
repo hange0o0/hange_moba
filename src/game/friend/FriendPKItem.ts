@@ -17,8 +17,8 @@ class FriendPKItem extends game.BaseItem {
 
     public childrenCreated(){
         super.childrenCreated();
-        this.addBtnEvent(this.refuseBtn,this.onClick)
-        this.addBtnEvent(this,this.onClickBtn)
+        this.addBtnEvent(this.refuseBtn,this.onClickBtn)
+        this.addBtnEvent(this,this.onClick)
     }
 
     private onClick(){

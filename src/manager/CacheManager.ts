@@ -44,6 +44,7 @@ class CacheManager{
                 }
             }
         }
+
     }
 
     public loadCache(url,fun){

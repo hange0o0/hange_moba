@@ -78,6 +78,12 @@ class FriendTalkUI extends game.BaseUI {
             this.otherHead = info.head;
             this.otherNick = info.nick;
         }
+        else
+        {
+            var info = FM.getTalkInfo(this.openid);
+            this.otherHead = info.head;
+            this.otherNick = info.nick;
+        }
 
         this.topUI.setTitle('私聊-'+this.otherNick);
         this.renew();
@@ -95,7 +101,16 @@ class FriendTalkUI extends game.BaseUI {
             console.log(this.scroller.viewport.scrollV)
         },this)
 
-        this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'
+        if(FM.friendData[this.openid])
+        {
+            this.sendBtn.visible = true;
+            this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'
+        }
+        else
+        {
+            this.sendBtn.visible = false;
+        }
+
 
     }
 }

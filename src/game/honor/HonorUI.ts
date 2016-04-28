@@ -145,12 +145,16 @@ class HonorUI extends game.BaseUI {
                  break;
              case 1://使用次数
                  arr.sort(this.sortByUse)
+                 break;
              case 2://胜利次数
                  arr.sort(this.sortByWin)
+                 break;
              case 3://胜率
                  arr.sort(this.sortByRate)
+                 break;
              case 4://领奖状态
                  arr.sort(this.sortByState)
+                 break;
          }
     }
     private sortByDefault(a,b){

@@ -60,13 +60,18 @@ class FriendLogItem extends game.BaseItem {
     }
 
     public dataChanged(){
+        var FM = FriendManager.getInstance();
         this.headMC.source = MyTool.getHeadUrl(this.data.head);
         this.btnGroup.visible = true;
         this.nameText.text = this.data.content.nick;
         if(this.data.type == 3)  //聊天
         {
-            this.currentState = 'talk';
+
             this.talkText.text =  StringUtil.getString(this.data.content.talk,this.talkText);
+            if(FM.friendData[this.data.from_gameid]) //是好友
+                this.currentState = 'talk';
+            else
+                this.currentState = 'talk2';
         }
         else
         {

@@ -19,6 +19,7 @@ class Net extends egret.EventDispatcher{
 
     private modeNum = 0;
     public serverID = 1;
+    public serverHost = ''
     public constructor() {
         super();
     }
@@ -42,7 +43,15 @@ class Net extends egret.EventDispatcher{
         var loader = new egret.URLLoader();
         loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
         if(serverType == 1)
-            var request = new egret.URLRequest('http://'+Config.host+'/gameindex.php');
+        {
+            if(!this.serverHost)
+            {
+                Alert('找不到服务器');
+                return;
+            }
+            var request = new egret.URLRequest(this.serverHost);
+        }
+
         else
             var request = new egret.URLRequest('http://'+Config.host+'/userindex.php');
         //var request = new egret.URLRequest('http://qxu1606510485.my3w.com/new_index.php');
