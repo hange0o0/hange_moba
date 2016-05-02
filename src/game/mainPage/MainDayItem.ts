@@ -7,6 +7,13 @@ class MainDayItem extends game.BaseItem {
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
     private scoreText: eui.Label;
+    private awardGroup: eui.Group;
+    private coinText: eui.Label;
+    private propGroup1: eui.Group;
+    private propText1: eui.Label;
+    private propGroup2: eui.Group;
+    private propText2: eui.Label;
+
 
 
 

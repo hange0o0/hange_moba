@@ -1,25 +1,37 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainServerItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="card_bg_png" y="91" horizontalCenter="-106"/>
-	<e:Image source="icon_pvp_2_png" y="93" x="267"/>
-	<e:Image source="icon_pvp_3_png" y="144" x="267"/>
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="0">
+<e:Skin class="MainServerItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
-	</e:Group>
-	<e:Image source="icon_rank_png" x="267" y="195"/>
-	<e:Group y="10" horizontalCenter="0">
+	</e:Group>
+	<e:Image y="-101" x="15" source="main3_png" scaleX="0.9" scaleY="0.9"/>
+	<e:Group horizontalCenter="0" y="265">
 		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E"/>
+		<e:Label text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4"/>
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:layout>
-			<e:HorizontalLayout/>
+			<e:HorizontalLayout gap="10"/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="totalText" text="局数：333" x="313" y="98" textColor="0xCC9900" size="26"/>
-	<e:Label id="scoreText" y="204" textColor="0xCC9900" text="积分：333" x="313" size="26"/>
-	<e:Label id="winText" y="151" textColor="0xCC9900" text="胜利：333" x="313" size="26"/>
+	<e:Group y="300" x="0">
+		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
+		<e:Label id="scoreText" y="27" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" lineSpacing="8" width="335" height="36" horizontalCenter="0"/>
+		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
+		<e:Group y="87" horizontalCenter="0">
+			<e:Group x="0" y="0">
+				<e:Image source="icon_pvp_2_png" y="0" x="0"/>
+				<e:Label id="totalText" text="局数：333" x="47" y="9" size="22" textColor="0xCCB48E"/>
+			</e:Group>
+			<e:Group x="209" y="2">
+				<e:Label id="winText" y="9" text="胜利：333" x="49" size="22" textColor="0xCCB48E"/>
+				<e:Image source="icon_pvp_3_png" y="0" x="0"/>
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout gap="30"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
 </e:Skin>

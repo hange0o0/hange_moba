@@ -6,14 +6,14 @@
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640" height="80">
 				
-				<e:Label text="PK类型：" y="10" textColor="0xCC9900" x="15"/>
+				<e:Label text="PK类型：" y="10" textColor="0xCCB48E" x="15"/>
 				<e:RadioButton y="10" label="竞技场规则" skinName="MyRadioButtonSkin" id="ringRadio0" x="141"/>
 				<e:RadioButton x="304" label="修正场规则" y="10" skinName="MyRadioButtonSkin" id="ringRadio1"/>
-				<e:Label text="挑战宣言：" x="15" y="50" textColor="0xCC9900" size="26"/>
+				<e:Label text="挑战宣言：" x="15" y="50" textColor="0xCCB48E" size="26"/>
 				<e:TextInput id="inputText" x="140" y="45" skinName="MyTextInputSkin" width="480" maxChars="20" prompt="你可敢与我一战？！"/>
 			</e:Group>
 			<e:Group y="10" x="10" width="640" height="45" id="enemyGroup0">
-				<e:Label id="pkTypeText" y="10" textColor="0xCC9900" text="PK类型：竞技场规则" x="15"/>
+				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15"/>
 			</e:Group>
 			<e:Group id="myGroup0" x="0" y="391" height="450">
 				<e:Image source="line_png" x="-9" y="0" width="655"/>
@@ -26,10 +26,10 @@
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>
 				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCC9900"/>
-				<e:Label id="ringText1" y="335" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCCB48E"/>
+				<e:Label id="ringText1" y="335" textColor="0xCCB48E" text="标签" x="394"/>
 				<e:Button id="chooseBtn0" label="开始PK" y="386" skinName="Btn_r2Skin" horizontalCenter="0"/>
-				<e:Label text="PK卡组1" y="24" textColor="0xCC9900" horizontalCenter="0.5"/>
+				<e:Label text="PK卡组1" y="24" textColor="0xCCB48E" horizontalCenter="0.5"/>
 			</e:Group>
 			<e:Group x="10" y="401" height="450" id="myGroup1">
 				<e:Image source="line_png" width="655" y="0" x="-9"/>
@@ -38,11 +38,11 @@
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label y="24" textColor="0xCC9900" text="PK卡组1" horizontalCenter="0.5" x="10"/>
+				<e:Label y="24" textColor="0xCCB48E" text="PK卡组1" horizontalCenter="0.5" x="10"/>
 				<e:Image source="bold_bg_png" y="323" x="88"/>
 				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label x="129" y="336" textColor="0xCC9900" text="标签" id="ringText2"/>
-				<e:Label id="ringText3" y="335" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Label x="129" y="336" textColor="0xCCB48E" text="标签" id="ringText2"/>
+				<e:Label id="ringText3" y="335" textColor="0xCCB48E" text="标签" x="394"/>
 				<e:Button y="386" label="开始PK" skinName="Btn_r2Skin" horizontalCenter="0" id="chooseBtn1"/>
 			</e:Group>
 			

@@ -40,43 +40,6 @@
 			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="taskGroup" x="0" y="123">
-		<e:Rect height="55" width="640" x="0" y="-1" fillAlpha="0.6" strokeWeight="1"/>
-		<e:Label id="taskText" text="任务：在10场无科技PK中取得6场胜利（12/99）" y="17" size="22" textColor="0x866E4B" horizontalCenter="0"/>
-		<e:Image source="note_icon_png" x="4" y="-1"/>
-	</e:Group>
-	<e:Group id="videoBtn" x="581" y="125">
-		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
-		<e:Image source="replay_mc_png" x="11" y="6"/>
-	</e:Group>
-	<e:Group x="0" bottom="0">
-		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>
-		<e:Group id="rankBtn" x="27.954545454545453" y="14.015151515151501">
-			<e:Image source="menu_icon_1_png" x="18" y="0"/>
-			<e:Image source="menu_icon_1_png" y="13" x="0"/>
-			<e:Label text="排行" x="2" y="79" textColor="0xCC9900"/>
-		</e:Group>
-		<e:Group id="friendBtn" x="526.969696969697" y="5.000000000000114">
-			<e:Image source="menu_icon_4_png" x="0" y="0"/>
-			<e:Label y="88" text="好友" x="18" textColor="0xCC9900"/>
-		</e:Group>
-		<e:Group id="collectBtn" x="116.96969696969697" y="0">
-			<e:Image source="menu_icon_2_png" x="0" y="0"/>
-			<e:Label y="93" text="收集" x="14" textColor="0xCC9900"/>
-		</e:Group>
-		<e:Group id="honorBtn" x="223.93939393939397" y="0.9848484848486123">
-			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
-			<e:Label y="92" text="成就" x="9" textColor="0xCC9900"/>
-		</e:Group>
-		<e:Group id="tecBtn" x="321.96969696969694" y="2.954545454545496">
-			<e:Image source="menu_icon_6_png" x="0" y="0"/>
-			<e:Label y="90" text="科技" x="18" textColor="0xCC9900"/>
-		</e:Group>
-		<e:Group id="bagBtn" x="423.93939393939394" y="4.015151515151729">
-			<e:Image source="menu_icon_5_png" x="0" y="0"/>
-			<e:Label y="89" text="背包" x="16" textColor="0xCC9900"/>
-		</e:Group>
-	</e:Group>
 	<e:Group x="16" top="180" bottom="150">
 		<e:Image id="leftBtn" source="left_btn_png" x="0" verticalCenter="0"/>
 		<e:Image id="rightBtn" source="left_btn_png" x="611" scaleX="-1" verticalCenter="0"/>
@@ -87,7 +50,7 @@
 						<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
 						<ns1:MainDayItem id="dayGame" skinName="MainDayItemSkin"/>
 						<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
-						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
+						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
 						<e:layout>
 							<e:HorizontalLayout gap="20"/>
 						</e:layout>
@@ -99,8 +62,6 @@
 				<ns1:MainPageItem x="10" skinName="MainPageItemSkin" y="11" id="p1"/>
 				<ns1:MainPageItem id="p2" skinName="MainPageItemSkin" y="21" x="20"/>
 				<ns1:MainPageItem id="p3" skinName="MainPageItemSkin" y="21" x="20"/>
-
-
 				<e:layout>
 					<e:HorizontalLayout gap="20" horizontalAlign="center"/>
 				</e:layout>
@@ -110,4 +71,45 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
+	<e:Group id="taskGroup" x="0" y="123">
+		<e:Rect height="55" width="640" x="0" y="-1" fillAlpha="0.6" strokeWeight="1"/>
+		<e:Label id="taskText" text="任务：在10场无科技PK中取得6场胜利（12/99）" y="17" size="22" textColor="0x866E4B" horizontalCenter="0"/>
+		<e:Image source="note_icon_png" x="4" y="-1"/>
+	</e:Group>
+	<e:Group id="helpBtn" x="581" y="125">
+		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
+		<e:Label text="?" x="16" y="10" textColor="0xF8D05A"/>
+	</e:Group>
+	<e:Group id="videoBtn" y="190" x="581">
+		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
+		<e:Image source="replay_mc_png" y="6" x="11"/>
+	</e:Group>
+	<e:Group x="0" bottom="0">
+		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>
+		<e:Group id="rankBtn" x="27.954545454545453" y="14.015151515151501">
+			<e:Image source="menu_icon_1_png" x="18" y="0"/>
+			<e:Image source="menu_icon_1_png" y="13" x="0"/>
+			<e:Label text="排行" x="2" y="79" textColor="0xCCB48E"/>
+		</e:Group>
+		<e:Group id="friendBtn" x="526.969696969697" y="5.000000000000114">
+			<e:Image source="menu_icon_4_png" x="0" y="0"/>
+			<e:Label y="88" text="好友" x="18" textColor="0xCCB48E"/>
+		</e:Group>
+		<e:Group id="collectBtn" x="116.96969696969697" y="0">
+			<e:Image source="menu_icon_2_png" x="0" y="0"/>
+			<e:Label y="93" text="收集" x="14" textColor="0xCCB48E"/>
+		</e:Group>
+		<e:Group id="honorBtn" x="223.93939393939397" y="0.9848484848486123">
+			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
+			<e:Label y="92" text="成就" x="9" textColor="0xCCB48E"/>
+		</e:Group>
+		<e:Group id="tecBtn" x="321.96969696969694" y="2.954545454545496">
+			<e:Image source="menu_icon_6_png" x="0" y="0"/>
+			<e:Label y="90" text="科技" x="18" textColor="0xCCB48E"/>
+		</e:Group>
+		<e:Group id="bagBtn" x="423.93939393939394" y="4.015151515151729">
+			<e:Image source="menu_icon_5_png" x="0" y="0"/>
+			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
+		</e:Group>
+	</e:Group>
 </e:Skin>

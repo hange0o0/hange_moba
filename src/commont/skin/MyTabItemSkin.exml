@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MyTabItemSkin" currentState="up" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected" >
 	<e:Image includeIn="upAndSelected,downAndSelected,disabledAndSelected" x="-1" y="0" width="100%" scale9Grid="21,5,32,12" source="btn_r1__png"/>
-	<e:Image includeIn="up,down,disabled" x="-1" y="0" width="100%" source="btn_d1_png" scale9Grid="22,5,1,5"/>
-	<e:Label id="label" text="{data.label}" y="21" size="20" height="26" verticalAlign="middle" stroke.down="0" strokeColor.disabled="0x025CB5" touchEnabled="false" textAlign="center"  textColor.upAndSelected="0xCC9900" textColor.downAndSelected="0xCC9900" textColor.disabledAndSelected="0xCC9900" textColor="0xAFAFAF" horizontalCenter="0"/>
+	<e:Image includeIn="up,down,disabled" x="0" y="0" width="100%" scale9Grid="22,5,1,5" source="btn_b1__png"/>
+	<e:Label id="label" text="{data.label}" y="21" size="18" height="26" verticalAlign="middle" stroke.down="0" strokeColor.disabled="0x025CB5" touchEnabled="false" textAlign="center"  textColor.upAndSelected="0xCCB48E" textColor.downAndSelected="0xCCB48E" textColor.disabledAndSelected="0xCCB48E" textColor="0xAFAFAF" horizontalCenter="0"/>
 </e:Skin>

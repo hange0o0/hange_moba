@@ -6,12 +6,12 @@
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
 				<e:Image source="border_head_png" x="15" y="14" width="80" height="80"/>
-				<e:Label id="nameText" text="标签" x="107" y="18" textColor="0xCC9900"/>
-				<e:Label id="maxText" x="107" y="56" textColor="0xCC9900" text="标签"/>
-				<e:Label id="levelText" y="20" textColor="0xCC9900" text="12345" x="392"/>
-				<e:Label id="winText" y="65" textColor="0xCC9900" text="40.3%" x="392"/>
-				<e:Label id="rankText" y="65" textColor="0xCC9900" text="12345" x="538"/>
-				<e:Label id="forceText" y="20" textColor="0xCC9900" text="12345" x="538"/>
+				<e:Label id="nameText" text="标签" x="107" y="18" textColor="0xCCB48E"/>
+				<e:Label id="maxText" x="107" y="56" textColor="0xCCB48E" text="标签"/>
+				<e:Label id="levelText" y="20" textColor="0xCCB48E" text="12345" x="392"/>
+				<e:Label id="winText" y="65" textColor="0xCCB48E" text="40.3%" x="392"/>
+				<e:Label id="rankText" y="65" textColor="0xCCB48E" text="12345" x="538"/>
+				<e:Label id="forceText" y="20" textColor="0xCCB48E" text="12345" x="538"/>
 				<e:Image source="icon_lv_png" x="341" y="15"/>
 				<e:Image source="icon_pvp_3_png" x="341" y="60"/>
 				<e:Image source="icon_rank_png" x="496" y="60"/>
@@ -25,7 +25,7 @@
 			</e:Group>
 			<e:Group id="myGroup0" x="0" y="391" height="380">
 				<e:Image source="line_png" x="-9" y="0" width="655"/>
-				<e:Label id="myTitleText0" text="我的卡组:" x="16" y="29" textColor="0xCC9900"/>
+				<e:Label id="myTitleText0" text="我的卡组:" x="16" y="29" textColor="0xCCB48E"/>
 				<e:Button id="chooseBtn0" label="选择" x="470" y="15" skinName="Btn_r2Skin"/>
 				<e:List id="myList0" y="77" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
@@ -34,12 +34,12 @@
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>
 				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCC9900"/>
-				<e:Label id="ringText1" y="335" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCCB48E"/>
+				<e:Label id="ringText1" y="335" textColor="0xCCB48E" text="标签" x="394"/>
 			</e:Group>
 			<e:Group id="myGroup1" y="401" x="10">
 				<e:Image source="line_png" width="655" y="0" x="-9"/>
-				<e:Label x="16" y="29" textColor="0xCC9900" text="我的卡组:" id="myTitleText1"/>
+				<e:Label x="16" y="29" textColor="0xCCB48E" text="我的卡组:" id="myTitleText1"/>
 				<e:Button x="470" skinName="Btn_r2Skin" label="选择" y="15" id="chooseBtn1"/>
 				<e:List y="77" id="myList1" itemRendererSkinName="MyHeadItemSkin" width="614" height="239" x="14">
 					<e:layout>
@@ -48,8 +48,8 @@
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>
 				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label x="129" y="336" textColor="0xCC9900" text="标签" id="ringText2"/>
-				<e:Label x="394" y="335" textColor="0xCC9900" text="标签" id="ringText3"/>
+				<e:Label x="129" y="336" textColor="0xCCB48E" text="标签" id="ringText2"/>
+				<e:Label x="394" y="335" textColor="0xCCB48E" text="标签" id="ringText3"/>
 			</e:Group>
 			<e:layout>
 				<e:VerticalLayout/>

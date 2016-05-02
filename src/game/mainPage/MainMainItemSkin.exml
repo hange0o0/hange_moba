@@ -1,28 +1,41 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainMainItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="68" y="56" source="build3_png"/>
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="0">
+	<e:Image x="25" y="-166" source="main1_png" scaleX="0.9" scaleY="0.9"/>
+	<e:Group horizontalCenter="0" y="265">
+		<e:Image source="main_mc_png" y="0" x="0"/>
+		<e:Label text="试练场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4"/>
+		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
+		<e:layout>
+			<e:HorizontalLayout gap="10"/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="0" y="300">
+		<e:Image y="0" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
+		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" x="73"/>
+		<e:Group id="awardGroup" y="87" horizontalCenter="0">
+			<e:Group x="0" y="0">
+				<e:Label id="coinText" y="9" textColor="0xCCB48E" text="X123456" size="22" x="50"/>
+				<e:Image source="icon_money_png" y="0" x="0"/>
+			</e:Group>
+			<e:Group id="propGroup1" x="161" y="0">
+				<e:Label id="propText1" y="9" textColor="0xCCB48E" text="X321" size="22" x="50"/>
+				<e:Image source="icon_pvp_2_png" y="0" x="0"/>
+			</e:Group>
+			<e:Group id="propGroup2" x="289" y="0">
+				<e:Label id="propText2" y="9" textColor="0xCCB48E" text="X32" x="50" size="22"/>
+				<e:Image source="icon_pve_png" y="0" x="0"/>
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout gap="20"/>
+			</e:layout>
+		</e:Group>
+		<e:Rect height="1" width="400" x="48" y="74" fillColor="0x494747"/>
+	</e:Group>
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:Button id="awardBtn" skinName="Btn_r2Skin" y="20" label="领奖" x="20"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="10" horizontalCenter="0">
-		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label text="试练场" x="128" y="6" size="40" textColor="0xCCB48E"/>
-		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
-		<e:layout>
-			<e:HorizontalLayout/>
-		</e:layout>
-	</e:Group>
-	<e:Image y="319" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
-	<e:Label id="scoreText" y="349" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" horizontalCenter="0.5"/>
-	<e:Label id="awardText0" y="415" text="X123456" x="82" size="22" textColor="0xCCB48E"/>
-	<e:Label id="awardText1" y="415" text="X321" x="247" size="22" textColor="0xCCB48E"/>
-	<e:Label x="375" y="415" text="X32" id="awardText2" size="22" textColor="0xCCB48E"/>
-	<e:Image source="icon_money_png" x="33" y="406"/>
-	<e:Image source="icon_pvp_2_png" x="194" y="406"/>
-	<e:Image source="icon_pve_png" x="322" y="406"/>
-	<e:Rect height="1" width="400" x="48" y="393" fillColor="0x494747"/>
 </e:Skin>

@@ -6,7 +6,7 @@
 	<e:Scroller width="551" height="600" x="44" y="87">
 		<e:Group id="scrollerGroup">
 			<e:Group id="myGroup" x="0" y="0">
-				<e:Label text="我的服务器：" x="0" y="0" textColor="0xCC9900"/>
+				<e:Label text="我的服务器：" x="0" y="0" textColor="0xCCB48E"/>
 				<e:List id="list1" width="550" x="0" y="40" itemRendererSkinName="ChooseServerItemSkin">
 					<e:ArrayCollection>
 						<e:Array>
@@ -21,7 +21,7 @@
 				</e:List>
 			</e:Group>
 			<e:Group id="otherGroup" x="0" y="160">
-				<e:Label text="最新服务器：" x="0" y="0" textColor="0xCC9900"/>
+				<e:Label text="最新服务器：" x="0" y="0" textColor="0xCCB48E"/>
 				<e:List id="list2" width="550" x="0" y="40" itemRendererSkinName="ChooseServerItemSkin">
 					<e:ArrayCollection>
 						<e:Array>

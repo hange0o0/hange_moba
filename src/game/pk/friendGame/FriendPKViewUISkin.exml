@@ -5,8 +5,8 @@
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group y="10" x="10" width="640" height="45" id="enemyGroup0">
-				<e:Label id="pkTypeText" y="10" textColor="0xCC9900" text="PK类型：竞技场规则" x="15"/>
-				<e:Label id="timeText" y="9" textColor="0xCC9900" text="PK类型：竞技场规则" right="6"/>
+				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15"/>
+				<e:Label id="timeText" y="9" textColor="0xCCB48E" text="PK类型：竞技场规则" right="6"/>
 			</e:Group>
 			<e:Group id="myGroup0" x="0" y="391" height="360">
 				<e:Image source="line_png" x="-9" y="0" width="655"/>
@@ -23,9 +23,9 @@
 				</e:List>
 				<e:Image source="bold_bg_png" y="301" x="88"/>
 				<e:Image source="bold_bg_png" y="301" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="314" textColor="0xCC9900"/>
-				<e:Label id="ringText1" y="313" textColor="0xCC9900" text="标签" x="394"/>
-				<e:Label text="PK卡组1" y="28" textColor="0xCC9900" horizontalCenter="0.5"/>
+				<e:Label id="ringText0" text="标签" x="129" y="314" textColor="0xCCB48E"/>
+				<e:Label id="ringText1" y="313" textColor="0xCCB48E" text="标签" x="394"/>
+				<e:Label text="PK卡组1" y="28" textColor="0xCCB48E" horizontalCenter="0.5"/>
 			</e:Group>
 			<e:Group x="10" y="401" height="360" id="myGroup1">
 				<e:Image source="line_png" width="655" y="0" x="-9"/>
@@ -40,9 +40,9 @@
 				</e:List>
 				<e:Image source="bold_bg_png" y="301" x="88"/>
 				<e:Image source="bold_bg_png" y="301" x="351"/>
-				<e:Label x="129" y="314" textColor="0xCC9900" text="标签" id="ringText2"/>
-				<e:Label id="ringText3" y="313" textColor="0xCC9900" text="标签" x="394"/>
-				<e:Label y="28" textColor="0xCC9900" text="PK卡组1" horizontalCenter="0.5"/>
+				<e:Label x="129" y="314" textColor="0xCCB48E" text="标签" id="ringText2"/>
+				<e:Label id="ringText3" y="313" textColor="0xCCB48E" text="标签" x="394"/>
+				<e:Label y="28" textColor="0xCCB48E" text="PK卡组1" horizontalCenter="0.5"/>
 			</e:Group>
 			<e:Group id="myChooseGroup" x="20" y="411" height="280">
 				<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>

@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ShopItemSkin" width="640" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Button id="buyBtn" label="购买" x="520" y="18" skinName="Btn_r1Skin"/>
-	<e:Label id="text1" text="标签" x="114" y="16" size="26" textColor="0xCC9900"/>
-	<e:Label id="text2" text="标签" x="114" y="58" size="22" textColor="0xCC9900"/>
-	<e:Rect height="1" width="600" x="20" y="99" fillColor="0x9D965E"/>
-	<e:Image source="pk_bg_jpg" x="20" y="10" width="80" height="80"/>
+<e:Skin class="ShopItemSkin" width="640" height="110" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="item_bg_jpg" width="640" y="0" scale9Grid="20,12,437,76" x="0" height="110"/>
+	<e:Button id="buyBtn" label="购买" x="509" skinName="Btn_r1Skin" y="23"/>
+	<e:Label id="text1" text="标签" x="114" y="16" size="26" textColor="0xCCB48E"/>
+	<e:Label id="text2" text="标签" x="155" y="59" size="22" textColor="0xCCB48E"/>
+	<e:Image id="img" x="17" y="11" width="80" height="80" source="box0_png"/>
+	<e:Image id="icon" x="109" y="48" source="icon_empty_png"/>
+	<e:Image id="rmbMC" source="card_star_png" x="120" y="56" width="25" height="25"/>
 </e:Skin>

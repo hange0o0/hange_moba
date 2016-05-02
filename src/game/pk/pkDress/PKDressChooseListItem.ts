@@ -50,7 +50,7 @@ class PKDressChooseListItem extends game.BaseItem {
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.thumb
 
-        this.typeText.text = vo.getTypeName();
+        this.typeText.text = MonsterKindVO.getObject(vo.type).word;
         this.nickText.text = vo.name
         this.headBG.source = 'head_border'+(UM.getMonsterCollect(vo.id) + 1)+'_png'
 

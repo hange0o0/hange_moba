@@ -4,7 +4,7 @@
 	        
 	         source="btn_b1__png" source.down="btn_b1_png" scale9Grid="24,3,68,8"/>
 	<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8"
-	         size="20" fontFamily="Tahoma 'Microsoft Yahei'"
-	         verticalAlign="middle" textAlign="center" text="你好" left.down="8" right.down="8" top.down="10" bottom.down="6" textColor="0xEEDDC2"/>
+	         size="18" fontFamily="Tahoma 'Microsoft Yahei'"
+	         verticalAlign="middle" textAlign="center" text="你好" left.down="8" right.down="8" top.down="10" bottom.down="6" textColor="0xAFAFAF"/>
 	<e:Image id="iconDisplay" horizontalCenter="0" verticalCenter="0"/>
 </e:Skin>

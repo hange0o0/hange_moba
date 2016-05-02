@@ -8,7 +8,7 @@
 			<e:HorizontalLayout gap="50"/>
 		</e:layout>
 	</e:Group>
-	<e:Label text="花费60点卷可获得30体力" top="67" textAlign="center" verticalAlign="top" size="32" textColor="0xCC9900" horizontalCenter="0"/>
+	<e:Label text="花费60点卷可获得30体力" top="67" textAlign="center" verticalAlign="top" size="32" textColor="0xCCB48E" horizontalCenter="0"/>
 	<e:Label left="40" text="点卷不足时将使用钻石" textAlign="center" right="40" size="22" top="110" verticalAlign="top" x="10" y="10" textColor="0x8D887D"/>
 	<e:Group y="160" x="93">
 		<e:Image source="border1_png" x="25" y="3" scale9Grid="14,12,89,10" height="40" width="140"/>

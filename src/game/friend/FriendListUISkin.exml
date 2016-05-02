@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="FriendListUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="640" x="0" y="0"/>
-	<e:Label id="infoText" text="好友数量：30/30" y="95" size="22" textColor="0xCC9900" width="164" right="5"/>
+	<e:Label id="infoText" text="好友数量：30/30" y="95" size="22" textColor="0xCCB48E" width="164" right="5"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Image source="line_png" width="650" y="134" x="-6"/>
-	<e:Button id="searchBtn" label="查找好友" y="75" x="334" skinName="Btn_d1Skin"/>
+	<e:Button id="searchBtn" label="查找好友" y="75" x="334" skinName="Btn_b1Skin"/>
 	<e:TabBar x="1" y="75" id="tab" itemRendererSkinName="MyTabItemSkin">
 		<e:ArrayCollection>
 			<e:Array>

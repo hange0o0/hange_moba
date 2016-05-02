@@ -9,7 +9,7 @@
         		
         		
         		<ns1:BagItem id="itemMC" x="34" y="19" skinName="BagItemSkin"/>
-        		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="164" y="15" width="440" height="126" textColor="0xCC9900"/>
+        		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="164" y="15" width="440" height="126" textColor="0xCCB48E"/>
 						<e:Button id="infoBtn" x="509" y="120" label="详情" skinName="Btn_r1Skin"/>
         	</e:Group>
         	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>

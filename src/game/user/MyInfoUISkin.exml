@@ -1,24 +1,29 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MyInfoUISkin" width="640" height="1500" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
-	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
+	<e:Group bottom="0" top="60" x="0" y="10">
+		<e:Image source="book_bg1_jpg" y="0" x="0"/>
+		<e:Image source="book_bg1_jpg" y="0" x="640" scaleX="-1"/>
+		<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" bottom="0" top="350" x="0"/>
+		<e:Image source="book_bg2_jpg" top="350" scaleX="-1" scale9Grid="40,44,240,266" bottom="0" x="640"/>
+	</e:Group>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller width="640" x="0" top="80" bottom="0">
 		<e:Group>
 			<e:Group x="74" y="102">
 				<e:Image source="border2_png" y="4" x="0"/>
 				<e:Image id="headMC" source="pk_bg_jpg" y="9" x="6" width="80" height="80"/>
-				<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCC9900"/>
+				<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCCB48E"/>
 				<e:Button id="setBtn" skinName="Btn_r1Skin" y="2" label="设置" x="440"/>
 			</e:Group>
 			<e:Group x="78" y="237">
-				<e:Label id="levelText" y="7" text="等级：LV.32" x="60" textColor="0xCC9900"/>
-				<e:Label id="expText" x="60" y="52" textColor="0xCC9900" text="经验：123456/456789"/>
+				<e:Label id="levelText" y="7" text="等级：LV.32" x="60" textColor="0xCCB48E"/>
+				<e:Label id="expText" x="60" y="52" textColor="0xCCB48E" text="经验：123456/456789"/>
 				<e:Image source="icon_lv_png" y="0" x="0"/>
 			</e:Group>
 			<e:Group x="79" y="356">
-				<e:Label id="forceText" y="7" text="战力：12345" x="59" textColor="0xCC9900"/>
+				<e:Label id="forceText" y="7" text="战力：12345" x="59" textColor="0xCCB48E"/>
 				<e:Group x="99" y="44">
-					<e:Label id="forceText1" y="40" textColor="0xCC9900" text="科技战力：12345" x="0"/>
+					<e:Label id="forceText1" y="40" textColor="0xCCB48E" text="科技战力：12345" x="0"/>
 					<e:Group id="addForceBtn" y="0" x="122">
 						<e:Image source="icon_empty_png" y="0" x="0"/>
 						<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
@@ -27,16 +32,16 @@
 						<e:HorizontalLayout verticalAlign="middle"/>
 					</e:layout>
 				</e:Group>
-				<e:Label id="forceText2" y="92" textColor="0xCC9900" text="等级战力：12345" x="99"/>
-				<e:Label id="forceText3" y="132" textColor="0xCC9900" text="奖励战力：12345" x="99"/>
+				<e:Label id="forceText2" y="92" textColor="0xCCB48E" text="等级战力：12345" x="99"/>
+				<e:Label id="forceText3" y="132" textColor="0xCCB48E" text="奖励战力：12345" x="99"/>
 				<e:Image source="icon_power_png" y="0" x="0"/>
 			</e:Group>
 			<e:Group x="78" y="533">
-				<e:Label id="energyText" y="7" textColor="0xCC9900" text="体力：50/50" x="60"/>
-				<e:Label id="reEnergyText" y="62" textColor="0xCC9900" text="下次体力刷新：03：22：56" x="60"/>
+				<e:Label id="energyText" y="7" textColor="0xCCB48E" text="体力：50/50" x="60"/>
+				<e:Label id="reEnergyText" y="62" textColor="0xCCB48E" text="下次体力刷新：03：22：56" x="60"/>
 				<e:Image source="icon_pve_png" x="0" y="2"/>
 				<e:Group x="269" y="-1">
-					<e:Label id="energyText2" y="9" textColor="0xCC9900" text="元体力：5040" x="0"/>
+					<e:Label id="energyText2" y="9" textColor="0xCCB48E" text="元体力：5040" x="0"/>
 					<e:Group id="addEnergyBtn" x="192" y="0">
 						<e:Image source="icon_empty_png" x="0" y="0"/>
 						<e:Image source="icon_add_png" x="8.030303030303003" y="5.984848484848499"/>
@@ -49,7 +54,7 @@
 			<e:Group x="77" y="627">
 				<e:Image source="icon_money_png" x="0" y="0"/>
 				<e:Group x="60" y="-3">
-					<e:Label id="coinText" y="8" textColor="0xCC9900" text="金币：123456" x="0"/>
+					<e:Label id="coinText" y="8" textColor="0xCCB48E" text="金币：123456" x="0"/>
 					<e:Group id="addCoinBtn" x="212" y="0">
 						<e:Image source="icon_empty_png" y="0" x="0"/>
 						<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
@@ -65,7 +70,7 @@
 			<e:Group x="74" y="688">
 				<e:Image source="icon_token_png" x="0" y="0"/>
 				<e:Group x="60" y="-3">
-					<e:Label id="diamondText" x="0" y="10" textColor="0xCC9900" text="钻石：123"/>
+					<e:Label id="diamondText" x="0" y="10" textColor="0xCCB48E" text="钻石：123"/>
 					<e:Group id="addDiamondBtn" x="157" y="0">
 						<e:Image source="icon_empty_png" y="0" x="0"/>
 						<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
@@ -76,19 +81,19 @@
 				</e:Group>
 			</e:Group>
 			<e:Group x="70" y="752">
-				<e:Label id="diamondFreeText" y="7" textColor="0xCC9900" text="点券：1234" x="60"/>
+				<e:Label id="diamondFreeText" y="7" textColor="0xCCB48E" text="点券：1234" x="60"/>
 				<e:Image source="icon_pvp_ticket_png" x="0" y="0"/>
 			</e:Group>
 			<e:Group x="76" y="817">
-				<e:Label id="thisLoginText" y="7" textColor="0xCC9900" text="本次登陆时间：20：40：40" x="60"/>
+				<e:Label id="thisLoginText" y="7" textColor="0xCCB48E" text="本次登陆时间：20：40：40" x="60"/>
 				<e:Image source="icon_server_png" x="0" y="0"/>
 			</e:Group>
 			<e:Group x="77" y="884">
-				<e:Label id="lastLoginText" y="7" textColor="0xCC9900" text="最近一次登陆：13-04-01 20:20:20" x="60"/>
+				<e:Label id="lastLoginText" y="7" textColor="0xCCB48E" text="最近一次登陆：13-04-01 20:20:20" x="60"/>
 				<e:Image source="icon_server_png" y="0" x="0"/>
 			</e:Group>
 			<e:Group y="788" x="60">
-				<e:Label y="0" textColor="0xCC9900" text="最近常用卡牌：" x="0"/>
+				<e:Label y="0" textColor="0xCCB48E" text="最近常用卡牌：" x="0"/>
 				<e:List id="list" y="40" x="0" width="580" height="250" itemRendererSkinName="EnemyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="25"/>

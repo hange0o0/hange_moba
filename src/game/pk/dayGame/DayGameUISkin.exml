@@ -6,7 +6,7 @@
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
 
-				<e:Label id="moneyText" text="标签" y="15" textColor="0xCC9900" left="65"/>
+				<e:Label id="moneyText" text="标签" y="15" textColor="0xCCB48E" left="65"/>
 				<e:List id="enemyList" height="259" width="614" x="13" y="77" itemRendererSkinName="EnemyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
@@ -25,8 +25,8 @@
 				</e:List>
 				<e:Image source="bold_bg_png" y="323" x="88"/>
 				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCC9900"/>
-				<e:Label id="ringText1" y="335" textColor="0xCC9900" text="标签" x="394"/>
+				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCCB48E"/>
+				<e:Label id="ringText1" y="335" textColor="0xCCB48E" text="标签" x="394"/>
 				<e:Button id="chooseBtn0" label="开始PK" y="386" skinName="Btn_r2Skin" horizontalCenter="0"/>
 			</e:Group>
 

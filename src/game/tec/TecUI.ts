@@ -201,7 +201,7 @@ class TecUI extends game.BaseUI {
             this.levelUpBtn.visible = false;
         }
         else
-            this.coinText.textColor = 0xCC9900;
+            this.coinText.textColor = 0xCCB48E;
 
 
         if(this.needPropNum1)
@@ -215,7 +215,7 @@ class TecUI extends game.BaseUI {
                 this.levelUpBtn.visible = false;
             }
             else
-                this.propText1.textColor = 0xCC9900;
+                this.propText1.textColor = 0xCCB48E;
         }
         else
             this.propGroup1.visible = false;
@@ -231,7 +231,7 @@ class TecUI extends game.BaseUI {
                 this.levelUpBtn.visible = false;
             }
             else
-                this.propText2.textColor = 0xCC9900;
+                this.propText2.textColor = 0xCCB48E;
         }
         else
             this.propGroup2.visible = false;

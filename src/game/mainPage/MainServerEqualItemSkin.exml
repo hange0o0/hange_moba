@@ -1,28 +1,42 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainServerEqualItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="card_bg_png" y="87" horizontalCenter="-111"/>
-	<e:Image source="icon_pvp_2_png" y="88" x="264"/>
-	<e:Image source="icon_pvp_3_png" y="140" x="264"/>
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="0">
+<e:Skin class="MainServerEqualItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
-	<e:Image source="icon_rank_png" x="264" y="192"/>
-	<e:Group y="10" horizontalCenter="0">
+	<e:Image x="33" y="-82" scaleY="0.9" scaleX="0.9" source="main4_png"/>
+	<e:Label id="propNumText" text="入场券：123456" y="460" size="16" textColor="0xCCB48E" stroke="1" horizontalCenter="0"/>
+	<e:Group horizontalCenter="0" y="265">
 		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label text="修正场" x="128" y="6" size="40" textColor="0xCCB48E"/>
+		<e:Label text="修正场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4"/>
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:layout>
-			<e:HorizontalLayout/>
+			<e:HorizontalLayout gap="10"/>
 		</e:layout>
+	</e:Group>
+	<e:Group y="300" x="0">
+		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
+		<e:Label id="scoreText" width="335" y="31" textColor="0xCCB48E" text="积分：12345(LV.5)" textAlign="center" lineSpacing="8" horizontalCenter="0.5" height="36"/>
+		<e:Rect fillColor="0x494747" width="400" y="79" height="1" x="48"/>
+		<e:Group horizontalCenter="0" y="91">
+			<e:layout>
+				<e:HorizontalLayout gap="30"/>
+			</e:layout>
+			<e:Group y="0" x="0">
+				<e:Image source="icon_pvp_2_png" y="0" x="0"/>
+				<e:Label id="totalText" y="9" textColor="0xCCB48E" text="局数：333" x="47" size="22"/>
+			</e:Group>
+			<e:Group y="2" x="209">
+				<e:Label id="winText" y="9" textColor="0xCCB48E" text="胜利：333" size="22" x="49"/>
+				<e:Image source="icon_pvp_3_png" y="0" x="0"/>
+			</e:Group>
+		</e:Group>
 	</e:Group>
-	<e:Label id="totalText" text="局数：333" x="310" y="95" textColor="0xCC9900" size="26"/>
-	<e:Label id="scoreText" y="199" textColor="0xCC9900" text="积分：333" x="310" size="26"/>
-	<e:Label id="winText" y="147" textColor="0xCC9900" text="胜利：333" x="310" size="26"/>
-	<e:Image y="244" x="270" source="card_battle_png"/>
-	<e:Label id="maxText" y="251" textColor="0xCC9900" text="连胜：333" x="310" size="26"/>
-	<e:Label id="propNumText" text="当前入场券：123456" y="344" size="18" horizontalCenter="-12"/>
+	<e:Group id="maxGroup" x="1" y="2">
+		<e:Label id="maxText" y="8" text="连胜：333" x="33" size="22" textColor="0xCCB48E" stroke="1"/>
+		<e:Image y="0" x="0" source="card_battle_png"/>
+	</e:Group>
 </e:Skin>

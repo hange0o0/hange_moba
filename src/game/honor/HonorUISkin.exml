@@ -31,10 +31,10 @@
 		<e:Image source="arrow2_png" y="70" x="30" anchorOffsetX="22" rotation="270" anchorOffsetY="23"/>
 		<e:Label id="downText" x="0" width="60" y="0" text="12" textAlign="center"/>
 	</e:Group>
-	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="153" size="20" textColor="0xCC9900" horizontalCenter="0"/>
+	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="153" size="20" textColor="0xCCB48E" horizontalCenter="0"/>
 	<e:Image source="border6_png" x="421" y="88" scale9Grid="14,6,88,18" width="210" height="41"/>
 	<e:Image id="sortBtn" source="icon_add_png" x="590" y="92"/>
-	<e:Label id="sortText" text="标签标签标签" x="424" y="95" size="26" textColor="0xCC9900" width="167" textAlign="center"/>
+	<e:Label id="sortText" text="标签标签标签" x="424" y="95" size="26" textColor="0xCCB48E" width="167" textAlign="center"/>
 	<e:Group id="sortGroup" x="421" y="126">
 		<e:Image source="border6_png" x="0" y="0" scale9Grid="14,4,88,24" width="210" height="210"/>
 		<e:List id="sortList" height="200" width="200" x="5" y="4" itemRendererSkinName="HonorSortItemSkin">

@@ -786,38 +786,68 @@
 				},
 				{
 					"isFolder":false,
-					"key":"build1_png",
-					"name":"build1_png"
+					"key":"main1_png",
+					"name":"main1_png"
 				},
 				{
 					"isFolder":false,
-					"key":"build2_png",
-					"name":"build2_png"
+					"key":"main2_png",
+					"name":"main2_png"
 				},
 				{
 					"isFolder":false,
-					"key":"build3_png",
-					"name":"build3_png"
+					"key":"main3_png",
+					"name":"main3_png"
 				},
 				{
 					"isFolder":false,
-					"key":"build4_png",
-					"name":"build4_png"
+					"key":"main4_png",
+					"name":"main4_png"
 				},
 				{
 					"isFolder":false,
-					"key":"build5_png",
-					"name":"build5_png"
+					"key":"choose_icon_png",
+					"name":"choose_icon_png"
 				},
 				{
 					"isFolder":false,
-					"key":"build6_png",
-					"name":"build6_png"
+					"key":"item_bg_jpg",
+					"name":"item_bg_jpg"
 				},
 				{
 					"isFolder":false,
-					"key":"build7_png",
-					"name":"build7_png"
+					"key":"box0_png",
+					"name":"box0_png"
+				},
+				{
+					"isFolder":false,
+					"key":"box1_png",
+					"name":"box1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"box2_png",
+					"name":"box2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"box3_png",
+					"name":"box3_png"
+				},
+				{
+					"isFolder":false,
+					"key":"box4_png",
+					"name":"box4_png"
+				},
+				{
+					"isFolder":false,
+					"key":"pay_coin_png",
+					"name":"pay_coin_png"
+				},
+				{
+					"isFolder":false,
+					"key":"pay_energy_png",
+					"name":"pay_energy_png"
 				}
 			]
 		}

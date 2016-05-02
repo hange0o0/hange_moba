@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendListItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="100">
-	<e:Group y="5" x="20">
+<e:Skin class="FriendListItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110">
+	<e:Image source="item_bg_jpg" x="0" y="0" width="640" scale9Grid="20,12,437,76" height="110"/>
+	<e:Group y="8" x="20">
 		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="90" height="90" x="0"/>
 		<e:Image id="headMC" source="pk_bg_jpg" y="5" width="80" height="80" x="5"/>
 	</e:Group>
-	<e:Label id="nameText" text="标签" x="119" y="14"/>
-	<e:Label id="levelText" y="58" text="123" x="160"/>
+	<e:Label id="nameText" text="标签" x="119" y="14" textColor="0xCCB48E"/>
+	<e:Label id="levelText" y="58" text="123" x="160" textColor="0xCCB48E"/>
 	<e:Image source="icon_lv_png" x="117" y="53"/>
-	<e:Label id="forceText" text="12345" x="270" y="58"/>
+	<e:Label id="forceText" text="12345" x="270" y="58" textColor="0xCCB48E"/>
 	<e:Image source="icon_power_png" x="220" y="50"/>
-	<e:Group y="0" right="15" height="100">
+	<e:Group y="3" right="15" height="100">
 		<e:Button id="pkBtn" skinName="Btn_r1Skin" y="30" label="发起PK" x="30"/>
 		<e:Button id="moreBtn" skinName="Btn_r1Skin" y="10" label="更多" x="10"/>
 		<e:layout>

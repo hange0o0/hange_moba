@@ -2,7 +2,8 @@
 <e:Skin class="CollectUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Group y="90" left="10">
+	<e:Rect height="60" width="640" x="0" y="74" strokeWeight="1"/>
+	<e:Group y="81" left="10">
 		<e:layout>
 			<e:HorizontalLayout gap="0" verticalAlign="middle"/>
 		</e:layout>
@@ -10,9 +11,9 @@
 			<e:Image source="icon_empty_png" y="0" x="0"/>
 			<e:Image source="soul_icon_png" y="10" x="14"/>
 		</e:Group>
-		<e:Label id="numText" y="9" textColor="0xCC9900" text="456789" textAlign="right" size="24" x="61"/>
+		<e:Label id="numText" y="9" textColor="0xCCB48E" text="456789" textAlign="right" size="24" x="61"/>
 	</e:Group>
-	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="130">
+	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="135">
 		<e:Group>
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 
@@ -33,10 +34,10 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="fillAllGroup" y="90" x="430">
+	<e:Group id="fillAllGroup" y="84" x="420">
 		<e:Image source="border6_png" y="0" scale9Grid="14,6,88,18" width="210" height="41" x="0"/>
 		<e:Image id="fillBtn" source="icon_add_png" y="4" x="169"/>
-		<e:Label id="fillText" x="3" y="7" textColor="0xCC9900" text="标签标签标签" textAlign="center" width="167" size="26"/>
+		<e:Label id="fillText" x="3" y="7" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26"/>
 		<e:Group id="fillGroup" y="38" x="0">
 			<e:Image source="border6_png" bottom="0" top="0" scale9Grid="14,4,88,24" width="210" x="0"/>
 			<e:List id="fillList" top="4" itemRendererSkinName="HonorSortItemSkin" bottom="0" width="200" x="5">

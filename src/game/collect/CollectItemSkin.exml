@@ -5,7 +5,7 @@
 	<e:Image source="head_border4_png" y="0" x="2" id="headBG"/>
 	<e:Group id="numGroup" x="0" y="116.96969696969697" width="120">
 		<e:Image id="arrowMC" source="arrow5_png" x="10.984848484848484" y="4.015151515151501"/>
-		<e:Label id="numText" text="2346/456" x="0" y="0" textAlign="center" size="24" textColor="0xCC9900"/>
+		<e:Label id="numText" text="2346/456" x="0" y="0" textAlign="center" size="24" textColor="0xCCB48E"/>
 		<e:layout>
 			<e:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
 		</e:layout>
