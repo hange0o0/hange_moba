@@ -1,13 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="LoginUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" x="0" y="0"/>
-	<e:Group horizontalCenter="0" bottom="120">
+	<e:Group horizontalCenter="0" bottom="120" width="440">
 		<e:Label text="用户名：" y="10" textColor="0xC4A36A" x="0"/>
 		<e:Label y="77" text="密码：" textColor="0xC4A36A" x="30"/>
 		<e:TextInput id="nameText" x="134" y="0" skinName="MyTextInputSkin" height="50"/>
-		<e:TextInput id="passwordText" skinName="MyTextInputSkin" y="67" height="50" x="134"/>
-		<e:Button id="loginBtn" label="登陆" x="149" y="159" skinName="Btn_r2Skin"/>
-		<e:Button id="tryBtn" y="155" label="试玩" x="331" skinName="Btn_d1Skin"/>
-		<e:Button id="registerBtn" y="155" label="注册" x="12" skinName="Btn_d1Skin"/>
+		<e:TextInput id="passwordText" skinName="MyTextInputSkin" y="67" height="50" x="134"/>
+		<e:Group y="155" horizontalCenter="0">
+			<e:Button id="registerBtn" y="0" label="注册" x="0" skinName="Btn_d1Skin"/>
+			<e:Button id="loginBtn" label="登陆" x="137" y="4" skinName="Btn_r2Skin"/>
+			<e:Button id="tryBtn" y="0" label="试玩" x="319" skinName="Btn_d1Skin"/>
+			<e:layout>
+				<e:HorizontalLayout/>
+			</e:layout>
+		</e:Group>
 	</e:Group>
 </e:Skin>

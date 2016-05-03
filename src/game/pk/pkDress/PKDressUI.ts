@@ -156,7 +156,6 @@ class PKDressUI extends game.BaseUI {
             this.currentState = 'normal';
         else
             this.currentState = 'more';
-
     }
 
     public addMonster(mid){

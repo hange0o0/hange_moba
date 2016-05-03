@@ -78,7 +78,7 @@ class DayGameUI extends game.BaseUI {
             var id = arr[i]
             enemyList.push({
                 vo: MonsterVO.getObject(id),
-                type:2,
+                type:1,
 
                 id: id,
                 specialData: specialData,

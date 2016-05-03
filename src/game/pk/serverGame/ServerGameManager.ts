@@ -115,6 +115,7 @@ class ServerGameManager{
         if(this.lastPKData)
         {
             PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            PKMainUI.getInstance().show();
             if(fun)
                 fun();
             return;
@@ -124,8 +125,7 @@ class ServerGameManager{
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.SERVER,function(data){
                 self.lastPKData = data;
-                if(fun)
-                    fun();
+                self.playBack(fun)
             })
         }
     }

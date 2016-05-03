@@ -806,16 +806,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"choose_icon_png",
-					"name":"choose_icon_png"
-				},
-				{
-					"isFolder":false,
-					"key":"item_bg_jpg",
-					"name":"item_bg_jpg"
-				},
-				{
-					"isFolder":false,
 					"key":"box0_png",
 					"name":"box0_png"
 				},
@@ -838,6 +828,16 @@
 					"isFolder":false,
 					"key":"box4_png",
 					"name":"box4_png"
+				},
+				{
+					"isFolder":false,
+					"key":"choose_icon_png",
+					"name":"choose_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"item_bg_jpg",
+					"name":"item_bg_jpg"
 				},
 				{
 					"isFolder":false,

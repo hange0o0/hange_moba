@@ -2,8 +2,11 @@
 <e:Skin class="MonsterListUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="80">
-		<e:Group>
-			<ns1:MonsterInfoBase id="info" x="0" y="0" skinName="MonsterInfoBaseSkin"/>
+		<e:Group id="scrollGroupCon">
+			<e:Group id="scrollGroup" x="0" y="0">
+				<ns1:MonsterInfoBase id="info" x="0" y="0" skinName="MonsterInfoBaseSkin"/>
+				<ns1:MonsterInfoBase id="info2" skinName="MonsterInfoBaseSkin" y="0" x="0"/>
+			</e:Group>
 		</e:Group>
 	</e:Scroller>
 	<e:Group id="bottomGroup" x="0" bottom="-43">

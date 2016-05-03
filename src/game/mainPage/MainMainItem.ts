@@ -39,7 +39,8 @@ class MainMainItem extends game.BaseItem {
     public renew() {
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         var mainData = UM.main_game;
-        this.scoreText.text = '当前等级：' + mainData.level;
+        var level = mainData.level;
+        this.scoreText.text = '当前等级：' + level;
 
         MyTool.removeMC(this.awardBtn);
         if(mainData.awardtime && DateUtil.isSameDay(mainData.awardtime))//已领过奖
@@ -49,6 +50,31 @@ class MainMainItem extends game.BaseItem {
         else
         {
             this.btnGroup.addChildAt(this.awardBtn,0);
+        }
+
+        this.coinText.text = '×' + level*100
+        //每过30小关奖一个普通道具
+        var num = Math.floor(level/30);
+        if(num > 0)
+        {
+            this.awardGroup.addChild(this.propGroup1)
+            this.propText1.text = '×' +num
+        }
+        else
+        {
+            MyTool.removeMC(this.propGroup1)
+        }
+
+        //每过100小关奖一个高级道具
+        var num = Math.floor(level/100);
+        if(num > 0)
+        {
+            this.awardGroup.addChild(this.propGroup2)
+            this.propText2.text = '×' +num
+        }
+        else
+        {
+            MyTool.removeMC(this.propGroup2)
         }
 
     }

@@ -24,8 +24,22 @@ class MainPageUI extends game.BaseUI {
     private addEnergyBtn: eui.Group;
     private addDiamondBtn: eui.Group;
     private addFreeBtn: eui.Group;
+    private leftBtn: eui.Image;
+    private rightBtn: eui.Image;
+    private scroller: eui.Scroller;
+    private scrollGroupCon: eui.Group;
+    private scrollGroup: eui.Group;
+    private mainGame: MainMainItem;
+    private dayGame: MainDayItem;
+    private serverGame: MainServerItem;
+    private serverGameEqual: MainServerEqualItem;
+    private p0: MainPageItem;
+    private p1: MainPageItem;
+    private p2: MainPageItem;
+    private p3: MainPageItem;
     private taskGroup: eui.Group;
     private taskText: eui.Label;
+    private helpBtn: eui.Group;
     private videoBtn: eui.Group;
     private rankBtn: eui.Group;
     private friendBtn: eui.Group;
@@ -33,19 +47,7 @@ class MainPageUI extends game.BaseUI {
     private honorBtn: eui.Group;
     private tecBtn: eui.Group;
     private bagBtn: eui.Group;
-    private leftBtn: eui.Image;
-    private rightBtn: eui.Image;
-    private scroller: eui.Scroller;
-    private scrollGroupCon: eui.Group;
-    private scrollGroup: eui.Group;
-    private mainGame: MainMainItem;
-    private serverGame: MainServerItem;
-    private serverGameEqual: MainServerEqualItem;
-    private dayGame: MainDayItem;
-    private p0: MainPageItem;
-    private p1: MainPageItem;
-    private p2: MainPageItem;
-    private p3: MainPageItem;
+
 
 
 
@@ -71,6 +73,7 @@ class MainPageUI extends game.BaseUI {
 
 
         this.addBtnEvent(this.videoBtn,this.onVideo);
+        this.addBtnEvent(this.helpBtn,this.onHelp);
 
 
 
@@ -124,6 +127,25 @@ class MainPageUI extends game.BaseUI {
                 break;
             case 3:
                 PM.playBack(PKManager.PKType.SERVER_EQUAL);
+                break;
+        }
+    }
+
+    private onHelp(){
+        var HM = HelpManager.getInstance()
+        switch(this.currentPage)
+        {
+            case 0:
+                HM.mainHelp();
+                break;
+            case 1:
+                HM.dayHelp();
+                break;
+            case 2:
+                HM.serverHelp();
+                break;
+            case 3:
+                HM.serverEqualHelp();
                 break;
         }
     }

@@ -30,6 +30,7 @@ class CollectItem extends game.BaseItem {
         var vo = this.data;
         var level = UM.getMonsterCollect(vo.id);
         this.headBG.source = 'head_border' + (level + 1) + '_png';
+        this.headMC.source = vo.thumb
 
         var need = CM.getLevelUpNeed(level + 1);
         var now = CM.getCollectNum(vo.id);

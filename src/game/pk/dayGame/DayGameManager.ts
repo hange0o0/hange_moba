@@ -109,6 +109,7 @@ class DayGameManager{
         if(this.lastPKData)
         {
             PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            PKMainUI.getInstance().show();
             if(fun)
                 fun();
             return;
@@ -118,8 +119,7 @@ class DayGameManager{
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.DAY,function(data){
                 self.lastPKData = data;
-                if(fun)
-                    fun();
+                self.playBack(fun);
             })
         }
     }

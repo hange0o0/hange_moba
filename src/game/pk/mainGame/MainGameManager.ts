@@ -142,6 +142,7 @@ class MainGameManager{
         if(this.lastPKData)
         {
             PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            PKMainUI.getInstance().show();
             if(fun)
                 fun();
             return;
@@ -151,8 +152,7 @@ class MainGameManager{
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.MAIN,function(data){
                 self.lastPKData = data;
-                if(fun)
-                    fun();
+                self.playBack(fun);
             })
         }
     }
