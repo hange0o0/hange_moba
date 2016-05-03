@@ -1,19 +1,44 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="TypeInfoUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="0" y="0" width="520" height="380" source="card_bg_png" scale9Grid="52,33,122,125" locked="true"/>
+<e:Skin class="TypeInfoUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520">
+	<e:Image x="0" y="0" width="520" height="360" source="card_bg_png" scale9Grid="52,33,122,125"/>
+	<e:Group x="33" y="98">
+	</e:Group>
 	<e:Rect y="14" strokeWeight="1" width="490" fillAlpha="0.1" height="60" x="15" fillColor="0xFFFFFF"/>
-	<e:Label y="105" text="用户名：" x="75" size="22" textColor="0xC4A36A"/>
-	<e:TextInput x="171" skinName="MyTextInputSkin" y="93" height="45" id="nameText" width="280"/>
-	<e:Label y="162" textColor="0xC4A36A" size="22" text="密码：" x="97"/>
-	<e:TextInput id="passwordText1" skinName="MyTextInputSkin" y="151" width="280" height="45" x="171"/>
-	<e:Label y="218" textColor="0xC4A36A" size="22" text="密码确认：" x="53"/>
-	<e:TextInput id="passwordText2" width="280" y="207" skinName="MyTextInputSkin" height="45" x="171"/>
-	<e:Group y="285" horizontalCenter="0">
-		<e:Button id="backBtn" label="返回" y="0" x="0" skinName="Btn_d2Skin"/>
-		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="注册" y="0" x="0"/>
+	<e:Group horizontalCenter="0" bottom="30">		
+		<e:Button id="closeBtn" skinName="Btn_r2Skin" label="确定" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>	
-	<e:Label id="titleText" text="用户注册" y="32" size="24" horizontalCenter="0" textColor="0xAAA6A6"/>
+	<e:Label id="titleText" text="金属性" y="32" size="24" horizontalCenter="0" textColor="0xAAA6A6"/>
+	<e:Label text="属性相克时，伤害+8%" y="220" size="18" horizontalCenter="0" textColor="0x444444"/>
+	<e:Group y="90" width="50%" right="0">
+		<e:Label y="0" textColor="0xCCB48E" size="30" text="被克" horizontalCenter="0"/>
+		<e:List id="list2" y="50" itemRendererSkinName="TypeInfoItemSkin" horizontalCenter="0">
+			<e:ArrayCollection>
+				<e:Array gap="0">
+					<e:Object label="数"/>
+				</e:Array>
+			</e:ArrayCollection>
+			<e:layout>
+				<e:HorizontalLayout/>
+			</e:layout>
+		</e:List>
+	</e:Group>
+	<e:Group x="0" y="90" width="50%">
+		<e:Label y="0" textColor="0xCCB48E" size="30" text="克制" horizontalCenter="0"/>
+		<e:List id="list1" y="49" itemRendererSkinName="TypeInfoItemSkin" horizontalCenter="0">
+			<e:ArrayCollection>
+				<e:Array>
+					<e:Object label="数"/>
+					<e:Object label="数"/>
+					<e:Object label="数"/>
+				</e:Array>
+			</e:ArrayCollection>
+			<e:layout>
+				<e:HorizontalLayout gap="0"/>
+			</e:layout>
+		</e:List>
+	</e:Group>
+	<e:Rect height="130" width="2" y="75" fillColor="0x191919" horizontalCenter="0"/>
 </e:Skin>

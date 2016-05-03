@@ -1,33 +1,35 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressChooseListItemSkin" width="300" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="180">
-	<e:Image source="border6_png" x="130" y="0" width="170" height="180" scale9Grid="14,7,88,17"/>
-	<e:Label id="forceText" y="10" text="战力:120" x="174" size="22" textColor="0xCCB48E" textAlign="left" height="24"/>
-	<e:Label id="atkText" x="174" y="44" textColor="0xCCB48E" size="22" text="攻:1234" textAlign="left" height="24"/>
-	<e:Label id="hpText" x="174" y="76" textColor="0xCCB48E" size="22" text="血:123456" textAlign="left" height="24"/>
-	<e:Label id="speedText" y="108" textColor="0xCCB48E" height="24" text="速:100" textAlign="left" size="22" x="174"/>
-	<e:Label id="nickText" x="0" y="127" textColor="0xCCB48E" size="24" text="nick" textAlign="center" width="130" height="24"/>
-	<e:Label id="desText" x="0" y="153" size="24" textAlign="center" width="130" height="24" textColor="0x902F1C"/>
-	<e:Group y="0" x="6">
-		<e:Image source="border4_png" y="12" id="headMC" width="100" height="100" mask="headMask" x="7"/>
-		<e:Rect x="7" width="100" y="12" ellipseWidth="100" ellipseHeight="100" height="100" id="headMask"/>
-		<e:Image y="8" x="0" id="headBG" source="head_border5_png"/>
-		<e:Image id="useMC3" width="14" y="63" height="14" x="97" source="point2_png"/>
-		<e:Image id="useMC2" width="14" y="32" height="14" x="97" source="point2_png"/>
-		<e:Image id="useMC1" x="79" y="6" width="15" height="15" source="point2_png"/>
+<e:Skin class="PKDressChooseListItemSkin" width="300" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="180" states="left,right" >
+	<e:Group x="0" y="6" x.right="170">
+		<e:Label id="nickText" x="0" y="121" textColor="0xCCB48E" size="24" text="nick" textAlign="center" width="130" height="24"/>
+		<e:Label id="desText" x="0" y="147" size="24" textAlign="center" width="130" height="24" textColor="0x902F1C"/>
+		<e:Image source="border4_png" y="6" id="headMC" width="100" height="100" mask="headMask" x="13"/>
+		<e:Rect x="13" width="100" y="6" ellipseWidth="100" ellipseHeight="100" height="100" id="headMask"/>
+		<e:Image y="2" x="6" id="headBG" source="head_border5_png"/>
+		<e:Image id="useMC3" width="14" y="66" height="14" x="103" source="point2_png"/>
+		<e:Image id="useMC2" width="14" y="35" height="14" x="103" source="point2_png"/>
+		<e:Image id="useMC1" x="85" y="9" width="15" height="15" source="point2_png"/>
+		<e:Group x="5" y="71">
+			<e:Image source="icon_empty_png" x="0" y="0"/>
+			<e:Label id="typeText" text="标" x="12" y="12" size="20" textColor="0xCCB48E"/>
+		</e:Group>
 	</e:Group>
-	<e:Group x="5" y="77">
-		<e:Image source="icon_empty_png" x="0" y="0"/>
-		<e:Label id="typeText" text="标" x="12" y="12" size="20" textColor="0xCCB48E"/>
+	<e:Group x="130" y="0" x.right="0">
+		<e:Image source="border6_png" x="0" y="0" width="170" height="180" scale9Grid="14,7,88,17"/>
+		<e:Label id="forceText" y="10" text="战力:120" x="44" size="22" textColor="0xCCB48E" textAlign="left" height="24"/>
+		<e:Label id="atkText" x="44" y="44" textColor="0xCCB48E" size="22" text="攻:1234" textAlign="left" height="24"/>
+		<e:Label id="hpText" x="44" y="76" textColor="0xCCB48E" size="22" text="血:123456" textAlign="left" height="24"/>
+		<e:Label id="speedText" y="108" textColor="0xCCB48E" height="24" text="速:100" textAlign="left" size="22" x="44"/>
+		<e:Label id="coinText" y="143" text="X10" x="44" size="22" textColor="0xCCB48E"/>
+		<e:Image source="fu2_png" x="9.599999999999994" y="141" scaleX="0.8" scaleY="0.8"/>
+		<e:Group id="woodGroup" x="96" y="141">
+			<e:Label id="woodText" y="2.5999999999999943" text="X1" x="31" size="22" textColor="0xCCB48E"/>
+			<e:Image source="fu1_png" x="0" y="0" scaleX="0.8" scaleY="0.8"/>
+		</e:Group>
+		<e:Image source="icon_power_png" x="4" y="3" scaleY="0.8" scaleX="0.8"/>
+		<e:Image source="card_icon_1_png" x="12.449999999999989" y="44.5" scaleX="0.5" scaleY="0.5"/>
+		<e:Image y="76.5" scaleY="0.5" x="14.199999999999989" scaleX="0.5" source="card_icon_0_png"/>
+		<e:Image y="109" scaleY="0.5" scaleX="0.5" x="13.699999999999989" source="card_icon_3_png"/>
 	</e:Group>
-	<e:Label id="coinText" y="143" text="X10" x="174" size="22" textColor="0xCCB48E"/>
-	<e:Image source="fu2_png" x="139.6" y="141" scaleX="0.8" scaleY="0.8"/>
-	<e:Group id="woodGroup" x="226" y="141">
-		<e:Label id="woodText" y="2.5999999999999943" text="X1" x="31" size="22" textColor="0xCCB48E"/>
-		<e:Image source="fu1_png" x="0" y="0" scaleX="0.8" scaleY="0.8"/>
-	</e:Group>
-	<e:Image source="icon_power_png" x="134" y="3" scaleY="0.8" scaleX="0.8"/>
-	<e:Image source="card_icon_1_png" x="142.45" y="44.5" scaleX="0.5" scaleY="0.5"/>
-	<e:Image y="76.5" scaleY="0.5" x="144.2" scaleX="0.5" source="card_icon_0_png"/>
-	<e:Image y="109" scaleY="0.5" scaleX="0.5" x="143.7" source="card_icon_3_png"/>
 
 </e:Skin>

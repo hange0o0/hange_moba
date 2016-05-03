@@ -10,8 +10,11 @@ class TypeInfoUI extends game.BaseWindow {
         this.skinName = "CollectDraw10ResultUISkin";
     }
 
-    private okBtn: eui.Button;
-    private list: eui.List;
+    private closeBtn: eui.Button;
+    private titleText: eui.Label;
+    private list2: eui.List;
+    private list1: eui.List;
+
 
 
     private data

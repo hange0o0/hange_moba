@@ -10,8 +10,11 @@ class RingInfoUI extends game.BaseWindow {
         this.skinName = "CollectDraw10ResultUISkin";
     }
 
-    private okBtn: eui.Button;
-    private list: eui.List;
+    private headMC: eui.Image;
+    private closeBtn: eui.Button;
+    private titleText: eui.Label;
+    private desText: eui.Label;
+
 
 
     private data

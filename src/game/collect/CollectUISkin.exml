@@ -18,8 +18,17 @@
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 
 				<e:layout>
-					<e:TileLayout horizontalGap="30" verticalGap="20" requestedColumnCount="4" paddingLeft="30" paddingRight="30" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left"/>
+					<e:TileLayout horizontalGap="30" verticalGap="40" paddingLeft="30" paddingRight="30" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left"/>
 				</e:layout>
+				<e:ArrayCollection>
+					<e:Array>
+						<e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
+					</e:Array>
+				</e:ArrayCollection>
 			</e:List>
 		</e:Group>
 	</e:Scroller>

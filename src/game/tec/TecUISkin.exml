@@ -24,7 +24,7 @@
 			</e:Group>
 		</e:Group>
 		<ns1:TecItem id="itemMC" x="42" y="12" skinName="TecItemSkin"/>
-		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="173" y="15" width="425" height="126" textColor="0xCCB48E" locked="true"/>
+		<e:Label id="desText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" x="173" y="15" width="425" height="126" textColor="0xCCB48E"/>
 		<e:Label id="maxText" y="188" textColor="0xCCB48E" text="已达等级上限" size="26" horizontalCenter="0"/>
 		<e:Group id="monsterGroup" x="185" y="22">
 			<e:Label x="52" y="3" text="123" id="atkText" textColor="0xCCB48E"/>
@@ -39,8 +39,9 @@
 		<e:Group>
 			<e:List id="list" height="200" width="640" x="0" y="0" itemRendererSkinName="TecItemSkin">
 				<e:layout>
-					<e:TileLayout horizontalGap="20" paddingLeft="18" paddingTop="10"/>
+					<e:TileLayout horizontalGap="50" paddingLeft="35" paddingTop="20" paddingBottom="20" verticalGap="40"/>
 				</e:layout>
+
 			</e:List>
 		</e:Group>
 	</e:Scroller>

@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TypeInfoItemSkin" xmlns:e="http://ns.egret.com/eui" width="56" height="56">
+	<e:Image source="icon_empty_png" y="0" scaleY="1.2" x="0" scaleX="1.2"/>
+	<e:Label y="16" textColor="0xCBC08A" text="{data.label}" id="typeText" width="20" size="22" horizontalCenter="0"/>
+</e:Skin>
