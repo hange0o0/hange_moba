@@ -53,7 +53,7 @@ class PKMainUI extends game.BaseUI {
 
         this.addChild(this.jumpBtn);
 
-        var startY = 50 + this.itemHeight/2;
+        var startY = 80 + this.itemHeight/2;
         var stepY = 110;
         this.posArray.push({x:320,y:startY});
         this.posArray.push({x:320 - 60,y:startY + stepY});
@@ -205,7 +205,7 @@ class PKMainUI extends game.BaseUI {
 
     //行动动画
     private playerPK(){
-        var moveY = 50;
+        var moveY = 80;
         for(var i=0;i<3;i++)
         {
             var item = this.itemSelf[i];

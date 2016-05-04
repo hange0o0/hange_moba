@@ -12,7 +12,7 @@ class PKItem extends game.BaseItem {
     public playerData;
 
     public childrenCreated() {
-        //this.headMC.mask = this.headMask;
+        this.headMC.mask = this.headMask;
     }
 
 

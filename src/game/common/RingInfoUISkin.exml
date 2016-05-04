@@ -4,6 +4,8 @@
 	<e:Group x="33" y="98">
 		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="105" height="105" x="0"/>
 		<e:Image source="border4_png" y="5" x="8" width="92" height="92" id="headMC"/>
+		<e:Image source="icon_empty_png" y="63" scaleY="1.2" x="-13" scaleX="1.2"/>
+		<e:Label id="levelText" width="50" y="79" textColor="0xCBC08A" size="22" x="-12" text="1" textAlign="center"/>
 	</e:Group>
 	<e:Rect y="14" strokeWeight="1" width="529" fillAlpha="0.1" height="60" x="15" fillColor="0xFFFFFF"/>
 	<e:Group horizontalCenter="0" bottom="30">
