@@ -22,7 +22,7 @@ class CollectItem extends game.BaseItem {
     }
 
     private onClick(){
-        CollectItemInfo.getInstance().show(this.data);
+        CollectItemInfo.getInstance().show(this.data,this);
     }
 
     public dataChanged(){

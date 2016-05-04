@@ -26,6 +26,7 @@ class CollectItemInfo extends game.BaseWindow {
 
 
     private data
+    private item
 
     public childrenCreated() {
         super.childrenCreated();
@@ -48,6 +49,8 @@ class CollectItemInfo extends game.BaseWindow {
         var self = this;
         CollectManager.getInstance().levelUp(this.data.id,function(){
             self.onShow();
+            if(self.item)
+                self.item.dataChanged();
         })
     }
 
@@ -63,6 +66,8 @@ class CollectItemInfo extends game.BaseWindow {
         oo[this.data.id] = this.slider.value;
         CollectManager.getInstance().split(oo,function(){
             self.onShow();
+            if(self.item)
+                self.item.dataChanged();
         })
     }
 
@@ -71,11 +76,14 @@ class CollectItemInfo extends game.BaseWindow {
         var isLock = CollectManager.getInstance().isLock(this.data.id);
         CollectManager.getInstance().lock(this.data.id,!isLock,function(){
             self.onShow();
+            if(self.item)
+                self.item.dataChanged();
         });
     }
 
-    public show(data?){
+    public show(data?,item?){
         this.data = data;
+        this.item = item;
         super.show();
     }
 

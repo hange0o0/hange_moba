@@ -50,6 +50,11 @@ class PKDressChooseListItem extends game.BaseItem {
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.thumb
 
+        if(this.data.index %2 == 1)
+            this.currentState = 'right';
+        else
+            this.currentState = 'left';
+
         this.typeText.text = MonsterKindVO.getObject(vo.type).word;
         this.nickText.text = vo.name
         this.headBG.source = 'head_border'+(UM.getMonsterCollect(vo.id) + 1)+'_png'
@@ -63,7 +68,7 @@ class PKDressChooseListItem extends game.BaseItem {
             else
                 forceStr += '+2%';
         }
-        this.forceText.text = '加成:' + forceStr;
+        this.forceText.text = '加成：' + forceStr;
         this.coinText.text = vo.cost;
         this.woodText.text = vo.wood;
         this.woodGroup.visible = vo.wood;
@@ -80,9 +85,9 @@ class PKDressChooseListItem extends game.BaseItem {
         }
 
 
-        this.atkText.text = '攻:' +  Math.round(vo.atk * (1+fightData.atk/100));
-        this.hpText.text = '血:' +  Math.round(vo.hp * (1+fightData.hp/100));
-        this.speedText.text = '速:' +  Math.round(vo.speed * (1+fightData.speed/100));
+        this.atkText.text = '攻：' +  Math.round(vo.atk * (1+fightData.atk/100));
+        this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));
+        this.speedText.text = '速：' +  Math.round(vo.speed * (1+fightData.speed/100));
 
         var useNum = PKDressUI.getInstance().getMonsterNum(vo.id);
         for(var i=1;i<=3;i++)

@@ -94,6 +94,16 @@ class PKDressUI extends game.BaseUI {
 
         this.pkDressChooseUI.addEventListener('change',this.onChooseChange,this)
         this.pkDressChooseUI.specialData = this.specialData;
+
+        MyTool.addLongTouch(this.ringRadio0,this.onRing1,this)
+        MyTool.addLongTouch(this.ringRadio1,this.onRing2,this)
+    }
+
+    private onRing1(){
+         RingInfoUI.getInstance().show(this.ringRadio0.value,this.isEqual)
+    }
+    private onRing2(){
+        RingInfoUI.getInstance().show(this.ringRadio1.value,this.isEqual)
     }
 
 

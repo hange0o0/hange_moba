@@ -22,7 +22,7 @@ class PKResultBase extends game.BaseContainer {
         this.step ++;
         if(this.step == 1)
         {
-            this._desText.text = '1'
+            this._desText.text = ''
 
             this.y = 300;
             this.scaleX = 0.1

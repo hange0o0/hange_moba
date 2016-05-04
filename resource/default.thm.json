@@ -48,6 +48,7 @@
     "src/game/common/HelpItemSkin.exml",
     "src/game/common/HelpUISkin.exml",
     "src/game/common/RingInfoUISkin.exml",
+    "src/game/common/TypeInfoItemSkin.exml",
     "src/game/common/TypeInfoUISkin.exml",
     "src/game/friend/FriendListItemSkin.exml",
     "src/game/friend/FriendListUISkin.exml",

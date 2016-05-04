@@ -122,7 +122,7 @@ class CollectManager{
                 return;
             }
 
-            EM.dispatchEventWith(GameEvent.client.collect_change)
+            //EM.dispatchEventWith(GameEvent.client.collect_change)
             if(fun)
                 fun();
         });
@@ -142,7 +142,7 @@ class CollectManager{
                 return;
             }
 
-            EM.dispatchEventWith(GameEvent.client.collect_change)
+            //EM.dispatchEventWith(GameEvent.client.collect_change)
 
             if(fun)
                 fun(msg.num);
@@ -169,7 +169,7 @@ class CollectManager{
                 UM.collect.lock.splice(index,1);
             }
 
-            EM.dispatchEventWith(GameEvent.client.collect_change)
+            //EM.dispatchEventWith(GameEvent.client.collect_change)
             if(fun)
                 fun();
         });

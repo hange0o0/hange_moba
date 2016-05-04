@@ -41,7 +41,8 @@ class CollectUI extends game.BaseUI {
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
-        EM.addEvent(GameEvent.client.collect_change,this.renew,this);
+        //EM.addEvent(GameEvent.client.collect_change,this.renew,this);
+        EM.addEvent(GameEvent.client.prop_change,this.renewDraw,this);
 
         this.addBtnEvent(this.fillBtn,this.onFill);
         this.addBtnEvent(this.fillText,this.onFill);
@@ -102,6 +103,7 @@ class CollectUI extends game.BaseUI {
             {
                 CM.split(obj,function(num){
                     Alert('拆解成功，获得元素：'+ num);
+                    self.renew();
                 })
             }
         })
@@ -161,7 +163,7 @@ class CollectUI extends game.BaseUI {
         this.listArr = CollectManager.getInstance().getList(this.fillMonster);
         this.fillGroup.visible = false;
         if(this.fillMonster == 0)
-            this.fillText.text = '全部'
+            this.fillText.text = '全部属性'
         else
             this.fillText.text = this.fillList.selectedItem.label;
 
@@ -169,6 +171,8 @@ class CollectUI extends game.BaseUI {
     }
 
     public renewDraw(){
+        if(!this.stage)
+            return;
         this.numText.text = '' + UM.getPropNum(22);
     }
 }

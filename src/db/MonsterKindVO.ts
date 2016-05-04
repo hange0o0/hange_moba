@@ -30,7 +30,7 @@ class MonsterKindVO {
         var data = CM.table[MonsterKindVO.dataKey];
          for(var s in data)
          {
-             if(data[s].restrain.indexOf(this.id) != -1)
+             if(data[s].restrain.indexOf(this.id + '') != -1)
                 arr.push(s)
          }
         return arr;

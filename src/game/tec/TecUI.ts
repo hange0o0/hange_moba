@@ -269,7 +269,7 @@ class TecUI extends game.BaseUI {
                 this.fillAllGroup.visible = true;
                 this.fillGroup.visible = false;
                 if(this.fillMonster == 0)
-                    this.fillText.text = '全部'
+                    this.fillText.text = '全部属性'
                 else
                     this.fillText.text = this.fillList.selectedItem.label;
                 this.coinGroup.visible = false;

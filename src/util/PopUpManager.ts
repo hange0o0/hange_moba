@@ -7,6 +7,10 @@ class PopUpManager {
     private static shape:eui.Rect;
 	public constructor() {
 	}
+
+    public static removeShape(){
+        MyTool.removeMC(this.shape);
+    }
 	
     public static addPopUp(display: egret.DisplayObject,isWindow:boolean){
         var ww = GameManager.container.width;

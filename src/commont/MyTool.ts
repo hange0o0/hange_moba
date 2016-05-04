@@ -13,11 +13,6 @@ class MyTool {
             mc.parent.removeChild(mc)
     }
 
-    //弹出领牌说明
-    public static alertRing(id,isEqual){
-
-    }
-
     //得到最常用的10个怪
     public static getCommonUse(list){
         if(!list)

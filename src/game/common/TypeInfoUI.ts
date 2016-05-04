@@ -7,7 +7,7 @@ class TypeInfoUI extends game.BaseWindow {
 
     public constructor() {
         super();
-        this.skinName = "CollectDraw10ResultUISkin";
+        this.skinName = "TypeInfoUISkin";
     }
 
     private closeBtn: eui.Button;
@@ -21,9 +21,8 @@ class TypeInfoUI extends game.BaseWindow {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.okBtn, this.hide);
+        this.addBtnEvent(this.closeBtn, this.hide);
 
-        this.list.itemRenderer = CollectItem
     }
 
     public show(data?){
@@ -32,6 +31,28 @@ class TypeInfoUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.list.dataProvider = new eui.ArrayCollection(this.data);
+        var mkvo = MonsterKindVO.getObject(this.data);
+
+        this.titleText.text = mkvo.word +  '属性'
+
+        if(mkvo.restrain.length > 0)
+            this.list1.dataProvider = new eui.ArrayCollection(this.changeWord(mkvo.restrain));
+        else
+            this.list1.dataProvider = new eui.ArrayCollection([{label:'无'}]);
+
+        var beRestrain = mkvo.getBeRestrain();
+        if(beRestrain.length > 0)
+            this.list2.dataProvider = new eui.ArrayCollection(this.changeWord(beRestrain));
+        else
+            this.list2.dataProvider = new eui.ArrayCollection([{label:'无'}]);
+    }
+
+    private changeWord(arr){
+        var temp = [];
+        for(var i=0;i<arr.length;i++)
+        {
+            temp.push({label:MonsterKindVO.getObject(arr[i]).word})
+        }
+        return temp;
     }
 }

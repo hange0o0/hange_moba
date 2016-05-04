@@ -34,30 +34,7 @@ class MonsterInfoBase extends game.BaseContainer {
     }
 
     public onTypeClick(){
-        var str = '属性相克时，伤害+8%\n'
-        var mkvo = MonsterKindVO.getObject(this.vo.type);
-        if(mkvo.restrain.length > 0)
-            str += '【'+ mkvo.word + '】克制：' + changeWord(mkvo.restrain).join('、') + '\n'
-        else
-            str += '【'+ mkvo.word + '】克制：无\n';
-
-        var beRestrain = mkvo.getBeRestrain();
-        if(beRestrain.length > 0)
-            str += '克制【'+mkvo.word + '】：' + changeWord(beRestrain).join('、')
-        else
-            str += '克制【'+mkvo.word + '】：无';
-
-
-        Alert(str);
-
-        function changeWord(arr){
-            var temp = [];
-           for(var i=0;i<arr.length;i++)
-           {
-               temp.push(MonsterKindVO.getObject(arr[i]).word)
-           }
-            return temp;
-        }
+        TypeInfoUI.getInstance().show(this.vo.type);
     }
 
     public setMinHeight(v){
