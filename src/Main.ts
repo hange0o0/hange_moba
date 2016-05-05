@@ -185,6 +185,30 @@ class Main extends eui.UILayer {
         else
             Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
 
+        var arr = [];
+        var cost = 0;
+        var wood = 0;
+        for(var i=0;i<dataIn.team1.list.length;i++)
+        {
+            var vo = MonsterVO.getObject(dataIn.team1.list[i])
+            arr.push(vo.cost + ( vo.wood?"|"+vo.wood:''));
+            cost += vo.cost;
+            wood += vo.wood;
+        }
+        console.log('team1 cost:' + arr.join(',') + '----------------' + cost+'|'+wood);
+
+        var arr = [];
+        var cost = 0;
+        var wood = 0;
+        for(var i=0;i<dataIn.team2.list.length;i++)
+        {
+            var vo = MonsterVO.getObject(dataIn.team2.list[i])
+            arr.push(vo.cost + ( vo.wood?"|"+vo.wood:''));
+            cost += vo.cost;
+            wood += vo.wood;
+        }
+        console.log('team2 cost:' + arr.join(',')  + '----------------' + cost+'|'+wood);
+
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
             if(dataIn.vedio == -1)

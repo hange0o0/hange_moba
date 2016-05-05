@@ -3,7 +3,7 @@
 	<e:Image width="100%" height="100%" source="border1_png" scale9Grid.disabledWithPrompt="21,14,52,9" scale9Grid="21,14,52,11"/>
 	<e:Rect height="100%" width="100%" fillColor="0xffffff" visible="false"/>
  	<e:EditableText id="textDisplay" verticalCenter="0" left="15" right="15"
-	                textColor="0x000000" width="100%" height="24" size="20"  text="123456" verticalAlign.normal="middle" textColor.normal="0xC1A77C" verticalAlign="middle" textColor.disabled="0x563F18"/>
+	                textColor="0x000000" width="100%" height="24" size="20" verticalAlign.normal="middle" textColor.normal="0xC1A77C" verticalAlign="middle" textColor.disabled="0x563F18"/>
 	<e:Label id="promptDisplay" verticalCenter="0" left="10" right="10"
-	                textColor="0xa9a9a9" width="100%" height="24" size="20" touchEnabled="false" includeIn="normalWithPrompt,disabledWithPrompt" text.normalWithPrompt="123" text="123" verticalAlign="middle" textColor.normalWithPrompt="0x60584C" textAlign.normalWithPrompt="center" textAlign.disabledWithPrompt="center" textColor.disabledWithPrompt="0x60584C"/>
+	                textColor="0xa9a9a9" width="100%" height="24" size="20" touchEnabled="false" includeIn="normalWithPrompt,disabledWithPrompt" text.normalWithPrompt="" text="" verticalAlign="middle" textColor.normalWithPrompt="0x60584C" textAlign.normalWithPrompt="center" textAlign.disabledWithPrompt="center" textColor.disabledWithPrompt="0x60584C"/>
 </e:Skin>

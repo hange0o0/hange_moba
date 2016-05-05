@@ -12,10 +12,12 @@ class PKMainUI extends game.BaseUI {
 
 
 
+    private bg1: eui.Image;
+    private bg0: eui.Image;
+    private jumpBtn: eui.Button;
     private enemyGroup: eui.Group;
     private selfGroup: eui.Group;
-    private vsMC: eui.Image;
-    private jumpBtn: eui.Button;
+
 
 
 
@@ -25,12 +27,6 @@ class PKMainUI extends game.BaseUI {
     private stageHeight;
     private itemWidth = 114;
     private itemHeight = 110;
-    private bgHeight = 560;
-
-    private card1X
-    private card2X
-    private cardY
-
 
 
     private itemCollect = [];
@@ -63,6 +59,9 @@ class PKMainUI extends game.BaseUI {
             this.posArray.push({x:320,y:startY + stepY*(i+2)});
         }
         this.enemyGroup.scaleY = -1;
+
+        this.bg0.mask = new egret.Rectangle(0,0,325,2000)
+        this.bg1.mask = new egret.Rectangle(315,0,325,2000)
     }
 
     private onJump(){
@@ -99,14 +98,16 @@ class PKMainUI extends game.BaseUI {
     private freeItem(item){
         this.itemCollect.push(item);
         MyTool.removeMC(item);
+        item.stopMV();
     }
 
     private initView(){
         var stageHeight = this.stageHeight = this.stage.stageHeight;
-        this.vsMC.y =  (stageHeight)/2;
-        this.cardY =  this.bgHeight/2;
-        this.vsMC.visible = false;
         this.jumpBtn.visible = false;
+
+        var scene = ''
+        this.bg0.source = scene;
+        this.bg1.source = scene;
 
         while(this.itemEnemy.length > 0)
         {
@@ -117,25 +118,37 @@ class PKMainUI extends game.BaseUI {
              this.freeItem(this.itemSelf.pop());
         }
 
-        this.enemyGroup.y = 0;
-        this.selfGroup.y = stageHeight
+        this.enemyGroup.y = stageHeight/2;
+        this.selfGroup.y = stageHeight/2
+        this.bg0.x = -325
+        this.bg1.x = 325
     }
 
     private addSceneMovie(){
-        this.addItemMovie();
+        var tw:egret.Tween = egret.Tween.get(this.bg0);
+        tw.to({x:0}, 500)
+        var tw:egret.Tween = egret.Tween.get(this.bg1);
+        tw.to({x:0}, 500).wait(300).call(this.addItemMovie,this)
     }
 
     private addItemMovie(){
+        var desY = this.stageHeight/2;
         var myTeam = PKManager.getInstance().team1Base.list
+        var time = this.stageHeight * 2;
         for(var i=0;i<myTeam.length;i++)
         {
             var item = this.getItem();
             item.x = this.posArray[i].x
-            item.y = this.posArray[i].y
+            item.y = this.posArray[i].y + desY;
             item.data = {vo:MonsterVO.getObject(myTeam[i])};
             item.playerData = null;
             this.selfGroup.addChild(item);
             this.itemSelf.push(item);
+
+            var delay = Math.floor(i*50 + 20*Math.random());
+            if(i == 2)
+                delay -= 50;
+            item.stepMove(time,delay,desY)
         }
 
         var enemyTeam = PKManager.getInstance().team2Base.list
@@ -143,46 +156,41 @@ class PKMainUI extends game.BaseUI {
         {
             var item = this.getItem();
             item.x = this.posArray[i].x
-            item.y = this.posArray[i].y
-            item.data = {vo:MonsterVO.getObject(enemyTeam[i])};
+            item.y = this.posArray[i].y + desY;
+            item.data = {vo:MonsterVO.getObject(enemyTeam[i]),isEnemy:true};
             item.playerData = null;
             this.enemyGroup.addChild(item);
             this.itemEnemy.push(item);
+
+            var delay = Math.floor((i+1)*50*Math.random());
+            item.stepMove(time,delay,desY)
         }
 
-        //进场动画
-        var tw:egret.Tween = egret.Tween.get(this.enemyGroup);
-        tw.to({y:this.stageHeight/2}, 600,egret.Ease.sineIn);
-
-        var tw:egret.Tween = egret.Tween.get(this.selfGroup);
-        tw.to({y:this.stageHeight/2}, 600,egret.Ease.sineIn).wait(200).call(function(){
-            this.onJoinFinish();
-        },this)
-
+        this.timer = egret.setTimeout(this.playOne,this,time + 1500)
     }
 
 
-    //双方都入场了
-    private onJoinFinish(){
-
-        this.vsMC.visible = true;
-        this.vsMC.alpha = 0;
-
-        var tw:egret.Tween = egret.Tween.get(this.vsMC);
-        tw.to({alpha:1}, 300,egret.Ease.sineIn).wait(200).call(function(){
-            this.showInfo();
-        },this)
-    }
-
-    //显示其它杂项
-    private showInfo(){
-        this.vsMC.visible = false;
-        this.timer = egret.setTimeout(this.playOne,this,1500);
-    }
+    ////双方都入场了
+    //private onJoinFinish(){
+    //
+    //    this.vsMC.visible = true;
+    //    this.vsMC.alpha = 0;
+    //
+    //    var tw:egret.Tween = egret.Tween.get(this.vsMC);
+    //    tw.to({alpha:1}, 300,egret.Ease.sineIn).wait(200).call(function(){
+    //        this.showInfo();
+    //    },this)
+    //}
+    //
+    ////显示其它杂项
+    //private showInfo(){
+    //    this.vsMC.visible = false;
+    //    this.timer = egret.setTimeout(this.playOne,this,1500);
+    //}
 
     //开始播放动画
     private playOne(){
-        console.log('playOne');
+        //console.log('playOne');
         var oo = this.pkList.shift();
         if(oo == null)//pk结束
         {
@@ -323,6 +331,15 @@ class PKMainUI extends game.BaseUI {
     {
         egret.clearTimeout(this.timer);
         egret.Tween.removeAllTweens()
+
+        while(this.itemEnemy.length > 0)
+        {
+            this.freeItem(this.itemEnemy.pop());
+        }
+        while(this.itemSelf.length > 0)
+        {
+            this.freeItem(this.itemSelf.pop());
+        }
     }
 
     private showResult()

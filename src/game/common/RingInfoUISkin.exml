@@ -15,5 +15,5 @@
 		</e:layout>
 	</e:Group>	
 	<e:Label id="titleText" text="用户注册" y="32" size="24" horizontalCenter="0" textColor="0xAAA6A6"/>
-	<e:Label y="94" textColor="0xCCB48E" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" id="desText" width="367" x="159"/>
+	<e:Label y="93" textColor="0xCCB48E" text="标签标签标签标签标签标签标签标签" id="desText" width="367" x="159" height="120" verticalAlign="middle"/>
 </e:Skin>

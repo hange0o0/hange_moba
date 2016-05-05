@@ -11,7 +11,7 @@
 		</e:layout>
 	</e:Group>	
 	<e:Label id="titleText" text="金属性" y="32" size="24" horizontalCenter="0" textColor="0xAAA6A6"/>
-	<e:Label text="属性相克时，伤害+8%" y="220" size="18" horizontalCenter="0" textColor="0x444444"/>
+	<e:Label text="属性相克时，伤害+8%" y="220" size="18" horizontalCenter="0" textColor="0xAAA6A6"/>
 	<e:Group y="90" width="50%" right="0">
 		<e:Label y="0" textColor="0xCCB48E" size="30" text="被克" horizontalCenter="0"/>
 		<e:List id="list2" y="50" itemRendererSkinName="TypeInfoItemSkin" horizontalCenter="0">
