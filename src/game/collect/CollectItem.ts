@@ -45,7 +45,7 @@ class CollectItem extends game.BaseItem {
             this.numText.text = now + '/' + need;
         }
 
-        this.lockMC.visible = CM.isLock(this.data);
+        this.lockMC.visible = CM.isLock(vo.id);
     }
 
 

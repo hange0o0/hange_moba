@@ -11,7 +11,7 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="77" id="tab" horizontalCenter="0">
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="86" id="tab" horizontalCenter="0">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="战力榜"/>

@@ -11,7 +11,7 @@
 			<e:Button id="loginBtn" label="登陆" x="137" y="4" skinName="Btn_r2Skin"/>
 			<e:Button id="tryBtn" y="0" label="试玩" x="319" skinName="Btn_d1Skin"/>
 			<e:layout>
-				<e:HorizontalLayout/>
+				<e:HorizontalLayout verticalAlign="middle" gap="20"/>
 			</e:layout>
 		</e:Group>
 	</e:Group>

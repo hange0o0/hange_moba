@@ -848,6 +848,26 @@
 					"isFolder":false,
 					"key":"pay_energy_png",
 					"name":"pay_energy_png"
+				},
+				{
+					"isFolder":false,
+					"key":"pk_bg1_jpg",
+					"name":"pk_bg1_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"pk_bg2_jpg",
+					"name":"pk_bg2_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"pk_bg3_jpg",
+					"name":"pk_bg3_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"pk_bg4_jpg",
+					"name":"pk_bg4_jpg"
 				}
 			]
 		}

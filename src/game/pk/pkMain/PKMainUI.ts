@@ -50,7 +50,7 @@ class PKMainUI extends game.BaseUI {
         this.addChild(this.jumpBtn);
 
         var startY = 80 + this.itemHeight/2;
-        var stepY = 110;
+        var stepY = 115;
         this.posArray.push({x:320,y:startY});
         this.posArray.push({x:320 - 60,y:startY + stepY});
         this.posArray.push({x:320 + 60,y:startY + stepY});
@@ -105,7 +105,7 @@ class PKMainUI extends game.BaseUI {
         var stageHeight = this.stageHeight = this.stage.stageHeight;
         this.jumpBtn.visible = false;
 
-        var scene = ''
+        var scene = 'pk_bg1_jpg'
         this.bg0.source = scene;
         this.bg1.source = scene;
 

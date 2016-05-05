@@ -4,8 +4,8 @@
 	<e:Label id="infoText" text="好友数量：30/30" y="95" size="22" textColor="0xCCB48E" width="164" right="5"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Image source="line_png" width="650" y="134" x="-6"/>
-	<e:Button id="searchBtn" label="查找好友" y="75" x="334" skinName="Btn_b1Skin"/>
-	<e:TabBar x="1" y="75" id="tab" itemRendererSkinName="MyTabItemSkin">
+	<e:Button id="searchBtn" label="查找好友" y="4" x="10" skinName="Btn_d1Skin"/>
+	<e:TabBar x="1" y="81" id="tab" itemRendererSkinName="MyTabItemSkin">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="我的好友"/>

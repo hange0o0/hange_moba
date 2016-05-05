@@ -11,7 +11,7 @@
 			<e:Image source="icon_empty_png" y="0" x="0"/>
 			<e:Image source="soul_icon_png" y="10" x="14"/>
 		</e:Group>
-		<e:Label id="numText" y="9" textColor="0xCCB48E" text="456789" textAlign="right" size="24" x="61"/>
+		<e:Label id="numText" y="9" textColor="0xCCB48E" text="456789" textAlign="right" size="24" x="61" verticalAlign="bottom" height="30"/>
 	</e:Group>
 	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="135">
 		<e:Group>
@@ -34,8 +34,8 @@
 	</e:Scroller>
 	<e:Group x="0" bottom="-43" width="640">
 		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="113"/>
-		<e:Button id="splitBtn" label="一键拆解" y="2.5" skinName="Btn_b2Skin" right="10"/>
-		<e:Group x="5" y="2.5">
+		<e:Button id="splitBtn" label="一键拆解" y="2.5" skinName="Btn_b2Skin" left="10"/>
+		<e:Group y="2.5" right="10">
 			<e:Button id="oneBtn" y="0" label="抽一次(5)" x="0" skinName="Btn_r2Skin"/>
 			<e:Button id="tenBtn" y="0" label="十连抽(50)" x="168.03030303030303" skinName="Btn_r2Skin"/>
 			<e:layout>

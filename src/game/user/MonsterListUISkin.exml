@@ -16,8 +16,8 @@
 			<e:Label text="上一个" x="54.015151515151516" y="0" textColor="0xCBB46B" height="100%" textAlign="center" verticalAlign="middle"/>
 		</e:Group>
 		<e:Group id="rightBtn" y="-1.1368683772161603e-13" x="475">
-			<e:Image source="arrow1_png" y="0" x="145" scaleX="-1"/>
-			<e:Label y="0" textColor="0xCBB46B" text="下一个" x="0" height="100%" verticalAlign="middle"/>
+			<e:Image y="0" x="145" scaleX="-1" source="arrow3_png"/>
+			<e:Label y="0" text="下一个" x="0" height="100%" verticalAlign="middle" textColor="0x734B41"/>
 		</e:Group>
 		<e:Label id="pageText" text="1/11" y="35" textColor="0xCBB46B" size="16" horizontalCenter="1.5"/>
 		<e:Group id="pageGroup" y="13" horizontalCenter="1">

@@ -29,6 +29,8 @@ class LoginUI extends game.BaseUI {
         {
             MyTool.removeMC(this.tryBtn);
         }
+        
+        this.passwordText.text = '123456'
     }
 
     public onShow(){
