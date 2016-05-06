@@ -6,7 +6,7 @@
 		<e:Group height="279" width="360" height.more="231">
 			<e:List id="list" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseListItemSkin" height.normal="460">
 				<e:layout>
-					<e:TileLayout paddingTop="10" paddingLeft="10" horizontalGap="10" requestedColumnCount="2" verticalGap="20"/>
+					<e:TileLayout paddingTop="20" paddingLeft="15" horizontalGap="10" requestedColumnCount="2" verticalGap="20"/>
 				</e:layout>
 			</e:List>
 		</e:Group>

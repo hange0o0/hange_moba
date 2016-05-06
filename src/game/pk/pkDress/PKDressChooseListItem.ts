@@ -50,7 +50,7 @@ class PKDressChooseListItem extends game.BaseItem {
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.thumb
 
-        if(this.data.index %2 == 1)
+        if(this.data.index %2 == 0)
             this.currentState = 'right';
         else
             this.currentState = 'left';
