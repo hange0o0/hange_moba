@@ -102,11 +102,11 @@ class CollectItemInfo extends game.BaseWindow {
 
 
         if(level < 4 && now>need){  //可升级
-            this.joinBtn.visible = true;
+            this.splitBtn.parent.addChildAt(this.joinBtn,0)
         }
         else
         {
-            this.joinBtn.visible = false;
+            MyTool.removeMC(this.joinBtn);
         }
 
         if(CM.isLock(vo.id))

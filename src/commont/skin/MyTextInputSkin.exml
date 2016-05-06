@@ -5,5 +5,5 @@
  	<e:EditableText id="textDisplay" verticalCenter="0" left="15" right="15"
 	                textColor="0x000000" width="100%" height="24" size="20" verticalAlign.normal="middle" textColor.normal="0xC1A77C" verticalAlign="middle" textColor.disabled="0x563F18"/>
 	<e:Label id="promptDisplay" verticalCenter="0" left="10" right="10"
-	                textColor="0xa9a9a9" width="100%" height="24" size="20" touchEnabled="false" includeIn="normalWithPrompt,disabledWithPrompt" text.normalWithPrompt="" text="" verticalAlign="middle" textColor.normalWithPrompt="0x60584C" textAlign.normalWithPrompt="center" textAlign.disabledWithPrompt="center" textColor.disabledWithPrompt="0x60584C"/>
+	                textColor="0xa9a9a9" width="100%" height="24" size="20" touchEnabled="false" includeIn="normalWithPrompt,disabledWithPrompt" verticalAlign="middle" textAlign="left" />
 </e:Skin>

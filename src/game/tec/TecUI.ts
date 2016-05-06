@@ -143,7 +143,7 @@ class TecUI extends game.BaseUI {
             }
             else
             {
-                MyTool.setHtml(this.desText, data.des.replace(/\$\$/g,''+UM.getTecAdd('main',level) + '<font color="#CC9900">[' + UM.getTecAdd('main',level+1)+']</font>'))
+                MyTool.setHtml(this.desText, data.des.replace(/\$\$/g,''+UM.getTecAdd('main',level) + '<font color="#CC9900" size="22"> [' + UM.getTecAdd('main',level+1)+']</font>'))
             }
         }
         else if(data.tecType == 2)//技
@@ -155,7 +155,7 @@ class TecUI extends game.BaseUI {
             }
             else
             {
-                MyTool.setHtml(this.desText, data.des.replace(/\$\$/g,''+data.getRingAdd(level) + '<font color="#CC9900">[' + data.getRingAdd(level+1)+']</font>'))
+                MyTool.setHtml(this.desText, data.des.replace(/\$\$/g,''+data.getRingAdd(level) + '<font color="#CC9900" size="22"> [' + data.getRingAdd(level+1)+']</font>'))
             }
         }
         else//怪
@@ -170,8 +170,8 @@ class TecUI extends game.BaseUI {
             }
             else
             {
-                MyTool.setHtml(this.atkText, '攻击加成：' + UM.getTecAdd('monster',level)+ '<font color="#CC9900">[' + UM.getTecAdd('monster',level+1)+']</font>%')
-                MyTool.setHtml(this.hpText, '生命加成：' + UM.getTecAdd('monster',level)+ '<font color="#CC9900">[' + UM.getTecAdd('monster',level+1)+']</font>%')
+                MyTool.setHtml(this.atkText, '攻击加成：' + UM.getTecAdd('monster',level)+ '<font color="#CC9900" size="20"> [' + UM.getTecAdd('monster',level+1)+']</font>%')
+                MyTool.setHtml(this.hpText, '生命加成：' + UM.getTecAdd('monster',level)+ '<font color="#CC9900" size="20"> [' + UM.getTecAdd('monster',level+1)+']</font>%')
             }
         }
 

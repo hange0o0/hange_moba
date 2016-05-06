@@ -7,6 +7,8 @@ class PKResultItem2 extends game.BaseItem {
     private item1: PKResultItem3;
     private item2: PKResultItem3;
     private viewBtn: eui.Image;
+    private titleText: eui.Label;
+
 
 
 
@@ -26,6 +28,7 @@ class PKResultItem2 extends game.BaseItem {
     public dataChanged() {
         this.item1.data = this.data.player1
         this.item2.data = this.data.player2
+        this.titleText.text = '第'+this.data.index+'轮';
     }
 }
 

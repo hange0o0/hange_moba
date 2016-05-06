@@ -43,7 +43,7 @@ class RingInfoUI extends game.BaseWindow {
 
 
         this.desText.text = '' + vo.getDes(level)
-        //this.levelText.text = '' + level;
+        this.levelText.text = '' + level;
 
         this.headMC.source = vo.thumb;
     }

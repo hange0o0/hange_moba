@@ -12,7 +12,7 @@ class AwardItem extends game.BaseItem {
 
 
     public childrenCreated() {
-
+        this.collectItem.showInProp = true;
     }
 
     public dataChanged() {

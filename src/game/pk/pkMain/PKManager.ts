@@ -176,10 +176,31 @@ class PKManager {
         this.team2Base = data.team2base;
 
         this.pkAward = {
-            levelUp:true,
-            forceUp:true,
-            prop:[{id:1,num:2},{id:1,num:2},{id:1,num:2}]
+            levelUp:false,
+            newTask:false,
+            finishTask:false,
+            forceUp:false,
+            prop:[]
         }
+        var award = data.award || {};
+        if(award.coin)
+            this.pkAward.prop.push({type:'coin',des:'×' + award.coin})
+        if(award.exp)
+            this.pkAward.prop.push({type:'exp',des:'×' + award.exp})
+        for(var s in award.prop)
+        {
+            this.pkAward.prop.push({type:'prop',des:'×' + award.prop[s],id:s})
+        }
+
+        if(data.sync_level)
+            this.pkAward.levelUp = true;
+        if(data.sync_tec_force || data.sync_award_force)
+            this.pkAward.forceUp = true;
+        if(data.finish_task)
+            this.pkAward.finishTask = true;
+        if(data.new_task)
+            this.pkAward.newTask = true;
+
         VideoManager.getInstance().cleanVideo(type);
 
         //表现动画，结果的数据
@@ -190,6 +211,7 @@ class PKManager {
             var oo:any = {};
             oo.player1 = getPlayer(1,i);
             oo.player2 = getPlayer(2,i);
+            oo.index = i+1;
             this.pkList.push(oo);
         }
 

@@ -4,4 +4,5 @@
 	<ns1:PKResultItem3 id="item1" y="10" skinName="PKResultItem3Skin" x="20"/>
 	<ns1:PKResultItem3 id="item2" skinName="PKResultItem3Skin" y="10" right="20"/>
 	<e:Image id="viewBtn" source="view_mc_png" horizontalCenter="0" verticalCenter="10"/>
+	<e:Label id="titleText" text="标签" y="5" textColor="0xCCB48E" horizontalCenter="0"/>
 </e:Skin>

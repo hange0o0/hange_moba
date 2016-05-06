@@ -14,6 +14,7 @@ class CollectItem extends game.BaseItem {
     private lockMC: eui.Image;
 
     public index;
+    public showInProp;
 
     public childrenCreated(){
         super.childrenCreated();
@@ -46,6 +47,10 @@ class CollectItem extends game.BaseItem {
         }
 
         this.lockMC.visible = CM.isLock(vo.id);
+        if(this.showInProp)
+        {
+            this.lockMC.visible = false;
+        }
     }
 
 

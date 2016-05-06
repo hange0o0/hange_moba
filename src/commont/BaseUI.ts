@@ -87,7 +87,8 @@ module game {
 
         private isWindow: boolean = false;
         public isHideFlag:boolean = true;
-                
+        public canBGClose:boolean = false;
+
         public constructor(isWindow?:boolean) {
             super();
             this.isWindow = isWindow;
@@ -276,6 +277,7 @@ module game {
 
         public constructor() {
             super(true);
+            this.canBGClose = true;
         }
     }
     

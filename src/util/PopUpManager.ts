@@ -26,6 +26,7 @@ class PopUpManager {
             this.shape.top = 0
             this.shape.bottom = 0
             this.shape.touchEnabled = true;
+            this.shape.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTap,this)
         }
         var shape = this.shape;
         GameManager.container.addChild(shape);
@@ -44,6 +45,14 @@ class PopUpManager {
 //            console.log(display.width,display.height);
             display.x = (ww - display.width) / 2;
             display.y = (hh - display.height) / 2;
+        }
+    }
+
+    private static onTap(){
+         var ui:game.BaseUI = <game.BaseUI>this.shape.parent.getChildAt(this.shape.parent.numChildren-1);
+        if(ui.canBGClose)
+        {
+            ui.hide();
         }
     }
 

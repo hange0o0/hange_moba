@@ -7,12 +7,17 @@ class MonsterList extends game.BaseUI {
 
     private topUI: TopUI;
     private scroller: eui.Scroller;
+    private scrollGroupCon: eui.Group;
+    private scrollGroup: eui.Group;
     private info: MonsterInfoBase;
     private info2: MonsterInfoBase;
-    private scrollGroup: eui.Group;
     private bottomGroup: eui.Group;
     private leftBtn: eui.Group;
+    private la: eui.Image;
+    private lt: eui.Label;
     private rightBtn: eui.Group;
+    private ra: eui.Image;
+    private rt: eui.Label;
     private pageText: eui.Label;
     private pageGroup: eui.Group;
     private p0: eui.Image;
@@ -25,6 +30,8 @@ class MonsterList extends game.BaseUI {
     private p7: eui.Image;
     private p8: eui.Image;
     private p9: eui.Image;
+
+
 
 
     public index;
@@ -204,20 +211,24 @@ class MonsterList extends game.BaseUI {
             return;
         if(this.index > 0)
         {
-            this.leftBtn.alpha = 1
+            this.la.source = 'arrow1_png'
+            this.lt.textColor = 0xCBB46B
         }
         else
         {
-            this.leftBtn.alpha = 0.5
+            this.la.source = 'arrow3_png'
+            this.lt.textColor = 0x734B41
         }
 
         if(this.index < this.dataArray.length-1)
         {
-            this.rightBtn.alpha = 1
+            this.ra.source = 'arrow1_png'
+            this.rt.textColor = 0xCBB46B
         }
         else
         {
-            this.rightBtn.alpha = 0.5
+            this.ra.source = 'arrow3_png'
+            this.rt.textColor = 0x734B41
         }
 
         this.pageText.text =  (this.index + 1) + '/' + this.dataArray.length;

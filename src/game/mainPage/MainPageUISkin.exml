@@ -15,7 +15,7 @@
 		<e:Image source="icon_pve_png" x="297" y="60"/>
 		<e:Image source="icon_token_png" x="483" y="60"/>
 		<e:Image source="icon_pvp_ticket_png" x="483" y="14"/>
-		<e:Label id="nameText" text="nick" x="124" y="16"/>
+		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24"/>
 		<e:BitmapLabel id="forceText" x="160" y="67" font="font_num4_fnt" text="12345" scaleY="1.8" scaleX="1.8"/>
 		<e:Image source="icon_power_png" x="114" y="60"/>
 		<e:Label id="coinText" text="123456789" x="339" y="22" size="24" textColor="0xCCCCCC"/>

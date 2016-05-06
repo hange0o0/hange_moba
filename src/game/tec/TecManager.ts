@@ -14,11 +14,11 @@ class TecManager{
         //--13攻击，14血量，15速度，1-12对应属性加强（12个，攻血同加）
         //16伤害增强，17防御增强，18回复增强，19克制加强，20克制压制
         this.list1 = [
-            {id:1,tecType:1,name:'金加强',des:'增加【金】属性卡牌　$$%　攻击力和生命值'},
-            {id:2,tecType:1,name:'木加强',des:'增加【木】属性卡牌　$$%　攻击力和生命值'},
-            {id:3,tecType:1,name:'水加强',des:'增加【水】属性卡牌　$$%　攻击力和生命值'},
-            {id:4,tecType:1,name:'火加强',des:'增加【火】属性卡牌　$$%　攻击力和生命值'},
-            {id:5,tecType:1,name:'土加强',des:'增加【土】属性卡牌　$$%　攻击力和生命值'},
+            {id:1,tecType:1,name:'金加强',des:'增加【金】属性卡牌$$%攻击力和生命值'},
+            {id:2,tecType:1,name:'木加强',des:'增加【木】属性卡牌$$%攻击力和生命值'},
+            {id:3,tecType:1,name:'水加强',des:'增加【水】属性卡牌$$%攻击力和生命值'},
+            {id:4,tecType:1,name:'火加强',des:'增加【火】属性卡牌$$%攻击力和生命值'},
+            {id:5,tecType:1,name:'土加强',des:'增加【土】属性卡牌$$%攻击力和生命值'},
             {id:6,tecType:1,name:'',des:''},
             {id:7,tecType:1,name:'',des:''},
             {id:8,tecType:1,name:'',des:''},
@@ -26,14 +26,14 @@ class TecManager{
             {id:10,tecType:1,name:'',des:''},
             {id:11,tecType:1,name:'',des:''},
             {id:12,tecType:1,name:'',des:''},
-            {id:13,tecType:1,name:'攻击强化',des:'增加所有卡牌　$$%　攻击力'},
-            {id:14,tecType:1,name:'生命强化',des:'增加所有卡牌　$$%　生命值'},
-            {id:15,tecType:1,name:'速度强化',des:'增加所有卡牌　$$%　速度'},
-            {id:16,tecType:1,name:'伤害强化',des:'当攻击其它卡牌时，所造成的伤害增加　$$%　'},
-            {id:17,tecType:1,name:'防御强化',des:'当受到其它卡牌攻击时，造成的伤害减少　$$%　'},
-            {id:18,tecType:1,name:'回复强化',des:'受治疗的效果加强　$$%　'},
-            {id:19,tecType:1,name:'克制强化',des:'对其它卡牌的克制效果加成　$$%　'},
-            {id:20,tecType:1,name:'克制压制',des:'被其它卡牌的克制影响减少　$$%　，极限情况是不受克制'}
+            {id:13,tecType:1,name:'攻击强化',des:'增加所有卡牌$$%攻击力'},
+            {id:14,tecType:1,name:'生命强化',des:'增加所有卡牌$$%生命值'},
+            {id:15,tecType:1,name:'速度强化',des:'增加所有卡牌$$%速度'},
+            {id:16,tecType:1,name:'伤害强化',des:'当攻击其它卡牌时，所造成的伤害增加$$%'},
+            {id:17,tecType:1,name:'防御强化',des:'当受到其它卡牌攻击时，造成的伤害减少$$%'},
+            {id:18,tecType:1,name:'回复强化',des:'受治疗的效果加强$$%'},
+            {id:19,tecType:1,name:'克制强化',des:'对其它卡牌的克制效果加成$$%'},
+            {id:20,tecType:1,name:'克制压制',des:'被其它卡牌的克制影响减少$$%，极限情况是不受克制'}
         ];
         this.list2 = ObjectUtil.objToArray(CM.table[RingVO.dataKey]);
         ArrayUtil.sortByField(this.list2,['id'],[0]);
