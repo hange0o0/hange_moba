@@ -8,7 +8,7 @@
 	<e:Group x="-4" bottom="0">
 		<e:Image source="book_bg1_jpg" y="0" x="4" height="180"/>
 		<e:Image source="book_bg1_jpg" y="0" x="644" scaleX="-1" height="180"/>
-		<ns1:VideoItem y="15" x="0" skinName="VideoItemSkin2"/>
+		<ns1:VideoItem y="15" x="0" skinName="VideoItemSkin"/>
 	</e:Group>
 	<ns1:PKItem x="320" y="600" skinName="PKItemSkin" anchorOffsetX="57" anchorOffsetY="50" scaleX="1.2" scaleY="1.2"/>
 	<ns1:PKItem skinName="PKItemSkin" y="688" x="450" anchorOffsetY="50" anchorOffsetX="57"/>
