@@ -1,3 +1,4 @@
+//单个玩家数据
 class PlayerVO {
     public id = 0;
     public mid = 0;

@@ -160,6 +160,7 @@ class FriendPKAskUI extends game.BaseUI {
         {
             FPKM.otherid = this.data.otherid;
             FPKM.othernick = this.data.othernick;
+            FPKM.otherhead = this.data.otherhead;
             FPKM.isequal = isEqual;
             FPKM.talk = this.inputText.text;
             PKDressUI.getInstance().show({pktype:'friend_ask',data:this.data.content.from_list[index],isEqual:isEqual})

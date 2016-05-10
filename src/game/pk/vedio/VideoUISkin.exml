@@ -1,19 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="960">
-	<e:Image source="pk_bg1_jpg" x="0" y="-186"/>
+	<e:Image id="bg" source="pk_bg1_jpg" x="0" verticalCenter="0"/>
 	<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" y="0" height="250"/>
 	<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" y="0" height="250"/>
-	<ns1:TopUI x="0" y="0" skinName="TopUISkin"/>
-	<ns1:VideoItem x="0" y="82" skinName="VideoItemSkin"/>
-	<e:Group x="-4" bottom="0">
-		<e:Image source="book_bg1_jpg" y="0" x="4" height="180"/>
-		<e:Image source="book_bg1_jpg" y="0" x="644" scaleX="-1" height="180"/>
-		<ns1:VideoItem y="15" x="0" skinName="VideoItemSkin"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<ns1:VideoItem id="enemyItem" x="0" y="82" skinName="VideoItemSkin"/>
+	<e:Group x="0" bottom="0">
+		<e:Image source="book_bg1_jpg" y="0" x="0" height="180"/>
+		<e:Image source="book_bg1_jpg" y="0" x="640" scaleX="-1" height="180"/>
+		<ns1:VideoItem id="selfItem" y="15" x="0" skinName="VideoItemSkin"/>
 	</e:Group>
-	<ns1:PKItem x="320" y="600" skinName="PKItemSkin" anchorOffsetX="57" anchorOffsetY="50" scaleX="1.2" scaleY="1.2"/>
-	<ns1:PKItem skinName="PKItemSkin" y="688" x="450" anchorOffsetY="50" anchorOffsetX="57"/>
-	<ns1:PKItem skinName="PKItemSkin" y="688" anchorOffsetX="57" anchorOffsetY="50" x="190"/>
-	<ns1:PKItem skinName="PKItemSkin" y="400" scaleX="1.2" anchorOffsetX="57" scaleY="1.2" anchorOffsetY="50" x="320"/>
-	<ns1:PKItem skinName="PKItemSkin" y="309" x="450" anchorOffsetY="50" anchorOffsetX="57"/>
-	<ns1:PKItem skinName="PKItemSkin" y="309" anchorOffsetX="57" anchorOffsetY="50" x="190"/>
+	<e:Group id="itemGroup" height="500" width="640" x="0" y="285"/>
 </e:Skin>

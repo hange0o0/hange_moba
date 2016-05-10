@@ -15,6 +15,7 @@ class FriendPKManager{
 
     public otherid;
     public othernick;
+    public otherhead;
     public isequal;
     public logid;
     public talk;
@@ -58,6 +59,7 @@ class FriendPKManager{
         oo.choose = choose;
         oo.otherid = this.otherid;
         oo.othernick = this.othernick;
+        oo.otherhead = this.otherhead;
         oo.isequal = this.isequal;
         oo.talk = this.talk;
         Net.addUser(oo);

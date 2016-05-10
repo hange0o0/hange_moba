@@ -4,12 +4,19 @@ class VideoItem extends game.BaseItem {
         this.skinName = "PKItemSkin";
     }
 
-    private headMC: eui.Image;
-    private hpBar: eui.Image;
     private atkText: eui.Label;
-    private hpText: eui.Label;
     private speedText: eui.Label;
+    private headMC: eui.Image;
+    private skillText: eui.Label;
+    private nameText: eui.Label;
+    private stateText: eui.BitmapLabel;
+    private hpBar: eui.Image;
+    private hpText: eui.Label;
     private mpBar: eui.Image;
+    private mpText: eui.Label;
+    private apBar: eui.Image;
+    private apText: eui.Label;
+
 
 
 
@@ -24,10 +31,15 @@ class VideoItem extends game.BaseItem {
     public speed
 
     private valueObject;
+    private barWidth = 175
 
 
     public childrenCreated() {
         //this.addBtnEvent(this.closeBtn,this.onClose);
+    }
+
+    public getPlayer(){
+        return this.headMC;
     }
 
     private onClose(){
@@ -38,12 +50,25 @@ class VideoItem extends game.BaseItem {
     public dataChanged() {
         var player = this.player;
         var vo = MonsterVO.getObject(this.data.id);
-        this.headMC.source = vo.url;
-        this.hpBar.width = player.hp/player.maxHp*175
-        this.mpBar.width = Math.min(player.mp/100,1)*175
-        this.hpText.text = player.hp +''
-        this.atkText.text = player.atk + ''
-        this.speed.text = player.speed + ''
+
+        this.headMC.source = MyTool.getHeadUrl(PKManager.getInstance().otherHead);
+        this.skillText.text = ''
+
+        this.stateText.text = player.tag;
+        this.nameText.text = vo.name
+
+        this.hpBar.width = player.hp/player.maxHp*this.barWidth
+        this.mpBar.width = player.mp/100*this.barWidth
+        this.apBar.width = player.actionCount/30*this.barWidth
+
+
+        this.hpText.text = player.hp + '/' + player.maxHp
+        this.mpText.text = player.mp + '/' + 100
+        this.apText.text = player.actionCount + '/' + 30
+
+
+        this.atkText.text = '攻击：' + player.atk
+        this.speedText.text = '速度：' + player.speed + ''
 
         this.hp = player.hp
         this.atk = player.atk

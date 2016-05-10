@@ -53,6 +53,7 @@ class FriendManager{
             var oo = {
                 otherid:id,
                 othernick:self.friendData[id].info.nick,
+                otherhead:self.friendData[id].info.head,
                 content:{
                     from_list:FPKM.cardObject[id]
                 }

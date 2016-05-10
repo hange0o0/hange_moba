@@ -1,4 +1,4 @@
-class VideoUI extends game.BaseWindow {
+class VideoUI extends game.BaseUI {
     private static instance: VideoUI;
     public static getInstance() {
         if(!this.instance) this.instance = new VideoUI();
@@ -6,21 +6,21 @@ class VideoUI extends game.BaseWindow {
     }
 
     private bg: eui.Image;
-    private nameText2: eui.Label;
-    private nameText1: eui.Label;
-    private item1: VideoItem;
-    private item2: VideoItem;
-    private stateText1: eui.BitmapLabel;
-    private stateText2: eui.BitmapLabel;
-    private monster1: eui.Image;
-    private monster2: eui.Image;
-    private monster3: eui.Image;
-    private monster4: eui.Image;
-    private closeBtn: eui.Button;
-    private titleText: eui.Label;
-    private player1: eui.Image;
-    private player2: eui.Image;
+    private topUI: TopUI;
+    private enemyItem: VideoItem;
+    private selfItem: VideoItem;
+    private itemGroup: eui.Group;
 
+
+
+    private enemyItems = []
+    private selfItems = []
+
+    private stageHeight;
+    private itemWidth = 114;
+    private itemHeight = 110;
+    private itemY1 = 380
+    private itemY2 = 120
 
 
     private currentAction;
@@ -35,14 +35,49 @@ class VideoUI extends game.BaseWindow {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.closeBtn,this.onClose)
+
+        this.topUI.addEventListener('hide',this.onClose,this);
+
+        for(var i=0;i<3;i++)
+        {
+            var item = this.newItem(i)
+            this.selfItems.push(item)
+            if(i == 0)
+            {
+                item.scaleX = item.scaleY = 1.2;
+                item.y = this.itemY1;
+            }
+            else
+                item.y = 450;
+
+            var item = this.newItem(i)
+            this.enemyItems.push(item)
+            if(i == 0)
+            {
+                item.scaleX = item.scaleY = 1.2;
+                item.y = this.itemY2;
+            }
+            else
+                item.y = 50;
+        }
 
     }
 
-    //改变播放位置
-    private onDrag(e){
+    private newItem(index){
+        var item = new PKItem();
+        item.anchorOffsetX = this.itemWidth/2;
+        item.anchorOffsetY = this.itemHeight/2;
+        if(index == 0)
+            item.x = 320;
+        else if(index == 1)
+            item.x = 190;
+        else
+            item.x = 450;
+        this.itemGroup.addChild(item);
 
+        return item;
     }
+
 
     private onClose(){
         this.hide();
@@ -50,28 +85,47 @@ class VideoUI extends game.BaseWindow {
         egret.clearTimeout(this.timer);
     }
 
-    public initData(){
-        this.titleText.text = '第'+10+'回合'
-        this.nameText1.text = ''
-        this.nameText2.text = ''
-        this.bg.source;
+    public show(){
+        super.show();
+    }
+
+    public onShow(){
+        var VM = VideoManager.getInstance();
+        this.topUI.setTitle('第'+(VM.index + 1)+'轮')
+        var scene = PKManager.getInstance().getPKBG(VM.type);
+        this.bg.source = scene;
+
+        this.stageHeight = this.stage.stageHeight;
+        this.itemGroup.y = ((this.stageHeight - 250-180)-500)/2 + 250
+
+        var VC = VideoCode.getInstance()
+        VC.initData(VM.baseData);
+        VC.play(VM.type == 'test');
+
+        this.selfItem.data = VC.player1
+        this.enemyItem.data = VC.player2
+
+
+
+        //if(VM.type == 'test')
+        //    this.hide();
     }
 
     //取关联的显示对象
     public getRelateMC(team,index):any{
         if(team == 1)
         {
-            if(index == 0)return this.item1
-            if(index == 1)return this.monster1
-            if(index == 2)return this.monster2
-            if(index == 3)return this.player1
+            if(index < 3)
+                return this.selfItems[index]
+            if(index == 3)
+                return this.selfItem.getPlayer();
         }
         else
         {
-            if(index == 0)return this.item2
-            if(index == 1)return this.monster3
-            if(index == 2)return this.monster4
-            if(index == 3)return this.player2
+            if(index < 3)
+                return this.enemyItems[index]
+            if(index == 3)
+                return this.enemyItem.getPlayer();
         }
         return null;
     }
@@ -84,8 +138,8 @@ class VideoUI extends game.BaseWindow {
         var VC = VideoCode.getInstance();
         if(!VC.isDebug)
         {
-            this.item1.showValueChange()
-            this.item2.showValueChange()
+            this.selfItem.showValueChange()
+            this.enemyItem.showValueChange()
         }
         VC.onMovieOver();
     }

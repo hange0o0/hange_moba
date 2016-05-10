@@ -13,7 +13,7 @@ class PKItem extends game.BaseItem {
     public timer
 
     public childrenCreated() {
-        this.headMC.mask = this.headMask;
+        //this.headMC.mask = this.headMask;
     }
 
 

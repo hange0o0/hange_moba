@@ -1,4 +1,5 @@
 class VideoCode{
+    //管理动画播放
     private static instance: VideoCode;
     public static getInstance() {
         if(!this.instance) this.instance = new VideoCode();

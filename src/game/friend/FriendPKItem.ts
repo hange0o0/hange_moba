@@ -48,13 +48,16 @@ class FriendPKItem extends game.BaseItem {
     }
 
     public dataChanged(){
-        this.headMC.source = MyTool.getHeadUrl(this.data.content.head);
+
         var FM = FriendManager.getInstance();
         var fromNick = this.getNick(this.data.from_gameid,this.data.content.fromnick);
         var toNick = this.getNick(this.data.to_gameid,this.data.content.tonick);
+        var fromHead = this.getHead(this.data.from_gameid,this.data.content.fromhead);
+        var toHead = this.getHead(this.data.to_gameid,this.data.content.tohead);
         this.dateText.text = '剩余时间：' + DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
         if(this.data.from_gameid == UM.openid)//我请求的
         {
+            this.headMC.source = MyTool.getHeadUrl(toHead);
             this.nameText.text =  '你向【' + toNick + '】发出了挑战';
             if(this.data.content.answer_choose)//对方已应战
             {
@@ -74,6 +77,7 @@ class FriendPKItem extends game.BaseItem {
         }
         else    //对方请求
         {
+            this.headMC.source = MyTool.getHeadUrl(fromHead);
             this.nameText.text =  '【' + fromNick + '】向你挑战';
             if(this.data.content.answer_choose)//对方已应战
             {
@@ -99,5 +103,13 @@ class FriendPKItem extends game.BaseItem {
             nick = FM.friendData[gameid].info.nick;
 
         return nick;
+    }
+
+    private getHead(gameid,head){
+        var FM = FriendManager.getInstance();
+        if(FM.friendData[gameid] && FM.friendData[gameid].info)
+            head = FM.friendData[gameid].info.head;
+
+        return head;
     }
 }

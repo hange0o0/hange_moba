@@ -11,6 +11,10 @@ class MainGameManager{
 
     public lastPKData;
 
+    public getHeadByLevel(level){
+         return level%50 + 1;
+    }
+
     //杀一个敌人的花费
     public getKillCost(){
         var level = UM.main_game.level;

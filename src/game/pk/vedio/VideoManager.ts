@@ -9,11 +9,12 @@ class VideoManager {
     }
 
     public index = 0;//当前的播放头
-    public total = 0;//最终的次数
-    public baseData = {};//触发战斗的数据
+
+    public baseData = {};//触发战斗的数据(基础数据）
     public dataArray = [];//数据内容
 
     public videoData = {};//所有录象的集合
+    public type//录象的类型
 
 
     public constructor() {
@@ -43,15 +44,14 @@ class VideoManager {
         });
 
         function play(){
+            self.type = type;
+            self.index = index;
             VideoManager.getInstance().initVideo(self.videoData[type][index]);
-            VideoCode.getInstance().initData(baseData);
-            console.log(VideoManager.getInstance().dataArray);
-            VideoCode.getInstance().play(type == 'test');
+            VideoUI.getInstance().show()
         }
     }
 
     public initVideo(data){
-        this.index = 0;
         var array = data.split(',');
         var len = array.length;
         var temp = [];
@@ -98,19 +98,6 @@ class VideoManager {
             case 2: //转防御者
                 oo.id = Math.floor(str.substr(1));
                 break
-            //case 3: //使用技能
-            //    oo.skillID = MyTool.str2Num(str.charAt(1));//技能的ID，对于攻击者来说，第几个技能
-            //    var temp = str.substr(2);
-            //    oo.action = [];
-            //    if(temp)
-            //    {
-            //        var arr = temp.split('|');
-            //        for(var i=0;i<arr.length;i++)
-            //        {
-            //            oo.action.push(this.decodeSkill(arr[i]))
-            //        }
-            //    }
-            //    break
             case 4: //改变攻击者的buffer(tag)
                 oo.tag = str.substr(1);
                 break
