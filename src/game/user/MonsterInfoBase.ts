@@ -90,7 +90,7 @@ class MonsterInfoBase extends game.BaseContainer {
         else
         {
             if(specialData.isEqual)
-                fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:Config.equalValue};
+                fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
             else if(specialData.isBase)
                 fightData = {atk:0,hp:0,speed:0};
             else  //我自己

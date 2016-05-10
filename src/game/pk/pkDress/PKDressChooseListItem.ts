@@ -57,11 +57,29 @@ class PKDressChooseListItem extends game.BaseItem {
 
         this.typeText.text = MonsterKindVO.getObject(vo.type).word;
         this.nickText.text = vo.name
-        this.headBG.source = 'head_border'+(UM.getMonsterCollect(vo.id) + 1)+'_png'
 
 
-        var forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getTecAdd('main',UM.getMainLevel(vo.type)) + '';
-        if(UM.getMonsterCollect(vo.id) >= 4)
+
+
+        var fightData,star,forceStr;
+        if(this.data.specialData.isEqual)
+        {
+            fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
+            star = Math.max(1,vo.collect);
+            forceStr = '0';
+        }
+        else  //我自己
+        {
+            var force = (UM.award_force + UM.tec_force);
+            fightData = UM.getTecMonsterAdd(vo.id);
+            fightData.atk += force;
+            fightData.hp += force;
+            forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getTecAdd('main',UM.getMainLevel(vo.type)) + '';
+            star = UM.getMonsterCollect(vo.id)
+        }
+
+
+        if(star >= 4)
         {
             if(vo.wood)
                 forceStr += '+5%';
@@ -72,17 +90,9 @@ class PKDressChooseListItem extends game.BaseItem {
         this.coinText.text = vo.cost;
         this.woodText.text = vo.wood;
         this.woodGroup.visible = vo.wood;
+        this.headBG.source = 'head_border'+(star + 1)+'_png'
 
-        var fightData
-        if(this.data.specialData.isEqual)
-            fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:Config.equalValue};
-        else  //我自己
-        {
-            var force = (UM.award_force + UM.tec_force);
-            fightData = UM.getTecMonsterAdd(vo.id);
-            fightData.atk += force;
-            fightData.hp += force;
-        }
+
 
 
         this.atkText.text = '攻：' +  Math.round(vo.atk * (1+fightData.atk/100));
@@ -97,7 +107,7 @@ class PKDressChooseListItem extends game.BaseItem {
         }
 
         this.desText.text = '';
-        var max = Math.min(UM.getMonsterCollect(vo.id),3);
+        var max = Math.min(star,3);
         if(max<= this.data.num)
         {
             this.desText.text =('已达上限');
