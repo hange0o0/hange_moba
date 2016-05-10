@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -868,6 +868,11 @@
 					"isFolder":false,
 					"key":"pk_bg4_jpg",
 					"name":"pk_bg4_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"bar3_png",
+					"name":"bar3_png"
 				}
 			]
 		}

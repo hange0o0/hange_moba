@@ -3,7 +3,7 @@
 	<e:Image source="window2_png" x="0" y="0" scale9Grid="100,141,112,184" width="480" height="600"/>
 	<ns1:CollectItem id="itemMC" y="109" skinName="CollectItemSkin" horizontalCenter="0"/>
 	<e:Label id="titleText" text="恭喜获得" y="30" textColor="0xD0C7AD" horizontalCenter="0"/>
-	<e:Group y="440" horizontalCenter="0">
+	<e:Group y="417" horizontalCenter="0">
 		<e:Group x="0" y="0" width="240">
 			<e:Button id="joinBtn" label="合成" y="0" skinName="Btn_r1Skin" x="0"/>
 			<e:Button id="splitBtn" skinName="Btn_r1Skin" y="0" label="分解" x="145"/>
@@ -25,6 +25,6 @@
 	<e:HSlider id="slider" y="331" width="240" skinName="MyHSliderSkin" horizontalCenter="0"/>
 	<e:Label id="numText" text="标签" y="294" size="20" textColor="0xD0C7AD" horizontalCenter="0"/>
 	<e:Label id="resultText" y="365" size="20" text="标签" textColor="0xD0C7AD" horizontalCenter="0"/>
-	<e:Image id="addBtn" source="icon_add_png" x="389" y="331"/>
-	<e:Image id="decBtn" source="icon_dec_png" x="77" y="332"/>
+	<e:Image id="addBtn" source="icon_add_png" x="378" y="331"/>
+	<e:Image id="decBtn" source="icon_dec_png" x="60" y="332"/>
 </e:Skin>
