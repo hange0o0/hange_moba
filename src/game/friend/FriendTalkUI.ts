@@ -11,7 +11,7 @@ class FriendTalkUI extends game.BaseUI {
     private sendBtn: eui.Button;
 
 
-    public openid;
+    public gameid;
     public otherHead;
     public otherNick;
 
@@ -50,7 +50,7 @@ class FriendTalkUI extends game.BaseUI {
             Alert('今天的聊天次数已用完')
             return;
         }
-        SendTalkUI.getInstance().show(this.openid);
+        SendTalkUI.getInstance().show(this.gameid);
     }
 
     public hide(){
@@ -58,7 +58,7 @@ class FriendTalkUI extends game.BaseUI {
     }
 
     public show(id?){
-        this.openid = id;
+        this.gameid = id;
         var self = this;
         FriendManager.getInstance().getLog(function(){
             self.superShow()
@@ -72,15 +72,15 @@ class FriendTalkUI extends game.BaseUI {
     public onShow(){
         var FM = FriendManager.getInstance();
 
-        if(FM.friendData[this.openid])
+        if(FM.friendData[this.gameid])
         {
-            var info = FM.friendData[this.openid].info;
+            var info = FM.friendData[this.gameid].info;
             this.otherHead = info.head;
             this.otherNick = info.nick;
         }
         else
         {
-            var info = FM.getTalkInfo(this.openid);
+            var info = FM.getTalkInfo(this.gameid);
             this.otherHead = info.head;
             this.otherNick = info.nick;
         }
@@ -94,14 +94,14 @@ class FriendTalkUI extends game.BaseUI {
             return;
 
         var FM = FriendManager.getInstance();
-        var arr = FM.getTalkList(this.openid);
+        var arr = FM.getTalkList(this.gameid);
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.once(egret.Event.RENDER,function(){
             this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
             console.log(this.scroller.viewport.scrollV)
         },this)
 
-        if(FM.friendData[this.openid])
+        if(FM.friendData[this.gameid])
         {
             this.sendBtn.visible = true;
             this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'

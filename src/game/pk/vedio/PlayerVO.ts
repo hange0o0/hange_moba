@@ -16,6 +16,8 @@ class PlayerVO {
     public tag = '';
     public actionCount = 0;
 
+    public teamID;
+
     public displayMC:any;  //关联的显示对象
 
     public constructor(oo?,oo2?) {

@@ -17,7 +17,7 @@ class LoadingFile {
     /*
      * array ['party', 'js_xxxxx'];
      */ 
-    public load(array:Array<string>, callBack:any, callBackTarget:any):void {
+    public loadGroup(array:Array<string>, callBack:any, callBackTarget:any):void {
         
         this.loadFiles = array;
         this.callBack = callBack;
@@ -35,14 +35,11 @@ class LoadingFile {
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         
         for(var i = 0;i < array.length; i++){
-            if(array[i].indexOf('js_') == -1)
                 RES.loadGroup(array[i]);
-            else{
-                //js加载
-            }
         }
         
     }
+
 
     /**
      * preload资源组加载完成
@@ -67,31 +64,6 @@ class LoadingFile {
 
     private onResourceProgress(event:RES.ResourceEvent):void {
         this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
-    }
-
-    private createScene():void {
-            
-        this.urlloader = new egret.URLLoader();
-        this.urlloader.addEventListener(egret.Event.COMPLETE, this.onComplete, this);
-//        this.urlloader.addEventListener(egret.Event.IO_ERROR, this.onError, this);
-        
-       // var url: string = Config.resource + "json/data.txt";
-        var url: string = Config.cdn + "resource/data/data.js";
-        if(Config.isDebug) url += "?m=" + Math.random();
-        var urlreq:egret.URLRequest = new egret.URLRequest();
-        urlreq.url = url;
-        this.urlloader.load( urlreq );
-    }
-    
-    private urlloader: egret.URLLoader;
-    
-    private onComplete(event:egret.Event):void
-    {
-//        CacheManager.getInstance().init(JSON.parse(this.urlloader.data));
-    }
-    
-    private onError(event:egret.Event):void {
-        console.log( event );
     }
 
 }

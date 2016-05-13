@@ -132,7 +132,7 @@ class MyInfoUI extends game.BaseUI {
         var specialData = {
 
         };
-        var arr =  MyTool.getCommonUse(UM.pk_common.history);
+        var arr =  UM.getCommonUse(UM.pk_common.history);
         for(var i=0;i<arr.length;i++){
             arr[i] = {
                 vo: MonsterVO.getObject(arr[i].id),

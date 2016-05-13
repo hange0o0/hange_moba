@@ -15,14 +15,13 @@ class VideoCode{
     //public record = [];
     public index = 0;
     public index2 = 0;
-    public targetIndex = 999999;
+    //public targetIndex = 999999;
     public stopMV = false;//停止动画表现
     public playFlag = false;//是否继续播放
     public isDebug = false;//
 
     public currentAction;
     public skillStart;
-    public skillArray;
     public skillData;
 
     public playerObject = {}; //所有单位的集合
@@ -33,6 +32,7 @@ class VideoCode{
     }
 
     public initData(roundData){
+        var PKM = PKManager.getInstance();
         this.playerObject = {};
         for(var i=0;i<roundData.player1.length;i++)
         {
@@ -43,6 +43,7 @@ class VideoCode{
                 this.player1 = player;
             }
 
+            player.teamID = 1;
             this.playerObject[player.id] = player
             player.displayMC = VideoUI.getInstance().getRelateMC(1,i)
         }
@@ -54,7 +55,7 @@ class VideoCode{
                 player.isPKing = true;
                 this.player2 = player;
             }
-
+            player.teamID = 2;
             this.playerObject[player.id] = player
             player.displayMC = VideoUI.getInstance().getRelateMC(2,i)
         }
@@ -62,15 +63,23 @@ class VideoCode{
         this.playerObject[1] = new PlayerVO();
         this.playerObject[1].id = 1;
         this.playerObject[1].displayMC = VideoUI.getInstance().getRelateMC(1,3);
+        this.playerObject[1].teamID = 1;
 
         this.playerObject[2] = new PlayerVO();
         this.playerObject[2].id = 2;
         this.playerObject[2].displayMC = VideoUI.getInstance().getRelateMC(2,3);
+        this.playerObject[2].teamID = 1;
+
+        if(PKM.teamChange)
+        {
+            this.playerObject[1].id = 2;
+            this.playerObject[2].id = 1;
+        }
 
 
         this.index = 0;
         this.index2 = 0;
-        this.targetIndex = 999999;
+        //this.targetIndex = 999999;
 
         this.stopMV = false;
         this.skillStart = false;
@@ -87,7 +96,7 @@ class VideoCode{
         {
             this.stopMV = false;
         }
-        this.targetIndex = 999999;
+        //this.targetIndex = 999999;
         this.playFlag = true;
         this.stepOne();
     }
@@ -103,7 +112,7 @@ class VideoCode{
         this.playFlag = true;
         this.skillStart = false;
 
-        this.targetIndex = index;
+        //this.targetIndex = index;
         this.stepOne();
     }
 
@@ -125,17 +134,6 @@ class VideoCode{
         }
         else //回合结束
         {
-            var oo:any = {};
-            oo.myData = this.player1.getSave();
-            oo.otherData = this.player2.getSave();
-
-            if(this.index >= this.targetIndex)//已播放到指定位置
-            {
-                console.log(this)
-                VideoUI.getInstance().renewView();
-                return;
-            }
-
             this.index2 = 0;
             this.index ++;
 
@@ -145,7 +143,14 @@ class VideoCode{
             }
             else
             {
-                this.stepOne();
+                if(this.stopMV)//只计算值，不表现动画
+                {
+                    this.stepOne();
+                }
+                else
+                {
+                    VideoUI.getInstance().roundOver();
+                }
             }
         }
 
@@ -193,17 +198,12 @@ class VideoCode{
             case 7:   //技能开始
             {
                 this.skillStart = true;
-                this.skillData = {atker:this.atker,skillID:action.skillID,defender:[]};
-                this.skillArray = [this.skillData];
+                this.skillData = {atker:this.atker,skillID:action.skillID,defender:{}};
                 this.stepOne();
                 break;
             }
             case 8:   //技能过程
             {
-                if(this.skillData.defender.indexOf(this.defender) == -1)
-                {
-                    this.skillData.defender.push(this.defender);
-                }
                 this.onSkillValue(action);
                 this.stepOne();
                 break;
@@ -217,7 +217,7 @@ class VideoCode{
                 }
                 else
                 {
-                    VideoUI.getInstance().playSkill(this.skillArray);
+                    VideoUI.getInstance().playSkill(this.skillData);
                 }
                 break;
             }
@@ -232,37 +232,51 @@ class VideoCode{
         this.stepOne();
     }
 
+    private defenderMV(defender,key,value){
+        if(!this.skillData.defender[defender])
+            this.skillData.defender[defender] = {};
+        this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
+    }
+
     //计算技能数值得
     public onSkillValue(value){
         var player = this.getPlayerByID(this.defender);
+
         switch(value.sType)
         {
             case '1'://"HP"=>'1',
             {
-                this.skillData['hp' + this.defender] = (this.skillData['hp' + this.defender] || 0) + value.value;
+                this.defenderMV(this.defender,'hp',value.value)
                 player.addHp(value.value);
                 break;
             }
             case '2'://    "SPD"=>'2',,
             {
+                this.defenderMV(this.defender,'spd',value.value)
                 player.addSpeed(value.value);
                 break;
             }
             case '3'://    "ATK"=>'3',
             {
+                this.defenderMV(this.defender,'atk',value.value)
                 player.addAtk(value.value);
                 break;
             }
             case '4'://    "MHP"=>'4',
             {
-                this.skillData['mhp' + this.defender] = (this.skillData['mhp' + this.defender] || 0) + value.value;
+                this.defenderMV(this.defender,'mhp',value.value)
                 player.addMaxHp(value.value);
                 break;
             }
             case '5'://    "MP"=>'5',
             {
-                this.skillData['mp' + this.defender] = (this.skillData['mp' + this.defender] || 0) + value.value;
+                //this.defenderMV(this.defender,'mp',value.value)
                 player.addMp(value.value);
+                break;
+            }
+            case '6'://    "MV"=>'6',
+            {
+                this.defenderMV(this.defender,'mv',value.value)
                 break;
             }
         }

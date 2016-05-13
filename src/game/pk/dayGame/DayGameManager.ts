@@ -13,6 +13,13 @@ class DayGameManager{
     public dataTime = 0;
     public lastPKData;
 
+    public getHeadByLevel(level){
+        return level%50 + 1;
+    }
+    public getNickByLevel(level){
+        return '守卫' + level;
+    }
+
     public getCard(fun?){
         //if(UM.server_game.choose)
         //{
@@ -66,6 +73,7 @@ class DayGameManager{
             }
 
             self.lastPKData = msg;
+            msg.info.type = PKManager.PKType.DAY;
             PKManager.getInstance().onPK(PKManager.PKType.DAY,msg);
 
             if(fun)

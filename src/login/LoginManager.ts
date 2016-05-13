@@ -8,7 +8,7 @@ class LoginManager{
         return this._instance;
     }
 
-    public openid;
+    public gameid;
     public openKey;
     public myServer; //我的服务器列表   {key:name}
     public lastLand;
@@ -100,7 +100,7 @@ class LoginManager{
                 return;
             }
 
-            self.openid = msg.userdata.id;
+            self.gameid = msg.userdata.id;
             self.openKey = msg.userdata.cdkey;
             self.lastLand = msg.userdata.last_land;
             self.fillServer(msg.userdata.server);
@@ -136,7 +136,7 @@ class LoginManager{
                 return;
             }
 
-            self.openid = msg.data.id;
+            self.gameid = msg.data.id;
             self.openKey = msg.data.cdkey;
             self.lastLand = msg.data.last_land;
             self.myServer = {};
@@ -169,7 +169,7 @@ class LoginManager{
                 return;
             }
 
-            self.openid = msg.data.id;
+            self.gameid = msg.data.id;
             self.openKey = msg.data.cdkey;
             self.lastLand = msg.data.last_land;
             self.myServer = {};
@@ -208,7 +208,7 @@ class LoginManager{
             }
 
 
-            self.openid = msg.userdata.id;
+            self.gameid = msg.userdata.id;
             self.openKey = msg.userdata.cdkey;
             self.lastLand = msg.userdata.last_land;
             self.fillServer(msg.userdata.server);
@@ -250,7 +250,7 @@ class LoginManager{
     public addUserServer(serverid,nick,fun?){
         var self = this;
         var oo:any = {};
-        oo.id = self.openid;
+        oo.id = self.gameid;
         oo.cdkey = self.openKey;
         oo.serverid = serverid;
         oo.nick = nick;
@@ -291,7 +291,7 @@ class LoginManager{
         var self = this;
         var oo:any = {};
         //oo.serverid = serverid;
-        oo.id = this.openid;
+        oo.id = this.gameid;
         oo.cdkey = this.openKey;
         Net.getInstance().serverID = serverid;
         Net.getInstance().serverHost = this.serverList[serverid].host;
@@ -336,7 +336,7 @@ class LoginManager{
         var oo:any = {};
         oo.nick = nick;
         oo.head = head;
-        oo.id = this.openid;
+        oo.id = this.gameid;
         oo.cdkey = this.openKey;
 
         Net.getInstance().serverID = serverid;

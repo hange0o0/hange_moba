@@ -71,4 +71,10 @@ class ObjectUtil {
             btn.removeEventListener(egret.TouchEvent.TOUCH_END,btn["clickFun_touchEnd"],thisObject);
         }
     }
+
+    public static swapKey(data,key1,key2){
+        var temp = data[key1]
+        data[key1] = data[key2]
+        data[key2] = temp;
+    }
 }

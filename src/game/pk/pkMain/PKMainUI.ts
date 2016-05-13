@@ -105,6 +105,26 @@ class PKMainUI extends game.BaseUI {
         var stageHeight = this.stageHeight = this.stage.stageHeight;
         this.jumpBtn.visible = false;
 
+        var sceneID = 1;
+        switch(PKManager.getInstance().pkType)
+        {
+            case PKManager.PKType.MAIN:
+                sceneID = 1;
+                break;
+            case PKManager.PKType.DAY:
+                sceneID = 2;
+                break;
+            case PKManager.PKType.SERVER:
+                sceneID = 3;
+                break;
+            case PKManager.PKType.SERVER_EQUAL:
+                sceneID = 4;
+                break;
+            default:
+                sceneID = 1 + Math.floor(Math.random()*4);
+                break;
+        }
+
         var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
         this.bg0.source = scene;
         this.bg1.source = scene;

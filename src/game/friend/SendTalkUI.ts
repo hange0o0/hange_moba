@@ -17,7 +17,7 @@ class SendTalkUI extends game.BaseWindow {
 
 
 
-    private openid
+    private gameid
 
     public childrenCreated() {
         super.childrenCreated();
@@ -28,13 +28,13 @@ class SendTalkUI extends game.BaseWindow {
 
     private onSend(){
         var self = this;
-        FriendManager.getInstance().talk(this.openid,this.editText.text,function(){
+        FriendManager.getInstance().talk(this.gameid,this.editText.text,function(){
              self.hide();
         })
     }
 
     public show(data?){
-        this.openid = data;
+        this.gameid = data;
         super.show();
     }
 

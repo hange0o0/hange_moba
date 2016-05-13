@@ -31,6 +31,9 @@ class MonsterVO {
     public sfn4
     public sfn5
 
+    public mv1 = []  //作为出战要用的技能动画
+    public mv2 = []
+
     public constructor(data?: any) {
         if(data)
             this.fill(data);
@@ -83,11 +86,21 @@ class MonsterVO {
             this[key].des = arr[2];
 
             if(key == 'sn')     //大绝
+            {
                 this[key].type = 1;
+                this.mv1.push(arr[0])
+            }
             else if(key.substr(0,2) == 'sn') //小技
+            {
                 this[key].type = 2;
+                this.mv1.push(arr[0])
+            }
             else        //辅助
+            {
                 this[key].type = 3;
+                this.mv2.push(arr[0])
+            }
+
         }
     }
 
@@ -97,6 +110,15 @@ class MonsterVO {
 
     public get url(){
         return 'full_bg_jpg';
+    }
+
+    public getSkillByID(id,isPKing)
+    {
+        if(id == 0)
+            return this.sn;
+         if(isPKing)
+            return this['sn' + id];
+        return this['sfn' + id];
     }
 
     ////影响指定单位

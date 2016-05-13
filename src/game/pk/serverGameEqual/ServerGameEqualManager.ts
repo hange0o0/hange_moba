@@ -102,6 +102,7 @@ class ServerGameEqualManager{
 
             UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
+            msg.info.type = PKManager.PKType.SERVER_EQUAL;
             PKManager.getInstance().onPK(PKManager.PKType.SERVER_EQUAL,msg);
 
             if(fun)

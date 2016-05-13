@@ -123,6 +123,7 @@ var game_file_list = [
 	"bin-debug/login/RegisterServerUI.js",
 	"bin-debug/login/RegisterUI.js",
 	"bin-debug/Main.js",
+	"bin-debug/manager/AniManager.js",
 	"bin-debug/manager/CacheManager.js",
 	"bin-debug/manager/DragManager.js",
 	"bin-debug/manager/EventManager.js",

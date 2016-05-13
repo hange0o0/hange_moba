@@ -124,7 +124,7 @@ class FriendManager{
     //保存到聊天记录
     private saveTalk(talkData)
     {
-        if(talkData.from_gameid == UM.openid)
+        if(talkData.from_gameid == UM.gameid)
             var gameid = talkData.to_gameid;
         else
             var gameid = talkData.from_gameid;
@@ -153,7 +153,7 @@ class FriendManager{
         oo.id = talkData.id;
         oo.time = talkData.time
         oo.talk = talkData.content.talk;
-        if(talkData.to_gameid == UM.openid)
+        if(talkData.to_gameid == UM.gameid)
             oo.stat = 1;
         arr.push(oo);
         ArrayUtil.sortByField(arr,['id'],[0]);
@@ -445,7 +445,7 @@ class FriendManager{
                 if(msg.list[i].type != 2)
                 {
                     self.removeLog(msg.list[i].id);
-                    if(msg.list[i].to_gameid == UM.openid)//只有对方发我的才显示在日志中
+                    if(msg.list[i].to_gameid == UM.gameid)//只有对方发我的才显示在日志中
                         self.logList.push(msg.list[i]);
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);

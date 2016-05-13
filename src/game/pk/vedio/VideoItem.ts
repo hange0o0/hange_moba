@@ -33,13 +33,12 @@ class VideoItem extends game.BaseItem {
     private valueObject;
     private barWidth = 175
 
-
     public childrenCreated() {
         //this.addBtnEvent(this.closeBtn,this.onClose);
     }
 
-    public getPlayer(){
-        return this.headMC;
+    public getPlayerXY(){
+        return this.localToGlobal(this.headMC.x + this.headMC.width/2,this.headMC.y + this.headMC.height/2) ;
     }
 
     private onClose(){
@@ -48,11 +47,21 @@ class VideoItem extends game.BaseItem {
 
     //初始化数据
     public dataChanged() {
-        var player = this.player;
-        var vo = MonsterVO.getObject(this.data.id);
+        var player = this.player = this.data;
+        var vo = MonsterVO.getObject(this.data.mid);
+        var PKM = PKManager.getInstance();
 
-        this.headMC.source = MyTool.getHeadUrl(PKManager.getInstance().otherHead);
-        this.skillText.text = ''
+        if(this.index == 1)
+        {
+            this.headMC.source = MyTool.getHeadUrl(PKM.team1Head);
+            this.skillText.text = RingVO.getObject(PKM.team1Ring).name;
+        }
+        else
+        {
+            this.headMC.source = MyTool.getHeadUrl(PKM.team2Head);
+            this.skillText.text = RingVO.getObject(PKM.team2Ring).name;
+        }
+
 
         this.stateText.text = player.tag;
         this.nameText.text = vo.name
@@ -134,7 +143,7 @@ class VideoItem extends game.BaseItem {
                 continue;
              b = true;
              if(s == 'hp')
-                this.hpText.text = v.shift();
+                this.hpText.text = v.shift()  + '/' + this.maxHp;
              else if(s == 'atk')
                 this.atkText.text = v.shift();
              else if(s == 'speed')

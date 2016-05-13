@@ -11,8 +11,18 @@ class MainGameManager{
 
     public lastPKData;
 
+    public loadCache(level,fun){
+        var id = Math.ceil(level/100);
+        CM.loadCache('main_game'+id+'_json',function(){
+            fun()
+        })
+    }
+
     public getHeadByLevel(level){
          return level%50 + 1;
+    }
+    public getNickByLevel(level){
+         return '守卫' + level;
     }
 
     //杀一个敌人的花费
@@ -89,6 +99,7 @@ class MainGameManager{
 
             UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
+            msg.info.type = PKManager.PKType.MAIN;
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
 
             if(fun)

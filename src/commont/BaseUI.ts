@@ -175,7 +175,7 @@ module game {
             if(this.LoadFiles && this.LoadFiles.length > 0){
                 if(this.isStartLoad) return;
                 this.isStartLoad = true;
-                new LoadingFile().load(this.LoadFiles, this.showFun, this);
+                new LoadingFile().loadGroup(this.LoadFiles, this.showFun, this);
                 this.LoadFiles = [];
                 return;
             }

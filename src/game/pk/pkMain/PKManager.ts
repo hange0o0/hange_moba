@@ -18,7 +18,7 @@ class PKManager {
     }
 
     public constructor() {
-        this.onPK('test',null);
+        //this.onPK('test',null);
 
     }
 
@@ -37,6 +37,8 @@ class PKManager {
     public team2Head
     public team2Nick
     public team2Ring
+
+    public teamChange = false//队伍ID发生过转换
 
     ////不同位置的加成值和比例
     //public indexAdd(index)
@@ -176,41 +178,81 @@ class PKManager {
         Net.addUser(oo);
         Net.send(GameEvent.pkCore.pk_result_type,oo,function(data){
             var msg = data.msg;
+            msg.info.type = type;
             self.onPK(PKManager.PKType.REPLAY,msg);
             if(fun)
                 fun(msg);
         });
     }
 
-    //取PK回放2
-    public getReplayByData(team1,team2,isequal,fun?){
+    //设双方的用户信息(用于展示)
+    public setUserInfo(data){
+        var info = data.info;
+        var type = info.type;
+        this.teamChange = false;
         var self = this;
-        var oo:any = {};
-        oo.team1 = team1;
-        oo.team2 = team2;
-        oo.isequal = isequal;
-        Net.send(GameEvent.pkCore.pk_result,oo,function(data){
-            var msg = data.msg;
-            self.onPK(PKManager.PKType.REPLAY,msg);
-            if(fun)
-                fun(msg);
-        });
-    }
-
-    //设双方的用户信息
-    public setUserInfo(type,data){
+        this.team1Head = UM.head
+        this.team1Nick = UM.nick
+        if(type == PKManager.PKType.FRIEND)
+        {
+            if(info.fromgameid == UM.gameid)//我是被打
+            {
+                this.teamChange = true;
+                this.team2Head = info.tohead
+                this.team2Nick = info.tonick
+            }
+            else
+            {
+                this.team2Head = info.fromhead
+                this.team2Nick = info.fromnick
+            }
+        }
+        else if(type == PKManager.PKType.MAIN)
+        {
+            this.team2Head = MainGameManager.getInstance().getHeadByLevel(info.level);
+            this.team2Nick = MainGameManager.getInstance().getNickByLevel(info.level);
+        }
+        else if(type == PKManager.PKType.SERVER || type == PKManager.PKType.SERVER_EQUAL)
+        {
+            this.team2Head = info.head || '???';
+            this.team2Nick = info.nick || '???';
+        }
+        else if(type == PKManager.PKType.DAY)
+        {
+            this.team2Head = DayGameManager.getInstance().getHeadByLevel(info.level);
+            this.team2Nick = DayGameManager.getInstance().getNickByLevel(info.level);
+        }
+        else
+        {
+            this.team1Head = 1;
+            this.team1Nick = 'team1Head';
+            this.team2Head = 2;
+            this.team2Nick = 'team2Head';
+        }
 
     }
 
     public onPK(type,data){
+        var self = this;
         data = data || {"pkdata":[{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":1},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":1},"player1":[{"hp":100,"id":10,"mid":101},{"hp":100,"id":11,"mid":102},{"hp":100,"id":12,"mid":103}],"player2":[{"hp":100,"id":30,"mid":101},{"hp":100,"id":31,"mid":102},{"hp":100,"id":32,"mid":103}],"result":{"w":1,"hp":5}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":1},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":2},"player1":[{"hp":5,"id":10,"mid":101},{"hp":100,"id":11,"mid":102},{"hp":100,"id":12,"mid":103}],"player2":[{"hp":100,"id":31,"mid":102},{"hp":100,"id":32,"mid":103},{"hp":100,"id":33,"mid":104}],"result":{"w":2,"hp":91}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":3},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":2},"player1":[{"hp":100,"id":11,"mid":102},{"hp":100,"id":12,"mid":103},{"hp":100,"id":13,"mid":104}],"player2":[{"hp":91,"id":31,"mid":102},{"hp":100,"id":32,"mid":103},{"hp":100,"id":33,"mid":104}],"result":{"w":1,"hp":21}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":3},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":4},"player1":[{"hp":21,"id":11,"mid":102},{"hp":100,"id":12,"mid":103},{"hp":100,"id":13,"mid":104}],"player2":[{"hp":100,"id":32,"mid":103},{"hp":100,"id":33,"mid":104},{"hp":100,"id":34,"mid":105}],"result":{"w":2,"hp":74}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":5},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":4},"player1":[{"hp":100,"id":12,"mid":103},{"hp":100,"id":13,"mid":104},{"hp":100,"id":14,"mid":105}],"player2":[{"hp":74,"id":32,"mid":103},{"hp":100,"id":33,"mid":104},{"hp":100,"id":34,"mid":105}],"result":{"w":1,"hp":60}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":5},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":6},"player1":[{"hp":60,"id":12,"mid":103},{"hp":100,"id":13,"mid":104},{"hp":100,"id":14,"mid":105}],"player2":[{"hp":100,"id":33,"mid":104},{"hp":100,"id":34,"mid":105},{"hp":100,"id":35,"mid":106}],"result":{"w":2,"hp":39}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":7},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":6},"player1":[{"hp":100,"id":13,"mid":104},{"hp":100,"id":14,"mid":105},{"hp":100,"id":15,"mid":106}],"player2":[{"hp":39,"id":33,"mid":104},{"hp":100,"id":34,"mid":105},{"hp":100,"id":35,"mid":106}],"result":{"w":1,"hp":54}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":7},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":8},"player1":[{"hp":54,"id":13,"mid":104},{"hp":100,"id":14,"mid":105},{"hp":100,"id":15,"mid":106}],"player2":[{"hp":100,"id":34,"mid":105},{"hp":100,"id":35,"mid":106},{"hp":100,"id":36,"mid":107}],"result":{"w":2,"hp":61}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":9},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":8},"player1":[{"hp":100,"id":14,"mid":105},{"hp":100,"id":15,"mid":106},{"hp":100,"id":16,"mid":107}],"player2":[{"hp":61,"id":34,"mid":105},{"hp":100,"id":35,"mid":106},{"hp":100,"id":36,"mid":107}],"result":{"w":1,"hp":42}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":9},"team2":{"ac":["sm_101_f1","sm_106_f1","sm_105_d1"],"jr":10},"player1":[{"hp":42,"id":14,"mid":105},{"hp":100,"id":15,"mid":106},{"hp":100,"id":16,"mid":107}],"player2":[{"hp":100,"id":35,"mid":106},{"hp":100,"id":36,"mid":107},{"hp":100,"id":37,"mid":108}],"result":{"w":2,"hp":100}},{"team1":{"ac":["sm_101_f1","sm_106_f1","sm_105_d1"],"jr":11},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":10},"player1":[{"hp":100,"id":15,"mid":106},{"hp":100,"id":16,"mid":107},{"hp":100,"id":17,"mid":108}],"player2":[{"hp":100,"id":35,"mid":106,"add_speed":15},{"hp":100,"id":36,"mid":107},{"hp":100,"id":37,"mid":108}],"result":{"w":1,"hp":8}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":11},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":12},"player1":[{"hp":8,"id":15,"mid":106,"add_speed":15},{"hp":100,"id":16,"mid":107},{"hp":100,"id":17,"mid":108}],"player2":[{"hp":100,"id":36,"mid":107},{"hp":100,"id":37,"mid":108},{"hp":100,"id":38,"mid":101}],"result":{"w":2,"hp":25}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":13},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":12},"player1":[{"hp":100,"id":16,"mid":107},{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101}],"player2":[{"hp":25,"id":36,"mid":107},{"hp":100,"id":37,"mid":108},{"hp":100,"id":38,"mid":101}],"result":{"w":1,"hp":89}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":13},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":14},"player1":[{"hp":89,"id":16,"mid":107},{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101}],"player2":[{"hp":100,"id":37,"mid":108},{"hp":100,"id":38,"mid":101},{"hp":100,"id":39,"mid":101}],"result":{"w":1,"hp":35}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":13},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":15},"player1":[{"hp":35,"id":16,"mid":107},{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101}],"player2":[{"hp":100,"id":38,"mid":101},{"hp":100,"id":39,"mid":101}],"result":{"w":2,"hp":69}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":16},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":15},"player1":[{"hp":100,"id":17,"mid":108},{"hp":100,"id":18,"mid":101},{"hp":100,"id":19,"mid":101}],"player2":[{"hp":69,"id":38,"mid":101},{"hp":100,"id":39,"mid":101}],"result":{"w":1,"hp":35}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":16},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":17},"player1":[{"hp":35,"id":17,"mid":108},{"hp":100,"id":18,"mid":101},{"hp":100,"id":19,"mid":101}],"player2":[{"hp":100,"id":39,"mid":101}],"result":{"w":2,"hp":56}},{"team1":{"ac":["sm_101_f1","sm_106_f1"],"jr":18},"team2":{"ac":["sm_101_f1","sm_106_f1"],"jr":17},"player1":[{"hp":100,"id":18,"mid":101},{"hp":100,"id":19,"mid":101}],"player2":[{"hp":56,"id":39,"mid":101}],"result":{"w":1,"hp":63}}],"result":1,"team1base":{"rl":0,"r":1,"tl":null,"list":[101,102,103,104,105,106,107,108,101,101],"mb":{"101":{"hp":100,"atk":10,"speed":50},"102":{"hp":100,"atk":10,"speed":50},"103":{"hp":100,"atk":10,"speed":50},"104":{"hp":100,"atk":10,"speed":50},"105":{"hp":100,"atk":10,"speed":50},"106":{"hp":100,"atk":10,"speed":50},"107":{"hp":100,"atk":10,"speed":50},"108":{"hp":100,"atk":10,"speed":50}}},"team2base":{"rl":0,"r":1,"tl":null,"list":[101,102,103,104,105,106,107,108,101,101],"mb":{"101":{"hp":100,"atk":10,"speed":50},"102":{"hp":100,"atk":10,"speed":50},"103":{"hp":100,"atk":10,"speed":50},"104":{"hp":100,"atk":10,"speed":50},"105":{"hp":100,"atk":10,"speed":50},"106":{"hp":100,"atk":10,"speed":50},"107":{"hp":100,"atk":10,"speed":50},"108":{"hp":100,"atk":10,"speed":50}}}}
 
-        this.setUserInfo(type,data);
+        this.setUserInfo(data);
         this.pkType = type
         this.pkResult = data
         this.pkData = data.pkdata;
         this.team1Base = data.team1base;
         this.team2Base = data.team2base;
+
+        if(this.teamChange)
+        {
+            this.team1Ring = this.team2Base.r;
+            this.team2Ring = this.team1Base.r;
+        }
+        else
+        {
+            this.team1Ring = this.team1Base.r;
+            this.team2Ring = this.team2Base.r;
+        }
 
         this.pkAward = {
             levelUp:false,
@@ -246,13 +288,21 @@ class PKManager {
         for(var i=0;i<data.pkdata.length;i++)
         {
             var oo:any = {};
-            oo.player1 = getPlayer(1,i);
-            oo.player2 = getPlayer(2,i);
+            if(self.teamChange)
+            {
+                oo.player1 = getPlayer(2,i,1);
+                oo.player2 = getPlayer(1,i,2);
+            }
+            else
+            {
+                oo.player1 = getPlayer(1,i,1);
+                oo.player2 = getPlayer(2,i,2);
+            }
             oo.index = i+1;
             this.pkList.push(oo);
         }
 
-        function getPlayer(team,index){
+        function getPlayer(team,index,displayTeam){
             var p = data.pkdata[index]['player' + team][0];
             var base = data['team'+team+'base'].mb[p.mid];
             var nextP;
@@ -260,7 +310,10 @@ class PKManager {
                 nextP = data.pkdata[index]['player' + team][0];
             var result = data.pkdata[index].result;
             var oo:any = {};
-            oo.team = team;
+            oo.team = displayTeam;
+            if(self.teamChange)
+                oo.team = team == 1?2:1;
+
             oo.index = p.id%10;
             oo.mid = p.mid;
             oo.beforeMax = base.hp + (p.add_hp || 0);
@@ -273,7 +326,7 @@ class PKManager {
             }
             else
                 oo.after = 0;
-             oo.afterMax = oo.beforeMax;
+            oo.afterMax = oo.beforeMax;
             if(nextP && nextP.id == p.id)
             {
                 oo.afterMax = base.hp + (nextP.add_hp || 0);

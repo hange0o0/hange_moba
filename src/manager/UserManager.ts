@@ -13,7 +13,7 @@ class UserManager {
 
 
 
-    public openid: string;
+    public gameid: string;
     public landid: string;
 
     public nick: string;
@@ -41,7 +41,7 @@ class UserManager {
 
 
     public fill(data:any):void{
-        this.openid = data.gameid;
+        this.gameid = data.gameid;
         this.landid = data.land_key;
         this.nick = data.nick;
         this.head = data.head;
@@ -199,6 +199,34 @@ class UserManager {
             max = Math.max(max,this.collect.level[monsterID]);
         }
         return max;
+    }
+
+    //得到最常用的10个怪
+    public getCommonUse(list){
+        if(!list)
+            return [];
+        var obj = {};
+
+        var array = [];
+        for(var i=0;i<list.length;i++)
+        {
+            var temp = list[i].split(',');
+            for(var j=0;j<temp.length;j++)
+            {
+                var id = temp[j];
+                obj[id] =  (obj[id] || 0) + 1;
+            }
+        }
+
+        for(var s in obj)
+        {
+            array.push({id:s,num:obj})
+        }
+
+        ArrayUtil.sortByField(array,['num','id'],[1,0])
+        array.length = Math.min(10,array.length);
+
+        return array;
     }
 }
                                 

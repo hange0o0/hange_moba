@@ -21,7 +21,7 @@ class RankItem extends game.BaseItem {
     }
 
     private onClick(){
-        if(this.data.gameid != UM.openid)
+        if(this.data.gameid != UM.gameid)
         {
             OtherInfoUI.getInstance().showID(this.data.gameid);
         }
@@ -53,7 +53,7 @@ class RankItem extends game.BaseItem {
             this.numText.text = '' + this.data.index;
         }
 
-        if(this.data.gameid == UM.openid)
+        if(this.data.gameid == UM.gameid)
             this.currentState = 'self';
         else
             this.currentState = 'up';

@@ -51,9 +51,8 @@ class MainGameUI extends game.BaseUI {
     }
 
     public show(){
-        var self = this;
-        var id = Math.ceil((UM.main_game.level + 1)/100);
-        CM.loadCache('main_game'+id+'_json',function(){
+        var self = this
+        MainGameManager.getInstance().loadCache(UM.main_game.level,function(){
             self.superShow();
         })
     }

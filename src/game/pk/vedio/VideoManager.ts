@@ -10,15 +10,94 @@ class VideoManager {
 
     public index = 0;//当前的播放头
 
-    public baseData = {};//触发战斗的数据(基础数据）
+    public baseData;//触发战斗的数据(基础数据）
     public dataArray = [];//数据内容
 
     public videoData = {};//所有录象的集合
     public type//录象的类型
 
 
-    public constructor() {
+    public leaderSkill1
+    public leaderSkill2
 
+    public skillAni
+
+    public constructor() {
+        this.skillAni = {
+            mv:['skill1','skill2'],
+            le:['skill1'],
+            ls:['skill2']
+        }
+    }
+
+    public decodeLeaderSkill(str){
+        //sm_101_f1 ,sm_101_d1
+        var arr = str.split('_');
+        var mvo = MonsterVO.getObject(arr[1]);
+        var temp = arr[1].split('');
+        var id = temp.pop();
+        var mv = temp.pop();
+        var svo = mvo.getSkillByID(id,false);
+        return {
+            name:mvo.name +'·'+ svo.name,
+            des:'',
+            type:3,
+            mv:'l' + mv
+        }
+
+    }
+
+    //得到动画预加载项
+    public getVideoAniGroup(){
+        var PKM = PKManager.getInstance();
+        var mArr = [];
+        for(var i=0;i<this.baseData.player1.length;i++)
+        {
+            var vo = MonsterVO.getObject(this.baseData.player1[i].mid);
+            if(i==0)
+                mArr = mArr.concat(vo.mv1)
+            else
+                mArr = mArr.concat(vo.mv2)
+
+        }
+        for(var i=0;i<this.baseData.player2.length;i++)
+        {
+            var vo = MonsterVO.getObject(this.baseData.player1[i].mid);
+            if(i==0)
+                mArr = mArr.concat(vo.mv1)
+            else
+                mArr = mArr.concat(vo.mv2)
+        }
+        for(var i=0;i<this.leaderSkill1.length;i++)
+        {
+            mArr.push(this.leaderSkill1[i].mv);
+        }
+        for(var i=0;i<this.leaderSkill2.length;i++)
+        {
+            mArr.push(this.leaderSkill2[i].mv);
+        }
+        mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
+        mArr.push(RingVO.getObject(PKM.team2Ring).getSkillVO().mv)
+        var mObj = {};
+        for(var i=0;i<mArr.length;i++)
+        {
+            var arr = this.skillAni[mArr[i]];
+            if(arr)
+            {
+                for(var j=0;j<arr.length;j++)
+                {
+                    mObj[arr[j]] = true;
+                }
+            }
+        }
+
+        var arr2 = [];
+        for(var s in mObj)
+        {
+            arr2.push(s+'_json');
+            arr2.push(s+'_png');
+        }
+        return arr2;
     }
 
     public cleanVideo(type){
@@ -28,6 +107,7 @@ class VideoManager {
     //播放指定位置的动画
     public playVideo(type,index){
         var self = this;
+        var baseData = PKManager.getInstance().getVedioBase(index);
         if(!this.videoData[type])
             this.videoData[type] = {};
         if(this.videoData[type][index])
@@ -35,7 +115,9 @@ class VideoManager {
             play();
             return
         }
-        var baseData = this.baseData = PKManager.getInstance().getVedioBase(index);
+
+
+
         Net.send(GameEvent.pkCore.pk_vedio,baseData,function(data){
             var msg = data.msg;
             self.videoData[type][index] = msg.pkdata;
@@ -44,6 +126,28 @@ class VideoManager {
         });
 
         function play(){
+            self.baseData = ObjectUtil.clone(baseData);
+
+            if(PKManager.getInstance().teamChange)
+            {
+                ObjectUtil.swapKey(self.baseData,'player1','player2')
+                ObjectUtil.swapKey(self.baseData,'team1','team2')
+                ObjectUtil.swapKey(self.baseData,'team1base','team2base')
+                self.baseData.result.w =  self.baseData.result.w == 1?2:1;
+            }
+
+            self.leaderSkill1 = []
+            self.leaderSkill2 = []
+            for(var i=0;i<self.baseData.team1.ac.length;i++)
+            {
+                self.leaderSkill1.push(self.decodeLeaderSkill(self.baseData.team1.ac[i]))
+            }
+            for(var i=0;i<self.baseData.team2.ac.length;i++)
+            {
+                self.leaderSkill2.push(self.decodeLeaderSkill(self.baseData.team2.ac[i]))
+            }
+
+
             self.type = type;
             self.index = index;
             VideoManager.getInstance().initVideo(self.videoData[type][index]);
@@ -82,7 +186,7 @@ class VideoManager {
                 //else if(skillArray)
                 //    skillArray.push(action);
                 //else
-                    temp.push(action);
+                temp.push(action);
             }
         }
         this.dataArray.pop();
@@ -90,7 +194,7 @@ class VideoManager {
 
     //对一次行为进行解释
     private decode(str){
-       var oo:any = {};
+        var oo:any = {};
         oo.type = MyTool.str2Num(str.charAt(0));
         switch(oo.type)
         {

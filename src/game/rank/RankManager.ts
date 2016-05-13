@@ -58,7 +58,7 @@ class RankManager{
             for(var i=0;i<arr.length;i++)
             {
                 arr[i].index = i;
-                if(arr[i].gameid == UM.openid)
+                if(arr[i].gameid == UM.gameid)
                 {
                     arr[0].self = i;
                 }

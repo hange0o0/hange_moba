@@ -45,7 +45,7 @@ class FriendLogItem extends game.BaseItem {
         var FM = FriendManager.getInstance();
         if(this.data.type == 3)  //聊天
         {
-            if(UM.openid == this.data.from_gameid)
+            if(UM.gameid == this.data.from_gameid)
                  FriendTalkUI.getInstance().show(this.data.to_gameid);
             else
                  FriendTalkUI.getInstance().show(this.data.from_gameid);

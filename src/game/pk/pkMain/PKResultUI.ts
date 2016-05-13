@@ -37,8 +37,9 @@ class PKResultUI extends game.BaseUI {
         this.scroller.viewport.scrollV = 0;
         MyTool.removeMC(PKWinUI.getInstance());
         MyTool.removeMC(PKFailUI.getInstance());
+        var PKM = PKManager.getInstance();
 
-        if(PKManager.getInstance().pkResult.result)
+        if((PKM.pkResult.result && !PKM.teamChange) || (!PKM.pkResult.result && PKM.teamChange))
         {
             this.addChild(PKWinUI.getInstance());
             PKWinUI.getInstance().renew();

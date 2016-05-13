@@ -53,7 +53,7 @@ class DebugUI extends game.BaseUI {
 		this.btn13.label = 'answer';
 
 	   //默认登录
-		LoginManager.getInstance().login(_get['openid'],'111111',function(){
+		LoginManager.getInstance().login(_get['gameid'],'111111',function(){
 			LoginManager.getInstance().loginServer(1);
 		});
 	}

@@ -65,7 +65,7 @@ class ServerGameEqualUI extends game.BaseUI {
 
     private onOtherInfo(){
         var gameid = UM.server_game_equal.enemy.userinfo.gameid;
-        if(gameid && gameid != UM.openid)
+        if(gameid && gameid != UM.gameid)
             OtherInfoUI.getInstance().showID(gameid);
     }
     private onRing1(){
@@ -86,8 +86,8 @@ class ServerGameEqualUI extends game.BaseUI {
 
         //更新敌人
         var enemyList = this.enemyArray = [];
-        if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.openid)
-            data.enemy.userinfo = {head:1,nick:'神秘人',level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
+        if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.gameid)
+            data.enemy.userinfo = {head:'???',nick:'神秘人',level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
         var specialData = {
             isEqual:true
         };

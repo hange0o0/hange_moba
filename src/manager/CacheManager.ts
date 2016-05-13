@@ -1,4 +1,3 @@
-var $cache;
 class CacheManager{
 
     private static _instance:CacheManager;

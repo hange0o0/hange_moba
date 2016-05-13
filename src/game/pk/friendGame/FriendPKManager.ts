@@ -142,9 +142,8 @@ class FriendPKManager{
             UM.addHistory(choose.list.join(','));
             self.lastPKData[self.logid] = msg//.pkdata;
             FriendManager.getInstance().getLog(null,true);
-            //self.pkObject[logid].content.ask_choose = msg.ask_choose;
-            //self.pkObject[logid].content.answer_choose = choose;
-            //self.pkObject[logid].content.result = msg.result;
+
+            msg.info.type = PKManager.PKType.FRIEND;
             PKManager.getInstance().onPK(PKManager.PKType.FRIEND,msg);
 
             if(fun)
@@ -163,13 +162,24 @@ class FriendPKManager{
         }
         var self = this;
         var oo:any = {};
-        var pkObject = FriendManager.getInstance().pkObject
-        oo.team1 = pkObject[logid].content.answer_choose;
-        oo.team2 = pkObject[logid].content.ask_choose;
-        oo.isequal = pkObject[logid].content.isequal;
+        var pkObject = FriendManager.getInstance().pkObject[logid];
+        var content = pkObject.content
+        oo.team1 = content.answer_choose;
+        oo.team2 = content.ask_choose;
+        oo.isequal = content.isequal;
         Net.send(GameEvent.pkCore.pk_result,oo,function(data){
             var msg = data.msg;
             self.lastPKData[logid] = msg//.pkdata;
+
+            var info:any = msg.info = {};
+            info.type = PKManager.PKType.FRIEND;
+            info.fromnick = content.fromnick;
+            info.fromhead = content.fromhead;
+            info.fromgameid = pkObject['from_gameid'];
+            info.tonick = content.tonick;
+            info.tohead = content.tohead;
+            info.togameid = pkObject['to_gameid'];
+
             PKManager.getInstance().onPK(PKManager.PKType.REPLAY,msg);
             if(fun)
                 fun();

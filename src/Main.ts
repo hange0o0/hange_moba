@@ -155,10 +155,10 @@ class Main extends eui.UILayer {
         GameManager.getInstance().init();
 
 
-        UM.openid = _get['openid'];
-        //if(UM.openid == '1_10000')
+        UM.gameid = _get['gameid'];
+        //if(UM.gameid == '1_10000')
         //    UM.landid = '1449731763';
-        //else if(UM.openid == '1_10001')
+        //else if(UM.gameid == '1_10001')
         //    UM.landid = '1449732148';
 
         if(Config.isDebug && _get['host'] == 'com')
@@ -211,12 +211,14 @@ class Main extends eui.UILayer {
 
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
+            msg.info = {};
+
+            var key = _get['test']
+            PKManager.getInstance().onPK(key,msg) ;
             if(dataIn.vedio == -1)
                 return;
-
-            PKManager.getInstance().onPK('test',msg) ;
             //var baseData = PKManager.getInstance().getVedioBase(dataIn.vedio - 1);
-            VideoManager.getInstance().playVideo('test',dataIn.vedio)
+            VideoManager.getInstance().playVideo(key,dataIn.vedio)
 
             //console.log(PKManager.getInstance().getVedioBase(dataIn.vedio - 1));
 

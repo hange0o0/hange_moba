@@ -15,6 +15,10 @@
 	{
 		"keys":"main4_png,main1_png,main2_png,main3_png",
 		"name":"build"
+	},
+	{
+		"keys":"skill1_json,skill1_png,skill2_json,skill2_png",
+		"name":"ani"
 	}],
 	"resources":[
 	{
@@ -931,5 +935,25 @@
 		"name":"bar3_png",
 		"type":"image",
 		"url":"game_assets/bar3.png"
+	},
+	{
+		"name":"skill1_json",
+		"type":"json",
+		"url":"ani/skill1.json"
+	},
+	{
+		"name":"skill1_png",
+		"type":"image",
+		"url":"ani/skill1.png"
+	},
+	{
+		"name":"skill2_json",
+		"type":"json",
+		"url":"ani/skill2.json"
+	},
+	{
+		"name":"skill2_png",
+		"type":"image",
+		"url":"ani/skill2.png"
 	}]
 }

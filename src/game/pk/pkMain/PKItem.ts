@@ -12,6 +12,10 @@ class PKItem extends game.BaseItem {
     public playerData;
     public timer
 
+    public ox;   //原始的
+    public oy;   //原始的
+    public ar = -1; //攻击方向，-1为向上，1为向下
+
     public childrenCreated() {
         //this.headMC.mask = this.headMask;
     }

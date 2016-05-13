@@ -13,33 +13,17 @@ class MyTool {
             mc.parent.removeChild(mc)
     }
 
-    //得到最常用的10个怪
-    public static getCommonUse(list){
-        if(!list)
-            return [];
-        var obj = {};
-
-        var array = [];
-        for(var i=0;i<list.length;i++)
-        {
-            var temp = list[i].split(',');
-            for(var j=0;j<temp.length;j++)
-            {
-                var id = temp[j];
-                obj[id] =  (obj[id] || 0) + 1;
-            }
-        }
-
-        for(var s in obj)
-        {
-            array.push({id:s,num:obj})
-        }
-
-        ArrayUtil.sortByField(array,['num','id'],[1,0])
-        array.length = Math.min(10,array.length);
-
-        return array;
+    //加载时隐藏，加载完显示
+    public static setImgSource(img,source){
+        img.visible = false;
+        img.once(egret.Event.COMPLETE,this.onImgComplete,this); //写在外部，防止重复调用
+        img.source = source;
     }
+    private static onImgComplete(e){
+       e.currentTarget.visible = true;
+    }
+
+
 
 
     //得到数据变化过程数组

@@ -10,8 +10,12 @@ class VideoUI extends game.BaseUI {
     private enemyItem: VideoItem;
     private selfItem: VideoItem;
     private itemGroup: eui.Group;
+    private selfSkill: eui.Label;
+    private enemySkill: eui.Label;
 
 
+    private skiller1;
+    private skiller2;
 
     private enemyItems = []
     private selfItems = []
@@ -24,12 +28,19 @@ class VideoUI extends game.BaseUI {
 
 
     private currentAction;
-    private mvList;
+    private skillData;
     private timer;
 
     public constructor() {
         super();
         this.skinName = "VideoUISkin";
+    }
+
+    public addToGroup(mc,index = -1){
+        if(index == -1)
+            this.itemGroup.addChild(mc);
+        else
+            this.itemGroup.addChildAt(mc,index);
     }
 
 
@@ -49,6 +60,8 @@ class VideoUI extends game.BaseUI {
             }
             else
                 item.y = 450;
+            item.oy = item.y;
+            item.ar = -1;
 
             var item = this.newItem(i)
             this.enemyItems.push(item)
@@ -59,7 +72,12 @@ class VideoUI extends game.BaseUI {
             }
             else
                 item.y = 50;
+            item.oy = item.y;
+            item.ar = 1;
         }
+
+        this.selfItem.index = 1;
+        this.enemyItem.index = 2;
 
     }
 
@@ -73,6 +91,7 @@ class VideoUI extends game.BaseUI {
             item.x = 190;
         else
             item.x = 450;
+        item.ox = item.x;
         this.itemGroup.addChild(item);
 
         return item;
@@ -85,7 +104,16 @@ class VideoUI extends game.BaseUI {
         egret.clearTimeout(this.timer);
     }
 
+
     public show(){
+        var group = VideoManager.getInstance().getVideoAniGroup();
+        if(group.length == 0)
+            this.LoadFiles = [];
+        else
+        {
+            RES.createGroup('skill_ani',group,true);
+            this.LoadFiles = ['skill_ani'];
+        }
         super.show();
     }
 
@@ -98,17 +126,31 @@ class VideoUI extends game.BaseUI {
         this.stageHeight = this.stage.stageHeight;
         this.itemGroup.y = ((this.stageHeight - 250-180)-500)/2 + 250
 
+        var p = this.selfItem.getPlayerXY();
+        p = this.itemGroup.globalToLocal(p.x,p.y)
+        this.skiller1 = {x:p.x,ox:p.x,y:p.y,oy:p.y}
+
+        var p = this.enemyItem.getPlayerXY();
+        p = this.itemGroup.globalToLocal(p.x,p.y)
+        this.skiller2 = {x:p.x,ox:p.x,y:p.y,oy:p.y}
+
         var VC = VideoCode.getInstance()
         VC.initData(VM.baseData);
-        VC.play(VM.type == 'test');
+
 
         this.selfItem.data = VC.player1
         this.enemyItem.data = VC.player2
 
 
 
-        //if(VM.type == 'test')
-        //    this.hide();
+
+        this.enemySkill.text = ''
+        this.selfSkill.text = ''
+
+        if(VM.type == 'test')
+            this.hide();
+
+        VC.play(VM.type == 'test');
     }
 
     //取关联的显示对象
@@ -118,20 +160,33 @@ class VideoUI extends game.BaseUI {
             if(index < 3)
                 return this.selfItems[index]
             if(index == 3)
-                return this.selfItem.getPlayer();
+                return this.skiller1;
         }
         else
         {
             if(index < 3)
                 return this.enemyItems[index]
             if(index == 3)
-                return this.enemyItem.getPlayer();
+                return this.skiller2;
         }
         return null;
     }
 
     public getPlayer(id){
         return null;
+    }
+
+    //玩家回合结束
+    public roundOver(){
+        var VC = VideoCode.getInstance();
+        if(VC.isDebug)
+        {
+            VC.onMovieOver();
+            return;
+        }
+        this.timer = egret.setTimeout(function(){
+            VC.onMovieOver()
+        },this,200);
     }
 
     private onActionOver(){
@@ -150,62 +205,120 @@ class VideoUI extends game.BaseUI {
     }
 
     //播放动画序列
-    public playSkill(list){
-        this.mvList = list;
-        this.playOneSkill();
-    }
+    public playSkill(data){
+        this.skillData = data;
+        var VC = VideoCode.getInstance();
+        if(VC.isDebug)
+        {
+            this.debugShow(data);
+            return;
+        }
 
-    //播放单个动画
-    public playOneSkill(){
-        if(this.mvList.length == 0)
+        var MV = VideoMV.getInstance();
+        var atker = VC.getPlayerByID(data.atker);
+        data.teamID = atker.teamID;
+        data.atkMC = atker.displayMC;
+        data.defMCs = [];
+        for(var s in data.defender)
+        {
+            data.defMCs.push(VC.getPlayerByID(s).displayMC);
+        }
+        if(data.skillID == 50)  //攻击
+        {
+            MV.atk(data,this.onActionOver,this)
+        }
+        else if(data.skillID == 51)  //秒杀
+        {
+            this.onActionOver();
+        }
+        else if(data.skillID == 52)  //回合结束时血量改变
         {
             this.onActionOver();
         }
         else
         {
-            var VC = VideoCode.getInstance();
-             var data = this.mvList.pop();
-            if(data.atker != 1 && data.atker != 2)
-                data.atker = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
-            for(var i=0;i<data.defender.length;i++)
+            if(data.atker >=10)
             {
-                data.defender[i] = data.defender[i] + '[' + VC.getPlayerByID(data.defender[i]).mvo.id+']'+(VC.getPlayerByID(data.defender[i]).isPKing?'*':'');
+                var mvo = atker.mvo;
+                data.skillVO = mvo.getSkillByID(data.skillID,atker.isPKing)
+            }
+            else
+            {
+                 if(data.skillID == 1)//令牌
+                 {
+                     var PKM = PKManager.getInstance()
+                     if(data.atker == 1)
+                         data.skillVO = RingVO.getObject(PKM.team1Ring).getSkillVO()
+                     else
+                         data.skillVO = RingVO.getObject(PKM.team2Ring).getSkillVO()
+                 }
+                else
+                 {
+                     var VM = VideoManager.getInstance();
+                     if(data.atker == 1)
+                         data.skillVO = VM.leaderSkill1[data.skillID - 2];
+                     else
+                         data.skillVO = VM.leaderSkill2[data.skillID - 2];
+                 }
             }
 
-            if(VC.isDebug)
-            {
-                this.debugShow(data);
-                return;
-            }
-            this.playOneSkill();
+            this.showSkillUse(data);
+
         }
+    }
+
+    private showSkillUse(data){
+        var MV = VideoMV.getInstance();
+        if(data.skillVO.type == 1)//主技能
+        {
+             if(data.teamID == 1)
+                this.selfSkill.text = data.skillVO.name;
+            else
+                this.enemySkill.text = data.skillVO.name;
+        }
+
+        MV['mv'](data,function(){
+        //MV[data.skillVO.mv](data,function(){
+            this.onActionOver();
+            this.selfSkill.text = '';
+            this.enemySkill.text = '';
+        },this)
     }
 
     private debugShow(data){
         var VC = VideoCode.getInstance();
+
+        if(data.atker != 1 && data.atker != 2)
+            data.atker = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
+        data.defList = [];
+        for(var s in data.defender)
+        {
+            data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':''));
+        }
+
         if(data.skillID == 50)
         {
-            var str = data.atker + ' 攻击 ' + data.defender[0];
+            var str = data.atker + ' 攻击 ' + data.defList.join(',');
         }
         else if(data.skillID == 51)
         {
-            var str = data.atker + ' 秒杀 ' + data.defender[0];
+            var str = data.atker + ' 秒杀 ' + data.defList.join(',');
         }
         else if(data.skillID == 52)
         {
             var str = data.atker + ' 回合结束时血量改变';
         }
-        else if(data.skillID == 53)
-        {
-            var str = data.atker +  ' 对 ' + data.defender.join(',') + ' 进行加成';
-        }
+        //else if(data.skillID == 53)
+        //{
+        //    var str = data.atker +  ' 对 ' + data.defList.join(',') + ' 进行加成';
+        //}
         else
         {
-            var str = data.atker + '对' + data.defender.join(',') + '使用技能' + data.skillID ;
+            var str = data.atker + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
         }
         str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
         console.log(str);
-        this.playOneSkill();
+        this.onActionOver();
     }
 
 }

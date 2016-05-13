@@ -12,6 +12,7 @@ class RingVO {
     public des
     public begin
     public step
+    public mv
 
     public tecType = 2;
 
@@ -27,6 +28,7 @@ class RingVO {
         this.des = data.des;
         this.begin = data.begin;
         this.step = data.step;
+        this.mv = data.mv;
     }
 
     public getDes(level){
@@ -39,6 +41,15 @@ class RingVO {
 
     public get thumb(){
         return 'head_png';
+    }
+
+    public getSkillVO(){
+         return {
+             name:this.name,
+             des:'',
+             type:4,
+             mv:this.mv
+         }
     }
 
 

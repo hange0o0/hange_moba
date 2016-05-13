@@ -103,6 +103,7 @@ class ServerGameManager{
 
             UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
+            msg.info.type = PKManager.PKType.SERVER;
             PKManager.getInstance().onPK(PKManager.PKType.SERVER,msg);
 
             if(fun)

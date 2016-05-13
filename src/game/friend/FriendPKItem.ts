@@ -22,7 +22,7 @@ class FriendPKItem extends game.BaseItem {
     }
 
     private onClick(){
-        if(this.data.from_gameid == UM.openid)//我请求的
+        if(this.data.from_gameid == UM.gameid)//我请求的
             OtherInfoUI.getInstance().showID(this.data.to_gameid)
         else
             OtherInfoUI.getInstance().showID(this.data.from_gameid)
@@ -55,7 +55,7 @@ class FriendPKItem extends game.BaseItem {
         var fromHead = this.getHead(this.data.from_gameid,this.data.content.fromhead);
         var toHead = this.getHead(this.data.to_gameid,this.data.content.tohead);
         this.dateText.text = '剩余时间：' + DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
-        if(this.data.from_gameid == UM.openid)//我请求的
+        if(this.data.from_gameid == UM.gameid)//我请求的
         {
             this.headMC.source = MyTool.getHeadUrl(toHead);
             this.nameText.text =  '你向【' + toNick + '】发出了挑战';
