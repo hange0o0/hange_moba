@@ -873,6 +873,16 @@
 					"isFolder":false,
 					"key":"bar3_png",
 					"name":"bar3_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill1_png",
+					"name":"skill1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill2_png",
+					"name":"skill2_png"
 				}
 			]
 		}

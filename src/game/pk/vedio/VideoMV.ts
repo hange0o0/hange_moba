@@ -46,6 +46,7 @@ class VideoMV {
 
         var tw:egret.Tween = egret.Tween.get(mv);
         tw.to({x:b.x,y:b.y}, 300).call(function(){
+            return 
             AM.removeMV(mv);
             mv = AM.getAniOnce('skill1',function(){
                 fun.apply(thisObj);
