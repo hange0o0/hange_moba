@@ -31,18 +31,22 @@ class VideoManager {
     }
 
     public decodeLeaderSkill(str){
-        //sm_101_f1 ,sm_101_d1
-        var arr = str.split('_');
+        //sm_101_f1 ,sm_101_ds1,sm_507_ds2#123
+        var arr = (str.split('#')[0]).split('_');
         var mvo = MonsterVO.getObject(arr[1]);
-        var temp = arr[1].split('');
+        var temp = arr[2].split('');
         var id = temp.pop();
-        var mv = temp.pop();
         var svo = mvo.getSkillByID(id,false);
+        var mv:any;
+        if(temp.length < 2)
+            mv = svo.mv;
+        else
+            mv = 'l' + temp.pop();
         return {
             name:mvo.name +'·'+ svo.name,
             des:'',
             type:3,
-            mv:'l' + mv
+            mv:mv
         }
 
     }

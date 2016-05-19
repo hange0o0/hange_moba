@@ -23,16 +23,33 @@ class VideoMV {
     public ls(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
-        var self = this;
+
+        var AM = AniManager.getInstance();
+        var mv = AM.getAniOnce('skill1',function(){
+            fun.apply(thisObj);
+        })
+        mv.x = b.x;
+        mv.y = b.y;
+        VideoUI.getInstance().addToGroup(mv);
     }
     //leader对敌方加成
     public le(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
+
+        var AM = AniManager.getInstance();
+        var mv = AM.getAniOnce('skill1',function(){
+            fun.apply(thisObj);
+        })
+        mv.x = b.x;
+        mv.y = b.y;
+        VideoUI.getInstance().addToGroup(mv);
+        self.beAtk(b,100);
     }
 
-    public mv(data,fun,thisObj){
+    //秒杀动画
+    public kill(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
@@ -45,8 +62,56 @@ class VideoMV {
         VideoUI.getInstance().addToGroup(mv);
 
         var tw:egret.Tween = egret.Tween.get(mv);
-        tw.to({x:b.x,y:b.y}, 300).call(function(){
-            return 
+        tw.to({x:b.x,y:b.y}, Math.min(MyTool.getDes(a,b),400),egret.Ease.sineIn).call(function(){
+            AM.removeMV(mv);
+            self.beAtk(b);
+        }).wait(100).call(fun,thisObj);
+    }
+
+    //A指向B的魔法
+    public hit1(data,fun,thisObj){
+        var a = data.atkMC
+        var b = data.defMCs[0];
+        var self = this;
+
+        var AM = AniManager.getInstance();
+        var mv = AM.getAni('skill2');
+        mv.x = a.x;
+        mv.y = a.y;
+        mv.rotation = this.getRota(a,b);
+        VideoUI.getInstance().addToGroup(mv);
+
+
+        var tw:egret.Tween = egret.Tween.get(mv);
+        tw.to({x:b.x,y:b.y}, Math.min(MyTool.getDes(a,b),400),egret.Ease.sineIn).call(function(){
+            AM.removeMV(mv);
+            mv = AM.getAniOnce('skill1',function(){
+                fun.apply(thisObj);
+            })
+            mv.x = b.x;
+            mv.y = b.y;
+            VideoUI.getInstance().addToGroup(mv);
+            self.beAtk(b,100);
+        })
+    }
+
+    //test
+    public mv(data,fun,thisObj){
+        var a = data.atkMC
+        var b = data.defMCs[0];
+        var self = this;
+
+        var AM = AniManager.getInstance();
+        var mv = AM.getAni('skill2');
+        mv.x = a.x;
+        mv.y = a.y;
+        mv.rotation = this.getRota(a,b);
+        VideoUI.getInstance().addToGroup(mv);
+
+
+        var tw:egret.Tween = egret.Tween.get(mv);
+        tw.to({x:b.x,y:b.y}, Math.min(MyTool.getDes(a,b),400),egret.Ease.sineIn).call(function(){
+            //return
             AM.removeMV(mv);
             mv = AM.getAniOnce('skill1',function(){
                 fun.apply(thisObj);
@@ -73,6 +138,6 @@ class VideoMV {
 
     //转角度，由A指向B，A原来是指向X轴
     private getRota(begin,end){
-        return -Math.atan2(end.y - begin.y,end.x - begin.x)* 180/3.14
+        return Math.atan2(end.y - begin.y,end.x - begin.x)* 180/3.14
     }
 }

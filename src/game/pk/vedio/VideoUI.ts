@@ -59,7 +59,7 @@ class VideoUI extends game.BaseUI {
                 item.y = this.itemY1;
             }
             else
-                item.y = 450;
+                item.y = 480;
             item.oy = item.y;
             item.ar = -1;
 
@@ -71,7 +71,7 @@ class VideoUI extends game.BaseUI {
                 item.y = this.itemY2;
             }
             else
-                item.y = 50;
+                item.y = 20;
             item.oy = item.y;
             item.ar = 1;
         }
@@ -277,8 +277,8 @@ class VideoUI extends game.BaseUI {
                 this.enemySkill.text = data.skillVO.name;
         }
 
-        MV['mv'](data,function(){
-        //MV[data.skillVO.mv](data,function(){
+        //MV['mv'](data,function(){
+        MV[data.skillVO.mv](data,function(){
             this.onActionOver();
             this.selfSkill.text = '';
             this.enemySkill.text = '';

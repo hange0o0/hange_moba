@@ -13,6 +13,10 @@ class MyTool {
             mc.parent.removeChild(mc)
     }
 
+    public static getDes(a,b){
+        return Math.pow(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2),0.5)
+    }
+
     //加载时隐藏，加载完显示
     public static setImgSource(img,source){
         img.visible = false;

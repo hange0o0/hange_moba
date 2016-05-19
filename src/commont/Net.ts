@@ -97,14 +97,16 @@ class Net extends egret.EventDispatcher{
             }
             if(data.error)
             {
+                GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
+                this.removeLoading();
                 switch (data.error)
                 {
                     case 1:
-                        Alert('版本不对',refresh);
+                        Alert('用户版本过低',refresh);
                         GameManager.getInstance().stopTimer();
                         break;
                     case 2:
-                        Alert('用户验证失败',refresh);
+                        Alert('该用户已在其它地方登录',refresh);
                         GameManager.getInstance().stopTimer();
                         break;
                     case 3:
@@ -130,7 +132,11 @@ class Net extends egret.EventDispatcher{
         function onError(e){
             loader.removeEventListener(egret.Event.COMPLETE, onComplete, this);
             loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);
-            Alert('通信失败');
+            Alert('与服务器失去连接！',refresh);
+            GameManager.getInstance().stopTimer();
+            GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
+            this.removeLoading();
+
         }
         function refresh(){
             location.reload();
