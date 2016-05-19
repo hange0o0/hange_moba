@@ -5,29 +5,34 @@
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
+				<e:Group x="0" y="-80" height="450">
+					<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" y="0" height="100%"/>
+					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" y="0" height="100%"/>
+				</e:Group>
 
-				<e:Label id="moneyText" text="标签" y="15" textColor="0xCCB48E" left="65"/>
-				<e:List id="enemyList" height="259" width="614" x="13" y="77" itemRendererSkinName="EnemyHeadItemSkin">
+				<e:Label text="对方卡组" y="15" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:List id="enemyList" height="259" width="614" x="13" y="58" itemRendererSkinName="EnemyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
-				</e:List>
-				<e:Image source="icon_money_png" x="13" y="12"/>
+				</e:List>
 			</e:Group>
-			<e:Group id="myGroup0" x="0" y="391" height="450">
-				<e:Image source="line_png" x="-9" y="0" width="655"/>
+			<e:Group id="myGroup0" x="0" y="391" height="485" width="640">
+				<e:Group y="15" horizontalCenter="0">
+					<e:Image source="flag_mc_png" x="0" y="0"/>
+					<e:Image source="flag_mc_png" y="0" scaleX="-1" x="576"/>
+					<e:Label text="我的卡组" y="15" horizontalCenter="0" textColor="0xF8EDDE"/>
+				</e:Group>
 
 
-				<e:List id="myList0" y="77" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
+				<e:List id="myList0" y="107" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
-				</e:List>
-				<e:Image source="bold_bg_png" y="323" x="88"/>
-				<e:Image source="bold_bg_png" y="323" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="336" textColor="0xCCB48E"/>
-				<e:Label id="ringText1" y="335" textColor="0xCCB48E" text="标签" x="394"/>
-				<e:Button id="chooseBtn0" label="开始PK" y="386" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				</e:List>
+				<e:Label id="ringText0" text="标签" y="360" textColor="0xCCB48E" horizontalCenter="-160"/>
+				<e:Label id="ringText1" y="359" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
+				<e:Button id="chooseBtn0" label="开始PK" y="413" skinName="Btn_r2Skin" horizontalCenter="0"/>
 			</e:Group>
 
 			<e:layout>

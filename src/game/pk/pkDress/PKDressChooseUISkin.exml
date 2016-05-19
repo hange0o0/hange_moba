@@ -1,36 +1,49 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="300">
-	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="300"/>
-	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="300" x="640"/>
+<e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="400" states="normal,selected" >
+	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="400" locked="true"/>
+	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="400" x="640" locked="true"/>
 
 
 
 
-    <e:Group id="itemGroup" x="0" y="0">
-		<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="11" y="20"/>
-		<ns1:PKDressChooseItem id="h2" y="20" x="135" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h3" y="20" x="259" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h4" y="20" x="383" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" x="507" y="20"/>
+    <e:Group id="itemGroup" x="0" y="22" width="640" locked="true">
+		<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="20" y="0" y.selected="15"/>
+		<ns1:PKDressChooseItem id="h2" y="0" x="140" skinName="PKDressChooseItemSkin" y.selected="15"/>
+		<ns1:PKDressChooseItem id="h3" y="0" x="260" skinName="PKDressChooseItemSkin" y.selected="15"/>
+		<ns1:PKDressChooseItem id="h4" y="0" x="380" skinName="PKDressChooseItemSkin" y.selected="15"/>
+		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" y="0" right="20" right.selected="20" y.selected="15"/>
 
-		<ns1:PKDressChooseItem id="h6" y="157" x="11" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h7" y="157" x="135" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h8" y="157" x="259" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h9" y="157" x="383" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h10" y="157" x="507" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h6" y="150" x="20" skinName="PKDressChooseItemSkin" y.selected="135"/>
+		<ns1:PKDressChooseItem id="h7" y="150" x="140" skinName="PKDressChooseItemSkin" y.selected="135"/>
+		<ns1:PKDressChooseItem id="h8" y="150" x="260" skinName="PKDressChooseItemSkin" y.selected="135"/>
+		<ns1:PKDressChooseItem id="h9" y="150" x="380" skinName="PKDressChooseItemSkin" y.selected="135"/>
+		<ns1:PKDressChooseItem id="h10" y="150" skinName="PKDressChooseItemSkin" right="20" right.selected="20" y.selected="135"/>
 	</e:Group>
-	<e:Group id="spliceGroup" x="0" y="8" touchEnabled="false">
-		<e:Image id="a1" source="arrow4_png" x="7" y="2"/>
-		<e:Image id="a2" source="arrow4_png" y="2" x="123"/>
-		<e:Image id="a3" source="arrow4_png" y="2" x="249"/>
-		<e:Image id="a4" source="arrow4_png" y="2" x="373"/>
-		<e:Image id="a5" source="arrow4_png" y="2" x="498"/>
-		<e:Image id="a6" source="arrow4_png" y="2" x="615"/>
-		<e:Image id="a7" source="arrow4_png" y="133" x="7"/>
-		<e:Image id="a8" source="arrow4_png" y="133" x="122"/>
-		<e:Image id="a9" source="arrow4_png" y="133" x="249"/>
-		<e:Image id="a10" source="arrow4_png" y="133" x="373"/>
-		<e:Image id="a11" source="arrow4_png" y="133" x="499"/>
-		<e:Image id="a12" source="arrow4_png" y="133" x="615"/>
+	<e:Group id="spliceGroup" x="0" touchEnabled="false" visible.normal="false" y="0" locked="true">
+		<e:Image id="a1" source="arrow8_png" x="0" y="0"/>
+		<e:Image id="a2" source="arrow8_png" y="0" x="119"/>
+		<e:Image id="a3" source="arrow8_png" x="237" y="0"/>
+		<e:Image id="a4" source="arrow8_png" x="356" y="0"/>
+		<e:Image id="a5" source="arrow8_png" x="474" y="0"/>
+		<e:Image id="a6" source="arrow8_png" x="593" y="0"/>
+		<e:Image id="a7" source="arrow8_png" x="0" y="309" scaleY="-1"/>
+		<e:Image id="a8" source="arrow8_png" y="309" scaleY="-1" x="119"/>
+		<e:Image id="a9" source="arrow8_png" y="309" scaleY="-1" x="237"/>
+		<e:Image id="a10" source="arrow8_png" y="309" scaleY="-1" x="356"/>
+		<e:Image id="a11" source="arrow8_png" y="309" scaleY="-1" x="474"/>
+		<e:Image id="a12" source="arrow8_png" y="309" scaleY="-1" x="593"/>
+	</e:Group>
+	<e:Group width="640" y="315" x="0" locked="true" visible.selected="false">
+		<e:RadioButton horizontalCenter="-210" label="单选框" skinName="MyRadioButtonSkin" y="17" id="ringRadio2"/>
+		<e:RadioButton horizontalCenter="210" y="17" skinName="MyRadioButtonSkin" label="444" id="ringRadio0"/>
+		<e:Button horizontalCenter="0" y="2" label="出　战" skinName="Btn_r3Skin" id="pkBtn0"/>
+	</e:Group>
+	<e:Group x="269" y="320" visible.normal="false">
+		<e:Button id="deleteBtn" label="删除" x="236.06060606060606" y="10.000000000000057" skinName="Btn_b1Skin"/>
+		<e:Button id="moreBtn" label="详情" skinName="Btn_r1Skin" y="7.045454545454561" x="0"/>
+		<e:Button id="cancleBtn" skinName="Btn_r1Skin" y="0" label="取消" x="108.03030303030306"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
 	</e:Group>
 </e:Skin>

@@ -8,41 +8,44 @@
 				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15"/>
 				<e:Label id="timeText" y="9" textColor="0xCCB48E" text="PK类型：竞技场规则" right="6"/>
 			</e:Group>
-			<e:Group id="myGroup0" x="0" y="391" height="360">
-				<e:Image source="line_png" x="-9" y="0" width="655"/>
-				<e:Group id="bg0" x="0" y="0" height="100%" visible="false">
-					<e:Image scale9Grid="40,44,240,266" y="0" height="360" x="0" source="book_bg1_jpg"/>
-					<e:Image y="0" scaleX="-1" scale9Grid="40,44,240,266" height="360" x="640" source="book_bg1_jpg"/>
+			<e:Group id="myGroup0" x="0" y="391" height="450">
+				<e:Group id="bg0" x="0" y="0" height="100%">
+					<e:Image scale9Grid="40,44,240,266" y="0" height="100%" x="0" source="book_bg1_jpg"/>
+					<e:Image y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640" source="book_bg1_jpg"/>
+				</e:Group>
+				<e:Group y="26" horizontalCenter="0" x="20">
+					<e:Image source="flag_mc_png" y="0" x="0"/>
+					<e:Image source="flag_mc_png" y="0" scaleX="-1" x="576"/>
+					<e:Label y="15" textColor="0xF8EDDE" horizontalCenter="0" text="卡组1"/>
 				</e:Group>
 				
 				
-				<e:List id="myList0" y="62" x="17" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
+				<e:List id="myList0" y="130" x="18" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
-				</e:List>
-				<e:Image source="bold_bg_png" y="301" x="88"/>
-				<e:Image source="bold_bg_png" y="301" x="351"/>
-				<e:Label id="ringText0" text="标签" x="129" y="314" textColor="0xCCB48E"/>
-				<e:Label id="ringText1" y="313" textColor="0xCCB48E" text="标签" x="394"/>
-				<e:Label text="PK卡组1" y="28" textColor="0xCCB48E" horizontalCenter="0.5"/>
+				</e:List>
+				<e:Label id="ringText0" text="标签" y="383" textColor="0xCCB48E" horizontalCenter="-160"/>
+				<e:Label id="ringText1" y="382" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
 			</e:Group>
-			<e:Group x="10" y="401" height="360" id="myGroup1">
+			<e:Group x="10" y="401" height="450" id="myGroup1">
 				<e:Image source="line_png" width="655" y="0" x="-9"/>
 				<e:Group x="0" y="0" height="100%" id="bg1">
-					<e:Image source="book_bg1_jpg" scale9Grid="40,44,240,266" y="0" height="360" x="0"/>
-					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="360" x="640"/>
+					<e:Image source="book_bg1_jpg" scale9Grid="40,44,240,266" y="0" height="100%" x="0"/>
+					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 				</e:Group>
-				<e:List y="62" x="17" width="614" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList1">
+				<e:Group y="26" horizontalCenter="0" x="30">
+					<e:Image source="flag_mc_png" y="0" x="0"/>
+					<e:Image source="flag_mc_png" y="0" x="576" scaleX="-1"/>
+					<e:Label y="15" textColor="0xF8EDDE" horizontalCenter="0" text="卡组2"/>
+				</e:Group>
+				<e:List y="130" x="17" width="614" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList1">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Image source="bold_bg_png" y="301" x="88"/>
-				<e:Image source="bold_bg_png" y="301" x="351"/>
-				<e:Label x="129" y="314" textColor="0xCCB48E" text="标签" id="ringText2"/>
-				<e:Label id="ringText3" y="313" textColor="0xCCB48E" text="标签" x="394"/>
-				<e:Label y="28" textColor="0xCCB48E" text="PK卡组1" horizontalCenter="0.5"/>
+				<e:Label y="382" textColor="0xCCB48E" text="标签" id="ringText2" horizontalCenter="-160"/>
+				<e:Label id="ringText3" y="381" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
 			</e:Group>
 			<e:Group id="myChooseGroup" x="20" y="411" height="280">
 				<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
@@ -52,7 +55,7 @@
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Image id="chooseMC" source="pk_icon_png" x="460" y="-66"/>
+				<e:Image id="chooseMC" y="-3" horizontalCenter="165" source="arrow7_png" scaleY="-1"/>
 			</e:Group>
 			
 			<e:layout>
