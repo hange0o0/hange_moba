@@ -10,16 +10,19 @@ class PKDressUI extends game.BaseUI {
     
     private topUI: TopUI;
     private scroller: eui.Scroller;
-    private list: eui.List;
+    private enemyList: eui.List;
     private coinText: eui.Label;
     private woodText: eui.Label;
     private forceText: eui.Label;
     private viewBtn: eui.Button;
-    private enemyList: eui.List;
-    private ringRadio0: eui.RadioButton;
-    private ringRadio1: eui.RadioButton;
-    private pkBtn: eui.Button;
     private pkDressChooseUI: PKDressChooseUI;
+    private list: eui.List;
+    private topGroup: eui.Group;
+    private coinText0: eui.Label;
+    private woodText0: eui.Label;
+    private forceText0: eui.Label;
+    private topBtn: eui.Button;
+
 
 
 

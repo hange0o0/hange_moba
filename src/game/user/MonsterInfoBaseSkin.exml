@@ -6,8 +6,8 @@
 		<e:Image source="book_bg2_jpg" x="0" scale9Grid="40,25,240,289" top="350" bottom="0"/>
 		<e:Image source="book_bg2_jpg" x="640" scaleX="-1" scale9Grid="40,44,240,266" top="350" bottom="0"/>
 	</e:Group>
-	<e:Image source="card_bg_png" x="34" y="38" height="310" scale9Grid="72,75,87,71"/>
-	<e:Image id="headMC" source="pk_bg_jpg" x="49" y="50" width="210" height="283"/>
+	<e:Image source="card_bg_png" x="34" y="38" height="306" scale9Grid="72,75,87,71"/>
+	<e:Image id="headMC" source="pk_bg_jpg" x="49" y="49" width="210" height="280"/>
 	<e:Image source="border1_png" y="103" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
 	<e:Rect height="60" width="214" x="47" y="274" fillAlpha="0.5" strokeWeight="1"/>
 	<e:Image source="border1_png" y="161.5" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
