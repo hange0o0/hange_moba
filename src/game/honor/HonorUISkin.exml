@@ -11,18 +11,15 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:TabBar y="86" id="tab" x="9" itemRendererSkinName="MyTabItemSkin">
+	<e:Image source="line_png" width="650" y="134" x="-5"/>
+	<e:TabBar y="77" id="tab" x="0" itemRendererSkinName="MyTabItemSkin" height="60" width="340">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="通用"/>
 				<e:Object label="技能"/>
 			</e:Array>
-		</e:ArrayCollection>
-		<e:layout>
-			<e:HorizontalLayout/>
-		</e:layout>
-	</e:TabBar>
-	<e:Image source="line_png" width="650" y="138" x="-5"/>
+		</e:ArrayCollection>
+	</e:TabBar>
 	<e:Group id="upBtn" x="15" top="173">
 		<e:Image source="arrow2_png" x="30" y="30" anchorOffsetX="22" anchorOffsetY="23" rotation="90"/>
 		<e:Label id="upText" text="12" x="0" y="71" width="60" textAlign="center"/>

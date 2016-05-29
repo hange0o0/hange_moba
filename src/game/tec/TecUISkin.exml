@@ -34,7 +34,9 @@
 			<e:Image source="card_icon_1_png" y="0" x="0" scaleX="0.8" scaleY="0.8"/>
 		</e:Group>
 	</e:Group>
-	<e:TabBar id="tab" x="5" y="81" itemRendererSkinName="MyTabItemSkin">
+	<e:Image source="line_png" x="-5" y="134" width="650"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:TabBar id="tab" x="0" y="77" itemRendererSkinName="MyTabItemSkin" width="420" height="60">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="通用"/>
@@ -42,8 +44,7 @@
 				<e:Object label="卡牌"/>
 			</e:Array>
 		</e:ArrayCollection>
-	</e:TabBar>
-	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	</e:TabBar>
 	<e:Scroller id="scroller" width="640" x="0" top="390" bottom="0">
 		<e:Group>
 			<e:List id="list" height="200" width="640" x="0" y="0" itemRendererSkinName="TecItemSkin">
@@ -53,8 +54,7 @@
 
 			</e:List>
 		</e:Group>
-	</e:Scroller>
-	<e:Image source="line_png" x="-5" y="134" width="650"/>
+	</e:Scroller>
 
 	<e:Group id="coinGroup" y="87" right="15">
 		<e:Image source="icon_money_png" y="0" x="0"/>
