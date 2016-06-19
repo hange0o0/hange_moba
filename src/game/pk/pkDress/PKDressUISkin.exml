@@ -2,8 +2,8 @@
 <e:Skin class="PKDressUISkin" width="640" height="1500" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" >
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" x="0" width="640" top="80" bottom="0" locked="true">
-		<e:Group height="279" width="360">
+	<e:Scroller id="scroller" x="0" width="640" top="80" bottom="0">
+		<e:Group id="scrollerGroup" height="279" width="360">
 			<e:List y="85" itemRendererSkinName="EnemyHeadItemSkin" width="614" height="259" id="enemyList" scaleX="0.9" scaleY="0.9" horizontalCenter="0.30000000000001137">
 				<e:layout>
 					<e:TileLayout requestedColumnCount="5"/>

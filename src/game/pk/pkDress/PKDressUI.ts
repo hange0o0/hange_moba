@@ -4,12 +4,13 @@ class PKDressUI extends game.BaseUI {
         if (!this.instance) this.instance = new PKDressUI();
         return this.instance;
     }
-    
 
 
-    
+
+
     private topUI: TopUI;
     private scroller: eui.Scroller;
+    private scrollerGroup: eui.Group;
     private enemyList: eui.List;
     private coinText: eui.Label;
     private woodText: eui.Label;
@@ -22,6 +23,8 @@ class PKDressUI extends game.BaseUI {
     private woodText0: eui.Label;
     private forceText0: eui.Label;
     private topBtn: eui.Button;
+
+
 
 
 
@@ -44,6 +47,7 @@ class PKDressUI extends game.BaseUI {
     public key;//记录上一次选择的TAB
 
     public chooseMonster;
+    private chooseRing
 
 
     public constructor() {
@@ -77,46 +81,49 @@ class PKDressUI extends game.BaseUI {
         super.childrenCreated();
 
         this.topUI.setTitle('调整位置')
-        this.topUI.addEventListener('hide',this.hide,this);
+        this.topUI.addEventListener('hide', this.hide, this);
 
 
-
-
-        this.addBtnEvent(this.pkBtn, this.onPKStart);
         this.addBtnEvent(this.viewBtn, this.onView);
         this.addBtnEvent(this.forceText, this.onForceText);
-
+        this.addBtnEvent(this.topBtn, this.scrollToTop);
 
 
         this.list.itemRenderer = PKDressChooseListItem;
-        this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
 
         this.enemyList.itemRenderer = EnemyHeadItem;
 
-        this.pkDressChooseUI.addEventListener('change',this.onChooseChange,this)
+        this.pkDressChooseUI.addEventListener('change', this.onChooseChange, this)
         this.pkDressChooseUI.specialData = this.specialData;
 
-        MyTool.addLongTouch(this.ringRadio0,this.onRing1,this)
-        MyTool.addLongTouch(this.ringRadio1,this.onRing2,this)
+        this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
+
+        MyTool.removeMC(this.enemyList)
+
     }
 
-    private onRing1(){
-         RingInfoUI.getInstance().show(this.ringRadio0.value,this.isEqual)
-    }
-    private onRing2(){
-        RingInfoUI.getInstance().show(this.ringRadio1.value,this.isEqual)
+    private scrollToTop(){
+        this.scroller.viewport.scrollV = 0;
+        this.topGroup.visible = false;
     }
 
+    private onScroll(){
+        var scrollV = this.scroller.viewport.scrollV;
+        if(scrollV > this.pkDressChooseUI.y - this.topGroup.height)
+            this.topGroup.visible = true;
+        else
+            this.topGroup.visible = false;
+    }
 
-    private onPKStart(){
+    public onPKStart(){
         if(this.chooseList.length == 0)
         {
             Alert('请先选择出战单位');
             return;
         }
-        var chooseData = {list:this.chooseList,ring:this.ringRadio0.group.selectedValue,index:this.dataIn.index}
+        var chooseData = {list:this.chooseList,ring:this.chooseRing,index:this.dataIn.index}
         var self = this
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
             self.closeRelate();
@@ -165,10 +172,11 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onView(){
-        if(this.currentState == 'more')
-            this.currentState = 'normal';
+        if(this.enemyList.parent)
+            MyTool.removeMC(this.enemyList)
         else
-            this.currentState = 'more';
+            this.scrollerGroup.addChildAt(this.enemyList,0)
+
     }
 
     public addMonster(mid){
@@ -182,6 +190,7 @@ class PKDressUI extends game.BaseUI {
     
     private onChooseChange(){
         this.chooseList = this.pkDressChooseUI.getList();
+        this.chooseRing = this.pkDressChooseUI.getRing();
         this.saveHistory();
         this.renew();
         this.renewList();
@@ -198,7 +207,7 @@ class PKDressUI extends game.BaseUI {
         return count;
     }
     private saveHistory(){
-        this.history[this.pkType] = {key:this.key,list:this.chooseList,ring:this.ringRadio0.group.selectedValue,time:TM.now()};
+        this.history[this.pkType] = {key:this.key,list:this.chooseList,ring:this.chooseRing,time:TM.now()};
         SharedObjectManager.instance.setMyValue('dress_history',this.history);
     }
 
@@ -216,20 +225,14 @@ class PKDressUI extends game.BaseUI {
     }
 
     public reInitData(){
-
-        this.ringRadio0.value = this.ringList[0];
-        this.ringRadio1.value = this.ringList[1];
-        this.ringRadio0.label =  RingVO.getObject(this.ringList[0]).name;
-        this.ringRadio1.label =  RingVO.getObject(this.ringList[1]).name;
-
-
         this.totalWood = 1;
         this.totalCoin = 100;
         if(!this.history[this.pkType] || this.history[this.pkType].key != this.key)
             this.history[this.pkType] = {key:this.key,list:[],ring:this.ringList[0],time:TM.now()};
         var data = this.history[this.pkType];
-        this.ringRadio0.group.selectedValue = data.ring;
+
         this.chooseList = data.list;
+        this.chooseRing = data.ring;
 
         this.list.selectedIndex = -1;
         this.chooseMonster = null;
@@ -238,7 +241,7 @@ class PKDressUI extends game.BaseUI {
         this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
         if(!this.dataIn.enemy)
         {
-            this.currentState = 'normal';
+            MyTool.removeMC(this.enemyList)
             this.viewBtn.visible = false;
         }
         else
@@ -247,9 +250,12 @@ class PKDressUI extends game.BaseUI {
         }
 
 
-        this.pkDressChooseUI.renew(this.chooseList);
+        this.pkDressChooseUI.renew(this.chooseList,this.ringList,this.chooseRing);
         this.renewList();
         this.renew();
+
+        this.topGroup.visible = false;
+        this.scroller.viewport.scrollV = 0;
     }
 
 
@@ -282,6 +288,8 @@ class PKDressUI extends game.BaseUI {
         //资源
         this.coinText.text = oo.coin + '';
         this.woodText.text = oo.wood + '';
+        this.coinText0.text = oo.coin + '';
+        this.woodText0.text = oo.wood + '';
 
         //战力加成相关
         var fight = 0;
@@ -321,6 +329,9 @@ class PKDressUI extends game.BaseUI {
         {
             this.forceText.text = '';
         }
+
+        this.forceText0.text = this.forceText.text;
+        this.forceText0.textColor = this.forceText.textColor;
 
 
     }

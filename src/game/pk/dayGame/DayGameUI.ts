@@ -9,7 +9,6 @@ class DayGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
-    private moneyText: eui.Label;
     private enemyList: eui.List;
     private myGroup0: eui.Group;
     private myList0: eui.List;
@@ -65,7 +64,7 @@ class DayGameUI extends game.BaseUI {
     public onShow(){
         var DM = DayGameManager.getInstance();
         var myData = UM.day_game;
-        this.moneyText.text = '当前进度：' + myData.level + '/10';
+        this.topUI.setTitle('今日挑战(' + myData.level + '/10)');
         //更新敌人
         var specialData:any = {
             isNPC:true,
@@ -110,8 +109,8 @@ class DayGameUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.ringText0.text = RingVO.getObject(data.choose.ring[0]).name;
-        this.ringText1.text = RingVO.getObject(data.choose.ring[1]).name;
+        this.ringText0.text = '技能1：' + RingVO.getObject(data.choose.ring[0]).name;
+        this.ringText1.text = '技能2：' + RingVO.getObject(data.choose.ring[1]).name;
 
     }
 

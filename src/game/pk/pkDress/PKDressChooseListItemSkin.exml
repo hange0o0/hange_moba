@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressChooseListItemSkin" width="600" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="200" states="left,right" >
+<e:Skin class="PKDressChooseListItemSkin" width="600" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="200" >
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="600" height="200" x="0" locked="true"/>
-	<e:Group x="433" y="12" x.right="0">
+	<e:Group x="433" y="12">
 	</e:Group>
 	<e:Image source="card_bg_png" y="9" height="180" x="15" width="138" scale9Grid="72,75,87,71"/>
 	<e:Image source="pk_bg_jpg" y="18" x="24" width="150" height="200" id="headMC" scaleY="0.8" scaleX="0.8"/>

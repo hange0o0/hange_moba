@@ -30,6 +30,14 @@ class PKDressChooseUI extends game.BaseContainer {
     private a10: eui.Image;
     private a11: eui.Image;
     private a12: eui.Image;
+    private ringRadio0: eui.RadioButton;
+    private ringRadio1: eui.RadioButton;
+    private pkBtn: eui.Button;
+    private deleteBtn: eui.Button;
+    private moreBtn: eui.Button;
+    private cancleBtn: eui.Button;
+
+
 
 
 
@@ -69,8 +77,8 @@ class PKDressChooseUI extends game.BaseContainer {
             var mc = this['h'+i]
             mc.index = i;
             this.addBtnEvent(mc,this.onMCClick)
-            MyTool.addLongTouch(mc,this.onLongTouch,this);
-            mc.addEventListener('deleted',this.onDelete,this)
+            //MyTool.addLongTouch(mc,this.onLongTouch,this);
+            //mc.addEventListener('deleted',this.onDelete,this)
 
 
 
@@ -100,11 +108,75 @@ class PKDressChooseUI extends game.BaseContainer {
                 index--;
             a.index = index;
         }
+
+        this.addBtnEvent(this.pkBtn, this.onPKStart);
+        this.addBtnEvent(this.deleteBtn, this.onDelete);
+        this.addBtnEvent(this.cancleBtn, this.onCancel);
+        this.addBtnEvent(this.moreBtn, this.onMore);
+        MyTool.addLongTouch(this.ringRadio0,this.onRing1,this)
+        MyTool.addLongTouch(this.ringRadio1,this.onRing2,this)
+
+        console.log(this.posArray);
     }
 
-    private onDelete(e){
-        var item = e.currentTarget;
-        var index = this.mcArray.indexOf(item);
+    private onRing1(){
+        RingInfoUI.getInstance().show(this.ringRadio0.value,PKDressUI.getInstance().isEqual)
+    }
+    private onRing2(){
+        RingInfoUI.getInstance().show(this.ringRadio1.value,PKDressUI.getInstance().isEqual)
+    }
+
+    private changeState(stat){
+        this.currentState = stat;
+        for(var i=0;i<this.mcArray.length;i++) {
+            var mc = this.mcArray[i];
+            if(stat == 'normal')
+                mc.y = this.posArray[i].y;
+            else
+            {
+                if(i < 5)
+                    mc.y = this.posArray[i].y + 15;
+                else
+                    mc.y = this.posArray[i].y - 15;
+            }
+        }
+    }
+
+
+    private onPKStart(){
+        PKDressUI.getInstance().onPKStart();
+    }
+
+    private onMore(){
+        var index = this.selectIndex
+        var target = this.mcArray[this.selectIndex];
+        var chooseList = [];
+        for(var i=0;i<this.mcArray.length;i++) {
+            var mc = this.mcArray[i];
+            if(mc.data)
+            {
+                chooseList.push(mc.data);
+            }
+        }
+        MonsterList.getInstance().show(chooseList,index)
+    }
+
+
+    private onCancel(){
+        this.changeState('normal')
+        var item = this.mcArray[this.selectIndex];
+        this.selectIndex = -1;
+        item.data.selected = false;
+        item.dataChanged();
+        this.renewSplice();
+
+    }
+
+    private onDelete(){
+        this.changeState('normal')
+        var index = this.selectIndex
+        var item = this.mcArray[index];
+
         this.mcArray.splice(index,1);
         this.listLength --;
 
@@ -120,6 +192,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
     //插入
     private onSplice(e){
+        this.changeState('normal')
         var item = e.currentTarget;
         var index = item.index;
         var selectItem = this.mcArray[this.selectIndex];
@@ -176,6 +249,7 @@ class PKDressChooseUI extends game.BaseContainer {
             item.data.selected = true;
             item.dataChanged();
             this.renewSplice();
+            this.changeState('selected')
         }
         else if(this.selectIndex == index)//取消选中
         {
@@ -183,9 +257,11 @@ class PKDressChooseUI extends game.BaseContainer {
             item.data.selected = false;
             item.dataChanged();
             this.renewSplice();
+            this.changeState('normal')
         }
         else //交换
         {
+            this.changeState('normal')
             var selectItem = this.mcArray[this.selectIndex];
             selectItem.data.selected = false;
             selectItem.dataChanged();
@@ -206,7 +282,14 @@ class PKDressChooseUI extends game.BaseContainer {
         }
     }
 
-    public renew(list){
+    public renew(list,ringList,chooseRing){
+
+        this.ringRadio0.value = ringList[0];
+        this.ringRadio1.value = ringList[1];
+        this.ringRadio0.label =  RingVO.getObject(ringList[0]).name;
+        this.ringRadio1.label =  RingVO.getObject(ringList[1]).name;
+        this.ringRadio0.group.selectedValue = chooseRing;
+
         this.selectIndex = -1;
         this.list = list
         this.listLength = list.length;
@@ -225,25 +308,9 @@ class PKDressChooseUI extends game.BaseContainer {
         }
         
         this.mvItem.visible = false
+        this.changeState('normal')
         this.renewPos(null,true);
         this.renewSplice();
-    }
-
-
-    private onLongTouch(target){
-        if(!target.data)
-            return;
-        var chooseList = [];
-        for(var i=0;i<this.mcArray.length;i++) {
-            var mc = this.mcArray[i];
-            if(mc.data)
-            {
-                chooseList.push(mc.data);
-            }
-
-        }
-        var index = chooseList.indexOf(target.data);
-        MonsterList.getInstance().show(chooseList,index)
     }
 
     //交换位置
@@ -260,6 +327,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private renewPos(moveArr=null,stopTween = false){
         moveArr = moveArr || [];
         var des = 126;
+        var changeNum = 0;
         for(var i=0;i<this.mcArray.length;i++)
         {
             var mc = this.mcArray[i];
@@ -285,39 +353,8 @@ class PKDressChooseUI extends game.BaseContainer {
             else
             {
                 var tw:egret.Tween = egret.Tween.get(mc);
-                if(mc.y == posMC.y || moveArr.indexOf(mc) != -1)
-                    tw.to({x:posMC.x,y:posMC.y}, 200);
-                else
-                {
-                    var tw2:egret.Tween = egret.Tween.get(this.mvItem);
-                    this.mvItem.visible = true;
-                    this.mvItem.data = mc.data;
-                    this.mvItem.x = mc.x;
-                    this.mvItem.y = mc.y;
-
-                    if(mc.y < posMC.y) //向下移
-                    {
-                        mc.y = posMC.y;
-                        mc.x = posMC.x - des;
-                        tw.to({ x: posMC.x},200);
-
-                        tw2.to({ x: this.mvItem.x + des},200).call(function(){
-                            this.mvItem.visible = false;
-                        },this);
-                    }
-                    else{
-                        mc.y = posMC.y;
-                        mc.x = posMC.x + des;
-                        tw.to({ x: posMC.x },200);
-
-                        tw2.to({ x: this.mvItem.x - des},200).call(function(){
-                            this.mvItem.visible = false;
-                        },this);
-
-                    }
-
-
-                }
+                tw.wait(changeNum * 50).to({x:posMC.x,y:posMC.y}, 200);
+                changeNum ++;
             }
         }
     }
@@ -346,6 +383,9 @@ class PKDressChooseUI extends game.BaseContainer {
                 chooseList.push(mc.data.vo.id);
         }
         return chooseList;
+    }
+    public getRing(){
+        return this.ringRadio0.group.selectedValue;
     }
 
 }

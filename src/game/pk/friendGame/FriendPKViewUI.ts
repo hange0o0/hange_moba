@@ -93,8 +93,8 @@ class FriendPKViewUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.ringText0.text = RingVO.getObject(data[0].ring[0]).name
-        this.ringText1.text = RingVO.getObject(data[0].ring[1]).name
+        this.ringText0.text = '技能1：' +RingVO.getObject(data[0].ring[0]).name
+        this.ringText1.text = '技能2：' +RingVO.getObject(data[0].ring[1]).name
 
 
         //更新卡组2
@@ -114,8 +114,8 @@ class FriendPKViewUI extends game.BaseUI {
             });
         }
         this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
-        this.ringText2.text = RingVO.getObject(data[1].ring[0]).name
-        this.ringText3.text = RingVO.getObject(data[1].ring[1]).name
+        this.ringText2.text = '技能1：' +RingVO.getObject(data[1].ring[0]).name
+        this.ringText3.text = '技能2：' +RingVO.getObject(data[1].ring[1]).name
 
          //我选中的卡组
         var myChoose = this.data.content.ask_choose;

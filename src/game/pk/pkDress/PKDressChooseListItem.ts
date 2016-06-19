@@ -23,13 +23,14 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
 
+
     public childrenCreated(){
         super.childrenCreated();
 
-        this.headMC.mask = this.headMask
 
-        this.addBtnEvent(this,this.onClick);
-        MyTool.addLongTouch(this,this.onLongTouch,this)
+        this.addBtnEvent(this.useBtn,this.onClick);
+        this.addBtnEvent(this.infoBtn,this.onInfo);
+        //MyTool.addLongTouch(this,this.onLongTouch,this)
 
 
     }
@@ -40,7 +41,7 @@ class PKDressChooseListItem extends game.BaseItem {
         PKDressUI.getInstance().addMonster(this.data.vo.id);
     }
 
-    private onLongTouch(){ //显示详情
+    private onInfo(){ //显示详情
         if(this.data && this.data.list)
             MonsterList.getInstance().show(this.data.list,this.data.index)
     }
@@ -48,11 +49,6 @@ class PKDressChooseListItem extends game.BaseItem {
     public dataChanged(){
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.thumb
-
-        if(this.data.index %2 == 0)
-            this.currentState = 'right';
-        else
-            this.currentState = 'left';
 
         this.typeText.text = MonsterKindVO.getObject(vo.type).word;
         this.nickText.text = vo.name
@@ -89,7 +85,7 @@ class PKDressChooseListItem extends game.BaseItem {
         this.coinText.text = vo.cost;
         this.woodText.text = vo.wood;
         this.woodGroup.visible = vo.wood;
-        this.headBG.source = 'head_border'+(star + 1)+'_png'
+
 
 
 
@@ -98,15 +94,11 @@ class PKDressChooseListItem extends game.BaseItem {
         this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));
         this.speedText.text = '速：' +  Math.round(vo.speed * (1+fightData.speed/100));
 
-        var useNum = PKDressUI.getInstance().getMonsterNum(vo.id);
-        for(var i=1;i<=3;i++)
-        {
-            var mc = this['useMC' + i];
-            mc.visible = useNum>=i;
-        }
+        var max = Math.min(star,3);
+        this.useText.text = '上阵数量：'+this.data.num+'/' + max;
 
         this.desText.text = '';
-        var max = Math.min(star,3);
+
         if(max<= this.data.num)
         {
             this.desText.text =('已达上限');
@@ -119,5 +111,6 @@ class PKDressChooseListItem extends game.BaseItem {
         {
             this.desText.text = ('金符不足');
         }
+        this.useBtn.visible = this.desText.text == ''
     }
 }
