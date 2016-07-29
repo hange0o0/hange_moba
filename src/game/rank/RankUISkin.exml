@@ -11,7 +11,8 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="86" id="tab" horizontalCenter="0">
+	<e:Image source="line_png" width="650" y="135" x="-5"/>
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="77" id="tab" height="62" width="640" x="0">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="战力榜"/>
@@ -21,7 +22,6 @@
 				<e:Object label="修正榜"/>
 			</e:Array>
 		</e:ArrayCollection>
-	</e:TabBar>
-	<e:Image source="line_png" width="650" y="138" x="-5"/>
+	</e:TabBar>
 	<e:Label id="emptyText" text="当前没有排行数据" y="332" horizontalCenter="0"/>
 </e:Skin>
