@@ -125,6 +125,7 @@ var game_file_list = [
 	"bin-debug/Main.js",
 	"bin-debug/manager/AniManager.js",
 	"bin-debug/manager/CacheManager.js",
+	"bin-debug/manager/DebugManager.js",
 	"bin-debug/manager/DragManager.js",
 	"bin-debug/manager/EventManager.js",
 	"bin-debug/manager/GameManager.js",

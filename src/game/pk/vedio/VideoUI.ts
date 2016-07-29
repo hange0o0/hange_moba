@@ -293,7 +293,12 @@ class VideoUI extends game.BaseUI {
         data.defList = [];
         for(var s in data.defender)
         {
-            data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':''));
+            var temp = ''
+            if(data.defender[s].miss)
+                temp += '【闪】'
+            if(data.defender[s].nohurt)
+                temp += '【替】'
+            data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':'')  + temp);
         }
 
         if(data.skillID == 50)
@@ -306,7 +311,7 @@ class VideoUI extends game.BaseUI {
         }
         else if(data.skillID == 52)
         {
-            var str = data.atker + ' 回合结束时血量改变';
+            var str = data.atker + ' 回合结束时血量改变 '+ data.defList.join(',');
         }
         //else if(data.skillID == 53)
         //{
@@ -317,7 +322,8 @@ class VideoUI extends game.BaseUI {
             var str = data.atker + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
         }
         str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
-        console.log(str);
+
+        console.log(data.index + ':    '+str);
         this.onActionOver();
     }
 

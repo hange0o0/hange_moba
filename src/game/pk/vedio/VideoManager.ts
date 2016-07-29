@@ -43,7 +43,7 @@ class VideoManager {
         else
             mv = 'l' + temp.pop();
         return {
-            name:mvo.name +'·'+ svo.name,
+            name:mvo.name, //+'·'+ svo.name,
             des:'',
             type:3,
             mv:mv
@@ -66,7 +66,7 @@ class VideoManager {
         }
         for(var i=0;i<this.baseData.player2.length;i++)
         {
-            var vo = MonsterVO.getObject(this.baseData.player1[i].mid);
+            var vo = MonsterVO.getObject(this.baseData.player2[i].mid);
             if(i==0)
                 mArr = mArr.concat(vo.mv1)
             else
@@ -80,8 +80,8 @@ class VideoManager {
         {
             mArr.push(this.leaderSkill2[i].mv);
         }
-        mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
-        mArr.push(RingVO.getObject(PKM.team2Ring).getSkillVO().mv)
+        //mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
+        //mArr.push(RingVO.getObject(PKM.team2Ring).getSkillVO().mv)
         var mObj = {};
         for(var i=0;i<mArr.length;i++)
         {

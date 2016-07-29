@@ -51,6 +51,18 @@ class ArrayUtil {
     public static randomOne(arr:Array<any>):any{
         return arr[Math.floor(arr.length * Math.random())];
     }
+
+    public static random(arr,deep = 1){
+        while(deep--)
+        {
+            arr.sort(rdFun);
+        }
+
+        function rdFun(){
+            return Math.random()>0.5?-1:1;
+        }
+
+    }
     
     public static disposeList(itemList: Array<any>):void{
         if(itemList) {

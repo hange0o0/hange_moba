@@ -20,6 +20,7 @@ class Net extends egret.EventDispatcher{
     private modeNum = 0;
     public serverID = 1;
     public serverHost = ''
+    public outPut = true;
     public constructor() {
         super();
     }
@@ -57,7 +58,7 @@ class Net extends egret.EventDispatcher{
         //var request = new egret.URLRequest('http://qxu1606510485.my3w.com/new_index.php');
         request.method = egret.URLRequestMethod.POST;
         request.data = this.getVariables(head,msg);
-        if(Config.isDebug)
+        if(Config.isDebug && this.outPut)
         {
             console.log('send===>      '+head)
             console.log(JSON.stringify(msg) +'   '+TM.now());
@@ -84,7 +85,7 @@ class Net extends egret.EventDispatcher{
 
             loader.removeEventListener(egret.Event.COMPLETE, onComplete, this);
             loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);
-            if(Config.isDebug)
+            if(Config.isDebug && this.outPut)
             {
                 console.log('====receive>        '+head)
                 console.log(e.target.data +'   ' +TM.now());

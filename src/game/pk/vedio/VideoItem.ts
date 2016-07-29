@@ -54,12 +54,12 @@ class VideoItem extends game.BaseItem {
         if(this.index == 1)
         {
             this.headMC.source = MyTool.getHeadUrl(PKM.team1Head);
-            this.skillText.text = RingVO.getObject(PKM.team1Ring).name;
+            //this.skillText.text = RingVO.getObject(PKM.team1Ring).name;
         }
         else
         {
             this.headMC.source = MyTool.getHeadUrl(PKM.team2Head);
-            this.skillText.text = RingVO.getObject(PKM.team2Ring).name;
+            //this.skillText.text = RingVO.getObject(PKM.team2Ring).name;
         }
 
 

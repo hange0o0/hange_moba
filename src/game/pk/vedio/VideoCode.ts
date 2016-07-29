@@ -22,6 +22,7 @@ class VideoCode{
 
     public currentAction;
     public skillStart;
+    public skillEffectStart;
     public skillData;
 
     public playerObject = {}; //所有单位的集合
@@ -83,6 +84,7 @@ class VideoCode{
 
         this.stopMV = false;
         this.skillStart = false;
+        this.skillEffectStart = false;
     }
 
     public getPlayerByID(id){
@@ -111,6 +113,7 @@ class VideoCode{
         this.stopMV = true;
         this.playFlag = true;
         this.skillStart = false;
+        this.skillEffectStart = false;
 
         //this.targetIndex = index;
         this.stepOne();
@@ -180,6 +183,14 @@ class VideoCode{
             case 2:
             {
                 this.defender = action.id;
+                if(this.skillEffectStart)
+                    this.defenderMV(this.defender);
+                this.stepOne();
+                break;
+            }
+            case 3: //技能效果开始
+            {
+                this.skillEffectStart = true
                 this.stepOne();
                 break;
             }
@@ -198,7 +209,7 @@ class VideoCode{
             case 7:   //技能开始
             {
                 this.skillStart = true;
-                this.skillData = {atker:this.atker,skillID:action.skillID,defender:{}};
+                this.skillData = {index:this.index,atker:this.atker,skillID:action.skillID,defender:{}};
                 this.stepOne();
                 break;
             }
@@ -210,7 +221,12 @@ class VideoCode{
             }
             case 9:   //技能结果
             {
+                if(ObjectUtil.objLength(this.skillData.defender) == 0)
+                {
+                    this.defenderMV(this.defender);
+                }
                 this.skillStart = false;
+                this.skillEffectStart = false;
                 if(this.stopMV)//只计算值，不表现动画
                 {
                     this.onMovieOver();
@@ -232,10 +248,13 @@ class VideoCode{
         this.stepOne();
     }
 
-    private defenderMV(defender,key,value){
+    private defenderMV(defender,key?,value?){
+        if(!this.skillEffectStart)
+            return;
         if(!this.skillData.defender[defender])
             this.skillData.defender[defender] = {};
-        this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
+        if(key)
+            this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
     }
 
     //计算技能数值得
@@ -270,13 +289,23 @@ class VideoCode{
             }
             case '5'://    "MP"=>'5',
             {
-                //this.defenderMV(this.defender,'mp',value.value)
+                this.defenderMV(this.defender,'mp',value.value)
                 player.addMp(value.value);
                 break;
             }
             case '6'://    "MV"=>'6',
             {
                 this.defenderMV(this.defender,'mv',value.value)
+                break;
+            }
+            case '7':
+            {
+                this.defenderMV(this.defender,'miss',1)
+                break;
+            }
+            case '8':
+            {
+                this.defenderMV(this.defender,'nohurt',1)
                 break;
             }
         }

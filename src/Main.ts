@@ -26,7 +26,7 @@
 //  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //////////////////////////////////////////////////////////////////////////////////////
-var UM:UserManager,TM:TimeManager,EM:EventManager,CM:CacheManager;
+var UM:UserManager,TM:TimeManager,EM:EventManager,CM:CacheManager,DM;
 class Main extends eui.UILayer {
     /**
      * 加载进度界面
@@ -54,6 +54,7 @@ class Main extends eui.UILayer {
         TM = TimeManager.getInstance();
         EM = EventManager.getInstance();
         CM = CacheManager.getInstance();
+        DM = DebugManager.getInstance();
     }
     /**
      * 配置文件加载完成,开始预加载皮肤主题资源和preload资源组。
@@ -185,52 +186,13 @@ class Main extends eui.UILayer {
         else
             Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
 
-        var arr = [];
-        var cost = 0;
-        var wood = 0;
-        for(var i=0;i<dataIn.team1.list.length;i++)
-        {
-            var vo = MonsterVO.getObject(dataIn.team1.list[i])
-            arr.push(vo.cost + ( vo.wood?"|"+vo.wood:''));
-            cost += vo.cost;
-            wood += vo.wood;
-        }
-        console.log('team1 cost:' + arr.join(',') + '----------------' + cost+'|'+wood);
 
-        var arr = [];
-        var cost = 0;
-        var wood = 0;
-        for(var i=0;i<dataIn.team2.list.length;i++)
-        {
-            var vo = MonsterVO.getObject(dataIn.team2.list[i])
-            arr.push(vo.cost + ( vo.wood?"|"+vo.wood:''));
-            cost += vo.cost;
-            wood += vo.wood;
-        }
-        console.log('team2 cost:' + arr.join(',')  + '----------------' + cost+'|'+wood);
+        DebugManager.getInstance().debugFromFile(dataIn);
+        setTimeout(function(){
+            DebugManager.getInstance().consoleDebug();
+        },1000)
 
-        Net.send('test',dataIn,function(data) {
-            var msg = data.msg;
-            msg.info = {};
 
-            var key = _get['test']
-            PKManager.getInstance().onPK(key,msg) ;
-            if(dataIn.vedio == -1)
-                return;
-            //var baseData = PKManager.getInstance().getVedioBase(dataIn.vedio - 1);
-            VideoManager.getInstance().playVideo(key,dataIn.vedio)
-
-            //console.log(PKManager.getInstance().getVedioBase(dataIn.vedio - 1));
-
-            //VideoCode.getInstance().initData(PKManager.getInstance().pkData[0]);
-            //Net.send('pk_vedio',baseData,function(data){
-            //	var msg = data.msg;
-            //	VideoManager.getInstance().initVideo(msg.pkdata);
-            //    VideoCode.getInstance().play();
-            //
-            //	//console.log(VideoManager.getInstance().dataArray);
-            //});
-        });
     }
 
     private onButtonClick(e: egret.TouchEvent) {

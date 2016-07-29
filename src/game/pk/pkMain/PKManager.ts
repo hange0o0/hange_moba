@@ -53,6 +53,33 @@ class PKManager {
     //    return null;
     //}
 
+    //num :第1个时，num = 0;
+    public getCostByNum(id,num){
+        var vo = MonsterVO.getObject(id);
+        var lastCost = vo.cost;
+        var count = lastCost;
+        for(var i=0;i<num;i++)
+        {
+            lastCost = Math.ceil(lastCost*1.2);
+            count += lastCost;
+        }
+        return count;
+    }
+
+    //取列表的花费
+    public getCost(arr){
+        var numObj = {};
+        var count = 0;
+        for(var i=0;i<arr.length;i++)
+        {
+            var id = arr[i];
+            var num = numObj[id] || 0
+            count += this.getCostByNum(id,num);
+            numObj[id] = num + 1;
+        }
+        return count;
+    }
+
 
     public getPKBG(type){
         var sceneID = 1;
@@ -371,4 +398,6 @@ class PKManager {
             return o;
         }
     }
+
+
 }
