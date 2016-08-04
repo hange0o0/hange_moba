@@ -7,9 +7,13 @@ class DebugManager {
     }
 
     public myData:any = {"vedio":-1}
+    public stop = 0;
+    public winCardArr;
     public constructor() {
         this.myData = SharedObjectManager.instance.getMyValue('share') || {"vedio":-1,};
     }
+
+    public maxMonsterID = 100;
 
 
     public consoleDebug(){
@@ -54,7 +58,7 @@ class DebugManager {
         var card1= []; //低
         var card2= []; //中
         var card3= []; //高
-        for(var i=1;i<21;i++)
+        for(var i=1;i<this.maxMonsterID + 1;i++)
         {
             var vo = MonsterVO.getObject(i);
             if(vo)
@@ -83,26 +87,76 @@ class DebugManager {
 
         var returnArr = [];
         var PKM = PKManager.getInstance();
-        for(var i=0;i<20;i++)
+        var index = 0;
+        while(PKM.getCost(returnArr) < 80)
         {
-            var id = ArrayUtil.randomOne(arr);
-            returnArr.push(id);
-            if(PKM.getCost(returnArr) > 100)
+            returnArr = [];
+            for(var i=0;i<30;i++)
             {
-                returnArr.pop();
+                var id = ArrayUtil.randomOne(arr);
+                returnArr.push(id);
+                if(PKM.getCost(returnArr) > 100)
+                {
+                    returnArr.pop();
+                }
+                if(returnArr.length >= 6)
+                    break;
             }
-            if(returnArr.length >= 6)
-                break;
+            index ++;
+            if(index >= 100)
+                return  this.randomCard();
         }
+
         //ArrayUtil.random(returnArr);
         return returnArr;
+    }
+
+
+    public showWinCard(arr?){
+        var arr = arr || this.winCardArr || [];
+        var mid = {}
+        for(var i=0;i<arr.length;i++)
+        {
+            var card = arr[i];
+            console.log((i+1)+'\t'+card.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length);
+            var mid2 = {};
+            for(var j=0;j<card.length;j++)
+            {
+                var id = card[j];
+                if(!mid[id])
+                    mid[id] = {id:id,num:0,num2:0};
+                mid[id].num ++;
+                if(!mid2[id])
+                {
+                    mid[id].num2 ++;
+                    mid2[id] = true;
+                }
+            }
+        }
+        var midArr = ObjectUtil.objToArray(mid);
+        ArrayUtil.sortByField(midArr,['num','num2','id'],[1,1,0])
+        for(var i=0;i<midArr.length;i++)
+        {
+            var oo = midArr[i];
+            var mvo = MonsterVO.getObject(oo.id);
+            console.log((i + 1) +  ' \tid:' + oo.id + '\t 总数:\t' + oo.num + '\t 场数:\t' + oo.num2 + '\t 花费:\t' + mvo.cost + '\t  ' + mvo.name)
+        }
+
+        var free = [];
+        for(var i=1;i<this.maxMonsterID + 1;i++)
+        {
+            if(!mid[i] && MonsterVO.getObject(i))
+                free.push(i);
+        }
+        console.log('无上场： \t' + free.join(','))
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
     public testAllCard(time1,time2 = 100){
        var key = TM.now();
-       var arr = [];
+       var arr = this.winCardArr = [];
        var self = this;
+        this.stop = 0;
         Net.getInstance().outPut = false;
         testOne();
         function testOne(){
@@ -110,44 +164,10 @@ class DebugManager {
                 arr.push(card)
                 console.log(arr.length + '\t\t' + card.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
                 SharedObjectManager.instance.setMyValue('testCard_'+key,arr);
-                if(arr.length >= time1)
+                if(arr.length >= time1 || self.stop)
                 {
                     console.log('==================testEnd======================' + DateUtil.getStringBySecond(TM.now() - key))
-                    var mid = {}
-                    for(var i=0;i<arr.length;i++)
-                    {
-                        card = arr[i];
-                        console.log(card.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length);
-                        var mid2 = {};
-                        for(var j=0;j<card.length;j++)
-                        {
-                            var id = card[j];
-                            if(!mid[id])
-                                mid[id] = {id:id,num:0,num2:0};
-                            mid[id].num ++;
-                            if(!mid2[id])
-                            {
-                                mid[id].num2 ++;
-                                mid2[id] = true;
-                            }
-                        }
-                    }
-                    var midArr = ObjectUtil.objToArray(mid);
-                    ArrayUtil.sortByField(midArr,['num','num2','id'],[1,1,0])
-                    for(var i=0;i<midArr.length;i++)
-                    {
-                        var oo = midArr[i];
-                        var mvo = MonsterVO.getObject(oo.id);
-                        console.log((i + 1) +  ' \t' + oo.id + '\t 总数:\t' + oo.num + '\t 场数:\t' + oo.num2 + '\t 花费:\t' + mvo.cost + '\t  ' + mvo.name)
-                    }
-
-                    var free = [];
-                    for(var i=1;i<21;i++)
-                    {
-                        if(!mid[i] && MonsterVO.getObject(i))
-                            free.push(i);
-                    }
-                    console.log('无上场： \t' + free.join(','))
+                    self.showWinCard();
                     Net.getInstance().outPut = true;
                 }
                 else
@@ -169,7 +189,7 @@ class DebugManager {
         testOne();
 
         function testOne(){
-            if(list.length >= 2)
+            if(list.length >= 2 && self.stop < 10)
             {
                 self.testCard(list.shift(),list.shift(),function(card){
                     list.push(card);
@@ -201,6 +221,50 @@ class DebugManager {
             else
                 fun(card2)
         })
+    }
+
+    //把记录的所有胜过的卡列出来
+    public consoleAllWinCard(){
+        console.log(JSON.stringify(this.getAllWinCard()));
+    }
+
+    public getAllWinCard(){
+        var arr = [];
+        for(var s in localStorage)
+        {
+            if(s.indexOf('testCard_') != -1)
+            {
+                var data = JSON.parse(localStorage[s]);
+                arr = arr.concat(data.data);
+            }
+        }
+        return arr;
+    }
+
+    //列出最强的卡
+    public getTopWinCard(num = 1){
+        var self = this;
+        var list = this.getAllWinCard();
+        var total = list.length;
+        ArrayUtil.random(list);
+        Net.getInstance().outPut = false;
+        console.log('top card('+total+'):')
+        testOne();
+
+        function testOne(){
+            if(list.length >= num + 1 && self.stop < 10)
+            {
+                self.testCard(list.shift(),list.shift(),function(card){
+                    list.push(card);
+                    testOne();
+                })
+            }
+            else
+            {
+                self.showWinCard(list);
+                Net.getInstance().outPut = true;
+            }
+        }
     }
 
     public debugFromFile(dataIn){
