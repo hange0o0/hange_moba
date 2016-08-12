@@ -27,35 +27,31 @@
 					</e:layout>
 				</e:List>
 			</e:Group>
-			<e:Group id="myGroup0" x="0" y="391" height="500">
+			<e:Group id="myGroup0" x="0" y="391" height="460">
 				<e:Group horizontalCenter="0" y="30" x="20">
 					<e:Image source="flag_mc_png" y="0" x="0"/>
 					<e:Image source="flag_mc_png" y="0" scaleX="-1" x="576"/>
 					<e:Label horizontalCenter="0" y="15" textColor="0xF8EDDE" text="卡组1"/>
 				</e:Group>
-				<e:Button id="chooseBtn0" label="使用出战" y="435" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				<e:Button id="chooseBtn0" label="使用出战" y="400" skinName="Btn_r2Skin" horizontalCenter="0"/>
 				<e:List id="myList0" y="130" x="14" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label id="ringText0" text="标签" y="389" textColor="0xCCB48E" horizontalCenter="-160"/>
-				<e:Label id="ringText1" y="388" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
 			</e:Group>
-			<e:Group id="myGroup1" y="401" x="10" height="500">
+			<e:Group id="myGroup1" y="401" x="10" height="460">
 				<e:Group horizontalCenter="0" y="30" x="30">
 					<e:Image source="flag_mc_png" y="0" x="0"/>
 					<e:Image source="flag_mc_png" y="0" x="576" scaleX="-1"/>
 					<e:Label horizontalCenter="0" y="15" textColor="0xF8EDDE" text="卡组2"/>
 				</e:Group>
-				<e:Button x="226" skinName="Btn_r2Skin" label="使用出战" y="435" id="chooseBtn1"/>
+				<e:Button x="226" skinName="Btn_r2Skin" label="使用出战" y="400" id="chooseBtn1"/>
 				<e:List y="130" id="myList1" itemRendererSkinName="MyHeadItemSkin" width="614" height="239" x="14">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label y="389" textColor="0xCCB48E" text="标签" id="ringText2" horizontalCenter="-160"/>
-				<e:Label y="388" textColor="0xCCB48E" text="标签" id="ringText3" horizontalCenter="160"/>
 			</e:Group>
 			<e:layout>
 				<e:VerticalLayout/>

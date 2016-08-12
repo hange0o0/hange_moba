@@ -86,28 +86,24 @@
 	</e:Group>
 	<e:Group x="0" bottom="0">
 		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>
-		<e:Group id="rankBtn" x="27.954545454545453" y="14.015151515151501">
+		<e:Group id="rankBtn" x="36" y="14">
 			<e:Image source="menu_icon_1_png" x="18" y="0"/>
 			<e:Image source="menu_icon_1_png" y="13" x="0"/>
 			<e:Label text="排行" x="2" y="79" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="friendBtn" x="526.969696969697" y="5.000000000000114">
+		<e:Group id="friendBtn" x="523" y="5">
 			<e:Image source="menu_icon_4_png" x="0" y="0"/>
 			<e:Label y="88" text="好友" x="18" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="collectBtn" x="116.96969696969697" y="0">
+		<e:Group id="collectBtn" x="146" y="0">
 			<e:Image source="menu_icon_2_png" x="0" y="0"/>
 			<e:Label y="93" text="收集" x="14" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="honorBtn" x="223.93939393939397" y="0.9848484848486123">
+		<e:Group id="honorBtn" x="275" y="1">
 			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
 			<e:Label y="92" text="成就" x="9" textColor="0xCCB48E"/>
-		</e:Group>
-		<e:Group id="tecBtn" x="321.96969696969694" y="2.954545454545496">
-			<e:Image source="menu_icon_6_png" x="0" y="0"/>
-			<e:Label y="90" text="科技" x="18" textColor="0xCCB48E"/>
-		</e:Group>
-		<e:Group id="bagBtn" x="423.93939393939394" y="4.015151515151729">
+		</e:Group>
+		<e:Group id="bagBtn" x="395" y="4">
 			<e:Image source="menu_icon_5_png" x="0" y="0"/>
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
 		</e:Group>

@@ -23,7 +23,7 @@
 				</e:Group>
 				<e:Label id="pkTypeText" y="20" textColor="0xCCB48E" text="PK类型：竞技场规则" x="25"/>
 			</e:Group>
-			<e:Group id="myGroup0" x="0" y="391" height="500" width="640">
+			<e:Group id="myGroup0" x="0" y="391" height="450" width="640">
 				<e:Group horizontalCenter="0" y="30" x="10">
 					<e:Image source="flag_mc_png" y="0" x="0"/>
 					<e:Image source="flag_mc_png" y="0" scaleX="-1" x="576"/>
@@ -35,10 +35,8 @@
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
-				</e:List>
-				<e:Label id="ringText0" text="标签" y="381" textColor="0xCCB48E" horizontalCenter="-160"/>
-				<e:Label id="ringText1" y="380" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
-				<e:Button id="chooseBtn0" label="开始PK" y="431" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				</e:List>
+				<e:Button id="chooseBtn0" label="开始PK" y="400" skinName="Btn_r2Skin" horizontalCenter="0"/>
 			</e:Group>
 			<e:Group x="10" y="401" height="500" id="myGroup1" width="640">
 				<e:Group horizontalCenter="0" y="30" x="20">
@@ -51,9 +49,7 @@
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label y="381" textColor="0xCCB48E" text="标签" id="ringText2" horizontalCenter="-160"/>
-				<e:Label id="ringText3" y="380" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
-				<e:Button y="431" label="开始PK" skinName="Btn_r2Skin" horizontalCenter="0" id="chooseBtn1"/>
+				<e:Button y="400" label="开始PK" skinName="Btn_r2Skin" horizontalCenter="0" id="chooseBtn1"/>
 			</e:Group>
 			
 			<e:layout>

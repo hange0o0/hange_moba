@@ -29,10 +29,8 @@
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
-				</e:List>
-				<e:Label id="ringText0" text="标签" y="360" textColor="0xCCB48E" horizontalCenter="-160"/>
-				<e:Label id="ringText1" y="359" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
-				<e:Button id="chooseBtn0" label="开始PK" y="413" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				</e:List>
+				<e:Button id="chooseBtn0" label="开始PK" y="400" skinName="Btn_r2Skin" horizontalCenter="0"/>
 			</e:Group>
 
 			<e:layout>

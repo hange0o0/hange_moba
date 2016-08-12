@@ -8,7 +8,7 @@
 				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15"/>
 				<e:Label id="timeText" y="9" textColor="0xCCB48E" text="PK类型：竞技场规则" right="6"/>
 			</e:Group>
-			<e:Group id="myGroup0" x="0" y="391" height="450">
+			<e:Group id="myGroup0" x="0" y="391" height="420">
 				<e:Group id="bg0" x="0" y="0" height="100%">
 					<e:Image scale9Grid="40,44,240,266" y="0" height="100%" x="0" source="book_bg1_jpg"/>
 					<e:Image y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640" source="book_bg1_jpg"/>
@@ -24,11 +24,9 @@
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
-				</e:List>
-				<e:Label id="ringText0" text="标签" y="383" textColor="0xCCB48E" horizontalCenter="-160"/>
-				<e:Label id="ringText1" y="382" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
+				</e:List>
 			</e:Group>
-			<e:Group x="10" y="401" height="450" id="myGroup1">
+			<e:Group x="10" y="401" height="420" id="myGroup1">
 				<e:Image source="line_png" width="655" y="0" x="-9"/>
 				<e:Group x="0" y="0" height="100%" id="bg1">
 					<e:Image source="book_bg1_jpg" scale9Grid="40,44,240,266" y="0" height="100%" x="0"/>
@@ -44,8 +42,6 @@
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Label y="382" textColor="0xCCB48E" text="标签" id="ringText2" horizontalCenter="-160"/>
-				<e:Label id="ringText3" y="381" textColor="0xCCB48E" text="标签" horizontalCenter="160"/>
 			</e:Group>
 			<e:Group id="myChooseGroup" x="20" y="411" height="280">
 				<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
