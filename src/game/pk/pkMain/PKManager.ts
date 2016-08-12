@@ -60,7 +60,7 @@ class PKManager {
         var count = lastCost;
         for(var i=0;i<num;i++)
         {
-            lastCost = Math.ceil(lastCost*1.2);
+            lastCost = Math.ceil(lastCost*1.1);
             count += lastCost;
         }
         return count;
