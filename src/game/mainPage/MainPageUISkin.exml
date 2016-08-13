@@ -40,11 +40,9 @@
 			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
 		</e:Group>
 	</e:Group>
-	<e:Group x="16" top="180" bottom="150">
-		<e:Image id="leftBtn" source="left_btn_png" x="0" verticalCenter="0"/>
-		<e:Image id="rightBtn" source="left_btn_png" x="611" scaleX="-1" verticalCenter="0"/>
-		<e:Group horizontalCenter="0" width="480" height="100%" verticalCenter="0" maxHeight="580">
-			<e:Scroller id="scroller" width="480" x="0" bottom="40" top="0" scrollPolicyH="off">
+	<e:Group x="0" top="180" bottom="130">
+		<e:Group horizontalCenter="0" width="640" height="100%" verticalCenter="0" maxHeight="580">
+			<e:Scroller id="scroller" width="640" x="0" bottom="40" top="0" scrollPolicyH="off">
 				<e:Group id="scrollGroupCon">
 					<e:Group id="scrollGroup" x="0" y="0">
 						<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
@@ -52,7 +50,7 @@
 						<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
 						<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
 						<e:layout>
-							<e:HorizontalLayout gap="20"/>
+							<e:HorizontalLayout gap="0"/>
 						</e:layout>
 					</e:Group>
 				</e:Group>
@@ -70,6 +68,8 @@
 				<e:BasicLayout/>
 			</e:layout>
 		</e:Group>
+		<e:Image id="leftBtn" source="left_btn_png" x="0" verticalCenter="0"/>
+		<e:Image id="rightBtn" source="left_btn_png" scaleX="-1" verticalCenter="0" right="0"/>
 	</e:Group>
 	<e:Group id="taskGroup" x="0" y="123">
 		<e:Rect height="55" width="640" x="0" y="-1" fillAlpha="0.6" strokeWeight="1"/>
@@ -86,24 +86,24 @@
 	</e:Group>
 	<e:Group x="0" bottom="0">
 		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>
-		<e:Group id="rankBtn" x="36" y="14">
+		<e:Group id="rankBtn" x="36" y="29">
 			<e:Image source="menu_icon_1_png" x="18" y="0"/>
 			<e:Image source="menu_icon_1_png" y="13" x="0"/>
 			<e:Label text="排行" x="2" y="79" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="friendBtn" x="523" y="5">
+		<e:Group id="friendBtn" x="523" y="20">
 			<e:Image source="menu_icon_4_png" x="0" y="0"/>
 			<e:Label y="88" text="好友" x="18" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="collectBtn" x="146" y="0">
+		<e:Group id="collectBtn" x="146" y="15">
 			<e:Image source="menu_icon_2_png" x="0" y="0"/>
 			<e:Label y="93" text="收集" x="14" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="honorBtn" x="275" y="1">
+		<e:Group id="honorBtn" x="275" y="16">
 			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
 			<e:Label y="92" text="成就" x="9" textColor="0xCCB48E"/>
 		</e:Group>
-		<e:Group id="bagBtn" x="395" y="4">
+		<e:Group id="bagBtn" x="395" y="19">
 			<e:Image source="menu_icon_5_png" x="0" y="0"/>
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
 		</e:Group>

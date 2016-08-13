@@ -69,7 +69,7 @@ class PKDressChooseListItem extends game.BaseItem {
             fightData = UM.getTecMonsterAdd(vo.id);
             fightData.atk += force;
             fightData.hp += force;
-            //forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getTecAdd('main',UM.getMainLevel(vo.type)) + '';
+            forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getForce() + '';
             star = UM.getMonsterCollect(vo.id)
         }
 
@@ -81,8 +81,12 @@ class PKDressChooseListItem extends game.BaseItem {
         //    else
         //        forceStr += '+2%';
         //}
-        //this.forceText.text = '加成：' + forceStr;
-        //this.coinText.text = vo.cost;
+        this.forceText.text = '加成：' + forceStr;
+
+        if(!this.data.num)
+            this.coinText.text = vo.cost;
+        else
+            this.coinText.text = PKManager.getInstance().getCostByNum(vo.id,this.data.num) + ' (初始:' + vo.cost + ')';
         //this.woodText.text = vo.wood;
         //this.woodGroup.visible = vo.wood;
 
@@ -94,8 +98,8 @@ class PKDressChooseListItem extends game.BaseItem {
         this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));
         this.speedText.text = '速：' +  Math.round(vo.speed * (1+fightData.speed/100));
 
-        var max = Math.min(star,3);
-        this.useText.text = '上阵数量：'+this.data.num+'/' + max;
+        //var max = Math.min(star,3);
+        this.useText.text = '上阵数量：'+this.data.num;
 
         this.desText.text = '';
 

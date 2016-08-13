@@ -58,13 +58,13 @@ class PKManager {
     public getCostByNum(id,num){
         var vo = MonsterVO.getObject(id);
         var lastCost = vo.cost;
-        var count = lastCost;
+        //var count = lastCost;
         for(var i=0;i<num;i++)
         {
             lastCost = Math.ceil(lastCost*1.1);
-            count += lastCost;
+            //count += lastCost;
         }
-        return count;
+        return lastCost;
     }
 
     //取列表的花费
@@ -398,6 +398,19 @@ class PKManager {
             }
             return o;
         }
+    }
+    
+    public sortMonster(arrIn){
+        for(var i=0;i<arrIn.length;i++)
+        {
+            arrIn[i] = (MonsterVO.getObject(arrIn[i]))
+        }
+        ArrayUtil.sortByField(arrIn,['cost','id'],[0,0]);
+        for(var i=0;i<arrIn.length;i++)
+        {
+            arrIn[i] = (arrIn[i].id);
+        }
+        return arrIn;
     }
 
 

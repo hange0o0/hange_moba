@@ -73,6 +73,7 @@ var game_file_list = [
 	"bin-debug/game/pk/pkDress/PKDressChooseItem.js",
 	"bin-debug/game/pk/pkDress/PKDressChooseListItem.js",
 	"bin-debug/game/pk/pkDress/PKDressChooseUI.js",
+	"bin-debug/game/pk/pkDress/PKDressSimpleItem.js",
 	"bin-debug/game/pk/pkDress/PKDressUI.js",
 	"bin-debug/game/pk/pkMain/PKResultBase.js",
 	"bin-debug/game/pk/pkMain/PKFailUI.js",

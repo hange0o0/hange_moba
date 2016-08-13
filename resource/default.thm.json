@@ -76,6 +76,7 @@
     "src/game/pk/pkDress/PKDressChooseItemSkin.exml",
     "src/game/pk/pkDress/PKDressChooseListItemSkin.exml",
     "src/game/pk/pkDress/PKDressChooseUISkin.exml",
+    "src/game/pk/pkDress/PKDressSimpleItemSkin.exml",
     "src/game/pk/pkDress/PKDressUISkin.exml",
     "src/game/pk/pkMain/PKFailUISkin.exml",
     "src/game/pk/pkMain/PKItemBigSkin.exml",

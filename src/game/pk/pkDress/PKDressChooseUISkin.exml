@@ -7,13 +7,13 @@
 
 
     <e:Group id="itemGroup" x="0" y="32" width="640">
-		<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="77" y="2" y.normal="-5"/>
-		<ns1:PKDressChooseItem id="h2" y="2" x="259" skinName="PKDressChooseItemSkin"  y.normal="-5"/>
-		<ns1:PKDressChooseItem id="h3" y="2" x="440" skinName="PKDressChooseItemSkin"  y.normal="-5"/>
-		<ns1:PKDressChooseItem id="h4" y="130" x="77" skinName="PKDressChooseItemSkin"  y.normal="134"/>
-		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" y="130" x="259" y.normal="134"/>
+		<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="77" y="2"/>
+		<ns1:PKDressChooseItem id="h2" y="2" x="259" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h3" y="2" x="440" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h4" y="130" x="77" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" y="130" x="259"/>
 
-		<ns1:PKDressChooseItem id="h6" y="130" x="440" skinName="PKDressChooseItemSkin" y.normal="134"/>
+		<ns1:PKDressChooseItem id="h6" y="130" x="440" skinName="PKDressChooseItemSkin"/>
 	</e:Group>
 	<e:Group id="spliceGroup" x="3" touchEnabled="false" visible.normal="false" y="0">
 		<e:Image id="a1" source="arrow8_png" x="32" y="1"/>

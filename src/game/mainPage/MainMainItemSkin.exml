@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainMainItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="25" y="-166" source="main1_png" scaleX="0.9" scaleY="0.9"/>
+<e:Skin class="MainMainItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="105" y="-166" source="main1_png" scaleX="0.9" scaleY="0.9"/>
 	<e:Group horizontalCenter="0" y="265">
 		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:Label text="试练场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4"/>
@@ -9,7 +9,7 @@
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="0" y="300">
+	<e:Group y="300" horizontalCenter="0">
 		<e:Image y="0" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
 		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" x="73"/>
 		<e:Group id="awardGroup" y="87" horizontalCenter="0">

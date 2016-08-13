@@ -7,7 +7,7 @@ class FriendListUI extends game.BaseUI {
 
     private infoText: eui.Label;
     private topUI: TopUI;
-    private searchBtn: eui.Button;
+    //private searchBtn: eui.Button;
     private tab: eui.TabBar;
     private scroller: eui.Scroller;
     private list: eui.List;
@@ -41,7 +41,7 @@ class FriendListUI extends game.BaseUI {
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
-        this.addBtnEvent(this.searchBtn, this.onSearch);
+        //this.addBtnEvent(this.searchBtn, this.onSearch);
         EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
         EM.addEventListener(GameEvent.client.friend_log_change,this.renewLogE,this)
         EM.addEventListener(GameEvent.client.friend_pk_change,this.renewPKE,this)
@@ -87,6 +87,13 @@ class FriendListUI extends game.BaseUI {
     }
 
     private typeBarClick(){
+        if(this.tab.selectedIndex == 3)
+        {
+            this.tab.selectedIndex = this.selectIndex;
+            this.onSearch();
+            return;
+        }
+        this.selectIndex = this.tab.selectedIndex;
         this.renew();
     }
 

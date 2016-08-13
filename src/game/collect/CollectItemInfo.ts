@@ -72,13 +72,13 @@ class CollectItemInfo extends game.BaseWindow {
     }
 
     private onLock(){
-        var self = this;
-        var isLock = CollectManager.getInstance().isLock(this.data.id);
-        CollectManager.getInstance().lock(this.data.id,!isLock,function(){
-            self.onShow();
-            if(self.item)
-                self.item.dataChanged();
-        });
+        //var self = this;
+        //var isLock = CollectManager.getInstance().isLock(this.data.id);
+        //CollectManager.getInstance().lock(this.data.id,!isLock,function(){
+        //    self.onShow();
+        //    if(self.item)
+        //        self.item.dataChanged();
+        //});
     }
 
     public show(data?,item?){
@@ -109,16 +109,16 @@ class CollectItemInfo extends game.BaseWindow {
             MyTool.removeMC(this.joinBtn);
         }
 
-        if(CM.isLock(vo.id))
-        {
-              this.lockBtn.label = '解锁'
-              this.lockBtn.skinName = 'Btn_d1Skin'
-        }
-        else
-        {
-              this.lockBtn.label = '锁定'
-              this.lockBtn.skinName = 'Btn_b1Skin'
-        }
+        //if(CM.isLock(vo.id))
+        //{
+        //      this.lockBtn.label = '解锁'
+        //      this.lockBtn.skinName = 'Btn_d1Skin'
+        //}
+        //else
+        //{
+        //      this.lockBtn.label = '锁定'
+        //      this.lockBtn.skinName = 'Btn_b1Skin'
+        //}
 
         this.onChange()
     }

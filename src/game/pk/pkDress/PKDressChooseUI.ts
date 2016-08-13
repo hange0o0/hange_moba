@@ -70,7 +70,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.itemGroup.addChild(this.mvItem);
         this.mvItem.visible = false;
         var des = 126;
-        for(var i=1;i<=10;i++)
+        for(var i=1;i<=6;i++)
         {
             var mc = this['h'+i]
             mc.index = i;
@@ -82,7 +82,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
             var dec = 15;
             this.posArray.push({x:mc.x,y:mc.y});
-            if(i == 10)
+            if(i == 6)
                 this.outPos = {x:mc.x + des,y:mc.y};
             //var line = Math.ceil(i/5);
             //if(!this.posData[line])
@@ -96,13 +96,13 @@ class PKDressChooseUI extends game.BaseContainer {
             //this.posData[line]['x_' + index] = mc.x + mc.width - dec
         }
 
-        for(var i=1;i<=12;i++)
+        for(var i=1;i<=8;i++)
         {
             var a = this['a' + i];
             this.addBtnEvent(a,this.onSplice)
             this.splicaArray.push(a);
             var index = i-1;
-            if(index>5)
+            if(index>3)
                 index--;
             a.index = index;
         }
@@ -117,18 +117,10 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private changeState(stat){
         this.currentState = stat;
-        for(var i=0;i<this.mcArray.length;i++) {
-            var mc = this.mcArray[i];
-            if(stat == 'normal')
-                mc.y = this.posArray[i].y;
-            else
-            {
-                if(i < 5)
-                    mc.y = this.posArray[i].y + 15;
-                else
-                    mc.y = this.posArray[i].y - 15;
-            }
-        }
+        //for(var i=0;i<this.mcArray.length;i++) {
+        //    var mc = this.mcArray[i];
+        //    mc.y = this.posArray[i].y;
+        //}
     }
 
 
@@ -174,9 +166,15 @@ class PKDressChooseUI extends game.BaseContainer {
         item.data = null;
         item.x = this.outPos.x;
         item.y = this.outPos.y;
+
         this.renewPos();
         this.renewSplice();
         this.dispatchEventWith('change');
+
+        for(var i=0;i<this.mcArray.length;i++)   //上面拿了数据才会改变使用数量
+        {
+            this.mcArray[i].dataChanged();
+        }
     }
 
     //插入
@@ -278,7 +276,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.list = list
         this.listLength = list.length;
         this.cleanAll();
-        for(var i=1;i<=10;i++) {
+        for(var i=1;i<=6;i++) {
             var mc = this['h' + i]
             if(list[i-1])
             {
@@ -357,6 +355,11 @@ class PKDressChooseUI extends game.BaseContainer {
         this.listLength ++;
         this.renewSplice();
         this.dispatchEventWith('change');
+
+        for(var i=0;i<this.mcArray.length;i++)   //上面拿了数据才会改变使用数量
+        {
+            this.mcArray[i].dataChanged();
+        }
     }
 
     public getList(){

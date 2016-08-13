@@ -45,7 +45,7 @@ class MainPageUI extends game.BaseUI {
     private friendBtn: eui.Group;
     private collectBtn: eui.Group;
     private honorBtn: eui.Group;
-    private tecBtn: eui.Group;
+    //private tecBtn: eui.Group;
     private bagBtn: eui.Group;
 
 
@@ -82,7 +82,7 @@ class MainPageUI extends game.BaseUI {
         this.addBtnEvent(this.bagBtn, this.onBag);
         this.addBtnEvent(this.honorBtn, this.onHonor);
         this.addBtnEvent(this.rankBtn, this.onRank);
-        this.addBtnEvent(this.tecBtn, this.onTec);
+        //this.addBtnEvent(this.tecBtn, this.onTec);
 
 
         //this.addBtnEvent(this.img, this.onMain);
@@ -391,7 +391,8 @@ class MainPageUI extends game.BaseUI {
 
     public scrollToCurrentPage(nomovie=false){
         egret.Tween.removeTweens(this.scrollGroup)
-        var targetX = -this.currentPage * 500;
+        var pageSize = 640
+        var targetX = -this.currentPage * pageSize;
         this.scroller.viewport.scrollV = 0;
         if(nomovie)
         {
@@ -400,20 +401,20 @@ class MainPageUI extends game.BaseUI {
         else if(this.scrollGroup.x != targetX)
         {
             var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
-            var lastPage =  Math.floor(Math.max(0,-this.scrollGroup.x)/500);
+            var lastPage =  Math.floor(Math.max(0,-this.scrollGroup.x)/pageSize);
             var des = lastPage - this.currentPage
             if(Math.abs(des) > 1)
             {
                 des > 0?des--:des++;
                 this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
-                targetX = -(this.currentPage+des) * 500;
-                tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/500)).call(function(){
+                targetX = -(this.currentPage+des) * pageSize;
+                tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/pageSize)).call(function(){
                     this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
                     this.scrollToCurrentPage(true);
                 },this);
             }
             else {
-                tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500));
+                tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / pageSize));
             }
         }
 

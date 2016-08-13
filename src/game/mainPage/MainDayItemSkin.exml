@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainDayItemSkin" width="480" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="1" y="-213" source="main2_png"/>
+<e:Skin class="MainDayItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="75" y="-213" source="main2_png"/>
 
 
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
@@ -20,7 +20,7 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Group y="300" x="0">
+	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" x="73" y="30" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8"/>
 		<e:Group id="awardGroup" y="87" horizontalCenter="0">

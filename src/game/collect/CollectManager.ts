@@ -38,9 +38,9 @@ class CollectManager{
         return arr;
     }
 
-    public isLock(id){
-        return UM.collect.lock.indexOf(id) != -1;
-    }
+    //public isLock(id){
+    //    return UM.collect.lock.indexOf(id) != -1;
+    //}
 
     public getCollectNum(id){
         return  UM.collect.num[id] || 0

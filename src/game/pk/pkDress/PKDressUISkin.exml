@@ -1,34 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressUISkin" width="640" height="1500" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" >
+<e:Skin class="PKDressUISkin" width="640" height="1500" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  states="normal,open" >
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
-	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" x="0" width="640" top="80" bottom="0">
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group x="0" y="77" y.open="335">
+		<e:Image source="fu2_png" x="25" y="6"/>
+		<e:Label id="coinText" text="X100" x="65" y="12" textColor="0xCCB48E" size="22"/>
+		<e:Label id="forceText" y="12" textColor="0xCCB48E" text="标签" x="150" size="22"/>
+		<e:Button id="viewBtn" x="509" y="2" label="对手" skinName="Btn_b2Skin" scaleX="0.8" scaleY="0.8" label.normal="对手信息" label.open="关闭信息"/>
+		<e:Image source="line_png" x="0" y="47" width="640"/>
+	</e:Group>
+	<e:Scroller id="scroller" x="0" width="640" top="135" bottom="0" top.open="395" bottom.open="0">
 		<e:Group id="scrollerGroup" height="279" width="360">
-			<e:List y="85" itemRendererSkinName="EnemyHeadItemSkin" width="560" height="259" id="enemyList" horizontalCenter="0.30000000000001137">
-				<e:layout>
-					<e:TileLayout requestedColumnCount="4" horizontalGap="30" verticalGap="10"/>
-				</e:layout>
-				<e:ArrayCollection>
-					<e:Array>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-					</e:Array>
-				</e:ArrayCollection>
-			</e:List>
-			<e:Group x="-5" y="80">
-				<e:Image source="fu2_png" x="25" y="6"/>
-				<e:Image source="fu1_png" x="138" y="6"/>
-				<e:Label id="coinText" text="X100" x="65" y="12" textColor="0xCCB48E" size="22"/>
-				<e:Label id="woodText" y="12" textColor="0xCCB48E" text="标签" x="180" size="22"/>
-				<e:Label id="forceText" y="12" textColor="0xCCB48E" text="标签" x="337" size="22"/>
-				<e:Button id="viewBtn" x="509" y="-1" label="对手" skinName="Btn_b2Skin" scaleX="0.8" scaleY="0.8"/>
-				<e:Image source="line_png" x="0" y="46" width="640"/>
-			</e:Group>
-			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin"/>
+			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin" height.open="464"/>
 			<e:List id="list" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseListItemSkin">
 				<e:layout>
 					<e:VerticalLayout paddingLeft="20" paddingTop="10" gap="10"/>
@@ -46,14 +29,29 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="topGroup" x="0" y="75">
+	<e:Group id="topGroup" x="0" y="123" y.open="381">
 		<e:Rect height="100%" width="100%" x="0" y="0"/>
-		<e:Image source="fu2_png" y="9" x="25"/>
-		<e:Image source="fu1_png" y="9" x="138"/>
-		<e:Label y="15" textColor="0xCCB48E" text="X100" x="65" size="22" id="coinText0"/>
-		<e:Label y="15" textColor="0xCCB48E" text="标签" id="woodText0" size="22" x="180"/>
-		<e:Label y="15" textColor="0xCCB48E" text="标签" id="forceText0" size="22" x="337"/>
-		<e:Button id="topBtn" skinName="Btn_b2Skin" label="回到顶部" scaleX="0.8" y="2" scaleY="0.8" x="509"/>
-		<e:Image source="line_png" width="640" y="46" x="0"/>
-	</e:Group>
+		<e:List id="simpleList" y="0" width="470" itemRendererSkinName="PKDressSimpleItemSkin" x="25">
+			<e:layout>
+				<e:HorizontalLayout gap="10"/>
+			</e:layout>
+			<e:ArrayCollection>
+				<e:Array>
+					<e:Object label="1"/>
+					<e:Object label="数据2"/>
+					<e:Object label="数据3"/>
+					<e:Object label="1"/>
+					<e:Object label="数据2"/>
+					<e:Object label="数据3"/>
+				</e:Array>
+			</e:ArrayCollection>
+		</e:List>
+		<e:Button id="topBtn" label="回到顶部" scaleX="0.8" y="6" scaleY="0.8" x="509" skinName="Btn_r2Skin"/>
+		<e:Image source="line_png" width="640" y="53" x="0"/>
+	</e:Group>
+	<e:List y="82" itemRendererSkinName="EnemyHeadItemSkin" height="259" id="enemyList" horizontalCenter="0" visible.normal="false">
+		<e:layout>
+			<e:TileLayout requestedColumnCount="4" horizontalGap="30" verticalGap="10"/>
+		</e:layout>
+	</e:List>
 </e:Skin>

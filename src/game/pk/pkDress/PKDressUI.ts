@@ -9,20 +9,17 @@ class PKDressUI extends game.BaseUI {
 
 
     private topUI: TopUI;
-    private scroller: eui.Scroller;
-    private scrollerGroup: eui.Group;
-    private enemyList: eui.List;
     private coinText: eui.Label;
-    //private woodText: eui.Label;
     private forceText: eui.Label;
     private viewBtn: eui.Button;
+    private scroller: eui.Scroller;
+    private scrollerGroup: eui.Group;
     private pkDressChooseUI: PKDressChooseUI;
     private list: eui.List;
     private topGroup: eui.Group;
-    private coinText0: eui.Label;
-    //private woodText0: eui.Label;
-    private forceText0: eui.Label;
+    private simpleList: eui.List;
     private topBtn: eui.Button;
+    private enemyList: eui.List;
 
 
 
@@ -54,6 +51,33 @@ class PKDressUI extends game.BaseUI {
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
     }
 
+    public childrenCreated() {
+        super.childrenCreated();
+
+        this.topUI.setTitle('调整位置')
+        this.topUI.addEventListener('hide', this.hide, this);
+
+
+        this.addBtnEvent(this.viewBtn, this.onView);
+        //this.addBtnEvent(this.forceText, this.onForceText);
+        this.addBtnEvent(this.topBtn, this.scrollToTop);
+
+
+        this.list.itemRenderer = PKDressChooseListItem;
+        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+
+
+        this.enemyList.itemRenderer = EnemyHeadItem;
+        this.simpleList.itemRenderer = PKDressSimpleItem;
+
+        this.pkDressChooseUI.addEventListener('change', this.onChooseChange, this)
+        this.pkDressChooseUI.specialData = this.specialData;
+
+        this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
+
+    }
+
+
     public show(data?){
         this.dataIn = data
         this.pkType = data.pktype;
@@ -69,36 +93,12 @@ class PKDressUI extends game.BaseUI {
 
     public onShow(){
         this.monsterList = this.orginData.list;
+        PKManager.getInstance().sortMonster(this.monsterList);
         this.reInitData();
     }
 
 
-    public childrenCreated() {
-        super.childrenCreated();
 
-        this.topUI.setTitle('调整位置')
-        this.topUI.addEventListener('hide', this.hide, this);
-
-
-        this.addBtnEvent(this.viewBtn, this.onView);
-        this.addBtnEvent(this.forceText, this.onForceText);
-        this.addBtnEvent(this.topBtn, this.scrollToTop);
-
-
-        this.list.itemRenderer = PKDressChooseListItem;
-        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
-
-
-        this.enemyList.itemRenderer = EnemyHeadItem;
-
-        this.pkDressChooseUI.addEventListener('change', this.onChooseChange, this)
-        this.pkDressChooseUI.specialData = this.specialData;
-
-        this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
-
-        MyTool.removeMC(this.enemyList)
-
-    }
 
     private scrollToTop(){
         this.scroller.stopAnimation();
@@ -108,7 +108,7 @@ class PKDressUI extends game.BaseUI {
 
     private onScroll(){
         var scrollV = this.scroller.viewport.scrollV;
-        if(scrollV > this.pkDressChooseUI.y - this.topGroup.height)
+        if(scrollV > 80)//this.pkDressChooseUI.y - this.topGroup.height)
             this.topGroup.visible = true;
         else
             this.topGroup.visible = false;
@@ -161,25 +161,25 @@ class PKDressUI extends game.BaseUI {
          }
     }
 
-    private onForceText(){
-          if(this.forceText.textColor == 0xFF0000)
-          {
-              Alert('当出战单位种类较为单一时，会产生过载，整体战力-8%');
-          }
-    }
+    //private onForceText(){
+    //      if(this.forceText.textColor == 0xFF0000)
+    //      {
+    //          Alert('当出战单位种类较为单一时，会产生过载，整体战力-8%');
+    //      }
+    //}
 
     private onView(){
-        if(this.enemyList.parent)
-            MyTool.removeMC(this.enemyList)
+        if(this.currentState == 'open')
+            this.currentState = 'normal'
         else
-            this.scrollerGroup.addChildAt(this.enemyList,0)
+            this.currentState = 'open'
 
     }
 
     public addMonster(mid){
-        if(this.chooseList.length >= 10)
+        if(this.chooseList.length >= 6)
         {
-            Alert('每次战斗最多可出10张卡');
+            Alert('每次战斗最多可出6张卡');
             return;
         }
         this.pkDressChooseUI.addItem(mid);
@@ -190,6 +190,11 @@ class PKDressUI extends game.BaseUI {
         this.saveHistory();
         this.renew();
         this.renewList();
+        this.renewSimpleList();
+    }
+
+    private renewSimpleList(){
+        this.simpleList.dataProvider = new eui.ArrayCollection(this.chooseList)
     }
 
     //怪物被使用次数
@@ -224,25 +229,32 @@ class PKDressUI extends game.BaseUI {
 
         this.chooseList = data.list;
 
+
         this.list.selectedIndex = -1;
         this.chooseMonster = null;
         this.scroller.viewport.scrollV = 0;
 
-        this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
+
+        this.currentState = 'normal'
         if(!this.dataIn.enemy)
         {
-            MyTool.removeMC(this.enemyList)
             this.viewBtn.visible = false;
         }
         else
         {
             this.viewBtn.visible = true;
+            this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
+            if(this.dataIn.enemy.length <=6)
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
+            else
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 4
         }
 
 
         this.pkDressChooseUI.renew(this.chooseList);
         this.renewList();
         this.renew();
+        this.renewSimpleList();
 
         this.topGroup.visible = false;
         this.scroller.viewport.scrollV = 0;
@@ -276,9 +288,10 @@ class PKDressUI extends game.BaseUI {
     public renew(){
         var oo = this.getCurrentResource();
         //资源
-        this.coinText.text = oo.coin + '';
+        this.coinText.text = '×' + oo.coin + '';
+        this.forceText.text = '';
         //this.woodText.text = oo.wood + '';
-        this.coinText0.text = oo.coin + '';
+        //this.coinText0.text = oo.coin + '';
         //this.woodText0.text = oo.wood + '';
 
         //战力加成相关

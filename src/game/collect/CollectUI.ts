@@ -83,11 +83,11 @@ class CollectUI extends game.BaseUI {
         {
             var id = this.listArr[i].id;
             var num = CM.getCollectNum(id)
-            if(num && !CM.isLock(id))
-            {
-                obj[id] = num;
-                count += num;
-            }
+            //if(num && !CM.isLock(id))
+            //{
+            //    obj[id] = num;
+            //    count += num;
+            //}
         }
 
         if(count == 0)

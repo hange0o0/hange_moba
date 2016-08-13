@@ -23,13 +23,14 @@ class PKDressChooseItem extends game.BaseItem {
         {
             this.stateMC.visible = false;
             this.myHeadItem.data = null;
-            this.myHeadItem.levelText.text = this.index
+            this.myHeadItem.levelText.text = 'X'
             return;
         }
 
+        var vo = MonsterVO.getObject(this.data.id);
         this.stateMC.visible = this.data.selected;
         this.myHeadItem.data = this.data;
-        this.myHeadItem.levelText.text = 'm'
+        this.myHeadItem.levelText.text = PKManager.getInstance().getCostByNum(this.data.id,PKDressUI.getInstance().getMonsterNum(this.data.id)-1);
 
 
     }
