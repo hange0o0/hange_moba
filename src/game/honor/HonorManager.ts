@@ -17,7 +17,7 @@ class HonorManager{
             5:{num:10000,diamond:500},
         }
 
-        this.list2 = ObjectUtil.objToArray(CM.table[RingVO.dataKey]);
+        //this.list2 = ObjectUtil.objToArray(CM.table[RingVO.dataKey]);
     }
 
     public getList1(){
@@ -27,13 +27,13 @@ class HonorManager{
         for(var s in mdata)
         {
             var vo = mdata[s];
-            var kindVO = MonsterKindVO.getObject(vo.type);
-            if(kindVO.level<= UM.level)
-                arr.push(this.fillAwardStat({
-                    id:vo.id,
-                    index:index++,
-                    honorType:1
-                }));
+            //var kindVO = MonsterKindVO.getObject(vo.type);
+            //if(kindVO.level<= UM.level)
+            //    arr.push(this.fillAwardStat({
+            //        id:vo.id,
+            //        index:index++,
+            //        honorType:1
+            //    }));
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
         for(var i=0;i<arr.length;i++)
@@ -59,9 +59,9 @@ class HonorManager{
                 continue;
             }
 
-            var vo = MonsterKindVO.getObject(oo.id)
-            if(!vo || vo.level > UM.level)
-                continue;
+            //var vo = MonsterKindVO.getObject(oo.id)
+            //if(!vo || vo.level > UM.level)
+            //    continue;
             arr.push(this.fillAwardStat({
                 id:oo.id,
                 index:index++,

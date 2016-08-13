@@ -33,18 +33,18 @@ class RingInfoUI extends game.BaseWindow {
     }
 
     public onShow(){
-        var vo = RingVO.getObject(this.data);
-        this.titleText.text = '' + vo.name
-        var level = 10
-        if(!this.isEqual)
-        {
-            level =  UM.getRingLevel(vo.id)
-        }
+        //var vo = RingVO.getObject(this.data);
+        //this.titleText.text = '' + vo.name
+        //var level = 10
+        //if(!this.isEqual)
+        //{
+        //    level =  UM.getRingLevel(vo.id)
+        //}
+        //
+        //
+        //this.desText.text = '' + vo.getDes(level)
+        //this.levelText.text = '' + level;
 
-
-        this.desText.text = '' + vo.getDes(level)
-        this.levelText.text = '' + level;
-
-        this.headMC.source = vo.thumb;
+        //this.headMC.source = vo.thumb;
     }
 }

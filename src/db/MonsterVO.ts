@@ -13,10 +13,11 @@ class MonsterVO {
     public hp
     public atk
     public speed
-    public type
+    public level
+    //public type
     public cost
-    public wood
-    public collect
+    public mp
+    //public collect
     //public kind//arr
     //public effect_kind //arr
     public sn
@@ -47,11 +48,10 @@ class MonsterVO {
         this.hp = data.hp;
         this.atk = data.atk;
         this.speed = data.speed;
-        this.type = data.type;
+        this.level = data.level;
+        this.mp = data.mp;
+        //this.collect = data.collect;
         this.cost = data.cost;
-        this.wood = data.wood;
-        this.collect = data.collect;
-        //this.kind = data.kind;
         //this.effect_kind = data.effect_kind;
 
         this.initSkill('sn',data);

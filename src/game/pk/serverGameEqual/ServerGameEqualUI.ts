@@ -21,14 +21,12 @@ class ServerGameEqualUI extends game.BaseUI {
     private myTitleText0: eui.Label;
     private chooseBtn0: eui.Button;
     private myList0: eui.List;
-    private ringText0: eui.Label;
-    private ringText1: eui.Label;
+
     private myGroup1: eui.Group;
     private myTitleText1: eui.Label;
     private chooseBtn1: eui.Button;
     private myList1: eui.List;
-    private ringText2: eui.Label;
-    private ringText3: eui.Label;
+
 
 
     private enemyArray
@@ -53,10 +51,7 @@ class ServerGameEqualUI extends game.BaseUI {
         this.myList0.itemRenderer =  MyHeadItem;
         this.myList1.itemRenderer =  MyHeadItem;
 
-        this.addBtnEvent(this.ringText0,this.onRing1);
-        this.addBtnEvent(this.ringText1,this.onRing2);
-        this.addBtnEvent(this.ringText2,this.onRing3);
-        this.addBtnEvent(this.ringText3,this.onRing4);
+
 
         //this.enemyList.add
 
@@ -132,8 +127,7 @@ class ServerGameEqualUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.ringText0.text = '技能1：' +RingVO.getObject(data.choose[0].ring[0]).name
-        this.ringText1.text = '技能2：' +RingVO.getObject(data.choose[0].ring[1]).name
+
 
 
         //更新卡组2
@@ -153,8 +147,7 @@ class ServerGameEqualUI extends game.BaseUI {
             });
         }
         this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
-        this.ringText2.text = RingVO.getObject(data.choose[1].ring[0]).name
-        this.ringText3.text = RingVO.getObject(data.choose[1].ring[1]).name
+
 
 
     }

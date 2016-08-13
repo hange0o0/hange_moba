@@ -31,28 +31,28 @@ class TypeInfoUI extends game.BaseWindow {
     }
 
     public onShow(){
-        var mkvo = MonsterKindVO.getObject(this.data);
-
-        this.titleText.text = mkvo.word +  '属性'
-
-        if(mkvo.restrain.length > 0)
-            this.list1.dataProvider = new eui.ArrayCollection(this.changeWord(mkvo.restrain));
-        else
-            this.list1.dataProvider = new eui.ArrayCollection([{label:'无'}]);
-
-        var beRestrain = mkvo.getBeRestrain();
-        if(beRestrain.length > 0)
-            this.list2.dataProvider = new eui.ArrayCollection(this.changeWord(beRestrain));
-        else
-            this.list2.dataProvider = new eui.ArrayCollection([{label:'无'}]);
+        //var mkvo = MonsterKindVO.getObject(this.data);
+        //
+        //this.titleText.text = mkvo.word +  '属性'
+        //
+        //if(mkvo.restrain.length > 0)
+        //    this.list1.dataProvider = new eui.ArrayCollection(this.changeWord(mkvo.restrain));
+        //else
+        //    this.list1.dataProvider = new eui.ArrayCollection([{label:'无'}]);
+        //
+        //var beRestrain = mkvo.getBeRestrain();
+        //if(beRestrain.length > 0)
+        //    this.list2.dataProvider = new eui.ArrayCollection(this.changeWord(beRestrain));
+        //else
+        //    this.list2.dataProvider = new eui.ArrayCollection([{label:'无'}]);
     }
 
     private changeWord(arr){
         var temp = [];
-        for(var i=0;i<arr.length;i++)
-        {
-            temp.push({label:MonsterKindVO.getObject(arr[i]).word})
-        }
+        //for(var i=0;i<arr.length;i++)
+        //{
+        //    temp.push({label:MonsterKindVO.getObject(arr[i]).word})
+        //}
         return temp;
     }
 }

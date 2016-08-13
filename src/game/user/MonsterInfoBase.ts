@@ -47,20 +47,20 @@ class MonsterInfoBase extends game.BaseContainer {
 
         //其本信息
         this.headMC.source = vo.url;
-        this.typeText.text = MonsterKindVO.getObject(vo.type).word
+        //this.typeText.text = MonsterKindVO.getObject(vo.type).word
         this.nameText.text = vo.name;
         //this.txt.text = vo.des;
-        this.coinText.text = 'X' + vo.cost;
-        if(vo.wood)
-        {
-            this.woodText.text = 'X' + vo.wood;
-            this.woodIcon.visible =  true;
-        }
-        else
-        {
-            this.woodText.text = ''
-            this.woodIcon.visible =  false;
-        }
+        //this.coinText.text = 'X' + vo.cost;
+        //if(vo.wood)
+        //{
+        //    this.woodText.text = 'X' + vo.wood;
+        //    this.woodIcon.visible =  true;
+        //}
+        //else
+        //{
+        //    this.woodText.text = ''
+        //    this.woodIcon.visible =  false;
+        //}
 
         for(var i=1;i<=4;i++)
         {

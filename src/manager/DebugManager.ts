@@ -95,7 +95,7 @@ class DebugManager {
             {
                 var id = ArrayUtil.randomOne(arr);
                 returnArr.push(id);
-                if(PKM.getCost(returnArr) > 100)
+                if(PKM.getCost(returnArr) > 88)
                 {
                     returnArr.pop();
                 }
@@ -107,8 +107,81 @@ class DebugManager {
                 return  this.randomCard();
         }
 
-        //ArrayUtil.random(returnArr);
+        ArrayUtil.random(returnArr);
         return returnArr;
+    }
+
+    //随机serverPK卡格式
+    public randomServerCard(){
+        //先出8张卡
+        var card1= []; //低
+        var card2= []; //中
+        var card3= []; //高
+        for(var i=1;i<this.maxMonsterID + 1;i++)
+        {
+            var vo = MonsterVO.getObject(i);
+            if(vo)
+            {
+                if(vo.cost <10)
+                    card1.push(vo.id);
+                else if(vo.cost <20)
+                    card2.push(vo.id);
+                else
+                    card3.push(vo.id);
+            }
+        }
+        ArrayUtil.random(card1,3);
+        ArrayUtil.random(card2,3);
+        ArrayUtil.random(card3,3);
+        var arr = [
+            card1.pop(),
+            card1.pop(),
+            card2.pop(),
+            card2.pop(),
+            card2.pop(),
+            card2.pop(),
+            card3.pop(),
+            card3.pop()
+        ];
+
+        var returnArr = [];
+        var PKM = PKManager.getInstance();
+        var index = 0;
+        while(PKM.getCost(returnArr) < 80)
+        {
+            returnArr = [];
+            for(var i=0;i<30;i++)
+            {
+                var id = ArrayUtil.randomOne(arr);
+                returnArr.push(id);
+                if(PKM.getCost(returnArr) > 88)
+                {
+                    returnArr.pop();
+                }
+                if(returnArr.length >= 6)
+                    break;
+            }
+            index ++;
+            if(index >= 100)
+                break;
+        }
+
+        ArrayUtil.random(returnArr);
+        ArrayUtil.random(arr);
+        var oo = {
+            pkdata:{list:returnArr},
+            base:{list:arr}
+        };
+        return JSON.stringify(oo).replace(/\"/g,'\\"');
+    }
+    //生成N个
+    public randomServerCardByNun(num){
+        var arr = [];
+         for(var i=0;i<num;i++)
+         {
+             arr.push(this.randomServerCard());
+         }
+        console.log(arr.join('\n'))
     }
 
 
@@ -118,7 +191,13 @@ class DebugManager {
         for(var i=0;i<arr.length;i++)
         {
             var card = arr[i];
-            console.log((i+1)+'\t'+card.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length);
+            var temp = [];
+            for(var j=0;j<card.length;j++)
+            {
+                var vo = MonsterVO.getObject(card[j]);
+                temp.push(vo.id+':'+vo.name);
+            }
+            console.log((i+1)+'\t'+temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length);
             var mid2 = {};
             for(var j=0;j<card.length;j++)
             {
@@ -162,7 +241,13 @@ class DebugManager {
         function testOne(){
             self.testOneCard(time2,function(card){
                 arr.push(card)
-                console.log(arr.length + '\t\t' + card.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
+                var temp = [];
+                for(var i=0;i<card.length;i++)
+                {
+                    var vo = MonsterVO.getObject(card[i]);
+                    temp.push(vo.id+':'+vo.name);
+                }
+                console.log(arr.length + '\t\t' + temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
                 SharedObjectManager.instance.setMyValue('testCard_'+key,arr);
                 if(arr.length >= time1 || self.stop)
                 {
@@ -239,6 +324,39 @@ class DebugManager {
             }
         }
         return arr;
+    }
+
+    public monsterDeatil(){
+        var num =  this.maxMonsterID + 1;
+        var cost = {}
+        var card1= []; //低
+        var card2= []; //中
+        var card3= []; //高
+        for(var i=1;i<num;i++)
+        {
+            var vo = MonsterVO.getObject(i);
+            if(vo)
+            {
+                 if(!cost[vo.cost])
+                     cost[vo.cost] = 0;
+                cost[vo.cost] ++;
+
+                if(vo.cost <10)
+                    card1.push(vo.id);
+                else if(vo.cost <20)
+                    card2.push(vo.id);
+                else
+                    card3.push(vo.id);
+            }
+        }
+        console.log('====================cost=====================');
+        console.log('<10费：' + card1.length + '-----' + card1.join(','));
+        console.log('<20费：' + card2.length + '-----' + card2.join(','));
+        console.log('>=20费：' + card3.length + '-----' + card3.join(','));
+        for(var s in cost)
+        {
+            console.log(s+':'+cost[s])
+        }
     }
 
     //列出最强的卡

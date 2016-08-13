@@ -32,9 +32,7 @@ class CollectManager{
             var vo = mdata[s];
             if(fillMonster && vo.type != fillMonster)
                 continue;
-            var kindVO = MonsterKindVO.getObject(vo.type);
-            if(kindVO.level<= UM.level)
-                arr.push(vo);
+            arr.push(vo);
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
         return arr;

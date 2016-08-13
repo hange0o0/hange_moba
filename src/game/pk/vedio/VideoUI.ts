@@ -247,10 +247,10 @@ class VideoUI extends game.BaseUI {
                  if(data.skillID == 1)//令牌
                  {
                      var PKM = PKManager.getInstance()
-                     if(data.atker == 1)
-                         data.skillVO = RingVO.getObject(PKM.team1Ring).getSkillVO()
-                     else
-                         data.skillVO = RingVO.getObject(PKM.team2Ring).getSkillVO()
+                     //if(data.atker == 1)
+                     //    data.skillVO = RingVO.getObject(PKM.team1Ring).getSkillVO()
+                     //else
+                     //    data.skillVO = RingVO.getObject(PKM.team2Ring).getSkillVO()
                  }
                 else
                  {

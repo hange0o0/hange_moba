@@ -14,9 +14,9 @@ class CacheManager{
     public constructor() {
         this.register(MonsterVO);
         this.register(MainGameVO);
-        this.register(MonsterKindVO);
+        //this.register(MonsterKindVO);
         this.register(PropVO);
-        this.register(RingVO);
+        //this.register(RingVO);
     }
 
     private register(cls)

@@ -41,9 +41,9 @@ class HonorItem extends game.BaseItem {
         else
         {
             //oo = UM.honor.ring[id];
-            var rvo = RingVO.getObject(id);
-            this.nameText.text = rvo.name;
-            this.headMC.source = rvo.thumb;
+            //var rvo = RingVO.getObject(id);
+            //this.nameText.text = rvo.name;
+            //this.headMC.source = rvo.thumb;
         }
         //oo = oo ||  {t:0,w:0}
         var awardLevel = this.data.level;

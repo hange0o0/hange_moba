@@ -155,7 +155,7 @@ class UserManager {
             speed:this.getTecAdd('main',this.tec.main[15])
         }
         var vo = MonsterVO.getObject(id);
-        var typeAdd = this.getTecAdd('main',this.tec.main[vo.type]);
+        var typeAdd = 0//this.getTecAdd('main',this.tec.main[vo.type]);
         var monsterAdd = this.getTecAdd('monster',this.tec.monster[id]);
         oo.atk += typeAdd + monsterAdd;
         oo.hp += typeAdd + monsterAdd;
@@ -191,14 +191,14 @@ class UserManager {
     }
 
     public getMonsterCollect(monsterID){
-        //return 3;
-        var vo = MonsterVO.getObject(monsterID);
-        var max = vo.collect;
-        if(this.collect.level[monsterID])
-        {
-            max = Math.max(max,this.collect.level[monsterID]);
-        }
-        return max;
+        return 3;
+        //var vo = MonsterVO.getObject(monsterID);
+        //var max = vo.collect;
+        //if(this.collect.level[monsterID])
+        //{
+        //    max = Math.max(max,this.collect.level[monsterID]);
+        //}
+        //return max;
     }
 
     //得到最常用的10个怪

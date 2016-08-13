@@ -12,8 +12,6 @@ class DayGameUI extends game.BaseUI {
     private enemyList: eui.List;
     private myGroup0: eui.Group;
     private myList0: eui.List;
-    private ringText0: eui.Label;
-    private ringText1: eui.Label;
     private chooseBtn0: eui.Button;
 
 
@@ -36,8 +34,6 @@ class DayGameUI extends game.BaseUI {
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
 
-        this.addBtnEvent(this.ringText0,this.onRing1);
-        this.addBtnEvent(this.ringText1,this.onRing2);
 
         //this.enemyList.add
     }
@@ -109,8 +105,6 @@ class DayGameUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.ringText0.text = '技能1：' + RingVO.getObject(data.choose.ring[0]).name;
-        this.ringText1.text = '技能2：' + RingVO.getObject(data.choose.ring[1]).name;
 
     }
 

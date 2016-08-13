@@ -30,8 +30,6 @@ class PKDressChooseUI extends game.BaseContainer {
     private a10: eui.Image;
     private a11: eui.Image;
     private a12: eui.Image;
-    private ringRadio0: eui.RadioButton;
-    private ringRadio1: eui.RadioButton;
     private pkBtn: eui.Button;
     private deleteBtn: eui.Button;
     private moreBtn: eui.Button;
@@ -113,17 +111,8 @@ class PKDressChooseUI extends game.BaseContainer {
         this.addBtnEvent(this.deleteBtn, this.onDelete);
         this.addBtnEvent(this.cancleBtn, this.onCancel);
         this.addBtnEvent(this.moreBtn, this.onMore);
-        MyTool.addLongTouch(this.ringRadio0,this.onRing1,this)
-        MyTool.addLongTouch(this.ringRadio1,this.onRing2,this)
 
         console.log(this.posArray);
-    }
-
-    private onRing1(){
-        RingInfoUI.getInstance().show(this.ringRadio0.value,PKDressUI.getInstance().isEqual)
-    }
-    private onRing2(){
-        RingInfoUI.getInstance().show(this.ringRadio1.value,PKDressUI.getInstance().isEqual)
     }
 
     private changeState(stat){
@@ -282,13 +271,8 @@ class PKDressChooseUI extends game.BaseContainer {
         }
     }
 
-    public renew(list,ringList,chooseRing){
+    public renew(list){
 
-        this.ringRadio0.value = ringList[0];
-        this.ringRadio1.value = ringList[1];
-        this.ringRadio0.label =  RingVO.getObject(ringList[0]).name;
-        this.ringRadio1.label =  RingVO.getObject(ringList[1]).name;
-        this.ringRadio0.group.selectedValue = chooseRing;
 
         this.selectIndex = -1;
         this.list = list
@@ -383,9 +367,6 @@ class PKDressChooseUI extends game.BaseContainer {
                 chooseList.push(mc.data.vo.id);
         }
         return chooseList;
-    }
-    public getRing(){
-        return this.ringRadio0.group.selectedValue;
     }
 
 }

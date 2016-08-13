@@ -50,7 +50,7 @@ class PKDressChooseListItem extends game.BaseItem {
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.thumb
 
-        this.typeText.text = MonsterKindVO.getObject(vo.type).word;
+        //this.typeText.text = MonsterKindVO.getObject(vo.type).word;
         this.nickText.text = vo.name
 
 
@@ -60,7 +60,7 @@ class PKDressChooseListItem extends game.BaseItem {
         if(this.data.specialData.isEqual)
         {
             fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
-            star = Math.max(1,vo.collect);
+            star = 1//Math.max(1,vo.collect);
             forceStr = '0';
         }
         else  //我自己
@@ -69,22 +69,22 @@ class PKDressChooseListItem extends game.BaseItem {
             fightData = UM.getTecMonsterAdd(vo.id);
             fightData.atk += force;
             fightData.hp += force;
-            forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getTecAdd('main',UM.getMainLevel(vo.type)) + '';
+            //forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getTecAdd('main',UM.getMainLevel(vo.type)) + '';
             star = UM.getMonsterCollect(vo.id)
         }
 
 
-        if(star >= 4)
-        {
-            if(vo.wood)
-                forceStr += '+5%';
-            else
-                forceStr += '+2%';
-        }
-        this.forceText.text = '加成：' + forceStr;
-        this.coinText.text = vo.cost;
-        this.woodText.text = vo.wood;
-        this.woodGroup.visible = vo.wood;
+        //if(star >= 4)
+        //{
+        //    if(vo.wood)
+        //        forceStr += '+5%';
+        //    else
+        //        forceStr += '+2%';
+        //}
+        //this.forceText.text = '加成：' + forceStr;
+        //this.coinText.text = vo.cost;
+        //this.woodText.text = vo.wood;
+        //this.woodGroup.visible = vo.wood;
 
 
 
@@ -99,15 +99,16 @@ class PKDressChooseListItem extends game.BaseItem {
 
         this.desText.text = '';
 
-        if(max<= this.data.num)
-        {
-            this.desText.text =('已达上限');
-        }
-        else if(vo.wood > this.data.ro.wood)
-        {
-            this.desText.text = ('银符不足');
-        }
-        else if(vo.cost > this.data.ro.coin)
+        //if(max<= this.data.num)
+        //{
+        //    this.desText.text =('已达上限');
+        //}
+        //else if(vo.wood > this.data.ro.wood)
+        //{
+        //    this.desText.text = ('银符不足');
+        //}
+        var arr = this.data.chooseList.concat(vo.id)
+        if(PKManager.getInstance().getCost(arr) > PKManager.PKCost)
         {
             this.desText.text = ('金符不足');
         }

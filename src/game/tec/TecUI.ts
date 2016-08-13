@@ -80,16 +80,16 @@ class TecUI extends game.BaseUI {
         GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideFill,this);
         this.fillGroup.visible = true;
         var arr = [{id:0,label:'全部属性'}];
-        var mdata = CM.table[MonsterKindVO.dataKey];
-        for(var s in mdata)
-        {
-            var vo = mdata[s];
-            if(vo.level<= UM.level)
-                arr.push({
-                    id:vo.id,
-                    label:'【'+vo.word+'】属性'
-                });
-        }
+        //var mdata = CM.table[MonsterKindVO.dataKey];
+        //for(var s in mdata)
+        //{
+        //    var vo = mdata[s];
+        //    if(vo.level<= UM.level)
+        //        arr.push({
+        //            id:vo.id,
+        //            label:'【'+vo.word+'】属性'
+        //        });
+        //}
         this.fillList.dataProvider = new eui.ArrayCollection(arr)
     }
 

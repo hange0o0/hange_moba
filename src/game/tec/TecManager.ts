@@ -35,7 +35,7 @@ class TecManager{
             {id:19,tecType:1,name:'克制强化',des:'对其它卡牌的克制效果加成$$%'},
             {id:20,tecType:1,name:'克制压制',des:'被其它卡牌的克制影响减少$$%，极限情况是不受克制'}
         ];
-        this.list2 = ObjectUtil.objToArray(CM.table[RingVO.dataKey]);
+        //this.list2 = ObjectUtil.objToArray(CM.table[RingVO.dataKey]);
         ArrayUtil.sortByField(this.list2,['id'],[0]);
 
     }
@@ -78,9 +78,9 @@ class TecManager{
         for(var i=0;i<12;i++)
         {
             var oo = this.list1[i];
-            var vo = MonsterKindVO.getObject(oo.id)
-            if(!vo || vo.level > UM.level)
-                continue;
+            //var vo = MonsterKindVO.getObject(oo.id)
+            //if(!vo || vo.level > UM.level)
+            //    continue;
             arr.push(oo);
         }
         arr = arr.concat(this.list1.slice(-8))
@@ -92,9 +92,9 @@ class TecManager{
         for(var i=0;i<12;i++)
         {
             var oo = this.list2[i];
-            var vo = MonsterKindVO.getObject(oo.id)
-            if(!vo || vo.level > UM.level)
-                continue;
+            //var vo = MonsterKindVO.getObject(oo.id)
+            //if(!vo || vo.level > UM.level)
+            //    continue;
             arr.push(oo);
         }
         arr = arr.concat(this.list2.slice(12))
@@ -109,12 +109,12 @@ class TecManager{
             var vo = mdata[s];
             if(fillMonster && vo.type != fillMonster)
                 continue;
-            var kindVO = MonsterKindVO.getObject(vo.type);
-            if(kindVO.level<= UM.level)
-                arr.push({
-                    id:vo.id,
-                    tecType:3
-                });
+            //var kindVO = MonsterKindVO.getObject(vo.type);
+            //if(kindVO.level<= UM.level)
+            //    arr.push({
+            //        id:vo.id,
+            //        tecType:3
+            //    });
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
         return arr;

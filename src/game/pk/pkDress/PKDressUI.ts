@@ -13,14 +13,14 @@ class PKDressUI extends game.BaseUI {
     private scrollerGroup: eui.Group;
     private enemyList: eui.List;
     private coinText: eui.Label;
-    private woodText: eui.Label;
+    //private woodText: eui.Label;
     private forceText: eui.Label;
     private viewBtn: eui.Button;
     private pkDressChooseUI: PKDressChooseUI;
     private list: eui.List;
     private topGroup: eui.Group;
     private coinText0: eui.Label;
-    private woodText0: eui.Label;
+    //private woodText0: eui.Label;
     private forceText0: eui.Label;
     private topBtn: eui.Button;
 
@@ -29,11 +29,9 @@ class PKDressUI extends game.BaseUI {
 
 
 
-    private totalWood = 1;
     private totalCoin = 100
 
     public monsterList = [];
-    public ringList = [];
     public chooseList = [];
 
     public history = {};//历史记录
@@ -47,7 +45,6 @@ class PKDressUI extends game.BaseUI {
     public key;//记录上一次选择的TAB
 
     public chooseMonster;
-    private chooseRing
 
 
     public constructor() {
@@ -64,7 +61,7 @@ class PKDressUI extends game.BaseUI {
         this.isEqual = data.isEqual;
         this.specialData.isEqual = this.isEqual;
 
-        this.key = this.orginData.list.join(',') + '|' + this.orginData.ring.join(',');
+        this.key = this.orginData.list.join(',');
 
 
         super.show();
@@ -72,7 +69,6 @@ class PKDressUI extends game.BaseUI {
 
     public onShow(){
         this.monsterList = this.orginData.list;
-        this.ringList = this.orginData.ring;
         this.reInitData();
     }
 
@@ -105,6 +101,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private scrollToTop(){
+        this.scroller.stopAnimation();
         this.scroller.viewport.scrollV = 0;
         this.topGroup.visible = false;
     }
@@ -123,7 +120,7 @@ class PKDressUI extends game.BaseUI {
             Alert('请先选择出战单位');
             return;
         }
-        var chooseData = {list:this.chooseList,ring:this.chooseRing,index:this.dataIn.index}
+        var chooseData = {list:this.chooseList,index:this.dataIn.index}
         var self = this
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
             self.closeRelate();
@@ -190,7 +187,6 @@ class PKDressUI extends game.BaseUI {
     
     private onChooseChange(){
         this.chooseList = this.pkDressChooseUI.getList();
-        this.chooseRing = this.pkDressChooseUI.getRing();
         this.saveHistory();
         this.renew();
         this.renewList();
@@ -207,32 +203,26 @@ class PKDressUI extends game.BaseUI {
         return count;
     }
     private saveHistory(){
-        this.history[this.pkType] = {key:this.key,list:this.chooseList,ring:this.chooseRing,time:TM.now()};
+        this.history[this.pkType] = {key:this.key,list:this.chooseList,time:TM.now()};
         SharedObjectManager.instance.setMyValue('dress_history',this.history);
     }
 
 
     //得到当前用剩的资源
     public getCurrentResource(){
-        var oo = {coin:this.totalCoin,wood:this.totalWood}
-        var arr = this.chooseList
-        for(var i=0;i<arr.length;i++) {
-            var vo = MonsterVO.getObject(arr[i]);
-            oo.coin -= vo.cost;
-            oo.wood -= vo.wood;
+        var oo = {
+            coin:this.totalCoin - PKManager.getInstance().getCost(this.chooseList)
         }
         return oo;
     }
 
     public reInitData(){
-        this.totalWood = 1;
-        this.totalCoin = 100;
+        this.totalCoin = PKManager.PKCost;
         if(!this.history[this.pkType] || this.history[this.pkType].key != this.key)
-            this.history[this.pkType] = {key:this.key,list:[],ring:this.ringList[0],time:TM.now()};
+            this.history[this.pkType] = {key:this.key,list:[],time:TM.now()};
         var data = this.history[this.pkType];
 
         this.chooseList = data.list;
-        this.chooseRing = data.ring;
 
         this.list.selectedIndex = -1;
         this.chooseMonster = null;
@@ -250,7 +240,7 @@ class PKDressUI extends game.BaseUI {
         }
 
 
-        this.pkDressChooseUI.renew(this.chooseList,this.ringList,this.chooseRing);
+        this.pkDressChooseUI.renew(this.chooseList);
         this.renewList();
         this.renew();
 
@@ -275,7 +265,7 @@ class PKDressUI extends game.BaseUI {
             oo.num = this.getMonsterNum(vo.id);
             oo.index = i;
             oo.list = arr;
-            oo.ro = ro;
+            oo.chooseList = this.chooseList;
             arr.push(oo);
         }
 
@@ -287,9 +277,9 @@ class PKDressUI extends game.BaseUI {
         var oo = this.getCurrentResource();
         //资源
         this.coinText.text = oo.coin + '';
-        this.woodText.text = oo.wood + '';
+        //this.woodText.text = oo.wood + '';
         this.coinText0.text = oo.coin + '';
-        this.woodText0.text = oo.wood + '';
+        //this.woodText0.text = oo.wood + '';
 
         //战力加成相关
         var fight = 0;
@@ -303,35 +293,35 @@ class PKDressUI extends game.BaseUI {
                 continue;
             monsterRecord[monsterID] = 1;
             count ++;
-            if(UM.getMonsterCollect(monsterID) == 4)//4星对全体战力加成2%
-            {
-                if(MonsterVO.getObject(monsterID).wood)
-                    fight += 5;
-                else
-                    fight += 2;
-            }
+            //if(UM.getMonsterCollect(monsterID) == 4)//4星对全体战力加成2%
+            //{
+                //if(MonsterVO.getObject(monsterID).wood)
+                //    fight += 5;
+                //else
+                //    fight += 2;
+            //}
         }
-        if(count*2 > list.length) //过载
-        {
-            fight -= 8;
-            this.forceText.textColor = 0xFF0000;
-            if(fight < 0)
-                this.forceText.text = '' + fight + '%' + '(过载)'
-            else
-                this.forceText.text = '+' + fight + '%' + '(过载)'
-        }
-        else if(fight > 0)
-        {
-            this.forceText.textColor = 0x00FF00;
-            this.forceText.text = '+' + fight + '%'
-        }
-        else
-        {
-            this.forceText.text = '';
-        }
-
-        this.forceText0.text = this.forceText.text;
-        this.forceText0.textColor = this.forceText.textColor;
+        //if(count*2 > list.length) //过载
+        //{
+        //    fight -= 8;
+        //    this.forceText.textColor = 0xFF0000;
+        //    if(fight < 0)
+        //        this.forceText.text = '' + fight + '%' + '(过载)'
+        //    else
+        //        this.forceText.text = '+' + fight + '%' + '(过载)'
+        //}
+        //else if(fight > 0)
+        //{
+        //    this.forceText.textColor = 0x00FF00;
+        //    this.forceText.text = '+' + fight + '%'
+        //}
+        //else
+        //{
+        //    this.forceText.text = '';
+        //}
+        //
+        //this.forceText0.text = this.forceText.text;
+        //this.forceText0.textColor = this.forceText.textColor;
 
 
     }

@@ -10,6 +10,7 @@ class PKManager {
         FRIEND_ASK:'friend_ask',
         FRIEND_ANSWER:'friend_answer'
     };
+    public static PKCost = 88;
 
     public static getInstance():PKManager {
         if (!this._instance)
