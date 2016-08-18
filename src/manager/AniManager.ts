@@ -68,6 +68,7 @@ class AniManager {
         }
         var mc:any = this.mcPool.pop() || new egret.MovieClip();
         mc.movieClipData = mcFactory.generateMovieClipData(name);
+        mc.frameRate = 12//技能动画变慢
         return mc;
     }
 
