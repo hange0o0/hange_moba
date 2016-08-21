@@ -42,8 +42,14 @@ class TecManager{
 
     //level是指目标等级
     public needCoin(level){
-        return Math.floor(Math.pow(level,1.5)*1000);
+        return Math.floor(Math.pow(level,2.2)*100);
     }
+    public collectNeed(level){   //升级需要碎片数量
+        return Math.floor(Math.pow(1.25,level));
+    }
+
+
+
     public propNum1(level){   //初级道具  升3级开始要
         if(level > 2)
             return level - 1;//首次2个

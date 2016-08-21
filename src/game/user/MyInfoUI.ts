@@ -122,12 +122,12 @@ class MyInfoUI extends game.BaseUI {
         this.energyText2.text = '元体力：' + UM.energy.rmb;
 
 
-        this.coinText.text = '金币最近登陆：' + UM.coin;
-        this.diamondText.text = '钻石最近登陆：' + UM.diamond.rmb;
-        this.diamondFreeText.text = '点券最近登陆：' + UM.diamond.free;
+        this.coinText.text = '金币：' + UM.coin;
+        this.diamondText.text = '钻石：' + UM.diamond.rmb;
+        this.diamondFreeText.text = '点券：' + UM.diamond.free;
 
 
-        this.lastLoginText.text = '最近登陆：' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land));
+        //this.lastLoginText.text = '最近登陆：' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land));
 
         var specialData = {
 

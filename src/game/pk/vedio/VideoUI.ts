@@ -31,6 +31,8 @@ class VideoUI extends game.BaseUI {
     private skillData;
     private timer;
 
+    public debugData;
+
     public constructor() {
         super();
         this.skinName = "VideoUISkin";
@@ -104,6 +106,26 @@ class VideoUI extends game.BaseUI {
         egret.clearTimeout(this.timer);
     }
 
+    public showMVDebug(data){
+        var self = this;
+        var mvType = data.mv
+        var group = VideoMV.getInstance().getLoadFormKey(mvType)
+        if(group.length == 0)
+            this.LoadFiles = [];
+        else
+        {
+            RES.createGroup('skill_ani',group,true);
+            this.LoadFiles = ['skill_ani'];
+        }
+
+
+        this.debugData = data;
+        //this.showSkillUse(data)
+        super.show();
+
+
+    }
+
 
     public show(){
         var group = VideoManager.getInstance().getVideoAniGroup();
@@ -118,11 +140,7 @@ class VideoUI extends game.BaseUI {
     }
 
     public onShow(){
-        var VM = VideoManager.getInstance();
-        this.topUI.setTitle('第'+(VM.index + 1)+'轮')
-        var scene = PKManager.getInstance().getPKBG(VM.type);
-        this.bg.source = scene;
-
+        var self = this;
         this.stageHeight = this.stage.stageHeight;
         this.itemGroup.y = ((this.stageHeight - 250-180)-500)/2 + 250
 
@@ -133,6 +151,24 @@ class VideoUI extends game.BaseUI {
         var p = this.enemyItem.getPlayerXY();
         p = this.itemGroup.globalToLocal(p.x,p.y)
         this.skiller2 = {x:p.x,ox:p.x,y:p.y,oy:p.y}
+        if(this.debugData)
+        {
+            var data = this.debugData
+            data.atkMC = getMCByID(data.atker);
+            data.defMCs = [];
+            for(var i=0;i<data.defs.length;i++)
+            {
+                data.defMCs.push(getMCByID(data.defs[i]));
+            }
+            this.showSkillUse(data)
+            return;
+        }
+        var VM = VideoManager.getInstance();
+        this.topUI.setTitle('第'+(VM.index + 1)+'轮')
+        var scene = PKManager.getInstance().getPKBG(VM.type);
+        this.bg.source = scene;
+
+
 
         var VC = VideoCode.getInstance()
         VC.initData(VM.baseData);
@@ -140,10 +176,6 @@ class VideoUI extends game.BaseUI {
 
         this.selfItem.data = VC.player1
         this.enemyItem.data = VC.player2
-
-
-
-
         this.enemySkill.text = ''
         this.selfSkill.text = ''
 
@@ -151,6 +183,13 @@ class VideoUI extends game.BaseUI {
             this.hide();
 
         VC.play(VM.type == 'test');
+
+
+        function getMCByID(id){
+            if(id >= 30)
+                return self.enemyItems[id-30]
+            return  self.selfItems[id-10]
+        }
     }
 
     //取关联的显示对象
@@ -190,6 +229,8 @@ class VideoUI extends game.BaseUI {
     }
 
     private onActionOver(){
+        if(this.debugData)
+            return;
         var VC = VideoCode.getInstance();
         if(!VC.isDebug)
         {
@@ -244,41 +285,35 @@ class VideoUI extends game.BaseUI {
             }
             else
             {
-                 if(data.skillID == 1)//令牌
-                 {
-                     var PKM = PKManager.getInstance()
-                     //if(data.atker == 1)
-                     //    data.skillVO = RingVO.getObject(PKM.team1Ring).getSkillVO()
-                     //else
-                     //    data.skillVO = RingVO.getObject(PKM.team2Ring).getSkillVO()
-                 }
-                else
-                 {
+                // if(data.skillID == 1)//令牌
+                // {
+                // }
+                //else
+                // {
                      var VM = VideoManager.getInstance();
                      if(data.atker == 1)
                          data.skillVO = VM.leaderSkill1[data.skillID - 2];
                      else
                          data.skillVO = VM.leaderSkill2[data.skillID - 2];
-                 }
+                data.mv = data.skillVO.mv;
+                 //}
             }
-
             this.showSkillUse(data);
-
         }
     }
 
     private showSkillUse(data){
         var MV = VideoMV.getInstance();
-        if(data.skillVO.type == 1)//主技能
-        {
-             if(data.teamID == 1)
-                this.selfSkill.text = data.skillVO.name;
-            else
-                this.enemySkill.text = data.skillVO.name;
-        }
+        //if(data.skillVO.type == 1)//主技能
+        //{
+        //     if(data.teamID == 1)
+        //        this.selfSkill.text = data.skillVO.name;
+        //    else
+        //        this.enemySkill.text = data.skillVO.name;
+        //}
 
         //MV['mv'](data,function(){
-        MV[data.skillVO.mv](data,function(){
+        MV[data.mv](data,function(){
             this.onActionOver();
             this.selfSkill.text = '';
             this.enemySkill.text = '';
@@ -328,3 +363,5 @@ class VideoUI extends game.BaseUI {
     }
 
 }
+
+

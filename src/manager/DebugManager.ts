@@ -460,4 +460,25 @@ class DebugManager {
             //});
         });
     }
+
+    public testMV(mv,atker,defs,data=null){
+        data = data || {};
+        data.mv = mv
+        data.atker = atker
+        data.defs = defs
+        setTimeout(function(){
+            VideoUI.getInstance().showMVDebug(data);
+        },1)
+    }
+
+    public testMV2(){
+        var self = this;
+        for(var i=1;i<40;i++)
+        {
+            setTimeout(function(i){
+                self.testMV('mv'+i,10,[30])
+                console.log(i);
+            },i*1000,i)
+        }
+    }
 }

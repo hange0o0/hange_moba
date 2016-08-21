@@ -33,7 +33,7 @@ class MonsterVO {
     public sfn5
 
     public mv1 = []  //作为出战要用的技能动画
-    public mv2 = []
+    public mv2 = []  //作为辅助要用的技能动画
 
     public constructor(data?: any) {
         if(data)
@@ -74,6 +74,7 @@ class MonsterVO {
         var value = data[key];
         if(value)
         {
+            var MV = VideoMV.getInstance();
             var arr = value.split('#');
             if(arr.length != 3)
             {
@@ -88,17 +89,17 @@ class MonsterVO {
             if(key == 'sn')     //大绝
             {
                 this[key].type = 1;
-                this.mv1.push(arr[0])
+                this.mv1.push(MV.getLoadFormKey(arr[0]))
             }
             else if(key.substr(0,2) == 'sn') //小技
             {
                 this[key].type = 2;
-                this.mv1.push(arr[0])
+                this.mv1.push(MV.getLoadFormKey(arr[0]))
             }
             else        //辅助
             {
                 this[key].type = 3;
-                this.mv2.push(arr[0])
+                this.mv2.push(MV.getLoadFormKey(arr[0]))
             }
 
         }
