@@ -6,39 +6,56 @@
 		<e:Image source="book_bg2_jpg" x="0" scale9Grid="40,25,240,289" top="350" bottom="0"/>
 		<e:Image source="book_bg2_jpg" x="640" scaleX="-1" scale9Grid="40,44,240,266" top="350" bottom="0"/>
 	</e:Group>
-	<e:Image source="card_bg_png" x="34" y="38" height="306" scale9Grid="72,75,87,71"/>
-	<e:Image id="headMC" source="pk_bg_jpg" x="49" y="49" width="210" height="280"/>
-	<e:Image source="border1_png" y="103" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
-	<e:Rect height="60" width="214" x="47" y="274" fillAlpha="0.5" strokeWeight="1"/>
-	<e:Image source="border1_png" y="161.5" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
-	<e:Image source="border1_png" y="220" scale9Grid="14,15,89,10" width="200" height="57" x="373"/>
-	<e:Label id="nameText" text="标签" x="373" y="42" textColor="0xCBC08A"/>
-	<e:Label id="atkText" x="387" y="114" text="123" textColor="0xCBC08A"/>
-	<e:Label id="speedText" y="232" text="58" x="389" textColor="0xCBC08A"/>
-	<e:Label id="hpText" x="386" y="173" text="1234" textColor="0xCBC08A"/>
-	<e:Image source="card_icon_3_png" x="316" y="223"/>
-	<e:Image source="card_icon_0_png" x="317" y="164"/>
-	<e:Image source="card_icon_1_png" x="317" y="109"/>
-	<e:Group id="sGroup" y="285" width="209" x="49">
-		<e:Image id="s1" source="card_star_png" x="0" y="0"/>
-		<e:Image id="s2" source="card_star_png" y="9.999999999999943" x="10.000000000000014"/>
-		<e:Image id="s3" source="card_star_png" y="20" x="20"/>
-		<e:Image id="s4" source="card_star_png" y="30" x="29.999999999999986"/>
-		<e:layout>
-			<e:HorizontalLayout horizontalAlign="center"/>
-		</e:layout>
-	</e:Group>
-	<e:Group id="typeGroup" x="313" y="32">
-		<e:Image source="icon_empty_png" x="0" y="0" scaleX="1.2" scaleY="1.2"/>
-		<e:Label id="typeText" x="16" y="16" text="标" size="22" width="20" textColor="0xCBC08A"/>
+	<e:Image source="card_bg_png" x="58" y="38" height="306" scale9Grid="72,75,87,71"/>
+	<e:Image id="headMC" source="pk_bg_jpg" x="73" y="49" width="210" height="280"/>
+	<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A"/>
+	<e:Group id="typeGroup" x="337" y="32">
 	</e:Group>
-	<e:Image source="fu2_png" x="316" y="300"/>
-	<e:Image id="woodIcon" source="fu1_png" x="469" y="303"/>
-	<e:Label id="woodText" x="523" y="305" text="X1" textColor="0xCBC08A"/>
-	<e:Label id="coinText" y="301" text="X12" x="359" textColor="0xCBC08A"/>
-	<e:List id="list" width="573" x="35" top="369" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="20">
+	<e:Group x="335" y="96">
+		<e:Group x="5" y="0">
+			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
+			<e:Label id="atkText" x="71" y="10" text="123" textColor="0xCBC08A" size="24"/>
+			<e:Image source="card_icon_1_png" x="0" y="3" scaleX="0.8" scaleY="0.8"/>
+		</e:Group>
+		<e:Group x="6" y="49">
+			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="56"/>
+			<e:Label id="hpText" x="69" y="11" text="1234" textColor="0xCBC08A" size="24"/>
+			<e:Image source="card_icon_0_png" x="0" y="1" scaleX="0.8" scaleY="0.8"/>
+		</e:Group>
+		<e:Group x="5" y="98">
+			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
+			<e:Label id="speedText" y="11" text="58" x="73" textColor="0xCBC08A" size="24"/>
+			<e:Image x="0" y="3" source="card_icon_3_png" scaleX="0.8" scaleY="0.8"/>
+		</e:Group>
+		<e:Group x="5" y="148">
+			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
+			<e:Label id="mpText" y="11" textColor="0xCBC08A" text="58" x="73" size="24"/>
+			<e:Image y="0" x="0" source="card_icon_2_png" scaleX="0.8" scaleY="0.8"/>
+		</e:Group>
+		<e:Group x="0" y="197">
+			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
+			<e:Label id="coinText" y="10" textColor="0xCBC08A" text="58" size="24" x="73"/>
+			<e:Image source="fu2_png" x="0" y="2"/>
+		</e:Group>
 		<e:layout>
 			<e:VerticalLayout/>
 		</e:layout>
+	</e:Group>
+	<e:Group id="levelGroup" x="71" y="274">
+		<e:Rect height="60" width="214" x="0" y="0" fillAlpha="0.7" strokeWeight="1"/>
+		<e:Label id="levelText" y="14" text="X12" x="18" textColor="0xCBC08A" width="181" textAlign="center"/>
+	</e:Group>
+	<e:Rect width="580" horizontalCenter="0" top="380" bottom="20" ellipseHeight="20" ellipseWidth="20" strokeColor="0xC2A87D" strokeWeight="1" fillColor="0x180802"/>
+	<e:List id="list" x="38" top="390" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="30">
+		<e:layout>
+			<e:VerticalLayout gap="10"/>
+		</e:layout>
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="数据1"/>
+				<e:Object label="数据2"/>
+				<e:Object label="数据3"/>
+			</e:Array>
+		</e:ArrayCollection>
 	</e:List>
 </e:Skin>

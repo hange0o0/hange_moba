@@ -3,22 +3,15 @@
 	<e:Image source="bg_jpg" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Rect height="60" width="640" x="0" y="74" strokeWeight="1"/>
-	<e:Group y="81" left="10">
-		<e:layout>
-			<e:HorizontalLayout gap="0" verticalAlign="middle"/>
-		</e:layout>
-		<e:Group y="0" x="0">
-			<e:Image source="icon_empty_png" y="0" x="0"/>
-			<e:Image source="soul_icon_png" y="10" x="14"/>
-		</e:Group>
-		<e:Label id="numText" y="9" textColor="0xCCB48E" text="456789" textAlign="right" size="24" x="61" verticalAlign="bottom" height="30"/>
-	</e:Group>
-	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="135">
+	<e:Image source="border1_png" y="82" scale9Grid="21,15,70,9" width="150" height="40" x="39"/>
+	<e:Image source="icon_money_png" y="83" x="18"/>
+	<e:Label y="89" textColor="0xCCCCCC" text="123456789" id="coinText" size="24" x="62"/>
+	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="135">
 		<e:Group>
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 
 				<e:layout>
-					<e:TileLayout horizontalGap="30" verticalGap="40" paddingLeft="30" paddingRight="30" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left"/>
+					<e:TileLayout horizontalGap="20" verticalGap="40" paddingLeft="10" paddingRight="30" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left" requestedColumnCount="4"/>
 				</e:layout>
 				<e:ArrayCollection>
 					<e:Array>
@@ -31,29 +24,24 @@
 				</e:ArrayCollection>
 			</e:List>
 		</e:Group>
-	</e:Scroller>
-	<e:Group x="0" bottom="-43" width="640">
-		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="113"/>
-		<e:Button id="splitBtn" label="一键拆解" y="2.5" skinName="Btn_b2Skin" left="10"/>
-		<e:Group y="2.5" right="10">
-			<e:Button id="oneBtn" y="0" label="抽一次(5)" x="0" skinName="Btn_r2Skin"/>
-			<e:Button id="tenBtn" y="0" label="十连抽(50)" x="168.03030303030303" skinName="Btn_r2Skin"/>
+	</e:Scroller>
+	<e:Image source="border6_png" y="86" scale9Grid="14,6,88,18" width="210" height="41" x="421"/>
+	<e:Image source="icon_add_png" y="90" x="590" id="sortBtn"/>
+	<e:Label id="sortText" y="93" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="424"/>
+	<e:Group id="sortGroup" y="124" x="421">
+		<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="210" height="100%" x="0"/>
+		<e:List id="sortList" width="200" itemRendererSkinName="HonorSortItemSkin" x="5" top="6" bottom="6">
 			<e:layout>
-				<e:HorizontalLayout gap="5"/>
+				<e:VerticalLayout gap="0"/>
 			</e:layout>
-		</e:Group>
-	</e:Group>
-	<e:Group id="fillAllGroup" y="84" x="420">
-		<e:Image source="border6_png" y="0" scale9Grid="14,6,88,18" width="210" height="41" x="0"/>
-		<e:Image id="fillBtn" source="icon_add_png" y="4" x="169"/>
-		<e:Label id="fillText" x="3" y="7" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26"/>
-		<e:Group id="fillGroup" y="38" x="0">
-			<e:Image source="border6_png" bottom="0" top="0" scale9Grid="14,4,88,24" width="210" x="0"/>
-			<e:List id="fillList" top="4" itemRendererSkinName="HonorSortItemSkin" bottom="0" width="200" x="5">
-				<e:layout>
-					<e:VerticalLayout gap="0"/>
-				</e:layout>
-			</e:List>
-		</e:Group>
-	</e:Group>
+			<e:ArrayCollection>
+				<e:Array>
+					<e:Object label="默认排序"/>
+					<e:Object label="可升级"/>
+					<e:Object label="等级升序"/>
+					<e:Object label="等级降序"/>
+				</e:Array>
+			</e:ArrayCollection>
+		</e:List>
+	</e:Group>
 </e:Skin>
