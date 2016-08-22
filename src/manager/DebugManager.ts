@@ -279,7 +279,7 @@ class DebugManager {
                 self.testCard(list.shift(),list.shift(),function(card){
                     list.push(card);
                     testOne();
-                })
+                },list.length <time/8)//头3轮不记录
             }
             else
             {
@@ -290,7 +290,7 @@ class DebugManager {
     }
 
     //回调胜出卡组
-    public testCard(card1,card2,fun){
+    public testCard(card1,card2,fun,needServer?){
         var dataIn:any = {}
         if(!card1)
         {
@@ -299,6 +299,7 @@ class DebugManager {
         }
         dataIn.team1 = {"list":card1,"ring":{"id":1,"level":1}}
         dataIn.team2 = {"list":card2,"ring":{"id":1,"level":1}}
+        dataIn.need_server = needServer
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
             if(msg.result==1)
@@ -383,6 +384,39 @@ class DebugManager {
                 Net.getInstance().outPut = true;
             }
         }
+    }
+
+    public showServerLog(){
+        var arr = [];
+        Net.send('get_test_monster',{},function(data) {
+            var msg = data.msg;
+            for(var s in msg.data)
+            {
+                var data = msg.data[s];
+                if(Math.floor(data.display))
+                {
+                    var oo:any = {
+                        id:data.id,
+                        display:Math.floor(data.display),
+                        win:Math.floor(data.win),
+                        use_time:Math.floor(data.use_time),
+                        use_num:Math.floor(data.use_num),
+                    };
+                    oo['useRate'] = oo.use_num/oo.display;
+                    oo['winRate'] = oo.win/oo.display;
+
+                    arr.push(oo)
+                }
+            }
+
+            ArrayUtil.sortByField(arr,['winRate','useRate'],[1,1]);
+            for(var i=0;i<arr.length;i++)
+            {
+                var oo:any = arr[i];
+                var vo = MonsterVO.getObject(oo.id);
+                console.log(vo.id +  ' ' + vo.name + '\t 胜率:\t' + (oo.winRate*100).toFixed(2) + '\t出现：' + oo.display + '\t 总数:\t' + oo.use_num + '\t 场数:\t' + oo.use_time + '\t 胜利:\t' + oo.win)
+            }
+        })
     }
 
     public debugFromFile(dataIn){
