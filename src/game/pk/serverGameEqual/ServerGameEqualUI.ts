@@ -9,23 +9,20 @@ class ServerGameEqualUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
-    private nameText: eui.Label;
-    private levelText: eui.Label;
     private winText: eui.Label;
     private rankText: eui.Label;
     private forceText: eui.Label;
+    private nameText: eui.Label;
     private maxText: eui.Label;
     private headMC: eui.Image;
     private enemyList: eui.List;
     private myGroup0: eui.Group;
-    private myTitleText0: eui.Label;
-    private chooseBtn0: eui.Button;
     private myList0: eui.List;
-
+    private chooseBtn0: eui.Button;
     private myGroup1: eui.Group;
-    private myTitleText1: eui.Label;
-    private chooseBtn1: eui.Button;
     private myList1: eui.List;
+    private chooseBtn1: eui.Button;
+
 
 
 

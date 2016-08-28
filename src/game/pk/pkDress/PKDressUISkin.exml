@@ -11,7 +11,7 @@
 	</e:Group>
 	<e:Scroller id="scroller" x="0" width="640" top="135" bottom="0" top.open="395" bottom.open="0">
 		<e:Group id="scrollerGroup" height="279" width="360">
-			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin" height.open="464"/>
+			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin"/>
 			<e:List id="list" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseListItemSkin">
 				<e:layout>
 					<e:VerticalLayout paddingLeft="20" paddingTop="10" gap="10"/>

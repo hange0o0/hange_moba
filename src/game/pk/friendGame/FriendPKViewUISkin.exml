@@ -1,58 +1,68 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendPKViewUISkin" width="640" height="1500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="FriendPKViewUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group y="10" x="10" width="640" height="45" id="enemyGroup0">
-				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15"/>
-				<e:Label id="timeText" y="9" textColor="0xCCB48E" text="PK类型：竞技场规则" right="6"/>
+				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15" size="26"/>
+				<e:Label id="timeText" y="9" textColor="0xCCB48E" text="PK类型：竞技场规则" right="15" size="26"/>
 			</e:Group>
-			<e:Group id="myGroup0" x="0" y="391" height="420">
-				<e:Group id="bg0" x="0" y="0" height="100%">
-					<e:Image scale9Grid="40,44,240,266" y="0" height="100%" x="0" source="book_bg1_jpg"/>
-					<e:Image y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640" source="book_bg1_jpg"/>
-				</e:Group>
-				<e:Group y="26" horizontalCenter="0" x="20">
-					<e:Image source="flag_mc_png" y="0" x="0"/>
-					<e:Image source="flag_mc_png" y="0" scaleX="-1" x="576"/>
-					<e:Label y="15" textColor="0xF8EDDE" horizontalCenter="0" text="卡组1"/>
-				</e:Group>
-				
-				
-				<e:List id="myList0" y="130" x="18" width="614" height="239" itemRendererSkinName="MyHeadItemSkin">
-					<e:layout>
-						<e:TileLayout requestedColumnCount="5"/>
-					</e:layout>
-				</e:List>
-			</e:Group>
-			<e:Group x="10" y="401" height="420" id="myGroup1">
-				<e:Image source="line_png" width="655" y="0" x="-9"/>
-				<e:Group x="0" y="0" height="100%" id="bg1">
-					<e:Image source="book_bg1_jpg" scale9Grid="40,44,240,266" y="0" height="100%" x="0"/>
+			<e:Group x="50" y="441" height="340" id="myGroup0">
+				<e:Group id="bg0" y="0" height="100%" x="0">
+					<e:Image scale9Grid="40,44,240,266" source="book_bg1_jpg" y="0" height="100%" x="0"/>
 					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 				</e:Group>
-				<e:Group y="26" horizontalCenter="0" x="30">
-					<e:Image source="flag_mc_png" y="0" x="0"/>
-					<e:Image source="flag_mc_png" y="0" x="576" scaleX="-1"/>
-					<e:Label y="15" textColor="0xF8EDDE" horizontalCenter="0" text="卡组2"/>
+				<e:Group horizontalCenter="0" y="20" x="40">
+					<e:Image source="main_mc_png" y="509" x="10"/>
+					<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26"/>
+					<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="bottom"/>
+					</e:layout>
 				</e:Group>
-				<e:List y="130" x="17" width="614" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList1">
+				<e:List width="614" y="70" x="14" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList0">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
 			</e:Group>
-			<e:Group id="myChooseGroup" x="20" y="411" height="280">
-				<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
-				<e:Image source="book_bg2_jpg" scale9Grid="40,44,240,266" y="0" height="100%" x="0"/>
-				<e:List y="0" x="10" width="620" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList2">
+			<e:Group id="myChooseGroup" x="20" y="411" height="320">
+				<e:Image source="book_bg2_jpg" y="-1" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
+				<e:Image source="book_bg2_jpg" scale9Grid="40,44,240,266" y="-1" height="100%" x="0"/>
+				<e:Group y="9.999999999999943" horizontalCenter="0">
+					<e:Rect height="2" width="180" x="-164" y="573" fillColor="0x98866B"/>
+					<e:Label textColor="0xCCB48E" y="10.000000000000057" text="我的出战卡组" x="-2.842170943040401e-14" width="200" textAlign="center"/>
+					<e:Rect width="180" y="583" height="2" x="-154" fillColor="0x98866B"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="middle" gap="15"/>
+					</e:layout>
+				</e:Group>
+				<e:List y="55" x="10" width="620" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList2">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="5"/>
 					</e:layout>
 				</e:List>
-				<e:Image id="chooseMC" y="-3" horizontalCenter="165" source="arrow7_png" scaleY="-1"/>
-			</e:Group>
+			</e:Group>
+			<e:Group id="myGroup1" y="451" height="360" x="60">
+				<e:Group x="0" y="0" height="100%" id="bg1" visible="false">
+					<e:Image scale9Grid="40,44,240,266" source="book_bg1_jpg" y="0" height="100%" x="0"/>
+					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
+				</e:Group>
+				<e:Group horizontalCenter="0" y="20" x="50">
+					<e:Image source="main_mc_png" y="509" x="10"/>
+					<e:Label y="14" textColor="0xD9B67B" text="PK卡组2" textAlign="center" width="140" horizontalCenter="0" size="26"/>
+					<e:Image source="main_mc_png" y="519" scaleX="-1" x="20"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="bottom"/>
+					</e:layout>
+				</e:Group>
+				<e:List itemRendererSkinName="MyHeadItemSkin" y="91" x="14" width="614" height="239" id="myList1">
+					<e:layout>
+						<e:TileLayout requestedColumnCount="5"/>
+					</e:layout>
+				</e:List>
+			</e:Group>
 			
 			<e:layout>
 				<e:VerticalLayout gap="0"/>
