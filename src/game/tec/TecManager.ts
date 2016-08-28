@@ -45,7 +45,22 @@ class TecManager{
         return Math.floor(Math.pow(level,2.2)*100);
     }
     public collectNeed(level){   //升级需要碎片数量
-        return Math.floor(Math.pow(1.25,level));
+        return Math.floor(Math.pow(1.25,level)*level);
+    }
+
+    //得到指定怪物的升级时显示的碎片信息
+    public collectRate(id){
+        var lv = UM.getMonsterLevel(id);
+        var now = UM.getCollectNum(id);
+        var need = this.collectNeed(lv + 1);
+        if(lv == 0)
+        {
+            return [now,need]
+        }
+        var last = this.collectNeed(lv)
+        if(lv == this.maxLevel)
+            return [now - last,0];
+        return [now - last,need - last];
     }
 
 
@@ -116,11 +131,11 @@ class TecManager{
             if(fillMonster && vo.type != fillMonster)
                 continue;
             //var kindVO = MonsterKindVO.getObject(vo.type);
-            //if(kindVO.level<= UM.level)
-            //    arr.push({
-            //        id:vo.id,
-            //        tecType:3
-            //    });
+            if(vo.level<= UM.level)
+                arr.push({
+                    id:vo.id,
+                    tecType:3
+                });
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
         return arr;

@@ -74,6 +74,7 @@ class PKDressUI extends game.BaseUI {
         this.pkDressChooseUI.specialData = this.specialData;
 
         this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
+        this.scroller.bounces = false;
 
     }
 
@@ -194,7 +195,12 @@ class PKDressUI extends game.BaseUI {
     }
 
     private renewSimpleList(){
-        this.simpleList.dataProvider = new eui.ArrayCollection(this.chooseList)
+        var arr = [];
+        for(var i=0;i<6;i++)
+        {
+            arr.push(this.chooseList[i]);
+        }
+        this.simpleList.dataProvider = new eui.ArrayCollection(arr)
     }
 
     //怪物被使用次数
@@ -288,7 +294,7 @@ class PKDressUI extends game.BaseUI {
     public renew(){
         var oo = this.getCurrentResource();
         //资源
-        this.coinText.text = '×' + oo.coin + '';
+        this.coinText.text = '剩余卡符：' + oo.coin + '';
         this.forceText.text = '';
         //this.woodText.text = oo.wood + '';
         //this.coinText0.text = oo.coin + '';

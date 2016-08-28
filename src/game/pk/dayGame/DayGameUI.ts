@@ -34,7 +34,7 @@ class DayGameUI extends game.BaseUI {
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
 
-
+        this.scroller.bounces = false;
         //this.enemyList.add
     }
 

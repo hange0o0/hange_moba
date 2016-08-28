@@ -34,6 +34,7 @@ class MainGameUI extends game.BaseUI {
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
+        this.scroller.bounces = false;
 
 
         //this.enemyList.add
@@ -58,7 +59,11 @@ class MainGameUI extends game.BaseUI {
     }
 
     public renewPrice(){
-        this.moneyText.text = '本次秒杀价格：' + MainGameManager.getInstance().getKillCost();
+        var cost = MainGameManager.getInstance().getKillCost();
+        if(cost > UM.coin)
+            this.setHtml(this.moneyText, '<font color="#ff0000">' + cost + '</font>/' + UM.coin);
+        else
+            this.moneyText.text = '' + cost + '/' + UM.coin;
     }
 
     public onShow(){

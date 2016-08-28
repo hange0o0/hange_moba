@@ -2,7 +2,7 @@
 <e:Skin class="HonorUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller top="180" x="0" bottom="0" width="640" id="scroller" y="10">
+	<e:Scroller top="145" x="0" bottom="0" width="640" id="scroller" y="10">
 		<e:Group>
 			<e:List id="list" width="640" itemRendererSkinName="TecItemSkin" x="0" top="0" bottom="370">
 				<e:layout>
@@ -12,7 +12,7 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Image source="line_png" width="650" y="134" x="-5"/>
-	<e:TabBar y="77" id="tab" x="0" itemRendererSkinName="MyTabItemSkin" height="60" width="340">
+	<e:TabBar y="77" id="tab" x="0" itemRendererSkinName="MyTabItemSkin" height="60" width="340" visible="false">
 		<e:ArrayCollection>
 			<e:Array>
 				<e:Object label="通用"/>
@@ -28,7 +28,7 @@
 		<e:Image source="arrow2_png" y="70" x="30" anchorOffsetX="22" rotation="270" anchorOffsetY="23"/>
 		<e:Label id="downText" x="0" width="60" y="0" text="12" textAlign="center"/>
 	</e:Group>
-	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="153" size="20" textColor="0xCCB48E" horizontalCenter="0"/>
+	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="82" size="22" textColor="0xCCB48E" width="336" height="53" x="8" lineSpacing="5"/>
 	<e:Image source="border6_png" x="421" y="88" scale9Grid="14,6,88,18" width="210" height="41"/>
 	<e:Image id="sortBtn" source="icon_add_png" x="590" y="92"/>
 	<e:Label id="sortText" text="标签标签标签" x="424" y="95" size="26" textColor="0xCCB48E" width="167" textAlign="center"/>

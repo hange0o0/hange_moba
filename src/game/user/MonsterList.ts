@@ -30,6 +30,12 @@ class MonsterList extends game.BaseUI {
     private p7: eui.Image;
     private p8: eui.Image;
     private p9: eui.Image;
+    private levelUpGroup: eui.Group;
+    private coinText: eui.Label;
+    private levelUpBtn: eui.Button;
+    private levelUpText: eui.Label;
+
+
 
 
 
@@ -38,6 +44,8 @@ class MonsterList extends game.BaseUI {
     public dataArray;
     public startPos
     public rota
+
+    public isLevelUp = false
 
     public constructor() {
         super();
@@ -55,10 +63,20 @@ class MonsterList extends game.BaseUI {
 
         this.addBtnEvent(this.leftBtn, this.onLeft);
         this.addBtnEvent(this.rightBtn, this.onRight);
+        this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
 
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
+        this.scroller.bounces = false;
+    }
+
+    private onLevelUp(){
+        var self = this;
+        var oo =  this.dataArray[this.index];
+        TecManager.getInstance().levelUp(3,oo.id,function(){
+            self.renewLevelUp();
+        });
     }
 
     private onBegin(e:egret.TouchEvent){
@@ -74,6 +92,10 @@ class MonsterList extends game.BaseUI {
     }
 
     private onMove(e:egret.TouchEvent){
+        if(e.stageX > this.startPos.x && this.index == 0) //前一页
+            return
+        if(e.stageX < this.startPos.x && this.index >= this.dataArray.length - 1) //后一页
+            return
         if(!this.startPos.drag)
         {
             if(Math.abs(e.stageX - this.startPos.x) > 10)
@@ -174,6 +196,14 @@ class MonsterList extends game.BaseUI {
     public show(list?,index?){
         this.dataArray = list;
         this.index = index || 0;
+        this.isLevelUp = false;
+        super.show();
+    }
+
+    public showLevelUp(vo){
+        this.dataArray = [{id:vo.id,specialData:{isLevelUp:true}}]
+        this.index = 0;
+        this.isLevelUp = true;
         super.show();
     }
 
@@ -203,10 +233,52 @@ class MonsterList extends game.BaseUI {
         this.scrollGroup.x = 0;
         var oo =  this.dataArray[this.index];
         this.info.renew(oo.id,oo.specialData)
-        this.renewPage();
+
+        if(this.isLevelUp)
+            this.renewLevelUp();
+        else
+            this.renewPage();
+    }
+
+    public renewLevelUp(){
+        var oo =  this.dataArray[this.index];
+        var TEC = TecManager.getInstance();
+        this.levelUpGroup.visible = true;
+        this.pageGroup.visible = false;
+        var cost = TEC.needCoin(UM.getMonsterLevel(oo.id) + 1)
+
+        var arr = TecManager.getInstance().collectRate(oo.id);
+        var collectNeed = arr[1];
+        var collectNum = arr[0];
+        if(collectNeed == 0)
+        {
+            this.coinText.text = '' + UM.coin;
+            this.levelUpText.text = '已达本位面最高等级';
+            this.levelUpBtn.visible = false
+            return;
+        }
+        if(cost > UM.coin)
+            this.setHtml(this.coinText, '<font color="#ff0000">' + cost + '</font>/' + UM.coin);
+        else
+            this.coinText.text = '' + cost + '/' + UM.coin;
+
+        if(collectNeed > collectNum)
+        {
+            this.setHtml(this.levelUpText, '升级碎片：<font color="#ff0000">' + collectNeed + '</font>/' + collectNum);
+            this.levelUpBtn.visible = false
+        }
+        else
+        {
+            this.levelUpText.text = '';
+            this.levelUpBtn.visible = true
+        }
+
+
     }
 
     public renewPage(){
+        this.levelUpGroup.visible = false;
+        this.pageGroup.visible = true;
         if(this.dataArray.length <2)
             return;
         if(this.index > 0)

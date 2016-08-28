@@ -45,6 +45,7 @@
 				<e:Label y="8" textColor="0xCCCCCC" text="12345/1234567" id="coinText" size="24" x="44"/>
 			</e:Group>
 			<e:Button id="levelUpBtn" y="1.1368683772161603e-13" label="升级" skinName="Btn_r2Skin" x="266.06060606060606"/>
+			<e:Label id="levelUpText" y="15" textColor="0xCCCCCC" size="24" x="268"/>
 		</e:Group>
 	</e:Group>
 </e:Skin>

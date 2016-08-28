@@ -27,6 +27,7 @@ class ShopUI extends game.BaseUI {
         this.list.itemRenderer = ShopItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        this.scroller.bounces = false;
 
     }
 

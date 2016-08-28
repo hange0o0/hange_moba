@@ -44,6 +44,7 @@ class HonorUI extends game.BaseUI {
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scroller.addEventListener(eui.UIEvent.CHANGE_END,this.onScrollEnd,this)
+        this.scroller.bounces = false;
 
         this.tab.selectedIndex = 0;
         this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);

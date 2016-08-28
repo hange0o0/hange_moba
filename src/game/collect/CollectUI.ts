@@ -6,17 +6,14 @@ class CollectUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
-    private numText: eui.Label;
-    private fillAllGroup: eui.Group;
-    private fillBtn: eui.Image;
-    private fillText: eui.Label;
-    private fillGroup: eui.Group;
-    private fillList: eui.List;
+    private coinText: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
-    private splitBtn: eui.Button;
-    private oneBtn: eui.Button;
-    private tenBtn: eui.Button;
+    private sortBtn: eui.Image;
+    private sortText: eui.Label;
+    private sortGroup: eui.Group;
+    private sortList: eui.List;
+
 
 
     private fillMonster = 0;
@@ -33,9 +30,7 @@ class CollectUI extends game.BaseUI {
         this.topUI.setTitle('收集列表')
         this.topUI.addEventListener('hide',this.hide,this);
 
-        this.addBtnEvent(this.splitBtn, this.onSplit);
-        this.addBtnEvent(this.tenBtn, this.onDraw10);
-        this.addBtnEvent(this.oneBtn, this.onDraw1);
+
 
         this.list.itemRenderer = CollectItem;
         this.scroller.viewport = this.list;
@@ -43,104 +38,122 @@ class CollectUI extends game.BaseUI {
 
 
 
-        this.addBtnEvent(this.fillBtn,this.onFill);
-        this.addBtnEvent(this.fillText,this.onFill);
-        this.fillList.selectedIndex = 0;
-        this.fillList.addEventListener(egret.Event.CHANGE,this.onSelectFill,this)
+        this.addBtnEvent(this.sortBtn,this.onSort);
+        this.addBtnEvent(this.sortText,this.onSort);
+
+        this.sortList.selectedIndex = 0;
+        this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
+        this.sortGroup.visible = false;
     }
 
-    private onSelectFill(){
-        this.fillMonster = this.fillList.selectedItem.id
-        this.renewList();
-    }
-    private onFill(){
-        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideFill,this);
-        this.fillGroup.visible = true;
-        var arr = [{id:0,label:'全部属性'}];
-        //var mdata = CM.table[MonsterKindVO.dataKey];
-        //for(var s in mdata)
-        //{
-        //    var vo = mdata[s];
-        //    if(vo.level<= UM.level)
-        //        arr.push({
-        //            id:vo.id,
-        //            label:'【'+vo.word+'】属性'
-        //        });
-        //}
-        this.fillList.dataProvider = new eui.ArrayCollection(arr)
+    private onSelect(){
+        this.resort()
     }
 
-    private onHideFill(){
-        this.fillGroup.visible = false;
+    private onSort(){
+        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideSort,this);
+        this.sortGroup.visible = true;
     }
 
-    private onSplit(){
-        var CM = CollectManager.getInstance();
-        var obj = {};
-        var count = 0;
-        for(var i=0;i<this.listArr.length;i++)
-        {
-            var id = this.listArr[i].id;
-            var num = CM.getCollectNum(id)
-            //if(num && !CM.isLock(id))
-            //{
-            //    obj[id] = num;
-            //    count += num;
-            //}
-        }
-
-        if(count == 0)
-        {
-            Alert('没有可被拆解的元素');
-            return;
-        }
-
-
-        var self = this;
-        Confirm('拆解所有的非锁定元素，\n可获得元素：'+count*CM.splitNum + '\n是否继续？',function(t){
-            if(t == 1)
-            {
-                CM.split(obj,function(num){
-                    Alert('拆解成功，获得元素：'+ num);
-                    self.renew();
-                })
-            }
-        })
+    private onHideSort(){
+        this.sortGroup.visible = false;
     }
 
-    private onDraw1(){
-        var self = this;
-        var need = CollectManager.getInstance().drawNeed * 1;
-        var now = UM.getPropNum(22);
-        if(need > now)
-        {
-            Alert('所需元素数量不足！\n本次抽碎片需要元素数量为：' +need);
-            return;
-        }
-        CollectManager.getInstance().draw(1,function(){
+    //private onSelectFill(){
+    //    this.fillMonster = this.fillList.selectedItem.id
+    //    this.renewList();
+    //}
+    //
+    //
+    //private onFill(){
+    //    GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideFill,this);
+    //    this.fillGroup.visible = true;
+    //    var arr = [{id:0,label:'全部属性'}];
+    //    //var mdata = CM.table[MonsterKindVO.dataKey];
+    //    //for(var s in mdata)
+    //    //{
+    //    //    var vo = mdata[s];
+    //    //    if(vo.level<= UM.level)
+    //    //        arr.push({
+    //    //            id:vo.id,
+    //    //            label:'【'+vo.word+'】属性'
+    //    //        });
+    //    //}
+    //    this.fillList.dataProvider = new eui.ArrayCollection(arr)
+    //}
+    //
+    //private onHideFill(){
+    //    this.fillGroup.visible = false;
+    //}
 
-        })
-    }
-
-    private onDraw10(){
-        var self = this;
-        var need = CollectManager.getInstance().drawNeed * 10;
-        var now = UM.getPropNum(22);
-        if(need > now)
-        {
-            Alert('所需元素数量不足！\n本次抽碎片需要元素数量为：' +need);
-            return;
-        }
-        CollectManager.getInstance().draw(10,function(){
-
-        })
-    }
+    //private onSplit(){
+    //    var CM = CollectManager.getInstance();
+    //    var obj = {};
+    //    var count = 0;
+    //    for(var i=0;i<this.listArr.length;i++)
+    //    {
+    //        var id = this.listArr[i].id;
+    //        var num = CM.getCollectNum(id)
+    //        //if(num && !CM.isLock(id))
+    //        //{
+    //        //    obj[id] = num;
+    //        //    count += num;
+    //        //}
+    //    }
+    //
+    //    if(count == 0)
+    //    {
+    //        Alert('没有可被拆解的元素');
+    //        return;
+    //    }
+    //
+    //
+    //    var self = this;
+    //    Confirm('拆解所有的非锁定元素，\n可获得元素：'+count*CM.splitNum + '\n是否继续？',function(t){
+    //        if(t == 1)
+    //        {
+    //            CM.split(obj,function(num){
+    //                Alert('拆解成功，获得元素：'+ num);
+    //                self.renew();
+    //            })
+    //        }
+    //    })
+    //}
+    //
+    //private onDraw1(){
+    //    var self = this;
+    //    var need = CollectManager.getInstance().drawNeed * 1;
+    //    var now = UM.getPropNum(22);
+    //    if(need > now)
+    //    {
+    //        Alert('所需元素数量不足！\n本次抽碎片需要元素数量为：' +need);
+    //        return;
+    //    }
+    //    CollectManager.getInstance().draw(1,function(){
+    //
+    //    })
+    //}
+    //
+    //private onDraw10(){
+    //    var self = this;
+    //    var need = CollectManager.getInstance().drawNeed * 10;
+    //    var now = UM.getPropNum(22);
+    //    if(need > now)
+    //    {
+    //        Alert('所需元素数量不足！\n本次抽碎片需要元素数量为：' +need);
+    //        return;
+    //    }
+    //    CollectManager.getInstance().draw(10,function(){
+    //
+    //    })
+    //}
 
     public show(){
         var self = this;
-        CollectManager.getInstance().getCollectMore(function(){
-            self.superShow();
-        })
+        self.superShow();
+        //CollectManager.getInstance().getCollectMore(function(){
+        //    self.superShow();
+        //})
     }
 
     private superShow(){
@@ -149,30 +162,79 @@ class CollectUI extends game.BaseUI {
 
     public onShow(){
         this.renew();
-        this.addPanelOpenEvent(GameEvent.client.prop_change,this.renewDraw);
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewCoin);
     }
 
     public renew(){
-
-
         this.renewList();
-        this.renewDraw();
+        this.renewCoin();
+    }
+
+    public renewCoin(){
+        this.coinText.text = UM.coin + '';
     }
 
     public renewList(){
-        this.listArr = CollectManager.getInstance().getList(this.fillMonster);
-        this.fillGroup.visible = false;
-        if(this.fillMonster == 0)
-            this.fillText.text = '全部属性'
-        else
-            this.fillText.text = this.fillList.selectedItem.label;
+        this.listArr = TecManager.getInstance().getList3(this.fillMonster);
 
+        this.resort();
         this.list.dataProvider = new eui.ArrayCollection(this.listArr)
     }
 
-    public renewDraw(){
-        if(!this.stage)
-            return;
-        this.numText.text = '' + UM.getPropNum(22);
+    public resort(){
+        this.sortListFun(this.listArr);
+        this.list.dataProvider = new eui.ArrayCollection(this.listArr);
+        this.scroller.viewport.scrollV = 0;
+        //this.renewBtn();
     }
+
+    private sortListFun(arr,noDefault = false)
+    {
+        this.sortText.text = this.sortList.selectedItem.label;
+        switch(this.sortList.selectedIndex)
+        {
+            case 0:     //默认
+                if(!noDefault)
+                    arr.sort(this.sortByDefault)
+                break;
+            case 1://可升级
+                arr.sort(this.sortByLevelUp)
+                break;
+            case 2://等级升序
+                arr.sort(this.sortByUp)
+                break;
+            case 3://等级降序
+                arr.sort(this.sortByDown)
+                break;
+        }
+    }
+    private sortByDefault(a,b){
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+    private sortByLevelUp(a,b){
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+    private sortByUp(a,b){
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+    private sortByDown(a,b){
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+
+
+
+
+    //public renewDraw(){
+    //    if(!this.stage)
+    //        return;
+    //    this.numText.text = '' + UM.getPropNum(22);
+    //}
 }

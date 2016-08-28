@@ -7,20 +7,17 @@ class MonsterInfoBase extends game.BaseContainer {
 
     private headMC: eui.Image;
     private nameText: eui.Label;
-    private atkText: eui.Label;
-    private speedText: eui.Label;
-    private hpText: eui.Label;
-    private sGroup: eui.Group;
-    private s1: eui.Image;
-    private s2: eui.Image;
-    private s3: eui.Image;
-    private s4: eui.Image;
     private typeGroup: eui.Group;
-    private typeText: eui.Label;
-    private woodIcon: eui.Image;
-    private woodText: eui.Label;
+    private atkText: eui.Label;
+    private hpText: eui.Label;
+    private speedText: eui.Label;
+    private mpText: eui.Label;
     private coinText: eui.Label;
+    private levelGroup: eui.Group;
+    private levelText: eui.Label;
     private list: eui.List;
+
+
 
 
 
@@ -49,6 +46,10 @@ class MonsterInfoBase extends game.BaseContainer {
         this.headMC.source = vo.url;
         //this.typeText.text = MonsterKindVO.getObject(vo.type).word
         this.nameText.text = vo.name;
+        this.mpText.text = vo.mp;
+        this.coinText.text = vo.cost;
+        this.levelText.text = 'LV.' + UM.getMonsterLevel(monsterID);
+        this.levelGroup.visible = true;
         //this.txt.text = vo.des;
         //this.coinText.text = 'X' + vo.cost;
         //if(vo.wood)
@@ -62,21 +63,21 @@ class MonsterInfoBase extends game.BaseContainer {
         //    this.woodIcon.visible =  false;
         //}
 
-        for(var i=1;i<=4;i++)
-        {
-            var mc = this['s' + i];
-            MyTool.removeMC(mc);
-        }
-        if(!specialData.isNPC)
-        {
-            var star = UM.getMonsterCollect(monsterID);
-            for(var i=1;i<=4;i++)
-            {
-                var mc = this['s' + i];
-                if(star > i)
-                    this.sGroup.addChild(mc);
-            }
-        }
+        //for(var i=1;i<=4;i++)
+        //{
+        //    var mc = this['s' + i];
+        //    MyTool.removeMC(mc);
+        //}
+        //if(!specialData.isNPC)
+        //{
+        //    var star = UM.getMonsterCollect(monsterID);
+        //    for(var i=1;i<=4;i++)
+        //    {
+        //        var mc = this['s' + i];
+        //        if(star > i)
+        //            this.sGroup.addChild(mc);
+        //    }
+        //}
 
 
 
@@ -86,13 +87,21 @@ class MonsterInfoBase extends game.BaseContainer {
         {
             var v = specialData.fight || 0;
             fightData = {atk:v,hp:v,speed:v};
+            this.levelGroup.visible = false;
         }
         else
         {
             if(specialData.isEqual)
+            {
                 fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
-            else if(specialData.isBase)
+                this.levelGroup.visible = false;
+            }
+
+            else if(specialData.isBase)   {
+
+                this.levelGroup.visible = false;
                 fightData = {atk:0,hp:0,speed:0};
+            }
             else  //我自己
             {
                 var force = (UM.award_force + UM.tec_force);
@@ -106,9 +115,28 @@ class MonsterInfoBase extends game.BaseContainer {
         var atk = Math.round(vo.atk * (1+fightData.atk/100));
         var hp = Math.round(vo.hp * (1+fightData.hp/100));
         var speed = Math.round(vo.speed * (1+fightData.speed/100));
-        this.atkText.text = NumberUtil.addNumSeparator(atk);
-        this.hpText.text = NumberUtil.addNumSeparator(hp);
-        this.speedText.text = NumberUtil.addNumSeparator(speed);
+        if(specialData.isLevelUp)
+        {
+            //先模拟升一级
+            UM.tec.monster[monsterID] = (UM.tec.monster[monsterID] || 0) + 1
+            var force = (UM.award_force + UM.getTecForce() + UM.getLevelForce());
+            fightData = UM.getTecMonsterAdd(monsterID);
+            fightData.atk += force;
+            fightData.hp += force;
+            var atkAdd = Math.round(vo.atk * (1+fightData.atk/100)) - atk;
+            var hpAdd = Math.round(vo.hp * (1+fightData.hp/100)) - hp;UM.tec.monster[monsterID] --;       //降回去
+
+            this.setHtml(this.atkText,NumberUtil.addNumSeparator(atk) + '<font color="#00ff00"> +'+atkAdd+'</font>');
+            this.setHtml(this.hpText, NumberUtil.addNumSeparator(hp) + '<font color="#00ff00"> +'+hpAdd+'</font>');
+            this.speedText.text = NumberUtil.addNumSeparator(speed);
+        }
+        else
+        {
+            this.atkText.text = NumberUtil.addNumSeparator(atk);
+            this.hpText.text = NumberUtil.addNumSeparator(hp);
+            this.speedText.text = NumberUtil.addNumSeparator(speed);
+        }
+
 
         //技能表现
         var arr = [];

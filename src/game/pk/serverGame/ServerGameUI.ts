@@ -9,22 +9,19 @@ class ServerGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
-    private nameText: eui.Label;
     private levelText: eui.Label;
     private winText: eui.Label;
-    private rankText: eui.Label;
     private forceText: eui.Label;
+    private nameText: eui.Label;
     private headMC: eui.Image;
     private enemyList: eui.List;
     private myGroup0: eui.Group;
-    private myTitleText0: eui.Label;
-    private chooseBtn0: eui.Button;
     private myList0: eui.List;
-
+    private chooseBtn0: eui.Button;
     private myGroup1: eui.Group;
-    private myTitleText1: eui.Label;
-    private chooseBtn1: eui.Button;
     private myList1: eui.List;
+    private chooseBtn1: eui.Button;
+
 
 
 
@@ -51,7 +48,7 @@ class ServerGameUI extends game.BaseUI {
         this.myList1.itemRenderer =  MyHeadItem;
 
 
-
+        this.scroller.bounces = false;
         //this.enemyList.add
     }
 
@@ -104,7 +101,7 @@ class ServerGameUI extends game.BaseUI {
         this.nameText.text = uf.nick;
         this.levelText.text = uf.level;
         this.winText.text = uf.win;
-        this.rankText.text = uf.exp;
+        //this.rankText.text = uf.exp;
         this.forceText.text = uf.force;
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 

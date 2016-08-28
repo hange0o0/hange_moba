@@ -48,7 +48,7 @@ class ServerGameEqualUI extends game.BaseUI {
         this.myList0.itemRenderer =  MyHeadItem;
         this.myList1.itemRenderer =  MyHeadItem;
 
-
+        this.scroller.bounces = false;
 
         //this.enemyList.add
 
@@ -100,7 +100,7 @@ class ServerGameEqualUI extends game.BaseUI {
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
         var uf = data.enemy.userinfo;
         this.nameText.text = uf.nick;
-        this.levelText.text = uf.level;
+        //this.levelText.text = uf.level;
         this.winText.text = uf.win;
         this.rankText.text = uf.exp;
         this.forceText.text = uf.force;

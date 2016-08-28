@@ -28,12 +28,12 @@ class HonorManager{
         {
             var vo = mdata[s];
             //var kindVO = MonsterKindVO.getObject(vo.type);
-            //if(kindVO.level<= UM.level)
-            //    arr.push(this.fillAwardStat({
-            //        id:vo.id,
-            //        index:index++,
-            //        honorType:1
-            //    }));
+            if(vo.level<= UM.level)
+                arr.push(this.fillAwardStat({
+                    id:vo.id,
+                    index:index++,
+                    honorType:1
+                }));
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
         for(var i=0;i<arr.length;i++)

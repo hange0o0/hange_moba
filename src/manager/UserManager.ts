@@ -201,8 +201,13 @@ class UserManager {
         return this.tec.monster[id] || 0;
     }
 
+    public getCollectNum(id){
+        return  this.collect.num[id] || 0
+    }
+
+    //取显示的大等级
     public getMonsterCollect(monsterID){
-        return 3;
+        return Math.floor(this.getMonsterLevel(monsterID)/10);
         //var vo = MonsterVO.getObject(monsterID);
         //var max = vo.collect;
         //if(this.collect.level[monsterID])

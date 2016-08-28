@@ -50,6 +50,8 @@ class FriendPKAskUI extends game.BaseUI {
         this.myList1.itemRenderer =  MyHeadItem;
 
         this.inputText.restrict = "^\\\\\"\'"
+
+        this.scroller.bounces = false;
     }
 
     private onRadioChange(){

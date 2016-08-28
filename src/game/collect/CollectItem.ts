@@ -7,9 +7,12 @@ class CollectItem extends game.BaseItem {
     private headMC: eui.Image;
     private headMask: eui.Rect;
     private headBG: eui.Image;
+    private levelGroup: eui.Group;
+    private levelText: eui.Label;
     private numGroup: eui.Group;
     private arrowMC: eui.Image;
     private numText: eui.Label;
+
 
     private lockMC: eui.Image;
 
@@ -23,20 +26,22 @@ class CollectItem extends game.BaseItem {
     }
 
     private onClick(){
-        CollectItemInfo.getInstance().show(this.data,this);
+        //CollectItemInfo.getInstance().show(this.data,this);
+        MonsterList.getInstance().showLevelUp(this.data);
     }
 
     public dataChanged(){
-        var CM = CollectManager.getInstance();
+        //var CM = CollectManager.getInstance();
         var vo = this.data;
-        var level = UM.getMonsterCollect(vo.id);
-        this.headBG.source = 'head_border' + (level + 1) + '_png';
+        var level = UM.getMonsterLevel(vo.id);
+        this.headBG.source = 'head_border' + (UM.getMonsterCollect(vo.id) + 1) + '_png';
         this.headMC.source = vo.thumb
 
-        var need = CM.getLevelUpNeed(level + 1);
-        var now = CM.getCollectNum(vo.id);
+        var arr = TecManager.getInstance().collectRate(vo.id);
+        var need = arr[1];
+        var now = arr[0];
         MyTool.removeMC(this.arrowMC);
-        if(level >= 4){  //已满级了
+        if(need == 0){  //已满级了
             this.numText.text = '' + now;
         }
         else
@@ -50,6 +55,14 @@ class CollectItem extends game.BaseItem {
         if(this.showInProp)
         {
             this.lockMC.visible = false;
+        }
+
+        if(level == 0)
+            this.levelGroup.visible = false;
+        else
+        {
+            this.levelGroup.visible = true;
+            this.levelText.text = level;
         }
     }
 

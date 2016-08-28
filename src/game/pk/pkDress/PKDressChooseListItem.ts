@@ -99,7 +99,10 @@ class PKDressChooseListItem extends game.BaseItem {
         this.speedText.text = '速：' +  Math.round(vo.speed * (1+fightData.speed/100));
 
         //var max = Math.min(star,3);
-        this.useText.text = '上阵数量：'+this.data.num;
+        if(this.data.num)
+            this.useText.text = '当前上阵：'+this.data.num + '个';
+        else
+            this.useText.text = '当前上阵：' + '无';
 
         this.desText.text = '';
 
@@ -115,6 +118,10 @@ class PKDressChooseListItem extends game.BaseItem {
         if(PKManager.getInstance().getCost(arr) > PKManager.PKCost)
         {
             this.desText.text = ('金符不足');
+        }
+        else if(PKDressUI.getInstance().chooseList.length >=6)
+        {
+            this.desText.text = ('上阵位已满');
         }
         this.useBtn.visible = this.desText.text == ''
     }

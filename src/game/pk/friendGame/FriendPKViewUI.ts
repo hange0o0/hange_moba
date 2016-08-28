@@ -46,6 +46,8 @@ class FriendPKViewUI extends game.BaseUI {
         this.myList0.itemRenderer =  MyHeadItem;
         this.myList1.itemRenderer =  MyHeadItem;
         this.myList2.itemRenderer =  MyHeadItem;
+
+        this.scroller.bounces = false;
     }
 
     private onTimer(){

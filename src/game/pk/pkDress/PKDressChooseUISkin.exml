@@ -28,12 +28,14 @@
 	<e:Group width="640" y="315" x="0" visible.selected="false">
 		<e:Button id="pkBtn" horizontalCenter="0" y="2" label="出　战" skinName="Btn_r3Skin"/>
 	</e:Group>
-	<e:Group x="269" y="320" visible.normal="false">
-		<e:Button id="deleteBtn" label="删除" x="236.06060606060606" y="10.000000000000057" skinName="Btn_b1Skin"/>
-		<e:Button id="moreBtn" label="详情" skinName="Btn_r1Skin" y="7.045454545454561" x="0"/>
-		<e:Button id="cancleBtn" skinName="Btn_r1Skin" y="0" label="取消" x="108.03030303030306"/>
+	<e:Group x="0" y="320" visible.normal="false" width="100%">
+		<e:Button id="deleteBtn" label="下阵" x="10" y="0" skinName="Btn_b1Skin"/>
+		<e:Group y="0" right="10">
+			<e:Button id="moreBtn" label="详情" skinName="Btn_r1Skin" y="0" x="0"/>
+			<e:Button id="cancleBtn" skinName="Btn_r1Skin" y="0" label="返回" x="120"/>
+		</e:Group>
 		<e:layout>
-			<e:HorizontalLayout/>
+			<e:BasicLayout/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

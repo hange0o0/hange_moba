@@ -5,7 +5,7 @@
 	<e:Image source="head_border4_png" y="0" x="14" id="headBG"/>
 	<e:Group id="levelGroup" y="68" x="12">
 		<e:Image source="icon_empty_png" y="0" x="0"/>
-		<e:Label x="8" y="12" textColor="0xCCB48E" text="60" textAlign="center" width="30" size="20" id="levelText0"/>
+		<e:Label id="levelText" x="8" y="12" textColor="0xCCB48E" text="60" textAlign="center" width="30" size="20"/>
 	</e:Group>
 	<e:Group id="numGroup" x="0" y="116.96969696969697" width="140">
 		<e:Image id="arrowMC" source="arrow5_png" x="10.984848484848484" y="4.015151515151501"/>
