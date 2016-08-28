@@ -54,7 +54,7 @@ class MyInfoUI extends game.BaseUI {
 
         this.list.itemRenderer = EnemyHeadItem;
 
-        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
+
     }
 
     private onSet(){
@@ -77,17 +77,17 @@ class MyInfoUI extends game.BaseUI {
     private onTimer(){
         if(!this.stage)
             return;
-        var cd = GameManager.getInstance().getZeroCD();
+        var cd = UM.getNextEnergyCD();
         if(cd == 0)
         {
               this.renew();
         }
 
-        if(UM.energy.vip)
-            this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+(30)+'点体力';
-        else
-            this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+(20)+'点体力';
+        //if(UM.energy.vip)
+        //    this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+(30)+'点体力';
+        //else
 
+        this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+1+'点体力';
         this.thisLoginText.text = '本次游戏时间：' + DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000));
     }
 
@@ -101,6 +101,9 @@ class MyInfoUI extends game.BaseUI {
     public onShow(){
         this.renew();
         this.onTimer();
+
+        this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
+        this.addPanelOpenEvent(GameEvent.client.energy_change,this.renew);
     }
 
     public renew(){
@@ -118,7 +121,7 @@ class MyInfoUI extends game.BaseUI {
 
 
 
-        this.energyText.text = '体力：' + UM.energy.v + '/' + 50;
+        this.energyText.text = '体力：' + UM.energy.v + '/' + 60;
         this.energyText2.text = '元体力：' + UM.energy.rmb;
 
 

@@ -41,8 +41,7 @@ class CollectUI extends game.BaseUI {
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
-        //EM.addEvent(GameEvent.client.collect_change,this.renew,this);
-        EM.addEvent(GameEvent.client.prop_change,this.renewDraw,this);
+
 
         this.addBtnEvent(this.fillBtn,this.onFill);
         this.addBtnEvent(this.fillText,this.onFill);
@@ -150,6 +149,7 @@ class CollectUI extends game.BaseUI {
 
     public onShow(){
         this.renew();
+        this.addPanelOpenEvent(GameEvent.client.prop_change,this.renewDraw);
     }
 
     public renew(){

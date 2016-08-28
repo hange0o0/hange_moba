@@ -42,9 +42,7 @@ class FriendListUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
         //this.addBtnEvent(this.searchBtn, this.onSearch);
-        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
-        EM.addEventListener(GameEvent.client.friend_log_change,this.renewLogE,this)
-        EM.addEventListener(GameEvent.client.friend_pk_change,this.renewPKE,this)
+
     }
 
     private renewLogE(){
@@ -119,6 +117,10 @@ class FriendListUI extends game.BaseUI {
         this.infoCount = 5;
         this.infoType = 0
         this.renew();
+
+        this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
+        this.addPanelOpenEvent(GameEvent.client.friend_log_change,this.renewLogE)
+        this.addPanelOpenEvent(GameEvent.client.friend_pk_change,this.renewPKE)
     }
 
     public renew(){

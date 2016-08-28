@@ -34,8 +34,7 @@ class FriendTalkUI extends game.BaseUI {
 
         this.addBtnEvent(this.sendBtn, this.onClick);
 
-        EM.addEvent(GameEvent.client.talk_change,this.renew,this)
-        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
+
     }
 
     private onTimer(){
@@ -87,6 +86,9 @@ class FriendTalkUI extends game.BaseUI {
 
         this.topUI.setTitle('私聊-'+this.otherNick);
         this.renew();
+
+        this.addPanelOpenEvent(GameEvent.client.talk_change,this.renew)
+        this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
     }
 
     private renew(){

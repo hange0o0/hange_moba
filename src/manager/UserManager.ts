@@ -78,13 +78,24 @@ class UserManager {
     }
 
     public getEnergy(){
-        if(!DateUtil.isSameDay(this.energy.t))
+        var v = this.energy.vip?24:30;
+        var t = TM.now();
+        var add =   Math.floor((t - this.energy.t)/v)
+        if(add > 0)
         {
-            var v = this.energy.vip?30:20;
-            this.energy.v = Math.min(50,this.energy.v + v);
-            this.energy.t = TM.now();
+            this.energy.v = Math.min(60,this.energy.v + add);
+            this.energy.t = this.energy.t + add*v;
+            EM.dispatchEventWith(GameEvent.client.energy_change)
         }
         return this.energy.v + this.energy.rmb;
+    }
+
+    public getNextEnergyCD(){
+        var v = (this.energy.vip?24:30)*60;
+        this.getEnergy();
+        //if(this.energy.t == TM.now())
+        //    return 0;
+        return  this.energy.t + v -  TM.now();
     }
 
     public getFriendPKTimes(){

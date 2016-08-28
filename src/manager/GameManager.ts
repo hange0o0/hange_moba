@@ -43,7 +43,7 @@ class GameManager {
         }
         if(!DateUtil.isSameDay(this.lastTime,now))//跨0点
         {
-            EM.dispatch(GameEvent.client.energy_change);
+            //EM.dispatch(GameEvent.client.energy_change);
 
         }
         EM.dispatch(egret.TimerEvent.TIMER);

@@ -53,7 +53,8 @@ class DebugManager {
     }
 
     //随机卡
-    public randomCard(){
+    public randomCard(testCard){
+        testCard = testCard || [];
         //先出8张卡
         var card1= []; //低
         var card2= []; //中
@@ -74,6 +75,33 @@ class DebugManager {
         ArrayUtil.random(card1,3);
         ArrayUtil.random(card2,3);
         ArrayUtil.random(card3,3);
+
+        for(var i=0;i<testCard.length;i++)
+        {
+            var id = testCard[i];
+            var index = card1.indexOf(id);
+            if(index != -1)
+            {
+                card1.splice(index,1);
+                card1.push(id);
+            }
+
+            var index = card2.indexOf(id);
+            if(index != -1)
+            {
+                card2.splice(index,1);
+                card2.push(id);
+            }
+
+            var index = card3.indexOf(id);
+            if(index != -1)
+            {
+                card3.splice(index,1);
+                card3.push(id);
+            }
+
+
+        }
         var arr = [
             card1.pop(),
             card1.pop(),
@@ -90,7 +118,7 @@ class DebugManager {
         var index = 0;
         while(PKM.getCost(returnArr) < 80)
         {
-            returnArr = [];
+            returnArr = testCard.concat();
             for(var i=0;i<30;i++)
             {
                 var id = ArrayUtil.randomOne(arr);
@@ -104,7 +132,7 @@ class DebugManager {
             }
             index ++;
             if(index >= 100)
-                return  this.randomCard();
+                return  this.randomCard(testCard);
         }
 
         ArrayUtil.random(returnArr);
@@ -231,7 +259,7 @@ class DebugManager {
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
-    public testAllCard(time1,time2 = 100){
+    public testAllCard(time2 = 100,testCard=null){
        var key = TM.now();
        var arr = this.winCardArr = [];
        var self = this;
@@ -239,7 +267,7 @@ class DebugManager {
         Net.getInstance().outPut = false;
         testOne();
         function testOne(){
-            self.testOneCard(time2,function(card){
+            self.testOneCard(time2,testCard,function(card){
                 arr.push(card)
                 var temp = [];
                 for(var i=0;i<card.length;i++)
@@ -249,7 +277,7 @@ class DebugManager {
                 }
                 console.log(arr.length + '\t\t' + temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
                 SharedObjectManager.instance.setMyValue('testCard_'+key,arr);
-                if(arr.length >= time1 || self.stop)
+                if(self.stop)
                 {
                     console.log('==================testEnd======================' + DateUtil.getStringBySecond(TM.now() - key))
                     self.showWinCard();
@@ -264,12 +292,12 @@ class DebugManager {
     }
 
     //从time次中选中一张最强卡,胜利后回调最强卡
-    public testOneCard(time,fun){
+    public testOneCard(time,testCard,fun){
         var self = this;
         var list = []
         for(var i=0;i<time;i++)
         {
-             list.push(self.randomCard());
+             list.push(self.randomCard(testCard));
         }
         testOne();
 

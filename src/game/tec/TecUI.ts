@@ -67,7 +67,7 @@ class TecUI extends game.BaseUI {
 
         this.addBtnEvent(this.fillBtn,this.onFill);
         this.addBtnEvent(this.fillText,this.onFill);
-        EM.addEvent(GameEvent.client.coin_change,this.renewCoin,this);
+
         this.fillList.selectedIndex = 0;
         this.fillList.addEventListener(egret.Event.CHANGE,this.onSelectFill,this)
     }
@@ -243,6 +243,8 @@ class TecUI extends game.BaseUI {
     public onShow(){
          this.renewCoin();
          this.renewList();
+
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewCoin);
     }
 
     public renewCoin(){

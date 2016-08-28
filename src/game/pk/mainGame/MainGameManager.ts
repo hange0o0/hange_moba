@@ -28,7 +28,7 @@ class MainGameManager{
     //杀一个敌人的花费
     public getKillCost(){
         var level = UM.main_game.level;
-        return level*200*(UM.main_game.kill.length+1);
+        return level*200*(UM.main_game.kill.length+1)*3;
     }
 
     //该位置是否被杀了

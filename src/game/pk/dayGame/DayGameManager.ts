@@ -37,6 +37,13 @@ class DayGameManager{
 
     //choose :{list[],ring,index}
     public pk(choose,fun?){
+
+        if(UM.getEnergy()<1)
+        {
+            Alert('体力不足1点，无法挑战');
+            return;
+        }
+
         var self = this;
         var oo:any = {};
         oo.level = UM.day_game.level + 1;

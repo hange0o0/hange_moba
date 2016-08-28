@@ -46,7 +46,6 @@ class FriendPKViewUI extends game.BaseUI {
         this.myList0.itemRenderer =  MyHeadItem;
         this.myList1.itemRenderer =  MyHeadItem;
         this.myList2.itemRenderer =  MyHeadItem;
-        EM.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this)
     }
 
     private onTimer(){
@@ -149,5 +148,7 @@ class FriendPKViewUI extends game.BaseUI {
         }
         this.myList2.dataProvider = new eui.ArrayCollection(chooseList1);
         this.chooseMC.x = 200 + ringIndex * 300;
+
+        this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
     }
 }

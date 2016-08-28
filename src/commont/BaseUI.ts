@@ -89,6 +89,8 @@ module game {
         public isHideFlag:boolean = true;
         public canBGClose:boolean = false;
 
+        private panelEvents: any = {};
+
         public constructor(isWindow?:boolean) {
             super();
             this.isWindow = isWindow;
@@ -125,8 +127,11 @@ module game {
         egret.Tween.get(this).to({verticalCenter:0} , 500 , egret.Ease.backOut);
                             
         }*/
-        
-        
+
+        public addPanelOpenEvent(type:string, callBack:Function){
+            this.panelEvents[type] = callBack;
+            EM.addEvent(type, callBack, this);
+        }
             
         public addListenerSizeY(list:Array<any>):void{
             while(list.length > 0){
@@ -217,6 +222,11 @@ module game {
         }
                     
         public hide():any{
+
+            for(var key in this.panelEvents){
+                EM.removeEvent(key, this.panelEvents[key], this);
+            }
+
             if(this.BaseTypeList){
                 for(var i=0; i<this.BaseTypeList.length; i++){
                     var _type = this.BaseTypeList[i];
