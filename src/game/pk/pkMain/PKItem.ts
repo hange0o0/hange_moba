@@ -66,4 +66,6 @@ class PKItem extends game.BaseItem {
             tw.to({scaleX:1.2,scaleY:1.2,y:Y1}, time/2).to({scaleX:1,scaleY:1,y:Y2}, time/2).wait(100).call(stepAction,this);
         }
     }
+
+
 }

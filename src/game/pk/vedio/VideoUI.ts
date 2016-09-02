@@ -143,6 +143,9 @@ class VideoUI extends game.BaseUI {
         var self = this;
         this.stageHeight = this.stage.stageHeight;
         this.itemGroup.y = ((this.stageHeight - 250-180)-500)/2 + 250
+        this.itemGroup.removeChildren();
+
+
 
         var p = this.selfItem.getPlayerXY();
         p = this.itemGroup.globalToLocal(p.x,p.y)
@@ -156,9 +159,14 @@ class VideoUI extends game.BaseUI {
             var data = this.debugData
             data.atkMC = getMCByID(data.atker);
             data.defMCs = [];
-            for(var i=0;i<data.defs.length;i++)
+            for(var i=0;i<data.defender.length;i++)
             {
-                data.defMCs.push(getMCByID(data.defs[i]));
+                data.defMCs.push(getMCByID(data.defender[i]));
+            }
+            for(var i=0;i<3;i++)
+            {
+                this.addToGroup(this.selfItems[i]);
+                this.addToGroup(this.enemyItems[i]);
             }
             this.showSkillUse(data)
             return;
@@ -197,14 +205,20 @@ class VideoUI extends game.BaseUI {
         if(team == 1)
         {
             if(index < 3)
+            {
+                this.addToGroup(this.selfItems[index]);
                 return this.selfItems[index]
+            }
             if(index == 3)
                 return this.skiller1;
         }
         else
         {
             if(index < 3)
+            {
+                this.addToGroup(this.enemyItems[index]);
                 return this.enemyItems[index]
+            }
             if(index == 3)
                 return this.skiller2;
         }
@@ -303,21 +317,31 @@ class VideoUI extends game.BaseUI {
     }
 
     private showSkillUse(data){
+        var self = this;
         var MV = VideoMV.getInstance();
-        //if(data.skillVO.type == 1)//主技能
-        //{
-        //     if(data.teamID == 1)
-        //        this.selfSkill.text = data.skillVO.name;
-        //    else
-        //        this.enemySkill.text = data.skillVO.name;
-        //}
+        if(data.skillVO && data.skillVO.type == 1)//主技能
+        {
+             //if(data.teamID == 1)
+                this.selfSkill.text = data.skillVO.name;
+            //else
+            //    this.enemySkill.text = data.skillVO.name;
+            this.selfSkill.x = -100
+            var tw:egret.Tween = egret.Tween.get(this.selfSkill);
+            tw.to({x:220},200).wait(1200).to({x:640},200).call(playMV);
+        }
+        else
+        {
+            playMV();
+        }
 
-        //MV['mv'](data,function(){
-        MV[data.mv](data,function(){
-            this.onActionOver();
-            this.selfSkill.text = '';
-            this.enemySkill.text = '';
-        },this)
+        function playMV(){
+            MV[data.mv](data,function(){
+                self.onActionOver();
+                self.selfSkill.text = '';
+                self.enemySkill.text = '';
+            },self)
+        }
+
     }
 
     private debugShow(data){

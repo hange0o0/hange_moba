@@ -82,9 +82,15 @@ class MonsterVO {
                 throw(new Error('init'));
             }
             this[key] = {};
-            this[key].mv = arr[0];
+            var mv = arr[0].split('|');
+            this[key].mv = mv.shift();
+            this[key].mvData = mv;
             this[key].name = arr[1];
             this[key].des = arr[2];
+
+            var type = (arr[3] || '').split('|');
+            this[key].type = type.shift();
+            this[key].typeData = type;
 
             if(key == 'sn')     //大绝
             {

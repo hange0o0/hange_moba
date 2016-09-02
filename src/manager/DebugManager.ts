@@ -523,11 +523,12 @@ class DebugManager {
         });
     }
 
-    public testMV(mv,atker,defs,data=null){
+    public testMV(mv,atker,defender,data=null){
         data = data || {};
         data.mv = mv
+        data.skillVO = data.skillVO || {name:'好名字啊'};
         data.atker = atker
-        data.defs = defs
+        data.defender = defender
         setTimeout(function(){
             VideoUI.getInstance().showMVDebug(data);
         },1)
@@ -544,3 +545,5 @@ class DebugManager {
         }
     }
 }
+
+//DM.testMV('mv2',10,[30,31])

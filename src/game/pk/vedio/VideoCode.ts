@@ -47,6 +47,7 @@ class VideoCode{
             player.teamID = 1;
             this.playerObject[player.id] = player
             player.displayMC = VideoUI.getInstance().getRelateMC(1,i)
+            player.displayMC.playerData = player;
         }
         for(var i=0;i<roundData.player2.length;i++)
         {
@@ -59,6 +60,8 @@ class VideoCode{
             player.teamID = 2;
             this.playerObject[player.id] = player
             player.displayMC = VideoUI.getInstance().getRelateMC(2,i)
+
+            player.displayMC.playerData = player;
         }
         //召唤师
         this.playerObject[1] = new PlayerVO();
@@ -174,13 +177,13 @@ class VideoCode{
         this.currentAction = action;
         switch(action.type)
         {
-            case 1:
+            case 1:  //改变技能发起者
             {
                 this.atker = action.id;
                 this.stepOne();
                 break;
             }
-            case 2:
+            case 2:   //改变目标
             {
                 this.defender = action.id;
                 if(this.skillEffectStart)
@@ -188,7 +191,7 @@ class VideoCode{
                 this.stepOne();
                 break;
             }
-            case 3: //技能效果开始
+            case 3: //技能效果开始（去除了前置的加怒气）
             {
                 this.skillEffectStart = true
                 this.stepOne();
@@ -305,7 +308,7 @@ class VideoCode{
             }
             case '8':
             {
-                this.defenderMV(this.defender,'nohurt',1)
+                this.defenderMV(this.defender,'nohurt',value.value)
                 break;
             }
         }

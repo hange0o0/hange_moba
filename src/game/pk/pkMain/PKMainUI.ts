@@ -182,8 +182,10 @@ class PKMainUI extends game.BaseUI {
             this.enemyGroup.addChild(item);
             this.itemEnemy.push(item);
 
-            var delay = Math.floor((i+1)*50*Math.random());
-            item.stepMove(time,delay,desY)
+            var delay = Math.floor(i*50 + 20*Math.random());
+            if(i == 2)
+                delay -= 50;
+            item.stepMove(time,delay,desY);
         }
 
         this.timer = egret.setTimeout(this.playOne,this,time + 1500)
