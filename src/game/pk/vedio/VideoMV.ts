@@ -27,31 +27,31 @@ class VideoMV {
                  arr =  ['skill28'];
                  break;
              case 'mv6':
-                 arr =  ['skill6'];
+                 arr =  ['skill5'];
                  break;
              case 'mv7':
-                 arr =  ['skill7'];
+                 arr =  ['skill32'];
                  break;
              case 'mv8':
-                 arr =  ['skill8'];
+                 arr =  ['skill33'];
                  break;
              case 'mv9':
-                 arr =  ['skill9'];
+                 arr =  ['skill27'];
                  break;
              case 'mv10':
-                 arr =  ['skill10'];
+                 arr =  ['skill30'];
                  break;
              case 'mv11':
-                 arr =  ['skill11'];
+                 arr =  ['skill38'];
                  break;
              case 'mv12':
-                 arr =  ['skill12'];
+                 arr =  ['skill14'];
                  break;
              case 'mv13':
-                 arr =  ['skill13'];
+                 arr =  [];
                  break;
              case 'mv14':
-                 arr =  ['skill14'];
+                 arr =  ['skill23'];
                  break;
              case 'mv15':
                  arr =  ['skill15'];
@@ -207,11 +207,11 @@ class VideoMV {
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
-        self.showSkillName(b,data.skillVO.name,1,fun,thisObj)
+        self.showSkillName(b,data.skillVO.name,0,fun,thisObj)
     }
 
     //普字后进行普攻
-    public mvwa(data,fun,thisObj){
+    public atkw(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
@@ -227,13 +227,14 @@ class VideoMV {
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
-
-        this.moveToPlayer(a,b,function(){
-            self.playOnItem('skill31',b,function(){
-                self.testBeAtkTarget(data,b,100);
-                self.moveBack(a,fun,thisObj)
-            },thisObj);
-        }, thisObj)
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.moveToPlayer(a, b, function () {
+                self.playOnItem('skill31', b, function () {
+                    self.testBeAtkTarget(data, b, 100);
+                    self.moveBack(a, fun, thisObj)
+                }, thisObj);
+            }, thisObj)
+        });
     }
 
     //显示技能名，并在所有目标身上播放增益光效
@@ -241,7 +242,7 @@ class VideoMV {
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
-        self.showSkillName(a,data.skillVO.name,0,function(){
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function(){
             for(var i=0;i<data.defMCs.length;i++)
             {
                 self.testBeAtkTarget(data,data.defMCs[i],100);
@@ -257,7 +258,7 @@ class VideoMV {
         var b = data.defMCs[0];
         var self = this;
 
-        self.showSkillName(a,data.skillVO.name,0,function(){
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function(){
             for(var i=0;i<data.defMCs.length;i++)
             {
                 self.testBeAtkTarget(data,data.defMCs[i],100);
@@ -270,14 +271,8 @@ class VideoMV {
     //电老头绝技   技能效果由A冲向B，对自己增益，对方debuff
     public mv4(data,fun,thisObj){
         var a = data.atkMC
-        var b = data.defMCs[0];
+        var b = data.defMCs_e[0];
         var self = this;
-
-
-        //mv.x = a.x;
-        //mv.y = a.y;
-        //mv.rotation = this.getRota(a,b);
-        //VideoUI.getInstance().addToGroup(mv);
 
         self.playOnItem('skill35',a,function(){
             var AM = AniManager.getInstance();
@@ -304,85 +299,126 @@ class VideoMV {
         }, thisObj)
     }
 
+    //移动过去物攻，有物攻光效
     public mv6(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill6',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.moveToPlayer(a, b, function () {
+                self.playOnItem('skill5', b, function () {
+
+                }, thisObj).frameRate = 24//技能动画变快;
+                self.moveBack(a, fun, thisObj)
+                self.testBeAtkTarget(data, b, 100);
+            }, thisObj)
+        });
     }
 
+    //复活目标
     public mv7(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill7',b,fun,thisObj)
+        this.playOnItem('skill32',b,fun,thisObj);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type);
         self.testBeAtkTarget(data,b,100);
     }
 
+    //亡语效果
     public mv8(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill8',b,fun,thisObj)
+        this.playOnItem('skill33',b,fun,thisObj)
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type);
         self.testBeAtkTarget(data,b,100);
     }
 
+    //风刃 堕天使的大绝
     public mv9(data,fun,thisObj){
         var a = data.atkMC
-        var b = data.defMCs[0];
+        var b = data.defMCs_e[0];
         var self = this;
 
-        this.playOnItem('skill9',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.playOnItem('skill27', b, fun, thisObj)
+            self.testBeAtkTarget(data, b, 200);
+            self.testBeAtkTarget(data, a, 200);
+        });
+
     }
 
+    //加目标加血
     public mv10(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill10',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            for(var i=0;i<data.defMCs.length;i++)
+            {
+                self.testBeAtkTarget(data,data.defMCs[i],100);
+                self.playOnItem('skill30',data.defMCs[i],fun,thisObj);
+                fun = null;
+            }
+        });
     }
 
+
+    //绿色光球 净化
     public mv11(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill11',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.playOnItem('skill38', b, fun, thisObj)
+            self.testBeAtkTarget(data, b, 200);
+        });
     }
 
+    // 在目标身上播放转圈的效果 水盾
     public mv12(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill12',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.playOnItem('skill14', b, fun, thisObj)
+            self.testBeAtkTarget(data, b, 200);
+        });
     }
 
+    //升空，变大一下
     public mv13(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill13',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        var tw:egret.Tween = egret.Tween.get(a);
+        tw.to({scaleX:a.scaleX*1.2,scaleY:a.scaleY*1.2}, 200).wait(200).
+            to({scaleX:a.scaleX,scaleY:a.scaleY}, 300).call(fun,thisObj);
+
     }
 
+    //晕技
     public mv14(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill14',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function(){
+            for(var i=0;i<data.defMCs.length;i++)
+            {
+                self.testBeAtkTarget(data,data.defMCs[i],100);
+                self.playOnItem('skill23',data.defMCs[i],fun,thisObj);
+                fun = null;
+            }
+        });
     }
 
     public mv15(data,fun,thisObj){
@@ -668,6 +704,7 @@ class VideoMV {
         mv.x = item.x;
         mv.y = item.y;
         VideoUI.getInstance().addToGroup(mv);
+        return mv;
     }
 
     //子弹模式
@@ -807,9 +844,9 @@ class VideoMV {
         });
     }
 
-    //表现技能名字 (在人物头上冒字)
+    //表现技能名字 (在人物头上冒字),type为1是绝招，不显示文本
     public showSkillName(item,value,type?,fun?,thisObj?){
-        if(!value)
+        if(!value || type == 1)
         {
             if(fun)
                 fun.apply(thisObj);

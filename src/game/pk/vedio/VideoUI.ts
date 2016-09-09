@@ -159,9 +159,16 @@ class VideoUI extends game.BaseUI {
             var data = this.debugData
             data.atkMC = getMCByID(data.atker);
             data.defMCs = [];
+            data.defMCs_s = []; //技能者的友方
+            data.defMCs_e = []; //技能者的敌方
             for(var i=0;i<data.defender.length;i++)
             {
-                data.defMCs.push(getMCByID(data.defender[i]));
+                var mc = getMCByID(data.defender[i]);
+                data.defMCs.push(mc);
+                if(Math.abs(data.defender[i] - data.atker) < 10)
+                    data.defMCs_s.push(mc);
+                else
+                    data.defMCs_e.push(mc);
             }
             for(var i=0;i<3;i++)
             {
