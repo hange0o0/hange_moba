@@ -14,9 +14,8 @@ class CacheManager{
     public constructor() {
         this.register(MonsterVO);
         this.register(MainGameVO);
-        //this.register(MonsterKindVO);
         this.register(PropVO);
-        //this.register(RingVO);
+        this.register(MonsterSkillVO);
     }
 
     private register(cls)
@@ -43,7 +42,11 @@ class CacheManager{
                 }
             }
         }
+    }
 
+    //静态数据初始化后调用
+    public initFinish(){
+         MonsterVO.initFinish();
     }
 
     public loadCache(url,fun){

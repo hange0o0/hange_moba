@@ -1,19 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="960">
 	<e:Image id="bg" source="pk_bg1_jpg" x="0" verticalCenter="0"/>
-	<e:Group x="0" y="0" locked="true">
+	<e:Group x="0" y="0">
 		<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" y="0" height="180"/>
 		<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" y="0" height="180"/>
 		<ns1:VideoItem id="enemyItem" x="0" y="15" skinName="VideoItemSkin"/>
 	</e:Group>
-	<e:Group x="0" bottom="0" locked="true">
+	<e:Group x="0" bottom="0">
 		<e:Image source="book_bg1_jpg" y="0" x="0" height="180"/>
 		<e:Image source="book_bg1_jpg" y="0" x="640" scaleX="-1" height="180"/>
 		<ns1:VideoItem id="selfItem" y="15" x="0" skinName="VideoItemSkin"/>
 	</e:Group>
-	<e:Group id="itemGroup" height="500" width="640" x="0" y="213" locked="true">
-		<e:Label id="selfSkill" text="标签" horizontalCenter="0" bottom="0"/>
-		<e:Label id="enemySkill" text="标签" horizontalCenter="0"/>
+	<e:Group id="itemGroup" height="500" width="640" x="0" y="213">
 	</e:Group>
 	<e:Button id="jumpBtn" label="跳过" right="10" bottom="180" skinName="Btn_b1Skin"/>
 	<e:Group id="skillGroup" horizontalCenter="0" verticalCenter="0">

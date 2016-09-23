@@ -43,6 +43,8 @@ class PlayerVO {
         this.id = oo.id;
         this.mid = oo.mid;
         this.mvo = MonsterVO.getObject(this.mid);
+
+        this.maxMp = this.mvo.mp;
     }
 
     public getSave()
@@ -74,10 +76,9 @@ class PlayerVO {
             this.hp = 0;
     }
     public addMp(v){
-        var maxMp = 150;
         this.mp += v;
-        if(this.mp > maxMp)
-            this.mp = maxMp;
+        if(this.mp > this.maxMp)
+            this.mp = this.maxMp;
         else if(this.mp < 0)
             this.mp = 0;
     }

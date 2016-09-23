@@ -11,6 +11,7 @@ class PKResultItem3 extends game.BaseItem {
     private hpText: eui.Label;
 
     public index = 0;
+
     public childrenCreated() {
         //this.addBtnEvent(this.closeBtn,this.onClose);
     }

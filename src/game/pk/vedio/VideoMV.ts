@@ -8,7 +8,7 @@ class VideoMV {
     }
 
     //通过动画ID，得到要加截的动画项
-    public getLoadFormKey(key){
+    public getLoadFormKey(key,temp?){
         var arr = [];
          switch(key){
              case 'mv1':
@@ -130,6 +130,14 @@ class VideoMV {
                  break;
              case 'mv40':
                  arr =  ['skill36'];
+                 break;
+
+
+
+
+             case 'mvX':
+                 if(temp)
+                    arr =  [temp];
                  break;
          }
         var arr2 = [];
@@ -668,6 +676,15 @@ class VideoMV {
         //})
     }
 
+    public mvX(data,fun,thisObj){
+        var a = data.atkMC
+        var b = data.defMCs[0];
+        var self = this;
+
+        this.playOnItem(data.mvname,b,fun,thisObj)
+        self.testBeAtkTarget(data,b,100);
+    }
+
     //test
     public mv(data,fun,thisObj){
         var a = data.atkMC
@@ -787,7 +804,7 @@ class VideoMV {
         this.moveToPlayer(a,b,function(){
             fun1.apply(thisObj);
             this.moveBack(a,fun2,thisObj);
-        },thisObj);
+        },this);
 
         //var desX = (a.ox - b.ox)/5;
         //tw.to({x:b.ox + desX,y:b.oy + b.ar*100}, 300).call(fun1,thisObj).to({x:a.ox,y:a.oy}, 300).call(fun2, thisObj);

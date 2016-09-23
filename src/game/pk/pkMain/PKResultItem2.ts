@@ -16,13 +16,13 @@ class PKResultItem2 extends game.BaseItem {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.viewBtn,this.onView);
+        this.addBtnEvent(this,this.onView);
         this.item1.index = 1;
         this.item2.index = 2;
     }
 
     private onView() {
-
+        VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.data.index - 1);
     }
 
     public dataChanged() {

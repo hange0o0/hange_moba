@@ -4,10 +4,7 @@ class VideoItem extends game.BaseItem {
         this.skinName = "PKItemSkin";
     }
 
-    private atkText: eui.Label;
-    private speedText: eui.Label;
     private headMC: eui.Image;
-    private skillText: eui.Label;
     private nameText: eui.Label;
     private stateText: eui.BitmapLabel;
     private hpBar: eui.Image;
@@ -20,6 +17,7 @@ class VideoItem extends game.BaseItem {
 
 
 
+
     public index;
     public player:PlayerVO;
 
@@ -27,11 +25,15 @@ class VideoItem extends game.BaseItem {
     public hp
     public maxHp
     public mp
-    public atk
-    public speed
+    public maxMp
+    public actionCount
+    //public atk
+    //public speed
 
     private valueObject;
-    private barWidth = 175
+    private hpBarWidth = 275
+    private mpBarWidth = 235
+    private apBarWidth = 195
 
     public childrenCreated() {
         //this.addBtnEvent(this.closeBtn,this.onClose);
@@ -66,59 +68,71 @@ class VideoItem extends game.BaseItem {
         this.stateText.text = player.tag;
         this.nameText.text = vo.name
 
-        this.hpBar.width = player.hp/player.maxHp*this.barWidth
-        this.mpBar.width = player.mp/100*this.barWidth
-        this.apBar.width = player.actionCount/30*this.barWidth
+        this.hpBar.width = player.hp/player.maxHp*this.hpBarWidth
+        this.mpBar.width = player.mp/vo.mp*this.mpBarWidth
+        this.apBar.width = player.actionCount/30*this.apBarWidth
 
 
         this.hpText.text = player.hp + '/' + player.maxHp
-        this.mpText.text = player.mp + '/' + 100
+        this.mpText.text = player.mp + '/' + vo.mp
         this.apText.text = player.actionCount + '/' + 30
 
 
-        this.atkText.text = '攻击：' + player.atk
-        this.speedText.text = '速度：' + player.speed + ''
+        //this.atkText.text = '攻击：' + player.atk
+        //this.speedText.text = '速度：' + player.speed + ''
 
         this.hp = player.hp
-        this.atk = player.atk
-        this.speed = player.speed
+        //this.atk = player.atk
+        //this.speed = player.speed
         this.maxHp = player.maxHp
         this.mp = player.mp
+        this.maxMp = player.maxMp
+        this.maxMp = player.maxMp
+        this.actionCount = player.actionCount
     }
 
     //属性改变动画
     public showValueChange()
     {
         var player = this.player;
-        if(player.hp != this.hp || player.maxHp != this.maxHp)
-        {
-            var tw:egret.Tween = egret.Tween.get(this.hpBar);
-            tw.to({width:player.hp/player.maxHp*175},100);
-        }
-        if(player.mp != this.mp)
-        {
-            var tw:egret.Tween = egret.Tween.get(this.mpBar);
-            tw.to({width:Math.min(player.mp/100,1)*175},100);
-        }
-
         var b = false;
         var times = 3;
         var o:any = {};
-        if(player.hp != this.hp)
+
+        if(player.hp != this.hp || player.maxHp != this.maxHp)
         {
+            var tw:egret.Tween = egret.Tween.get(this.hpBar);
+            tw.to({width:player.hp/player.maxHp*this.hpBarWidth},100);
             o.hp = MyTool.getValueChangeArray(this.hp,player.hp,times);
             b = true;
         }
-        if(player.atk != this.atk)
+        if(player.mp != this.mp || player.maxMp != this.maxMp)
         {
-            o.atk = MyTool.getValueChangeArray(this.atk,player.atk,times);
+            var tw:egret.Tween = egret.Tween.get(this.mpBar);
+            tw.to({width:Math.min(player.mp/player.maxMp,1)*this.mpBarWidth},100);
+            o.mp = MyTool.getValueChangeArray(this.mp,player.mp,times);
             b = true;
         }
-        if(player.speed != this.speed)
+        if(player.actionCount != this.actionCount)
         {
-            o.speed = MyTool.getValueChangeArray(this.speed,player.speed,times);
+            var tw:egret.Tween = egret.Tween.get(this.mpBar);
+            tw.to({width:Math.min(player.actionCount/30,1)*this.apBarWidth},100);
+            o.ap = MyTool.getValueChangeArray(this.actionCount,player.actionCount,times);
             b = true;
         }
+
+
+
+        //if(player.atk != this.atk)
+        //{
+        //    o.atk = MyTool.getValueChangeArray(this.atk,player.atk,times);
+        //    b = true;
+        //}
+        //if(player.speed != this.speed)
+        //{
+        //    o.speed = MyTool.getValueChangeArray(this.speed,player.speed,times);
+        //    b = true;
+        //}
 
         if(b) //数值有变化
         {
@@ -127,9 +141,11 @@ class VideoItem extends game.BaseItem {
         }
 
         this.hp = player.hp
-        this.atk = player.atk
-        this.speed = player.speed
+        //this.atk = player.atk
+        //this.speed = player.speed
         this.maxHp = player.maxHp
+        this.maxMp = player.maxMp
+        this.actionCount = player.actionCount
         this.mp = player.mp
 
     }
@@ -144,10 +160,14 @@ class VideoItem extends game.BaseItem {
              b = true;
              if(s == 'hp')
                 this.hpText.text = v.shift()  + '/' + this.maxHp;
-             else if(s == 'atk')
-                this.atkText.text = v.shift();
-             else if(s == 'speed')
-                this.speed.text = v.shift();
+             else if(s == 'mp')
+                this.mpText.text = v.shift()  + '/' + this.maxMp;
+             else if(s == 'ap')
+                this.apText.text = v.shift()  + '/' + 30;
+             //else if(s == 'atk')
+             //   this.atkText.text = v.shift();
+             //else if(s == 'speed')
+             //   this.speed.text = v.shift();
 
          }
         if(b == false)

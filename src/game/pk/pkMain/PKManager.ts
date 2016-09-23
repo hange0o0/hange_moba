@@ -271,16 +271,16 @@ class PKManager {
         this.team1Base = data.team1base;
         this.team2Base = data.team2base;
 
-        if(this.teamChange)
-        {
-            this.team1Ring = this.team2Base.r;
-            this.team2Ring = this.team1Base.r;
-        }
-        else
-        {
-            this.team1Ring = this.team1Base.r;
-            this.team2Ring = this.team2Base.r;
-        }
+        //if(this.teamChange)
+        //{
+        //    this.team1Ring = this.team2Base.r;
+        //    this.team2Ring = this.team1Base.r;
+        //}
+        //else
+        //{
+        //    this.team1Ring = this.team1Base.r;
+        //    this.team2Ring = this.team2Base.r;
+        //}
 
         this.pkAward = {
             levelUp:false,

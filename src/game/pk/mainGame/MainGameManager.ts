@@ -100,6 +100,13 @@ class MainGameManager{
             UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
             msg.info.type = PKManager.PKType.MAIN;
+            for(var i=0;i<msg.team2base.list.length;i++){
+                if(!msg.team2base.list[i])
+                {
+                    msg.team2base.list.splice(i,1);
+                    i--;
+                }
+            }
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
 
             if(fun)

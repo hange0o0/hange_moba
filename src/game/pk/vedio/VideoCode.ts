@@ -169,6 +169,8 @@ class VideoCode{
 
     private onGameOver(){
          console.log('finish');
+
+        VideoUI.getInstance().onOver();
     }
 
     //处理一个行为，完成后回调
@@ -205,7 +207,7 @@ class VideoCode{
             }
             case 5:   //攻击者行动计数
             {
-                this.getPlayerByID(this.atker).actionCount =  action.actionCount;
+                this.getPlayerByID(this.atker).actionCount =  action.times;
                 this.stepOne();
                 break;
             }
@@ -309,6 +311,12 @@ class VideoCode{
             case '8':
             {
                 this.defenderMV(this.defender,'nohurt',value.value)
+                break;
+            }
+            case '9':       //mmp
+            {
+                this.defenderMV(this.defender,'mmp',value.value)
+                player.maxMp += (value.value);
                 break;
             }
         }

@@ -14,6 +14,7 @@ class DebugManager {
     }
 
     public maxMonsterID = 100;
+    public maxMonsterLevel = 100;  //测试出战怪的等级
 
 
     public consoleDebug(){
@@ -64,6 +65,8 @@ class DebugManager {
             var vo = MonsterVO.getObject(i);
             if(vo)
             {
+                if(vo.level > this.maxMonsterLevel)
+                    continue;
                 if(vo.cost <10)
                     card1.push(vo.id);
                 else if(vo.cost <20)
@@ -213,7 +216,7 @@ class DebugManager {
     }
 
 
-    public showWinCard(arr?){
+    public showWinCard(arr?,byType?){
         var arr = arr || this.winCardArr || [];
         var mid = {}
         for(var i=0;i<arr.length;i++)
@@ -231,7 +234,11 @@ class DebugManager {
             {
                 var id = card[j];
                 if(!mid[id])
-                    mid[id] = {id:id,num:0,num2:0};
+                {
+                    var mvo = MonsterVO.getObject(id);
+                    mid[id] = {id:id,num:0,num2:0,type:mvo.type};
+                }
+
                 mid[id].num ++;
                 if(!mid2[id])
                 {
@@ -241,7 +248,10 @@ class DebugManager {
             }
         }
         var midArr = ObjectUtil.objToArray(mid);
-        ArrayUtil.sortByField(midArr,['num','num2','id'],[1,1,0])
+        if(byType)
+            ArrayUtil.sortByField(midArr,['type','num','num2','id'],[0,1,1,0])
+        else
+            ArrayUtil.sortByField(midArr,['num','num2','id'],[1,1,0])
         for(var i=0;i<midArr.length;i++)
         {
             var oo = midArr[i];
@@ -252,14 +262,15 @@ class DebugManager {
         var free = [];
         for(var i=1;i<this.maxMonsterID + 1;i++)
         {
-            if(!mid[i] && MonsterVO.getObject(i))
+            var mvo = MonsterVO.getObject(i)
+            if(!mid[i] && mvo && mvo.level<= this.maxMonsterLevel)
                 free.push(i);
         }
         console.log('无上场： \t' + free.join(','))
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
-    public testAllCard(time2 = 100,testCard=null){
+    public testAllCard(time2 = 2048,testCard=null){
        var key = TM.now();
        var arr = this.winCardArr = [];
        var self = this;
@@ -536,12 +547,19 @@ class DebugManager {
 
     public testMV2(){
         var self = this;
-        for(var i=1;i<40;i++)
+        for(var i=100;i<180;i++)
         {
+            if(!RES.hasRes('skill' + i + '_json'))
+                continue;
             setTimeout(function(i){
-                self.testMV('mv'+i,10,[30])
-                console.log(i);
-            },i*1000,i)
+                var data:any = {};
+                data.mv = 'mvX';
+                data.skillVO = data.skillVO || {name:'好名字啊'};
+                data.atker = 10
+                data.defender = [30,31];
+                data.mvname = 'skill' + i;
+                VideoUI.getInstance().showMVDebug(data);
+            },(i-100)*1000,i)
         }
     }
 }

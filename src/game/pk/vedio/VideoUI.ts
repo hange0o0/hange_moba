@@ -6,12 +6,13 @@ class VideoUI extends game.BaseUI {
     }
 
     private bg: eui.Image;
-    private topUI: TopUI;
     private enemyItem: VideoItem;
     private selfItem: VideoItem;
     private itemGroup: eui.Group;
-    private selfSkill: eui.Label;
-    private enemySkill: eui.Label;
+    private jumpBtn: eui.Button;
+    private skillGroup: eui.Group;
+    private skillName: eui.Label;
+
 
 
     private skiller1;
@@ -49,7 +50,8 @@ class VideoUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.addEventListener('hide',this.onClose,this);
+        this.addBtnEvent(this.jumpBtn,this.onClose)
+        //this.topUI.addEventListener('hide',this.onClose,this);
 
         for(var i=0;i<3;i++)
         {
@@ -109,7 +111,7 @@ class VideoUI extends game.BaseUI {
     public showMVDebug(data){
         var self = this;
         var mvType = data.mv
-        var group = VideoMV.getInstance().getLoadFormKey(mvType)
+        var group = VideoMV.getInstance().getLoadFormKey(mvType,data.mvname)
         if(group.length == 0)
             this.LoadFiles = [];
         else
@@ -179,7 +181,7 @@ class VideoUI extends game.BaseUI {
             return;
         }
         var VM = VideoManager.getInstance();
-        this.topUI.setTitle('第'+(VM.index + 1)+'轮')
+        //this.topUI.setTitle('第'+(VM.index + 1)+'轮')
         var scene = PKManager.getInstance().getPKBG(VM.type);
         this.bg.source = scene;
 
@@ -191,8 +193,9 @@ class VideoUI extends game.BaseUI {
 
         this.selfItem.data = VC.player1
         this.enemyItem.data = VC.player2
-        this.enemySkill.text = ''
-        this.selfSkill.text = ''
+        this.skillGroup.visible = false;
+        //this.enemySkill.text = ''
+        //this.selfSkill.text = ''
 
         if(VM.type == 'test')
             this.hide();
@@ -329,12 +332,14 @@ class VideoUI extends game.BaseUI {
         if(data.skillVO && data.skillVO.type == 1)//主技能
         {
              //if(data.teamID == 1)
-                this.selfSkill.text = data.skillVO.name;
+                this.skillName.text = data.skillVO.name;
             //else
             //    this.enemySkill.text = data.skillVO.name;
-            this.selfSkill.x = -100
-            var tw:egret.Tween = egret.Tween.get(this.selfSkill);
-            tw.to({x:220},200).wait(1200).to({x:640},200).call(playMV);
+            this.skillGroup.visible = true;
+            this.skillGroup.validateNow();
+            this.skillGroup.x = -this.skillGroup.width;
+            var tw:egret.Tween = egret.Tween.get(this.skillGroup);
+            tw.to({x:(640-this.skillGroup.width)/2},200).wait(1200).to({x:640},200).call(playMV);
         }
         else
         {
@@ -342,10 +347,16 @@ class VideoUI extends game.BaseUI {
         }
 
         function playMV(){
+            if(!MV[data.mv])
+            {
+                console.debug('no mv:' + data.mv)
+                self.onActionOver();
+                self.skillGroup.visible = false
+                return;
+            }
             MV[data.mv](data,function(){
                 self.onActionOver();
-                self.selfSkill.text = '';
-                self.enemySkill.text = '';
+                self.skillGroup.visible = false;
             },self)
         }
 
@@ -391,6 +402,10 @@ class VideoUI extends game.BaseUI {
 
         console.log(data.index + ':    '+str);
         this.onActionOver();
+    }
+
+    public onOver(){
+        this.timer = egret.setTimeout(this.onClose,this,500);
     }
 
 }

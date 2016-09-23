@@ -26,7 +26,6 @@ class PKDressUI extends game.BaseUI {
 
 
 
-    private totalCoin = 100
 
     public monsterList = [];
     public chooseList = [];
@@ -115,14 +114,25 @@ class PKDressUI extends game.BaseUI {
             this.topGroup.visible = false;
     }
 
-    public onPKStart(){
+    public onPKStart(confirm=false){
+        var self = this;
         if(this.chooseList.length == 0)
         {
             Alert('请先选择出战单位');
             return;
         }
+        if(!confirm && this.chooseList.length < 6 && this.getCurrentResource().coin > 10)
+        {
+
+            Confirm('确定使用该卡组出战？',function(type){
+                if(type == 1)
+                {
+                    self.onPKStart(true);
+                }
+            })
+            return;
+        }
         var chooseData = {list:this.chooseList,index:this.dataIn.index}
-        var self = this
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
             self.closeRelate();
             if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
@@ -222,13 +232,12 @@ class PKDressUI extends game.BaseUI {
     //得到当前用剩的资源
     public getCurrentResource(){
         var oo = {
-            coin:this.totalCoin - PKManager.getInstance().getCost(this.chooseList)
+            coin:PKManager.PKCost - PKManager.getInstance().getCost(this.chooseList)
         }
         return oo;
     }
 
     public reInitData(){
-        this.totalCoin = PKManager.PKCost;
         if(!this.history[this.pkType] || this.history[this.pkType].key != this.key)
             this.history[this.pkType] = {key:this.key,list:[],time:TM.now()};
         var data = this.history[this.pkType];
