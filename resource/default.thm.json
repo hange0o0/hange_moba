@@ -33,6 +33,8 @@
     "src/commont/ui/TipsUISkin.exml",
     "src/commont/ui/TopUISkin.exml",
     "src/debug/DebugInputSkin.exml",
+    "src/debug/DebugSkillItemSkin.exml",
+    "src/debug/DebugSkillListSkin.exml",
     "src/debug/DebugUISkin.exml",
     "src/debug/ScrollTestSkin.exml",
     "src/game/bag/BagItemSkin.exml",

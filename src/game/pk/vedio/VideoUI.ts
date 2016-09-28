@@ -350,8 +350,11 @@ class VideoUI extends game.BaseUI {
             if(!MV[data.mv])
             {
                 console.debug('no mv:' + data.mv)
-                self.onActionOver();
-                self.skillGroup.visible = false
+                MV['mvw'](data,function(){
+                    self.onActionOver();
+                    self.skillGroup.visible = false;
+                },self)
+
                 return;
             }
             MV[data.mv](data,function(){

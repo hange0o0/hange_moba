@@ -26,6 +26,8 @@ var game_file_list = [
 	"bin-debug/db/MonsterVO.js",
 	"bin-debug/db/PropVO.js",
 	"bin-debug/debug/DebugInput.js",
+	"bin-debug/debug/DebugSkillItem.js",
+	"bin-debug/debug/DebugSkillList.js",
 	"bin-debug/debug/DebugUI.js",
 	"bin-debug/debug/ScrollTest.js",
 	"bin-debug/game/bag/BagItem.js",

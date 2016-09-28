@@ -7,6 +7,11 @@ class VideoMV {
         return this._instance;
     }
 
+    //frameRate:默认是12，要变快就加大，慢变就减小
+    public mvConfig = {
+        102:{scale:2}
+    };
+
     //通过动画ID，得到要加截的动画项
     public getLoadFormKey(key,temp?){
         var arr = [];
@@ -24,7 +29,7 @@ class VideoMV {
                  arr =  ['skill10','skill28','skill35'];
                  break;
              case 'mv5':
-                 arr =  ['skill28'];
+                 arr =  ['skill102'];
                  break;
              case 'mv6':
                  arr =  ['skill5'];
@@ -300,7 +305,7 @@ class VideoMV {
         var self = this;
 
         this.moveToPlayer(a,b,function(){
-            self.playOnItem('skill28',b,function(){
+            self.playOnItem('skill102',b,function(){
             },thisObj);
             self.testBeAtkTarget(data,b,100);
             self.moveBack(a,fun,thisObj)
@@ -683,6 +688,7 @@ class VideoMV {
 
         this.playOnItem(data.mvname,b,fun,thisObj)
         self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name)
     }
 
     //test
@@ -721,6 +727,16 @@ class VideoMV {
         mv.x = item.x;
         mv.y = item.y;
         VideoUI.getInstance().addToGroup(mv);
+        var config = this.mvConfig[key.substr(5)]
+        if(config)
+        {
+            if(config.scale)
+            {
+                mv.scaleX = mv.scaleY = config.scale;
+            }
+            if(config.frameRate)
+                mv.frameRate = config.frameRate;
+        }
         return mv;
     }
 

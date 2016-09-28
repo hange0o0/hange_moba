@@ -425,6 +425,7 @@ class DebugManager {
         }
     }
 
+    //显示服务器日志
     public showServerLog(){
         var arr = [];
         Net.send('get_test_monster',{},function(data) {
@@ -534,6 +535,7 @@ class DebugManager {
         });
     }
 
+    //显示真正的动画（数据库配的）
     public testMV(mv,atker,defender,data=null){
         data = data || {};
         data.mv = mv
@@ -545,23 +547,57 @@ class DebugManager {
         },1)
     }
 
-    public testMV2(){
+    //显示所有基础动画
+    public testMV2(skillID?){
+        if(skillID)
+        {
+            this.testBaseMV(skillID);
+            return;
+        }
         var self = this;
-        for(var i=100;i<180;i++)
+        var index = 0;
+        for(var i=1;i<180;i++)
         {
             if(!RES.hasRes('skill' + i + '_json'))
                 continue;
+
             setTimeout(function(i){
                 var data:any = {};
                 data.mv = 'mvX';
-                data.skillVO = data.skillVO || {name:'好名字啊'};
+                data.skillVO = data.skillVO || {name:'skill' + i};
                 data.atker = 10
                 data.defender = [30,31];
                 data.mvname = 'skill' + i;
                 VideoUI.getInstance().showMVDebug(data);
-            },(i-100)*1000,i)
+                console.log(i);
+            },index*1000,i)
+            index ++;
         }
     }
+
+    //显示指定基础动画
+    private testBaseMV(i){
+        if(!RES.hasRes('skill' + i + '_json'))
+        {
+            console.log('not find '+ i)
+            return;
+        }
+
+        var data:any = {};
+        data.mv = 'mvX';
+        data.skillVO = data.skillVO || {name:'skill' + i};
+        data.atker = 10
+        data.defender = [30,31];
+        data.mvname = 'skill' + i;
+        VideoUI.getInstance().showMVDebug(data);
+    }
+
+    //在一屏内显示所有的技能动画
+    public showAllMV(){
+        DebugSkillList.getInstance().show();
+    }
+
+
 }
 
 //DM.testMV('mv2',10,[30,31])
