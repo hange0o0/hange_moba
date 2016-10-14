@@ -9,142 +9,40 @@ class VideoMV {
 
     //frameRate:默认是12，要变快就加大，慢变就减小
     public mvConfig = {
-        102:{scale:2}
+        'skill102':{scale:2},
+        'skill154a':{frameRate:24},
+        'skill124':{frameRate:24,scale:1.5},
+        'skill176':{frameRate:24}
     };
+
+    private getMVKey(key){
+        return key.replace(/[abcdefg_]/g,'');
+    }
 
     //通过动画ID，得到要加截的动画项
     public getLoadFormKey(key,temp?){
         var arr = [];
-         switch(key){
-             case 'mv1':
-                 arr =  ['skill31'];
-                 break;
-             case 'mv2':
-                 arr =  ['skill35'];
-                 break;
-             case 'mv3':
-                 arr =  ['skill31'];
-                 break;
-             case 'mv4':
-                 arr =  ['skill10','skill28','skill35'];
-                 break;
-             case 'mv5':
-                 arr =  ['skill102'];
-                 break;
-             case 'mv6':
-                 arr =  ['skill5'];
-                 break;
-             case 'mv7':
-                 arr =  ['skill32'];
-                 break;
-             case 'mv8':
-                 arr =  ['skill33'];
-                 break;
-             case 'mv9':
-                 arr =  ['skill27'];
-                 break;
-             case 'mv10':
-                 arr =  ['skill30'];
-                 break;
-             case 'mv11':
-                 arr =  ['skill38'];
-                 break;
-             case 'mv12':
-                 arr =  ['skill14'];
-                 break;
-             case 'mv13':
-                 arr =  [];
-                 break;
-             case 'mv14':
-                 arr =  ['skill23'];
-                 break;
-             case 'mv15':
-                 arr =  ['skill15'];
-                 break;
-             case 'mv16':
-                 arr =  ['skill16'];
-                 break;
-             case 'mv17':
-                 arr =  ['skill17'];
-                 break;
-             case 'mv18':
-                 arr =  ['skill18'];
-                 break;
-             case 'mv19':
-                 arr =  ['skill19'];
-                 break;
-             case 'mv20':
-                 arr =  ['skill20'];
-                 break;
-             case 'mv21':
-                 arr =  ['skill21'];
-                 break;
-             case 'mv22':
-                 arr =  ['skill22'];
-                 break;
-             case 'mv23':
-                 arr =  ['skill23'];
-                 break;
-             case 'mv24':
-                 arr =  ['skill24'];
-                 break;
-             case 'mv25':
-                 arr =  ['skill25'];
-                 break;
-             case 'mv26':
-                 arr =  ['skill26'];
-                 break;
-             case 'mv27':
-                 arr =  ['skill27'];
-                 break;
-             case 'mv28':
-                 arr =  ['skill28'];
-                 break;
-             case 'mv29':
-                 arr =  ['skill29'];
-                 break;
-             case 'mv30':
-                 arr =  ['skill30'];
-                 break;
-             case 'mv31':
-                 arr =  ['skill31'];
-                 break;
-             case 'mv32':
-                 arr =  ['skill32'];
-                 break;
-             case 'mv33':
-                 arr =  ['skill33'];
-                 break;
-             case 'mv34':
-                 arr =  ['skill34'];
-                 break;
-             case 'mv35':
-                 arr =  ['skill35'];
-                 break;
-             case 'mv36':
-                 arr =  ['skill36'];
-                 break;
-             case 'mv37':
-                 arr =  ['skill37'];
-                 break;
-             case 'mv38':
-                 arr =  ['skill38'];
-                 break;
-             case 'mv39':
-                 arr =  ['skill39'];
-                 break;
-             case 'mv40':
-                 arr =  ['skill36'];
-                 break;
+        var data = {
+            kill:['skill162'],
+            mv31:['skill31'],
+            mv102:['skill102'],
+            mv105_28:['skill105','skill28'],
+            mv111:['skill111'],
+            mv124:['skill124'],
+            mv145:['skill145'],
+            mv145_a:['skill145'],
+            mv154:['skill154'],
+            mv154_a:['skill154'],
+            mv176:['skill176'],
+            mv2:['skill2']
+        };
+
+        if(data[key])
+            arr = data[key];
+        else if(key == 'mvX' && temp)
+            arr =  [temp];
 
 
-
-
-             case 'mvX':
-                 if(temp)
-                    arr =  [temp];
-                 break;
-         }
         var arr2 = [];
         for(var i=0;i<arr.length;i++)
         {
@@ -166,53 +64,9 @@ class VideoMV {
         },fun, thisObj)
     }
 
-    ////leader对已方加成
-    //public ls(data,fun,thisObj){
-    //    var a = data.atkMC
-    //    var b = data.defMCs[0];
-    //
-    //    var AM = AniManager.getInstance();
-    //    var mv = AM.getAniOnce('skill1',function(){
-    //        fun.apply(thisObj);
-    //    })
-    //    mv.x = b.x;
-    //    mv.y = b.y;
-    //    VideoUI.getInstance().addToGroup(mv);
-    //}
-    ////leader对敌方加成
-    //public le(data,fun,thisObj){
-    //    var a = data.atkMC
-    //    var b = data.defMCs[0];
-    //    var self = this;
-    //
-    //    var AM = AniManager.getInstance();
-    //    var mv = AM.getAniOnce('skill1',function(){
-    //        fun.apply(thisObj);
-    //    })
-    //    mv.x = b.x;
-    //    mv.y = b.y;
-    //    VideoUI.getInstance().addToGroup(mv);
-    //    self.testBeAtkTarget(data,b,100);
-    //}
-
     //秒杀动画
     public kill(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        var AM = AniManager.getInstance();
-        var mv = AM.getAni('skill2');
-        mv.x = a.x;
-        mv.y = a.y;
-        mv.rotation = this.getRota(a,b);
-        VideoUI.getInstance().addToGroup(mv);
-
-        var tw:egret.Tween = egret.Tween.get(mv);
-        tw.to({x:b.x,y:b.y}, Math.min(MyTool.getDes(a,b),400),egret.Ease.sineIn).call(function(){
-            AM.removeMV(mv);
-            self.testBeAtkTarget(data,b);
-        }).wait(100).call(fun,thisObj);
+        this.mode_target_mv(data,fun,thisObj,'skill162');
     }
 
     //显示文本
@@ -235,6 +89,61 @@ class VideoMV {
         })
     }
 
+    //喷毒
+    public mv31(data,fun,thisObj){
+        this.mode_move_mv_back(data,fun,thisObj,'skill31');
+    }
+
+    //雷击
+    public mv102(data,fun,thisObj){
+        this.mode_w_mv(data,fun,thisObj,'skill102');
+    }
+
+
+    //毒气刺激
+    public mv111(data,fun,thisObj){
+        this.mode_w_mv(data,fun,thisObj,'skill111');
+    }
+
+    //电魂召唤
+    public mv105_28(data,fun,thisObj){
+        var mv = this.mode_umv_mmv_tmv(data,fun,thisObj,'skill105','skill105','skill28');
+        var tw:egret.Tween = egret.Tween.get(mv);
+        mv.scaleX = mv.scaleY = 2;
+        mv.alpha = 0.5;
+        tw.to({scaleX:1,scaleY:1,alpha:1}, 300)
+    }
+
+
+
+    //愤怒一击
+    public mv145(data,fun,thisObj){
+        this.mode_w_mv_atk(data,fun,thisObj,'skill145');
+    }
+    //怒火中烧
+    public mv145_a(data,fun,thisObj){
+        this.mode_w_mv(data,fun,thisObj,'skill145');
+    }
+
+    //静电场/ 电之力
+    public mv154(data,fun,thisObj){
+        this.mode_w_mv(data,fun,thisObj,'skill154');
+    }
+
+    //净化
+    public mv154_a(data,fun,thisObj){
+        this.mode_atk_mv(data,fun,thisObj,'skill154a');
+    }
+
+    //心灵控制
+    public mv124(data,fun,thisObj){
+        this.mode_w_mv(data,fun,thisObj,'skill124');
+    }
+    //public mv176(data,fun,thisObj){
+    //    this.mode_w_mv(data,fun,thisObj,'skill176');
+    //}
+
+    //-----------------------------------------------------------------------------------------------------------------------------
     //喷毒 移过去播放毒液动画然后回来
     public mv1(data,fun,thisObj){
         var a = data.atkMC
@@ -434,22 +343,36 @@ class VideoMV {
         });
     }
 
+    //静电场 / 电之力
     public mv15(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill15',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function(){
+            for(var i=0;i<data.defMCs.length;i++)
+            {
+                self.testBeAtkTarget(data,data.defMCs[i],100);
+                self.playOnItem('skill154',data.defMCs[i],fun,thisObj);
+                fun = null;
+            }
+        });
     }
-
+    //人鱼快打
     public mv16(data,fun,thisObj){
         var a = data.atkMC
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill16',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.moveToPlayer(a, b, function () {
+                self.playOnItem('skill136', b, function () {
+
+                }, thisObj)
+                self.moveBack(a, fun, thisObj)
+                self.testBeAtkTarget(data, b, 100);
+            }, thisObj)
+        });
     }
 
     public mv17(data,fun,thisObj){
@@ -457,207 +380,18 @@ class VideoMV {
         var b = data.defMCs[0];
         var self = this;
 
-        this.playOnItem('skill17',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.moveToPlayer(a, b, function () {
+                self.playOnItem('skill137', b, function () {
+
+                }, thisObj)
+                self.moveBack(a, fun, thisObj)
+                self.testBeAtkTarget(data, b, 100);
+            }, thisObj)
+        });
     }
 
-    public mv18(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
 
-        this.playOnItem('skill18',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv19(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill19',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv20(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill20',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv21(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill21',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv22(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill22',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv23(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill23',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv24(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill24',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv25(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill25',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv26(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill26',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv27(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill27',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv28(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill28',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv29(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill29',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv30(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill30',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv31(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill31',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv32(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill32',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv33(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill33',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv34(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill34',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv35(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill35',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv36(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill36',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv37(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill37',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv38(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill38',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
-
-    public mv39(data,fun,thisObj){
-        var a = data.atkMC
-        var b = data.defMCs[0];
-        var self = this;
-
-        this.playOnItem('skill39',b,fun,thisObj)
-        self.testBeAtkTarget(data,b,100);
-    }
 
     public mv40(data,fun,thisObj){
         var a = data.atkMC
@@ -719,15 +453,98 @@ class VideoMV {
         })
     }
 
+    //*************************   技能模板    *****************************
+    //移动过去播放动画后返回
+    private mode_move_mv_back(data,fun,thisObj,skillName){
+        var a = data.atkMC
+        var b = data.defMCs[0];
+        var self = this;
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function() {
+            self.moveToPlayer(a, b, function () {
+                self.playOnItem(skillName, b, function () {
+                    self.testBeAtkTarget(data, b, 100);
+                    self.moveBack(a, fun, thisObj)
+                }, thisObj);
+            }, thisObj)
+        });
+    }
+    //攻击后在对方身上播动画
+    private mode_atk_mv(data,fun,thisObj,skillName){
+        var a = data.atkMC
+        var b = data.defMCs[0];
+        var self = this;
+
+        this.atkMove(a,b,function(){
+            self.playOnItem(skillName, b)
+            self.testBeAtkTarget(data,b,100);
+        },fun, thisObj)
+    }
+
+    //显示文字后在目标身上播放动画
+    private mode_w_mv(data,fun,thisObj,skillName){
+        var a = data.atkMC
+        var self = this;
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type,function(){
+            for(var i=0;i<data.defMCs.length;i++)
+            {
+                self.testBeAtkTarget(data,data.defMCs[i],100);
+                self.playOnItem(skillName,data.defMCs[i],fun,thisObj);
+                fun = null;
+            }
+        });
+    }
+
+    //播动画后移动攻击
+    private mode_w_mv_atk(data,fun,thisObj,skillName){
+        var a = data.atkMC
+        var b = data.defMCs_e[0];
+        var self = this;
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type);
+        self.playOnItem(skillName,a,function(){
+            this.atkMove(a,b,function(){
+                self.testBeAtkTarget(data,b);
+            },fun, thisObj)
+        },this);
+
+
+    }
+
+    //在目标身上播放动画
+    private mode_target_mv(data,fun,thisObj,skillName){
+        var self = this;
+        for(var i=0;i<data.defMCs.length;i++)
+        {
+            self.testBeAtkTarget(data,data.defMCs[i],100);
+            self.playOnItem(skillName,data.defMCs[i],fun,thisObj);
+            fun = null;
+        }
+    }
+
+    //在使用者身上播放动画，然后移向目标，再在目标身上播放动画
+    private mode_umv_mmv_tmv(data,fun,thisObj,s1,s2,s3){
+        var a = data.atkMC
+        var b = data.defMCs_e[0];
+        var self = this;
+
+        return self.playOnItem(s1,a,function(){
+            var AM = AniManager.getInstance();
+            var mv = AM.getAni(s2);
+            self.playBullet(mv,a,b,function(){
+                self.playOnItem(s3,b,fun,thisObj);
+                self.testBeAtkTarget(data,b);
+            })
+        });
+    }
+
     //*************************   通用的动画方法    *****************************
     //在mc上播放指定动画，播完后回调
     private playOnItem(key,item,fun?,thisObj?){
         var AM = AniManager.getInstance();
-        var mv = AM.getAniOnce(key,fun,thisObj);
+        var mv = AM.getAniOnce(this.getMVKey(key),fun,thisObj);
         mv.x = item.x;
         mv.y = item.y;
         VideoUI.getInstance().addToGroup(mv);
-        var config = this.mvConfig[key.substr(5)]
+        var config = this.mvConfig[key]
         if(config)
         {
             if(config.scale)
@@ -742,6 +559,19 @@ class VideoMV {
 
     //子弹模式
     private playBullet(mc,from,to,fun?,cd=300,thisObj?){
+        mc.x = from.x;
+        mc.y = from.y;
+        mc.rotation = this.getRota(from,to);
+        VideoUI.getInstance().addToGroup(mc);
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.to({y:to.y,x:to.x}, cd).call(function(){
+            MyTool.removeMC(mc);
+            if(fun)
+                fun.apply(thisObj);
+        });
+    }
+    //子弹模式
+    private playBulletScale(mc,from,to,fun?,cd=300,thisObj?){
         mc.x = from.x;
         mc.y = from.y;
         mc.scaleY = 0.1
@@ -821,9 +651,6 @@ class VideoMV {
             fun1.apply(thisObj);
             this.moveBack(a,fun2,thisObj);
         },this);
-
-        //var desX = (a.ox - b.ox)/5;
-        //tw.to({x:b.ox + desX,y:b.oy + b.ar*100}, 300).call(fun1,thisObj).to({x:a.ox,y:a.oy}, 300).call(fun2, thisObj);
     }
 
     //移向指定玩家

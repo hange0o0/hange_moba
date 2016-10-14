@@ -23,6 +23,7 @@ class HelpUI extends game.BaseUI {
         super.childrenCreated();
         this.addBtnEvent(this.okBtn, this.hide);
 
+        this.list.itemRenderer = HelpItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
