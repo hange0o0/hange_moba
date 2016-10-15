@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="HelpItemSkin" xmlns:e="http://ns.egret.com/eui">
-	<e:Label y="0" textColor="0xCCB48E" text="{data.text}" x="40" size="26" textAlign="left" width="500"/>
+	<e:Label y="0" textColor="0xCCB48E" text="" id="text" x="40" size="26" textAlign="left" width="500"/>
 	<e:Image x="9" source="point2_png" scaleX="0.3" scaleY="0.3" verticalCenter="0"/>
 </e:Skin>
