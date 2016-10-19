@@ -261,6 +261,20 @@ class VideoUI extends game.BaseUI {
             this.selfItem.showValueChange()
             this.enemyItem.showValueChange()
         }
+        if(this.skillData.diePlayer.length)//有死了的单位
+        {
+            // {index:this.index,atker:this.atker,skillID:action.skillID,defender:{},diePlayer:[]};
+            this.skillData.defender =  {};
+            for(var i=0;i<this.skillData.diePlayer.length;i++)
+            {
+                this.skillData.defender[this.skillData.diePlayer[i]] = {}
+            }
+            this.skillData.diePlayer = [];
+            this.skillData.skillID = 'die';
+            this.playSkill(this.skillData);
+            return;
+        }
+
         VC.onMovieOver();
     }
 
@@ -290,7 +304,14 @@ class VideoUI extends game.BaseUI {
         }
         if(data.skillID == 50)  //攻击
         {
-            MV.atk(data,this.onActionOver,this)
+            data.mv = 'atk'
+            this.showSkillUse(data);
+            //MV.atk(data,this.onActionOver,this)
+        }
+        if(data.skillID == 'die')  //死亡动画
+        {
+            data.mv = 'die'
+            this.showSkillUse(data);
         }
         else if(data.skillID == 51)  //秒杀
         {
@@ -319,9 +340,10 @@ class VideoUI extends game.BaseUI {
                          data.skillVO = VM.leaderSkill1[data.skillID - 2];
                      else
                          data.skillVO = VM.leaderSkill2[data.skillID - 2];
-                data.mv = data.skillVO.mv;
+
                  //}
             }
+            data.mv = data.skillVO.mv;
             this.showSkillUse(data);
         }
     }
@@ -347,17 +369,17 @@ class VideoUI extends game.BaseUI {
         }
 
         function playMV(){
-            if(!MV[data.mv])
-            {
-                console.debug('no mv:' + data.mv)
-                MV['mvw'](data,function(){
-                    self.onActionOver();
-                    self.skillGroup.visible = false;
-                },self)
-
-                return;
-            }
-            MV[data.mv](data,function(){
+            //if(!MV[data.mv])
+            //{
+            //    console.debug('no mv:' + data.mv)
+            //    MV['mvw'](data,function(){
+            //        self.onActionOver();
+            //        self.skillGroup.visible = false;
+            //    },self)
+            //
+            //    return;
+            //}
+            MV.showSkillMV(data,function(){
                 self.onActionOver();
                 self.skillGroup.visible = false;
             },self)
@@ -369,7 +391,7 @@ class VideoUI extends game.BaseUI {
         var VC = VideoCode.getInstance();
 
         if(data.atker != 1 && data.atker != 2)
-            data.atker = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
+            data.atkerW = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
         data.defList = [];
         for(var s in data.defender)
         {
@@ -383,15 +405,19 @@ class VideoUI extends game.BaseUI {
 
         if(data.skillID == 50)
         {
-            var str = data.atker + ' 攻击 ' + data.defList.join(',');
+            var str = data.atkerW + ' 攻击 ' + data.defList.join(',');
+        }
+        else if(data.skillID == 'die')
+        {
+            var str = '死亡单位： ' + data.defList.join(',');
         }
         else if(data.skillID == 51)
         {
-            var str = data.atker + ' 秒杀 ' + data.defList.join(',');
+            var str = data.atkerW + ' 秒杀 ' + data.defList.join(',');
         }
         else if(data.skillID == 52)
         {
-            var str = data.atker + ' 回合结束时血量改变 '+ data.defList.join(',');
+            var str = data.atkerW + ' 回合结束时血量改变 '+ data.defList.join(',');
         }
         //else if(data.skillID == 53)
         //{
@@ -399,7 +425,7 @@ class VideoUI extends game.BaseUI {
         //}
         else
         {
-            var str = data.atker + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
+            var str = data.atkerW + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
         }
         str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
 

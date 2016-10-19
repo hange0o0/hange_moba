@@ -20,14 +20,14 @@ class VideoManager {
     public leaderSkill1
     public leaderSkill2
 
-    public skillAni
+    //public skillAni
 
     public constructor() {
-        this.skillAni = {
-            mv:['skill1','skill2'],
-            le:['skill1'],
-            ls:['skill2']
-        }
+        //this.skillAni = {
+        //    mv:['skill1','skill2'],
+        //    le:['skill1'],
+        //    ls:['skill2']
+        //}
     }
 
     public decodeLeaderSkill(str){
@@ -81,11 +81,10 @@ class VideoManager {
             mArr.push(this.leaderSkill2[i].mv);
         }
         //mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
-        //mArr.push(RingVO.getObject(PKM.team2Ring).getSkillVO().mv)
         var mObj = {};
         for(var i=0;i<mArr.length;i++)
         {
-            var arr = this.skillAni[mArr[i]];
+            var arr = mArr[i];
             if(arr)
             {
                 for(var j=0;j<arr.length;j++)
@@ -98,8 +97,9 @@ class VideoManager {
         var arr2 = [];
         for(var s in mObj)
         {
-            arr2.push(s+'_json');
-            arr2.push(s+'_png');
+            arr2.push(s);
+            //arr2.push(s+'_json');
+            //arr2.push(s+'_png');
         }
         return arr2;
     }

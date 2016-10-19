@@ -214,7 +214,7 @@ class VideoCode{
             case 7:   //技能开始
             {
                 this.skillStart = true;
-                this.skillData = {index:this.index,atker:this.atker,skillID:action.skillID,defender:{}};
+                this.skillData = {index:this.index,atker:this.atker,skillID:action.skillID,defender:{},diePlayer:[]};
                 this.stepOne();
                 break;
             }
@@ -272,6 +272,11 @@ class VideoCode{
             {
                 this.defenderMV(this.defender,'hp',value.value)
                 player.addHp(value.value);
+                if(value.value < 0 && player.hp <= 0)
+                {
+                    this.skillData.diePlayer.push(player.id);
+                }
+
                 break;
             }
             case '2'://    "SPD"=>'2',,
