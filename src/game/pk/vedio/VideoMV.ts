@@ -215,7 +215,7 @@ class VideoMV {
         });
     }
 
-    //播动画并显示文字
+    //播动画同时显示文字
     private mode_wmv(data,fun,thisObj,skillName){
         var a = data.atkMC
         var self = this;
@@ -239,8 +239,35 @@ class VideoMV {
                 self.testBeAtkTarget(data,b);
             },fun, thisObj)
         },this);
+    }
 
+    //播动画A后移动攻击，在对方身上播放动画B
+    private mode_w_mv_atk_mv(data,fun,thisObj,skillName,skillName2){
+        var a = data.atkMC
+        var b = data.defMCs_e[0];
+        var self = this;
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type);
+        self.playOnItem(skillName,a,function(){
+            this.atkMove(a,b,function(){
+                self.playOnItem(skillName,data.b);
+                self.testBeAtkTarget(data,b);
+            },fun, thisObj)
+        },this);
+    }
 
+    //自己播动画A后，在对方身上播放动画B
+    private mode_w_mv_mv(data,fun,thisObj,skillName,skillName2){
+        var a = data.atkMC
+        var self = this;
+        self.showSkillName(a,data.skillVO.name,data.skillVO.type);
+        self.playOnItem(skillName,a,function(){
+            for(var i=0;i<data.data.defMCs_e.length;i++)
+            {
+                self.testBeAtkTarget(data,data.data.defMCs_e[i],100);
+                self.playOnItem(skillName2,data.data.defMCs_e[i],fun,thisObj);
+                fun = null;
+            }
+        },this);
     }
 
     //在目标身上播放动画
@@ -254,7 +281,7 @@ class VideoMV {
         }
     }
 
-    //在使用者身上播放动画，然后移向目标，再在目标身上播放动画
+    //在使用者身上播放动画A，然后动画B移向目标，再在目标身上播放动画C
     private mode_umv_mmv_tmv(data,fun,thisObj,s1,s2,s3){
         var a = data.atkMC
         var b = data.defMCs_e[0];
