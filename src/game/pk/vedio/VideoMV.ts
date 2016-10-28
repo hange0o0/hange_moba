@@ -132,7 +132,11 @@ class VideoMV {
                 if(this[mvArr[0]])
                     this[mvArr[0]](data,fun,thisObj);
                 else
+                {
+                    fun.apply(thisObj);
                     console.debug('no mv:' + mvArr[0])
+                }
+
                 break;
         }
     }
@@ -270,7 +274,7 @@ class VideoMV {
         },this);
     }
 
-    //在目标身上播放动画
+    //在目标身上播放动画    http://172.17.196.195:9010/index.html?host=com&debug=2&test=test
     private mode_target_mv(data,fun,thisObj,skillName){
         var self = this;
         for(var i=0;i<data.defMCs.length;i++)

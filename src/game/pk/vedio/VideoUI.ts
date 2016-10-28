@@ -308,7 +308,7 @@ class VideoUI extends game.BaseUI {
             this.showSkillUse(data);
             //MV.atk(data,this.onActionOver,this)
         }
-        if(data.skillID == 'die')  //死亡动画
+        else if(data.skillID == 'die')  //死亡动画
         {
             data.mv = 'die'
             this.showSkillUse(data);
