@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="VideoItem2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect height="282" width="500" x="107" y="9" fillAlpha="0" strokeWeight="3"/>
+	<ns1:MyHeadItem id="myHeadItem" x="5" y="12" skinName="MyHeadItemSkin" scaleX="0.8" scaleY="0.8"/>
+	<e:Label text="使用技能【12332奇才】" x="122" y="14"/>
+	<e:Group x="116" y="57">
+		<ns1:MyHeadItem y="0" x="0" scaleX="0.5" skinName="MyHeadItemSkin" scaleY="0.5" id="myHeadItem1"/>
+		<e:Label text="+152369" x="77" y="13" textColor="0x2BEE16"/>
+		<e:Image source="icon_atk_png" x="203" y="3"/>
+		<e:Image source="icon_atk_png" x="254" y="4"/>
+	</e:Group>
+	<e:Group x="119" y="122">
+		<ns1:MyHeadItem y="0" x="0" scaleX="0.5" skinName="MyHeadItemSkin" scaleY="0.5" id="myHeadItem0" xmlns:ns1="*"/>
+		<e:Label y="13" textColor="0x2BEE16" text="+152369" x="77"/>
+		<e:Image source="icon_atk_png" y="3" x="203"/>
+		<e:Image source="icon_atk_png" y="4" x="254"/>
+	</e:Group>
+	</e:Skin>
