@@ -152,7 +152,11 @@ class MonsterInfoBase extends game.BaseContainer {
             if(vo['sfn' + i])
                 arr.push(vo['sfn' + i]);
         }
+
+        ArrayUtil.sortByField(arr,['sortIndex'],[0]);
         this.list.dataProvider = new eui.ArrayCollection(arr);
+
+
 
     }
 

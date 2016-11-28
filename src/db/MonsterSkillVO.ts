@@ -16,6 +16,7 @@ class MonsterSkillVO {
     public des
 
     public type
+    public sortIndex
 
 
     public constructor(data?: any) {
@@ -31,7 +32,7 @@ class MonsterSkillVO {
         this.mid = data.mid;
         this.index = data.index;
         this.mv = data.mv;
-        this.sp = data.sp;
+        this.sp = (data.sp || '').split('|');
 
         this.id = this.mid + '_' + this.index;
         if(this.index == 0)
@@ -40,6 +41,10 @@ class MonsterSkillVO {
             this.type = 2;
         else
             this.type = 3;
+
+
+        var spType = ['CD','TYPE','XTYPE','XTYPE',''];
+        this.sortIndex =  this.type*100000 + (spType.indexOf(this.sp[0]) + 1)*10000 + parseInt(this.sp[1] || '0')*100 +  this.index
     }
 
 
