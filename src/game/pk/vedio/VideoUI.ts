@@ -400,6 +400,13 @@ class VideoUI extends game.BaseUI {
                 temp += '【闪】'
             if(data.defender[s].nohurt)
                 temp += '【替】'
+
+
+            if(data.defender[s].stat)
+            {
+                temp += '[-'+JSON.stringify(data.defender[s].stat)+'-]'
+            }
+
             data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':'')  + temp);
         }
 
@@ -427,6 +434,7 @@ class VideoUI extends game.BaseUI {
         {
             var str = data.atkerW + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
         }
+
         str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
 
         console.log(data.index + ':    '+str);

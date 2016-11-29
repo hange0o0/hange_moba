@@ -335,7 +335,8 @@ class VideoMV {
                 fun.apply(thisObj);
         });
     }
-    //子弹模式
+
+    //子弹模式2,会缩放
     private playBulletScale(mc,from,to,fun?,cd=300,thisObj?){
         mc.x = from.x;
         mc.y = from.y;

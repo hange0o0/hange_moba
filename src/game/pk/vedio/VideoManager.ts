@@ -231,7 +231,11 @@ class VideoManager {
     //处理一个技能行为
     private decodeSkill(str,oo){
         var type = str.charAt(0);
-        var value = Math.floor(str.substr(1));
+        var value:any;
+        if(type == 'a')
+            value = {stat:MyTool.str2Num(str.charAt(1)) ,cd: Math.floor(str.substr(2))};
+        else
+            value = Math.floor(str.substr(1));
         oo.sType = type;
         oo.value = value;
     }
