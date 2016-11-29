@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="VideoHpItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label id="hpText" y="16" textColor="0xFADEA2" size="24" text="+152369" x="0"/>
+	<e:Group y="0" x="0">
+		<e:Image source="bar_bg_png" y="0" x="0"/>
+		<e:Image id="backBar" source="bar1_png" y="2" x="4"/>
+		<e:Image id="frontBar" source="bar1_png" y="2" x="4"/>
+	</e:Group>
+</e:Skin>

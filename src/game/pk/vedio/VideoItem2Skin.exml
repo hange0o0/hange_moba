@@ -1,18 +1,120 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoItem2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Rect height="282" width="500" x="107" y="9" fillAlpha="0" strokeWeight="3"/>
-	<ns1:MyHeadItem id="myHeadItem" x="5" y="12" skinName="MyHeadItemSkin" scaleX="0.8" scaleY="0.8"/>
-	<e:Label text="使用技能【12332奇才】" x="122" y="14"/>
-	<e:Group x="116" y="57">
-		<ns1:MyHeadItem y="0" x="0" scaleX="0.5" skinName="MyHeadItemSkin" scaleY="0.5" id="myHeadItem1"/>
-		<e:Label text="+152369" x="77" y="13" textColor="0x2BEE16"/>
-		<e:Image source="icon_atk_png" x="203" y="3"/>
-		<e:Image source="icon_atk_png" x="254" y="4"/>
+	<e:Rect y="0" fillAlpha="1" ellipseWidth="20" x="0" width="100%" height="100%" ellipseHeight="20" fillColor="0x000000" locked="true"/>
+	<e:Group x="5" y="89">
+		<e:Rect height="360" width="521" x="102" y="0" fillAlpha="1" strokeWeight="3" ellipseHeight="20" ellipseWidth="20" fillColor="0x1F1D1D"/>
+		<ns1:MyHeadItem id="myHeadItem" x="0" y="3" skinName="MyHeadItemSkin" scaleX="0.8" scaleY="0.8"/>
+		<e:Group x="111" y="8">
+			<ns1:MyHeadItem y="0" x="0" scaleX="0.5" skinName="MyHeadItemSkin" scaleY="0.5" id="myHeadItem1"/>
+			<e:Label text="+152369" x="74" y="23" size="24" textColor="0xFADEA2"/>
+			<e:Group x="237" y="4" visible="false">
+				<e:Image x="0" y="0" source="card_icon_0_png"/>
+				<e:Label y="21" textColor="0xFADEA2" size="16" text="3" x="41"/>
+			</e:Group>
+			<e:Group y="4" x="314" visible="false">
+				<e:Image source="icon_token_png" y="0" x="0"/>
+				<e:Image y="6" x="42" source="arrow4_png"/>
+			</e:Group>
+			<e:Group y="4" x="380" visible="false" locked="true">
+				<e:Image source="icon_token_png" y="0" x="0"/>
+				<e:Image source="arrow5_png" y="6" x="42"/>
+			</e:Group>
+			<e:Group y="14" x="339">
+				<e:Label y="2" size="24" text="速度" x="0" textColor="0x5A62DD"/>
+				<e:Label y="11" size="16" text="3" x="69" textColor="0xFE7430"/>
+				<e:Image y="-6" x="52" source="arrow4_png"/>
+			</e:Group>
+			<e:Group x="244" y="14">
+				<e:Label y="2" size="24" text="攻击" x="0" textColor="0xD34447"/>
+				<e:Label y="11" size="16" text="3" x="69" textColor="0x65FE36"/>
+				<e:Image source="arrow5_png" x="52" y="0"/>
+			</e:Group>
+			<e:Group y="6" x="72">
+				<e:Image source="bar_bg_png" y="0" x="0"/>
+				<e:Image source="bar1_png" y="2" x="4"/>
+			</e:Group>
+		</e:Group>
+		<e:Group x="114" y="73">
+			<ns1:MyHeadItem y="0" x="0" scaleX="0.5" skinName="MyHeadItemSkin" scaleY="0.5" id="myHeadItem0"/>
+			<ns1:MyHeadItem id="myHeadItem2" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="115"/>
+			<e:Label y="30" textColor="0xFADEA2" text="+15236" x="185" size="24"/>
+			<e:Group y="11" x="181">
+				<e:Image source="bar_bg_png" y="0" x="0"/>
+				<e:Image source="bar1_png" y="2" x="4"/>
+			</e:Group>
+			<e:Image source="pk_icon_png" x="70" y="7" scaleX="0.6" scaleY="0.6"/>
+		</e:Group>
+		<e:Group y="139" x="114">
+			<ns1:MyHeadItem id="myHeadItem3" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="0"/>
+			<ns1:MyHeadItem id="myHeadItem4" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="115"/>
+			<e:Label y="15" textColor="0xFADEA2" text="使用技能【天天天天天天】" x="184" size="26"/>
+			<e:Label y="14" textColor="0xFADEA2" text="对" x="73" size="30"/>
+		</e:Group>
+		<e:Group y="277" x="115">
+			<ns1:MyHeadItem id="myHeadItem6" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="0"/>
+			<e:Label y="15" textColor="0xFADEA2" size="26" text="使用技能" x="67"/>
+			<e:Label y="15" size="26" text="【天天天天天天】" x="180" textColor="0x8E4DBB"/>
+		</e:Group>
+		<e:Group y="208" x="113">
+			<ns1:MyHeadItem id="myHeadItem5" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="0"/>
+		</e:Group>
 	</e:Group>
-	<e:Group x="119" y="122">
-		<ns1:MyHeadItem y="0" x="0" scaleX="0.5" skinName="MyHeadItemSkin" scaleY="0.5" id="myHeadItem0" xmlns:ns1="*"/>
-		<e:Label y="13" textColor="0x2BEE16" text="+152369" x="77"/>
-		<e:Image source="icon_atk_png" y="3" x="203"/>
-		<e:Image source="icon_atk_png" y="4" x="254"/>
+	<e:Group y="587" x="5">
+		<e:Rect y="0" fillAlpha="1" ellipseWidth="20" strokeWeight="3" x="102" width="275" height="98" fillColor="0x1F1D1D" ellipseHeight="20"/>
+		<ns1:MyHeadItem x="0" y="3" skinName="MyHeadItemSkin" scaleX="0.8" scaleY="0.8" id="myHeadItem9" xmlns:ns1="*"/>
+		<e:Group y="8" x="111">
+			<ns1:MyHeadItem id="myHeadItem10" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="0" xmlns:ns1="*"/>
+			<e:Label y="23" textColor="0xFADEA2" size="24" text="+152369" x="74"/>
+			<e:Group y="4" visible="false" x="237">
+				<e:Image source="card_icon_0_png" y="0" x="0"/>
+				<e:Label y="21" textColor="0xFADEA2" size="16" text="3" x="41"/>
+			</e:Group>
+			<e:Group y="4" visible="false" x="314">
+				<e:Image source="icon_token_png" y="0" x="0"/>
+				<e:Image source="arrow4_png" y="6" x="42"/>
+			</e:Group>
+			<e:Group y="4" visible="false" locked="true" x="380">
+				<e:Image source="icon_token_png" y="0" x="0"/>
+				<e:Image source="arrow5_png" y="6" x="42"/>
+			</e:Group>
+			<e:Group y="6" x="72">
+				<e:Image source="bar_bg_png" y="0" x="0"/>
+				<e:Image source="bar1_png" y="2" x="4"/>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+	<e:Group y="470" x="5" width="100%">
+		<e:Rect y="0" fillAlpha="1" ellipseWidth="20" strokeWeight="3" x="61" width="467" height="92" fillColor="0x1F1D1D" ellipseHeight="20"/>
+		<ns1:MyHeadItem y="3" skinName="MyHeadItemSkin" scaleX="0.8" scaleY="0.8" id="myHeadItem7" xmlns:ns1="*" right="10"/>
+		<e:Group y="8" x="73">
+			<ns1:MyHeadItem id="myHeadItem8" y="0" skinName="MyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="0" xmlns:ns1="*"/>
+			<e:Label y="23" textColor="0xFADEA2" size="24" text="+152369" x="74"/>
+			<e:Group y="4" visible="false" x="237">
+				<e:Image source="card_icon_0_png" y="0" x="0"/>
+				<e:Label y="21" textColor="0xFADEA2" size="16" text="3" x="41"/>
+			</e:Group>
+			<e:Group y="4" visible="false" x="314">
+				<e:Image source="icon_token_png" y="0" x="0"/>
+				<e:Image source="arrow4_png" y="6" x="42"/>
+			</e:Group>
+			<e:Group y="4" visible="false" locked="true" x="380">
+				<e:Image source="icon_token_png" y="0" x="0"/>
+				<e:Image source="arrow5_png" y="6" x="42"/>
+			</e:Group>
+			<e:Group y="14" x="339">
+				<e:Label y="2" textColor="0x5A62DD" size="24" text="速度" x="0"/>
+				<e:Label y="11" textColor="0xFE7430" size="16" text="3" x="69"/>
+				<e:Image source="arrow4_png" y="-6" x="52"/>
+			</e:Group>
+			<e:Group y="14" x="244">
+				<e:Label y="2" textColor="0xD34447" size="24" text="攻击" x="0"/>
+				<e:Label y="11" textColor="0x65FE36" size="16" text="3" x="69"/>
+				<e:Image source="arrow5_png" y="0" x="52"/>
+			</e:Group>
+			<e:Group y="6" x="72">
+				<e:Image source="bar_bg_png" y="0" x="0"/>
+				<e:Image source="bar1_png" y="2" x="4"/>
+			</e:Group>
+		</e:Group>
 	</e:Group>
 	</e:Skin>
