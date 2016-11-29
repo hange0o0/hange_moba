@@ -253,13 +253,22 @@ class VideoCode{
         this.stepOne();
     }
 
-    private defenderMV(defender,key?,value?){
+    private defenderMV(defender,key?,value?,isArr?){
         if(!this.skillEffectStart)
             return;
         if(!this.skillData.defender[defender])
             this.skillData.defender[defender] = {};
-        if(key)
-            this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
+        if(key) {
+            if (isArr)
+            {
+                if(!this.skillData.defender[defender][key])
+                    this.skillData.defender[defender][key] = [];
+                this.skillData.defender[defender][key].push(value);
+            }
+            else
+                this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
+        }
+
     }
 
     //计算技能数值得
@@ -322,6 +331,11 @@ class VideoCode{
             {
                 this.defenderMV(this.defender,'mmp',value.value)
                 player.maxMp += (value.value);
+                break;
+            }
+            case 'a':       //stat
+            {
+                this.defenderMV(this.defender,'stat',value.value,true)
                 break;
             }
         }
