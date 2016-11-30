@@ -387,6 +387,60 @@ class VideoUI extends game.BaseUI {
 
     }
 
+    //private debugShow(data){
+    //    var VC = VideoCode.getInstance();
+    //
+    //    if(data.atker != 1 && data.atker != 2)
+    //        data.atkerW = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
+    //    data.defList = [];
+    //    for(var s in data.defender)
+    //    {
+    //        var temp = ''
+    //        if(data.defender[s].miss)
+    //            temp += '【闪】'
+    //        if(data.defender[s].nohurt)
+    //            temp += '【替】'
+    //
+    //
+    //        if(data.defender[s].stat)
+    //        {
+    //            temp += '[-'+JSON.stringify(data.defender[s].stat)+'-]'
+    //        }
+    //
+    //        data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':'')  + temp);
+    //    }
+    //
+    //    if(data.skillID == 50)
+    //    {
+    //        var str = data.atkerW + ' 攻击 ' + data.defList.join(',');
+    //    }
+    //    else if(data.skillID == 'die')
+    //    {
+    //        var str = '死亡单位： ' + data.defList.join(',');
+    //    }
+    //    else if(data.skillID == 51)
+    //    {
+    //        var str = data.atkerW + ' 秒杀 ' + data.defList.join(',');
+    //    }
+    //    else if(data.skillID == 52)
+    //    {
+    //        var str = data.atkerW + ' 回合结束时血量改变 '+ data.defList.join(',');
+    //    }
+    //    //else if(data.skillID == 53)
+    //    //{
+    //    //    var str = data.atker +  ' 对 ' + data.defList.join(',') + ' 进行加成';
+    //    //}
+    //    else
+    //    {
+    //        var str = data.atkerW + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
+    //    }
+    //
+    //    str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
+    //
+    //    console.log(data.index + ':    '+str);
+    //    this.onActionOver();
+    //}
+
     private debugShow(data){
         var VC = VideoCode.getInstance();
 
