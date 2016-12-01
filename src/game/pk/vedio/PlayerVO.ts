@@ -20,6 +20,8 @@ class PlayerVO {
 
     public displayMC:any;  //关联的显示对象
 
+    public buffList = [];
+
     public constructor(oo?,oo2?) {
         if(oo)
         {
@@ -45,7 +47,38 @@ class PlayerVO {
         this.mvo = MonsterVO.getObject(this.mid);
 
         this.maxMp = this.mvo.mp;
+
+        this.buffList = [];
     }
+
+    public addBuff(id,num){
+        if(num)
+            this.buffList.push({id:id,num:num})
+    }
+
+    public cleanBuff(id,num){
+         for(var i=0;i<this.buffList.length;i++){
+             var oo = this.buffList[i];
+             if(oo.id == id && oo.num == num)
+             {
+                 this.buffList.splice(i,1);
+                 break;
+             }
+         }
+    }
+
+    public onAction(){
+        for(var i=0;i<this.buffList.length;i++){
+            var oo = this.buffList[i];
+            oo.num --;
+            if(oo.num <= 0)
+            {
+                this.buffList.splice(i,1);
+                i--;
+            }
+        }
+    }
+
 
     public getSave()
     {

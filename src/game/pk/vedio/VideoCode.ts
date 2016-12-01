@@ -22,7 +22,6 @@ class VideoCode{
 
     public currentAction;
     public skillStart;
-    public skillEffectStart;
     public skillData;
 
     public playerObject = {}; //所有单位的集合
@@ -87,7 +86,7 @@ class VideoCode{
 
         this.stopMV = false;
         this.skillStart = false;
-        this.skillEffectStart = false;
+
     }
 
     public getPlayerByID(id){
@@ -116,7 +115,7 @@ class VideoCode{
         this.stopMV = true;
         this.playFlag = true;
         this.skillStart = false;
-        this.skillEffectStart = false;
+
 
         //this.targetIndex = index;
         this.stepOne();
@@ -188,17 +187,14 @@ class VideoCode{
             case 2:   //改变目标
             {
                 this.defender = action.id;
-                if(this.skillEffectStart)
-                    this.defenderMV(this.defender);
                 this.stepOne();
                 break;
             }
-            case 3: //技能效果开始（去除了前置的加怒气）
-            {
-                this.skillEffectStart = true
-                this.stepOne();
-                break;
-            }
+            //case 3: //技能效果开始（去除了前置的加怒气）
+            //{
+            //    this.stepOne();
+            //    break;
+            //}
             case 4:   //改变攻击者的buffer(tag)
             {
                 this.getPlayerByID(this.atker).tag =  action.tag;
@@ -211,10 +207,18 @@ class VideoCode{
                 this.stepOne();
                 break;
             }
+            case 6:   //玩家回合结束
+            {
+                this.getPlayerByID(this.atker).onAction();
+                //console.log(this.player1.buffList)
+                //console.log(this.player2.buffList)
+                this.stepOne();
+                break;
+            }
             case 7:   //技能开始
             {
                 this.skillStart = true;
-                this.skillData = {index:this.index,atker:this.atker,skillID:action.skillID,defender:{},diePlayer:[]};
+                this.skillData = {index:this.index,atker:this.atker,skillID:action.skillID,defender:[]};
                 this.stepOne();
                 break;
             }
@@ -226,12 +230,11 @@ class VideoCode{
             }
             case 9:   //技能结果
             {
-                if(ObjectUtil.objLength(this.skillData.defender) == 0)
-                {
-                    this.defenderMV(this.defender);
-                }
+                //if(ObjectUtil.objLength(this.skillData.defender) == 0)
+                //{
+                //    this.defenderMV(this.defender);
+                //}
                 this.skillStart = false;
-                this.skillEffectStart = false;
                 if(this.stopMV)//只计算值，不表现动画
                 {
                     this.onMovieOver();
@@ -242,6 +245,15 @@ class VideoCode{
                 }
                 break;
             }
+            case 11: //清除效果
+                this.getPlayerByID(this.defender).cleanBuff(action.id,action.cd);
+                this.stepOne();
+                break
+            case 12: //单位死亡
+                this.getPlayerByID(this.defender).buffList.length = 0;
+                this.defenderMV('die',1);
+                this.stepOne();
+                break;
             default :
             {
                 this.stepOne();
@@ -253,21 +265,24 @@ class VideoCode{
         this.stepOne();
     }
 
-    private defenderMV(defender,key?,value?,isArr?){
-        if(!this.skillEffectStart)
-            return;
-        if(!this.skillData.defender[defender])
-            this.skillData.defender[defender] = {};
-        if(key) {
-            if (isArr)
-            {
-                if(!this.skillData.defender[defender][key])
-                    this.skillData.defender[defender][key] = [];
-                this.skillData.defender[defender][key].push(value);
-            }
-            else
-                this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
+    private defenderMV(key,value){
+        var oo = {key:key,value:value};
+        var id = this.atker + '_' + this.defender;
+        var last = this.skillData.defender[ this.skillData.defender.length - 1] || {};
+        if(last.key != id)
+        {
+            last = {key:id,atker:this.atker,defender:this.defender,list:[]};
+            this.skillData.defender.push(last);
         }
+        last.list.push(oo);
+            //if (isArr)
+            //{
+            //    if(!this.skillData.defender[defender][key])
+            //        this.skillData.defender[defender][key] = [];
+            //    this.skillData.defender[defender][key].push(value);
+            //}
+            //else
+            //    this.skillData.defender[defender][key] = (this.skillData.defender[defender][key] || 0) + value;
 
     }
 
@@ -279,63 +294,64 @@ class VideoCode{
         {
             case '1'://"HP"=>'1',
             {
-                this.defenderMV(this.defender,'hp',value.value)
+                this.defenderMV('hp',value.value)
                 player.addHp(value.value);
-                if(value.value < 0 && player.hp <= 0)
-                {
-                    this.skillData.diePlayer.push(player.id);
-                }
+                //if(value.value < 0 && player.hp <= 0)
+                //{
+                //    this.skillData.diePlayer.push(player.id);
+                //}
 
                 break;
             }
-            case '2'://    "SPD"=>'2',,
+            case '2'://    "HMP"=>'2',,
             {
-                this.defenderMV(this.defender,'spd',value.value)
-                player.addSpeed(value.value);
+                //this.defenderMV('spd',value.value)
+                player.addMp(value.value);
                 break;
             }
-            case '3'://    "ATK"=>'3',
-            {
-                this.defenderMV(this.defender,'atk',value.value)
-                player.addAtk(value.value);
-                break;
-            }
+            //case '3'://    "ATK"=>'3',
+            //{
+            //    this.defenderMV('atk',value.value)
+            //    player.addAtk(value.value);
+            //    break;
+            //}
             case '4'://    "MHP"=>'4',
             {
-                this.defenderMV(this.defender,'mhp',value.value)
+                this.defenderMV('mhp',value.value)
                 player.addMaxHp(value.value);
                 break;
             }
             case '5'://    "MP"=>'5',
             {
-                this.defenderMV(this.defender,'mp',value.value)
+                this.defenderMV('mp',value.value)
                 player.addMp(value.value);
                 break;
             }
             case '6'://    "MV"=>'6',
             {
-                this.defenderMV(this.defender,'mv',value.value)
+                this.defenderMV('mv',value.value)
                 break;
             }
             case '7':
             {
-                this.defenderMV(this.defender,'miss',1)
+                this.defenderMV('miss',1)
                 break;
             }
             case '8':
             {
-                this.defenderMV(this.defender,'nohurt',value.value)
+                this.defenderMV('nohurt',value.value)
                 break;
             }
             case '9':       //mmp
             {
-                this.defenderMV(this.defender,'mmp',value.value)
+                this.defenderMV('mmp',value.value)
                 player.maxMp += (value.value);
                 break;
             }
             case 'a':       //stat
             {
-                this.defenderMV(this.defender,'stat',value.value,true)
+                this.defenderMV('stat',value.value)
+                this.getPlayerByID(this.defender).addBuff(value.value.stat,value.value.cd);
                 break;
             }
         }

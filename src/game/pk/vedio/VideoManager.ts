@@ -166,6 +166,7 @@ class VideoManager {
         this.dataArray.length = 0;
         this.dataArray.push([]);
         this.dataArray.push(temp);
+        var gameStart = false
 
         //var skillArray;
         for(var i=0;i<len;i++)
@@ -173,8 +174,13 @@ class VideoManager {
             var action = this.decode(array[i]);
             if(action.type == 6)
             {
-                temp = [];
-                this.dataArray.push(temp);
+                if(gameStart || temp.length != 0)
+                {
+                    if(gameStart)
+                        temp.push(action);
+                    temp = [];
+                    this.dataArray.push(temp);
+                }
             }
             else
             {
@@ -190,6 +196,9 @@ class VideoManager {
                 //else if(skillArray)
                 //    skillArray.push(action);
                 //else
+
+                if(action.type == 10)
+                    gameStart = true;
                 temp.push(action);
             }
         }
@@ -206,6 +215,8 @@ class VideoManager {
             case 2: //转防御者
                 oo.id = Math.floor(str.substr(1));
                 break
+            //case 3: //技能效果开始
+            //    break
             case 4: //改变攻击者的buffer(tag)
                 oo.tag = str.substr(1);
                 break
@@ -223,6 +234,14 @@ class VideoManager {
                 this.decodeSkill(str.substr(1),oo);
                 break
             case 9: //单个技能结束
+                break
+            case 10: //前置技能结束
+                break
+            case 11: //清除效果
+                oo.cd = Math.floor(str.substr(2));
+                oo.id = MyTool.str2Num(str.charAt(1))
+                break
+            case 12: //单位死亡
                 break
         }
         return oo;

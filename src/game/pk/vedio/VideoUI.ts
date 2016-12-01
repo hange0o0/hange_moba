@@ -261,19 +261,19 @@ class VideoUI extends game.BaseUI {
             this.selfItem.showValueChange()
             this.enemyItem.showValueChange()
         }
-        if(this.skillData.diePlayer.length)//有死了的单位
-        {
-            // {index:this.index,atker:this.atker,skillID:action.skillID,defender:{},diePlayer:[]};
-            this.skillData.defender =  {};
-            for(var i=0;i<this.skillData.diePlayer.length;i++)
-            {
-                this.skillData.defender[this.skillData.diePlayer[i]] = {}
-            }
-            this.skillData.diePlayer = [];
-            this.skillData.skillID = 'die';
-            this.playSkill(this.skillData);
-            return;
-        }
+        //if(this.skillData.diePlayer.length)//有死了的单位
+        //{
+        //    // {index:this.index,atker:this.atker,skillID:action.skillID,defender:{},diePlayer:[]};
+        //    this.skillData.defender =  {};
+        //    for(var i=0;i<this.skillData.diePlayer.length;i++)
+        //    {
+        //        this.skillData.defender[this.skillData.diePlayer[i]] = {}
+        //    }
+        //    this.skillData.diePlayer = [];
+        //    this.skillData.skillID = 'die';
+        //    this.playSkill(this.skillData);
+        //    return;
+        //}
 
         VC.onMovieOver();
     }
@@ -447,21 +447,67 @@ class VideoUI extends game.BaseUI {
         if(data.atker != 1 && data.atker != 2)
             data.atkerW = data.atker+'['+VC.getPlayerByID(data.atker).mvo.id+']'+(VC.getPlayerByID(data.atker).isPKing?'*':'');
         data.defList = [];
-        for(var s in data.defender)
+        var lastDefender
+        for(var i=0;i< data.defender.length;i++)
         {
             var temp = ''
-            if(data.defender[s].miss)
-                temp += '【闪】'
-            if(data.defender[s].nohurt)
-                temp += '【替】'
-
-
-            if(data.defender[s].stat)
+            var ooo = data.defender[i];
+            data.defList.push(ooo.defender + '[' + VC.getPlayerByID(ooo.defender).mvo.id+']'+(VC.getPlayerByID(ooo.defender).isPKing?'*':''))
+            for(var ii=0;ii<ooo.list.length;ii++)
             {
-                temp += '[-'+JSON.stringify(data.defender[s].stat)+'-]'
+                var oo = ooo.list[ii];
+                switch(oo.key)
+                {
+                    case 'hp':
+                        if(oo.value > 0)
+                            data.defList.push('加血'+oo.value);
+                        else
+                            data.defList.push('扣血'+oo.value);
+                        break;
+                    case 'mhp':
+                        if(oo.value > 0)
+                            data.defList.push('总血量+'+oo.value);
+                        else
+                            data.defList.push('总血量-'+oo.value);
+                        break;
+                    case 'mp':
+                        if(oo.value > 0)
+                            data.defList.push('怒气+'+oo.value);
+                        else
+                            data.defList.push('怒气-'+oo.value);
+                        break;
+                    case 'miss':
+                        data.defList.push('【闪避】');
+                        break;
+                    case 'nohurt':
+                        data.defList.push('【免伤】'+oo.value);
+                        break;
+                    case 'mmp':
+                        if(oo.value > 0)
+                            data.defList.push('怒气上限+'+oo.value);
+                        else
+                            data.defList.push('怒气上限-'+oo.value);
+                    case 'stat':
+                        data.defList.push(this.changeStat(oo.value));
+                        break;
+                    case 'die':
+                        data.defList.push('死亡');
+                        break;
+                }
             }
 
-            data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':'')  + temp);
+            //if(data.defender[s].miss)
+            //    temp += '【闪】'
+            //if(data.defender[s].nohurt)
+            //    temp += '【替】'
+            //
+            //
+            //if(data.defender[s].stat)
+            //{
+            //    temp += '[-'+JSON.stringify(data.defender[s].stat)+'-]'
+            //}
+
+            //data.defList.push(s + '[' + VC.getPlayerByID(s).mvo.id+']'+(VC.getPlayerByID(s).isPKing?'*':'')  + temp);
         }
 
         if(data.skillID == 50)
@@ -486,7 +532,7 @@ class VideoUI extends game.BaseUI {
         //}
         else
         {
-            var str = data.atkerW + '对' + data.defList.join(',') + '使用技能' + data.skillID ;
+            var str = data.atkerW + '使用技能' + data.skillID +':'+ data.defList.join(',') ;
         }
 
         str += '   ->  hp1 : '+VC.player1.hp + '/' + VC.player1.maxHp+'    hp2 : '+VC.player2.hp + '/' + VC.player2.maxHp
@@ -497,6 +543,32 @@ class VideoUI extends game.BaseUI {
 
     public onOver(){
         this.timer = egret.setTimeout(this.onClose,this,500);
+    }
+
+    private changeStat(data){
+        var str = ''
+        var oo = {
+            1:'攻击+',
+            2:'速度+',
+            3:'防御+',
+            4:'伤害+',
+            11:'攻击-',
+            12:'速度-',
+            13:'防御-',
+            14:'伤害-',
+            21:'缴械',
+            22:'冷却',
+            23:'沉默',
+            24:'静止',
+            25:'魅惑',
+            31:'魔免',
+            41:'治疗',
+            42:'失血'
+        }
+
+        if(data.cd)
+            return oo[data.stat] + data.cd;
+        return oo[data.stat];
     }
 
 }
