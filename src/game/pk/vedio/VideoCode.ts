@@ -45,8 +45,8 @@ class VideoCode{
 
             player.teamID = 1;
             this.playerObject[player.id] = player
-            player.displayMC = VideoUI.getInstance().getRelateMC(1,i)
-            player.displayMC.playerData = player;
+            //player.displayMC = VideoUI.getInstance().getRelateMC(1,i)
+            //player.displayMC.playerData = player;
         }
         for(var i=0;i<roundData.player2.length;i++)
         {
@@ -58,19 +58,19 @@ class VideoCode{
             }
             player.teamID = 2;
             this.playerObject[player.id] = player
-            player.displayMC = VideoUI.getInstance().getRelateMC(2,i)
-
-            player.displayMC.playerData = player;
+            //player.displayMC = VideoUI.getInstance().getRelateMC(2,i)
+            //
+            //player.displayMC.playerData = player;
         }
         //召唤师
         this.playerObject[1] = new PlayerVO();
         this.playerObject[1].id = 1;
-        this.playerObject[1].displayMC = VideoUI.getInstance().getRelateMC(1,3);
+        //this.playerObject[1].displayMC = VideoUI.getInstance().getRelateMC(1,3);
         this.playerObject[1].teamID = 1;
 
         this.playerObject[2] = new PlayerVO();
         this.playerObject[2].id = 2;
-        this.playerObject[2].displayMC = VideoUI.getInstance().getRelateMC(2,3);
+        //this.playerObject[2].displayMC = VideoUI.getInstance().getRelateMC(2,3);
         this.playerObject[2].teamID = 1;
 
         if(PKM.teamChange)
@@ -294,8 +294,9 @@ class VideoCode{
         {
             case '1'://"HP"=>'1',
             {
-                this.defenderMV('hp',value.value)
+                var last = player.hp
                 player.addHp(value.value);
+                this.defenderMV('hp',{value:value.value,last:last,max:player.maxHp,current:player.hp})
                 //if(value.value < 0 && player.hp <= 0)
                 //{
                 //    this.skillData.diePlayer.push(player.id);

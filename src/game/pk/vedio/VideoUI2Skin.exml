@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoUI2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" x="0" y="0"/>
-	<e:Group y="120" x="10">
+	<e:Group y="120" x="10" visible="false">
 		<e:Label y="0" textColor="0xCCB48E" size="18" text="HP：" x="0"/>
 		<e:Image source="bar_bg_png" scale9Grid="19,1,120,10" y="4" width="240" x="36"/>
 		<e:Image source="bar1_png" y="6" id="hpBar0" scale9Grid="18,1,114,6" width="235" x="38"/>
 		<e:Label left="96" textColor="0xCCB48E" stroke="1" text="12300/45600" y="2" size="18" id="hpText0"/>
 	</e:Group>
-	<e:Group y="147" x="9">
+	<e:Group y="147" x="9" visible="false">
 		<e:Label y="0" textColor="0xCCB48E" size="18" text="MP：" x="0"/>
 		<e:Image source="bar_bg_png" scale9Grid="19,1,120,10" y="4" width="240" x="36"/>
 		<e:Image source="bar2_png" y="6" id="mpBar0" scale9Grid="18,1,114,6" width="235" x="38"/>
 		<e:Label left="117" textColor="0xCCB48E" stroke="1" text="123/456" y="-3" size="18" id="mpText0"/>
 	</e:Group>
-	<e:Group y="176" x="10">
+	<e:Group y="176" x="10" visible="false">
 		<e:Label y="0" textColor="0xCCB48E" size="18" text="AP：" x="0"/>
 		<e:Image source="bar_bg_png" scale9Grid="19,1,120,10" y="4" width="200" x="36"/>
 		<e:Image source="bar3_png" y="6" id="apBar0" scale9Grid="18,1,114,6" width="175" x="38"/>
@@ -25,5 +25,5 @@
 			<e:List id="list" height="200" width="200" x="68" y="64"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Label text="队伍1" x="125" y="80"/>
+	<e:Label text="队伍1" x="125" y="80" visible="false"/>
 	</e:Skin>

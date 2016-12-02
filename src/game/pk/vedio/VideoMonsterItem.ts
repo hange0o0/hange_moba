@@ -5,8 +5,11 @@ class VideoMonsterItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
-    private closeBtn: eui.Button;
+    private headMask: eui.Rect;
+    private headBG: eui.Image;
 
+
+    public mcWidth = 60
 
     public index;
 

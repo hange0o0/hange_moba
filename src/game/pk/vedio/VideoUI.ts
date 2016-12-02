@@ -1,7 +1,7 @@
 class VideoUI extends game.BaseUI {
-    private static instance: VideoUI;
+    private static instance: VideoUI2;
     public static getInstance() {
-        if(!this.instance) this.instance = new VideoUI();
+        if(!this.instance) this.instance = new VideoUI2();
         return this.instance;
     }
 
@@ -459,10 +459,10 @@ class VideoUI extends game.BaseUI {
                 switch(oo.key)
                 {
                     case 'hp':
-                        if(oo.value > 0)
-                            data.defList.push('加血'+oo.value);
+                        if(oo.value.value > 0)
+                            data.defList.push('加血'+oo.value.value);
                         else
-                            data.defList.push('扣血'+oo.value);
+                            data.defList.push('扣血'+oo.value.value);
                         break;
                     case 'mhp':
                         if(oo.value > 0)
