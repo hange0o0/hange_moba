@@ -1488,6 +1488,16 @@
 					"isFolder":false,
 					"key":"use_skill_icon_png",
 					"name":"use_skill_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"arrow9_png",
+					"name":"arrow9_png"
+				},
+				{
+					"isFolder":false,
+					"key":"button_go_2_png",
+					"name":"button_go_2_png"
 				}
 			]
 		}
