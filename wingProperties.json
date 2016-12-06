@@ -1496,6 +1496,11 @@
 				},
 				{
 					"isFolder":false,
+					"key":"bar4_png",
+					"name":"bar4_png"
+				},
+				{
+					"isFolder":false,
 					"key":"button_go_2_png",
 					"name":"button_go_2_png"
 				}

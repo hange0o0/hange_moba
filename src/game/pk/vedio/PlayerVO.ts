@@ -56,10 +56,10 @@ class PlayerVO {
             this.buffList.push({id:id,num:num})
     }
 
-    public cleanBuff(id,num){
+    public cleanBuff(id,num,value){
          for(var i=0;i<this.buffList.length;i++){
              var oo = this.buffList[i];
-             if(oo.id == id && oo.num == num)
+             if(oo.id == id && oo.num == num && oo.value == value)
              {
                  this.buffList.splice(i,1);
                  break;

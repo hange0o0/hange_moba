@@ -237,12 +237,12 @@ class VideoManager {
                 break
             case 10: //前置技能结束
                 break
-            case 11: //清除效果
-                oo.cd = Math.floor(str.substr(2));
-                oo.id = MyTool.str2Num(str.charAt(1))
-                break
-            case 12: //单位死亡
-                break
+            //case 11: //清除效果
+            //    oo.cd = Math.floor(str.substr(2));
+            //    oo.id = MyTool.str2Num(str.charAt(1))
+            //    break
+            //case 12: //单位死亡
+            //    break
         }
         return oo;
     }
@@ -252,9 +252,15 @@ class VideoManager {
         var type = str.charAt(0);
         var value:any;
         if(type == 'a')
-            value = {stat:MyTool.str2Num(str.charAt(1)) ,cd: Math.floor(str.substr(2))};
+            value = {stat:MyTool.str2Num(str.charAt(1)) ,cd: MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
+        else if(type == '3')
+            value = {id:MyTool.str2Num(str.charAt(1)) ,cd:  MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
         else
+        {
             value = Math.floor(str.substr(1));
+            oo.isNegative = str.charAt(1) == '-';
+            console.log(str,str.charAt(1),oo.isNegative)
+        }
         oo.sType = type;
         oo.value = value;
     }

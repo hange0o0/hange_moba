@@ -18,11 +18,14 @@ class VideoHpItem extends game.BaseItem {
     }
 
     public dataChanged() {
+
         var max = this.data.max;
         var last = this.data.last;
         var current = this.data.current;
-        if(this.data.value > 0)
+        if(!this.data.isNegative)
         {
+            if(this.data.value < 0)
+                console.log(this.data)
             this.hpText.text = '+' + this.data.value
             this.hpText.textColor = 0x00ff00;
             this.backBar.source = 'bar1_png'
@@ -32,9 +35,9 @@ class VideoHpItem extends game.BaseItem {
         }
         else
         {
-            this.hpText.text = '' + this.data.value
+            this.hpText.text = '' + (this.data.value || '-0')
             this.hpText.textColor = 0xff0000;
-            this.backBar.source = 'bar2_png'
+            this.backBar.source = 'bar4_png'
             this.backBar.width = last/max*this.barWidth;
             this.frontBar.source = 'bar3_png'
             this.frontBar.width = current/max*this.barWidth;
