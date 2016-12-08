@@ -91,6 +91,8 @@
     "src/game/pk/pkMain/PKWinUISkin.exml",
     "src/game/pk/serverGame/ServerGameUISkin.exml",
     "src/game/pk/serverGameEqual/ServerGameEqualUISkin.exml",
+    "src/game/pk/vedio/VideoGuideItemSkin.exml",
+    "src/game/pk/vedio/VideoGuideSkin.exml",
     "src/game/pk/vedio/VideoHpItemSkin.exml",
     "src/game/pk/vedio/VideoItem2Skin.exml",
     "src/game/pk/vedio/VideoItem3Skin.exml",

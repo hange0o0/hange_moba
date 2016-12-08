@@ -1,6 +1,8 @@
 class VScrollerGroup extends eui.Group{
 
     public itemRenderer;
+    public scroller:eui.Scroller;
+    public desTop = 10;
 
     private dataArr;
     private pool = [];
@@ -19,7 +21,6 @@ class VScrollerGroup extends eui.Group{
         if(!item)
             item = new this.itemRenderer();
         this.addChild(item);
-        this.itemArr.push(item);
         return item;
     }
 
@@ -49,10 +50,40 @@ class VScrollerGroup extends eui.Group{
         this.height = 100;
     }
 
-    public onScroll(v,vh){
+    public scrollToItem(data){
+        var index = this.dataArr.indexOf(data);
+        if(index == -1)
+            return;
+        if(index == 0)
+        {
+            this.scrollTo(0)
+            return;
+        }
+
+        var count = 0;
+        for(var i=0;i<index;i++)
+        {
+            if(!this.heightObj[i])
+            {
+                this.heightObj[i] = this.getHeight(this.dataArr[i]);
+            }
+            count +=this.heightObj[i];
+        }
+        this.scrollTo(count)
+    }
+
+    public scrollTo(v){
+        this.scroller.viewport.scrollV = v;
+        this.onScroll(v);
+        if(this.scroller.viewport.scrollV + this.scroller.height > this.height)
+            this.scroller.viewport.scrollV = Math.max(0,this.height - this.scroller.height);
+    }
+
+    public onScroll(v){
+        var vh = this.scroller.height;
         var change = false;
         var resetHeight = false;
-        var hcount = 0;
+        var hcount = this.desTop;
         var startIndex=0
         var endIndex=0;
 
@@ -95,13 +126,14 @@ class VScrollerGroup extends eui.Group{
             if(!this.isItemShow(this.dataArr[startIndex]))
             {
                 var item = this.getItem();
+                this.itemArr.push(item);
                 this.addChild(item);
                 item.data = this.dataArr[startIndex];
                 item.y = hcount;
 
                 if(!this.heightObj[startIndex])
                 {
-                    item.validateNow();
+                    //item.validateNow();
                     this.heightObj[startIndex] = item.height + 10
                     resetHeight = true;
                 }
@@ -145,7 +177,7 @@ class VScrollerGroup extends eui.Group{
         var item = this.getItem();
         this.addChild(item);
         item.data = data;
-        item.validateNow();
+        //item.validateNow();
         var h = item.height + 10;
         this.feeItem(item);
         return h;
@@ -161,6 +193,6 @@ class VScrollerGroup extends eui.Group{
             else
                 break;
         }
-        this.height = count + count/i*(len - i);
+        this.height = count + count/i*(len - i) + this.desTop;
     }
 }

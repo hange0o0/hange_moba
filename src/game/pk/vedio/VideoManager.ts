@@ -259,7 +259,6 @@ class VideoManager {
         {
             value = Math.floor(str.substr(1));
             oo.isNegative = str.charAt(1) == '-';
-            console.log(str,str.charAt(1),oo.isNegative)
         }
         oo.sType = type;
         oo.value = value;

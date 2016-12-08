@@ -26,6 +26,8 @@ class VideoCode{
 
     public playerObject = {}; //所有单位的集合
 
+    private orginHP
+
     public constructor() {
         //this.player1 = new PlayerVO();
         //this.player2 = new PlayerVO();
@@ -37,6 +39,7 @@ class VideoCode{
         for(var i=0;i<roundData.player1.length;i++)
         {
             var player = new PlayerVO(roundData.player1[i],roundData.team1base);
+            player.index = i
             if(i==0)
             {
                 player.isPKing = true;
@@ -51,6 +54,7 @@ class VideoCode{
         for(var i=0;i<roundData.player2.length;i++)
         {
             var player = new PlayerVO(roundData.player2[i],roundData.team2base);
+            player.index = i
             if(i==0)
             {
                 player.isPKing = true;
@@ -67,11 +71,13 @@ class VideoCode{
         this.playerObject[1].id = 1;
         //this.playerObject[1].displayMC = VideoUI.getInstance().getRelateMC(1,3);
         this.playerObject[1].teamID = 1;
+        this.playerObject[1].index = -1;
 
         this.playerObject[2] = new PlayerVO();
         this.playerObject[2].id = 2;
         //this.playerObject[2].displayMC = VideoUI.getInstance().getRelateMC(2,3);
         this.playerObject[2].teamID = 1;
+        this.playerObject[2].index = -1;
 
         if(PKM.teamChange)
         {
@@ -87,6 +93,12 @@ class VideoCode{
         this.stopMV = false;
         this.skillStart = false;
 
+
+        this.setOrginHp();
+    }
+
+    private setOrginHp(){
+        this.orginHP = {hp1:this.player1.hp,hp2:this.player2.hp,mhp1:this.player1.maxHp,mhp2:this.player2.maxHp}
     }
 
     public getPlayerByID(id){
@@ -140,6 +152,7 @@ class VideoCode{
         else //回合结束
         {
             this.onRoundOver();
+            this.setOrginHp();
             this.index2 = 0;
             this.index ++;
 
@@ -268,6 +281,8 @@ class VideoCode{
         if(!this.skillData)
             return;
         var oo:any = this.skillData.result = {player1:{},player2:{}};
+        oo.player1.lhp = this.orginHP.hp1;
+        oo.player1.lmhp = this.orginHP.mhp1;
         oo.player1.hp = this.player1.hp;
         oo.player1.mp = this.player1.mp;
         oo.player1.ap = this.player1.actionCount;
@@ -275,6 +290,8 @@ class VideoCode{
         oo.player1.maxMp = this.player1.maxMp;
         oo.player1.buffList = JSON.stringify(this.player1.buffList);
 
+        oo.player2.lhp = this.orginHP.hp2;
+        oo.player2.lmhp = this.orginHP.mhp2;
         oo.player2.hp = this.player2.hp;
         oo.player2.mp = this.player2.mp;
         oo.player2.ap = this.player2.actionCount;
@@ -378,7 +395,7 @@ class VideoCode{
             case 'a':       //stat
             {
                 this.defenderMV('stat',value.value)
-                this.getPlayerByID(this.defender).addBuff(value.value.stat,value.value.cd);
+                this.getPlayerByID(this.defender).addBuff(value.value);
                 break;
             }
             case 'b'://单位死亡

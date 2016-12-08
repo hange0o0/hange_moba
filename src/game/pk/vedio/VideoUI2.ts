@@ -8,10 +8,10 @@ class VideoUI2 extends game.BaseUI {
 
 
     private scroller: eui.Scroller;
+    private scrollGroup: eui.Group;
     private list: eui.List;
     private upGroup: eui.Group;
     private upBtn: eui.Group;
-    private scrollGroup: eui.Group;
     private hpBar0: eui.Rect;
     private hpText0: eui.Label;
     private mpBar0: eui.Rect;
@@ -29,6 +29,9 @@ class VideoUI2 extends game.BaseUI {
     private headMC1: eui.Image;
     private statList1: eui.List;
     private topUI: TopUI;
+    private guideBtn: eui.Image;
+    private guideMC: VideoGuide;
+
 
     private vGroup = new VScrollerGroup();
 
@@ -37,7 +40,7 @@ class VideoUI2 extends game.BaseUI {
     private currentList = []
     private barWidth = 220;
     //private upGroupY = 70;
-    private lastChooseData;
+    public lastChooseData;
     private scrollTime;
     private setChooseTimer
 
@@ -62,6 +65,7 @@ class VideoUI2 extends game.BaseUI {
 
         this.scrollGroup.addChild(this.vGroup)
         this.vGroup.itemRenderer = VideoItem3;
+        this.vGroup.scroller = this.scroller;
 
         this.topUI.addEventListener('hide',this.hide,this);
 
@@ -69,16 +73,30 @@ class VideoUI2 extends game.BaseUI {
         this.statList1.itemRenderer = VideoTopStatItem;
 
         this.upGroup.visible = false;
-        //this.addBtnEvent(this.upBtn,this.closeGroup);
+        this.guideMC.visible = false;
+
+
+        this.addBtnEvent(this.guideBtn,this.openGuide);
     }
 
     public showMVDebug(v?){}
     public addToGroup(v?){}
 
+    private openGuide(){
+        this.guideMC.visible = true;
+        this.guideMC.renew(this.lastChooseData,this.listArray)
+    }
+
+    public scrollTo(item){
+        this.guideMC.visible = false;
+        this.vGroup.scrollToItem(item);
+        this.setChoose(item,true)
+    }
+
     private onScroll(){
         //this.scroller.stopAnimation();
-        this.vGroup.onScroll(this.scroller.viewport.scrollV,this.scroller.height)
-        clearTimeout(this.setChooseTimer);
+        this.vGroup.onScroll(this.scroller.viewport.scrollV)
+        egret.clearTimeout(this.setChooseTimer);
         this.setChooseTimer = egret.setTimeout(this.showFirstItem,this,200)
         this.scrollTime = egret.getTimer();
         //if(this.upGroup.visible && this.upGroup.y == this.upGroupY)
@@ -97,7 +115,7 @@ class VideoUI2 extends game.BaseUI {
     }
 
     public setChoose(chooseData,isClick?){
-        clearTimeout(this.setChooseTimer);
+        egret.clearTimeout(this.setChooseTimer);
         if(this.lastChooseData == chooseData)
             return;
 
@@ -106,34 +124,50 @@ class VideoUI2 extends game.BaseUI {
             return;
 
         if(isClick)
-            console.log(chooseData)
+        {
+            this.scrollTime = 0;
+            this.scroller.stopAnimation();
+        }
+
         var data = item.result.player1;
         this.hpText0.text = data.hp  + '/' + data.maxHp;
         this.mpText0.text = data.mp  + '/' + data.maxMp;
-        this.apText0.text = data.ap  + '/' + 30;
+        this.apText0.text = data.ap  + '/' + 20;
         this.hpBar0.width =  Math.min(1,data.hp  / data.maxHp) * this.barWidth;
         this.mpBar0.width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
-        this.apBar0.width =  Math.min(1,data.ap  / 30) * this.barWidth;
-        this.statList0.dataProvider = new eui.ArrayCollection(JSON.parse(data.buffList));
+        this.apBar0.width =  Math.min(1,data.ap  / 20) * this.barWidth;
+        this.statList0.dataProvider = new eui.ArrayCollection(getList(JSON.parse(data.buffList)));
 
         var data = item.result.player2;
         this.hpText1.text = data.hp  + '/' + data.maxHp;
         this.mpText1.text = data.mp  + '/' + data.maxMp;
-        this.apText1.text = data.ap  + '/' + 30;
+        this.apText1.text = data.ap  + '/' + 20;
         this.hpBar1.width =  Math.min(1,data.hp  / data.maxHp) * this.barWidth;
         this.mpBar1.width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
-        this.apBar1.width =  Math.min(1,data.ap  / 30) * this.barWidth;
-        this.statList1.dataProvider = new eui.ArrayCollection(JSON.parse(data.buffList));
+        this.apBar1.width =  Math.min(1,data.ap  / 20) * this.barWidth;
+        this.statList1.dataProvider = new eui.ArrayCollection(getList(JSON.parse(data.buffList)));
 
         for(var i=0;i<this.vGroup.numChildren;i++)
         {
-            (<any>this.vGroup.getChildAt(i)).setChoose(chooseData);
+            (<any>this.vGroup.getChildAt(i)).setChoose(chooseData,isClick);
         }
         //for(var i=0;i<this.list.numChildren;i++)
         //{
         //    (<any>this.list.getChildAt(i)).setChoose(chooseData);
         //}
         this.lastChooseData = chooseData
+
+        function getList(data){
+            var arr = [];
+            for(var i=0;i<data.length;i++)
+            {
+                if(!data[i].forever)
+                {
+                    arr.push(data[i]);
+                }
+            }
+            return arr;
+        }
     }
 
     //private closeGroup(){
@@ -179,6 +213,10 @@ class VideoUI2 extends game.BaseUI {
 
     //PK结束
     public onOver(v?){
+        for(var i=0;i<this.listArray.length;i++)//重新编号
+        {
+            this.listArray[i][0].index = i+1;
+        }
 
         this.listArray.push({type:'over',isWin:VideoManager.getInstance().baseData.result.w == 1})
         this.vGroup.setData(this.listArray);

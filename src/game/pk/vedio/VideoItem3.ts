@@ -5,8 +5,10 @@ class VideoItem3 extends game.BaseItem {
     }
 
     private headMC: eui.Image;
-    private con: eui.Group;
+    private chooseBG: eui.Rect;
     private bg: eui.Rect;
+    private con: eui.Group;
+
 
     public index;
     private maxConWidth = 500;
@@ -22,11 +24,19 @@ class VideoItem3 extends game.BaseItem {
         VideoUI.getInstance().setChoose(this.data,true);
     }
 
-    public setChoose(data){
+    public setChoose(data,shake?){
         if(data == this.data)
-            this.bg.strokeColor = 0xB8A213
+        {
+            this.chooseBG.visible = true;
+            this.chooseBG.alpha = 1;
+            if(shake)
+            {
+                var tw:egret.Tween = egret.Tween.get(this.chooseBG);
+                tw.to({alpha:0},200).to({alpha:1},200).to({alpha:0},200).to({alpha:1},200);
+            }
+        }
         else
-            this.bg.strokeColor = 0x9F6031
+            this.chooseBG.visible = false;
     }
 
     public dataChanged() {
@@ -57,6 +67,11 @@ class VideoItem3 extends game.BaseItem {
         {
             this.currentState = 'right';
         }
+
+        if(atker.isPKing)
+            this.bg.strokeColor = 0xBC703A;
+        else
+            this.bg.strokeColor = 0x444444;
 
         //this.headMC.source =
         //console.log(data);
@@ -134,7 +149,14 @@ class VideoItem3 extends game.BaseItem {
         var effect = data.defender[0].list[0];
 
         this.addAtk(data,group);
-        this.addEffectList(data,group);
+        if(data.defender.length == 1 && data.defender[0].list.length<=2)
+            this.addEffectList(data,group);
+        else
+        {
+            this.addEffect(effect,group);
+            this.addEffectList(data,null,1);
+        }
+
     }
 
     //解释秒杀
@@ -169,88 +191,136 @@ class VideoItem3 extends game.BaseItem {
         var atker = VC.getPlayerByID(data.atker);
         var mvo = atker.mvo;
         var svo = mvo.getSkillByID(data.skillID,atker.isPKing);
-        switch(svo.mv)
+        if(svo.mv == 'atk')
         {
-            case 's_one':
-                this.decode_s_one(data,svo);
-                break;
-            case 's_self':
-                this.decode_s_self(data,svo);
-                break;
-            case 'atk':
-                this.decode_atk(data);
-                break;
-            case 'atks':
-                this.decode_atks(data);
-                break;
-            case 'satk':
-                this.decode_satk(data);
-                break;
-            default:
-                var group = this.addGroup();
-                this.getMonster(data.atker,group);
-                group.addChild(this.getWordText('使用技能【'+svo.name + '】'))
+            this.decode_atk(data);
+        }
+        else
+        {
+            var group = this.addGroup();
+            this.getMonster(data.atker,group);
+            var short = true
+
+            switch(svo.mv) {
+                case 's_one':
+                    var defender = data.defender;
+                    group.addChild(this.getWordText('对',0,24))
+                    this.getMonster(defender[0].defender,group)
+                    short = false
+                    break;
+            }
+
+            switch(svo.sp[0])
+            {
+                case 'TYPE':
+                    group.addChild(this.getWordText('触发'))
+                    break;
+                case 'CD':
+                    if(parseInt(svo.sp[1]))
+                        group.addChild(this.getWordText('使用'))
+                    else
+                        group.addChild(this.getWordText('使用',0x00FF00))
+                    break;
+                default :
+                    group.addChild(this.getWordText('使用'))
+            }
+
+            var color = 0x8917F5;
+            if(svo.type == 1)
+            {
+                group.addChild(this.getSkill0Icon())
+                color = 0xEB911B;
+            }
+
+            group.addChild(this.getWordText('【'+svo.name + '】',color,26))
+
+            if(short && data.defender.length == 1 && data.defender[0].list.length==1)
+                this.addEffect(data.defender[0].list[0],group);
+            else
                 this.addEffectList(data);
         }
     }
 
-    //特效后使用攻击
-    private decode_satk(data){
-        var arr = data.defender;
-        var atker = data.atker;
-        var group = this.addGroup();
-        for(var i=0;i<arr.length;i++)
-        {
-
-        }
-    }
-
-    //攻击后有特效
-    private decode_atks(data){
-        var group = this.addGroup();
-        this.addAtk(data,group);
-        var arr =  data.defender//[0].list[0];
-
-        for(var i=0;i<arr.length;i++)
-        {
-            var list = arr[i].list;
-            if(i>0 || list.length > 1)
-            {
-                group = this.addGroup();
-                this.getMonster(arr[i].defender,group)
-            }
-            for(var j=0;j<list.length;j++)
-            {
-                this.addEffect(list[j],group);
-            }
-        }
-    }
+    ////特效后使用攻击
+    //private decode_satk(data){
+    //    var arr = data.defender;
+    //    var atker = data.atker;
+    //    var group = this.addGroup();
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //
+    //    }
+    //}
+    //
+    ////攻击后有特效
+    //private decode_atks(data){
+    //    var group = this.addGroup();
+    //    this.addAtk(data,group);
+    //    var arr =  data.defender//[0].list[0];
+    //
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //        var list = arr[i].list;
+    //        if(i>0 || list.length > 1)
+    //        {
+    //            group = this.addGroup();
+    //            this.getMonster(arr[i].defender,group)
+    //        }
+    //        for(var j=0;j<list.length;j++)
+    //        {
+    //            this.addEffect(list[j],group);
+    //        }
+    //    }
+    //}
 
     //对1个单位施法
-    private decode_s_one(data,svo){
-        var defender = data.defender;
-        var atker = data.atker;
-        var effect = data.defender[0].list[0];
-        var group = this.addGroup();
+    //private decode_s_one(data,svo){
+    //    var defender = data.defender;
+    //    var atker = data.atker;
+    //    var effect = data.defender[0].list[0];
+    //    var group = this.addGroup();
+    //
+    //    this.getMonster(atker,group)
+    //    group.addChild(this.getWordText('对'))
+    //    this.getMonster(defender[0].defender,group)
+    //    this.addSkillName(svo,group);
+    //    if(data.defender.length == 1 && data.defender[0].list.length==1)
+    //        this.addEffect(effect,group);
+    //    else
+    //        this.addEffectList(data);
+    //}
 
-        this.getMonster(atker,group)
-        group.addChild(this.getWordText('对'))
-        this.getMonster(defender[0].defender,group)
-        group.addChild(this.getWordText('使用【'+svo.name + '】'))
-        this.addEffectList(data);
-    }
+    ////对自己施法
+    //private decode_s_self(data,svo){
+    //    var defender = data.defender;
+    //    var atker = data.atker;
+    //    var effect = data.defender[0].list[0];
+    //    var group = this.addGroup();
+    //
+    //    this.getMonster(atker,group)
+    //    group.addChild(this.getWordText('使用【'+svo.name + '】'))
+    //    if(data.defender.length == 1 && data.defender[0].list.length==1)
+    //        this.addEffect(effect,group);
+    //    else
+    //        this.addEffectList(data);
+    //}
 
-    //对自己施法
-    private decode_s_self(data,svo){
-        var defender = data.defender;
-        var atker = data.atker;
-        var effect = data.defender[0].list[0];
-        var group = this.addGroup();
-
-        this.getMonster(atker,group)
-        group.addChild(this.getWordText('使用【'+svo.name + '】'))
-        this.addEffectList(data);
-    }
+    //private addSkillName(svo,group){
+    //    switch(svo.sp[0])
+    //    {
+    //        case 'TYPE':
+    //            group.addChild(this.getWordText('触发'))
+    //            break;
+    //        default :
+    //            group.addChild(this.getWordText('使用'))
+    //    }
+    //
+    //    var color = 0x8917F5;
+    //    if(svo.type == 1)
+    //        color = 0xD317F5;
+    //    group.addChild(this.getWordText('【'+svo.name + '】',color))
+    //
+    //}
 
 
     private addAtk(data,group,defIndex=0){
@@ -264,7 +334,7 @@ class VideoItem3 extends game.BaseItem {
         this.getMonster(defender[defIndex].defender,group)
     }
 
-    private addEffectList(data,group?){
+    private addEffectList(data,group?,begin=0){
         var arr = data.defender;
         for(var i=0;i<arr.length;i++)
         {
@@ -273,10 +343,11 @@ class VideoItem3 extends game.BaseItem {
                 group = this.addGroup();
             if(group.numChildren == 0)
                 this.getMonster(arr[i].defender,group)
-            for(var j=0;j<list.length;j++)
+            for(var j=begin,begin=0;j<list.length;j++)
             {
                 this.addEffect(list[j],group);
             }
+
         }
     }
 
@@ -365,9 +436,13 @@ class VideoItem3 extends game.BaseItem {
         return group;
     }
 
-    private getWordText(txt='',color = 0x999999){
+    private getWordText(txt='',color? ,size?){
+        if(!color)
+            color = 0x999999;
+        if(!size)
+            size = 20;
         var hpText = new eui.Label();
-        hpText.size = 26;
+        hpText.size = size;
         hpText.text = txt;
         hpText.textColor = color
         return hpText;
@@ -381,11 +456,20 @@ class VideoItem3 extends game.BaseItem {
         mc.scaleX = mc.scaleY = 0.6
         return mc;
     }
+    private getSkill0Icon(){
+        var group = new eui.Group();
+        var mc =  new eui.Image()
+        mc.source = 'icon_b1_png';
+        mc.scaleX = mc.scaleY = 0.6
+        group.addChild(mc)
+        group.width = 25;
+        return group;
+    }
     private getMonster(id,group){
         var VC = VideoCode.getInstance();
         var mc = new VideoMonsterItem()
         group.addChild(mc);
-        mc.data = {monsterID:VC.getPlayerByID(id).mid}
+        mc.data = VC.getPlayerByID(id)
         return mc
     }
 }

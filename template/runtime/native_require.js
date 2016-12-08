@@ -97,6 +97,8 @@ var game_file_list = [
 	"bin-debug/game/pk/serverGameEqual/ServerGameEqualUI.js",
 	"bin-debug/game/pk/vedio/PlayerVO.js",
 	"bin-debug/game/pk/vedio/VideoCode.js",
+	"bin-debug/game/pk/vedio/VideoGuide.js",
+	"bin-debug/game/pk/vedio/VideoGuideItem.js",
 	"bin-debug/game/pk/vedio/VideoHpItem.js",
 	"bin-debug/game/pk/vedio/VideoItem.js",
 	"bin-debug/game/pk/vedio/VideoItem3.js",

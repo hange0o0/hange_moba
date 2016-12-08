@@ -43,7 +43,15 @@ class VideoStatItem extends game.BaseItem {
     public dataChanged() {
         var oo = this.baseData[this.data.stat];
         this.currentState = oo.stat
-        this.statText.text = oo.txt
+        if(this.data.value)
+        {
+            if(this.data.value > 0)
+                this.statText.text = oo.txt + '+' + this.data.value;
+            else
+                this.statText.text = oo.txt + this.data.value;
+        }
+        else
+            this.statText.text = oo.txt
         if(this.data.cd)
             this.cdText.text = this.data.cd
         else
