@@ -159,7 +159,7 @@ class MonsterVO {
         return 'full_bg_jpg';
     }
 
-    public getSkillByID(id,isPKing)
+    public getSkillByID(id,isPKing):MonsterSkillVO
     {
         if(id == 0)
             return this.sn;

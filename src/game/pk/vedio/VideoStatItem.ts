@@ -26,7 +26,14 @@ class VideoStatItem extends game.BaseItem {
         25:{txt:'魅惑',stat:'infoStat',color:0xFF0000},
         31:{txt:'魔免',stat:'infoStat',color:0xFF0000},
         41:{txt:'治疗',stat:'infoStat',color:0xFF0000},
-        42:{txt:'失血',stat:'infoStat',color:0xFF0000}
+        42:{txt:'失血',stat:'infoStat',color:0xFF0000},
+
+
+        'miss':{txt:'【闪避】',stat:'infoStat',color:0xFF0000},
+        'nohurt':{txt:'【免伤】',stat:'infoStat',color:0xFF0000},
+        'die':{txt:'【死亡】',stat:'infoStat',color:0xFF0000}
+
+
     }
 
     public childrenCreated() {
@@ -36,9 +43,17 @@ class VideoStatItem extends game.BaseItem {
     public dataChanged() {
         var oo = this.baseData[this.data.stat];
         this.currentState = oo.stat
-        this.statText.text = oo.txt
-        if(oo.cd)
-            this.cdText.text = oo.cd
+        if(this.data.value)
+        {
+            if(this.data.value > 0)
+                this.statText.text = oo.txt + '+' + this.data.value;
+            else
+                this.statText.text = oo.txt + this.data.value;
+        }
+        else
+            this.statText.text = oo.txt
+        if(this.data.cd)
+            this.cdText.text = this.data.cd
         else
             this.cdText.text = '';
     }

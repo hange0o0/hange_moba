@@ -15,6 +15,7 @@ class PlayerVO {
     public maxMp = 0;
     public tag = '';
     public actionCount = 0;
+    public index;
 
     public teamID;
 
@@ -51,15 +52,20 @@ class PlayerVO {
         this.buffList = [];
     }
 
-    public addBuff(id,num){
-        if(num)
-            this.buffList.push({id:id,num:num})
+    public addBuff(data){
+        var id = data.stat;
+        var cd = data.cd;
+        var value = data.value;
+        if(cd)
+            this.buffList.push({id:id,num:cd,value:value})
+        else
+            this.buffList.push({id:id,forever:true,value:value})
     }
 
-    public cleanBuff(id,num){
+    public cleanBuff(id,num,value){
          for(var i=0;i<this.buffList.length;i++){
              var oo = this.buffList[i];
-             if(oo.id == id && oo.num == num)
+             if(oo.id == id && oo.num == num && oo.value == value)
              {
                  this.buffList.splice(i,1);
                  break;
@@ -70,6 +76,8 @@ class PlayerVO {
     public onAction(){
         for(var i=0;i<this.buffList.length;i++){
             var oo = this.buffList[i];
+            if(oo.forever)
+                continue;
             oo.num --;
             if(oo.num <= 0)
             {
