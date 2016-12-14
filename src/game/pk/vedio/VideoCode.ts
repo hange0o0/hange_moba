@@ -28,6 +28,8 @@ class VideoCode{
 
     private orginHP
 
+    private actionCountSkillData//发生多次回合计数
+
     public constructor() {
         //this.player1 = new PlayerVO();
         //this.player2 = new PlayerVO();
@@ -93,6 +95,7 @@ class VideoCode{
         this.stopMV = false;
         this.skillStart = false;
 
+        this.actionCountSkillData = null
 
         this.setOrginHp();
     }
@@ -217,13 +220,24 @@ class VideoCode{
             }
             case 5:   //攻击者行动计数
             {
+                this.getPlayerByID(this.atker).onAction();
                 this.getPlayerByID(this.atker).actionCount =  action.times;
+
+
+                if(this.actionCountSkillData && this.actionCountSkillData == this.skillData && this.atker >= 10)
+                {
+                    this.skillData = {index:this.index,atker:this.atker,skillID:-1,defender:[]};
+                    this.actionCountSkillData = this.skillData;
+                    VideoUI.getInstance().playSkill(this.skillData);
+                    break;
+
+                }
+                this.actionCountSkillData = this.skillData;
                 this.stepOne();
                 break;
             }
             case 6:   //玩家回合结束
             {
-                this.getPlayerByID(this.atker).onAction();
                 //this.onRoundOver();
                 //console.log(this.player1.buffList)
                 //console.log(this.player2.buffList)
@@ -298,6 +312,16 @@ class VideoCode{
         oo.player2.maxHp = this.player2.maxHp;
         oo.player2.maxMp = this.player2.maxMp;
         oo.player2.buffList = JSON.stringify(this.player2.buffList);
+
+        oo.otherBuff = {};
+        for(var s in this.playerObject)
+        {
+            if(s == this.player1.id || s == this.player2.id)
+                continue;
+            var player = this.playerObject[s]
+            if(player.buffList)
+                oo.otherBuff[player.id] = JSON.stringify(player.buffList);
+        }
     }
 
     public onMovieOver(){

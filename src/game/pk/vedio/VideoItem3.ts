@@ -93,6 +93,12 @@ class VideoItem3 extends game.BaseItem {
 
         switch(skill)
         {
+            case -1://无行为的回合结速
+                var atker = data.atker;
+                var group = this.addGroup();
+                this.getMonster(atker,group)
+                group.addChild(this.getWordText('跳过了本次行动'))
+                break;
             case 50://物攻
                 this.decode_atk(data);
                 break;

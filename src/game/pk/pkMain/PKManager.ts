@@ -11,6 +11,7 @@ class PKManager {
         FRIEND_ANSWER:'friend_answer'
     };
     public static PKCost = 88;
+    public static ApMax = 20;
 
     public static getInstance():PKManager {
         if (!this._instance)
