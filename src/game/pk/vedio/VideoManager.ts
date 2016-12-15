@@ -252,7 +252,7 @@ class VideoManager {
         var type = str.charAt(0);
         var value:any;
         if(type == 'a')
-            value = {stat:MyTool.str2Num(str.charAt(1)) ,cd: MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
+            value = {id:MyTool.str2Num(str.charAt(1)) ,cd: MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
         else if(type == '3')
             value = {id:MyTool.str2Num(str.charAt(1)) ,cd:  MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
         else

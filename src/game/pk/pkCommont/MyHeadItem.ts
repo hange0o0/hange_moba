@@ -7,15 +7,15 @@ class MyHeadItem extends game.BaseItem {
     private headMC: eui.Image;
     private headMask: eui.Rect;
     private headBG: eui.Image;
-    private levelGroup: eui.Group;
+    public levelGroup: eui.Group;
     public levelText: eui.Label;
 
 
     public index;
 
     public childrenCreated() {
-           this.headMC.mask = this.headMask;
-        MyTool.addTestBlock(this);
+        this.headMC.mask = this.headMask;
+        //MyTool.addTestBlock(this);
         this.addBtnEvent(this,this.onClick);
     }
 

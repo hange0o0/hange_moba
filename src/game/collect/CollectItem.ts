@@ -35,7 +35,7 @@ class CollectItem extends game.BaseItem {
         var vo = this.data;
         var level = UM.getMonsterLevel(vo.id);
         this.headBG.source = 'head_border' + (UM.getMonsterCollect(vo.id) + 1) + '_png';
-        this.headMC.source = vo.thumb
+        this.headMC.source = MonsterVO.getObject(vo.id).thumb
 
         var arr = TecManager.getInstance().collectRate(vo.id);
         var need = arr[1];

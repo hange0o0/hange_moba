@@ -42,76 +42,51 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group id="myGroup0" y="451" height="380" x="60">
-				<e:List itemRendererSkinName="MyHeadItemSkin" y="60" height="239" id="myList0" horizontalCenter="0">
-					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
-					</e:layout>
-					<e:ArrayCollection>
-						<e:Array>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-						</e:Array>
-					</e:ArrayCollection>
-				</e:List>
-				<e:Group horizontalCenter="0" y="10" x="20">
-					<e:Image y="509" x="10" source="main_mc_png"/>
-					<e:Label horizontalCenter="0" size="26" y="14" text="PK卡组1" textAlign="center" width="140" textColor="0xD9B67B"/>
-					<e:Image y="519" x="20" source="main_mc_png" scaleX="-1"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
+			<e:Group y="375.83333333333337" height="100%" minHeight="460" x="0">
+				<e:layout>
+					<e:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
+				</e:layout>
+				<e:Group id="myGroup" y="0" height="320" x="36.66666666666667">
+					<e:List y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList">
+						<e:layout>
+							<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+						</e:layout>
+						<e:ArrayCollection>
+							<e:Array>
+								<e:Object label="数据1"/>
+								<e:Object label="数据2"/>
+								<e:Object label="数据3"/>
+								<e:Object label="数据1"/>
+								<e:Object label="数据2"/>
+								<e:Object label="数据3"/>
+								<e:Object label="数据1"/>
+								<e:Object label="数据2"/>
+							</e:Array>
+						</e:ArrayCollection>
+					</e:List>
+					<e:Group horizontalCenter="0" y="10" x="20">
+						<e:Image source="main_mc_png" y="509" x="10"/>
+						<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26" id="cardTitle"/>
+						<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
+						<e:layout>
+							<e:HorizontalLayout verticalAlign="bottom"/>
+						</e:layout>
+					</e:Group>
 				</e:Group>
-				<e:Group y="310" horizontalCenter="0" width="640">
-					<e:Image source="line_png" x="0" y="499"/>
-					<e:Button y="0" label="使用出战" id="chooseBtn0" skinName="Btn_r3Skin" x="365"/>
+				<e:Group width="468" height="70">
+					<e:Rect ellipseWidth="10" fillAlpha="0" y="0" strokeWeight="3" x="-3" strokeColor="0xF7B900" width="225" ellipseHeight="10" fillColor="0xF7B900" height="65" id="chooseMC"/>
+					<e:Button skinName="Btn_r3Skin" y="0" label="卡组1" id="card1Btn"/>
+					<e:Button id="card2Btn" label="卡组2" y="0" skinName="Btn_r3Skin" x="250"/>
+				</e:Group>
+				<e:Group width="640" y="395.83333333333337" x="0">
+					<e:Image source="line_png" y="499" x="0"/>
+					<e:Button id="chooseBtn" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
 					<e:Image source="line_png" y="509" x="10"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom" gap="10"/>
-					</e:layout>
-				</e:Group>
-			</e:Group>
-			<e:Group id="myGroup1" y="461" height="380" x="70">
-				<e:List y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList1">
-					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
-					</e:layout>
-					<e:ArrayCollection>
-						<e:Array>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-						</e:Array>
-					</e:ArrayCollection>
-				</e:List>
-				<e:Group horizontalCenter="0" y="10" x="20">
-					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-					<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
-				</e:Group>
-				<e:Group width="640" y="310" horizontalCenter="0">
 					<e:layout>
 						<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
 					</e:layout>
-					<e:Image source="line_png" y="499" x="0"/>
-					<e:Button id="chooseBtn1" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
-					<e:Image source="line_png" y="509" x="10"/>
 				</e:Group>
-			</e:Group>
+			</e:Group>
 			<e:layout>
 				<e:VerticalLayout horizontalAlign="center" gap="0"/>
 			</e:layout>

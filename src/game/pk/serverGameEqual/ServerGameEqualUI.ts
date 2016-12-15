@@ -16,17 +16,20 @@ class ServerGameEqualUI extends game.BaseUI {
     private maxText: eui.Label;
     private headMC: eui.Image;
     private enemyList: eui.List;
-    private myGroup0: eui.Group;
-    private myList0: eui.List;
-    private chooseBtn0: eui.Button;
-    private myGroup1: eui.Group;
-    private myList1: eui.List;
-    private chooseBtn1: eui.Button;
+    private myGroup: eui.Group;
+    private myList: eui.List;
+    private cardTitle: eui.Label;
+    private chooseMC: eui.Rect;
+    private card1Btn: eui.Button;
+    private card2Btn: eui.Button;
+    private chooseBtn: eui.Button;
+
 
 
 
 
     private enemyArray
+    private chooseInex
 
     public constructor() {
         super();
@@ -40,13 +43,14 @@ class ServerGameEqualUI extends game.BaseUI {
         this.topUI.setTitle('修正场PK');
         this.topUI.addEventListener('hide',this.hide,this);
 
-        this.addBtnEvent(this.chooseBtn0, this.onChoose1);
-        this.addBtnEvent(this.chooseBtn1, this.onChoose2);
+        this.addBtnEvent(this.chooseBtn, this.onChoose);
         this.addBtnEvent(this.headMC, this.onOtherInfo);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
-        this.myList0.itemRenderer =  MyHeadItem;
-        this.myList1.itemRenderer =  MyHeadItem;
+        this.myList.itemRenderer =  MyHeadItem;
+
+        this.addBtnEvent(this.card1Btn, this.onCard1);
+        this.addBtnEvent(this.card2Btn, this.onCard2);
 
         this.scroller.bounces = false;
 
@@ -55,26 +59,26 @@ class ServerGameEqualUI extends game.BaseUI {
 
     }
 
+    private onCard1(){
+        this.chooseInex = 0;
+        this.renewChoose();
+    }
+    private onCard2(){
+        this.chooseInex = 1;
+        this.renewChoose();
+    }
+
     private onOtherInfo(){
         var gameid = UM.server_game_equal.enemy.userinfo.gameid;
         if(gameid && gameid != UM.gameid)
             OtherInfoUI.getInstance().showID(gameid);
     }
-    private onRing1(){
-
-    }
-    private onRing2(){
-
-    }
-    private onRing3(){
-
-    }
-    private onRing4(){
-
-    }
 
     public onShow(){
         var data = UM.server_game_equal;
+
+        this.chooseInex = 0;
+        this.chooseMC.x = -3;
 
         //更新敌人
         var enemyList = this.enemyArray = [];
@@ -107,11 +111,17 @@ class ServerGameEqualUI extends game.BaseUI {
         this.maxText.text = uf.max;
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 
+        this.renewChoose();
+    }
+
+    private renewChoose(){
+        var data = UM.server_game_equal;
+        var specialData = {};
         //更新卡组1
         var chooseList1 = [];
-        for(var i=0;i<data.choose[0].list.length;i++)
+        for(var i=0;i<data.choose[this.chooseInex].list.length;i++)
         {
-            var id = data.choose[0].list[i]
+            var id = data.choose[this.chooseInex].list[i]
             chooseList1.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
@@ -123,37 +133,23 @@ class ServerGameEqualUI extends game.BaseUI {
                 list:chooseList1
             });
         }
-        this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
+        this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
+        var tw:egret.Tween = egret.Tween.get(this.chooseMC);
 
-
-
-        //更新卡组2
-        var chooseList2 = [];
-        for(var i=0;i<data.choose[1].list.length;i++)
+        if(this.chooseInex == 0)
         {
-            var id = data.choose[1].list[i]
-            chooseList2.push({
-                vo: MonsterVO.getObject(id),
-                type:1,
-
-                id: id,
-                specialData: specialData,
-
-                index: i,
-                list:chooseList2
-            });
+            this.cardTitle.text = '卡组1'
+            tw.to({x:this.card1Btn.x-3},100)
         }
-        this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
-
-
-
+        else
+        {
+            this.cardTitle.text = '卡组2'
+            tw.to({x:this.card2Btn.x-3},100)
+        }
     }
 
-    private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose[0],enemy:this.enemyArray,index:0})
+    private onChoose(){
+        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose[this.chooseInex],enemy:this.enemyArray,index:this.chooseInex})
     }
 
-    private onChoose2(){
-        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose[1],enemy:this.enemyArray,index:1})
-    }
 }

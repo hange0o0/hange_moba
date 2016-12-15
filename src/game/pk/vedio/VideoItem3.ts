@@ -374,11 +374,17 @@ class VideoItem3 extends game.BaseItem {
             group.addChild(mc)
             mc.data = effect.value;
         }
-        else if(effect.key == 'nohurt' || effect.key == 'miss' || effect.key == 'die')
+        else if(effect.key == 'nohurt')
         {
-            mc = new VideoStatItem()
-            group.addChild(mc)
-            mc.data = {stat:effect.key};
+            group.addChild(this.getWordText('【免伤】',0xFF0000))
+        }
+        else if(effect.key == 'miss')
+        {
+            group.addChild(this.getWordText('【闪避】',0xFF0000))
+        }
+        else if(effect.key == 'die')
+        {
+            group.addChild(this.getWordText('【死亡】',0xFF0000))
         }
         else if(effect.key == 'stat')
         {
@@ -397,9 +403,16 @@ class VideoItem3 extends game.BaseItem {
                     this.getMonster(effect.defender,group)
                 group.addChild(this.getWordText('清除状态：'))
             }
+
+            if(group.numChildren >4)
+            {
+                group = this.addGroup();
+                this.getMonster(effect.defender,group)
+                group.addChild(this.getWordText('清除状态：'))
+            }
             mc = new VideoStatItem()
             group.addChild(mc)
-            mc.data = {stat:effect.value}
+            mc.data = effect.value;
         }
         else if(effect.key == 'mhp')
         {

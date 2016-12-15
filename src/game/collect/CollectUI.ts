@@ -162,6 +162,7 @@ class CollectUI extends game.BaseUI {
 
     public onShow(){
         this.renew();
+        this.addPanelOpenEvent(GameEvent.client.collect_change,this.justRenewList);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewCoin);
     }
 
@@ -181,6 +182,14 @@ class CollectUI extends game.BaseUI {
         this.list.dataProvider = new eui.ArrayCollection(this.listArr)
     }
 
+    private justRenewList(){
+        var len = this.list.numChildren;
+        for(var i=0;i<len;i++)
+        {
+            (<CollectItem>this.list.getChildAt(i)).dataChanged();
+        }
+    }
+
     public resort(){
         this.sortListFun(this.listArr);
         this.list.dataProvider = new eui.ArrayCollection(this.listArr);
@@ -197,13 +206,29 @@ class CollectUI extends game.BaseUI {
                 if(!noDefault)
                     arr.sort(this.sortByDefault)
                 break;
-            case 1://可升级
-                arr.sort(this.sortByLevelUp)
-                break;
-            case 2://等级升序
+            //case 1://可升级
+            //    for(var i=0;i<arr.length;i++)
+            //    {
+            //        var lv = UM.getMonsterLevel(arr[i].id);
+            //        if(lv >= TecManager.getInstance().maxLevel)
+            //            arr[i].need = Number.MAX_VALUE;
+            //        else
+            //            arr[i].need = TecManager.getInstance().collectNeed(lv + 1);
+            //    }
+            //    arr.sort(this.sortByLevelUp)
+            //    break;
+            case 1://等级升序
+                for(var i=0;i<arr.length;i++)
+                {
+                    arr[i].lv = UM.getMonsterLevel(arr[i].id);
+                }
                 arr.sort(this.sortByUp)
                 break;
-            case 3://等级降序
+            case 2://等级降序
+                for(var i=0;i<arr.length;i++)
+                {
+                    arr[i].lv = UM.getMonsterLevel(arr[i].id);
+                }
                 arr.sort(this.sortByDown)
                 break;
         }
@@ -213,17 +238,27 @@ class CollectUI extends game.BaseUI {
             return -1;
         return 1;
     }
-    private sortByLevelUp(a,b){
-        if(a.id < b.id)
-            return -1;
-        return 1;
-    }
+    //private sortByLevelUp(a,b){
+    //    if(a.need < b.need)
+    //        return -1;
+    //    if(a.need > b.need)
+    //        return 1;
+    //    return this.sortByDefault(a,b)
+    //}
     private sortByUp(a,b){
+        if(a.lv < b.lv)
+            return -1;
+        if(a.lv > b.lv)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;
     }
     private sortByDown(a,b){
+        if(a.lv > b.lv)
+            return -1;
+        if(a.lv < b.lv)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;

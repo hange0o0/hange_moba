@@ -37,7 +37,6 @@
 			<e:ArrayCollection>
 				<e:Array>
 					<e:Object label="默认排序"/>
-					<e:Object label="可升级"/>
 					<e:Object label="等级升序"/>
 					<e:Object label="等级降序"/>
 				</e:Array>

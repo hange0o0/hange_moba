@@ -4,8 +4,10 @@ class VideoStatItem extends game.BaseItem {
         this.skinName = "VideoStatItemSkin";
     }
 
-    private statText: eui.Label;
+    private icon: eui.Image;
+    private valueText: eui.Label;
     private cdText: eui.Label;
+
 
 
     public mcWidth = 80
@@ -19,41 +21,50 @@ class VideoStatItem extends game.BaseItem {
         12:{txt:'速度',stat:'downStat',color:0xFF0000},
         13:{txt:'防御',stat:'downStat',color:0xFF0000},
         14:{txt:'伤害',stat:'downStat',color:0xFF0000},
-        21:{txt:'缴械',stat:'infoStat',color:0xFF0000},
-        22:{txt:'冷却',stat:'infoStat',color:0xFF0000},
-        23:{txt:'沉默',stat:'infoStat',color:0xFF0000},
-        24:{txt:'静止',stat:'infoStat',color:0xFF0000},
-        25:{txt:'魅惑',stat:'infoStat',color:0xFF0000},
-        31:{txt:'魔免',stat:'infoStat',color:0xFF0000},
-        41:{txt:'治疗',stat:'infoStat',color:0xFF0000},
-        42:{txt:'失血',stat:'infoStat',color:0xFF0000},
+        21:{txt:'缴械',stat:'downStat',color:0xFF0000},
+        22:{txt:'冷却',stat:'downStat',color:0xFF0000},
+        23:{txt:'沉默',stat:'downStat',color:0xFF0000},
+        24:{txt:'静止',stat:'downStat',color:0xFF0000},
+        25:{txt:'魅惑',stat:'downStat',color:0xFF0000},
+        31:{txt:'魔免',stat:'upStat',color:0xFF0000},
+        41:{txt:'治疗',stat:'upStat',color:0xFF0000},
+        42:{txt:'失血',stat:'downStat',color:0xFF0000},
 
 
-        'miss':{txt:'【闪避】',stat:'infoStat',color:0xFF0000},
-        'nohurt':{txt:'【免伤】',stat:'infoStat',color:0xFF0000},
-        'die':{txt:'【死亡】',stat:'infoStat',color:0xFF0000}
+        //'miss':{txt:'【闪避】',stat:'infoStat',color:0xFF0000},
+        //'nohurt':{txt:'【免伤】',stat:'infoStat',color:0xFF0000},
+        //'die':{txt:'【死亡】',stat:'infoStat',color:0xFF0000}
 
 
     }
 
     public childrenCreated() {
+        //FE7430   //down
+        //FFDC5B
+
+
         //this.addBtnEvent(this.closeBtn,this.onKill);
     }
 
     public dataChanged() {
-        var oo = this.baseData[this.data.stat];
-        this.currentState = oo.stat
+        var oo = this.baseData[this.data.id];
+        this.icon.source = 'buff_'+this.data.id+'_png'
+        if(oo.stat == 'upStat')
+            this.valueText.textColor = 0xFFDC5B
+        else
+            this.valueText.textColor = 0xFE7430
         if(this.data.value)
         {
             if(this.data.value > 0)
-                this.statText.text = oo.txt + '+' + this.data.value;
+                this.valueText.text = oo.txt + '+' + this.data.value;
             else
-                this.statText.text = oo.txt + this.data.value;
+                this.valueText.text = oo.txt + this.data.value;
         }
         else
-            this.statText.text = oo.txt
+            this.valueText.text = oo.txt + ''
+
         if(this.data.cd)
-            this.cdText.text = this.data.cd
+            this.cdText.text = '/' +this.data.cd
         else
             this.cdText.text = '';
     }

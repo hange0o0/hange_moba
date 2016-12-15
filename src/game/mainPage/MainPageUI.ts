@@ -98,6 +98,8 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
 
+        EM.addEvent(GameEvent.client.timer,this.onTimer,this);
+
         for(var i=0;i<=3;i++)
         {
             var mc = this['p'+i];
@@ -110,6 +112,10 @@ class MainPageUI extends game.BaseUI {
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
+    }
+
+    private onTimer(){
+        this.renewEnergy();
     }
     
     private onVideo(){
@@ -333,13 +339,16 @@ class MainPageUI extends game.BaseUI {
         this.renewCoin();
         this.renewExp();
         this.renewEnergy();
+        this.renewCard();
 
         this.nameText.text = UM.nick;
         this.headMC.source = MyTool.getHeadUrl(UM.head);
     }
     public renewDiamond(){
-        this.diamondText.text = UM.diamond.free + '';
-        this.feeText.text = UM.diamond.rmb + '';
+        this.diamondText.text = UM.getDiamond() + '';
+    }
+    public renewCard(){
+        this.feeText.text = UM.getCollectNum() + '';
     }
     public renewForce(){
         this.forceText.text = UM.getForce() + '';
@@ -352,8 +361,14 @@ class MainPageUI extends game.BaseUI {
         this.levelText.text = UM.level + '';
     }
     public renewEnergy(){
-        UM.getEnergy();
-        this.energyText.text = UM.energy.v + '+' + UM.energy.rmb;
+        this.energyText.text = UM.getEnergy();
+        if(UM.energy.v >= UM.maxEnergy) //full
+            this.energyText.textColor = 0xF9D36C
+        else if(UM.energy.v == 0) //empty
+            this.energyText.textColor = 0xFC8C8C
+        else
+            this.energyText.textColor = 0xCCCCCC
+
     }
 
     public renewTask(){

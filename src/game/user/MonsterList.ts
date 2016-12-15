@@ -69,6 +69,14 @@ class MonsterList extends game.BaseUI {
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
         this.scroller.bounces = false;
+
+        MyTool.removeMC(this.info2)
+        this.info.addEventListener(egret.Event.RESIZE,this.onResizeInfo,this)
+    }
+
+    private onResizeInfo(){
+        if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
+            this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
     }
 
     private onLevelUp(){
@@ -152,13 +160,15 @@ class MonsterList extends game.BaseUI {
     }
 
     private renewInfo2(){
-        this.info2.visible = true;
         this.info2.x = 640*this.rota;
         var oo =  this.dataArray[this.index + this.rota];
         if(oo)
+        {
+            this.scrollGroup.addChild(this.info2);
             this.info2.renew(oo.id,oo.specialData)
+        }
         else
-            this.info2.visible = false;
+            MyTool.removeMC(this.info2)
     }
 
 
@@ -229,10 +239,15 @@ class MonsterList extends game.BaseUI {
 
     public renew(){
         this.rota = 0;
-        this.info2.visible = false;
+        MyTool.removeMC(this.info2)
         this.scrollGroup.x = 0;
         var oo =  this.dataArray[this.index];
         this.info.renew(oo.id,oo.specialData)
+        //this.once(egret.Event.ENTER_FRAME,function(){
+        //    if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
+        //        this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+        //},this)
+
 
         if(this.isLevelUp)
             this.renewLevelUp();

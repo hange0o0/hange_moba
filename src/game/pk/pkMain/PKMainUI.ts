@@ -60,8 +60,10 @@ class PKMainUI extends game.BaseUI {
         }
         this.enemyGroup.scaleY = -1;
 
-        this.bg0.mask = new egret.Rectangle(0,0,325,2000)
-        this.bg1.mask = new egret.Rectangle(315,0,325,2000)
+        //this.bg0.width = 325;
+        //this.bg1.width = 325;
+        this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
+        this.bg1.scrollRect = new egret.Rectangle(315,0,325,1500)
     }
 
     private onJump(){
@@ -140,18 +142,66 @@ class PKMainUI extends game.BaseUI {
 
         this.enemyGroup.y = stageHeight/2;
         this.selfGroup.y = stageHeight/2
-        this.bg0.x = -325
-        this.bg1.x = 325
+
     }
 
     private addSceneMovie(){
+        var Y =this.stageHeight/2;
+        var desY =  Math.random()*600-300
+        var scale = 1.5
+
+        this.bg0.x = -320-170;
+        this.bg0.y = Y+desY;
+
+        this.bg1.x = 640+170;
+        this.bg1.y = Y-desY;
+
+        this.bg0.scaleX = this.bg0.scaleY = scale;
+        this.bg1.scaleX = this.bg1.scaleY = scale;
         var tw:egret.Tween = egret.Tween.get(this.bg0);
-        tw.to({x:0}, 500)
+        var tw2:egret.Tween = egret.Tween.get(this.bg0);
+
+
+
+        tw.to({scaleX:1,scaleY:1},500);// .wait(200)
+        tw2.to({x:0,y:Y},500,egret.Ease.sineIn); //.wait(200)
+
+
         var tw:egret.Tween = egret.Tween.get(this.bg1);
-        tw.to({x:0}, 500).wait(300).call(this.addItemMovie,this)
+        var tw2:egret.Tween = egret.Tween.get(this.bg1);
+        tw.to({scaleX:1,scaleY:1},500).call(this.shakeBG,this).wait(600).call(this.addItemMovie,this);    //.wait(100)
+        tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
+        //this.bg1.x = 0;
+        //this.bg0.x = 640;
+        //this.bg1.y = Y;
+        //this.bg0.y = Y;
+        //this.bg0.scaleX = this.bg0.scaleY = 0;
+        //this.bg1.scaleX = this.bg1.scaleY = 0;
+        //var tw:egret.Tween = egret.Tween.get(this.bg0);
+        //var tw2:egret.Tween = egret.Tween.get(this.bg0);
+        //
+        //var desY =  Math.random()*600-300
+        //var scale = 1.5
+        //
+        //tw.wait(100).to({scaleX:scale,scaleY:scale}, 700,egret.Ease.sineIn).to({scaleX:1,scaleY:1},500);// .wait(200)
+        //tw2.wait(100).to({x:-320-170,y:Y+desY}, 700,egret.Ease.sineOut).to({x:0,y:Y},500,egret.Ease.sineIn); //.wait(200)
+        //
+        //
+        //var tw:egret.Tween = egret.Tween.get(this.bg1);
+        //var tw2:egret.Tween = egret.Tween.get(this.bg1);
+        //tw.to({scaleX:scale,scaleY:scale}, 800,egret.Ease.sineIn).to({scaleX:1,scaleY:1},500).call(this.shakeBG,this).wait(600).call(this.addItemMovie,this);    //.wait(100)
+        //tw2.to({x:640+170,y:Y-desY}, 800,egret.Ease.sineOut).to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
+
+    }
+
+    private shakeBG(){
+        var tw:egret.Tween = egret.Tween.get(this);
+        tw.to({x:-6,y:-5},80).to({x:5,y:3},120).to({x:-2,y:-1},50).to({x:0,y:0},30)
     }
 
     private addItemMovie(){
+        //this.hide();
+        //return;
         var desY = this.stageHeight/2;
         var myTeam = PKManager.getInstance().team1Base.list
         var time = this.stageHeight * 2;

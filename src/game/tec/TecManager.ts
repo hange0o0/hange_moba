@@ -57,10 +57,10 @@ class TecManager{
         {
             return [now,need]
         }
-        var last = this.collectNeed(lv)
+        //var last = this.collectNeed(lv)
         if(lv == this.maxLevel)
-            return [now - last,0];
-        return [now - last,need - last];
+            return [now,0];
+        return [now,need];
     }
 
 
@@ -137,7 +137,7 @@ class TecManager{
                     tecType:3
                 });
         }
-        ArrayUtil.sortByField(arr,['id'],[0]);
+        //ArrayUtil.sortByField(arr,['id'],[0]);
         return arr;
     }
 

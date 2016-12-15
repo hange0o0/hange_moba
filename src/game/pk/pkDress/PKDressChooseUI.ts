@@ -13,10 +13,6 @@ class PKDressChooseUI extends game.BaseContainer {
     private h4: PKDressChooseItem;
     private h5: PKDressChooseItem;
     private h6: PKDressChooseItem;
-    private h7: PKDressChooseItem;
-    private h8: PKDressChooseItem;
-    private h9: PKDressChooseItem;
-    private h10: PKDressChooseItem;
     private spliceGroup: eui.Group;
     private a1: eui.Image;
     private a2: eui.Image;
@@ -26,14 +22,13 @@ class PKDressChooseUI extends game.BaseContainer {
     private a6: eui.Image;
     private a7: eui.Image;
     private a8: eui.Image;
-    private a9: eui.Image;
-    private a10: eui.Image;
-    private a11: eui.Image;
-    private a12: eui.Image;
     private pkBtn: eui.Button;
-    private deleteBtn: eui.Button;
-    private moreBtn: eui.Button;
     private cancleBtn: eui.Button;
+    private deleteBtn: eui.Button;
+    private removeGroup: eui.Group;
+    private removeText: eui.Label;
+
+
 
 
 
@@ -60,6 +55,9 @@ class PKDressChooseUI extends game.BaseContainer {
 
     public specialData;
 
+    private dragTarget
+    private overTarget
+
 
     public childrenCreated() {
         super.childrenCreated();
@@ -77,6 +75,11 @@ class PKDressChooseUI extends game.BaseContainer {
             this.addBtnEvent(mc,this.onMCClick)
             //MyTool.addLongTouch(mc,this.onLongTouch,this);
             //mc.addEventListener('deleted',this.onDelete,this)
+
+            mc.addEventListener('start_drag',this.onDragStart,this);
+            mc.addEventListener('end_drag',this.onDragEnd,this);
+            mc.addEventListener('move_drag',this.onDragMove,this);
+
 
 
 
@@ -99,6 +102,7 @@ class PKDressChooseUI extends game.BaseContainer {
         for(var i=1;i<=8;i++)
         {
             var a = this['a' + i];
+            a.bsy = a.scaleY;
             this.addBtnEvent(a,this.onSplice)
             this.splicaArray.push(a);
             var index = i-1;
@@ -110,9 +114,115 @@ class PKDressChooseUI extends game.BaseContainer {
         this.addBtnEvent(this.pkBtn, this.onPKStart);
         this.addBtnEvent(this.deleteBtn, this.onDelete);
         this.addBtnEvent(this.cancleBtn, this.onCancel);
-        this.addBtnEvent(this.moreBtn, this.onMore);
+        //this.addBtnEvent(this.moreBtn, this.onMore);
 
-        console.log(this.posArray);
+        this.dragTarget = new PKDressChooseItem();
+        this.dragTarget.alpha = 0.5
+
+
+        //console.log(this.posArray);
+    }
+
+    private onDragStart(e){
+        this.changeState('drag')
+        e.stopImmediatePropagation();
+        e.target.alpla = 0.8;
+        this.selectIndex = this.mcArray.indexOf(e.target);
+        this.dragTarget.data = e.target.data
+        this.stage.addChild(this.dragTarget);
+        this.dragTarget.x = e.data.x;
+        this.dragTarget.y = e.data.y;
+        this.renewSplice();
+    }
+    private onDragMove(e){
+        e.stopImmediatePropagation();
+        this.dragTarget.x = e.data.x - this.dragTarget.width/2;
+        this.dragTarget.y = e.data.y - this.dragTarget.height/2;
+        this.overTarget = -1;
+
+        for(var i=0;i<this.splicaArray.length;i++)
+        {
+            var mc = this.splicaArray[i];
+            if(mc.visible)
+            {
+                if(this.overTarget== -1 && mc.hitTestPoint(e.data.x,e.data.y))
+                {
+                    mc.scaleX = 1.3
+                    mc.scaleY = 1.3 * mc.bsy;
+                    this.overTarget = mc.index + 10;
+                }
+                else
+                {
+                    mc.scaleX = 1
+                    mc.scaleY = 1 * mc.bsy;
+                }
+            }
+        }
+
+        for(var i=1;i<=6;i++) {
+            var mc = this['h' + i]
+            if(mc.data && this.overTarget== -1 && mc.hitTestPoint(e.data.x,e.data.y))
+            {
+                mc.setStaticVisible(true);
+                this.overTarget = this.mcArray.indexOf(mc);
+            }
+            else
+            {
+                mc.setStaticVisible(false);
+            }
+        }
+
+        if(this.overTarget== -1 && this.removeGroup.hitTestPoint(e.data.x,e.data.y))
+        {
+            this.removeText.stroke = 1
+            this.removeText.text = '删除'
+            this.overTarget = 20;
+        }
+        else
+        {
+            this.removeText.stroke = 0
+            this.removeText.text = '拖到此处移除'
+        }
+
+    }
+    private onDragEnd(e){
+        e.stopImmediatePropagation();
+        //var target = this.getTestTarget(this.dragTarget.x + this.dragTarget.width/2,this.dragTarget.y + this.dragTarget.height/2)
+        MyTool.removeMC(this.dragTarget)
+
+        for(var i=1;i<=6;i++) {
+            var mc = this['h' + i];
+            mc.alpla = 1;
+            mc.setStaticVisible(false);
+        }
+
+        if(this.overTarget != -1)
+        {
+            if(this.overTarget == 20)//delete
+                this.onDelete();
+            else if(this.overTarget >= 10) //insert
+            {
+                this.onSplice({currentTarget:{index:this.overTarget-10}})
+            }
+            else  //swap
+            {
+                this.changeState('normal')
+                this.swap(this.selectIndex,this.overTarget)
+                this.selectIndex = -1;
+                this.dispatchEventWith('change');
+            }
+        }
+        else
+        {
+            this.onCancel();
+        }
+        //if(target && target.data != this.dragTarget.data)
+        //{
+        //    var temp = this.data.list[0]
+        //    this.data.list[0] = this.data.list[1]
+        //    this.data.list[1] = temp;
+        //    this.dataChanged();
+        //}
     }
 
     private changeState(stat){
@@ -167,7 +277,7 @@ class PKDressChooseUI extends game.BaseContainer {
         item.x = this.outPos.x;
         item.y = this.outPos.y;
 
-        this.renewPos();
+        this.renewPos(null,true);
         this.renewSplice();
         this.dispatchEventWith('change');
 
@@ -222,6 +332,8 @@ class PKDressChooseUI extends game.BaseContainer {
                  continue;
              }
              mc.visible = true;
+             mc.scaleX = 1
+             mc.scaleY = 1 * mc.bsy;
          }
     }
 

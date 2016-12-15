@@ -75,6 +75,16 @@ class PKDressUI extends game.BaseUI {
         this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
         this.scroller.bounces = false;
 
+        this.addEventListener('before_drag',this.onDragBefore,this);
+        this.addEventListener('after_drag',this.onDragAfter,this);
+
+    }
+
+    private onDragBefore(){
+        this.scroller.scrollPolicyV = eui.ScrollPolicy.OFF;
+    }
+    private onDragAfter(){
+        this.scroller.scrollPolicyV = eui.ScrollPolicy.ON;
     }
 
 
@@ -181,10 +191,16 @@ class PKDressUI extends game.BaseUI {
 
     private onView(){
         if(this.currentState == 'open')
+        {
             this.currentState = 'normal'
+        }
         else
             this.currentState = 'open'
-
+        egret.callLater(function(){
+            if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
+                this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+            this.onScroll();
+        },this)
     }
 
     public addMonster(mid){
@@ -200,8 +216,14 @@ class PKDressUI extends game.BaseUI {
         this.chooseList = this.pkDressChooseUI.getList();
         this.saveHistory();
         this.renew();
-        this.renewList();
+        //this.renewList();
         this.renewSimpleList();
+
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            (<any>this.list.getChildAt(i)).dataChanged();
+        }
+
     }
 
     private renewSimpleList(){
@@ -289,7 +311,7 @@ class PKDressUI extends game.BaseUI {
             oo.vo = vo;
             oo.id = vo.id;
             oo.specialData =  this.specialData;
-            oo.num = this.getMonsterNum(vo.id);
+            //oo.num = this.getMonsterNum(vo.id);
             oo.index = i;
             oo.list = arr;
             oo.chooseList = this.chooseList;

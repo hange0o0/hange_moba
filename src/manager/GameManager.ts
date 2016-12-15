@@ -46,7 +46,7 @@ class GameManager {
             //EM.dispatch(GameEvent.client.energy_change);
 
         }
-        EM.dispatch(egret.TimerEvent.TIMER);
+        EM.dispatch(GameEvent.client.timer);
     }
 
     //取现在到晚上12点还差的时间

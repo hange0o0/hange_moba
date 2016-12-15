@@ -375,7 +375,7 @@ class VideoCode{
             }
             case '3': //清除效果
                 player.cleanBuff(value.value.id,value.value.cd,value.value.value);
-                this.defenderMV('clean',value.value.id);
+                this.defenderMV('clean',value.value);
                 break;
             //case '3'://    "ATK"=>'3',
             //{
@@ -385,7 +385,7 @@ class VideoCode{
             //}
             case '4'://    "MHP"=>'4',
             {
-                this.defenderMV('mhp',value.value)
+                //this.defenderMV('mhp',value.value)
                 player.addMaxHp(value.value);
                 break;
             }

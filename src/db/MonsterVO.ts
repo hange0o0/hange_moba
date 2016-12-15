@@ -156,7 +156,8 @@ class MonsterVO {
     }
 
     public get url(){
-        return 'full_bg_jpg';
+        return Config.localResRoot + 'card/monster_'+this.id+'.jpg';
+        //return 'full_bg_jpg';
     }
 
     public getSkillByID(id,isPKing):MonsterSkillVO

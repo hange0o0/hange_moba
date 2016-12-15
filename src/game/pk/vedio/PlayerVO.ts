@@ -53,7 +53,7 @@ class PlayerVO {
     }
 
     public addBuff(data){
-        var id = data.stat;
+        var id = data.id;
         if(id == 24)
         {
             console.log(data)

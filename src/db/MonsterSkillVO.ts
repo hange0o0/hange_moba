@@ -28,7 +28,7 @@ class MonsterSkillVO {
     public fill(data){
 
         this.name = data.name;
-        this.des = data.des;
+        this.des = data.des.replace(/\[/g,'<font color="#c71585">').replace(/\]/g,'</font>');
         this.mid = data.mid;
         this.index = data.index;
         this.mv = data.mv;
@@ -43,7 +43,7 @@ class MonsterSkillVO {
             this.type = 3;
 
 
-        var spType = ['CD','TYPE','XTYPE','XTYPE',''];
+        var spType = ['TYPE','XTYPE','STYPE','CD',''];
         this.sortIndex =  this.type*100000 + (spType.indexOf(this.sp[0]) + 1)*10000 + parseInt(this.sp[1] || '0')*100 +  this.index
     }
 

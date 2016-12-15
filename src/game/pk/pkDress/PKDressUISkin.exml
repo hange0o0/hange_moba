@@ -14,7 +14,7 @@
 			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin"/>
 			<e:List id="list" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseListItemSkin">
 				<e:layout>
-					<e:TileLayout paddingLeft="5" verticalGap="20" horizontalGap="10"/>
+					<e:TileLayout paddingLeft="5" verticalGap="20" horizontalGap="10" paddingTop="10"/>
 				</e:layout>
 				<e:ArrayCollection>
 					<e:Array>

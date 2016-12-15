@@ -5,20 +5,14 @@ class VideoTopStatItem extends game.BaseItem {
         this.skinName = "VideoTopStatItemSkin";
     }
 
-    private hpText: eui.Label;
-    private backBar: eui.Image;
-    private frontBar: eui.Image;
+    private mc: eui.Image;
 
-
-
-    private barWidth = 150;
-    public mcWidth = 160;
 
     public childrenCreated() {
         //this.addBtnEvent(this.closeBtn,this.onKill);
     }
 
     public dataChanged() {
-
+         this.mc.source = 'buff_'+this.data.id+'_png'
     }
 }

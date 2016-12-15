@@ -13,7 +13,10 @@ class GameEvent {
         talk_change:'talk_change',
         friend_log_change:'friend_log_change',
         friend_pk_change:'friend_pk_change',
-        level_change:'level_change'
+        level_change:'level_change',
+
+
+        timer:'timer'
     };
 
     public static sys = {

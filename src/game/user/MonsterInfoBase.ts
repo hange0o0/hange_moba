@@ -45,11 +45,12 @@ class MonsterInfoBase extends game.BaseContainer {
         //其本信息
         this.headMC.source = vo.url;
         //this.typeText.text = MonsterKindVO.getObject(vo.type).word
-        this.nameText.text = vo.name;
-        this.mpText.text = vo.mp;
-        this.coinText.text = vo.cost;
-        this.levelText.text = 'LV.' + UM.getMonsterLevel(monsterID);
-        this.levelGroup.visible = true;
+        var nameStr = vo.name;
+
+        this.mpText.text = '怒气上限：' + vo.mp;
+        this.coinText.text = '召唤花费：' + vo.cost;
+        //this.levelText.text = 'LV.' + UM.getMonsterLevel(monsterID);
+        this.levelGroup.visible = false;
         //this.txt.text = vo.des;
         //this.coinText.text = 'X' + vo.cost;
         //if(vo.wood)
@@ -87,19 +88,19 @@ class MonsterInfoBase extends game.BaseContainer {
         {
             var v = specialData.fight || 0;
             fightData = {atk:v,hp:v,speed:v};
-            this.levelGroup.visible = false;
+            //this.levelGroup.visible = false;
         }
         else
         {
             if(specialData.isEqual)
             {
                 fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
-                this.levelGroup.visible = false;
+                //this.levelGroup.visible = false;
             }
 
             else if(specialData.isBase)   {
 
-                this.levelGroup.visible = false;
+                //this.levelGroup.visible = false;
                 fightData = {atk:0,hp:0,speed:0};
             }
             else  //我自己
@@ -108,9 +109,12 @@ class MonsterInfoBase extends game.BaseContainer {
                 fightData = UM.getTecMonsterAdd(monsterID);
                 fightData.atk += force;
                 fightData.hp += force;
+                nameStr += '  <font color="#226C17" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
             }
 
         }
+
+        this.setHtml(this.nameText,nameStr)
 
         var atk = Math.round(vo.atk * (1+fightData.atk/100));
         var hp = Math.round(vo.hp * (1+fightData.hp/100));
@@ -126,15 +130,15 @@ class MonsterInfoBase extends game.BaseContainer {
             var atkAdd = Math.round(vo.atk * (1+fightData.atk/100)) - atk;
             var hpAdd = Math.round(vo.hp * (1+fightData.hp/100)) - hp;UM.tec.monster[monsterID] --;       //降回去
 
-            this.setHtml(this.atkText,NumberUtil.addNumSeparator(atk) + '<font color="#00ff00"> +'+atkAdd+'</font>');
-            this.setHtml(this.hpText, NumberUtil.addNumSeparator(hp) + '<font color="#00ff00"> +'+hpAdd+'</font>');
-            this.speedText.text = NumberUtil.addNumSeparator(speed);
+            this.setHtml(this.atkText,'攻击：' + NumberUtil.addNumSeparator(atk) + '<font color="#00ff00"> +'+atkAdd+'</font>');
+            this.setHtml(this.hpText, '生命：' + NumberUtil.addNumSeparator(hp) + '<font color="#00ff00"> +'+hpAdd+'</font>');
+            this.speedText.text = '速度：' + NumberUtil.addNumSeparator(speed);
         }
         else
         {
-            this.atkText.text = NumberUtil.addNumSeparator(atk);
-            this.hpText.text = NumberUtil.addNumSeparator(hp);
-            this.speedText.text = NumberUtil.addNumSeparator(speed);
+            this.atkText.text = '攻击：' + NumberUtil.addNumSeparator(atk);
+            this.hpText.text = '生命：' + NumberUtil.addNumSeparator(hp);
+            this.speedText.text = '速度：' + NumberUtil.addNumSeparator(speed);
         }
 
 

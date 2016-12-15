@@ -8,7 +8,7 @@
 	</e:Group>
 	<e:Image source="card_bg_png" x="58" y="38" height="306" scale9Grid="72,75,87,71"/>
 	<e:Image id="headMC" source="pk_bg_jpg" x="73" y="49" width="210" height="280"/>
-	<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A"/>
+	<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A" verticalAlign="bottom"/>
 	<e:Group id="typeGroup" x="337" y="32">
 	</e:Group>
 	<e:Group x="335" y="96">
@@ -50,12 +50,5 @@
 		<e:layout>
 			<e:VerticalLayout gap="10"/>
 		</e:layout>
-		<e:ArrayCollection>
-			<e:Array>
-				<e:Object label="数据1"/>
-				<e:Object label="数据2"/>
-				<e:Object label="数据3"/>
-			</e:Array>
-		</e:ArrayCollection>
 	</e:List>
 </e:Skin>

@@ -5,19 +5,13 @@ class PKDressChooseListItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
-    private nickText: eui.Label;
-    private desText: eui.Label;
-    private typeText: eui.Label;
-    private atkText: eui.Label;
-    private hpText: eui.Label;
-    private speedText: eui.Label;
-    private forceText: eui.Label;
-    private useText: eui.Label;
-    private coinText: eui.Label;
-    private woodGroup: eui.Group;
-    private woodText: eui.Label;
-    private infoBtn: eui.Button;
     private useBtn: eui.Button;
+    private infoGroup: eui.Group;
+    private coinText: eui.Label;
+    private levelGroup: eui.Group;
+    private levelText: eui.Label;
+
+
 
 
 
@@ -29,14 +23,15 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
         this.addBtnEvent(this.useBtn,this.onClick);
-        this.addBtnEvent(this.infoBtn,this.onInfo);
+        this.addBtnEvent(this,this.onInfo);
         //MyTool.addLongTouch(this,this.onLongTouch,this)
 
 
     }
 
-    private onClick(e:egret.TouchEvent = null){
-        if(this.desText.text)
+    private onClick(e:egret.TouchEvent){
+        e.stopImmediatePropagation();
+        if(this.useBtn.skinName == 'Btn_d2Skin')
             return;
         PKDressUI.getInstance().addMonster(this.data.vo.id);
     }
@@ -48,29 +43,23 @@ class PKDressChooseListItem extends game.BaseItem {
 
     public dataChanged(){
          var vo:MonsterVO = this.data.vo;
-        this.headMC.source = vo.thumb
+        this.headMC.source = vo.url
 
         //this.typeText.text = MonsterKindVO.getObject(vo.type).word;
-        this.nickText.text = vo.name
+        //this.nickText.text = vo.name
 
 
 
 
-        var fightData,star,forceStr;
+        //var fightData,star,forceStr;
         if(this.data.specialData.isEqual)
         {
-            fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
-            star = 1//Math.max(1,vo.collect);
-            forceStr = '0';
+            MyTool.removeMC(this.levelGroup);
         }
         else  //我自己
         {
-            var force = (UM.award_force + UM.tec_force);
-            fightData = UM.getTecMonsterAdd(vo.id);
-            fightData.atk += force;
-            fightData.hp += force;
-            forceStr = UM.getTecAdd('monster',UM.getMonsterLevel(vo.id)) + UM.getForce() + '';
-            star = UM.getMonsterCollect(vo.id)
+            this.infoGroup.addChild(this.levelGroup);
+            this.levelText.text = '' + UM.getMonsterLevel(vo.id)
         }
 
 
@@ -81,12 +70,13 @@ class PKDressChooseListItem extends game.BaseItem {
         //    else
         //        forceStr += '+2%';
         //}
-        this.forceText.text = '加成：' + forceStr;
+        //this.forceText.text = '加成：' + forceStr;
 
-        if(!this.data.num)
+        var num = PKDressUI.getInstance().getMonsterNum(vo.id);
+        if(!num)
             this.coinText.text = vo.cost;
         else
-            this.coinText.text = PKManager.getInstance().getCostByNum(vo.id,this.data.num) + ' (初始:' + vo.cost + ')';
+            this.coinText.text = PKManager.getInstance().getCostByNum(vo.id,num)// + ' (初始:' + vo.cost + ')';
         //this.woodText.text = vo.wood;
         //this.woodGroup.visible = vo.wood;
 
@@ -94,17 +84,17 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
 
-        this.atkText.text = '攻：' +  Math.round(vo.atk * (1+fightData.atk/100));
-        this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));
-        this.speedText.text = '速：' +  Math.round(vo.speed * (1+fightData.speed/100));
-
-        //var max = Math.min(star,3);
-        if(this.data.num)
-            this.useText.text = '当前上阵：'+this.data.num + '个';
-        else
-            this.useText.text = '当前上阵：' + '无';
-
-        this.desText.text = '';
+        //this.atkText.text = '攻：' +  Math.round(vo.atk * (1+fightData.atk/100));
+        //this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));
+        //this.speedText.text = '速：' +  Math.round(vo.speed * (1+fightData.speed/100));
+        //
+        ////var max = Math.min(star,3);
+        //if(this.data.num)
+        //    this.useText.text = '当前上阵：'+this.data.num + '个';
+        //else
+        //    this.useText.text = '当前上阵：' + '无';
+        //
+        //this.desText.text = '';
 
         //if(max<= this.data.num)
         //{
@@ -115,14 +105,16 @@ class PKDressChooseListItem extends game.BaseItem {
         //    this.desText.text = ('银符不足');
         //}
         var arr = this.data.chooseList.concat(vo.id)
+        this.useBtn.skinName = 'Btn_r2Skin'
+        this.coinText.textColor = 0xCCB48E
         if(PKManager.getInstance().getCost(arr) > PKManager.PKCost)
         {
-            this.desText.text = ('金符不足');
+            this.coinText.textColor = 0xFF0000
+            this.useBtn.skinName = 'Btn_d2Skin'
         }
         else if(PKDressUI.getInstance().chooseList.length >=6)
         {
-            this.desText.text = ('上阵位已满');
+            this.useBtn.skinName = 'Btn_d2Skin'
         }
-        this.useBtn.visible = this.desText.text == ''
     }
 }

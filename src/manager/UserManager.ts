@@ -39,6 +39,8 @@ class UserManager {
     public energy: any;
     public pk_common: any;
 
+    public maxEnergy = 60;
+
 
     public fill(data:any):void{
         this.gameid = data.gameid;
@@ -77,13 +79,17 @@ class UserManager {
         return this.tec_force + this.award_force;
     }
 
+    public getMaxEnergy(){
+
+    }
+
     public getEnergy(){
         var v = this.energy.vip?24:30;
         var t = TM.now();
         var add =   Math.floor((t - this.energy.t)/v)
         if(add > 0)
         {
-            this.energy.v = Math.min(60,this.energy.v + add);
+            this.energy.v = Math.min(this.maxEnergy,this.energy.v + add);
             this.energy.t = this.energy.t + add*v;
             EM.dispatchEventWith(GameEvent.client.energy_change)
         }
@@ -201,7 +207,8 @@ class UserManager {
         return this.tec.monster[id] || 0;
     }
 
-    public getCollectNum(id){
+    public getCollectNum(id?){
+        id = 0;
         return  this.collect.num[id] || 0
     }
 
