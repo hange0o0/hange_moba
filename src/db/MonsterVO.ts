@@ -40,6 +40,10 @@ class MonsterVO {
     public sfn4
     public sfn5
 
+    //0，近程，1远程对方，2远程对方子弹,3远程已方
+    public mvType1 = {type:0,mv:[15]}
+    public mvType2 = {type:1,mv:[15]}
+
     public mv1 = []  //作为出战要用的技能动画
     public mv2 = []  //作为辅助要用的技能动画
 

@@ -9,8 +9,10 @@ class PKItem extends game.BaseItem {
 
 
     public index;
-    public playerData;
+    public team;
     public timer
+
+    public enemy
 
     public ox;   //原始的
     public oy;   //原始的
@@ -24,14 +26,15 @@ class PKItem extends game.BaseItem {
     public dataChanged() {
         var vo = this.data.vo;
         this.headMC.source = vo.thumb
-        if(this.data.isEnemy)
-        {
-            this.headMC.scaleY = -1;
-        }
-        else
-        {
-            this.headMC.scaleY = 1;
-        }
+        this.team = this.data.team
+        //if(this.data.isEnemy)
+        //{
+        //    this.headMC.scaleY = -1;
+        //}
+        //else
+        //{
+        //    this.headMC.scaleY = 1;
+        //}
     }
 
     public stopMV(){

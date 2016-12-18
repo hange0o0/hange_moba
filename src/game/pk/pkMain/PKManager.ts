@@ -31,6 +31,7 @@ class PKManager {
     public team1Base;
     public team2Base;
     public pkList = [];
+    public mainVideoList = [];
 
     public team1Head
     public team1Nick
@@ -330,19 +331,105 @@ class PKManager {
             oo.index = i+1;
             this.pkList.push(oo);
         }
+        //表现
+        this.mainVideoList.length = 0;
+        for(var i=0;i<this.pkList.length;i++)
+        {
+            var player1 = this.pkList[i].player1
+            var player2 = this.pkList[i].player2
+            var currentVideo:any = [];
+            var listObj = {list:currentVideo,quick:false,next:false,p1:player1.index,p2:player2.index}
+            this.mainVideoList.push(listObj);
+            if(player1.speed == player2.speed)
+            {
+                var vo1 = MonsterVO.getObject(player1.mid);
+                var vo2 = MonsterVO.getObject(player2.mid);
+                if(vo1.mvType1.type == 0)
+                    currentVideo.push({type:'atk',value:1})
+                else if(vo2.mvType1.type == 0)
+                    currentVideo.push({type:'atk',value:2})
+                else
+                    currentVideo.push({type:'atk',value:1})
+            }
+            else
+            {
+                var movePlayer = player1.speed > player2.speed ? player1:player2
+                currentVideo.push({type:'atk',value:movePlayer.team});
+                //if(!movePlayer.isWin)
+                //{
+                //    currentVideo.push({type:'move',value:movePlayer.team==1?2:1});
+                //}
+            }
+            //
+
+            if(!player1.win && !player2.win)
+            {
+                currentVideo.push({type:'die',value:1});
+                currentVideo.push({type:'die',value:2});
+            }
+            else if(player1.win)
+            {
+                currentVideo.push({type:'lastAtk',value:1})
+                currentVideo.push({type:'die',value:2});
+            }
+            else
+            {
+                currentVideo.push({type:'lastAtk',value:2})
+                currentVideo.push({type:'die',value:1});
+            }
+
+
+            if(player1.winCount == 3)
+                currentVideo.push({type:'win3',value:1});
+            if(player2.winCount == 3)
+                currentVideo.push({type:'win3',value:2});
+
+            if(this.pkList[i+1])
+            {
+                listObj.next = true;
+                //var player1 = this.pkList[i+1].player1
+                //var player2 = this.pkList[i+1].player2
+                //if(player1.speed == player2.speed)
+                //{
+                //    for(var j=0;j<movePlayerArr.length;j++)
+                //    {
+                //        if(player1.id == movePlayerArr[j].id || player2.id == movePlayerArr[j].id)
+                //        {
+                //            listObj.quick = true;
+                //            break;
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    var movePlayer = player1.speed > player2.speed ? player1:player2
+                //    for(var j=0;j<movePlayerArr.length;j++)
+                //    {
+                //        if(movePlayer.id == movePlayerArr[j].id)
+                //        {
+                //            listObj.quick = true;
+                //            break;
+                //        }
+                //    }
+                //}
+            }
+
+        }
 
         function getPlayer(team,index,displayTeam){
             var p = data.pkdata[index]['player' + team][0];
             var base = data['team'+team+'base'].mb[p.mid];
             var nextP;
-            if(data.pkdata[i+1])
-                nextP = data.pkdata[index]['player' + team][0];
+            if(data.pkdata[index+1])
+                nextP = data.pkdata[index + 1]['player' + team][0];
             var result = data.pkdata[index].result;
             var oo:any = {};
             oo.team = displayTeam;
             if(self.teamChange)
                 oo.team = team == 1?2:1;
 
+            oo.id = p.id
+            oo.speed = base.speed;
             oo.index = p.id%10;
             oo.mid = p.mid;
             oo.beforeMax = base.hp + (p.add_hp || 0);
