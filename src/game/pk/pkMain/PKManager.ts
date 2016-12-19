@@ -362,12 +362,12 @@ class PKManager {
             }
             //
 
-            if(!player1.win && !player2.win)
+            if(!player1.isWin && !player2.isWin)
             {
                 currentVideo.push({type:'die',value:1});
                 currentVideo.push({type:'die',value:2});
             }
-            else if(player1.win)
+            else if(player1.isWin)
             {
                 currentVideo.push({type:'lastAtk',value:1})
                 currentVideo.push({type:'die',value:2});

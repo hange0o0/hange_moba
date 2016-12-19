@@ -5,21 +5,27 @@ class PKItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
+    private headBG: eui.Image;
     private headMask: eui.Rect;
 
 
+    public id
     public index;
     public team;
     public timer
 
-    public enemy
+    public enemy //对方出战单位
+    public self  //已方出战单位
+    public isPKing
+    public out = false;
 
     public ox;   //原始的
     public oy;   //原始的
     public ar = -1; //攻击方向，-1为向上，1为向下
 
+
     public childrenCreated() {
-        //this.headMC.mask = this.headMask;
+        this.headMC.mask = this.headMask;
     }
 
 
@@ -27,6 +33,12 @@ class PKItem extends game.BaseItem {
         var vo = this.data.vo;
         this.headMC.source = vo.thumb
         this.team = this.data.team
+        this.index = this.data.index
+        this.id = this.team * 100 + this.index;
+        if(this.team == 1)
+            this.headBG.source = 'head_border2_png'
+        else
+            this.headBG.source = 'head_border1_png'
         //if(this.data.isEnemy)
         //{
         //    this.headMC.scaleY = -1;
@@ -39,6 +51,7 @@ class PKItem extends game.BaseItem {
 
     public stopMV(){
         egret.clearTimeout(this.timer)
+        egret.Tween.removeTweens(this)
     }
 
     //模拟行走(delay后开始，一共time MS（算上delay）)

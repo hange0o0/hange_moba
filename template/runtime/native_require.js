@@ -84,6 +84,7 @@ var game_file_list = [
 	"bin-debug/game/pk/pkMain/PKFailUI.js",
 	"bin-debug/game/pk/pkMain/PKItem.js",
 	"bin-debug/game/pk/pkMain/PKItemBig.js",
+	"bin-debug/game/pk/pkMain/PKMainMV.js",
 	"bin-debug/game/pk/pkMain/PKMainUI.js",
 	"bin-debug/game/pk/pkMain/PKManager.js",
 	"bin-debug/game/pk/pkMain/PKResultItem.js",

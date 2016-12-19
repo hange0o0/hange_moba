@@ -12,6 +12,18 @@ class AniManager {
     private mvList = [];
 
 
+    //frameRate:默认是12，要变快就加大，慢变就减小
+    public mvConfig = {
+        '6':{frameRate:24},
+        '33':{scale:1.5},
+        '102':{scale:2},
+        '124':{frameRate:24,scale:1.5},
+        '154a':{frameRate:24},
+        '166':{frameRate:24,scale:1.5},
+        '176':{frameRate:24}
+    };
+
+
 
     public constructor() {
 

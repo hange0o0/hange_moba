@@ -41,8 +41,9 @@ class MonsterVO {
     public sfn5
 
     //0，近程，1远程对方，2远程对方子弹,3远程已方
-    public mvType1 = {type:0,mv:[15]}
-    public mvType2 = {type:1,mv:[15]}
+    public mvType1 = {type:0,mv:[6,16,136]}
+    public mvType2 = {type:2,mv:[10,28]}
+    public mvList = ['skill6_png','skill6_json','skill16_png','skill16_json','skill136_png','skill136_json','skill10_png','skill10_json',];
 
     public mv1 = []  //作为出战要用的技能动画
     public mv2 = []  //作为辅助要用的技能动画
@@ -50,6 +51,8 @@ class MonsterVO {
     public constructor(data?: any) {
         if(data)
             this.fill(data);
+        this.mvType1.type = Math.random()>0.5?0:1;
+        //this.mvType2.type = Math.random()>0.5?0:3;
 
     }
 

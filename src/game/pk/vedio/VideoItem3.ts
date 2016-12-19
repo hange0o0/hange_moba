@@ -195,8 +195,24 @@ class VideoItem3 extends game.BaseItem {
     private decode_skill(data){
         var VC = VideoCode.getInstance();
         var atker = VC.getPlayerByID(data.atker);
-        var mvo = atker.mvo;
-        var svo = mvo.getSkillByID(data.skillID,atker.isPKing);
+        if(data.atker >= 10)
+        {
+            var mvo = atker.mvo;
+            var svo = mvo.getSkillByID(data.skillID,atker.isPKing);
+        }
+        else
+        {
+            var VM = VideoManager.getInstance()
+            if(data.atker == 1)
+                var oo = VM.leaderSkill1[data.skillID - 2]
+            else
+                var oo = VM.leaderSkill2[data.skillID - 2]
+            var mvo = oo.mvo;
+            var svo = oo.svo;
+            atker.mid = mvo.id;
+
+        }
+
         if(svo.mv == 'atk')
         {
             this.decode_atk(data);

@@ -7,16 +7,7 @@ class VideoMV {
         return this._instance;
     }
 
-    //frameRate:默认是12，要变快就加大，慢变就减小
-    public mvConfig = {
-        '6':{frameRate:24},
-        '33':{scale:1.5},
-        '102':{scale:2},
-        '124':{frameRate:24,scale:1.5},
-        '154a':{frameRate:24},
-        '166':{frameRate:24,scale:1.5},
-        '176':{frameRate:24}
-    };
+
 
     private getMVKey(key){
         return 'skill' + parseInt(key);
@@ -309,7 +300,7 @@ class VideoMV {
         mv.x = item.x;
         mv.y = item.y;
         VideoUI.getInstance().addToGroup(mv);
-        var config = this.mvConfig[key]
+        var config = AM.mvConfig[key]
         if(config)
         {
             if(config.scale)
@@ -422,10 +413,12 @@ class VideoMV {
     }
 
     //移向指定玩家
-    private moveToPlayer(a,b,fun1,thisObj?){
+    public moveToPlayer(a,b,fun1,thisObj?){
         var tw:egret.Tween = egret.Tween.get(a);
         var desX = (a.ox - b.ox)/5;
-        tw.to({x:b.ox + desX,y:b.oy + b.ar*100*Math.abs(b.scaleY)}, 300).call(fun1,thisObj)
+        var oo = {x:b.ox + desX,y:b.oy + b.ar*100*Math.abs(b.scaleY)};
+        tw.to(oo, 300).call(fun1,thisObj)
+        return oo;
     }
 
     //移动动画，移到中场

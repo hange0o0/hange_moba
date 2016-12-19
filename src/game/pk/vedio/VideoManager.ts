@@ -36,17 +36,20 @@ class VideoManager {
         var mvo = MonsterVO.getObject(arr[1]);
         var temp = arr[2].split('');
         var id = temp.pop();
-        var svo = mvo.getSkillByID(id,false);
+        var svo = mvo.getSkillByID(id,true);
         var mv:any;
         if(temp.length < 2)
             mv = svo.mv;
         else
             mv = 'l' + temp.pop();
         return {
-            name:mvo.name, //+'·'+ svo.name,
-            des:'',
-            type:3,
-            mv:mv
+            svo:svo,
+            mvo:mvo
+            //,
+            //name:mvo.name, //+'·'+ svo.name,
+            //des:'',
+            //type:3,
+            //mv:mv
         }
 
     }
@@ -55,43 +58,46 @@ class VideoManager {
     public getVideoAniGroup(){
         var PKM = PKManager.getInstance();
         var mArr = [];
-        for(var i=0;i<this.baseData.player1.length;i++)
-        {
-            var vo = MonsterVO.getObject(this.baseData.player1[i].mid);
-            if(i==0)
-                mArr = mArr.concat(vo.mv1)
-            else
-                mArr = mArr.concat(vo.mv2)
-
-        }
-        for(var i=0;i<this.baseData.player2.length;i++)
-        {
-            var vo = MonsterVO.getObject(this.baseData.player2[i].mid);
-            if(i==0)
-                mArr = mArr.concat(vo.mv1)
-            else
-                mArr = mArr.concat(vo.mv2)
-        }
-        for(var i=0;i<this.leaderSkill1.length;i++)
-        {
-            mArr.push(this.leaderSkill1[i].mv);
-        }
-        for(var i=0;i<this.leaderSkill2.length;i++)
-        {
-            mArr.push(this.leaderSkill2[i].mv);
-        }
-        //mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
         var mObj = {};
+        for(var i=0;i<PKM.team1Base.list.length;i++)
+        {
+            var vo = MonsterVO.getObject(PKM.team1Base.list[i]);
+            mArr = mArr.concat(vo.mvList)
+        }
+        for(var i=0;i<PKM.team2Base.list.length;i++)
+        {
+            var vo = MonsterVO.getObject(PKM.team2Base.list[i]);
+            mArr = mArr.concat(vo.mvList)
+        }
+
+        //for(var i=0;i<this.leaderSkill1.length;i++)
+        //{
+        //    mArr.push(this.leaderSkill1[i].mv);
+        //}
+        //for(var i=0;i<this.leaderSkill2.length;i++)
+        //{
+        //    mArr.push(this.leaderSkill2[i].mv);
+        //}
+        //mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
+
+        //mObj['skill22_png'] = true
+        mObj['skill28_png'] = true
+        mObj['skill34_png'] = true
+        //mObj['skill22_json'] = true
+        mObj['skill28_json'] = true
+        mObj['skill34_json'] = true
         for(var i=0;i<mArr.length;i++)
         {
-            var arr = mArr[i];
-            if(arr)
-            {
-                for(var j=0;j<arr.length;j++)
-                {
-                    mObj[arr[j]] = true;
-                }
-            }
+            mObj[mArr[i]] = true;
+
+            //var arr = mArr[i];
+            //if(arr)
+            //{
+            //    for(var j=0;j<arr.length;j++)
+            //    {
+            //        mObj[arr[j]] = true;
+                //}
+            //}
         }
 
         var arr2 = [];

@@ -22,7 +22,7 @@ class DebugSkillItem extends game.BaseItem {
         mv.x = 100;
         mv.y = 100;
         this.addChild(mv);
-        var config = VideoMV.getInstance().mvConfig[key.substr(5)]
+        var config = AM.mvConfig[key.substr(5)]
         if(config)
         {
             if(config.scale)
