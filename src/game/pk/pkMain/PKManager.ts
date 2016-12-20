@@ -344,21 +344,14 @@ class PKManager {
             {
                 var vo1 = MonsterVO.getObject(player1.mid);
                 var vo2 = MonsterVO.getObject(player2.mid);
-                if(vo1.mvType1.type == 0)
-                    currentVideo.push({type:'atk',value:1})
-                else if(vo2.mvType1.type == 0)
-                    currentVideo.push({type:'atk',value:2})
-                else
-                    currentVideo.push({type:'atk',value:1})
+                var arr = [player1,player2]
+                ArrayUtil.sortByField(arr,['index','mid','id'],[1,0,0]);
+                currentVideo.push({type:'atk',value:arr[0].team})
             }
             else
             {
                 var movePlayer = player1.speed > player2.speed ? player1:player2
                 currentVideo.push({type:'atk',value:movePlayer.team});
-                //if(!movePlayer.isWin)
-                //{
-                //    currentVideo.push({type:'move',value:movePlayer.team==1?2:1});
-                //}
             }
             //
 

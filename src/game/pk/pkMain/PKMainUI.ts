@@ -49,6 +49,9 @@ class PKMainUI extends game.BaseUI {
     private player1
     private player2
 
+    private randomSeed
+    private fightHeight = 960
+
 
     public childrenCreated() {
         super.childrenCreated();
@@ -65,12 +68,30 @@ class PKMainUI extends game.BaseUI {
         {
             this.posArray.push({x:320,y:startY + stepY*(i+2)});
         }
-        //this.enemyGroup.scaleY = -1;
+        this.selfGroup.height = this.fightHeight;
 
         //this.bg0.width = 325;
         //this.bg1.width = 325;
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
         this.bg1.scrollRect = new egret.Rectangle(315,0,325,1500)
+    }
+
+    private initSeed(){
+        var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
+        this.randomSeed = 0;
+        for(var i=0;i<arr.length;i++)
+        {
+            this.randomSeed += Math.pow(arr[i],2)*(i+1) + arr[i]*100;
+        }
+        this.randomSeed /= PKManager.getInstance().team1Base.list.length;
+    }
+
+    public random(){
+        var seed = this.randomSeed;
+        seed = ( seed * 9301 + 49297 ) % 233280;
+        var rd = seed / ( 233280.0 );
+        this.randomSeed = rd * 100000000;
+        return rd;
     }
 
     private onJump(){
@@ -88,6 +109,7 @@ class PKMainUI extends game.BaseUI {
         }
 
         this.pkList = PKManager.getInstance().mainVideoList.concat();
+        this.initSeed();
         this.cardIndex1 = -1;
         this.cardIndex2 = -1;
         super.show();
@@ -138,13 +160,13 @@ class PKMainUI extends game.BaseUI {
         }
 
         //this.enemyGroup.y = stageHeight/2 - (400+40);
-        //this.selfGroup.y = (stageHeight - 880)/2// + 40
+        this.selfGroup.y = (stageHeight - this.fightHeight)/2// + 40
 
     }
 
     private addSceneMovie(){
         var Y =this.stageHeight/2;
-        var desY =  Math.random()*600-300
+        var desY =  this.random()*600-300
         var scale = 1.5
 
         this.bg0.x = -320-170;
@@ -175,33 +197,29 @@ class PKMainUI extends game.BaseUI {
         tw.to({x:-6,y:-5},80).to({x:5,y:3},120).to({x:-2,y:-1},50).to({x:0,y:0},30)
     }
 
+    //加所有单位
     private addItemMovie(){
-
-        //34,28,22
-        //this.hide();
-        //return;
-        var desY = this.stageHeight/2;
         var myTeam = PKManager.getInstance().team1Base.list
-        var time = this.stageHeight * 2;
         for(var i=0;i<myTeam.length;i++)
         {
-            this.addOneItem(myTeam[i],1,i,Math.floor(1+i*200 + 100*Math.random()));
+            this.addOneItem(myTeam[i],1,i,Math.floor(1+i*200 + 100*this.random()));
         }
         this.resetXY(this.itemSelf,1);
 
         var enemyTeam = PKManager.getInstance().team2Base.list
         for(var i=0;i<enemyTeam.length;i++)
         {
-            this.addOneItem(enemyTeam[i],2,i,Math.floor(1+i*200 + 100*Math.random()));
+            this.addOneItem(enemyTeam[i],2,i,Math.floor(1+i*200 + 100*this.random()));
         }
         this.resetXY(this.itemEnemy,2);
 
         this.jumpBtn.visible = true;
 
         this.timer = egret.setTimeout(this.playOne,this,2500)
-        //this.playOne()
+
     }
 
+    //加一个单位到舞台上
     private addOneItem(data,team,index,delay){
         var item =this.getItem();
         item.data = {vo:MonsterVO.getObject(data),team:team,index:index};
@@ -219,10 +237,12 @@ class PKMainUI extends game.BaseUI {
         return item;
     }
 
+    //两点间距离
     private getDis(p1,p2){
         return Math.pow(Math.pow(p1.x-p2.x,2) + Math.pow(p1.y-p2.y,2),0.5)
     }
 
+    //定位
     private resetXY(arr,team){
         var ok = false
         var tryTime2 = 1000;
@@ -238,12 +258,10 @@ class PKMainUI extends game.BaseUI {
                 ok = false;
                 while(tryTime --)
                 {
-                    var x1 = Math.floor(280 * Math.random()) + 180
-                    var y1 = Math.floor(280 * Math.random()) + 60
+                    var x1 = Math.floor(280 * this.random()) + 180
+                    var y1 = Math.floor(280 * this.random()) + 60
                     ok = true
                     for(var s in addArr){
-                        //var x2 = addArr[s].x
-                        //var y2 = addArr[s].y
                         var dis = this.getDis({x:x1,y:y1},addArr[s]);
                         if(dis < 120)
                         {
@@ -272,7 +290,7 @@ class PKMainUI extends game.BaseUI {
             }
         }
         var des = (640 - (maxX - minX))/2 - minX;
-        var middle = this.stageHeight/2
+        var middle = this.fightHeight/2
         if(team == 1)
         {
             ArrayUtil.sortByField(addArr,['y'],[0])
@@ -293,6 +311,7 @@ class PKMainUI extends game.BaseUI {
         }
     }
 
+    //玩家出场动画
     private showItemMV(item){
         var VM = PKMainMV.getInstance();
         if(item.team == 1)
@@ -355,7 +374,7 @@ class PKMainUI extends game.BaseUI {
                 player = (this.player1)
             else
                 player = (this.player2)
-            this.pkOne(player)
+            this.pkOne(player,true)
         }
         else if(oo.type == 'die')
         {
@@ -393,6 +412,9 @@ class PKMainUI extends game.BaseUI {
                     player = (this.player2)
                 else
                     player = (this.player1)
+
+                if(this.random() > 0.6) //可能会少播2回合
+                    this.pkStep += 2;
                break;
             case 3:
                 if(this.atker == 1)
@@ -438,119 +460,114 @@ class PKMainUI extends game.BaseUI {
         }
 
         if(player) {
-            //console.log(player.team*10 + player.index)
             this.pkOne(player)
         }
         else
-            this.nextPK(); //
-
-
-
+            this.nextPK();
     }
 
-    private pkOne(item){
+    private pkOne(item,shake?){
 
         var mvo = item.data.vo;
-        var skillData = item.isPKing?mvo.mvType1:mvo.mvType2;
+        if(item.isPKing)
+        {
+            var arr = mvo.mvType1;
+        }
+        else
+        {
+            var arr = mvo.mvType2;
+        }
+
+        var skillData = arr[Math.floor(arr.length * this.random())];
+
         var newPos:any;
         if(skillData.type ==0) //移过去近攻
         {
             //移过去
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.stageHeight - 80)
+            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80)
             {
-                newPos = this.findEmptyPos(item,this.getCurrentMap(),200)
+                newPos = this.findEmptyPos(item,this.getCurrentMap(),120)
                 var VM = PKMainMV.getInstance();
                 VM.jumpToXY(item,newPos,function(){
-                    this.atkType0(item);
+                    this.atkType0(item,skillData,shake);
                 },this,300);
             }
             else
-                this.atkType0(item);
+                this.atkType0(item,skillData,shake);
         }
         else if(skillData.type ==1) //1远程对方
         {
             //移过去
             var dis = this.getDis(item,item.enemy);
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.stageHeight - 80 ||  dis< 200)
+            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80 ||  dis< 200 || dis > 500)
             {
-                newPos = this.findEmptyPos(item.enemy,this.getCurrentMap(),250)
+                if(dis > 500) {
+                    var mid = this.getMiddleXY(item, item.enemy);
+                    newPos = this.findRoundPos(mid, this.getCurrentMap(), 150)
+                    if (!newPos)
+                        newPos = this.findEmptyPos(mid, this.getCurrentMap(), 0)
+                }
+                else
+                    newPos = this.findEmptyPos(item.enemy,this.getCurrentMap(),250)
                 var VM = PKMainMV.getInstance();
                 VM.jumpToXY(item,newPos,function(){
-                    this.atkType1(item);
-                },this,300);
-            }
-            else if(dis > 500)
-            {
-                var mid = this.getMiddleXY(item,item.enemy);
-                newPos = this.findRoundPos(mid,this.getCurrentMap(),150)
-                if(!newPos)
-                newPos = this.findEmptyPos(mid,this.getCurrentMap(),0)
-
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType1(item);
+                    this.atkType1(item,skillData,shake);
                 },this,300);
             }
             else
-                this.atkType1(item);
+                this.atkType1(item,skillData,shake);
         }
         else if(skillData.type == 2) //1远程字弹
         {
             //移过去
             var dis = this.getDis(item,item.enemy);
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.stageHeight - 80 ||  dis< 200 )
+            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80 ||  dis< 200 || dis > 500)
             {
-                newPos = this.findEmptyPos(item.enemy,this.getCurrentMap(),250)
+                if(dis > 500) {
+                    var mid = this.getMiddleXY(item, item.enemy);
+                    newPos = this.findRoundPos(mid, this.getCurrentMap(), 150)
+                    if (!newPos)
+                        newPos = this.findEmptyPos(mid, this.getCurrentMap(), 0)
+                }
+                else
+                    newPos = this.findEmptyPos(item.enemy,this.getCurrentMap(),250)
                 var VM = PKMainMV.getInstance();
                 VM.jumpToXY(item,newPos,function(){
-                    this.atkType2(item);
-                },this,300);
-            }
-            else if(dis > 500)
-            {
-                var mid = this.getMiddleXY(item,item.enemy);
-                newPos = this.findRoundPos(mid,this.getCurrentMap(),150)
-                if(!newPos)
-                    newPos = this.findEmptyPos(mid,this.getCurrentMap(),0)
-
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType2(item);
+                    this.atkType2(item,skillData,shake);
                 },this,300);
             }
             else
-                this.atkType2(item);
+                this.atkType2(item,skillData,shake);
         }
         else if(skillData.type ==3) //1远程自己
         {
             //移过去
             var dis = this.getDis(item,item.self);
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.stageHeight - 80)
+            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80 || dis > 400)
             {
-                newPos = this.findEmptyPos(item,this.getCurrentMap(),120)
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType3(item);
-                },this,300);
-            }
-            else if(dis > 500)
-            {
-                var mid = this.getMiddleXY(item,item.self);
-                newPos = this.findRoundPos(mid,this.getCurrentMap(),150)
-                if(!newPos)
-                    newPos = this.findEmptyPos(mid,this.getCurrentMap(),0)
+                if(dis > 400)
+                {
+                    var mid = this.getMiddleXY(item,item.self);
+                    newPos = this.findRoundPos(mid,this.getCurrentMap(),150)
+                    if(!newPos)
+                        newPos = this.findEmptyPos(mid,this.getCurrentMap(),0)
+                }
+                else
+                {
+                    newPos = this.findEmptyPos(item,this.getCurrentMap(),120)
+                }
 
                 var VM = PKMainMV.getInstance();
                 VM.jumpToXY(item,newPos,function(){
-                    this.atkType3(item);
+                    this.atkType3(item,skillData);
                 },this,300);
             }
             else
-                this.atkType3(item);
+                this.atkType3(item,skillData);
         }
     }
 
-    private atkType0(item){
+    private atkType0(item,mv,shake){
         var VM = PKMainMV.getInstance();
         var xy = VM.moveToTarget(item,item.enemy,function(){
             //被攻击击移后
@@ -560,55 +577,57 @@ class PKMainUI extends game.BaseUI {
             this.jumpOut(item.enemy,xy,[item]);
 
             //击中动画
-            var mv = item.isPKing?item.data.vo.mvType1.mv:item.data.vo.mvType2.mv
-            var id = ArrayUtil.randomOne(mv);
+            var id = mv.id;
             VM.playOnItem(id,item.enemy,null,null,xy);
+            if(shake)
+                this.shakeBG();
         },this)
         this.jumpOut(item,xy,[item.enemy]);
     }
 
-
     //1远程对方
-    private atkType1(item){
-        console.log('atkType1');
+    private atkType1(item,mv,shake){
         var VM = PKMainMV.getInstance();
         VM.skillMV(item,function(){
             //被攻击击移后
             this.timer = egret.setTimeout(this.nextPK,this,800)
 
-
+            VM.behitMV(item.enemy);
             //击中动画
-            var mv = item.isPKing?item.data.vo.mvType1.mv:item.data.vo.mvType2.mv
-            var id = ArrayUtil.randomOne(mv);
+            var id = mv.id;
             VM.playOnItem(id,item.enemy,null,null);
+            if(shake)
+                this.shakeBG()
         },this)
-
     }
+
     //2远程对方
-    private atkType2(item){
+    private atkType2(item,mv,shake){
         var VM = PKMainMV.getInstance();
-        var mv = item.isPKing?item.data.vo.mvType1.mv:item.data.vo.mvType2.mv;
+        var sendXY = VM.getDisPoint(item,item.enemy,50);
+        VM.skillMV2(item,item.enemy,function(){
+            VM.playBullet(mv.id,item,item.enemy,function(){
+                //被攻击击移后
+                var xy = VM.behitMoveBack(item,item.enemy,function(){
+                    this.timer = egret.setTimeout(this.nextPK,this,500)
+                },this)
+                this.jumpOut(item.enemy,xy,[item]);
 
-        VM.playBullet(mv[0],item,item.enemy,function(){
-            //被攻击击移后
-            var xy = VM.behitMoveBack(item,item.enemy,function(){
-                this.timer = egret.setTimeout(this.nextPK,this,500)
-            },this)
-            this.jumpOut(item.enemy,xy,[item]);
-
-            //击中动画
-            VM.playOnItem(mv[1],item.enemy,null,null,xy);
+                //击中动画
+                VM.playOnItem(mv.id2,item.enemy,null,null,xy);
+                if(shake)
+                    this.shakeBG()
+            },this,sendXY)
         },this)
-
     }
+
     //远程自己
-    private atkType3(item){
+    private atkType3(item,mv){
         var VM = PKMainMV.getInstance();
         VM.skillMV(item,function(){
             this.timer = egret.setTimeout(this.nextPK,this,800)
             //击中动画
-            var mv = item.isPKing?item.data.vo.mvType1.mv:item.data.vo.mvType2.mv
-            var id = ArrayUtil.randomOne(mv);
+            var id = mv.id;
             VM.playOnItem(id,item.self,null,null);
         },this)
 
@@ -629,6 +648,7 @@ class PKMainUI extends game.BaseUI {
         return map;
     }
 
+    //取两个目标之间的中间位置
     private getMiddleXY(a,b){
         return {
             x:a.x + (b.x - a.x)/2,
@@ -655,11 +675,11 @@ class PKMainUI extends game.BaseUI {
              if(oo != item && this.getDis(toXY,nowXY) < 120)
              {
                  delete map[oo.id];
-                 var newPos = this.findRoundPos(oo,map,60)
+                 var newPos = this.findRoundPos(oo,map,30)
                  if(!newPos)
-                    newPos = this.findRoundPos(oo,map,80)
+                    newPos = this.findRoundPos(oo,map,60)
                  if(!newPos)
-                    newPos = this.findRoundPos(oo,map,100)
+                    newPos = this.findRoundPos(oo,map,90)
                  if(!newPos)
                     newPos = this.findRoundPos(oo,map,120)
 
@@ -693,13 +713,13 @@ class PKMainUI extends game.BaseUI {
         var startX = Math.max(60,item.x - limit);
         var startY = Math.max(80,item.y - limit);
         var endX = Math.min(640-60, startX + limit*2);
-        var endY = Math.min(this.stageHeight-80, startY + limit*2);
+        var endY = Math.min(this.fightHeight-80, startY + limit*2);
         var step = 30;
         while(step--)
         {
             var ok = true;
-            var x = startX + Math.random()*(endX - startX);
-            var y = startY + Math.random()*(endY - startY)
+            var x = startX + this.random()*(endX - startX);
+            var y = startY + this.random()*(endY - startY)
             var xy = {x:x,y:y}
             for(var s in mapData){
                 var dis =this.getDis(xy,mapData[s])
@@ -725,11 +745,11 @@ class PKMainUI extends game.BaseUI {
         var x1 = Math.max(60,item.x - limit)
         var x2 = Math.min(640-60,item.x + limit)
         var y1 = Math.max(80,item.y - limit)
-        var y2 = Math.min(this.stageHeight-80,item.y + limit);
+        var y2 = Math.min(this.fightHeight-80,item.y + limit);
         var stepX1 = (x1-60)/5
         var stepX2 = (640-60 - x2)/5
         var stepY1 = (y1-80)/10
-        var stepY2 = (this.stageHeight-80 - y2)/10;
+        var stepY2 = (this.fightHeight-80 - y2)/10;
 
         while(step--)
         {
@@ -740,6 +760,7 @@ class PKMainUI extends game.BaseUI {
             }
             while(true)
             {
+                var error = false
                 if(step < 6)
                 {
                     var startX = x1;
@@ -747,66 +768,102 @@ class PKMainUI extends game.BaseUI {
                     var endX = x2;
                     var endY = y2 + stepY2;
                     var type = tryTime%2;
-                    if(item.y < this.stageHeight/2)  //在上半地图由下开始找
+                    if(item.y < this.fightHeight/2)  //在上半地图由下开始找
                         type = 1-type;
-                    var x = x1 + Math.random()*(x2 - x1);
+
                     if(type == 0)
                     {
-                        var y = startY + Math.random()*(y1 - startY);
+
+                        if(y1 - startY == 0)
+                            error = true;
+                        else
+                            var y = startY + this.random()*(y1 - startY);
                     }
                     else
                     {
-                        var y = y2 + Math.random()*(endY - y2);
+
+                        if(endY - y2 == 0)
+                            error = true;
+                        else
+                            var y = y2 + this.random()*(endY - y2);
                     }
+                    if(!error)
+                        var x = x1 + this.random()*(x2 - x1);
                 }
                 else
                 {
+
                     var startX = x1 - stepX1;
                     var startY = y1 - stepY1;
                     var endX = x2 + stepX2;
                     var endY = y2 + stepY2;
                     var type = tryTime%4
-                    if(item.y < this.stageHeight/2)  //在上半地图由下开始找
+                    if(item.y < this.fightHeight/2)  //在上半地图由下开始找
                         type = 3-type;
-                    if(type = 0)
+                    if(type == 0)
                     {
-                        var x = startX + Math.random()*(x1 - startX);
-                        var y = startY + Math.random()*(y2 - startY)
+                        if(x1 - startX == 0)
+                            error = true;
+                        else
+                        {
+                            var x = startX + this.random()*(x1 - startX);
+                            var y = startY + this.random()*(y2 - startY)
+                        }
+
+
                     }
                     else if(type == 1)
                     {
-                        var x = x1 + Math.random()*(endX - x1);
-                        var y = startY + Math.random()*(y1 - startY)
+                        if(y1 - startY == 0)
+                            error = true;
+                        else
+                        {
+                            var x = x1 + this.random()*(endX - x1);
+                            var y = startY + this.random()*(y1 - startY)
+                        }
+
+
                     }
                     else if(type == 2)
                     {
-                        var x = x2 + Math.random()*(endX - x2);
-                        var y = y1 + Math.random()*(endY - y1)
+                        if(endX - x2 == 0)
+                            error = true;
+                        else
+                        {
+                            var x = x2 + this.random()*(endX - x2);
+                            var y = y1 + this.random()*(endY - y1)
+                        }
                     }
                     else
                     {
-                        var x = startX + Math.random()*(x2 - startX);
-                        var y = y2 + Math.random()*(endY - y2)
+                        if(endY - y2 == 0)
+                            error = true;
+                        else {
+                            var x = startX + this.random() * (x2 - startX);
+                            var y = y2 + this.random() * (endY - y2)
+                        }
                     }
                 }
 
 
-                var ok = true;
-                var xy = {x:x,y:y}
-                for(var s in mapData){
-                    var dis =this.getDis(xy,mapData[s])
-                    if(dis < 120)
-                    {
-                        ok = false;
-                        break;
-                    }
-                }
-
-                if(ok)//找到
+                if(!error)
                 {
-                    return xy;
-                }
+                    var ok = true;
+                    var xy = {x:x,y:y}
+                    for(var s in mapData){
+                        var dis =this.getDis(xy,mapData[s])
+                        if(dis < 120)
+                        {
+                            ok = false;
+                            break;
+                        }
+                    }
 
+                    if(ok)//找到
+                    {
+                        return xy;
+                    }
+                }
 
                 tryTime --;
                 if(tryTime == 0)
@@ -817,53 +874,9 @@ class PKMainUI extends game.BaseUI {
             x2 = endX
             y1 = startY
             y2 = endY
-
-
-
         }
         return {x:item.x,y:item.y};//找不到就不动了
     }
-
-    ////移开单位
-    //private jumpTarget(item,newPos){
-    //    var VM = PKMainMV.getInstance();
-    //    if(this.getDis(item,newPos) < 200)
-    //        VM.moveToXY(item,newPos)
-    //    else
-    //        VM.jumpToXY(item,newPos)
-    //}
-
-
-    ////行动结果
-    //private playActionResult(){
-    //    //先显示扣血
-    //    this.playPlayerResult();
-    //}
-    //
-    ////表现移除动画
-    //private playPlayerResult(){
-    //    this.testPlayer(this.itemSelf[0])
-    //    this.testPlayer(this.itemEnemy[0])
-    //    this.timer = egret.setTimeout(this.addNewPlayer,this,800);
-    //}
-    //
-    //private testPlayer(item){
-    //     if(item.playerData.after == 0)//死了的
-    //     {
-    //         this.playDie(item);
-    //         return true
-    //     }
-    //     else if(item.playerData.winCount == 3)//连胜3次的
-    //     {
-    //         this.playWinRemove(item);
-    //         return true
-    //     }
-    //    else
-    //     {
-    //         return false
-    //     }
-    //}
-
 
     //死的动画
     public playDie(item){
@@ -874,6 +887,7 @@ class PKMainUI extends game.BaseUI {
             this.freeItem(item);
         },this)
     }
+
     //3胜后移除
     public playWinRemove(item){
 
@@ -886,51 +900,6 @@ class PKMainUI extends game.BaseUI {
             this.freeItem(item);
         },this)
     }
-
-    //private addNewPlayer(){
-    //    var b = false
-    //    if(this.removeOne(1))
-    //        b = true;
-    //    if(this.removeOne(2))
-    //        b = true;
-    //    //有新加入
-    //    if(b)
-    //    {
-    //        this.timer = egret.setTimeout(this.playOne,this,800);
-    //    }
-    //    else
-    //    {
-    //        this.playOne();
-    //    }
-    //}
-    //
-    //private removeOne(team){
-    //    var arr,item
-    //    if(team ==1)
-    //    {
-    //        arr = this.itemSelf;
-    //    }
-    //    else
-    //        arr = this.itemEnemy;
-    //    item = arr[0];
-    //
-    //    if(item.playerData.after == 0 || item.playerData.winCount == 3)
-    //    {
-    //        this.freeItem(item);
-    //        arr.shift();
-    //    }
-    //    if(arr.length > 0)
-    //    {
-    //        for(var i=0;i<arr.length;i++)
-    //        {
-    //            var item = arr[i];
-    //            var tw:egret.Tween = egret.Tween.get(item);
-    //            tw.wait(i*50).to({x:this.posArray[i].x,y:this.posArray[i].y}, 200);
-    //        }
-    //        return true;
-    //    }
-    //    return false;
-    //}
 
 
     private stopAll()

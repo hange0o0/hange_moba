@@ -30,7 +30,7 @@ class PKMainMV {
         //a.parent.addChild(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var dis = this.getDis(a,b);
-        tw.to(b, Math.pow(dis,0.8) * 3);
+        tw.to(b, Math.pow(dis,0.8) * 4);
         if(fun1)
             tw.call(fun1,thisObj)
     }
@@ -58,10 +58,23 @@ class PKMainMV {
         var x = a.x + (b.x - a.x)*rate;
         var y = a.y + (b.y - a.y)*rate;
         var oo = {x:x,y:y};
-        tw.to(oo, 100);
+
+        var rate = (dis + 60)/dis;
+        var x = a.x + (b.x - a.x)*rate;
+        var y = a.y + (b.y - a.y)*rate;
+        var oo2 = {x:x,y:y};
+        tw.to(oo2, 100).to(oo, 50);
         if(fun1)
             tw.call(fun1,thisObj)
         return oo;
+    }
+
+    public behitMV(a,fun1?,thisObj?){
+        //b.parent.addChild(b);
+        var tw:egret.Tween = egret.Tween.get(a);
+        tw.to({x:a.x - 10}, 60).to({x:a.x + 5}, 30).to({x:a.x}, 20);
+        if(fun1)
+            tw.call(fun1,thisObj)
     }
 
     public skillMV(a,fun1?,thisObj?){
@@ -73,10 +86,36 @@ class PKMainMV {
         tw.to({scaleX:1,scaleY:1}, 200);
     }
 
+    //退后再前进
+    public skillMV2(a,b,fun1?,thisObj?){
+        a.parent.addChild(a);
+        var tw:egret.Tween = egret.Tween.get(a);
+        var dis = this.getDis(a,b);
+        var rate = (dis + 30)/dis;
+        var x = b.x + (a.x - b.x)*rate;
+        var y = b.y + (a.y - b.y)*rate;
+        var oo = {x:x,y:y};
+        tw.to(oo, 100)
+        if(fun1)
+            tw.call(fun1,thisObj)
+
+        var oo2 = {x:a.x,y:a.y};
+        tw.to(oo2, 80)
+    }
+
 
     //转角度，由A指向B，A原来是指向Y轴
     private getRota(begin,end){
         return Math.atan2(end.y - begin.y,end.x - begin.x)* 180/3.14 + 90
+    }
+
+    //a指向b,dd+为前进，-为后退
+    public getDisPoint(a,b,dd){
+        var dis = this.getDis(a,b);
+        var rate = (dis - dd)/dis;
+        var x = b.x + (a.x - b.x)*rate;
+        var y = b.y + (a.y - b.y)*rate;
+        return {x:x,y:y};
     }
 
     //*********************************************************  mv ************************************
@@ -111,14 +150,19 @@ class PKMainMV {
         return mv;
     }
 
-    public playBullet(id,from,to,fun?,thisObj?){
+    public playBullet(id,from,to,fun?,thisObj?,xy?){
         var AM = AniManager.getInstance();
         var mc = AM.getAni(this.getMVKey(id));
+        from.parent.addChild(mc);
+        if(xy)
+        {
+            from = xy;
+        }
+
         var dis = this.getDis(from,to);
         mc.x = from.x;
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
-        from.parent.addChild(mc);
         var tw:egret.Tween = egret.Tween.get(mc);
         tw.to({y:to.y,x:to.x}, 0.5*dis,egret.Ease.sineIn).call(function(){
             MyTool.removeMC(mc);
