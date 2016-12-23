@@ -24,13 +24,14 @@ class PKResultBase extends game.BaseContainer {
         {
             this._desText.text = ''
 
-            this.y = 300;
-            this.scaleX = 0.1
-            this.scaleY = 0.1
-            this.x = (640 - 640*0.1)/2;
-            var tw:egret.Tween = egret.Tween.get(this);
-            tw.to({x:(640 - 640*0.6)/2,y:20,scaleX:0.6,scaleY:0.6}, 200,egret.Ease.sineIn).
-                to({x:0,y:80,scaleX:1,scaleY:1}, 300,egret.Ease.sineOut).wait(300).call(this.stepOne,this);
+            //this.y = 300;
+            //this.scaleX = 0.1
+            //this.scaleY = 0.1
+            //this.x = (640 - 640*0.1)/2;
+            //var tw:egret.Tween = egret.Tween.get(this);
+            //tw.to({x:(640 - 640*0.6)/2,y:20,scaleX:0.6,scaleY:0.6}, 200,egret.Ease.sineIn).
+            //    to({x:0,y:80,scaleX:1,scaleY:1}, 300,egret.Ease.sineOut).wait(300).call(this.stepOne,this);
+            this.stepOne();
         }
         else if(!award)
         {

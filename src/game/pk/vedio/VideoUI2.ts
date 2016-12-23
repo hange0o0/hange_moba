@@ -272,6 +272,7 @@ class VideoUI2 extends game.BaseUI {
         VC.play(true);
         //this.upGroup.visible = false;
         this.visible = false;
+        this.openGuide();
     }
 
     //单个回合结束

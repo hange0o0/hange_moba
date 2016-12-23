@@ -4,9 +4,11 @@ class PKItem extends game.BaseItem {
         this.skinName = "PKItemSkin";
     }
 
+    private lightMC: eui.Image;
     private headMC: eui.Image;
-    private headBG: eui.Image;
     private headMask: eui.Rect;
+    private headBG: eui.Image;
+
 
 
     public id
@@ -36,9 +38,9 @@ class PKItem extends game.BaseItem {
         this.index = this.data.index
         this.id = this.team * 100 + this.index;
         if(this.team == 1)
-            this.headBG.source = 'head_border2_png'
+            this.lightMC.source = 'head_border_light1_png'
         else
-            this.headBG.source = 'head_border1_png'
+            this.lightMC.source = 'head_border_light3_png'
         //if(this.data.isEnemy)
         //{
         //    this.headMC.scaleY = -1;

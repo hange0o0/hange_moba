@@ -91,6 +91,41 @@ class MonsterVO {
         //this.initSkill('sfn3',data);
         //this.initSkill('sfn4',data);
         //this.initSkill('sfn5',data);
+
+
+        this.mvList = [];
+        this.mvType1 = [];
+        this.mvType2 = [];
+        if(data.mv1)
+            this.addMV(data.mv1,this.mvType1)
+        if(data.mv2)
+            this.addMV(data.mv2,this.mvType2)
+
+    }
+
+    private addMV(mv,dataArr){
+        var arr = mv.split(',');
+        for(var i=0;i<arr.length;i++)
+        {
+            var temp = arr[i].split('|');
+            var oo = {type:temp[0],id:temp[1]}
+            dataArr.push(oo)
+            this.pushLoadKey(oo.id);
+            if(oo.type == 2)
+            {
+                oo['id2'] = temp[2]
+                this.pushLoadKey(oo.id);
+                if(!oo['id2'])
+                {
+                    throw new Error('monster' + this.id)
+                }
+            }
+        }
+    }
+
+    private pushLoadKey(id){
+        this.mvList.push('skill' + id + '_json');
+        this.mvList.push('skill' + id + '_png');
     }
 
     public initSkill(){
@@ -107,15 +142,17 @@ class MonsterVO {
         this.sfn5 = MonsterSkillVO.getObject(this.id + '_' + 15);
 
         var MV = VideoMV.getInstance();
-        if(this.sn)
-            this.mv1.push(MV.getLoadFormKey(this.sn.mv));
-        for(var i=1;i<=5;i++)
-        {
-            if(this['sn'+i])
-                this.mv1.push(MV.getLoadFormKey(this['sn'+i].mv));
-            if(this['sfn'+i])
-                this.mv2.push(MV.getLoadFormKey(this['sfn'+i].mv));
-        }
+        //if(this.sn)
+        //    this.mv1.push(MV.getLoadFormKey(this.sn.mv));
+        //for(var i=1;i<=5;i++)
+        //{
+        //    if(this['sn'+i])
+        //        this.mv1.push(MV.getLoadFormKey(this['sn'+i].mv));
+        //    if(this['sfn'+i])
+        //        this.mv2.push(MV.getLoadFormKey(this['sfn'+i].mv));
+        //}
+
+
     }
 
     //private initSkill2(key,data){

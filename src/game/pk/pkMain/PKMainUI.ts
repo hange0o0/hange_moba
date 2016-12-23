@@ -52,6 +52,8 @@ class PKMainUI extends game.BaseUI {
     private randomSeed
     private fightHeight = 960
 
+    private isStop = false
+
 
     public childrenCreated() {
         super.childrenCreated();
@@ -119,6 +121,7 @@ class PKMainUI extends game.BaseUI {
         PopUpManager.removeShape();
         this.initView();
         this.addSceneMovie();
+        this.isStop = false;
     }
 
     private getItem():PKItem{
@@ -313,6 +316,8 @@ class PKMainUI extends game.BaseUI {
 
     //玩家出场动画
     private showItemMV(item){
+        if(this.isStop)
+            return;
         var VM = PKMainMV.getInstance();
         if(item.team == 1)
             VM.playOnItem(28,item)
@@ -917,13 +922,14 @@ class PKMainUI extends game.BaseUI {
         }
 
         AniManager.getInstance().removeAllMV();
+        this.isStop = true;
     }
 
     private showResult()
     {
         this.hide();
         this.stopAll();
-        //PKResultUI.getInstance().show();
+        PKResultUI.getInstance().show();
         //if(PKManager.getInstance().pkResult.result)
         //    console.log('win');
         //else

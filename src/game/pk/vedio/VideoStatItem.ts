@@ -56,9 +56,9 @@ class VideoStatItem extends game.BaseItem {
         if(this.data.value)
         {
             if(this.data.value > 0)
-                this.valueText.text = oo.txt + '+' + this.data.value;
+                this.valueText.text = oo.txt + ' +' + this.data.value;
             else
-                this.valueText.text = oo.txt + this.data.value;
+                this.valueText.text = oo.txt + ' ' + this.data.value;
         }
         else
             this.valueText.text = oo.txt + ''
