@@ -7,8 +7,7 @@
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
-	<e:Image x="108" y="-82" scaleY="0.9" scaleX="0.9" source="main4_png"/>
-	<e:Label id="propNumText" text="入场券：123456" y="460" size="16" textColor="0xCCB48E" stroke="1" horizontalCenter="0"/>
+	<e:Image x="108" y="-82" scaleY="0.9" scaleX="0.9" source="main4_png"/>
 	<e:Group horizontalCenter="0" y="265">
 		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:Label text="修正场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4"/>
@@ -20,23 +19,7 @@
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" width="335" y="31" textColor="0xCCB48E" text="积分：12345(LV.5)" textAlign="center" lineSpacing="8" horizontalCenter="0.5" height="36"/>
+		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="匹配需消耗入场券：1" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect fillColor="0x494747" width="400" y="79" height="1" x="48"/>
-		<e:Group horizontalCenter="0" y="91">
-			<e:layout>
-				<e:HorizontalLayout gap="30"/>
-			</e:layout>
-			<e:Group y="0" x="0">
-				<e:Image source="icon_pvp_2_png" y="0" x="0"/>
-				<e:Label id="totalText" y="9" textColor="0xCCB48E" text="局数：333" x="47" size="22"/>
-			</e:Group>
-			<e:Group y="2" x="209">
-				<e:Label id="winText" y="9" textColor="0xCCB48E" text="胜利：333" size="22" x="49"/>
-				<e:Image source="icon_pvp_3_png" y="0" x="0"/>
-			</e:Group>
-		</e:Group>
-	</e:Group>
-	<e:Group id="maxGroup" x="85" y="2">
-		<e:Label id="maxText" y="8" text="连胜：333" x="33" size="22" textColor="0xCCB48E" stroke="1"/>
-		<e:Image y="0" x="0" source="card_battle_png"/>
 	</e:Group>
 </e:Skin>

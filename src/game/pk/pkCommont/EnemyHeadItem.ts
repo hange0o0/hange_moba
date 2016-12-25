@@ -14,7 +14,7 @@ class EnemyHeadItem extends game.BaseItem {
           this.addBtnEvent(this.closeBtn,this.onKill);
           this.addBtnEvent(this,this.onClick);
 
-        MyTool.addTestBlock(this);
+        //MyTool.addTestBlock(this);
     }
 
     private onKill(e:egret.TouchEvent){

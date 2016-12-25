@@ -31,6 +31,11 @@ class MainGameManager{
         return level*200*(UM.main_game.kill.length+1)*3;
     }
 
+    public getLocalAward(level){
+        level =  level || UM.main_game.level;
+        return {coin:level*200,card:Math.floor(level/30+1)};
+    }
+
     //该位置是否被杀了
     public isKill(index){
         return UM.main_game.kill.indexOf(index) != -1;

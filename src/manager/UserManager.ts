@@ -247,7 +247,7 @@ class UserManager {
         }
 
         ArrayUtil.sortByField(array,['num','id'],[1,0])
-        array.length = Math.min(10,array.length);
+        array.length = Math.min(8,array.length);
 
         return array;
     }

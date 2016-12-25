@@ -36,15 +36,10 @@ class ServerGameEqualManager{
 
     //根据经验，返回所在等级
     public  getPKTableLevel(exp){
-        var level = 1;
-        for(var i=0;i<=20;i++)
-        {
-            if(exp >= Math.pow(2,i)*100)
-                level ++;
-            else
-                break;
-        }
-        return level;
+        return PKTool.getPKTableLevel(exp,100);
+    }
+    public  getPKTableExp(lv){
+        return PKTool.getPKTableExp(lv,100);
     }
 
     public getCard(isagain,fun?){

@@ -4,10 +4,16 @@ class PKResultItem2 extends game.BaseItem {
         this.skinName = "PKResultItem2Skin";
     }
 
-    private item1: PKResultItem3;
-    private item2: PKResultItem3;
-    private viewBtn: eui.Image;
+    private b0: eui.Rect;
+    private f0: eui.Rect;
+    private b1: eui.Rect;
     private titleText: eui.Label;
+    private headMC0: eui.Image;
+    private headMC1: eui.Image;
+    private winIcon: eui.Image;
+    private hpText0: eui.Label;
+    private hpText1: eui.Label;
+
 
 
 
@@ -17,8 +23,6 @@ class PKResultItem2 extends game.BaseItem {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this,this.onView);
-        this.item1.index = 1;
-        this.item2.index = 2;
     }
 
     private onView() {
@@ -30,8 +34,6 @@ class PKResultItem2 extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.item1.data = this.data.player1
-        this.item2.data = this.data.player2
         this.titleText.text = '第'+this.data.index+'轮';
     }
 }

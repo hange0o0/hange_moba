@@ -19,19 +19,7 @@
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" y="27" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" lineSpacing="8" width="335" height="36" horizontalCenter="0"/>
+		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
-		<e:Group y="87" horizontalCenter="0">
-			<e:Group x="0" y="0">
-				<e:Image source="icon_pvp_2_png" y="0" x="0"/>
-				<e:Label id="totalText" text="局数：333" x="47" y="9" size="22" textColor="0xCCB48E"/>
-			</e:Group>
-			<e:Group x="209" y="2">
-				<e:Label id="winText" y="9" text="胜利：333" x="49" size="22" textColor="0xCCB48E"/>
-				<e:Image source="icon_pvp_3_png" y="0" x="0"/>
-			</e:Group>
-			<e:layout>
-				<e:HorizontalLayout gap="30"/>
-			</e:layout>
-		</e:Group>
 	</e:Group>
 </e:Skin>

@@ -20,6 +20,14 @@ class DayGameManager{
         return '守卫' + level;
     }
 
+    public resetDay(){
+        if(!DateUtil.isSameDay(UM.day_game.lasttime))
+        {
+            UM.day_game.lasttime = TM.now()
+            UM.day_game.level = 0;
+        }
+    }
+
     public getCard(fun?){
         //if(UM.server_game.choose)
         //{

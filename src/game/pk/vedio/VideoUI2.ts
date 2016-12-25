@@ -93,68 +93,7 @@ class VideoUI2 extends game.BaseUI {
         this.showPlayer(2)
     }
     private showPlayer(team){
-        var VC = VideoCode.getInstance();
-        var chooseData = this.lastChooseData;
-        var item = chooseData[chooseData.length - 1];
-        var data = item.result['player' + team];
-        var otherBuff = item.result.otherBuff;
-        var playerList = [];
-        for(var s in VC.playerObject)
-        {
-            if(VC.playerObject[s].teamID == team && VC.playerObject[s].id >=10)
-                playerList.push(VC.playerObject[s]);
-        }
-        ArrayUtil.sortByField(playerList,['id'],[0])
-
-        for(var j=0;j<playerList.length;j++)
-        {
-            var baseData = playerList[j];
-
-            var atk = 0
-            var speed = 0
-            var def = 0;
-            var list = JSON.parse(j==0?data.buffList:(otherBuff[baseData.id] || '[]'));
-
-            var arr = [];
-            for(var i=0;i<list.length;i++)
-            {
-                var oo = list[i];
-                switch(oo.id)
-                {
-                    case 1:
-                    case 11:
-                        atk += oo.value;
-                        break;
-                    case 2:
-                    case 12:
-                        speed += oo.value;
-                        break;
-                    case 3:
-                    case 13:
-                        def += oo.value;
-                        break;
-                }
-                if(!oo.forever || oo.id >20)
-                {
-                    arr.push(oo);
-                }
-            }
-            console.log('id:',baseData.id,'=======================================')
-            if(j == 0)
-            {
-                var data = item.result.player1;
-                console.log('hp:',data.hp  + '/' + data.maxHp)
-                console.log('mp:',data.mp  + '/' + data.maxMp)
-                console.log('ap:',data.ap  + '/' + PKManager.ApMax)
-            }
-
-            console.log('atk:',baseData.atk,atk)
-            console.log('speed:',baseData.speed,speed)
-            if(j == 0)
-                console.log('def:',def)
-            console.log('buff:',JSON.stringify(arr))
-        }
-
+        VideoDetailUI.getInstance().show({data:this.lastChooseData,team:team});
     }
 
     private openGuide(){

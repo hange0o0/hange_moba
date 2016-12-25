@@ -5,15 +5,11 @@ class MainMainItem extends game.BaseItem {
     }
 
     private scoreText: eui.Label;
-    private awardGroup: eui.Group;
-    private coinText: eui.Label;
-    private propGroup1: eui.Group;
-    private propText1: eui.Label;
-    private propGroup2: eui.Group;
-    private propText2: eui.Label;
+    private desText: eui.Label;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
     private awardBtn: eui.Button;
+
 
 
 
@@ -52,30 +48,42 @@ class MainMainItem extends game.BaseItem {
             this.btnGroup.addChildAt(this.awardBtn,0);
         }
 
-        this.coinText.text = '×' + level*100
-        //每过30小关奖一个普通道具
-        var num = Math.floor(level/30);
-        if(num > 0)
+        if(UM.main_game.choose)
         {
-            this.awardGroup.addChild(this.propGroup1)
-            this.propText1.text = '×' +num
+            this.startBtn.label = '开始挑战'
+            this.desText.text = '卡组已获得'
         }
         else
         {
-            MyTool.removeMC(this.propGroup1)
+            this.startBtn.label = '抽取卡牌'
+            this.desText.text = '抽取卡牌需消耗体力：1'
         }
 
-        //每过100小关奖一个高级道具
-        var num = Math.floor(level/100);
-        if(num > 0)
-        {
-            this.awardGroup.addChild(this.propGroup2)
-            this.propText2.text = '×' +num
-        }
-        else
-        {
-            MyTool.removeMC(this.propGroup2)
-        }
+
+        //this.coinText.text = '×' + level*100
+        ////每过30小关奖一个普通道具
+        //var num = Math.floor(level/30);
+        //if(num > 0)
+        //{
+        //    this.awardGroup.addChild(this.propGroup1)
+        //    this.propText1.text = '×' +num
+        //}
+        //else
+        //{
+        //    MyTool.removeMC(this.propGroup1)
+        //}
+        //
+        ////每过100小关奖一个高级道具
+        //var num = Math.floor(level/100);
+        //if(num > 0)
+        //{
+        //    this.awardGroup.addChild(this.propGroup2)
+        //    this.propText2.text = '×' +num
+        //}
+        //else
+        //{
+        //    MyTool.removeMC(this.propGroup2)
+        //}
 
     }
 }
