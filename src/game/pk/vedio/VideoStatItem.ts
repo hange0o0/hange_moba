@@ -59,12 +59,15 @@ class VideoStatItem extends game.BaseItem {
                 this.valueText.text = oo.txt + ' +' + this.data.value;
             else
                 this.valueText.text = oo.txt + ' ' + this.data.value;
+
+            if(this.data.id == 3 || this.data.id == 13)
+                this.valueText.text += '%'
         }
         else
             this.valueText.text = oo.txt + ''
 
         if(this.data.cd)
-            this.cdText.text = '/' +this.data.cd
+            this.cdText.text = '/' +(this.data.cd) // || this.data.num
         else
             this.cdText.text = '';
     }

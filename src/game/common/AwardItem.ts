@@ -46,6 +46,11 @@ class AwardItem extends game.BaseItem {
                     this.mc.source = 'coin'
                     break;
                 }
+                case 'exp':
+                {
+                    this.mc.source = 'exp'
+                    break;
+                }
                 default:    //prop
                 {
                     this.mc.source = PropVO.getObject(this.data.id).thumb;

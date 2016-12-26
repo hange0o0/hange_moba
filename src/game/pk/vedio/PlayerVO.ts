@@ -61,15 +61,15 @@ class PlayerVO {
         var cd = data.cd;
         var value = data.value;
         if(cd)
-            this.buffList.push({id:id,num:cd,value:value})
+            this.buffList.push({id:id,cd:cd,value:value})
         else
             this.buffList.push({id:id,forever:true,value:value})
     }
 
-    public cleanBuff(id,num,value){
+    public cleanBuff(id,cd,value){
          for(var i=0;i<this.buffList.length;i++){
              var oo = this.buffList[i];
-             if(oo.id == id && oo.num == num && oo.value == value)
+             if(oo.id == id && oo.cd == cd && oo.value == value)
              {
                  this.buffList.splice(i,1);
                  break;
@@ -82,8 +82,8 @@ class PlayerVO {
             var oo = this.buffList[i];
             if(oo.forever)
                 continue;
-            oo.num --;
-            if(oo.num <= 0)
+            oo.cd --;
+            if(oo.cd <= 0)
             {
                 this.buffList.splice(i,1);
                 i--;

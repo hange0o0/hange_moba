@@ -41,6 +41,8 @@ class PKManager {
     public team2Nick
     public team2Ring
 
+    public winCount//胜利的次数
+
     public teamChange = false//队伍ID发生过转换
 
     ////不同位置的加成值和比例
@@ -313,7 +315,7 @@ class PKManager {
         VideoManager.getInstance().cleanVideo(type);
 
         //表现动画，结果的数据
-        var winCount = {};
+        var winCount = this.winCount = {};
         this.pkList.length = 0;
         for(var i=0;i<data.pkdata.length;i++)
         {

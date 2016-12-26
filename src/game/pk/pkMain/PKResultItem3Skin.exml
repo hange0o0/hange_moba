@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKResultItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="280" height="90" states="right_loss,left_win,left_loss,right_win"
-        >
-	<e:Image source="border2_png" x="0" y="0" x.right_loss="190" y.right_loss="0" x.right_win="190"/>
-	<e:Image id="headMC" source="pk_bg_jpg" x="5" y="5" width="80" height="80" x.right_loss="195" y.right_loss="5" x.right_win="195"/>
-	<e:Image source="bar_bg_png" x="3" y="75" scale9Grid="19,1,120,10" width="84" x.right_loss="193" y.right_loss="75" x.right_win="193"/>
-	<e:Image id="barMC" source="bar1_png" x="6" y="77" scale9Grid="18,1,114,6" width="78" x.right_loss="196" y.right_loss="77" x.right_win="196"/>
-	<e:BitmapLabel id="iconText" x.right_win="95" x.left_loss="95" x.left_win="95" y="4" font="result_fnt" text="lll" y.left_win="43" text.left_win="www" y.right_win="43" text.right_win="www" right.right_win="100" right.right_loss="100"/>
-	<e:Group x="100" y="53" right.right_loss="100" y.right_win="6" y.left_win="6" right.right_win="100">
-		<e:Image id="arrowMC" x="0" y="0" y.left_win="7" y.right_win="7" fillMode="clip" source.right_loss="arrow4_png" source="arrow5_png"/>
-		<e:Label id="hpText" text="123456" x="22" y="4" textColor="0xFE7430" y.left_win="11" y.right_win="11" text.left_loss="12345" textColor.right_loss="0x307307"/>
-		<e:layout>
-			<e:HorizontalLayout verticalAlign="middle"/>
-		</e:layout>
+<e:Skin class="PKResultItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="100"
+         width="100">
+	<e:Image source="border2_png" x="0" y="0" width="100" height="100"/>
+	<e:Image id="headMC" source="pk_bg_jpg" x="5" y="5" width="90" height="90"/>
+	<e:Group y="60" left="0">
+		<e:Image id="s3" source="card_star_png" y="0" x="30"/>
+		<e:Image id="s2" source="card_star_png" y="0" x="15"/>
+		<e:Image id="s1" source="card_star_png" x="0" y="0"/>
 	</e:Group>
+	<e:Group id="levelGroup" x="58" bottom="-5">
+		<e:Image source="icon_empty_png" y="0" x="0"/>
+		<e:Label id="levelText" y="12" textColor="0xCCB48E" text="60" textAlign="center" size="20" horizontalCenter="1"/>
+	</e:Group>
 </e:Skin>

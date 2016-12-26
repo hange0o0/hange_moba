@@ -365,7 +365,7 @@ class PKMainUI extends game.BaseUI {
         var player
         if(!oo)
         {
-            this.timer = egret.setTimeout(this.playOne,this,1000);
+            this.timer = egret.setTimeout(this.playOne,this,300);
         }
         else if(oo.type == 'atk')
         {
@@ -411,6 +411,8 @@ class PKMainUI extends game.BaseUI {
                     player = (this.player1)
                 else
                     player = (this.player2)
+                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
                break;
             case 2:
                 if(this.atker == 1)
@@ -418,38 +420,56 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.player1)
 
-                if(this.random() > 0.6) //可能会少播2回合
+                if(this.random() < 0.6) //可能会少播2回合
                     this.pkStep += 2;
+                else if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
                break;
             case 3:
                 if(this.atker == 1)
                     player = (this.player1)
                 else
                     player = (this.player2)
+
+                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
+
                 break;
             case 4:
                 if(this.atker == 1)
                     player = (this.player2)
                 else
                     player = (this.player1)
+
+                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
                break;
             case 5:
                 if(this.atker == 1)
                     player = (this.itemSelf[this.currentStep.p1 + 1])
                 else
                     player = (this.itemEnemy[this.currentStep.p2 + 1])
+
+                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
                break;
             case 6:
                 if(this.atker == 1)
                     player = (this.itemEnemy[this.currentStep.p2 + 1])
                 else
                     player = (this.itemSelf[this.currentStep.p1 + 1])
+
+                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
                break;
             case 7:
                 if(this.atker == 1)
                     player = (this.itemSelf[this.currentStep.p1 + 2])
                 else
                     player = (this.itemEnemy[this.currentStep.p2 + 2])
+
+                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                    this.pkStep += 1;
                break;
             case 8:
                 if(this.atker == 1)

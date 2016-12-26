@@ -5,10 +5,12 @@ class PKResultItem3 extends game.BaseItem {
     }
 
     private headMC: eui.Image;
-    private arrowMC: eui.Image;
-    private barMC: eui.Image;
-    private iconText: eui.BitmapLabel;
-    private hpText: eui.Label;
+    private s3: eui.Image;
+    private s2: eui.Image;
+    private s1: eui.Image;
+    private levelGroup: eui.Group;
+    private levelText: eui.Label;
+
 
     public index = 0;
 
@@ -21,48 +23,26 @@ class PKResultItem3 extends game.BaseItem {
     }
 
     public dataChanged() {
-        if(this.index == 1)//left
-        {
-            if(this.data.isWin)
-                this.currentState = 'left_win';
-            else
-                this.currentState = 'left_loss';
-        }
-        else if(this.index == 2)//left
-        {
-            if(this.data.isWin)
-                this.currentState = 'right_win';
-            else
-                this.currentState = 'right_loss';
-        }
 
-        var word = '';
-        for(var i=0;i<this.data.winCount;i++)
+        //mid:mid,
+        //    level:team1Base.mb[mid].lv,
+        //    win: PKM.winCount[i+team1ID]
+        this.headMC.source = MonsterVO.getObject(this.data.mid).thumb;
+        if(this.data.level)
         {
-            word += 'w';
-        }
-        if(!this.data.isWin)
-        {
-            word += 'l';
-        }
-        this.iconText.text = word;
-
-        if(this.data.after > this.data.before)  //上升
-        {
-            this.hpText.text = (this.data.after - this.data.before)   + '';
-            this.hpText.textColor = 0x000000;
-            this.arrowMC.source = 'arrow5_png'
+            this.levelGroup.visible = true
+            this.levelText.text = this.data.level
         }
         else
         {
-            this.hpText.text = (this.data.before - this.data.after)   + ''
-            this.hpText.textColor = 0xFE7430;
-            this.arrowMC.source = 'arrow4_png';
-       }
+            this.levelGroup.visible = false
+        }
 
-        this.barMC.width = 78 * this.data.after/this.data.afterMax;
-
-        this.headMC.source = MonsterVO.getObject(this.data.mid).thumb;
+        var win = this.data.win || 0;
+        for(var i=0;i<3;i++)
+        {
+            this['s' + (i+1)].visible = win > i;
+        }
 
     }
 }
