@@ -14,6 +14,7 @@ class PKMainMV {
     //移向指定玩家
     public moveToTarget(a,b,fun1?,thisObj?){
         a.parent.addChild(a);
+        //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var dis = this.getDis(a,b);
         var rate = 100/dis;
@@ -26,24 +27,35 @@ class PKMainMV {
         return oo;
     }
 
-    public moveToXY(a,b,fun1?,thisObj?){
+    public moveToXY(a,b,fun1?,thisObj?,frontWait?){
         //a.parent.addChild(a);
+        //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var dis = this.getDis(a,b);
+        if(frontWait)
+            tw.wait(frontWait);
         tw.to(b, Math.pow(dis,0.8) * 4);
         if(fun1)
             tw.call(fun1,thisObj)
     }
 
-    public jumpToXY(a,b,fun1?,thisObj?,wait?){
+    public jumpToXY(a,b,fun1?,thisObj?,wait?,frontWait?){
+
+        //egret.Tween.removeTweens(a);
+        var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
+        a.jumping = true;
+        var dis = Math.max(400,this.getDis(a,b));
+        if(frontWait)
+            tw.wait(frontWait);
+        tw.to({x:b.x,y:b.y}, dis).call(function(){
+            a.jumping = false;
+        });
         var tw:egret.Tween = egret.Tween.get(a);
-        var dis = Math.max(500,this.getDis(a,b));
-        tw.to({x:b.x,y:b.y}, dis);
-        var tw:egret.Tween = egret.Tween.get(a);
-        tw.to({scaleX:1.2,scaleY:1.2}, dis/2,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/2,egret.Ease.sineIn);
+        tw.to({scaleX:1.3,scaleY:1.3}, dis/2,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/2,egret.Ease.sineIn);
         if(fun1)
         {
+
             if(wait)
                 tw.wait(wait);
             tw.call(fun1,thisObj)
@@ -52,6 +64,7 @@ class PKMainMV {
     }
     public behitMoveBack(a,b,fun1?,thisObj?){
         //b.parent.addChild(b);
+        //egret.Tween.removeTweens(b);
         var tw:egret.Tween = egret.Tween.get(b);
         var dis = this.getDis(a,b);
         var rate = (dis + 50)/dis;
@@ -71,6 +84,7 @@ class PKMainMV {
 
     public behitMV(a,fun1?,thisObj?){
         //b.parent.addChild(b);
+        //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         tw.to({x:a.x - 10}, 60).to({x:a.x + 5}, 30).to({x:a.x}, 20);
         if(fun1)
@@ -79,6 +93,7 @@ class PKMainMV {
 
     public skillMV(a,fun1?,thisObj?){
         a.parent.addChild(a);
+        //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         tw.to({scaleX:1.2,scaleY:1.2}, 200);
         if(fun1)
@@ -89,6 +104,7 @@ class PKMainMV {
     //退后再前进
     public skillMV2(a,b,fun1?,thisObj?){
         a.parent.addChild(a);
+        //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var dis = this.getDis(a,b);
         var rate = (dis + 30)/dis;
@@ -147,6 +163,7 @@ class PKMainMV {
             if(config.frameRate)
                 mv.frameRate = config.frameRate;
         }
+
         return mv;
     }
 

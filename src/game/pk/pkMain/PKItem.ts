@@ -15,6 +15,8 @@ class PKItem extends game.BaseItem {
     public index;
     public team;
     public timer
+    public line//所处的行
+    public action//行动过
 
     public enemy //对方出战单位
     public self  //已方出战单位

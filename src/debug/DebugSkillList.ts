@@ -30,11 +30,14 @@ class DebugSkillList extends game.BaseUI {
 
     public onShow(){
         var arr = [];
+        var noArr = [1,2,155,156,169,101,171,165]
         for(var i=1;i<180;i++)
         {
             if(!RES.hasRes('skill' + i + '_json'))
                 continue;
-            arr.push('skill' + i);
+            
+            if(noArr.indexOf(i) == -1)
+                arr.push('skill' + i);
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }

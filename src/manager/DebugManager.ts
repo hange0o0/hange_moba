@@ -14,7 +14,7 @@ class DebugManager {
     }
 
     public maxMonsterID = 100;
-    public maxMonsterLevel = 100;  //测试出战怪的等级
+    public MML = 100;  //测试出战怪的等级
 
 
     public consoleDebug(){
@@ -65,7 +65,7 @@ class DebugManager {
             var vo = MonsterVO.getObject(i);
             if(vo)
             {
-                if(vo.level > this.maxMonsterLevel)
+                if(vo.level > this.MML)
                     continue;
                 if(vo.cost <10)
                     card1.push(vo.id);
@@ -256,17 +256,22 @@ class DebugManager {
         {
             var oo = midArr[i];
             var mvo = MonsterVO.getObject(oo.id);
-            console.log((i + 1) +  ' \tid:' + oo.id + '\t 总数:\t' + oo.num + '\t 场数:\t' + oo.num2 + '\t 花费:\t' + mvo.cost + '\t  ' + mvo.name)
+            console.log((i + 1) +  ' \tid:' + oo.id + '\t 总数:\t' + oo.num + '\t 场数:\t' + oo.num2 + '\t 花费:\t' + mvo.cost + '\t lv:\t' + mvo.level + '\t  ' + mvo.name)
         }
 
         var free = [];
         for(var i=1;i<this.maxMonsterID + 1;i++)
         {
             var mvo = MonsterVO.getObject(i)
-            if(!mid[i] && mvo && mvo.level<= this.maxMonsterLevel)
+            if(!mid[i] && mvo && mvo.level<= this.MML)
                 free.push(i);
         }
         console.log('无上场： \t' + free.join(','))
+    }
+
+    public testAllLevel(lv = 100){
+        this.MML = lv;
+        this.testAllCard();
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
@@ -595,6 +600,74 @@ class DebugManager {
     //在一屏内显示所有的技能动画
     public showAllMV(){
         DebugSkillList.getInstance().show();
+    }
+
+    public getMVDetail(){
+        var useObj = {};
+        var noArr = [1,2,155,156,169,101,171,165]
+        for(var i=1;i<180;i++)
+        {
+            if(!RES.hasRes('skill' + i + '_json'))
+                continue;
+            if(noArr.indexOf(i) == -1)
+                useObj[i] = [];
+        }
+
+        var data = CM.table[MonsterVO.dataKey];
+        for(var s in data)
+        {
+            var vo:MonsterVO = data[s];
+            for(var i=0;i<vo.mvType1.length;i++)
+            {
+                var oo = vo.mvType1[i];
+                if(oo.type > 3)
+                    throw new Error('mvType1_' + vo.id)
+                if(noArr.indexOf(oo.id) != -1)
+                    throw new Error('mvType1_' + vo.id)
+                if(oo.id2 && noArr.indexOf(oo.id2) != -1)
+                    throw new Error('mvType2_' + vo.id)
+
+                useObj[oo.id].push(vo.id);
+                if(oo.id2){
+                    useObj[oo.id2].push(vo.id);
+                    console.log(oo.id)
+                }
+
+            }
+            for(var i=0;i<vo.mvType2.length;i++)
+            {
+                var oo = vo.mvType2[i];
+                if(oo.type > 3)
+                    throw new Error('mvType2' + vo.id)
+                if(noArr.indexOf(oo.id) != -1)
+                    throw new Error('mvType1_' + vo.id)
+                if(oo.id2 && noArr.indexOf(oo.id2) != -1)
+                    throw new Error('mvType2_' + vo.id)
+
+                useObj[oo.id].push(vo.id);
+                if(oo.id2)
+                {
+                    useObj[oo.id2].push(vo.id);
+                    console.log(oo.id)
+                }
+
+            }
+        }
+
+        var noUse = []
+        var count = 0
+        for(var s in useObj)
+        {
+            if(useObj[s].length){
+                console.log(s + ' ------------- ' + useObj[s].length + '  ' +useObj[s].join(',') )
+                count ++;
+            }
+
+            else
+                noUse.push(s);
+        }
+        console.log('useNum:  ' + count)
+        console.log('noUse:  ' + noUse.length + '   ' + noUse.join(','))
     }
 
 

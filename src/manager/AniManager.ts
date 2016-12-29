@@ -19,6 +19,8 @@ class AniManager {
         '102':{scale:2},
         '124':{frameRate:24,scale:1.5},
         '154a':{frameRate:24},
+        '136':{frameRate:24},
+        '137':{frameRate:24},
         '166':{frameRate:24,scale:1.5},
         '176':{frameRate:24}
     };
@@ -80,7 +82,8 @@ class AniManager {
         }
         var mc:any = this.mcPool.pop() || new egret.MovieClip();
         mc.movieClipData = mcFactory.generateMovieClipData(name);
-        mc.frameRate = 12//技能动画变慢
+        mc.frameRate = 24//技能动画变慢
+        mc.scaleX = mc.scaleY = 1.5;
         return mc;
     }
 

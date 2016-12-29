@@ -52,7 +52,15 @@ class PKMainUI extends game.BaseUI {
     private randomSeed
     private fightHeight = 960
 
+    private fightStarY = 320 + 60
+    private fightEndY = 640 - 60
+
     private isStop = false
+
+    private needUpArr1 = [];
+    private needUpArr2 = [];
+
+
 
 
     public childrenCreated() {
@@ -132,10 +140,12 @@ class PKMainUI extends game.BaseUI {
             item.anchorOffsetX = this.itemWidth/2;
             item.anchorOffsetY = this.itemHeight/2;
         }
+        item['jumping'] = false;
         item.alpha = 1;
         item.scaleX = 1;
         item.scaleY = 1;
         item.out = false
+        item.action = false
         return item;
     }
     private freeItem(item){
@@ -247,71 +257,112 @@ class PKMainUI extends game.BaseUI {
 
     //定位
     private resetXY(arr,team){
-        var ok = false
-        var tryTime2 = 1000;
-        var addArr = [];
-        while(tryTime2 --){
-            addArr = [];
-            ok = false
-            var minX = 640;
-            var maxX = 0;
-            for(var i=0;i<arr.length;i++)
-            {
-                var tryTime = 30;
-                ok = false;
-                while(tryTime --)
-                {
-                    var x1 = Math.floor(280 * this.random()) + 180
-                    var y1 = Math.floor(280 * this.random()) + 60
-                    ok = true
-                    for(var s in addArr){
-                        var dis = this.getDis({x:x1,y:y1},addArr[s]);
-                        if(dis < 120)
-                        {
-                            ok = false;
-                            break;
-                        }
-                    }
-                    if(ok)  //成功加入一个位置
-                    {
-                        if(x1 < minX)
-                            minX = x1;
-                        if(x1 > maxX)
-                            maxX = x1;
-                        arr[i].x = x1;
-                        arr[i].y = y1;
-                        addArr.push({x:x1,y:y1})
-                        break;
-                    }
-                }
-                if(!ok)
-                    break;
-            }
-            if(ok)  //成功加入所有位置
-            {
-                break;
-            }
-        }
-        var des = (640 - (maxX - minX))/2 - minX;
-        var middle = this.fightHeight/2
-        if(team == 1)
+        var maxX = 0;
+        var maxY = 0;
+        for(var i=0;i<arr.length;i++)
         {
-            ArrayUtil.sortByField(addArr,['y'],[0])
-            for(var i=0;i<arr.length;i++)
+            var item = arr[i];
+            if(arr.length == 4)
             {
-                arr[i].x =  addArr[i].x + des;
-                arr[i].y =  addArr[i].y + middle + 40;
+                item.x = (i%2)*150;
+                item.y = Math.floor(i/2)*150;
+                item.line = Math.floor(i/2) + 1
             }
+            else
+            {
+                item.x = (i%3)*150;
+                item.y = Math.floor(i/3)*150;
+                item.line = Math.floor(i/3) + 1
+            }
+
+            if(item.x > maxX)
+                maxX = item.x;
+            if(item.y > maxY)
+                maxY = item.y;
         }
-        else
+        var decX = (640 - maxX)/2
+        var decY = (320 - maxY)/2
+
+        for(var i=0;i<arr.length;i++)
         {
-            ArrayUtil.sortByField(addArr,['y'],[1])
-            for(var i=0;i<arr.length;i++)
+            var item = arr[i];
+            if(team == 1)
             {
-                arr[i].x =  addArr[i].x + des;
-                arr[i].y =  addArr[i].y + (middle-440);
+                item.x = item.x + decX;
+                item.y = item.y + decY + 640;
+            }
+            else
+            {
+                item.x = 640 - item.x - decX;
+                item.y = 320 - item.y - decY;
             }
         }
+
+        //var ok = false
+        //var tryTime2 = 1000;
+        //var addArr = [];
+        //while(tryTime2 --){
+        //    addArr = [];
+        //    ok = false
+        //    var minX = 640;
+        //    var maxX = 0;
+        //    for(var i=0;i<arr.length;i++)
+        //    {
+        //        var tryTime = 30;
+        //        ok = false;
+        //        while(tryTime --)
+        //        {
+        //            var x1 = Math.floor(280 * this.random()) + 180
+        //            var y1 = Math.floor(280 * this.random()) + 60
+        //            ok = true
+        //            for(var s in addArr){
+        //                var dis = this.getDis({x:x1,y:y1},addArr[s]);
+        //                if(dis < 120)
+        //                {
+        //                    ok = false;
+        //                    break;
+        //                }
+        //            }
+        //            if(ok)  //成功加入一个位置
+        //            {
+        //                if(x1 < minX)
+        //                    minX = x1;
+        //                if(x1 > maxX)
+        //                    maxX = x1;
+        //                arr[i].x = x1;
+        //                arr[i].y = y1;
+        //                addArr.push({x:x1,y:y1})
+        //                break;
+        //            }
+        //        }
+        //        if(!ok)
+        //            break;
+        //    }
+        //    if(ok)  //成功加入所有位置
+        //    {
+        //        break;
+        //    }
+        //}
+        //var des = (640 - (maxX - minX))/2 - minX;
+        //var middle = this.fightHeight/2
+        //if(team == 1)
+        //{
+        //    ArrayUtil.sortByField(addArr,['y'],[0])
+        //    for(var i=0;i<arr.length;i++)
+        //    {
+        //        arr[i].x =  addArr[i].x + des;
+        //        arr[i].y =  addArr[i].y + middle + 40;
+        //    }
+        //}
+        //else
+        //{
+        //    ArrayUtil.sortByField(addArr,['y'],[1])
+        //    for(var i=0;i<arr.length;i++)
+        //    {
+        //        arr[i].x =  addArr[i].x + des;
+        //        arr[i].y =  addArr[i].y + (middle-440);
+        //    }
+        //}
     }
 
     //玩家出场动画
@@ -338,23 +389,38 @@ class PKMainUI extends game.BaseUI {
             this.showResult();
              return;
         }
+        this.needUpArr1 = [];
+        this.needUpArr2 = [];
         this.jumpBtn.visible = true;
         this.player1 = this.itemSelf[oo.p1];
         this.player2 = this.itemEnemy[oo.p2];
+        var nextPlayer1 = this.itemSelf[oo.p1 + 1];
+        var nextPlayer2 = this.itemEnemy[oo.p2 + 1];
         for(var s in this.itemSelf)
         {
-            this.itemSelf[s].enemy = this.player2
-            this.itemSelf[s].self = this.player1
-            this.itemSelf[s].isPKing = false
+            var item = this.itemSelf[s];
+            item.enemy = this.player2
+            item.self = this.player1
+            item.isPKing = false
+            if(nextPlayer1 && nextPlayer1.line == 2 && item.line == 2)
+                this.needUpArr1.push(item);
         }
         for(var s in this.itemEnemy)
         {
-            this.itemEnemy[s].enemy = this.player1
-            this.itemEnemy[s].self = this.player2
-            this.itemEnemy[s].isPKing = false
+            var item = this.itemEnemy[s];
+            item.enemy = this.player1
+            item.self = this.player2
+            item.isPKing = false
+
+            if(nextPlayer2 && nextPlayer2.line == 2 && item.line == 2)
+                this.needUpArr2.push(item);
         }
         this.player1.isPKing = true
         this.player2.isPKing = true
+        this.player1.line = 1
+        this.player2.line = 1
+
+
 
         this.stepOne();
 
@@ -401,6 +467,96 @@ class PKMainUI extends game.BaseUI {
         }
     }
 
+    //离双方太远的，超出地图的，上次请求移动的
+    //private testNeedMove(){
+    //    var arr = this.itemSelf.concat(this.itemEnemy);
+    //    var mapPos = this.getCurrentMap();
+    //    var newPosObj = {};
+    //    var firstDeal = [];
+    //    var moveItem = [];
+    //    //先处理PK玩家
+    //    var player = this.player1;
+    //    if(player.x < 60 || player.x > 640 - 60 || player.y < 80 || player.y > this.fightHeight - 80)
+    //    {
+    //        firstDeal.push(player);
+    //    }
+    //    player = this.player2;
+    //    if(player.x < 60 || player.x > 640 - 60 || player.y < 80 || player.y > this.fightHeight - 80)
+    //    {
+    //        firstDeal.push(player);
+    //    }
+    //    if(firstDeal.length > 0)
+    //    {
+    //        for(var i=0;i<firstDeal.length;i++)
+    //        {
+    //            player = firstDeal[i];
+    //            var newPos = this.findRoundPos(player,mapPos,120)
+    //            newPosObj[player.id] = newPos;
+    //            mapPos[player.id] = newPos
+    //            moveItem.push(player)
+    //        }
+    //    }
+    //
+    //    var player1Pos = newPosObj[this.player1.id]?newPosObj[this.player1.id]:this.player1;
+    //    var player2Pos = newPosObj[this.player2.id]?newPosObj[this.player2.id]:this.player2;
+    //    //this.needMoveItem
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //        var player = arr[i];
+    //        if(player.out)
+    //            continue;
+    //        if(player == this.player1)
+    //            continue;
+    //        if(player == this.player2)
+    //            continue;
+    //        var des1 = this.getDis(player,player1Pos);
+    //        var des2 = this.getDis(player,player2Pos);
+    //        if(des1 > 400 && des2 > 400)
+    //        {
+    //            var targetPlayer = des1 > des2?player2Pos:player1Pos;
+    //            var mpos = this.getMiddleXY(targetPlayer, player);
+    //            var newPos = this.findRoundPos(mpos,mapPos,120)
+    //            newPosObj[player.id] = newPos;
+    //            mapPos[player.id] = newPos
+    //            moveItem.push(player)
+    //            continue;
+    //        }
+    //        if(player.x < 60 || player.x > 640 - 60 || player.y < 80 || player.y > this.fightHeight - 80 || this.needMoveItem.indexOf(player) != -1) //超界了
+    //        {
+    //            var newPos = this.findRoundPos(player,mapPos,120)
+    //            newPosObj[player.id] = newPos;
+    //            mapPos[player.id] = newPos
+    //            moveItem.push(player);
+    //            continue;
+    //        }
+    //    }
+    //    this.needMoveItem.length = 0;
+    //    this.needMoveNum = moveItem.length;
+    //    if(moveItem.length > 0)
+    //    {
+    //        var VM = PKMainMV.getInstance();
+    //         for(var i=0;i<moveItem.length;i++)
+    //         {
+    //             var player = moveItem[i]
+    //             var des = this.getDis(player,newPosObj[player.id]);
+    //             if(des > 1000)
+    //                throw new Error(100 + '')
+    //             if(des>100)
+    //                 VM.jumpToXY(player,newPosObj[player.id],this.onNeedMoveFinish,this,player.isPKing?300:0,i*200)
+    //             else
+    //                 VM.moveToXY(player,newPosObj[player.id],this.onNeedMoveFinish,this,i*200)
+    //         }
+    //    }
+    //    return moveItem.length;
+    //}
+    //
+    //private onNeedMoveFinish(){
+    //    this.needMoveNum --;
+    //    console.log(this.needMoveNum)
+    //    if(this.needMoveNum == 0)
+    //        this.nextPK();
+    //}
+
     //行动动画
     private nextPK(){
         this.pkStep ++;
@@ -411,8 +567,6 @@ class PKMainUI extends game.BaseUI {
                     player = (this.player1)
                 else
                     player = (this.player2)
-                if(this.random() < 0.2) //有一定的几率跳过下一回合
-                    this.pkStep += 1;
                break;
             case 2:
                 if(this.atker == 1)
@@ -491,7 +645,74 @@ class PKMainUI extends game.BaseUI {
             this.nextPK();
     }
 
+    //在PK区内找一空位置
+    private findFightEmpty(startPoint,mapData,enemy?,enemyDis?){
+        var startX = 60
+        var startY = this.fightStarY
+        var endX = 640-60
+        var endY = this.fightEndY
+        var step = 10;
+        while(true)
+        {
+            var ok = true;
+            var x = startPoint.x -step + this.random()*step*2
+            var y = startPoint.y -step + this.random()*step*2
+            if(x < startX)
+                x = startX;
+            else if(x > endX)
+                x = endX;
+
+            if(y < startY)
+                y = startY;
+            else if(y > endY)
+                y = endY;
+            var xy = {x:x,y:y}
+            for(var s in mapData){
+                var dis =this.getDis(xy,mapData[s])
+                if(enemy && enemy.id == s && dis <enemyDis)
+                {
+                    ok = false;
+                    break;
+                }
+                if(dis < 120)
+                {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if(ok)//找到
+            {
+                return xy;
+            }
+            step+= 10;
+        }
+        return null
+
+    }
+
+    //是否不在PK区内
+    private testOut(item,fun,enemy?,enemyDis?){
+        if(item.x < 60 || item.x > 640 - 60 || item.y < this.fightStarY || item.y > this.fightEndY)
+        {
+            var startPoint = item;
+            if(!item.action)
+                startPoint = item.team == 1?{x:160,y:480} :{x:480,y:480}
+            var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),enemy,enemyDis)
+            var VM = PKMainMV.getInstance();
+            VM.jumpToXY(item,newPos,fun,this,300);
+            item.action = true;
+            return true
+        }
+        return false;
+    }
+
     private pkOne(item,shake?){
+
+        var self = this;
+        function rePKOne(){
+            self.pkOne(item,shake);
+        }
 
         var mvo = item.data.vo;
         if(item.isPKing)
@@ -509,91 +730,104 @@ class PKMainUI extends game.BaseUI {
         if(skillData.type ==0) //移过去近攻
         {
             //移过去
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80)
+            if(this.testOut(item.enemy,rePKOne,item,200))
             {
-                newPos = this.findEmptyPos(item,this.getCurrentMap(),120)
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType0(item,skillData,shake);
-                },this,300);
+                return;
             }
-            else
-                this.atkType0(item,skillData,shake);
+            this.atkType0(item,skillData,shake);
         }
         else if(skillData.type ==1) //1远程对方
         {
-            //移过去
-            var dis = this.getDis(item,item.enemy);
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80 ||  dis< 200 || dis > 500)
+            if(this.testOut(item.enemy,rePKOne,item,200))
             {
-                if(dis > 500) {
-                    var mid = this.getMiddleXY(item, item.enemy);
-                    newPos = this.findRoundPos(mid, this.getCurrentMap(), 150)
-                    if (!newPos)
-                        newPos = this.findEmptyPos(mid, this.getCurrentMap(), 0)
+                return;
+            }
+            if(item.isPKing)
+            {
+                if(this.testOut(item,rePKOne,item.enemy,200))
+                {
+                    return;
                 }
-                else
-                    newPos = this.findEmptyPos(item.enemy,this.getCurrentMap(),250)
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType1(item,skillData,shake);
-                },this,300);
+                this.atkType1(item,skillData,shake);
             }
             else
+            {
                 this.atkType1(item,skillData,shake);
+            }
         }
         else if(skillData.type == 2) //1远程字弹
         {
-            //移过去
-            var dis = this.getDis(item,item.enemy);
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80 ||  dis< 200 || dis > 500)
+            if(this.testOut(item.enemy,rePKOne,item,200))
             {
-                if(dis > 500) {
-                    var mid = this.getMiddleXY(item, item.enemy);
-                    newPos = this.findRoundPos(mid, this.getCurrentMap(), 150)
-                    if (!newPos)
-                        newPos = this.findEmptyPos(mid, this.getCurrentMap(), 0)
+                return;
+            }
+            if(item.isPKing)
+            {
+                if(this.testOut(item,rePKOne,item.enemy,200))
+                {
+                    return;
                 }
-                else
-                    newPos = this.findEmptyPos(item.enemy,this.getCurrentMap(),250)
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType2(item,skillData,shake);
-                },this,300);
+                this.atkType2(item,skillData,shake);
             }
             else
+            {
                 this.atkType2(item,skillData,shake);
+            }
         }
         else if(skillData.type ==3) //1远程自己
         {
-            //移过去
-            var dis = this.getDis(item,item.self);
-            if(item.x < 60 || item.x > 640 - 60 || item.y < 80 || item.y > this.fightHeight - 80 || dis > 400)
+            //if(this.testOut(item.enemy,rePKOne))
+            //{
+            //    return;
+            //}
+            if(item.isPKing)
             {
-                if(dis > 400)
+                if(this.testOut(item,rePKOne,item.enemy,200))
                 {
-                    var mid = this.getMiddleXY(item,item.self);
-                    newPos = this.findRoundPos(mid,this.getCurrentMap(),150)
-                    if(!newPos)
-                        newPos = this.findEmptyPos(mid,this.getCurrentMap(),0)
+                    return;
                 }
-                else
-                {
-                    newPos = this.findEmptyPos(item,this.getCurrentMap(),120)
-                }
-
-                var VM = PKMainMV.getInstance();
-                VM.jumpToXY(item,newPos,function(){
-                    this.atkType3(item,skillData);
-                },this,300);
+                this.atkType3(item,skillData);
             }
             else
+            {
                 this.atkType3(item,skillData);
+            }
         }
+
+        if(item.isPKing)
+            item.action = true;
+        if(this.pkStep >= 1 && this.needUpArr1.length > 0)
+        {
+             this.upArr(this.needUpArr1);
+        }
+        if(this.pkStep >= 2 && this.needUpArr2.length > 0)
+        {
+             this.upArr(this.needUpArr2);
+        }
+
+
+    }
+
+    private upArr(arr){
+        for(var i=0;i<arr.length;i++)
+        {
+            var item = arr[i];
+            item.line = 1;
+            var tw:egret.Tween = egret.Tween.get(item);
+            if(item.team == 1){
+                tw.wait(this.random() * 300).to({y:item.y  - 100},300)
+            }
+            else
+            {
+                tw.wait(this.random() * 300).to({y:item.y  + 100},300)
+            }
+        }
+        arr.length = 0;
     }
 
     private atkType0(item,mv,shake){
         var VM = PKMainMV.getInstance();
+        var pos = {x:item.x,y:item.y};
         var xy = VM.moveToTarget(item,item.enemy,function(){
             //被攻击击移后
             var xy = VM.behitMoveBack(item,item.enemy,function(){
@@ -601,13 +835,19 @@ class PKMainUI extends game.BaseUI {
             },this)
             this.jumpOut(item.enemy,xy,[item]);
 
+            if(!item.isPKing)
+            {
+                VM.moveToXY(item,pos);
+            }
+
             //击中动画
             var id = mv.id;
             VM.playOnItem(id,item.enemy,null,null,xy);
             if(shake)
                 this.shakeBG();
         },this)
-        this.jumpOut(item,xy,[item.enemy]);
+        if(item.isPKing)
+            this.jumpOut(item,xy,[item.enemy]);
     }
 
     //1远程对方
@@ -724,6 +964,11 @@ class PKMainUI extends game.BaseUI {
         for(var i=0;i<jumpArr.length;i++)
         {
             var oo = jumpArr[i];
+            //if(oo.item.jumping)
+            //{
+            //    this.needMoveItem.push(oo.item);
+            //    continue;
+            //}
             if(oo.jump)
                 VM.jumpToXY(oo.item,oo.newPos)
             else
@@ -733,7 +978,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     //找自己附近的位置
-    private findRoundPos(item,mapData,limit){
+    private findRoundPos(item,mapData,limit):any{
         var ok = true;
         var startX = Math.max(60,item.x - limit);
         var startY = Math.max(80,item.y - limit);
@@ -760,12 +1005,12 @@ class PKMainUI extends game.BaseUI {
                 return xy;
             }
         }
-        return null;
+        return this.findRoundPos(item,mapData,limit + 50);
 
     }
 
     //找自己附近的位置外，查找最近的空位置
-    private findEmptyPos(item,mapData,limit){
+    private findEmptyPos(item,mapData,limit):any{
         var step = 10;//10次后会变成全屏
         var x1 = Math.max(60,item.x - limit)
         var x2 = Math.min(640-60,item.x + limit)
