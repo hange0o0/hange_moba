@@ -41,7 +41,7 @@ class PKMainUI extends game.BaseUI {
     private timer;
     private count;
 
-    private posArray = []
+    //private posArray = []
 
     private pkStep
     private atker
@@ -69,15 +69,15 @@ class PKMainUI extends game.BaseUI {
 
         this.addChild(this.jumpBtn);
 
-        var startY = 80 + this.itemHeight/2;
-        var stepY = 115;
-        this.posArray.push({x:320,y:startY});
-        this.posArray.push({x:320 - 60,y:startY + stepY});
-        this.posArray.push({x:320 + 60,y:startY + stepY});
-        for(var i=0;i<7;i++)
-        {
-            this.posArray.push({x:320,y:startY + stepY*(i+2)});
-        }
+        //var startY = 80 + this.itemHeight/2;
+        //var stepY = 115;
+        //this.posArray.push({x:320,y:startY});
+        //this.posArray.push({x:320 - 60,y:startY + stepY});
+        //this.posArray.push({x:320 + 60,y:startY + stepY});
+        //for(var i=0;i<7;i++)
+        //{
+        //    this.posArray.push({x:320,y:startY + stepY*(i+2)});
+        //}
         this.selfGroup.height = this.fightHeight;
 
         //this.bg0.width = 325;
@@ -595,7 +595,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.player1)
 
-                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                if(this.random() < 0.3) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 5:
@@ -604,7 +604,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.itemEnemy[this.currentStep.p2 + 1])
 
-                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                if(this.random() < 0.3) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 6:
@@ -613,7 +613,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.itemSelf[this.currentStep.p1 + 1])
 
-                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                if(this.random() < 0.3) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 7:
@@ -622,7 +622,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.itemEnemy[this.currentStep.p2 + 2])
 
-                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                if(this.random() < 0.3) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 8:
@@ -647,10 +647,10 @@ class PKMainUI extends game.BaseUI {
 
     //在PK区内找一空位置
     private findFightEmpty(startPoint,mapData,enemy?,enemyDis?){
-        var startX = 60
-        var startY = this.fightStarY
-        var endX = 640-60
-        var endY = this.fightEndY
+        var startX = 60  + 30
+        var startY = this.fightStarY  + 30
+        var endX = 640-60 -30
+        var endY = this.fightEndY  - 30
         var step = 10;
         while(true)
         {
@@ -692,8 +692,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     //是否不在PK区内
-    private testOut(item,fun,enemy?,enemyDis?){
-        if(item.x < 60 || item.x > 640 - 60 || item.y < this.fightStarY || item.y > this.fightEndY)
+    private testOut(item,fun,enemy?,enemyDis?,testEnemy?){
+        if(item.x < 60 || item.x > 640 - 60 || item.y < this.fightStarY || item.y > this.fightEndY || (testEnemy && this.getDis(item,enemy)<enemyDis))
         {
             var startPoint = item;
             if(!item.action)
@@ -730,7 +730,7 @@ class PKMainUI extends game.BaseUI {
         if(skillData.type ==0) //移过去近攻
         {
             //移过去
-            if(this.testOut(item.enemy,rePKOne,item,200))
+            if(this.testOut(item.enemy,rePKOne,item,250))
             {
                 return;
             }
@@ -738,13 +738,13 @@ class PKMainUI extends game.BaseUI {
         }
         else if(skillData.type ==1) //1远程对方
         {
-            if(this.testOut(item.enemy,rePKOne,item,200))
+            if(this.testOut(item.enemy,rePKOne,item,250))
             {
                 return;
             }
             if(item.isPKing)
             {
-                if(this.testOut(item,rePKOne,item.enemy,200))
+                if(this.testOut(item,rePKOne,item.enemy,250,true))
                 {
                     return;
                 }
@@ -757,13 +757,13 @@ class PKMainUI extends game.BaseUI {
         }
         else if(skillData.type == 2) //1远程字弹
         {
-            if(this.testOut(item.enemy,rePKOne,item,200))
+            if(this.testOut(item.enemy,rePKOne,item,250))
             {
                 return;
             }
             if(item.isPKing)
             {
-                if(this.testOut(item,rePKOne,item.enemy,200))
+                if(this.testOut(item,rePKOne,item.enemy,250,true))
                 {
                     return;
                 }
@@ -782,7 +782,7 @@ class PKMainUI extends game.BaseUI {
             //}
             if(item.isPKing)
             {
-                if(this.testOut(item,rePKOne,item.enemy,200))
+                if(this.testOut(item,rePKOne,item.enemy,250,true))
                 {
                     return;
                 }
@@ -842,7 +842,7 @@ class PKMainUI extends game.BaseUI {
 
             //击中动画
             var id = mv.id;
-            VM.playOnItem(id,item.enemy,null,null,xy);
+            VM.playOnItem(id,item.enemy,null,null);
             if(shake)
                 this.shakeBG();
         },this)

@@ -9,6 +9,7 @@ class DebugManager {
     public myData:any = {"vedio":-1}
     public stop = 0;
     public winCardArr;
+    public testFinishFun;
     public constructor() {
         this.myData = SharedObjectManager.instance.getMyValue('share') || {"vedio":-1,};
     }
@@ -292,6 +293,8 @@ class DebugManager {
                     temp.push(vo.id+':'+vo.name);
                 }
                 console.log(arr.length + '\t\t' + temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
+                if(self.testFinishFun)
+                    self.testFinishFun();
                 SharedObjectManager.instance.setMyValue('testCard_'+key,arr);
                 if(self.stop)
                 {
