@@ -51,7 +51,7 @@ class TecManager{
     //得到指定怪物的升级时显示的碎片信息
     public collectRate(id){
         var lv = UM.getMonsterLevel(id);
-        var now = UM.getCollectNum(id);
+        var now = UM.card;
         var need = this.collectNeed(lv + 1);
         if(lv == 0)
         {
@@ -131,9 +131,10 @@ class TecManager{
             if(fillMonster && vo.type != fillMonster)
                 continue;
             //var kindVO = MonsterKindVO.getObject(vo.type);
-            if(vo.level<= UM.level)
+            if(vo.level<= UM.level + 1)
                 arr.push({
                     id:vo.id,
+                    openLevel:vo.level,
                     tecType:3
                 });
         }

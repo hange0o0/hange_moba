@@ -4,14 +4,15 @@ class VideoItem3 extends game.BaseItem {
         this.skinName = "VideoItem3Skin";
     }
 
-    private headMC: eui.Image;
-    private chooseBG: eui.Rect;
+
     private bg: eui.Rect;
     private con: eui.Group;
+    private roundText: eui.Label;
+
 
 
     public index;
-    private maxConWidth = 500;
+    //private maxConWidth = 500;
     private showCleaning = false//正在显示清队状态
 
     public childrenCreated() {
@@ -25,18 +26,24 @@ class VideoItem3 extends game.BaseItem {
     }
 
     public setChoose(data,shake?){
+        egret.Tween.removeTweens(this.roundText);
         if(data == this.data)
         {
-            this.chooseBG.visible = true;
-            this.chooseBG.alpha = 1;
             if(shake)
             {
-                var tw:egret.Tween = egret.Tween.get(this.chooseBG);
-                tw.to({alpha:0},200).to({alpha:1},200).to({alpha:0},200).to({alpha:1},200);
+                this.roundText.textColor = 0xFFFFFF;
+                var tw:egret.Tween = egret.Tween.get(this.roundText);
+                tw.wait(300).call(function(){this.roundText.textColor = 0xFFFF00;},this);
+                tw.wait(300).call(function(){this.roundText.textColor = 0xFFFFFF;},this);
+                tw.wait(300).call(function(){this.roundText.textColor = 0xFFFF00;},this);
+            }
+            else
+            {
+                this.roundText.textColor = 0xFFFF00;
             }
         }
         else
-            this.chooseBG.visible = false;
+            this.roundText.textColor = 0xFFFFFF;
     }
 
     public dataChanged() {
@@ -46,7 +53,8 @@ class VideoItem3 extends game.BaseItem {
         this.showCleaning = false;
         if(data.type == 'over')
         {
-            this.currentState = 'left'
+            this.currentState = 'team1'
+            this.roundText.text = '战斗结束'
             this.con.removeChildren();
             var group = this.addGroup();
             if(data.isWin)
@@ -61,17 +69,19 @@ class VideoItem3 extends game.BaseItem {
         var atker = VC.getPlayerByID(base.atker);
         if(atker.teamID == 1)
         {
-            this.currentState = 'left';
+            this.currentState = 'team1';
         }
         else
         {
-            this.currentState = 'right';
+            this.currentState = 'team2';
         }
 
-        if(atker.isPKing)
-            this.bg.strokeColor = 0xBC703A;
-        else
-            this.bg.strokeColor = 0x444444;
+        this.roundText.text = 'Round ' + this.index;
+
+        //if(atker.isPKing)
+        //    this.bg.strokeColor = 0xBC703A;
+        //else
+        //    this.bg.strokeColor = 0x444444;
 
         //this.headMC.source =
         //console.log(data);
@@ -465,7 +475,7 @@ class VideoItem3 extends game.BaseItem {
         group.layout = layOut;
         layOut.verticalAlign = 'middle';
         //layOut.gap = 10;
-        group.height = 70;
+        group.height = 60;
 
         this.con.addChild(group);
         return group;

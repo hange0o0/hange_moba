@@ -27,7 +27,7 @@ class HonorUI extends game.BaseUI {
     private upArray;
     private downArray;
 
-    private itemHeight = 110;
+    private itemHeight = 110 + 6;
 
     public constructor() {
         super();
@@ -46,8 +46,8 @@ class HonorUI extends game.BaseUI {
         this.scroller.addEventListener(eui.UIEvent.CHANGE_END,this.onScrollEnd,this)
         this.scroller.bounces = false;
 
-        this.tab.selectedIndex = 0;
-        this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
+        //this.tab.selectedIndex = 0;
+        //this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
 
         this.addBtnEvent(this.upBtn,this.onUp);
         this.addBtnEvent(this.downBtn,this.onDown);
@@ -73,8 +73,10 @@ class HonorUI extends game.BaseUI {
 
     private onUp(){
         var oo = this.upArray.pop();
-        this.scroller.viewport.scrollV = oo.index*this.itemHeight;
-        this.renewBtn();
+        var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
+        var sv = oo.index*this.itemHeight;
+        tw.to({scrollV:sv},Math.min(sv/2,300)).call(this.renewBtn,this)
+        //this.scroller.viewport.scrollV = oo.index*this.itemHeight;
     }
 
     private onDown(){
@@ -82,21 +84,22 @@ class HonorUI extends game.BaseUI {
         var sv = oo.index*this.itemHeight + this.scroller.height - this.itemHeight - 50;
         if(sv > this.scroller.viewport.contentHeight - this.scroller.height)//到底了
             sv = this.scroller.viewport.contentHeight - this.scroller.height;
-        this.scroller.viewport.scrollV = sv;
-        this.renewBtn();
+
+        var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
+        tw.to({scrollV:sv},Math.min(sv/2,300)).call(this.renewBtn,this)
     }
 
     private onScrollEnd(){
         this.renewBtn();
     }
 
-    private typeBarClick(){
-        if(this.tab.selectedIndex == 0)
-            this.infoText.text = '使用指定卡牌获得指定场数胜利，即可获得点券奖励';
-        else
-            this.infoText.text = '使用指定技能获得指定场数胜利，即可获得点券奖励';
-        this.renew();
-    }
+    //private typeBarClick(){
+    //    if(this.tab.selectedIndex == 0)
+    //        this.infoText.text = '使用指定卡牌获得指定场数胜利，即可获得点券奖励';
+    //    else
+    //        this.infoText.text = '使用指定技能获得指定场数胜利，即可获得点券奖励';
+    //    this.renew();
+    //}
 
     public show(){
         var self = this;
@@ -112,20 +115,36 @@ class HonorUI extends game.BaseUI {
     public onShow(){
         this.onHideSort();
         this.renew();
+        this.scroller.viewport.scrollV = 0;
+        this.addPanelOpenEvent(GameEvent.client.honor_change,this.renew)
     }
+
 
     private renew(){
         var arr;
         var HM = HonorManager.getInstance();
-        if(this.tab.selectedIndex == 0)
+        //if(this.tab.selectedIndex == 0)
             arr = this.listArray = HM.getList1();
-        else
-            arr = this.listArray = HM.getList2();
+        //else
+        //    arr = this.listArray = HM.getList2();
 
+        var lastV = this.scroller.viewport.scrollV;
+
+        var count = 0;
+        for(var i=0;i<arr.length;i++)
+        {
+            count += arr[i].level;
+        }
+        this.infoText.text = '领奖进度：' + count + '/' + arr.length*5;
         this.sortListFun(arr,true);
         this.list.dataProvider = new eui.ArrayCollection(arr);
-        this.scroller.viewport.scrollV = 0;
-        this.renewBtn();
+        this.list.validateNow();
+        //egret.callLater(function(){
+            this.scroller.viewport.scrollV = lastV;
+            this.renewBtn();
+        //},this)
+
+
     }
 
     public resort(){

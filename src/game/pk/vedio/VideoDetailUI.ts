@@ -53,6 +53,7 @@ class VideoDetailUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
+        this.topUI.setTitle('队伍状态');
         this.topUI.addEventListener('hide',this.hide,this);
         //
         this.addBtnEvent(this.headGroup0,this.onMonster0);

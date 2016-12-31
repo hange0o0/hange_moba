@@ -7,40 +7,54 @@
 		<e:Image source="book_bg2_jpg" x="640" scaleX="-1" scale9Grid="40,44,240,266" top="350" bottom="0"/>
 	</e:Group>
 	<e:Image source="card_bg_png" x="58" y="38" height="306" scale9Grid="72,75,87,71"/>
-	<e:Image id="headMC" source="pk_bg_jpg" x="73" y="49" width="210" height="280"/>
-	<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A" verticalAlign="bottom"/>
+	<e:Image id="headMC" source="pk_bg_jpg" x="73" y="49" width="210" height="280"/>
+
+
+
+
+	<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A" verticalAlign="bottom"/>
+
+
+
+
+
+
+
+
 	<e:Group id="typeGroup" x="337" y="32">
 	</e:Group>
 	<e:Group x="335" y="96">
 		<e:Group x="5" y="0">
-			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
-			<e:Label id="atkText" x="71" y="10" text="123" textColor="0xCBC08A" size="24"/>
+
+			<e:Label id="atkText" x="50" y="10" text="123" textColor="0xCBC08A" size="24"/>
 			<e:Image source="card_icon_1_png" x="0" y="3" scaleX="0.8" scaleY="0.8"/>
 		</e:Group>
 		<e:Group x="6" y="49">
-			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="56"/>
-			<e:Label id="hpText" x="69" y="11" text="1234" textColor="0xCBC08A" size="24"/>
+
+			<e:Label id="hpText" x="50" y="11" text="1234" textColor="0xCBC08A" size="24"/>
 			<e:Image source="card_icon_0_png" x="0" y="1" scaleX="0.8" scaleY="0.8"/>
 		</e:Group>
 		<e:Group x="5" y="98">
-			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
-			<e:Label id="speedText" y="11" text="58" x="73" textColor="0xCBC08A" size="24"/>
+
+			<e:Label id="speedText" y="11" text="58" x="50" textColor="0xCBC08A" size="24"/>
 			<e:Image x="0" y="3" source="card_icon_3_png" scaleX="0.8" scaleY="0.8"/>
 		</e:Group>
 		<e:Group x="5" y="148">
-			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
-			<e:Label id="mpText" y="11" textColor="0xCBC08A" text="58" x="73" size="24"/>
+
+			<e:Label id="mpText" y="11" textColor="0xCBC08A" text="58" x="50" size="24"/>
 			<e:Image y="0" x="0" source="card_icon_2_png" scaleX="0.8" scaleY="0.8"/>
 		</e:Group>
 		<e:Group x="0" y="197">
-			<e:Image source="border1_png" y="0" scale9Grid="14,15,89,10" width="200" height="43" x="57"/>
-			<e:Label id="coinText" y="10" textColor="0xCBC08A" text="58" size="24" x="73"/>
+
+			<e:Label id="coinText" y="10" textColor="0xCBC08A" text="58" size="24" x="50"/>
 			<e:Image source="fu2_png" x="0" y="2"/>
 		</e:Group>
 		<e:layout>
 			<e:VerticalLayout/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
+
 	<e:Group id="levelGroup" x="71" y="274">
 		<e:Rect height="60" width="214" x="0" y="0" fillAlpha="0.7" strokeWeight="1"/>
 		<e:Label id="levelText" y="14" text="X12" x="18" textColor="0xCBC08A" width="181" textAlign="center"/>

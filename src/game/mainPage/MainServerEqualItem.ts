@@ -9,6 +9,7 @@ class MainServerEqualItem extends game.BaseItem {
     private startBtn: eui.Button;
     private scoreText: eui.Label;
     private desText: eui.Label;
+    private titleText: eui.Label;
 
 
 
@@ -36,7 +37,8 @@ class MainServerEqualItem extends game.BaseItem {
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game_equal;
         //this.totalText.text = '局数：' + serverData.total;
-        this.scoreText.text = '积分：' + serverData.exp + ' [LV.'+ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)+']';
+        this.titleText.text = '修正场 [' + ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)+']';
+        this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
         //this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);

@@ -154,7 +154,7 @@ class MyInfoUI extends game.BaseUI {
 
         this.coinText.text = '金币：' + UM.coin;
         this.diamondText.text = '钻石：' + UM.getDiamond();
-        this.diamondFreeText.text = '卡券：' + UM.getCollectNum();
+        this.diamondFreeText.text = '卡券：' + UM.card;
 
         this.lastLoginText.text = '最近一次登陆：' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land));
 

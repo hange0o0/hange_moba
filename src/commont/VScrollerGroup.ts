@@ -3,6 +3,7 @@ class VScrollerGroup extends eui.Group{
     public itemRenderer;
     public scroller:eui.Scroller;
     public desTop = 10;
+    public margin = 10;
 
     private dataArr;
     private pool = [];
@@ -134,7 +135,7 @@ class VScrollerGroup extends eui.Group{
                 if(!this.heightObj[startIndex])
                 {
                     //item.validateNow();
-                    this.heightObj[startIndex] = item.height + 10
+                    this.heightObj[startIndex] = item.height + this.margin
                     resetHeight = true;
                 }
                 change = true
@@ -178,7 +179,7 @@ class VScrollerGroup extends eui.Group{
         this.addChild(item);
         item.data = data;
         //item.validateNow();
-        var h = item.height + 10;
+        var h = item.height + this.margin;
         this.feeItem(item);
         return h;
     }

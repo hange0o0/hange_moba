@@ -7,12 +7,14 @@ class CollectUI extends game.BaseUI {
 
     private topUI: TopUI;
     private coinText: eui.Label;
+    private cardText: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
     private sortBtn: eui.Image;
     private sortText: eui.Label;
     private sortGroup: eui.Group;
     private sortList: eui.List;
+
 
 
 
@@ -162,8 +164,8 @@ class CollectUI extends game.BaseUI {
 
     public onShow(){
         this.renew();
-        this.addPanelOpenEvent(GameEvent.client.collect_change,this.justRenewList);
-        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewCoin);
+        this.addPanelOpenEvent(GameEvent.client.collect_change,this.renew);
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renew);
     }
 
     public renew(){
@@ -173,6 +175,7 @@ class CollectUI extends game.BaseUI {
 
     public renewCoin(){
         this.coinText.text = UM.coin + '';
+        this.cardText.text = UM.card + '';
     }
 
     public renewList(){
@@ -234,6 +237,10 @@ class CollectUI extends game.BaseUI {
         }
     }
     private sortByDefault(a,b){
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;
@@ -250,6 +257,10 @@ class CollectUI extends game.BaseUI {
             return -1;
         if(a.lv > b.lv)
             return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;
@@ -258,6 +269,10 @@ class CollectUI extends game.BaseUI {
         if(a.lv > b.lv)
             return -1;
         if(a.lv < b.lv)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
             return 1;
         if(a.id < b.id)
             return -1;

@@ -207,10 +207,17 @@ class UserManager {
         return this.tec.monster[id] || 0;
     }
 
-    public getCollectNum(id?){
-        id = 0;
-        return  this.collect.num[id] || 0
+    public get card(){
+        return this.collect.num[0] || 0;
     }
+    public set card(v){
+        this.collect.num[0] = v;
+    }
+
+    //public getCollectNum(id?){
+    //    id = 0;
+    //    return  this.collect.num[id] || 0
+    //}
 
     //取显示的大等级
     public getMonsterCollect(monsterID){

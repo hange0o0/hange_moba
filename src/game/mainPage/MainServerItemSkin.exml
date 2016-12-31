@@ -8,9 +8,9 @@
 		</e:layout>
 	</e:Group>
 	<e:Image y="-101" x="106" source="main3_png" scaleX="0.9" scaleY="0.9"/>
-	<e:Group horizontalCenter="0" y="265">
+	<e:Group horizontalCenter="0" y="265" width="480">
 		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4"/>
+		<e:Label id="titleText" text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>

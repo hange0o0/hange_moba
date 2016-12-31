@@ -11,6 +11,6 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:Button id="closeBtn" x="587" y="4" skinName="Btn_close1Skin" scaleX="0.8" scaleY="0.8"/>
 	<e:Label text="快捷定位" y="19" horizontalCenter="0" size="22"/>
+	<e:Image id="closeBtn" source="arrow2_png" x="14" y="7"/>
 </e:Skin>

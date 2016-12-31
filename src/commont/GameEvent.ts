@@ -14,6 +14,7 @@ class GameEvent {
         friend_log_change:'friend_log_change',
         friend_pk_change:'friend_pk_change',
         level_change:'level_change',
+        honor_change:'honor_change',
 
 
         timer:'timer'

@@ -31,9 +31,11 @@ class MonsterList extends game.BaseUI {
     private p8: eui.Image;
     private p9: eui.Image;
     private levelUpGroup: eui.Group;
+    private levelUpCon: eui.Group;
     private coinText: eui.Label;
     private levelUpBtn: eui.Button;
     private levelUpText: eui.Label;
+    private cardText: eui.Label;
 
 
 
@@ -80,6 +82,8 @@ class MonsterList extends game.BaseUI {
     }
 
     private onLevelUp(){
+        if(this.levelUpBtn.skinName != 'Btn_r2Skin')
+            return;
         var self = this;
         var oo =  this.dataArray[this.index];
         TecManager.getInstance().levelUp(3,oo.id,function(){
@@ -218,7 +222,7 @@ class MonsterList extends game.BaseUI {
     }
 
     public onShow(){
-        if(this.dataArray.length <2)
+        if(this.dataArray.length <2 && !this.isLevelUp)
         {
             this.bottomGroup.visible = false;
             this.scroller.bottom = 0;
@@ -267,26 +271,36 @@ class MonsterList extends game.BaseUI {
         var collectNum = arr[0];
         if(collectNeed == 0)
         {
-            this.coinText.text = '' + UM.coin;
+            this.levelUpCon.visible = false
+            this.levelUpText.visible = true;
             this.levelUpText.text = '已达本位面最高等级';
-            this.levelUpBtn.visible = false
             return;
         }
+        this.levelUpText.visible = false;
+        this.levelUpCon.visible = true
+        var b = true
         if(cost > UM.coin)
+        {
+            b = false
             this.setHtml(this.coinText, '<font color="#ff0000">' + cost + '</font>/' + UM.coin);
+        }
         else
             this.coinText.text = '' + cost + '/' + UM.coin;
 
         if(collectNeed > collectNum)
         {
-            this.setHtml(this.levelUpText, '升级碎片：<font color="#ff0000">' + collectNeed + '</font>/' + collectNum);
-            this.levelUpBtn.visible = false
+            b = false
+            this.setHtml(this.cardText, '<font color="#ff0000">' + collectNeed + '</font>/' + collectNum);
         }
         else
         {
-            this.levelUpText.text = '';
-            this.levelUpBtn.visible = true
+            this.cardText.text = '' + collectNeed + '/' + collectNum;
         }
+
+        if(b)
+            this.levelUpBtn.skinName = 'Btn_r2Skin'
+        else
+            this.levelUpBtn.skinName = 'Btn_d2Skin'
 
 
     }

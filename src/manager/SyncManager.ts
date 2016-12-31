@@ -72,12 +72,14 @@ class SyncManager{
                     {
                         UM.collect.num[ss] = value[ss];
                     }
+                    EM.dispatch(GameEvent.client.collect_change);
                     break;
                 case 'sync_collect_level':
                     for(ss in value)
                     {
                         UM.collect.level[ss] = value[ss];
                     }
+                    EM.dispatch(GameEvent.client.collect_change);
                     break;
                 case 'sync_honor_ring':
                     if(!UM.honor.ring)
@@ -94,6 +96,7 @@ class SyncManager{
                     {
                         UM.honor.monster[ss] = value[ss];
                     }
+                    EM.dispatch(GameEvent.client.honor_change);
                     break;
                 case 'sync_active_task':
                     UM.active.task = value;

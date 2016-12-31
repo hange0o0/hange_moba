@@ -154,7 +154,7 @@ class HonorManager{
                 return;
             }
 
-
+            AwardUI.getInstance().show(msg);
             if(fun)
                 fun();
         });

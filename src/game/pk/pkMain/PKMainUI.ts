@@ -213,23 +213,39 @@ class PKMainUI extends game.BaseUI {
     //加所有单位
     private addItemMovie(){
         var myTeam = PKManager.getInstance().team1Base.list
+        var arr = [1,200,400,600,800,1000]
+        this.randomSort(arr);
+        arr.length =myTeam.length;
         for(var i=0;i<myTeam.length;i++)
         {
-            this.addOneItem(myTeam[i],1,i,Math.floor(1+i*200 + 100*this.random()));
+            this.addOneItem(myTeam[i],1,i,arr[i]);
         }
         this.resetXY(this.itemSelf,1);
 
         var enemyTeam = PKManager.getInstance().team2Base.list
+        var arr = [1,200,400,600,800,1000]
+        this.randomSort(arr);
+        arr.length =enemyTeam.length;
         for(var i=0;i<enemyTeam.length;i++)
         {
-            this.addOneItem(enemyTeam[i],2,i,Math.floor(1+i*200 + 100*this.random()));
+            this.addOneItem(enemyTeam[i],2,i,arr[i]);
         }
         this.resetXY(this.itemEnemy,2);
 
         this.jumpBtn.visible = true;
 
-        this.timer = egret.setTimeout(this.playOne,this,2500)
+        this.timer = egret.setTimeout(this.playOne,this,2000)
 
+    }
+
+    private randomSort(arr){
+        var self = this;
+        var fun = function(a,b){
+            if(self.random()>0.5)
+                return 1;
+            return -1;
+        }
+        arr.sort(fun);
     }
 
     //加一个单位到舞台上
@@ -369,15 +385,30 @@ class PKMainUI extends game.BaseUI {
     private showItemMV(item){
         if(this.isStop)
             return;
-        var VM = PKMainMV.getInstance();
-        if(item.team == 1)
-            VM.playOnItem(28,item)
+        //var VM = PKMainMV.getInstance();
+        //if(item.team == 1)
+        //    VM.playOnItem(28,item)
+        //else
+        //    VM.playOnItem(34,item)
+        //var x = item.x;
+        item.alpha = 1;
+        var y = item.y;
+        var decY = 20 + this.random()*20;
+        if(y < 480)
+        {
+            item.y = -200;
+        }
         else
-            VM.playOnItem(34,item)
+        {
+            item.y = this.fightHeight + 200
+            decY = -20 + this.random()*20;
+        }
+
+
 
         var tw:egret.Tween = egret.Tween.get(item);
 
-        tw.wait(200).to({alpha:1},500);
+        tw.to({y:y + decY},300).to({y:y},100);
     }
 
     //开始播放动画
@@ -686,6 +717,10 @@ class PKMainUI extends game.BaseUI {
                 return xy;
             }
             step+= 10;
+            if(step > 320)
+            {
+                enemy = null
+            }
         }
         return null
 

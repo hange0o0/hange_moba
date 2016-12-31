@@ -348,7 +348,7 @@ class MainPageUI extends game.BaseUI {
         this.diamondText.text = UM.getDiamond() + '';
     }
     public renewCard(){
-        this.feeText.text = UM.getCollectNum() + '';
+        this.feeText.text = UM.card + '';
     }
     public renewForce(){
         this.forceText.text = UM.getForce() + '';

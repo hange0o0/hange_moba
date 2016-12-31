@@ -54,7 +54,7 @@ class PKResultItem2 extends game.BaseItem {
         var player = this.data.player1
         var mvo = MonsterVO.getObject(player.mid)
         this.headMC0.source = mvo.thumb;
-        var before = player.before/player.beforeMax;
+        var before = player.before/Math.max(player.beforeMax,player.afterMax);
         var after = player.after/player.afterMax;
         if(before > after) //-
         {
@@ -88,7 +88,7 @@ class PKResultItem2 extends game.BaseItem {
         var player = this.data.player2
         var mvo = MonsterVO.getObject(player.mid)
         this.headMC1.source = mvo.thumb;
-        var before = player.before/player.beforeMax;
+        var before = player.before/Math.max(player.beforeMax,player.afterMax);
         var after = player.after/player.afterMax;
         if(before > after) //-
         {

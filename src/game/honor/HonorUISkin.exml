@@ -6,7 +6,7 @@
 		<e:Group>
 			<e:List id="list" width="640" itemRendererSkinName="TecItemSkin" x="0" top="0" bottom="370">
 				<e:layout>
-					<e:VerticalLayout gap="0"/>
+					<e:VerticalLayout/>
 				</e:layout>
 			</e:List>
 		</e:Group>
@@ -22,13 +22,13 @@
 	</e:TabBar>
 	<e:Group id="upBtn" x="15" top="173">
 		<e:Image source="arrow2_png" x="30" y="30" anchorOffsetX="22" anchorOffsetY="23" rotation="90"/>
-		<e:Label id="upText" text="12" x="0" y="71" width="60" textAlign="center"/>
+		<e:Label id="upText" text="12" x="40" textAlign="center" y="40" stroke="2"/>
 	</e:Group>
 	<e:Group id="downBtn" x="15" width="60" height="100" bottom="30">
-		<e:Image source="arrow2_png" y="70" x="30" anchorOffsetX="22" rotation="270" anchorOffsetY="23"/>
-		<e:Label id="downText" x="0" width="60" y="0" text="12" textAlign="center"/>
+		<e:Image source="arrow2_png" y="40" x="28" anchorOffsetX="22" rotation="270" anchorOffsetY="23"/>
+		<e:Label id="downText" x="40" y="0" text="12" textAlign="center" stroke="2"/>
 	</e:Group>
-	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="82" size="22" textColor="0xCCB48E" width="336" height="53" x="8" lineSpacing="5"/>
+	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="82" size="22" textColor="0xCCB48E" width="336" height="53" x="8" lineSpacing="5" verticalAlign="middle"/>
 	<e:Image source="border6_png" x="421" y="88" scale9Grid="14,6,88,18" width="210" height="41"/>
 	<e:Image id="sortBtn" source="icon_add_png" x="590" y="92"/>
 	<e:Label id="sortText" text="标签标签标签" x="424" y="95" size="26" textColor="0xCCB48E" width="167" textAlign="center"/>
