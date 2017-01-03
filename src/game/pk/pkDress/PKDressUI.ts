@@ -105,9 +105,13 @@ class PKDressUI extends game.BaseUI {
         this.monsterList = this.orginData.list;
         PKManager.getInstance().sortMonster(this.monsterList);
         this.reInitData();
+        this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
     }
 
-
+    private mainGameChange(){
+        this.dataIn.enemy = MainGameUI.getInstance().enemyArray;
+        this.renewEnemy()
+    }
 
 
     private scrollToTop(){
@@ -273,19 +277,7 @@ class PKDressUI extends game.BaseUI {
 
 
         this.currentState = 'normal'
-        if(!this.dataIn.enemy)
-        {
-            this.viewBtn.visible = false;
-        }
-        else
-        {
-            this.viewBtn.visible = true;
-            this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
-            if(this.dataIn.enemy.length <=6)
-                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
-            else
-                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 4
-        }
+         this.renewEnemy();
 
 
         this.pkDressChooseUI.renew(this.chooseList);
@@ -295,6 +287,31 @@ class PKDressUI extends game.BaseUI {
 
         this.topGroup.visible = false;
         this.scroller.viewport.scrollV = 0;
+    }
+
+    private renewEnemy(){
+        if(!this.dataIn.enemy)
+        {
+            this.viewBtn.visible = false;
+        }
+        else
+        {
+            this.viewBtn.visible = true;
+            this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
+            if(this.dataIn.enemy.length <4)
+            {
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 0;
+                (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 1
+            }
+            else
+            {
+                (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 2;
+                if(this.dataIn.enemy.length ==4)
+                    (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 2
+                else
+                    (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
+            }
+        }
     }
 
 

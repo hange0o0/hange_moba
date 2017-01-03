@@ -4,7 +4,8 @@ class PKFailUI extends PKResultBase {
         if (!this.instance) this.instance = new PKFailUI();
         return this.instance;
     }
-    
+
+    private resultGroup: eui.Group;
     private desText: eui.Label;
     private list: eui.List;
     private btnGroup: eui.Group;
@@ -22,6 +23,7 @@ class PKFailUI extends PKResultBase {
     public childrenCreated() {
         this._desText = this.desText;
         this._list = this.list;
+        this._resultGroup = this.resultGroup;
         super.childrenCreated();
         this.addBtnEvent(this.backBtn, this.onBack);
         this.addBtnEvent(this.okBtn, this.onRestart);

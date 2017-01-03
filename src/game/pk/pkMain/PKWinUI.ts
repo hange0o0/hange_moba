@@ -4,10 +4,12 @@ class PKWinUI extends PKResultBase {
         if (!this.instance) this.instance = new PKWinUI();
         return this.instance;
     }
-    
+
+    private resultGroup: eui.Group;
     private desText: eui.Label;
     private list: eui.List;
     private okBtn: eui.Button;
+
 
 
 
@@ -20,6 +22,7 @@ class PKWinUI extends PKResultBase {
     public childrenCreated() {
         this._desText = this.desText;
         this._list = this.list;
+        this._resultGroup = this.resultGroup;
         super.childrenCreated();
         this.addBtnEvent(this.okBtn, this.onClick);
     }

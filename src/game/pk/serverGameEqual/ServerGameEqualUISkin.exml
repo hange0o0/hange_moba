@@ -42,14 +42,14 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group y="375.83333333333337" height="100%" minHeight="460" x="0">
+			<e:Group y="375.83333333333337" height="100%" minHeight="600" x="0">
 				<e:layout>
 					<e:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
 				</e:layout>
-				<e:Group id="myGroup" y="0" height="320" x="36.66666666666667">
+				<e:Group id="myGroup" y="0" height="450" x="36.66666666666667">
 					<e:List y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList">
 						<e:layout>
-							<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+							<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
 						</e:layout>
 						<e:ArrayCollection>
 							<e:Array>

@@ -43,6 +43,10 @@ class AwardUI extends game.BaseWindow {
         {
             arr.push({type:'diamond',des:this.data.diamond})
         }
+        if(this.data.collect)
+        {
+            arr.push({type:'card',des:this.data.collect})
+        }
         if(this.data.prop)
         {
             for(var s in this.data.prop)

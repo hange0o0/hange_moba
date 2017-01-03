@@ -72,7 +72,7 @@ class SyncManager{
                     {
                         UM.collect.num[ss] = value[ss];
                     }
-                    EM.dispatch(GameEvent.client.collect_change);
+                    EM.dispatch(GameEvent.client.card_change);
                     break;
                 case 'sync_collect_level':
                     for(ss in value)

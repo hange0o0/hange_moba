@@ -20,7 +20,7 @@ class CollectItem extends game.BaseItem {
 
     private onClick(){
         //CollectItemInfo.getInstance().show(this.data,this);
-        MonsterList.getInstance().showLevelUp(this.data);
+        MonsterList.getInstance().show(this.data.list,this.data.list.indexOf(this.data));
     }
 
     public dataChanged(){
@@ -49,7 +49,7 @@ class CollectItem extends game.BaseItem {
             {
                 this.arrowMC.visible = true;
                 var cost = TecManager.getInstance().needCoin(level + 1)
-                if(cost > UM.coin)
+                if(cost < UM.coin)
                 {
                     this.arrowMC.source = 'arrow5_png'
                     this.arrowMC.scaleY = 1;

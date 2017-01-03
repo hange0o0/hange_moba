@@ -10,10 +10,10 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" y="0" height="100%"/>
 				</e:Group>
 
-				<e:Label text="敌方卡组" y="5" textColor="0xCCB48E" horizontalCenter="0"/>
-				<e:List id="enemyList" height="259" y="47" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+				<e:Label id="desText" text="敌方卡组" y="5" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="15">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="3" horizontalGap="30"/>
+						<e:TileLayout horizontalGap="30"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>
@@ -21,17 +21,16 @@
 							<e:Object label="数据2"/>
 							<e:Object label="数据3"/>
 							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
+
 		
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group x="80" y="471" height="380" id="myGroup0">
+			<e:Group x="80" y="471" height="520" id="myGroup0">
 				<e:List y="70" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList0">
 					<e:layout>
-						<e:TileLayout horizontalGap="30" requestedColumnCount="4"/>
+						<e:TileLayout horizontalGap="15" requestedColumnCount="4" verticalGap="10"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>
@@ -54,7 +53,7 @@
 						<e:HorizontalLayout verticalAlign="bottom"/>
 					</e:layout>
 				</e:Group>
-				<e:Group width="640" y="320" horizontalCenter="0">
+				<e:Group width="640" horizontalCenter="0" bottom="0">
 					<e:layout>
 						<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
 					</e:layout>

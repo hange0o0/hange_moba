@@ -5,7 +5,7 @@
 		<e:Image source="pk_fail_png" y="0" scaleX="-1" x="492"/>
 		<e:Image source="fight_fail_1_png" y="119" x="154"/>
 	</e:Group>
-	<e:Group bottom="20" horizontalCenter="0" top="330" x="10" y="10">
+	<e:Group id="resultGroup" bottom="20" horizontalCenter="0" top="330" x="10" y="10">
 		<e:layout>
 			<e:VerticalLayout horizontalAlign="center" gap="15"/>
 		</e:layout>

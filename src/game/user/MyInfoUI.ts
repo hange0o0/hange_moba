@@ -17,9 +17,8 @@ class MyInfoUI extends game.BaseUI {
     private forceText2: eui.Label;
     private forceText3: eui.Label;
     private energyText: eui.Label;
-    private reEnergyText: eui.Label;
-    private energyText2: eui.Label;
     private addEnergyBtn: eui.Group;
+    private reEnergyText: eui.Label;
     private coinText: eui.Label;
     private addCoinBtn: eui.Group;
     private diamondText: eui.Label;
@@ -46,6 +45,7 @@ class MyInfoUI extends game.BaseUI {
     private serverEqualText6: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -105,12 +105,12 @@ class MyInfoUI extends game.BaseUI {
         var cd = UM.getNextEnergyCD();
         if(cd == 0)
         {
-            this.energyText.text = '系统体力：' + UM.energy.v + '/' + 60;
+            this.energyText.text = '体力：' + UM.energy.v + '/' + 60;
             this.reEnergyText.text = '';
         }
         else
         {
-            this.energyText.text = '系统体力：' + UM.energy.v + '/' + 60;
+            this.energyText.text = '体力：' + UM.energy.v + '/' + 60;
             this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+1+'点体力';
         }
 
@@ -148,7 +148,7 @@ class MyInfoUI extends game.BaseUI {
 
 
 
-        this.energyText2.text = '购买体力：' + UM.energy.rmb;
+        //this.energyText2.text = '购买体力：' + UM.energy.rmb;
         this.onTimer();
 
 

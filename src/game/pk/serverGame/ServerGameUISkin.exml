@@ -36,11 +36,11 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group x="0" y="375.83333333333337" minHeight="460" height="100%">
-				<e:Group id="myGroup" y="0" height="320" x="36.66666666666667">
+			<e:Group x="0" y="375.83333333333337" minHeight="600" height="100%">
+				<e:Group id="myGroup" y="0" height="450" x="36.66666666666667">
 					<e:List id="myList" y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
 						<e:layout>
-							<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+							<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
 						</e:layout>
 						<e:ArrayCollection>
 							<e:Array>

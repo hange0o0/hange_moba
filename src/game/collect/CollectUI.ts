@@ -166,6 +166,7 @@ class CollectUI extends game.BaseUI {
         this.renew();
         this.addPanelOpenEvent(GameEvent.client.collect_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renew);
+        this.addPanelOpenEvent(GameEvent.client.card_change,this.renew);
     }
 
     public renew(){

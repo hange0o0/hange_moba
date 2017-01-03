@@ -9,10 +9,12 @@ class DayGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private desText: eui.Label;
     private enemyList: eui.List;
     private myGroup0: eui.Group;
     private myList0: eui.List;
     private chooseBtn0: eui.Button;
+
 
 
     private enemyArray;
@@ -60,7 +62,7 @@ class DayGameUI extends game.BaseUI {
     public onShow(){
         var DM = DayGameManager.getInstance();
         var myData = UM.day_game;
-        this.topUI.setTitle('今日挑战(' + myData.level + '/10)');
+        this.desText.text = '当前进度：' + myData.level + '/10'
         //更新敌人
         var specialData:any = {
             isNPC:true,
@@ -73,7 +75,7 @@ class DayGameUI extends game.BaseUI {
             var id = arr[i]
             enemyList.push({
                 vo: MonsterVO.getObject(id),
-                type:1,
+                isTeam:true,
 
                 id: id,
                 specialData: specialData,
@@ -83,6 +85,20 @@ class DayGameUI extends game.BaseUI {
             });
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
+
+        if(enemyList.length <4)
+        {
+            (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 0;
+            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 1
+        }
+        else
+        {
+            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 2;
+            if(enemyList.length ==4)
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 2
+            else
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
+        }
 
         specialData = {
             isEqual:true

@@ -125,7 +125,7 @@ class UserManager {
     public addHistory(list){
         this.pk_common.history.unshift(list);
         if(this.pk_common.history.length > 20)
-            this.pk_common.history = 20;
+            this.pk_common.history.length = 20;
     }
 
     //取道具数量

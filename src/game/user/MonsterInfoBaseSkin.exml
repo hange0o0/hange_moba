@@ -6,13 +6,6 @@
 		<e:Image source="book_bg2_jpg" x="0" scale9Grid="40,25,240,289" top="350" bottom="0"/>
 		<e:Image source="book_bg2_jpg" x="640" scaleX="-1" scale9Grid="40,44,240,266" top="350" bottom="0"/>
 	</e:Group>
-	<e:Image source="card_bg_png" x="58" y="38" height="306" scale9Grid="72,75,87,71"/>
-	<e:Image id="headMC" source="pk_bg_jpg" x="73" y="49" width="210" height="280"/>
-
-
-
-
-	<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A" verticalAlign="bottom"/>
 
 
 
@@ -21,9 +14,12 @@
 
 
 
-	<e:Group id="typeGroup" x="337" y="32">
-	</e:Group>
-	<e:Group x="335" y="96">
+
+
+
+
+	<e:Group x="340" y="30">
+		<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A" verticalAlign="bottom"/>
 		<e:Group x="5" y="0">
 
 			<e:Label id="atkText" x="50" y="10" text="123" textColor="0xCBC08A" size="24"/>
@@ -55,14 +51,31 @@
 	</e:Group>
 
 
-	<e:Group id="levelGroup" x="71" y="274">
-		<e:Rect height="60" width="214" x="0" y="0" fillAlpha="0.7" strokeWeight="1"/>
-		<e:Label id="levelText" y="14" text="X12" x="18" textColor="0xCBC08A" width="181" textAlign="center"/>
+	<e:Group x="30" y="30">
+		<e:Image source="card_bg_png" x="0" y="0" height="350" scale9Grid="72,75,87,71" width="270"/>
+		<e:Image id="headMC" source="pk_bg_jpg" x="15" y="13" width="240" height="320"/>
+		<e:Group id="levelGroup" x="15" y="273">
+			<e:Rect height="60" width="240" x="0" y="0" fillAlpha="0.7" strokeWeight="1"/>
+			<e:Label id="levelText" y="15" text="X12" textColor="0xCBC08A" textAlign="center" horizontalCenter="0.5"/>
+		</e:Group>
 	</e:Group>
-	<e:Rect width="580" horizontalCenter="0" top="380" bottom="20" ellipseHeight="20" ellipseWidth="20" strokeColor="0xC2A87D" strokeWeight="1" fillColor="0x180802"/>
-	<e:List id="list" x="38" top="390" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="30">
+	<e:Rect width="580" horizontalCenter="0" top="400" bottom="20" ellipseHeight="20" ellipseWidth="20" strokeColor="0xC2A87D" strokeWeight="1" fillColor="0x180802"/>
+	<e:List id="list" x="38" top="410" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="30">
 		<e:layout>
 			<e:VerticalLayout gap="10"/>
 		</e:layout>
 	</e:List>
+	<e:Group y="298" id="levelUpCon" x="340">
+		<e:Group x="0" y="0">
+			<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
+			<e:Image source="icon_money_png" y="0" x="0"/>
+			<e:Label id="levelUpCoinText" y="8" textColor="0xCCCCCC" text="123456" size="24" x="44"/>
+		</e:Group>
+		<e:Button id="levelUpBtn" y="2" label="升升级" x="182" width="80" height="80" skinName="Btn_d1Skin"/>
+		<e:Group x="0" y="45">
+			<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
+			<e:Image source="icon_pvp_ticket_png" y="0" x="0"/>
+			<e:Label id="levelUpCardText" y="8" textColor="0xCCCCCC" text="12345" size="24" x="44"/>
+		</e:Group>
+	</e:Group>
 </e:Skin>

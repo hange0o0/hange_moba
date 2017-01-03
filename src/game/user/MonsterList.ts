@@ -30,12 +30,7 @@ class MonsterList extends game.BaseUI {
     private p7: eui.Image;
     private p8: eui.Image;
     private p9: eui.Image;
-    private levelUpGroup: eui.Group;
-    private levelUpCon: eui.Group;
-    private coinText: eui.Label;
-    private levelUpBtn: eui.Button;
-    private levelUpText: eui.Label;
-    private cardText: eui.Label;
+
 
 
 
@@ -47,7 +42,7 @@ class MonsterList extends game.BaseUI {
     public startPos
     public rota
 
-    public isLevelUp = false
+    //public isLevelUp = false
 
     public constructor() {
         super();
@@ -65,7 +60,7 @@ class MonsterList extends game.BaseUI {
 
         this.addBtnEvent(this.leftBtn, this.onLeft);
         this.addBtnEvent(this.rightBtn, this.onRight);
-        this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
+
 
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
@@ -81,15 +76,7 @@ class MonsterList extends game.BaseUI {
             this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
     }
 
-    private onLevelUp(){
-        if(this.levelUpBtn.skinName != 'Btn_r2Skin')
-            return;
-        var self = this;
-        var oo =  this.dataArray[this.index];
-        TecManager.getInstance().levelUp(3,oo.id,function(){
-            self.renewLevelUp();
-        });
-    }
+
 
     private onBegin(e:egret.TouchEvent){
         if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
@@ -210,19 +197,19 @@ class MonsterList extends game.BaseUI {
     public show(list?,index?){
         this.dataArray = list;
         this.index = index || 0;
-        this.isLevelUp = false;
+        //this.isLevelUp = false;
         super.show();
     }
 
-    public showLevelUp(vo){
-        this.dataArray = [{id:vo.id,specialData:{isLevelUp:true}}]
-        this.index = 0;
-        this.isLevelUp = true;
-        super.show();
-    }
+    //public showLevelUp(vo){
+    //    this.dataArray = [{id:vo.id,specialData:{isLevelUp:true}}]
+    //    this.index = 0;
+    //    this.isLevelUp = true;
+    //    super.show();
+    //}
 
     public onShow(){
-        if(this.dataArray.length <2 && !this.isLevelUp)
+        if(this.dataArray.length <2)
         {
             this.bottomGroup.visible = false;
             this.scroller.bottom = 0;
@@ -233,7 +220,7 @@ class MonsterList extends game.BaseUI {
             this.scroller.bottom = 80;
         }
 
-
+        this.scroller.viewport.scrollV = 0;
         this.renew();
         this.once(egret.Event.RENDER,function(){
             this.info.setMinHeight(this.scroller.height);
@@ -253,60 +240,12 @@ class MonsterList extends game.BaseUI {
         //},this)
 
 
-        if(this.isLevelUp)
-            this.renewLevelUp();
-        else
-            this.renewPage();
+        this.renewPage();
     }
 
-    public renewLevelUp(){
-        var oo =  this.dataArray[this.index];
-        var TEC = TecManager.getInstance();
-        this.levelUpGroup.visible = true;
-        this.pageGroup.visible = false;
-        var cost = TEC.needCoin(UM.getMonsterLevel(oo.id) + 1)
 
-        var arr = TecManager.getInstance().collectRate(oo.id);
-        var collectNeed = arr[1];
-        var collectNum = arr[0];
-        if(collectNeed == 0)
-        {
-            this.levelUpCon.visible = false
-            this.levelUpText.visible = true;
-            this.levelUpText.text = '已达本位面最高等级';
-            return;
-        }
-        this.levelUpText.visible = false;
-        this.levelUpCon.visible = true
-        var b = true
-        if(cost > UM.coin)
-        {
-            b = false
-            this.setHtml(this.coinText, '<font color="#ff0000">' + cost + '</font>/' + UM.coin);
-        }
-        else
-            this.coinText.text = '' + cost + '/' + UM.coin;
-
-        if(collectNeed > collectNum)
-        {
-            b = false
-            this.setHtml(this.cardText, '<font color="#ff0000">' + collectNeed + '</font>/' + collectNum);
-        }
-        else
-        {
-            this.cardText.text = '' + collectNeed + '/' + collectNum;
-        }
-
-        if(b)
-            this.levelUpBtn.skinName = 'Btn_r2Skin'
-        else
-            this.levelUpBtn.skinName = 'Btn_d2Skin'
-
-
-    }
 
     public renewPage(){
-        this.levelUpGroup.visible = false;
         this.pageGroup.visible = true;
         if(this.dataArray.length <2)
             return;

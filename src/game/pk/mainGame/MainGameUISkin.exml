@@ -18,9 +18,9 @@
 					</e:Group>
 					<e:Label y="5" textColor="0xCCB48E" text="秒杀价格：" x="0" size="26"/>
 				</e:Group>
-				<e:List id="enemyList" height="259" y="56" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="15">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="3" horizontalGap="40"/>
+						<e:TileLayout horizontalGap="40"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>
@@ -31,10 +31,10 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group id="myGroup0" y="461" height="380" x="70">
+			<e:Group id="myGroup0" y="461" height="520" x="70">
 				<e:List id="myList0" y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+						<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>
@@ -57,7 +57,7 @@
 						<e:HorizontalLayout verticalAlign="bottom"/>
 					</e:layout>
 				</e:Group>
-				<e:Group width="640" y="310" horizontalCenter="0">
+				<e:Group width="640" horizontalCenter="0" bottom="0">
 					<e:layout>
 						<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
 					</e:layout>

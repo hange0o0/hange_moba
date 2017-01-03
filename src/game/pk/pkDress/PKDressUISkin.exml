@@ -32,7 +32,7 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Group id="topGroup" x="0" y="123" y.open="381" height="60">
-		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.8"/>
+		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="1"/>
 		<e:List id="simpleList" width="470" itemRendererSkinName="PKDressSimpleItemSkin" x="25" verticalCenter="0">
 			<e:layout>
 				<e:HorizontalLayout gap="10"/>
@@ -50,9 +50,11 @@
 		</e:List>
 		<e:Button id="topBtn" label="回到顶部" scaleX="0.8" scaleY="0.8" x="509" skinName="Btn_r2Skin" verticalCenter="0"/>
 	</e:Group>
-	<e:List y="82" itemRendererSkinName="EnemyHeadItemSkin" height="259" id="enemyList" horizontalCenter="0" visible.normal="false">
-		<e:layout>
-			<e:TileLayout requestedColumnCount="4" horizontalGap="30" verticalGap="10"/>
-		</e:layout>
-	</e:List>
+	<e:Group x="0" y="80" height="250" width="640" id="enemyGroup" visible.normal="false" locked="true">
+		<e:List itemRendererSkinName="EnemyHeadItemSkin" id="enemyList"  horizontalCenter="0" verticalCenter="0">
+			<e:layout>
+				<e:TileLayout requestedColumnCount="4" horizontalGap="15"/>
+			</e:layout>
+		</e:List>
+	</e:Group>
 </e:Skin>

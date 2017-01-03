@@ -16,7 +16,7 @@ class MainGameUI extends game.BaseUI {
     private chooseBtn0: eui.Button;
 
 
-    private enemyArray;
+    public enemyArray;
 
     public constructor() {
         super();
@@ -56,6 +56,7 @@ class MainGameUI extends game.BaseUI {
 
     private superShow(){
         super.show();
+        this.addPanelOpenEvent(GameEvent.client.main_kill,this.renewEnemy)
     }
 
     public renewPrice(){
@@ -66,36 +67,67 @@ class MainGameUI extends game.BaseUI {
             this.moneyText.text = '' + cost + '/' + UM.coin;
     }
 
-    public onShow(){
+    private renewEnemy(){
         var MM = MainGameManager.getInstance();
-        var data = UM.main_game;
-        this.topUI.setTitle('试练场PK-第'+(UM.main_game.level + 1)+'关');
-        this.renewPrice();
         //更新敌人
         var specialData:any = {
             isNPC:true
         };
         var enemyList = this.enemyArray = [];
-        var arr = MainGameVO.getObject(UM.main_game.level + 1).list;
+        var arr = MainGameVO.getObject(UM.main_game.level).list;
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
+            if(MM.isKill(i))
+                continue;
             enemyList.push({
                 vo: MonsterVO.getObject(id),
-                type:2,
+                isMain:true,
+                isTeam:true,
 
                 id: id,
                 specialData: specialData,
 
                 index: i,
-                list:enemyList,
 
-                isKill:MM.isKill(i)
+                list:enemyList
             });
         }
+        if(enemyList.length == 1) {
+            enemyList[0].noKill = true;
+            this.moneyText.text = '该单位不能被秒杀'
+        }
+        else
+            this.renewPrice();
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
 
-        specialData = {};
+
+        if(enemyList.length <4)
+        {
+            (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 0;
+            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 1
+        }
+        else
+        {
+            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 2;
+            if(enemyList.length ==4)
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 2
+            else
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
+        }
+
+
+        return enemyList;
+    }
+
+    public onShow(){
+
+        var data = UM.main_game;
+        this.topUI.setTitle('试练场PK-第'+(UM.main_game.level)+'关');
+
+        this.renewEnemy();
+
+        var specialData = {};
         //更新卡组1
         var chooseList1 = [];
         for(var i=0;i<data.choose[0].list.length;i++)

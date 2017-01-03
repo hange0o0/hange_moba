@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="ShopItem2Skin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group horizontalCenter="0" x="10" y="8">
+		<e:layout>
+			<e:HorizontalLayout gap="20" verticalAlign="middle"/>
+		</e:layout>
+		<e:Image source="main_mc_png" y="0" x="0"/>
+		<e:Label id="titleText" y="29" textColor="0xD8B375" text="标签" x="216" size="30"/>
+		<e:Image source="main_mc_png" y="10" x="10" scaleX="-1"/>
+	</e:Group>
+	<e:Group id="bg" x="0" y="50" height="200" width="640">
+		<e:Image source="book_bg2_jpg" right="0" scaleX="-1" height="50%" x="10" bottom="0" scale9Grid="40,44,240,266"/>
+		<e:Image source="book_bg2_jpg" scale9Grid="40,44,240,266" x="0" height="50%" bottom="0"/>
+		<e:Image source="book_bg1_jpg" fillMode="scale" x="0" height="50%" y="0"/>
+		<e:Image source="book_bg1_jpg" fillMode="scale" y="0" scaleX="-1" height="50%" right="0"/>
+	</e:Group>
+	<e:List id="list" width="640" x="0" y="70">
+		<e:layout>
+			<e:VerticalLayout horizontalAlign="center" gap="5"/>
+		</e:layout>
+	</e:List>
+</e:Skin>

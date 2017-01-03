@@ -13,6 +13,7 @@ class ShopUI extends game.BaseUI {
 
 
     private dataIn;
+    private dataArr;
     public constructor() {
         super();
         this.skinName = "ShopUISkin";
@@ -24,7 +25,8 @@ class ShopUI extends game.BaseUI {
         this.topUI.setTitle('神秘商店')
         this.topUI.addEventListener('hide', this.hide, this);
 
-        this.list.itemRenderer = ShopItem;
+        this.list.itemRenderer = ShopItem2;
+        this.list.useVirtualLayout = false;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scroller.bounces = false;
@@ -33,6 +35,11 @@ class ShopUI extends game.BaseUI {
 
     public show(v?){
         this.dataIn = v;
+        if(this.stage)
+        {
+            this.renewScroll(this.dataIn,true);
+            return;
+        }
          super.show();
     }
 
@@ -42,35 +49,85 @@ class ShopUI extends game.BaseUI {
         var arr = PayManager.getInstance().shopItem.slice();
         if(UM.energy.vip)
             arr.shift();
-
-        this.list.dataProvider = new eui.ArrayCollection(arr);
-
-        var v = 0
-        if(this.dataIn == 'coin')
+        var dataArr = this.dataArr = [];
+        var listObj = {txt:'购买体力',wType:'energy',list:[]};
+        dataArr.push(listObj);
+        for(var i=0;i<arr.length;i++)
         {
-            for(var i=0;i<arr.length;i++)
+            var oo = arr[i];
+            if(oo.id == 11)
             {
-                if(arr[i].id > 10)
-                    break;
+                listObj = {txt:'购买金币',wType:'coin',list:[]};
+                dataArr.push(listObj);
             }
-            v = i*100;
+            else if(oo.id == 21)
+            {
+                listObj = {txt:'购买卡片',wType:'card',list:[]};
+                dataArr.push(listObj);
+            }
+            else if(oo.id == 31)
+            {
+                listObj = {txt:'购买修正场门券',wType:'ticket',list:[]};
+                dataArr.push(listObj);
+            }
+            else if(oo.id == 101)
+            {
+                listObj = {txt:'购买钻石',wType:'diamond',list:[]};
+                dataArr.push(listObj);
+            }
+            listObj.list.push(oo);
         }
-        else if(this.dataIn == 'diamond')
+
+        this.list.dataProvider = new eui.ArrayCollection(dataArr);
+
+
+        if(this.dataIn)
         {
-            for(var i=0;i<arr.length;i++)
-            {
-                if(arr[i].id > 20)
-                    break;
-            }
-            v = i*100;
+            this.renewScroll(this.dataIn);
         }
-
-
-        this.once(egret.Event.RENDER,function(){
-            this.scroller.viewport.scrollV = Math.min(v,this.scroller.viewport.contentHeight - this.scroller.height);
-        },this)
-
         this.dataIn = null;
     }
+
+    public renewScroll(dataIn,mv?){
+        var v = 0;
+        var dataArr = this.dataArr
+        for(var i=0;i<dataArr.length;i++)
+        {
+            if(dataArr[i].wType == dataIn)
+            {
+                break;
+            }
+
+            v += dataArr[i].list.length * 115 + 70 + 20 + 10;
+        }
+        //this.once(egret.Event.ENTER_FRAME,function(){
+            this.once(egret.Event.ENTER_FRAME,function(){
+                for(var i=0;i<this.list.numChildren;i++)
+                {
+                    var item = (<any>this.list.getChildAt(i));
+                    if(item.data.wType == dataIn)
+                    {
+                        item.flash();
+                        break;
+                    }
+
+                }
+
+                v = Math.min(v,this.scroller.viewport.contentHeight - this.scroller.height);
+                if(mv)
+                {
+                    var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
+                    tw.to({scrollV:v},200)
+                }
+                else
+                {
+                    this.scroller.viewport.scrollV = v;
+                }
+
+            },this)
+        //},this)
+
+    }
+
 }
 

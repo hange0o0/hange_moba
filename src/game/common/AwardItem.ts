@@ -4,10 +4,10 @@ class AwardItem extends game.BaseItem {
         this.skinName = "AwardItemSkin";
     }
 
-    private collectItem: CollectItem;
     private group: eui.Group;
     private mc: eui.Image;
     private desText: eui.Label;
+
 
 
 
@@ -16,48 +16,40 @@ class AwardItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.collectItem.visible = false;
-        this.group.visible = false;
-        if(this.data.type == 'monster')
+        this.desText.text = this.data.des;
+        switch(this.data.type)
         {
-            this.collectItem.visible = true;
-            this.group.visible = false;
-            this.collectItem.data = MonsterVO.getObject(this.data.id);
-        }
-        else
-        {
-            this.collectItem.visible = false;
-            this.group.visible = true;
-            this.desText.text = this.data.des;
-            switch(this.data.type)
+            case 'diamond':
             {
-                case 'diamond':
-                {
-                    this.mc.source = 'diamond'
-                    break;
-                }
-                case 'coin':
-                {
-                    this.mc.source = 'coin'
-                    break;
-                }
-                case 'energy':
-                {
-                    this.mc.source = 'coin'
-                    break;
-                }
-                case 'exp':
-                {
-                    this.mc.source = 'exp'
-                    break;
-                }
-                default:    //prop
-                {
-                    this.mc.source = PropVO.getObject(this.data.id).thumb;
-                    break;
-                }
-
+                this.mc.source = 'diamond'
+                break;
             }
+            case 'coin':
+            {
+                this.mc.source = 'coin'
+                break;
+            }
+            case 'energy':
+            {
+                this.mc.source = 'coin'
+                break;
+            }
+            case 'exp':
+            {
+                this.mc.source = 'exp'
+                break;
+            }
+            case 'card':
+            {
+                this.mc.source = 'card'
+                break;
+            }
+            default:    //prop
+            {
+                this.mc.source = PropVO.getObject(this.data.id).thumb;
+                break;
+            }
+
         }
 
     }

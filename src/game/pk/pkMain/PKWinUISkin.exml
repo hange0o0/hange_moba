@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKWinUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group horizontalCenter="0" top="330" bottom="20">
+	<e:Group id="resultGroup" horizontalCenter="0" top="330" bottom="20">
 		<e:Label id="desText" text="标签" y="0" textColor="0xFFFF00" x="111"/>
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
 			<e:layout>

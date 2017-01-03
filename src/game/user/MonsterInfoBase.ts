@@ -5,42 +5,107 @@ class MonsterInfoBase extends game.BaseContainer {
         this.skinName = "DebugUISkin";
     }
 
-    private headMC: eui.Image;
     private nameText: eui.Label;
-    private typeGroup: eui.Group;
     private atkText: eui.Label;
     private hpText: eui.Label;
     private speedText: eui.Label;
     private mpText: eui.Label;
     private coinText: eui.Label;
+    private headMC: eui.Image;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
     private list: eui.List;
+    private levelUpCon: eui.Group;
+    private levelUpCoinText: eui.Label;
+    private levelUpBtn: eui.Button;
+    private levelUpCardText: eui.Label;
+
 
 
 
 
 
      private vo;
+     private specialData;
 
 
     public childrenCreated() {
         super.childrenCreated();
         this.list.itemRenderer = MonsterInfoBaseItem;
-        this.addBtnEvent(this.typeGroup,this.onTypeClick)
+
+        this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
     }
 
-    public onTypeClick(){
-        TypeInfoUI.getInstance().show(this.vo.type);
+    private onLevelUp(){
+        if(this.levelUpBtn.skinName != 'Btn_r1Skin')
+            return;
+        var self = this;
+        var oo =  this.vo
+        TecManager.getInstance().levelUp(3,oo.id,function(){
+            self.renewMonster();
+        });
     }
 
     public setMinHeight(v){
         this.minHeight = v
     }
 
+    public renewLevelUp(){
+        this.levelUpCon.visible = true;
+        var oo =  this.vo;
+        var TEC = TecManager.getInstance();
+        var cost = TEC.needCoin(UM.getMonsterLevel(oo.id) + 1)
+
+        var levelUpAble = true;
+        var arr = TecManager.getInstance().collectRate(oo.id);
+        var collectNeed = arr[1];
+        var collectNum = arr[0];
+        if(collectNeed == 0)
+        {
+            this.levelUpBtn.label = '满级'
+            levelUpAble = false
+        }
+        else
+        {
+            this.levelUpBtn.label = '升级'
+        }
+        if(cost > UM.coin)
+        {
+            levelUpAble = false
+            this.setHtml(this.levelUpCoinText, '<font color="#ff0000">' + NumberUtil.addNumSeparator(cost) + '</font>' );
+        }
+        else
+            this.levelUpCoinText.text = '' + NumberUtil.addNumSeparator(cost);
+
+        if(collectNeed > collectNum)
+        {
+            levelUpAble = false
+            this.setHtml(this.levelUpCardText, '<font color="#ff0000">' + NumberUtil.addNumSeparator(collectNeed) + '</font>');
+        }
+        else
+        {
+            this.levelUpCardText.text = '' + NumberUtil.addNumSeparator(collectNeed);
+        }
+
+        if(levelUpAble)
+            this.levelUpBtn.skinName = 'Btn_r1Skin'
+        else
+            this.levelUpBtn.skinName = 'Btn_d1Skin'
+
+
+    }
+
     public renew(monsterID,specialData?){
-        specialData = specialData || {};
-        var vo = this.vo = MonsterVO.getObject(monsterID);
+        this.specialData = specialData = specialData || {};
+        this.vo = MonsterVO.getObject(monsterID);
+        this.renewMonster();
+    }
+
+    public renewMonster(){
+        var vo = this.vo
+        var specialData = this.specialData
+        var monsterID = vo.id;
+
 
         //其本信息
         this.headMC.source = vo.url;
@@ -51,34 +116,7 @@ class MonsterInfoBase extends game.BaseContainer {
         this.coinText.text = '召唤花费：' + vo.cost;
         //this.levelText.text = 'LV.' + UM.getMonsterLevel(monsterID);
         this.levelGroup.visible = false;
-        //this.txt.text = vo.des;
-        //this.coinText.text = 'X' + vo.cost;
-        //if(vo.wood)
-        //{
-        //    this.woodText.text = 'X' + vo.wood;
-        //    this.woodIcon.visible =  true;
-        //}
-        //else
-        //{
-        //    this.woodText.text = ''
-        //    this.woodIcon.visible =  false;
-        //}
-
-        //for(var i=1;i<=4;i++)
-        //{
-        //    var mc = this['s' + i];
-        //    MyTool.removeMC(mc);
-        //}
-        //if(!specialData.isNPC)
-        //{
-        //    var star = UM.getMonsterCollect(monsterID);
-        //    for(var i=1;i<=4;i++)
-        //    {
-        //        var mc = this['s' + i];
-        //        if(star > i)
-        //            this.sGroup.addChild(mc);
-        //    }
-        //}
+        this.levelUpCon.visible = false;
 
 
 
@@ -110,6 +148,7 @@ class MonsterInfoBase extends game.BaseContainer {
                 fightData.atk += force;
                 fightData.hp += force;
                 nameStr += '  <font color="#226C17" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
+                this.renewLevelUp();
             }
 
         }
@@ -119,7 +158,7 @@ class MonsterInfoBase extends game.BaseContainer {
         var atk = Math.round(vo.atk * (1+fightData.atk/100));
         var hp = Math.round(vo.hp * (1+fightData.hp/100));
         var speed = Math.round(vo.speed * (1+fightData.speed/100));
-        if(specialData.isLevelUp)
+        if(this.levelUpCon.visible)
         {
             //先模拟升一级
             UM.tec.monster[monsterID] = (UM.tec.monster[monsterID] || 0) + 1
@@ -159,9 +198,6 @@ class MonsterInfoBase extends game.BaseContainer {
 
         ArrayUtil.sortByField(arr,['sortIndex'],[0]);
         this.list.dataProvider = new eui.ArrayCollection(arr);
-
-
-
     }
 
 

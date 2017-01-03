@@ -142,6 +142,7 @@ class MainGameManager{
                 Alert('金币不足');
                 return;
             }
+            EM.dispatch(GameEvent.client.main_kill)
             if(fun)
                 fun();
         });

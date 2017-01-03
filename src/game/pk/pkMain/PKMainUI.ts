@@ -391,6 +391,7 @@ class PKMainUI extends game.BaseUI {
         //else
         //    VM.playOnItem(34,item)
         //var x = item.x;
+        item.parent.addChild(item);
         item.alpha = 1;
         var y = item.y;
         var decY = 20 + this.random()*20;

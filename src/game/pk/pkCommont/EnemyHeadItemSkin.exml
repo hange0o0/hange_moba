@@ -1,6 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="EnemyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="120" height="117">
-	<e:Image source="border2_png" x="0" y="12" scale9Grid="11,11,68,68" width="105" height="105"/>
-	<e:Image id="headMC" source="border4_png" x="6" y="18" width="92" height="92"/>
-	<e:Button id="closeBtn" x="75" skinName="Btn_close2Skin" y="0" scaleY="0.6" scaleX="0.6"/>
+<e:Skin class="EnemyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="120" height="120" >
+	<e:Group id="chooseGroup" x="0" y="0">
+		<e:Image source="border2_png" x="0" y="0" scale9Grid="11,11,68,68" width="120" height="120"/>
+		<e:Image id="headMC" x="5" y="5" width="110" height="110" source="head_png"/>
+	</e:Group>
+	<e:Group id="teamGroup" x="0" y="0">
+		<e:Image id="headMC2" source="border4_png" y="4" width="110" height="110" mask="headMask" x="5"/>
+		<e:Rect y="4" x="6" ellipseHeight="120" width="110" height="110" ellipseWidth="120" id="headMask"/>
+		<e:Image source="head_border1_png" y="0" x="0" id="headBG" width="120" height="120"/>
+		<e:Button id="closeBtn" scaleY="0.8" scaleX="0.8" skinName="Btn_close2Skin" x="75" y="-4"/>
+	</e:Group>
 </e:Skin>

@@ -1,6 +1,7 @@
 class PKResultBase extends game.BaseContainer {
     protected _desText: eui.Label;
     protected _list: eui.List;
+    protected _resultGroup: eui.Group;
 
 
 
@@ -23,7 +24,7 @@ class PKResultBase extends game.BaseContainer {
         if(this.step == 1)
         {
             this._desText.text = ''
-
+            MyTool.removeMC(this._list);
             //this.y = 300;
             //this.scaleX = 0.1
             //this.scaleY = 0.1
@@ -35,7 +36,7 @@ class PKResultBase extends game.BaseContainer {
         }
         else if(!award)
         {
-            MyTool.removeMC(this._list);
+
             var tw:egret.Tween = egret.Tween.get(this);
             tw.to({y:0}, 300).call(this.onMVFinish,this);
         }
@@ -69,15 +70,15 @@ class PKResultBase extends game.BaseContainer {
         }
         else if(award.prop && award.prop.length)//加入道具
         {
-            this.addChild(this._list);
+            this._resultGroup.addChildAt(this._list,1);
             var arr = award.prop;
             for(var i=0;i<arr.length;i++)
             {
-                arr[i].cd = i*500 + 100
+                arr[i].cd = i*200 + 100
             }
             this._list.visible = true;
             this._list.dataProvider = new eui.ArrayCollection(arr);
-            this.timer = egret.setTimeout(this.stepOne,this,arr.length * 500 + 500);
+            this.timer = egret.setTimeout(this.stepOne,this,arr.length * 100 + 500);
             award.prop = null;
         }
         else //完成，加入列表

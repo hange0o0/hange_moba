@@ -45,7 +45,7 @@ class TecManager{
         return Math.floor(Math.pow(level,2.2)*100);
     }
     public collectNeed(level){   //升级需要碎片数量
-        return Math.floor(Math.pow(1.25,level)*level);
+        return Math.floor(Math.pow(1.25,level)*level) - Math.floor(Math.pow(1.25,level-1)*(level-1));
     }
 
     //得到指定怪物的升级时显示的碎片信息
@@ -54,6 +54,7 @@ class TecManager{
         var now = UM.card;
         var need = this.collectNeed(lv + 1);
         if(lv == 0)
+
         {
             return [now,need]
         }
@@ -133,6 +134,7 @@ class TecManager{
             //var kindVO = MonsterKindVO.getObject(vo.type);
             if(vo.level<= UM.level + 1)
                 arr.push({
+                    list:arr,
                     id:vo.id,
                     openLevel:vo.level,
                     tecType:3

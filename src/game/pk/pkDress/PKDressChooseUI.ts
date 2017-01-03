@@ -123,6 +123,13 @@ class PKDressChooseUI extends game.BaseContainer {
         //console.log(this.posArray);
     }
 
+    private renewChoosing(b){
+        for(var i=1;i<=6;i++) {
+            var mc = this['h' + i]
+            mc.setChoosing(b);
+        }
+    }
+
     private onDragStart(e){
         this.changeState('drag')
         e.stopImmediatePropagation();
@@ -227,6 +234,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private changeState(stat){
         this.currentState = stat;
+        this.renewChoosing(stat != 'normal');
         //for(var i=0;i<this.mcArray.length;i++) {
         //    var mc = this.mcArray[i];
         //    mc.y = this.posArray[i].y;

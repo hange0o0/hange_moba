@@ -116,6 +116,7 @@ var game_file_list = [
 	"bin-debug/game/rank/RankUI.js",
 	"bin-debug/game/shop/PayManager.js",
 	"bin-debug/game/shop/ShopItem.js",
+	"bin-debug/game/shop/ShopItem2.js",
 	"bin-debug/game/shop/ShopUI.js",
 	"bin-debug/game/tec/TecItem.js",
 	"bin-debug/game/tec/TecManager.js",

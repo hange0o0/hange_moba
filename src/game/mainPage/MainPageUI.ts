@@ -15,17 +15,19 @@ class MainPageUI extends game.BaseUI {
     private expBar: eui.Image;
     private nameText: eui.Label;
     private forceText: eui.BitmapLabel;
-    private coinText: eui.Label;
-    private energyText: eui.Label;
-    private diamondText: eui.Label;
-    private feeText: eui.Label;
     private levelText: eui.Label;
+    private coinGroup: eui.Group;
+    private coinText: eui.Label;
     private addCoinBtn: eui.Group;
+    private energyGroup: eui.Group;
+    private energyText: eui.Label;
     private addEnergyBtn: eui.Group;
+    private diamondGroup: eui.Group;
+    private diamondText: eui.Label;
     private addDiamondBtn: eui.Group;
+    private cardGroup: eui.Group;
+    private feeText: eui.Label;
     private addFreeBtn: eui.Group;
-    private leftBtn: eui.Image;
-    private rightBtn: eui.Image;
     private scroller: eui.Scroller;
     private scrollGroupCon: eui.Group;
     private scrollGroup: eui.Group;
@@ -37,6 +39,8 @@ class MainPageUI extends game.BaseUI {
     private p1: MainPageItem;
     private p2: MainPageItem;
     private p3: MainPageItem;
+    private leftBtn: eui.Image;
+    private rightBtn: eui.Image;
     private taskGroup: eui.Group;
     private taskText: eui.Label;
     private helpBtn: eui.Group;
@@ -45,8 +49,8 @@ class MainPageUI extends game.BaseUI {
     private friendBtn: eui.Group;
     private collectBtn: eui.Group;
     private honorBtn: eui.Group;
-    //private tecBtn: eui.Group;
     private bagBtn: eui.Group;
+
 
 
 
@@ -60,16 +64,13 @@ class MainPageUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.headMC, this.onHead);
-        this.addBtnEvent(this.diamondText, this.onDiamondAdd);
-        this.addBtnEvent(this.forceText, this.onForce);
-        this.addBtnEvent(this.energyText, this.onEnergyAdd);
 
         this.addBtnEvent(this.leftBtn, this.onLeft);
         this.addBtnEvent(this.rightBtn, this.onRight);
-        this.addBtnEvent(this.addCoinBtn,this.onAddCoin);
-        this.addBtnEvent(this.addDiamondBtn,this.onAddDiamond);
-        this.addBtnEvent(this.addEnergyBtn,this.onAddEnergy);
-        this.addBtnEvent(this.addFreeBtn,this.onHonor);
+        this.addBtnEvent(this.coinGroup,this.onAddCoin);
+        this.addBtnEvent(this.diamondGroup,this.onAddDiamond);
+        this.addBtnEvent(this.energyGroup,this.onAddEnergy);
+        this.addBtnEvent(this.cardGroup,this.onAddCard);
 
 
         this.addBtnEvent(this.videoBtn,this.onVideo);
@@ -90,6 +91,7 @@ class MainPageUI extends game.BaseUI {
         //this.addBtnEvent(this.img, this.onServerEqual);
         //this.addBtnEvent(this.img, this.onDay);
 
+        EM.addEvent(GameEvent.client.card_change,this.renewCard,this);
         EM.addEvent(GameEvent.client.coin_change,this.renewCoin,this);
         EM.addEvent(GameEvent.client.diamond_change,this.renewDiamond,this);
         EM.addEvent(GameEvent.client.force_change,this.renewForce,this);
@@ -166,6 +168,9 @@ class MainPageUI extends game.BaseUI {
     
     private onAddEnergy() {
         ShopUI.getInstance().show('energy');
+    }
+    private onAddCard() {
+        ShopUI.getInstance().show('card');
     }
 
 
@@ -248,15 +253,6 @@ class MainPageUI extends game.BaseUI {
 
     private onHead(){
          MyInfoUI.getInstance().show();
-    }
-    private onDiamondAdd(){
-
-    }
-    private onForce(){
-
-    }
-    private onEnergyAdd(){
-
     }
     private onLeft(){
         if(this.currentPage > 0)
@@ -361,13 +357,13 @@ class MainPageUI extends game.BaseUI {
         this.levelText.text = UM.level + '';
     }
     public renewEnergy(){
-        this.energyText.text = UM.getEnergy();
-        if(UM.energy.v >= UM.maxEnergy) //full
-            this.energyText.textColor = 0xF9D36C
-        else if(UM.energy.v == 0) //empty
-            this.energyText.textColor = 0xFC8C8C
-        else
-            this.energyText.textColor = 0xCCCCCC
+        this.energyText.text = UM.getEnergy() + '/' + UM.maxEnergy;
+        //if(UM.energy.v >= UM.maxEnergy) //full
+        //    this.energyText.textColor = 0xF9D36C
+        //else if(UM.energy.v == 0) //empty
+        //    this.energyText.textColor = 0xFC8C8C
+        //else
+        //    this.energyText.textColor = 0xCCCCCC
 
     }
 

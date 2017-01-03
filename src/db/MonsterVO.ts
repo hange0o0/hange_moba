@@ -198,7 +198,7 @@ class MonsterVO {
     //}
 
     public get thumb(){
-        return 'head_png';
+        return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
     }
 
     public get url(){
