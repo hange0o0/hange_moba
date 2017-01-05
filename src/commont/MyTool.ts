@@ -6,7 +6,7 @@ class MyTool {
         return  'n'+Math.floor(Math.random()*999999);
     }
     public static getHeadUrl(id){
-        return   'head_png'
+        return Config.localResRoot + 'head/m_head'+id+'.jpg';
     }
     public static removeMC(mc:any){
         if(mc.parent)
@@ -25,6 +25,19 @@ class MyTool {
     }
     private static onImgComplete(e){
        e.currentTarget.visible = true;
+    }
+
+    public static toFixed(v:any,length){
+        var str = v.toFixed(length)
+        var char = str.charAt(str.length-1);
+        while(char == '0' || char == '.')
+        {
+            str = str.substr(0,str.length - 1)
+            if(char == '.')
+                break;
+            char = str.charAt(str.length-1);
+        }
+        return str
     }
 
 

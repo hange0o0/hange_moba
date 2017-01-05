@@ -104,7 +104,7 @@ class PKDressChooseListItem extends game.BaseItem {
         //{
         //    this.desText.text = ('银符不足');
         //}
-        var arr = this.data.chooseList.concat(vo.id)
+        var arr = PKDressUI.getInstance().chooseList.concat(vo.id)
         this.useBtn.skinName = 'Btn_r2Skin'
         this.coinText.textColor = 0xCCB48E
         if(PKManager.getInstance().getCost(arr) > PKManager.PKCost)

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FriendAddUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" y="0" scale9Grid="95,128,25,230" width="640" x="0" height="800"/>
+	<e:Label y="28" textColor="0xD0C7AD" text="添加好友" id="titleText" horizontalCenter="0" x="20" size="30"/>
+	<e:Group horizontalCenter="0" bottom="40">
+		<e:Button id="refreshBtn" y="-1.1368683772161603e-13" label="刷新" x="0" skinName="Btn_r2Skin"/>
+		<e:Button id="closeBtn" y="-1.1368683772161603e-13" label="关闭" x="0" skinName="Btn_r2Skin"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:List id="list" height="580" width="540" y="90" horizontalCenter="0">
+		<e:layout>
+			<e:VerticalLayout/>
+		</e:layout>
+	</e:List>
+	<e:Label id="emptyText" text="没有找到合适的玩家" y="361" textColor="0xBBAB51" horizontalCenter="0"/>
+</e:Skin>

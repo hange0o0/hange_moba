@@ -47,6 +47,8 @@ var game_file_list = [
 	"bin-debug/game/common/HelpUI.js",
 	"bin-debug/game/common/RingInfoUI.js",
 	"bin-debug/game/common/TypeInfoUI.js",
+	"bin-debug/game/friend/FriendAddItem.js",
+	"bin-debug/game/friend/FriendAddUI.js",
 	"bin-debug/game/friend/FriendListItem.js",
 	"bin-debug/game/friend/FriendListUI.js",
 	"bin-debug/game/friend/FriendLogItem.js",

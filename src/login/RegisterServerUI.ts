@@ -67,10 +67,11 @@ class RegisterServerUI extends game.BaseWindow {
 
     private onHeadClick(){
         var self = this;
-         ChangeHeadUI.getInstance().show(this.headID,function(id){
+         ChangeHeadUI.getInstance().show(this.headID,true,function(id){
              self.headID = id;
              self.chooseHead = true;
              self.renewHead();
+             ChangeHeadUI.getInstance().hide();
          });
     }
 }

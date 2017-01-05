@@ -25,6 +25,10 @@ class FriendManager{
 
     private getCD//取消息中
 
+
+    public missArray = [];
+    public missTime = 0;
+
     public constructor() {
         var oo = SharedObjectManager.instance.getMyValue('friendData');
         if(oo)
@@ -231,7 +235,7 @@ class FriendManager{
     }
 
     public getList(fun?){
-        if(this.friendList && TM.now() - this.lastGetFriend < 5*60)//5分钟CD     5*60
+        if(this.friendList && TM.now() - this.lastGetFriend < 60)//1分钟CD     5*60
         {
             if(fun)
                 fun();
@@ -356,6 +360,24 @@ class FriendManager{
             }
             self.removeLog(logid);
             self.saveToLocal();
+            if(fun)
+                fun();
+        });
+    }
+
+    public friend_miss(fun?){
+        var self = this;
+        if(TM.now()  - this.missTime < 60){
+            if(fun)
+                fun();
+            return;
+        }
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.friend.friend_miss,oo,function(data){
+            var msg = data.msg;
+            self.missTime = TM.now();
+            self.missArray = msg.list;
             if(fun)
                 fun();
         });
@@ -551,6 +573,35 @@ class FriendManager{
             info.getTime = TM.now();
             self.otherInfo[info.gameid] = info;
             self.otherInfoNick[info.nick] = info;
+
+            if(fun)
+                fun();
+        });
+    }
+
+    //改头像
+    public changeHead(headid,fun?){
+
+        var self = this;
+        var oo:any = {};
+        oo.headid = headid;
+        Net.addUser(oo);
+        Net.send(GameEvent.user.change_head,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('头像没改变');
+                UM.head = headid;
+                EM.dispatch(GameEvent.client.change_head);
+                return;
+            }
+            if(msg.fail == 2)
+            {
+                Alert('钻石不足！')
+                return;
+            }
+            UM.head = headid;
+            EM.dispatch(GameEvent.client.change_head);
 
             if(fun)
                 fun();

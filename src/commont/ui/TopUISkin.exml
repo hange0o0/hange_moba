@@ -2,6 +2,6 @@
 <e:Skin class="TopUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="80">
 	<e:Image source="top_bg_jpg" y="0" x="0" height="73"/>
 	<e:Button x="572" y="4" skinName="Btn_close1Skin" id="closeBtn"/>
-	<e:Label id="titleText" text="标签" y="20" horizontalCenter="0" textColor="0xCCB48E"/>
+	<e:Label id="titleText" text="标签" y="29" horizontalCenter="0" textColor="0xCCB48E" strokeColor="0x5C060A" stroke="3"/>
 	<e:Image source="line_png" width="660" x="-10" bottom="0"/>
 </e:Skin>

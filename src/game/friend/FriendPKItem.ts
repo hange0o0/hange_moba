@@ -54,7 +54,7 @@ class FriendPKItem extends game.BaseItem {
         var toNick = this.getNick(this.data.to_gameid,this.data.content.tonick);
         var fromHead = this.getHead(this.data.from_gameid,this.data.content.fromhead);
         var toHead = this.getHead(this.data.to_gameid,this.data.content.tohead);
-        this.dateText.text = '剩余时间：' + DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
+        this.dateText.text = '有效时间：' + DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
         if(this.data.from_gameid == UM.gameid)//我请求的
         {
             this.headMC.source = MyTool.getHeadUrl(toHead);

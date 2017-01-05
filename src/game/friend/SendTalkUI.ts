@@ -41,5 +41,10 @@ class SendTalkUI extends game.BaseWindow {
     public onShow(){
         this.editText.text = '';
         this.titleText.text = '发送聊天信息'
+        this.validateNow()
+        //this.once(egret.Event.ENTER_FRAME,function(){
+            this.editText.setFocus();
+        //},this)
+
     }
 }

@@ -77,8 +77,8 @@ class FriendLogItem extends game.BaseItem {
         {
             this.currentState = 'log';
             this.nameText.text = this.data.content.nick;
-            this.levelText.text = this.data.content.level;
-            this.forceText.text = this.data.content.force;
+            this.levelText.text = 'LV.' + this.data.content.level;
+            this.forceText.text = '战力：' + this.data.content.force;
 
         }
 

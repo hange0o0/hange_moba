@@ -130,6 +130,7 @@ class MainGameUI extends game.BaseUI {
         var specialData = {};
         //更新卡组1
         var chooseList1 = [];
+        PKManager.getInstance().sortMonster(data.choose[0].list);
         for(var i=0;i<data.choose[0].list.length;i++)
         {
             var id = data.choose[0].list[i]

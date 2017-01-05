@@ -9,6 +9,7 @@ class FriendPKAskUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private timesText: eui.Label;
     private ringRadio0: eui.RadioButton;
     private ringRadio1: eui.RadioButton;
     private inputText: eui.TextInput;
@@ -19,8 +20,8 @@ class FriendPKAskUI extends game.BaseUI {
     private chooseBtn0: eui.Button;
     private myGroup1: eui.Group;
     private myList1: eui.List;
-
     private chooseBtn1: eui.Button;
+
 
 
 
@@ -59,6 +60,7 @@ class FriendPKAskUI extends game.BaseUI {
             this.specialData.isEqual = false;
         else
              this.specialData.isEqual = true;
+        this.renewCardList();
     }
 
     public show(data?,isAnswer?){
@@ -85,6 +87,7 @@ class FriendPKAskUI extends game.BaseUI {
             MyTool.removeMC(this.enemyGroup0)
             this.scrollerGroup.addChildAt(this.enemyGroup,0)
             this.inputText.text = '';
+            this.timesText.text = '剩余次数:' + UM.getFriendPKTimes() + '/' + FriendManager.getInstance().maxPK
         }
 
         var data = this.data.content.from_list;
@@ -97,6 +100,15 @@ class FriendPKAskUI extends game.BaseUI {
         {
             specialData.isEqual = true;
         }
+        this.renewCardList();
+        this.scroller.viewport.scrollV = 0;
+    }
+
+    private renewCardList(){
+        var data = this.data.content.from_list;
+        var specialData:any = this.specialData;
+        PKManager.getInstance().sortMonster(data[0].list);
+        PKManager.getInstance().sortMonster(data[1].list);
         //更新卡组1
         var chooseList1 = [];
         for(var i=0;i<data[0].list.length;i++)

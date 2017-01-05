@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="HeadItemSkin" xmlns:e="http://ns.egret.com/eui" width="90" height="90" states="up,down" >
-	<e:Image source="border_light_png" y="-16" scale9Grid="33,31,38,26" width="120" height="120" x="-16" visible.up="false"/>
-	<e:Image source="border2_png" y="0" x="0"/>
-	<e:Image source="main_border_png" y="4" x="5" width="80" height="80" id="headMC"/>
+<e:Skin class="HeadItemSkin" xmlns:e="http://ns.egret.com/eui" width="100" height="100" states="up,down" >
+	<e:Image source="border_light_png" scale9Grid="33,31,38,26" width="120" height="120" visible.up="false" horizontalCenter="0" verticalCenter="0" scaleX="1.2" scaleY="1.2"/>
+	<e:Image source="border2_png" y="0" x="0" width="100" height="100"/>
+	<e:Image y="5" x="5" width="90" height="90" id="headMC" source="head_png"/>
 </e:Skin>

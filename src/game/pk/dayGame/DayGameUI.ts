@@ -106,6 +106,7 @@ class DayGameUI extends game.BaseUI {
         //更新卡组1
         var data = DM.data;
         var chooseList1 = [];
+        PKManager.getInstance().sortMonster(data.choose.list);
         for(var i=0;i<data.choose.list.length;i++)
         {
             var id = data.choose.list[i]
@@ -125,7 +126,7 @@ class DayGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'day_game',data:DayGameManager.getInstance().data.choose,enemy: this.enemyArray})
+        PKDressUI.getInstance().show({pktype:'day_game',data:DayGameManager.getInstance().data.choose,enemy: this.enemyArray,isEqual:true})
     }
 
 }

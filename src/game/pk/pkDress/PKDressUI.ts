@@ -92,7 +92,7 @@ class PKDressUI extends game.BaseUI {
         this.dataIn = data
         this.pkType = data.pktype;
         this.orginData = data.data;
-        this.isEqual = data.isEqual;
+        this.isEqual = data.isEqual || false;
         this.specialData.isEqual = this.isEqual;
 
         this.key = this.orginData.list.join(',');

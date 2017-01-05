@@ -258,5 +258,20 @@ class UserManager {
 
         return array;
     }
+
+    public testDiamond(v){
+        if(UM.getDiamond() < v)
+        {
+            Confirm('钻石不足！',function(v){
+                if(v == 1)
+                {
+                    ShopUI.getInstance().show('diamond');
+                }
+            },['取消','购买'])
+            return false;
+        }
+        return true;
+
+    }
 }
                                 

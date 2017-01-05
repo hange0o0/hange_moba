@@ -28,7 +28,7 @@ class ShopItem2 extends game.BaseItem {
         this.titleText.text = this.data.txt;
         this.titleText.stroke = 0;
         this.list.dataProvider = new eui.ArrayCollection(this.data.list);
-        this.bg.height = this.data.list.length * 115 + 40
+        this.bg.height = this.data.list.length * 115 + 35
     }
 
     public flash(){

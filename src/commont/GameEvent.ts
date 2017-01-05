@@ -17,6 +17,7 @@ class GameEvent {
         level_change:'level_change',
         honor_change:'honor_change',
         main_kill:'main_kill',
+        change_head:'change_head',
 
 
         timer:'timer'
@@ -43,6 +44,7 @@ class GameEvent {
         friend_pk_answer:'friend_pk_answer',
         friend_pk_ask:'friend_pk_ask',
         friend_pk_get_card:'friend_pk_get_card',
+        friend_miss:'friend_miss',
         friend_refuse:'friend_refuse'
     }
 
@@ -61,7 +63,8 @@ class GameEvent {
     }
 
     public static user = {
-        get_other_info:'get_other_info'
+        get_other_info:'get_other_info',
+        change_head:'change_head'
     }
 
     public static rank = {

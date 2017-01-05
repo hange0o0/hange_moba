@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendPKViewUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="FriendPKViewUISkin" width="640" height="1500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
@@ -8,7 +8,7 @@
 				<e:Label id="pkTypeText" y="10" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15" size="26"/>
 				<e:Label id="timeText" y="9" textColor="0xCCB48E" text="PK类型：竞技场规则" right="15" size="26"/>
 			</e:Group>
-			<e:Group x="50" y="441" height="340" id="myGroup0">
+			<e:Group x="50" y="441" height="450" id="myGroup0">
 				<e:Group id="bg0" y="0" height="100%" x="0">
 					<e:Image scale9Grid="40,44,240,266" source="book_bg1_jpg" y="0" height="100%" x="0"/>
 					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
@@ -21,13 +21,22 @@
 						<e:HorizontalLayout verticalAlign="bottom"/>
 					</e:layout>
 				</e:Group>
-				<e:List width="614" y="70" x="14" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList0">
+				<e:List y="70" itemRendererSkinName="MyHeadItemSkin" id="myList0" horizontalCenter="0">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="5"/>
+						<e:TileLayout requestedColumnCount="4"/>
 					</e:layout>
+					<e:ArrayCollection>
+						<e:Array>
+							<e:Object label="数据1"/>
+							<e:Object label="数据2"/>
+							<e:Object label="数据3"/>
+							<e:Object label="null"/>
+							<e:Object label="null"/>
+						</e:Array>
+					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group id="myChooseGroup" x="20" y="411" height="320">
+			<e:Group id="myChooseGroup" x="20" y="411" height="350">
 				<e:Image source="book_bg2_jpg" y="-1" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 				<e:Image source="book_bg2_jpg" scale9Grid="40,44,240,266" y="-1" height="100%" x="0"/>
 				<e:Group y="9.999999999999943" horizontalCenter="0">
@@ -38,13 +47,22 @@
 						<e:HorizontalLayout verticalAlign="middle" gap="15"/>
 					</e:layout>
 				</e:Group>
-				<e:List y="55" x="10" width="620" itemRendererSkinName="MyHeadItemSkin" height="239" id="myList2">
+				<e:List id="myList2" horizontalCenter="0" verticalCenter="20" itemRendererSkinName="EnemyHeadItemSkin">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="5"/>
+						<e:TileLayout requestedColumnCount="3" verticalAlign="middle" verticalGap="10" horizontalGap="50"/>
 					</e:layout>
+					<e:ArrayCollection>
+						<e:Array>
+							<e:Object label="数据1"/>
+							<e:Object label="数据2"/>
+							<e:Object label="null"/>
+							<e:Object label="null"/>
+							<e:Object label="null"/>
+						</e:Array>
+					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group id="myGroup1" y="451" height="360" x="60">
+			<e:Group id="myGroup1" y="451" height="450" x="60">
 				<e:Group x="0" y="0" height="100%" id="bg1" visible="false">
 					<e:Image scale9Grid="40,44,240,266" source="book_bg1_jpg" y="0" height="100%" x="0"/>
 					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
@@ -57,10 +75,19 @@
 						<e:HorizontalLayout verticalAlign="bottom"/>
 					</e:layout>
 				</e:Group>
-				<e:List itemRendererSkinName="MyHeadItemSkin" y="91" x="14" width="614" height="239" id="myList1">
+				<e:List itemRendererSkinName="MyHeadItemSkin" y="70" id="myList1" horizontalCenter="0">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="5"/>
+						<e:TileLayout requestedColumnCount="4"/>
 					</e:layout>
+					<e:ArrayCollection>
+						<e:Array>
+							<e:Object label="数据1"/>
+							<e:Object label="数据2"/>
+							<e:Object label="数据3"/>
+							<e:Object label="null"/>
+							<e:Object label="null"/>
+						</e:Array>
+					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
 			

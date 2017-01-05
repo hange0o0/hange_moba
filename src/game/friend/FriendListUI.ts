@@ -7,10 +7,11 @@ class FriendListUI extends game.BaseUI {
 
     private infoText: eui.Label;
     private topUI: TopUI;
-    //private searchBtn: eui.Button;
     private tab: eui.TabBar;
     private scroller: eui.Scroller;
     private list: eui.List;
+    private emptyText: eui.Label;
+
 
 
 
@@ -46,39 +47,41 @@ class FriendListUI extends game.BaseUI {
     }
 
     private renewLogE(){
+        this.tab.selectedIndex = 1;
         this.renewLog()
-        this.renewInfo();
+        //this.renewInfo();
     }
     private renewPKE(){
+        this.tab.selectedIndex = 2;
         this.renewPK()
-        this.renewInfo();
+        //this.renewInfo();
     }
 
-    private onTimer(){
-        if(!this.stage)
-            return;
-        this.infoCount --;
-        if(this.infoCount <=0)
-        {
-            this.infoCount = 5;
-            this.infoType ++;
-            if(this.infoType > 1)
-                this.infoType = 0
-            this.renewInfo();
-        }
-    }
+    //private onTimer(){
+    //    if(!this.stage)
+    //        return;
+    //    this.infoCount --;
+    //    if(this.infoCount <=0)
+    //    {
+    //        this.infoCount = 5;
+    //        this.infoType ++;
+    //        if(this.infoType > 1)
+    //            this.infoType = 0
+    //        this.renewInfo();
+    //    }
+    //}
 
-    private renewInfo(){
-        var FM = FriendManager.getInstance();
-        if(this.infoType == 0)
-        {
-            this.infoText.text = '好友数量：' + FM.friendList.length + '/' + FM.maxFriendNum;
-        }
-        else
-        {
-            this.infoText.text = '今日PK：' + UM.getFriendPKTimes() + '/' + FM.maxPK;
-        }
-    }
+    //private renewInfo(){
+    //    var FM = FriendManager.getInstance();
+    //    if(this.infoType == 0)
+    //    {
+    //        this.infoText.text = '好友数量：' + FM.friendList.length + '/' + FM.maxFriendNum;
+    //    }
+    //    else
+    //    {
+    //        this.infoText.text = '今日PK：' + UM.getFriendPKTimes() + '/' + FM.maxPK;
+    //    }
+    //}
 
     private onSearch(){
         FriendSearchUI.getInstance().show();
@@ -118,7 +121,7 @@ class FriendListUI extends game.BaseUI {
         this.infoType = 0
         this.renew();
 
-        this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
+        //this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.friend_log_change,this.renewLogE)
         this.addPanelOpenEvent(GameEvent.client.friend_pk_change,this.renewPKE)
     }
@@ -127,7 +130,7 @@ class FriendListUI extends game.BaseUI {
         var FM = FriendManager.getInstance();
         var self = this;
         this.list.dataProvider = new eui.ArrayCollection([]);
-        this.renewInfo();
+        //this.renewInfo();
         if(this.tab.selectedIndex == 0)//好友列表
         {
             FM.getList(function(){
@@ -152,19 +155,31 @@ class FriendListUI extends game.BaseUI {
     private renewFriend(){
         var FM = FriendManager.getInstance();
         this.list.itemRenderer = FriendListItem;
-        this.list.dataProvider = new eui.ArrayCollection(FM.friendList)
+
+        var list = FM.friendList.concat();
+        if(FM.friendList.length < FM.maxFriendNum)
+        {
+            list.unshift({showFriend:true});
+        }
+        this.list.dataProvider = new eui.ArrayCollection(list)
+        this.emptyText.visible = false;
     }
 
     private renewLog(){
+
         var FM = FriendManager.getInstance();
         this.list.itemRenderer = FriendLogItem;
         this.list.dataProvider = new eui.ArrayCollection(FM.logList)
+        this.emptyText.visible = FM.logList.length == 0;
     }
 
     private renewPK(){
+
         var FM = FriendManager.getInstance();
         this.list.itemRenderer = FriendPKItem;
-        this.list.dataProvider = new eui.ArrayCollection(FM.getPKArray())
+        var pkArr = FM.getPKArray();
+        this.list.dataProvider = new eui.ArrayCollection(pkArr)
+        this.emptyText.visible = pkArr.length == 0;
 
     }
 

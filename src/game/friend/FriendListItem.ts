@@ -8,8 +8,10 @@ class FriendListItem extends game.BaseItem {
     private nameText: eui.Label;
     private levelText: eui.Label;
     private forceText: eui.Label;
-    private pkBtn: eui.Button;
     private moreBtn: eui.Button;
+    private friendText: eui.Label;
+    private addFriendBtn: eui.Button;
+
 
 
 
@@ -19,30 +21,44 @@ class FriendListItem extends game.BaseItem {
     public childrenCreated(){
          super.childrenCreated()
 
-        this.addBtnEvent(this.moreBtn,this.onMore)
-        this.addBtnEvent(this.pkBtn,this.onPK)
-        //this.addBtnEvent(this,this.onClick)
+        //this.addBtnEvent(this.moreBtn,this.onMore)
+        this.addBtnEvent(this.addFriendBtn,this.onAddFriend)
+        this.addBtnEvent(this,this.onClick)
     }
 
     private onClick(){
-        OtherInfoUI.getInstance().showID(this.data)
+        if(this.currentState == 'friend')
+            OtherInfoUI.getInstance().showID(this.data)
     }
 
-    private onMore(e){
-        e.stopImmediatePropagation()
-        OtherInfoUI.getInstance().showID(this.data)
+    private onAddFriend(){   //
+        FriendAddUI.getInstance().show();
     }
 
-    private onPK(e){
-        e.stopImmediatePropagation()
-         FriendManager.getInstance().showPKUI(this.data)
-    }
+    //private onMore(e){
+    //    e.stopImmediatePropagation()
+    //    OtherInfoUI.getInstance().showID(this.data)
+    //}
+    //
+    //private onPK(e){
+    //    e.stopImmediatePropagation()
+    //     FriendManager.getInstance().showPKUI(this.data)
+    //}
 
     public dataChanged(){
-        var data = FriendManager.getInstance().friendData[this.data].info;
+        var FM = FriendManager.getInstance();
+        if(this.data.showFriend)
+        {
+            this.currentState = 'add';
+            this.friendText.text = '好友数量：' + FM.friendList.length + '/' + FM.maxFriendNum;
+            return;
+        }
+
+        this.currentState = 'friend';
+        var data = FM.friendData[this.data].info;
         this.headMC.source = MyTool.getHeadUrl(data.head);
         this.nameText.text = data.nick;
-        this.levelText.text = data.level;
-        this.forceText.text = data.force;
+        this.levelText.text = 'LV.' + data.level;
+        this.forceText.text = '战力：' + data.force;
     }
 }

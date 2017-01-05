@@ -117,6 +117,7 @@ class ServerGameUI extends game.BaseUI {
         var specialData = {};
         //更新卡组1
         var chooseList1 = [];
+        PKManager.getInstance().sortMonster(data.choose[this.chooseInex].list);
         for(var i=0;i<data.choose[this.chooseInex].list.length;i++)
         {
             var id = data.choose[this.chooseInex].list[i]

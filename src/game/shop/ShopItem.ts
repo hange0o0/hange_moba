@@ -45,11 +45,13 @@ class ShopItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.text1.text = this.data.word;
+
         if(this.data.shopType == 'coin')
-            this.text1.text += '  (金币X' + PayManager.getInstance().getCoin(this.data.id) + ')';
+            this.setHtml(this.text1,this.data.word + ' <font size="22">(金币X' + NumberUtil.addNumSeparator(PayManager.getInstance().getCoin(this.data.id)) + ')</font>');
         else  if(this.data.shopType == 'card')
-            this.text1.text += '  (卡片X' + PayManager.getInstance().getCard(this.data.id) + ')';
+            this.setHtml(this.text1,this.data.word + ' <font size="22">(卡片X' + NumberUtil.addNumSeparator(PayManager.getInstance().getCard(this.data.id)) + ')</font>');
+        else
+            this.text1.text = this.data.word;
 
         this.rmbMC.visible = false;
         if(this.data.type == 'rmb')

@@ -42,17 +42,15 @@ class ObjectUtil {
 
 	public static addClickEvent(btn: egret.DisplayObject, fun:any, thisObject:any):void{
         if(btn) {
-            btn.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,thisObject);
-            btn["clickFun_touchBegin"] = touchBegin;
-            btn["clickFun_touchEnd"] = touchEnd;
+
 
             var startX: number,startY: number;
-            function touchBegin(e: egret.TouchEvent) {
+            var touchBegin = function(e: egret.TouchEvent) {
                 startX = e.stageX;
                 startY = e.stageY;
                 btn.addEventListener(egret.TouchEvent.TOUCH_END,touchEnd,thisObject);
             }
-            function touchEnd(e: egret.TouchEvent) {
+            var touchEnd = function(e: egret.TouchEvent) {
                 btn.removeEventListener(egret.TouchEvent.TOUCH_END,touchEnd,thisObject);
 
                 var endX: number,endY: number;
@@ -62,6 +60,10 @@ class ObjectUtil {
                 if(Math.abs(endY - startY) > 10 || Math.abs(endX - startX) > 10) return;
                 if(fun) fun.apply(thisObject,[e]);
             }
+
+            btn.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,thisObject);
+            btn["clickFun_touchBegin"] = touchBegin;
+            btn["clickFun_touchEnd"] = touchEnd;
         }
 		
 	}

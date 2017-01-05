@@ -2,7 +2,7 @@
 <e:Skin class="MyInfoUISkin" width="640" height="2000" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller width="640" x="0" top="80" bottom="0">
+	<e:Scroller width="640" x="0" top="80" bottom="0" bounces="false">
 		<e:Group>
 			<e:Group x="50" y="20">
 				<e:Group x="0" top="0" bottom="0">
@@ -12,11 +12,15 @@
 					<e:Image source="book_bg2_jpg" top="350" scaleX="-1" scale9Grid="40,44,240,266" bottom="0" x="640"/>
 				</e:Group>
 				<e:Group x="41.96969696969697" top="30" bottom="30">
-					<e:Group x="0" y="0">
-						<e:Image source="border2_png" y="4" x="0"/>
-						<e:Image id="headMC" source="pk_bg_jpg" y="9" x="6" width="80" height="80"/>
-						<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCCB48E"/>
-						<e:Button id="setBtn" skinName="Btn_r1Skin" y="2" label="设置" x="440"/>
+					<e:Group x="0" y="0" height="120">
+						<e:Group id="headGroup" x="-0.06969696969697026" y="0">
+							<e:Image source="border2_png" y="0" x="0" width="100" height="100"/>
+							<e:Image id="headMC" source="pk_bg_jpg" y="3" x="3" width="94" height="94"/>
+							<e:Rect height="30" width="94" x="3" fillAlpha="0.7" bottom="3"/>
+							<e:Label text="更换" horizontalCenter="0" bottom="8" size="20" textColor="0xCCB48E"/>
+						</e:Group>
+						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
+						<e:Button id="setBtn" skinName="Btn_r1Skin" y="40" label="设置" x="300" visible="false"/>
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">
 						<e:Label id="levelText" y="8" text="等级：LV.32" x="60" textColor="0xCCB48E" size="30"/>
@@ -109,7 +113,7 @@
 				</e:Group>
 			</e:Group>
 			<e:Group x="107" y="914" height="250">
-				<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="560" height="190" x="10"/>
+				<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="560" height="190" horizontalCenter="0"/>
 				<e:Label horizontalCenter="0" textColor="0xCCB48E" y="5" text="试练场数据"/>
 				<e:Label id="mainLevelText" y="64" textColor="0xCCB48E" size="24" text="当前等级：12" horizontalCenter="0"/>
 				<e:Group x="45" y="104">
@@ -128,13 +132,13 @@
 				</e:Group>
 			</e:Group>
 			<e:Group x="117" y="924" height="180">
-				<e:Image source="card_bg_png" y="35" width="560" height="120" x="10" scale9Grid="69,57,108,126"/>
+				<e:Image source="card_bg_png" y="35" width="560" height="130" scale9Grid="69,57,108,126" horizontalCenter="0"/>
 				<e:Label y="0" horizontalCenter="0" textColor="0xCCB48E" text="每日任务数据"/>
-				<e:Label id="dailyText1" horizontalCenter="0.5" textColor="0xCCB48E" size="24" y="61" text="当前进度：10/10"/>
-				<e:Label id="dailyText2" horizontalCenter="0.5" textColor="0xCCB48E" size="24" y="100" text="累计通关次数：0" x="10"/>
-			</e:Group>
+				<e:Label id="dailyText1" horizontalCenter="0" textColor="0xCCB48E" size="24" y="61" text="当前进度：10/10"/>
+<e:Label y="105" textColor="0xCCB48E" text="累计通关次数：0" id="dailyText2" size="24" x="50"/>
+				<e:Label y="105" textColor="0xCCB48E" text="获得任务积分：0" id="dailyText3" size="24" x="300"/>			</e:Group>
 			<e:Group x="87" y="894" height="220">
-				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="160" x="10"/>
+				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="160" horizontalCenter="0"/>
 				<e:Label y="0" textColor="0xCCB48E" text="竞技场数据" horizontalCenter="0"/>
 				<e:Label id="serverText1" y="61" textColor="0xCCB48E" text="积分：12345（历史最高：12345）" x="40" size="24"/>
 				<e:Label id="serverText2" y="101" textColor="0xCCB48E" text="当前等级：12（下一级积分：12345）" x="40" size="24"/>
@@ -142,7 +146,7 @@
 				<e:Label id="serverText4" y="139" textColor="0xCCB48E" size="24" text="失败次数：123456" x="300"/>
 			</e:Group>
 			<e:Group y="904" x="97" height="240">
-				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="190" x="10"/>
+				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="190" horizontalCenter="0"/>
 				<e:Label horizontalCenter="0" y="0" textColor="0xCCB48E" text="修正场数据"/>
 				<e:Label id="serverEqualText1" y="61" textColor="0xCCB48E" size="24" text="积分：12345（历史最高：12345）" x="40"/>
 				<e:Label id="serverEqualText2" y="99" textColor="0xCCB48E" size="24" text="当前等级：12（下一级积分：12345）" x="40"/>

@@ -6,6 +6,7 @@ class MyInfoUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private headGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
     private setBtn: eui.Button;
@@ -34,6 +35,7 @@ class MyInfoUI extends game.BaseUI {
     private mainAward4: eui.Label;
     private dailyText1: eui.Label;
     private dailyText2: eui.Label;
+    private dailyText3: eui.Label;
     private serverText1: eui.Label;
     private serverText2: eui.Label;
     private serverText3: eui.Label;
@@ -45,6 +47,7 @@ class MyInfoUI extends game.BaseUI {
     private serverEqualText6: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -75,11 +78,35 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.addEnergyBtn, this.onAddEnergy);
         this.addBtnEvent(this.addCardBtn, this.onAddCard);
 
+        this.addBtnEvent(this.headGroup, this.onHead);
+
         this.list.itemRenderer = EnemyHeadItem;
 
 
     }
 
+    private onHead(){
+        var self = this;
+        ChangeHeadUI.getInstance().show(UM.head,false,function(id){
+            if(id != UM.head)
+            {
+                Confirm('确定花费100钻石改变头像吗？',function(v){
+                     if(v == 1)
+                     {
+                         if(!UM.testDiamond(100))
+                         {
+                             return;
+                         }
+                         FriendManager.getInstance().changeHead(id,function(){
+                             ChangeHeadUI.getInstance().hide();
+                         })
+                     }
+                })
+            }
+            else
+                ChangeHeadUI.getInstance().hide();
+        });
+    }
     private onSet(){
 
     }
@@ -131,6 +158,7 @@ class MyInfoUI extends game.BaseUI {
 
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.energy_change,this.renew);
+        this.addPanelOpenEvent(GameEvent.client.change_head,this.renew);
     }
 
     public renew(){
@@ -173,6 +201,7 @@ class MyInfoUI extends game.BaseUI {
         var myData = UM.day_game;
         this.dailyText1.text = '当前进度：' + myData.level + '/10'
         this.dailyText2.text = '累计通关次数：' +  myData.times
+        this.dailyText3.text = '获得任务积分：' +  myData.score
 
         var serverData = UM.server_game;
         level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)

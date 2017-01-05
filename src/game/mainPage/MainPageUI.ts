@@ -99,6 +99,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.level_change,this.renewExp,this);
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
+        EM.addEvent(GameEvent.client.change_head,this.renewTop,this);
 
         EM.addEvent(GameEvent.client.timer,this.onTimer,this);
 

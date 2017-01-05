@@ -13,20 +13,25 @@ class OtherInfoUI extends game.BaseUI {
     private talkBtn: eui.Button;
     private deleteBtn: eui.Button;
     private pkBtn: eui.Button;
+    private levelText: eui.Label;
+    private forceText: eui.Label;
+    private landText: eui.Label;
     private friendGroup: eui.Group;
     private friendText: eui.Label;
     private friendWin: eui.Label;
     private friendFail: eui.Label;
-    private levelText: eui.Label;
-    private forceText: eui.Label;
-    private mainGameText: eui.Label;
-    private serverLevelText: eui.Label;
-    private serverScroeText: eui.Label;
-    private serverRateText: eui.Label;
-    private serverEqualText: eui.Label;
-    private serverEqualScoreText: eui.Label;
-    private serverEqualRateText: eui.Label;
-    private serverEqualWinText: eui.Label;
+    private mainLevelText: eui.Label;
+    private dailyText2: eui.Label;
+    private dailyText3: eui.Label;
+    private serverText1: eui.Label;
+    private serverText2: eui.Label;
+    private serverText3: eui.Label;
+    private serverText4: eui.Label;
+    private serverEqualText1: eui.Label;
+    private serverEqualText2: eui.Label;
+    private serverEqualText3: eui.Label;
+    private serverEqualText5: eui.Label;
+    private serverEqualText4: eui.Label;
     private list: eui.List;
 
 
@@ -149,10 +154,10 @@ class OtherInfoUI extends game.BaseUI {
                 }
             }
 
-            var rate = (win/((win + fail) || 1)*100).toFixed(2);
+            var rate = MyTool.toFixed(win/((win + fail) || 1)*100,1);
             this.friendWin.text = '胜利：' + win
             this.friendFail.text = '失败：' + fail
-            this.friendText.text = '好友PK：(胜率：'+rate+'%)'
+            this.friendText.text = '胜率：'+rate+'%'
         }
         else
         {
@@ -165,19 +170,52 @@ class OtherInfoUI extends game.BaseUI {
 
         this.headMC.source = MyTool.getHeadUrl(dataIn.head);
         this.nameText.text = dataIn.nick;
-        this.levelText.text = '等级：LV.' + dataIn.level;
-        this.forceText.text = '战力：' + dataIn.force;
+        this.setText(this.levelText, '等级：$$','LV.'+ UM.level,'LV.'+ dataIn.level);
+        this.setText(this.forceText, '战力：$$',UM.getForce(),dataIn.force);
 
-        this.mainGameText.text = '试练场等级：' + dataIn.main_game.level;
 
-        this.serverLevelText.text = '竞技场等级：' + ServerGameManager.getInstance().getPKTableLevel(dataIn.server_game.exp);
-        this.serverScroeText.text = '积分：' + dataIn.server_game.exp
-        this.serverRateText.text = '胜率：' + (dataIn.server_game.win/(dataIn.server_game.total || 1)*100).toFixed(2) + '%';
+        this.setText(this.mainLevelText,'当前等级：$$',UM.main_game.level ,dataIn.main_game.level);
 
-        this.serverEqualText.text = '竞技场等级：' + ServerGameManager.getInstance().getPKTableLevel(dataIn.server_game_equal.exp);
-        this.serverEqualScoreText.text = '积分：' + dataIn.server_game_equal.exp
-        this.serverEqualRateText.text = '胜率：' + (dataIn.server_game_equal.win/(dataIn.server_game_equal.total || 1)*100).toFixed(2) + '%';
-        this.serverEqualWinText.text = '最高连胜：' + dataIn.server_game_equal.max;
+
+        var myData = dataIn.day_game;
+        var myData2 = UM.day_game;
+        this.setText(this.dailyText2, '累计通关次数：$$',myData2.times,myData.times);
+        this.setText(this.dailyText3, '获得任务积分：$$',myData2.score, myData.score);
+
+        var serverData = dataIn.server_game;
+        var serverData2 = UM.server_game;
+        var level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
+        var level2 = ServerGameManager.getInstance().getPKTableLevel(serverData2.exp)
+        this.setHtml(this.serverText1,this.changeValue('积分：$$',serverData2.exp,serverData.exp) + this.changeValue('（历史最高：$$）',serverData2.top,serverData.top));
+        this.setText(this.serverText2, '当前等级：$$',level2,level);
+        this.setText(this.serverText3, '胜利次数：$$',serverData2.win,serverData.win);
+        this.setText(this.serverText4, '胜率：$$', MyTool.toFixed(serverData2.win/(serverData2.total||1)*100,1) + '%', MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%');
+
+
+        var serverData = dataIn.server_game_equal;
+        serverData2 = UM.server_game_equal;
+        level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
+        level2 = ServerGameEqualManager.getInstance().getPKTableLevel(serverData2.exp)
+
+        this.setHtml(this.serverEqualText1,this.changeValue('积分：$$',serverData2.exp,serverData.exp) + this.changeValue('（历史最高：$$）',serverData2.top,serverData.top));
+        this.setText(this.serverEqualText2, '当前等级：$$',level2,level);
+        this.setText(this.serverEqualText3,  '胜利次数：$$',serverData2.win,serverData.win);
+        this.setText(this.serverEqualText4, '胜率：$$',MyTool.toFixed(serverData2.win/(serverData2.total||1)*100,1) + '%',MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%');
+        this.setText(this.serverEqualText5, '最高连胜：$$',serverData2.max,serverData.max);
+
+
+
+
+        var cd = Math.floor((TM.now() - dataIn.last_land)/(24*3600));
+        if(cd >=7)
+        {
+            this.landText.text = '该玩家已超过 '+cd+' 天没登录'
+        }
+        else
+        {
+            this.landText.text = '';
+        }
+
 
 
         var specialData = {
@@ -203,5 +241,27 @@ class OtherInfoUI extends game.BaseUI {
         this.list.dataProvider = new eui.ArrayCollection(arr)
 
 
+    }
+
+    private setText(text,str,myValue,otherValue){
+
+        str = this.changeValue(str,myValue,otherValue);
+        this.setHtml(text,str);
+    }
+
+    private changeValue(str,myValue,otherValue){
+        if(myValue > otherValue)
+        {
+            str = str.replace('$$','<font color="#00ff00">'+otherValue+'</font>')
+        }
+        else if(myValue < otherValue)
+        {
+            str = str.replace('$$','<font color="#ff0000">'+otherValue+'</font>')
+        }
+        else
+        {
+            str = str.replace('$$',otherValue)
+        }
+        return str;
     }
 }

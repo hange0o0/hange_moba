@@ -26,5 +26,7 @@ class MyHeadItem extends game.BaseItem {
         var vo:MonsterVO = this.data.vo;
         this.levelText.text = 'LV.' + UM.getMonsterLevel(vo.id);
         this.headMC.source = vo.url;
+        if(this.data.specialData.isEqual)
+            this.levelText.text = '修正'
     }
 }

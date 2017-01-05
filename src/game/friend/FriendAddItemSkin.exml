@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FriendAddItemSkin" width="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="0" y="0">
+		<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="540" height="110" x="0"/>
+		<e:Group x="22" y="17">
+			<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="76" height="76" x="0"/>
+			<e:Image source="pk_bg_jpg" y="3" id="headMC" width="70" height="70" x="3"/>
+		</e:Group>
+		<e:Group y="23" x="119">
+			<e:Label y="0" textColor="0xCCB48E" text="标签" x="0" size="30" id="nameText"/>
+			<e:Label y="6" textColor="0xCCB48E" text="LV.3" id="levelText" size="22" x="71"/>
+			<e:layout>
+				<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
+			</e:layout>
+		</e:Group>
+		<e:Label id="forceText" y="64" textColor="0xE0BB83" text="战力：23" x="119" size="22"/>
+		<e:Button id="addBtn" skinName="Btn_r1Skin" label="添加" y="23" right="20"/>
+	</e:Group>
+</e:Skin>

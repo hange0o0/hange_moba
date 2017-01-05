@@ -14,14 +14,12 @@ class FriendPKViewUI extends game.BaseUI {
     private myGroup0: eui.Group;
     private bg0: eui.Group;
     private myList0: eui.List;
-
+    private myChooseGroup: eui.Group;
+    private myList2: eui.List;
     private myGroup1: eui.Group;
     private bg1: eui.Group;
     private myList1: eui.List;
 
-    private myChooseGroup: eui.Group;
-    private myList2: eui.List;
-    private chooseMC: eui.Image;
 
 
 
@@ -45,7 +43,7 @@ class FriendPKViewUI extends game.BaseUI {
 
         this.myList0.itemRenderer =  MyHeadItem;
         this.myList1.itemRenderer =  MyHeadItem;
-        this.myList2.itemRenderer =  MyHeadItem;
+        this.myList2.itemRenderer =  EnemyHeadItem;
 
         this.scroller.bounces = false;
     }
@@ -53,7 +51,7 @@ class FriendPKViewUI extends game.BaseUI {
     private onTimer(){
         if(!this.stage)
             return;
-        this.timeText.text = 'PK截至时间：'+ DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
+        this.timeText.text = 'PK有效时间：'+ DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
     }
 
 
@@ -75,6 +73,8 @@ class FriendPKViewUI extends game.BaseUI {
         {
             specialData.isEqual = true;
         }
+        PKManager.getInstance().sortMonster(data[0].list);
+        PKManager.getInstance().sortMonster(data[1].list);
         //更新卡组1
         var chooseList1 = [];
         for(var i=0;i<data[0].list.length;i++)
@@ -115,7 +115,7 @@ class FriendPKViewUI extends game.BaseUI {
          //我选中的卡组
         var myChoose = this.data.content.ask_choose;
         var index = myChoose.index || 0;
-        var ringIndex = 0;
+        //var ringIndex = 0;
         MyTool.removeMC(this.myChooseGroup)
         this.scrollerGroup.addChildAt(this.myChooseGroup,2 + index);
         this.bg0.visible = false;
@@ -123,14 +123,14 @@ class FriendPKViewUI extends game.BaseUI {
         if(index == 0)
         {
             this.bg0.visible = true;
-            if(myChoose.ring.id == data[0].ring[1])
-                ringIndex = 1
+            //if(myChoose.ring.id == data[0].ring[1])
+            //    ringIndex = 1
         }
         else
         {
             this.bg1.visible = true;
-            if(myChoose.ring.id == data[1].ring[1])
-                ringIndex = 1
+            //if(myChoose.ring.id == data[1].ring[1])
+            //    ringIndex = 1
         }
 
         var chooseList3 = [];
@@ -139,7 +139,7 @@ class FriendPKViewUI extends game.BaseUI {
             var id = myChoose.list[i]
             chooseList3.push({
                 vo: MonsterVO.getObject(id),
-                type:1,
+                isTeam:true,
 
                 id: id,
                 specialData: specialData,
@@ -148,8 +148,22 @@ class FriendPKViewUI extends game.BaseUI {
                 list:chooseList3
             });
         }
-        this.myList2.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.chooseMC.x = 200 + ringIndex * 300;
+        this.myList2.dataProvider = new eui.ArrayCollection(chooseList3);
+
+        if(chooseList3.length <4)
+        {
+            (<eui.TileLayout>this.myList2.layout).requestedColumnCount = 0;
+            (<eui.TileLayout>this.myList2.layout).requestedRowCount = 1
+        }
+        else
+        {
+            (<eui.TileLayout>this.myList2.layout).requestedRowCount = 2;
+            if(chooseList3.length ==4)
+                (<eui.TileLayout>this.myList2.layout).requestedColumnCount = 2
+            else
+                (<eui.TileLayout>this.myList2.layout).requestedColumnCount = 3
+        }
+        //this.chooseMC.x = 200 + ringIndex * 300;
 
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
     }
