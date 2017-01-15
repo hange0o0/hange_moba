@@ -32,7 +32,7 @@ class RankUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.emptyText.visible = false;
 
-        this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
+        this.tab.addEventListener(eui.ItemTapEvent.CHANGE, this.typeBarClick, this);
         //this.addBtnEvent(this, this.onClick);
     }
 

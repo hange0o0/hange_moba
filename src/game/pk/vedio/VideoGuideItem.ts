@@ -77,9 +77,21 @@ class VideoGuideItem extends game.BaseItem {
 
         var base = chooseData[0];
         var VC = VideoCode.getInstance();
-        this.headMC.source = 'head_png'
+
         this.roundText.text = base.index;
         var atker = VC.getPlayerByID(base.atker);
+        if(base.atker < 10)
+        {
+            var VM = VideoManager.getInstance()
+            if(base.atker == 1)
+                var oo = VM.leaderSkill1[base.skillID - 2]
+            else
+                var oo = VM.leaderSkill2[base.skillID - 2]
+            var mvo = oo.mvo;
+            this.headMC.source = mvo.thumb
+        }
+        else
+            this.headMC.source = atker.mvo.thumb
         if(atker.teamID == 1)
             this.bg.fillColor = 0x01014F
         else

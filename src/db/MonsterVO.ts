@@ -114,7 +114,7 @@ class MonsterVO {
             if(oo.type == 2)
             {
                 oo['id2'] = temp[2]
-                this.pushLoadKey(oo.id);
+                this.pushLoadKey(oo['id2']);
                 if(!oo['id2'])
                 {
                     throw new Error('monster' + this.id)

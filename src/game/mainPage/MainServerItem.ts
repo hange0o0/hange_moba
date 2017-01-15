@@ -38,23 +38,33 @@ class MainServerItem extends game.BaseItem {
         //this.totalText.text = '局数：' + serverData.total;
         //this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;
-
-        MyTool.removeMC(this.retryBtn);
-        if(serverData.pk)//已PK过，不能再打
+        if(UM.level < 2)
         {
-            this.btnGroup.addChildAt(this.retryBtn,0);
-            this.startBtn.label = '重新匹配'
-            this.desText.text = '重新匹配需消耗体力：' + 2 + '\n重试需消耗体力：' + 3
-        }
-        else if(serverData.choose)//已有卡版数据
-        {
-            this.startBtn.label = '开始挑战';
-            this.desText.text = '卡组已获得'
+            this.desText.text = '2级开放'
+            this.btnGroup.visible = false;
         }
         else
         {
-            this.startBtn.label = '开始匹配'
-            this.desText.text = '匹配需消耗体力：' + 2;
+            this.btnGroup.visible = true;
+            MyTool.removeMC(this.retryBtn);
+            if(serverData.pk)//已PK过，不能再打
+            {
+                this.btnGroup.addChildAt(this.retryBtn,0);
+                this.startBtn.label = '重新匹配'
+                this.desText.text = '重新匹配需消耗体力：' + 2 + '\n重试需消耗体力：' + 3
+            }
+            else if(serverData.choose)//已有卡版数据
+            {
+                this.startBtn.label = '开始挑战';
+                this.desText.text = '卡组已获得'
+            }
+            else
+            {
+                this.startBtn.label = '开始匹配'
+                this.desText.text = '匹配需消耗体力：' + 2;
+            }
         }
+
+
     }
 }

@@ -53,7 +53,12 @@ class ServerGameEqualManager{
         var oo:any = {};
         if(UM.getPropNum(21) < 1)
         {
-            Alert('入场券数量不足1张！\n在竞技场PK，有机会获得入场券');
+            Confirm('入场券数量不足！\n在竞技场、每日任务中，都有机会获得入场券\n是否先购买几张玩玩？',function(v){
+                if(v == 1)
+                {
+                    ShopUI.getInstance().show('ticket');
+                }
+            },['知道了','购买'])
             return;
         }
         //if(isagain && UM.getPropNum(21) < 2)
@@ -74,6 +79,7 @@ class ServerGameEqualManager{
             UM.server_game_equal.pk = 0;
             UM.server_game_equal.choose = msg.choose;
             UM.server_game_equal.enemy = msg.enemy;
+            EM.dispatch(GameEvent.client.get_card)
             if(fun)
                 fun();
         });

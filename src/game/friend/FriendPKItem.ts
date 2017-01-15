@@ -55,16 +55,24 @@ class FriendPKItem extends game.BaseItem {
         var fromHead = this.getHead(this.data.from_gameid,this.data.content.fromhead);
         var toHead = this.getHead(this.data.to_gameid,this.data.content.tohead);
         this.dateText.text = '有效时间：' + DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
+
         if(this.data.from_gameid == UM.gameid)//我请求的
         {
             this.headMC.source = MyTool.getHeadUrl(toHead);
             this.nameText.text =  '你向【' + toNick + '】发出了挑战';
+            this.nameText.textColor = 0x607CE2;
             if(this.data.content.answer_choose)//对方已应战
             {
                 if(this.data.content.result)//对方胜
+                {
+                    this.talkText.textColor = 0xE35A5A;
                     this.talkText.text = '你被打败了。。';
+                }
                 else
+                {
+                    this.talkText.textColor = 0xCCCC00;
                     this.talkText.text = '你取得了胜利！';
+                }
                 this.refuseBtn.label = '录像'
                 this.state = 3;
             }
@@ -72,6 +80,7 @@ class FriendPKItem extends game.BaseItem {
             {
                 this.talkText.text = '等待对方应战中。。。'
                 this.refuseBtn.label = '查看'
+                this.talkText.textColor = 0xCCB48E;
                 this.state = 1;
             }
         }
@@ -79,12 +88,19 @@ class FriendPKItem extends game.BaseItem {
         {
             this.headMC.source = MyTool.getHeadUrl(fromHead);
             this.nameText.text =  '【' + fromNick + '】向你挑战';
+            this.nameText.textColor = 0xE35A5A;
             if(this.data.content.answer_choose)//对方已应战
             {
                 if(this.data.content.result)//我方胜
+                {
+                    this.talkText.textColor = 0xCCCC00;
                     this.talkText.text = '你取得了胜利！';
+                }
                 else
+                {
+                    this.talkText.textColor = 0xE35A5A;
                     this.talkText.text = '你被打败了。。';
+                }
                 this.refuseBtn.label = '录像'
                 this.state = 3;
             }

@@ -11,7 +11,7 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
 				<e:Group y="5" horizontalCenter="0">
-					<e:Group x="134" y="0">
+					<e:Group x="134" y="0" id="coinGroup">
 						<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="220" height="40" x="21"/>
 						<e:Image source="icon_money_png" y="0" x="0"/>
 						<e:Label id="moneyText" y="8" textColor="0xCCCCCC" text="12345/1234567" size="24" x="44"/>
@@ -29,7 +29,8 @@
 							<e:Object label="数据3"/>
 						</e:Array>
 					</e:ArrayCollection>
-				</e:List>
+				</e:List>
+
 			</e:Group>
 			<e:Group id="myGroup0" y="461" height="520" x="70">
 				<e:List id="myList0" y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
@@ -65,7 +66,8 @@
 					<e:Button id="chooseBtn0" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
 					<e:Image source="line_png" y="509" x="10"/>
 				</e:Group>
-			</e:Group>
+			</e:Group>
+
 
 			<e:layout>
 				<e:VerticalLayout gap="10"/>

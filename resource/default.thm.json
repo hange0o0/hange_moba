@@ -117,6 +117,7 @@
     "src/game/user/MonsterListUISkin.exml",
     "src/game/user/MyInfoUISkin.exml",
     "src/game/user/OtherInfoUISkin.exml",
+    "src/guide/GuideSkin.exml",
     "src/login/HeadItemSkin.exml",
     "src/login/ChangeHeadUISkin.exml",
     "src/login/ChooseServerItemSkin.exml",

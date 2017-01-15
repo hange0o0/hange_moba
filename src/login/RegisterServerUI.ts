@@ -29,7 +29,16 @@ class RegisterServerUI extends game.BaseWindow {
         this.addBtnEvent(this.randomBtn, this.onRandom);
         this.addBtnEvent(this.headGroup, this.onHeadClick);
 
-        this.nameText.restrict = "^\\\\\"\'"
+        this.nameText.restrict = "a-zA-Z0-9_\u0391-\uFFE5";
+        this.nameText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
+    }
+
+    private onChange(){
+        var len = StringUtil.getStringLength(this.nameText.text);
+        if(len > 14)
+        {
+            this.nameText.text = StringUtil.getStringByLength(this.nameText.text,7);
+        }
     }
 
     public show(serverID?){
@@ -55,7 +64,7 @@ class RegisterServerUI extends game.BaseWindow {
     private onRandom(){
         if(!this.chooseHead)
         {
-            this.headID = Math.floor(Math.random()*50);
+            this.headID = Math.floor(Math.random()*40);
             this.renewHead();
         }
         this.nameText.text = MyTool.randomName();

@@ -31,6 +31,7 @@ class HonorManager{
             if(vo.level<= UM.level)
                 arr.push(this.fillAwardStat({
                     id:vo.id,
+                    userLevel:vo.level,
                     index:index++,
                     honorType:1
                 }));

@@ -74,6 +74,7 @@ class ServerGameManager{
             UM.server_game.pk = 0;
             UM.server_game.choose = msg.choose;
             UM.server_game.enemy = msg.enemy;
+            EM.dispatch(GameEvent.client.get_card)
             if(fun)
                 fun();
         });

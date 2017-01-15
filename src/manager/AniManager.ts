@@ -77,7 +77,7 @@ class AniManager {
             var data:any = RES.getRes(name + "_json"); //qid
             var texture:egret.Texture = RES.getRes(name + "_png");
             mcFactory = new egret.MovieClipDataFactory(data, texture);
-            mcFactory.enableCache = true;
+            //mcFactory.enableCache = true;
             this.mcFactorys[name] = mcFactory
         }
         var mc:any = this.mcPool.pop() || new egret.MovieClip();

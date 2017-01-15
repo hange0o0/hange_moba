@@ -16,7 +16,7 @@
 	</e:Group>
 	<e:Group x="132" y="49" visible.finish="false">
 		<e:Label y="3" size="24" text="奖励：" x="-3" textColor="0xCCB48E"/>
-		<e:Image source="icon_pvp_ticket_png" x="60" y="1" scaleX="0.7" scaleY="0.7"/>
+		<e:Image x="60" y="1" scaleX="0.7" scaleY="0.7" source="icon_token_png"/>
 		<e:Label id="awardText" text="123456" x="92" y="4" size="22" textColor="0xCCB48E"/>
 	</e:Group>
 	<e:Label id="finishText" text="已完成" x="317" y="46" visible.normal="false" x.finish="518" y.finish="41" textColor="0xCCB48E"/>

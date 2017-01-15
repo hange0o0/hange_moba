@@ -178,6 +178,10 @@ class HonorUI extends game.BaseUI {
          }
     }
     private sortByDefault(a,b){
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;
@@ -186,6 +190,10 @@ class HonorUI extends game.BaseUI {
         if(a.t > b.t)
             return -1;
         if(a.t < b.t)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
             return 1;
         if(a.id < b.id)
             return -1;
@@ -197,6 +205,10 @@ class HonorUI extends game.BaseUI {
             return -1;
         if(a.w < b.w)
             return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;
@@ -206,6 +218,10 @@ class HonorUI extends game.BaseUI {
             return -1;
         if(a.r < b.r)
             return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
         if(a.id < b.id)
             return -1;
         return 1;
@@ -214,6 +230,10 @@ class HonorUI extends game.BaseUI {
         if(a.awardV > b.awardV)
             return -1;
         if(a.awardV < b.awardV)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
             return 1;
         if(a.id < b.id)
             return -1;

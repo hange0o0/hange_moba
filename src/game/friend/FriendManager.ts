@@ -254,6 +254,8 @@ class FriendManager{
                 if(!self.friendData[s])
                     self.friendData[s] = {};
                 self.friendData[s].info = msg.friendinfo[s];
+                if(msg.friendinfo[s].nick)
+                    msg.friendinfo[s].nick = Base64.decode(msg.friendinfo[s].nick);
             }
             for(var s in msg.friendpk)
             {
@@ -433,6 +435,7 @@ class FriendManager{
             self.removeLog(logid);
             self.addFriend(msg.otherinfo);
             self.saveToLocal();
+            EM.dispatchEventWith(GameEvent.client.friend_list_change);
             if(fun)
                 fun();
         });
@@ -460,15 +463,29 @@ class FriendManager{
             var now = TM.now();
             var logChange = false;
             var pkChange = false;
-            for(var i=0;i<msg.list.length;i++)
+            for(var i=0;i<msg.list.length;i++)          //type 1:news 2pk 3talk
             {
                 msg.list[i].id = Math.floor(msg.list[i].id);
                 msg.list[i].time = Math.floor(msg.list[i].time);
+                if(msg.list[i].content)
+                {
+                    if(msg.list[i].content.nick)
+                        msg.list[i].content.nick = Base64.decode(msg.list[i].content.nick);
+                    if(msg.list[i].content.talk)
+                        msg.list[i].content.talk = Base64.decode(msg.list[i].content.talk);
+                    if(msg.list[i].content.from_nick)
+                        msg.list[i].content.from_nick = Base64.decode(msg.list[i].content.from_nick);
+                    if(msg.list[i].content.to_nick)
+                        msg.list[i].content.to_nick = Base64.decode(msg.list[i].content.to_nick);
+                }
                 if(msg.list[i].type != 2)
                 {
                     self.removeLog(msg.list[i].id);
                     if(msg.list[i].to_gameid == UM.gameid)//只有对方发我的才显示在日志中
                         self.logList.push(msg.list[i]);
+                    else if(msg.list[i].type == 3 && self.friendData[msg.list[i].to_gameid])//聊天的话就都显示
+                        self.logList.push(msg.list[i]);
+
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);
                     logChange = true;
@@ -482,7 +499,22 @@ class FriendManager{
             }
             if(logChange)
             {
-                ArrayUtil.sortByField(self.logList,['id'],[1])
+                ArrayUtil.sortByField(self.logList,['id'],[1]);
+                //把后面重复的聊天去掉
+                var talkPlayer = {};
+                for(var i=0;i<self.logList.length;i++)
+                {
+                     var oo = self.logList[i];
+                    if(oo.type != 3)
+                        continue;
+                    var id = oo.to_gameid == UM.gameid?oo.from_gameid:oo.to_gameid;
+                    if(talkPlayer[id])
+                    {
+                        self.logList.splice(i,1);
+                        i--;
+                    }
+                    talkPlayer[id] = true;
+                }
                 EM.dispatchEventWith(GameEvent.client.friend_log_change)
             }
             if(pkChange)
@@ -513,6 +545,7 @@ class FriendManager{
 
             self.deleteFriend(otherid);
             self.saveToLocal();
+            EM.dispatchEventWith(GameEvent.client.friend_list_change)
             if(fun)
                 fun();
         });

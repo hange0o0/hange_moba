@@ -88,6 +88,7 @@ class VideoDetailUI extends game.BaseUI {
     public onShow(){
         this.scrollGroup.removeChildren();
 
+        var PKM = PKManager.getInstance();
         var team = this.dataIn.team;
         var chooseData = this.dataIn.data;
         var VC = VideoCode.getInstance();
@@ -95,6 +96,11 @@ class VideoDetailUI extends game.BaseUI {
         var data = item.result['player' + team];
         var otherBuff = item.result.otherBuff;
         var playerList = [];
+        if(PKM.teamChange)
+            var teamBase = team == 1?PKM.team2Base:PKM.team1Base
+        else
+            var teamBase = team == 1?PKM.team1Base:PKM.team2Base
+
         for(var s in VC.playerObject)
         {
             if(VC.playerObject[s].teamID == team && VC.playerObject[s].id >=10)
@@ -107,7 +113,7 @@ class VideoDetailUI extends game.BaseUI {
         for(var j=0;j<playerList.length;j++)
         {
             var baseData = playerList[j];
-            this.clickObj.push({id:baseData.mid,specialData:{isBase:true}});
+            this.clickObj.push({id:baseData.mid,specialData:teamBase.mb[baseData.mid]});
 
             var atk = 0
             var speed = 0

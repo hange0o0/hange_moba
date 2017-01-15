@@ -11,5 +11,6 @@
 	<e:Group id="levelGroup" x="58" bottom="-5">
 		<e:Image source="icon_empty_png" y="0" x="0"/>
 		<e:Label id="levelText" y="12" textColor="0xCCB48E" text="60" textAlign="center" size="20" horizontalCenter="1"/>
-	</e:Group>
+	</e:Group>
+	<e:Label id="notFight" text="待命" x="10" bottom="9" size="20" stroke="3" textColor="0xE6C85C"/>
 </e:Skin>

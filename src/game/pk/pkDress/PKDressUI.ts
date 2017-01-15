@@ -106,6 +106,8 @@ class PKDressUI extends game.BaseUI {
         PKManager.getInstance().sortMonster(this.monsterList);
         this.reInitData();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
+        this.addPanelOpenEvent(GameEvent.client.force_change,this.renewList)
+        GuideManager.getInstance().showGuide(this);
     }
 
     private mainGameChange(){
@@ -135,7 +137,7 @@ class PKDressUI extends game.BaseUI {
             Alert('请先选择出战单位');
             return;
         }
-        if(!confirm && this.chooseList.length < 6 && this.getCurrentResource().coin > 10)
+        if(!confirm && this.chooseList.length < 6 && this.getCurrentResource().coin > 10 && !GuideManager.getInstance().isGuiding)
         {
 
             Confirm('确定使用该卡组出战？',function(type){
@@ -184,6 +186,8 @@ class PKDressUI extends game.BaseUI {
                  FriendPKAskUI.getInstance().hide();
                  break
          }
+        if(GuideManager.getInstance().isGuiding)
+            GuideUI.getInstance().hide();
     }
 
     //private onForceText(){
@@ -228,6 +232,7 @@ class PKDressUI extends game.BaseUI {
             (<any>this.list.getChildAt(i)).dataChanged();
         }
 
+        GuideManager.getInstance().showGuide(this);
     }
 
     private renewSimpleList(){
@@ -269,6 +274,8 @@ class PKDressUI extends game.BaseUI {
         var data = this.history[this.pkType];
 
         this.chooseList = data.list;
+        if(GuideManager.getInstance().isGuiding)
+            this.chooseList.length = 0;
 
 
         this.list.selectedIndex = -1;

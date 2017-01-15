@@ -8,7 +8,10 @@ class FriendTalkUI extends game.BaseUI {
     private topUI: TopUI;
     private scroller: eui.Scroller;
     private list: eui.List;
+    private btnGroup: eui.Group;
+    private closeBtn: eui.Button;
     private sendBtn: eui.Button;
+
 
 
     public gameid;
@@ -33,6 +36,7 @@ class FriendTalkUI extends game.BaseUI {
 
 
         this.addBtnEvent(this.sendBtn, this.onClick);
+        this.addBtnEvent(this.closeBtn, this.hide);
 
 
     }
@@ -98,19 +102,19 @@ class FriendTalkUI extends game.BaseUI {
         var FM = FriendManager.getInstance();
         var arr = FM.getTalkList(this.gameid);
         this.list.dataProvider = new eui.ArrayCollection(arr);
-        this.once(egret.Event.RENDER,function(){
+        this.once(egret.Event.ENTER_FRAME,function(){
             this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
-            console.log(this.scroller.viewport.scrollV)
+            //console.log(this.scroller.viewport.scrollV)
         },this)
 
         if(FM.friendData[this.gameid])
         {
-            this.sendBtn.visible = true;
+            this.btnGroup.addChild(this.sendBtn);
             this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'
         }
         else
         {
-            this.sendBtn.visible = false;
+            MyTool.removeMC(this.sendBtn);
         }
 
 

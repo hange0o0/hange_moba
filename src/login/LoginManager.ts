@@ -369,6 +369,7 @@ class LoginManager{
 
             self.addUserServer(serverid,nick);
             self.myServer[serverid] = nick;
+            self.lastSever = serverid;
             LoginServerUI.getInstance().onShow();
             RegisterServerUI.getInstance().hide();
             //self.lastSever = serverid;

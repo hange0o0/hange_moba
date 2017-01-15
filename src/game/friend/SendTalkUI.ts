@@ -24,6 +24,18 @@ class SendTalkUI extends game.BaseWindow {
         this.addBtnEvent(this.cancelBtn, this.hide);
         this.addBtnEvent(this.sendBtn, this.onSend);
         this.editText.restrict = "^\\\\\"\'"
+
+        this.editText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
+    }
+
+    private onChange(){
+        var len = StringUtil.getStringLength(this.editText.text);
+        if(len > 200)
+        {
+            len = 200;
+            this.editText.text = StringUtil.getStringByLength(this.editText.text,100);
+        }
+        this.titleText.text = '发送聊天(' + len + '/200)'
     }
 
     private onSend(){
@@ -40,7 +52,7 @@ class SendTalkUI extends game.BaseWindow {
 
     public onShow(){
         this.editText.text = '';
-        this.titleText.text = '发送聊天信息'
+        this.onChange();
         this.validateNow()
         //this.once(egret.Event.ENTER_FRAME,function(){
             this.editText.setFocus();

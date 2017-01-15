@@ -4,7 +4,7 @@
  *
  */
 class PopUpManager {
-    private static shape:eui.Rect;
+    public static shape:eui.Rect;
 	public constructor() {
 	}
 

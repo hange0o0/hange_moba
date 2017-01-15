@@ -144,8 +144,10 @@ class VideoUI2 extends game.BaseUI {
             this.scrollTime = 0;
             this.scroller.stopAnimation();
         }
+        var VC = VideoCode.getInstance();
 
         var data = item.result.player1;
+        this.headMC0.source = VC.player1.mvo.thumb;
         this.hpText0.text = data.hp  + '/' + data.maxHp;
         this.mpText0.text = data.mp  + '/' + data.maxMp;
         this.apText0.text = data.ap  + '/' + PKManager.ApMax;
@@ -154,7 +156,11 @@ class VideoUI2 extends game.BaseUI {
         this.apBar0.width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
         this.statList0.dataProvider = new eui.ArrayCollection(getList(JSON.parse(data.buffList)));
 
+
+
+
         var data = item.result.player2;
+        this.headMC1.source = VC.player2.mvo.thumb;
         this.hpText1.text = data.hp  + '/' + data.maxHp;
         this.mpText1.text = data.mp  + '/' + data.maxMp;
         this.apText1.text = data.ap  + '/' + PKManager.ApMax;

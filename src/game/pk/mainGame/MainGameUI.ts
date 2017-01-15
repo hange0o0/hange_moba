@@ -12,6 +12,7 @@ class MainGameUI extends game.BaseUI {
     private moneyText: eui.Label;
     private enemyList: eui.List;
     private myGroup0: eui.Group;
+    private coinGroup: eui.Group;
     private myList0: eui.List;
     private chooseBtn0: eui.Button;
 
@@ -31,6 +32,7 @@ class MainGameUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
+        this.addBtnEvent(this.coinGroup, this.onCoin);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
@@ -40,11 +42,8 @@ class MainGameUI extends game.BaseUI {
         //this.enemyList.add
     }
 
-    private onRing1(){
-
-    }
-    private onRing2(){
-
+    private onCoin(){
+        ShopUI.getInstance().show('coin');
     }
 
     public show(){
@@ -57,6 +56,8 @@ class MainGameUI extends game.BaseUI {
     private superShow(){
         super.show();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.renewEnemy)
+        this.addPanelOpenEvent(GameEvent.client.force_change,this.renewSelf)
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewPrice)
     }
 
     public renewPrice(){
@@ -122,11 +123,19 @@ class MainGameUI extends game.BaseUI {
 
     public onShow(){
 
-        var data = UM.main_game;
+
         this.topUI.setTitle('试练场PK-第'+(UM.main_game.level)+'关');
 
         this.renewEnemy();
+        this.renewSelf();
 
+        GuideManager.getInstance().showGuide(this)
+    }
+
+    private renewSelf(){
+        var data = UM.main_game;
+        if(!data.choose || !data.choose[0])
+            return;
         var specialData = {};
         //更新卡组1
         var chooseList1 = [];
@@ -146,7 +155,6 @@ class MainGameUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-
     }
 
     private onChoose1(){

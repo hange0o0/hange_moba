@@ -23,6 +23,7 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
         this.addBtnEvent(this.useBtn,this.onClick);
+        this.addBtnEvent(this.infoGroup,this.onClick);
         this.addBtnEvent(this,this.onInfo);
         //MyTool.addLongTouch(this,this.onLongTouch,this)
 

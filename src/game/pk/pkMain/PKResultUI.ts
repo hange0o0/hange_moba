@@ -84,10 +84,16 @@ class PKResultUI extends game.BaseUI {
         for(var i=0;i<team1Base.list.length;i++)
         {
             var mid = team1Base.list[i]
+            var specialData = team1Base.mb[mid];
             arr.push({
-                mid:mid,
+                id:mid,
+                list:arr,
+                specialData:specialData,
+                index:i,
+
                 level:team1Base.mb[mid].lv,
-                win: PKM.winCount[i+team1ID]
+                win: PKM.winCount[i+team1ID],
+                action: PKM.action[i+team1ID]
             })
         }
         this.selfList.dataProvider = new eui.ArrayCollection(arr)
@@ -97,12 +103,21 @@ class PKResultUI extends game.BaseUI {
         for(var i=0;i<team2Base.list.length;i++)
         {
             var mid = team2Base.list[i]
+            var specialData = team2Base.mb[mid];
             arr.push({
-                mid:mid,
+                id:mid,
+                list:arr,
+                specialData:specialData,
+                index:i,
+
                 level:team2Base.mb[mid].lv,
-                win: PKM.winCount[i+team2ID]
+                win: PKM.winCount[i+team2ID],
+                action: PKM.action[i+team2ID]
             })
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(arr)
+
+        GuideManager.getInstance().showGuide(this);
+
     }
 }

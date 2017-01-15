@@ -357,6 +357,7 @@ class PKDressChooseUI extends game.BaseContainer {
             item.dataChanged();
             this.renewSplice();
             this.changeState('selected')
+            GuideManager.getInstance().showGuide(PKDressUI.getInstance())
         }
         else if(this.selectIndex == index)//取消选中
         {

@@ -79,6 +79,11 @@ class OtherInfoUI extends game.BaseUI {
         FriendManager.getInstance().showPKUI(this.dataIn.gameid)
     }
     private onFriend(){
+        if(UM.level < 3)
+        {
+            Alert('努力升到3级，就可以加Ta为好友哦~')
+            return;
+        }
         var self = this;
         FriendManager.getInstance().apply(this.dataIn.gameid,function(){
             self.friendBtn.visible = false;
@@ -252,7 +257,7 @@ class OtherInfoUI extends game.BaseUI {
     private changeValue(str,myValue,otherValue){
         if(myValue > otherValue)
         {
-            str = str.replace('$$','<font color="#00ff00">'+otherValue+'</font>')
+            str = str.replace('$$','<font color="#FFFF00">'+otherValue+'</font>')
         }
         else if(myValue < otherValue)
         {

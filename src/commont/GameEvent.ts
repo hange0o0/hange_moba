@@ -14,10 +14,13 @@ class GameEvent {
         talk_change:'talk_change',
         friend_log_change:'friend_log_change',
         friend_pk_change:'friend_pk_change',
+        friend_list_change:'friend_list_change',
         level_change:'level_change',
         honor_change:'honor_change',
         main_kill:'main_kill',
         change_head:'change_head',
+        pk_start:'pk_start',
+        get_card:'get_card',
 
 
         timer:'timer'

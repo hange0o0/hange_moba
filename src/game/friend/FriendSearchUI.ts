@@ -22,6 +22,17 @@ class FriendSearchUI extends game.BaseWindow {
         super.childrenCreated();
         this.addBtnEvent(this.backBtn, this.hide);
         this.addBtnEvent(this.okBtn, this.onSearch);
+
+        this.nameText.restrict = "a-zA-Z0-9_\u0391-\uFFE5";
+        this.nameText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
+    }
+
+    private onChange(){
+        var len = StringUtil.getStringLength(this.nameText.text);
+        if(len > 14)
+        {
+            this.nameText.text = StringUtil.getStringByLength(this.nameText.text,7);
+        }
     }
 
     private onSearch(){
@@ -29,6 +40,11 @@ class FriendSearchUI extends game.BaseWindow {
         if(!nick)
         {
             Alert('输入内容不能为空')
+            return
+        }
+        if(nick == UM.nick)
+        {
+            MyInfoUI.getInstance().show();
             return
         }
         var self = this;

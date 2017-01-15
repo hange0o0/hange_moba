@@ -41,4 +41,19 @@ class StringUtil {
         }
         return str;
     }
+
+    public static  getStringLength(char){
+        return char.replace(/[^\x00-\xff]/g,"aa").length;
+    }
+
+    public static getStringByLength(str,len){
+        len = len*2;
+        for(var i=1;i<=str.length;i++)
+        {
+            var rs = str.substr(0,i);
+            if(StringUtil.getStringLength(rs) > len)
+                return   str.substr(0,i-1);
+        }
+        return str;
+    }
 }

@@ -98,7 +98,7 @@ class ShopUI extends game.BaseUI {
                 break;
             }
 
-            v += dataArr[i].list.length * 115 + 70 + 20 + 15;
+            v += dataArr[i].list.length * 115 + 70 + 20 + 5;
         }
         //this.once(egret.Event.ENTER_FRAME,function(){
             this.once(egret.Event.ENTER_FRAME,function(){

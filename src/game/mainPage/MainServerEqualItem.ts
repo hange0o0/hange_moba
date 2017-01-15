@@ -20,6 +20,7 @@ class MainServerEqualItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart);
+        EM.addEvent(GameEvent.client.prop_change,this.renew,this)
     }
 
     private onRetry(){
@@ -42,25 +43,32 @@ class MainServerEqualItem extends game.BaseItem {
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
         //this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);
-
-
-        MyTool.removeMC(this.retryBtn);
-        if(serverData.pk)//已PK过，不能再打
+        if(UM.level < 3)
         {
-            this.btnGroup.addChildAt(this.retryBtn,0);
-            this.startBtn.label = '重新匹配'
-            this.desText.text = '匹配或重试需消耗入场券：' + 1 + '\n当前拥有数量：' + UM.getPropNum(21);
-        }
-        else if(serverData.choose)//已有卡版数据
-        {
-            this.startBtn.label = '开始挑战'
-            this.desText.text = '卡组已获得'
+            this.desText.text = '3级开放'
+            this.btnGroup.visible = false;
         }
         else
         {
-            this.startBtn.label = '开始匹配'
-            this.desText.text = '匹配需消耗入场券：' + 1 + '\n当前拥有数量：' + UM.getPropNum(21);
+            this.btnGroup.visible = true;
+            MyTool.removeMC(this.retryBtn);
+            if(serverData.pk)//已PK过，不能再打
+            {
+                this.btnGroup.addChildAt(this.retryBtn,0);
+                this.startBtn.label = '重新匹配'
+                this.desText.text = '匹配或重试需消耗入场券：' + 1 + '\n当前拥有数量：' + UM.getPropNum(21);
+            }
+            else if(serverData.choose)//已有卡版数据
+            {
+                this.startBtn.label = '开始挑战'
+                this.desText.text = '卡组已获得'
+            }
+            else
+            {
+                this.startBtn.label = '开始匹配'
+                this.desText.text = '匹配需消耗入场券：' + 1 + '\n当前拥有数量：' + UM.getPropNum(21);
 
+            }
         }
     }
 }

@@ -93,7 +93,7 @@ class UserManager {
             this.energy.t = this.energy.t + add*v;
             EM.dispatchEventWith(GameEvent.client.energy_change)
         }
-        return this.energy.v + this.energy.rmb;
+        return this.energy.v;
     }
 
     public getNextEnergyCD(){
@@ -262,10 +262,23 @@ class UserManager {
     public testDiamond(v){
         if(UM.getDiamond() < v)
         {
-            Confirm('钻石不足！',function(v){
+            Confirm('钻石不足！\n需要：' +v+'当前：'+UM.getDiamond() + '\n是否前往购买钻石？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('diamond');
+                }
+            },['取消','购买'])
+            return false;
+        }
+        return true;
+    }
+    public testCoin(v){
+        if(UM.coin < v)
+        {
+            Confirm('金币不足！\n需要：' +v+'当前：'+UM.coin + '\n是否前往购买金币？',function(v){
+                if(v == 1)
+                {
+                    ShopUI.getInstance().show('coin');
                 }
             },['取消','购买'])
             return false;

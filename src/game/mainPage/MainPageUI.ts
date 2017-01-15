@@ -100,6 +100,8 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
         EM.addEvent(GameEvent.client.change_head,this.renewTop,this);
+        EM.addEvent(GameEvent.client.pk_start,this.scrollToCurrentPage,this);
+        EM.addEvent(GameEvent.client.get_card,this.scrollToCurrentPage,this);
 
         EM.addEvent(GameEvent.client.timer,this.onTimer,this);
 
@@ -141,6 +143,8 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onHelp(){
+        GuideUI.getInstance().show(null,'friend')
+        return;
         var HM = HelpManager.getInstance()
         switch(this.currentPage)
         {
@@ -318,6 +322,15 @@ class MainPageUI extends game.BaseUI {
         this.scrollToCurrentPage();
 
         this.renewMiddle();
+
+        GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
+        GuideManager.getInstance().showGuide()
+
+        //GuideManager.getInstance().guideStep = 13;
+        //MyTool.removeMC(PopUpManager.shape);
+        //GuideManager.getInstance().showGuide(MainPageUI.getInstance())
+        //MainPageUI.getInstance()['currentPage'] = 1;
+        //MainPageUI.getInstance().scrollToCurrentPage();
     }
 
     public renewMiddle(){

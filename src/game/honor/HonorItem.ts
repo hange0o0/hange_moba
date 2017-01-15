@@ -21,6 +21,11 @@ class HonorItem extends game.BaseItem {
     public childrenCreated(){
         super.childrenCreated();
         this.addBtnEvent(this.awardBtn,this.onAward);
+        this.addBtnEvent(this.headMC,this.onHead);
+    }
+
+    private onHead(){
+        MonsterList.getInstance().showID(this.data.id);
     }
 
     private onAward(){

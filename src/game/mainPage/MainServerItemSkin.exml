@@ -1,12 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainServerItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
-		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
-		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
-		<e:layout>
-			<e:HorizontalLayout gap="20"/>
-		</e:layout>
-	</e:Group>
+<e:Skin class="MainServerItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image y="-101" x="106" source="main3_png" scaleX="0.9" scaleY="0.9"/>
 	<e:Group horizontalCenter="0" y="265" width="480">
 		<e:Image source="main_mc_png" y="0" x="0"/>
@@ -21,5 +14,12 @@
 		<e:Label id="scoreText" y="27" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" lineSpacing="8" width="335" height="36" horizontalCenter="0"/>
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
+	</e:Group>
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
+		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
+		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
 	</e:Group>
 </e:Skin>

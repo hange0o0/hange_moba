@@ -31,10 +31,20 @@ class MainDayItem extends game.BaseItem {
         var myData = UM.day_game;
         this.scoreText.text =  '当前进度：' + myData.level + '/10'
 
-        if(myData.level == 10)
-            this.desText.text = '今日已通关';
+        if(UM.level < 2)
+        {
+            this.desText.text = '2级开放'
+            this.startBtn.visible = false;
+        }
         else
-            this.desText.text = '每次PK消耗体力：1';
+        {
+            this.startBtn.visible = true;
+            if(myData.level == 10)
+                this.desText.text = '今日已通关';
+            else
+                this.desText.text = '每次PK消耗体力：1';
+        }
+
 
 
         //var level = myData.level + 1;

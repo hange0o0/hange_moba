@@ -29,6 +29,16 @@ class PKWinUI extends PKResultBase {
 
     private onClick(){
         PKResultUI.getInstance().hide();
+
+        if(GuideManager.getInstance().isGuiding)
+        {
+            MyTool.removeMC(PopUpManager.shape);
+            GuideManager.getInstance().showGuide(MainPageUI.getInstance())
+            MainPageUI.getInstance()['currentPage'] = 1;
+            MainPageUI.getInstance().scrollToCurrentPage();
+            MainPageUI.getInstance().renewPage();
+        }
+
     }
 
     public renew(){

@@ -193,6 +193,9 @@ class MonsterList extends game.BaseUI {
         }
     }
 
+    public showID(id){
+        this.show([{id:id}])
+    }
 
     public show(list?,index?){
         this.dataArray = list;
@@ -226,6 +229,13 @@ class MonsterList extends game.BaseUI {
             this.info.setMinHeight(this.scroller.height);
             this.info2.setMinHeight(this.scroller.height);
         },this);
+
+        this.addPanelOpenEvent(GameEvent.client.card_change,this.renewLevelUp)
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewLevelUp)
+    }
+
+    private renewLevelUp(){
+        this.info.renewLevelUp();
     }
 
     public renew(){

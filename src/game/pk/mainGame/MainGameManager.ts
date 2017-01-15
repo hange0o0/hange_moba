@@ -85,6 +85,7 @@ class MainGameManager{
             }
 
             UM.main_game.choose = msg.choose;
+            EM.dispatch(GameEvent.client.get_card)
 
             if(fun)
                 fun();

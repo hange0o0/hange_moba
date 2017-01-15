@@ -6,10 +6,22 @@
 		<e:Image source="border_head_png" x="10" y="6"/>
 		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
 		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
-		<e:Image source="icon_empty_png" x="0" y="76"/>
+		<e:Image source="icon_empty_png" x="0" y="76"/>
+
+
+
+
+
+
+
+
 		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24" locked="true"/>
 		<e:BitmapLabel id="forceText" x="160" y="67" font="font_num4_fnt" text="12345" scaleY="1.8" scaleX="1.8"/>
-		<e:Image source="icon_power_png" x="114" y="60"/>
+		<e:Image source="icon_power_png" x="114" y="60"/>
+
+
+
+
 		<e:Label id="levelText" text="99" y="87" size="22" textColor="0xCCCCCC" horizontalCenter="-298"/>
 		<e:Group id="coinGroup" x="297" y="10">
 			<e:Image source="border1_png" y="5" scale9Grid="21,15,70,9" width="150" height="40" x="22.878787878787875"/>
@@ -86,7 +98,8 @@
 	</e:Group>
 	<e:Group id="helpBtn" x="581" y="125">
 		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
-		<e:Label text="?" x="16" y="10" textColor="0xF8D05A"/>
+		<e:Label text="?" x="16" y="10" textColor="0xF8D05A"/>
+
 	</e:Group>
 	<e:Group id="videoBtn" y="190" x="581">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
@@ -110,10 +123,12 @@
 		<e:Group id="honorBtn" x="350.5" y="16">
 			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
 			<e:Label y="92" text="成就" x="9" textColor="0xCCB48E"/>
-		</e:Group>
+		</e:Group>
+
 		<e:Group id="bagBtn" x="395" y="19" visible="false">
 			<e:Image source="menu_icon_5_png" x="0" y="0"/>
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
 		</e:Group>
-	</e:Group>
+	</e:Group>
+
 </e:Skin>

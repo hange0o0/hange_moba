@@ -182,7 +182,7 @@ class PKMainMV {
         mc.rotation = this.getRota(from,to);
         var tw:egret.Tween = egret.Tween.get(mc);
         tw.to({y:to.y,x:to.x}, 0.5*dis,egret.Ease.sineIn).call(function(){
-            MyTool.removeMC(mc);
+            //MyTool.removeMC(mc);
             AM.removeMV(mc);
             if(fun)
                 fun.apply(thisObj);

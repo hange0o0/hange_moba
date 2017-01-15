@@ -8,12 +8,12 @@
 		</e:Group>
 		<e:Group y="23" x="119">
 			<e:Label y="0" textColor="0xCCB48E" text="标签" x="0" size="30" id="nameText"/>
-			<e:Label y="6" textColor="0xCCB48E" text="LV.3" id="levelText" size="22" x="71"/>
 			<e:layout>
 				<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
 			</e:layout>
 		</e:Group>
-		<e:Label id="forceText" y="64" textColor="0xE0BB83" text="战力：23" x="119" size="22"/>
+		<e:Label id="forceText" y="64" textColor="0xE0BB83" text="战力：23" x="220" size="22"/>
+		<e:Label y="64" textColor="0xCCB48E" text="LV.3" id="levelText" size="22" x="119"/>
 		<e:Button id="addBtn" skinName="Btn_r1Skin" label="添加" y="23" right="20"/>
 	</e:Group>
 </e:Skin>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="GuideSkin" width="640" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Rect id="tipsBg" height="150" width="150" x="230" y="388" strokeColor="0x000000" strokeAlpha="0.6" fillAlpha="0" strokeWeight="50"/>
+	<e:Group id="tipsGroup" y="82" horizontalCenter="0">
+		<e:Image source="card_bg_png" x="0" y="150" height="179" scale9Grid="30,61,180,112" width="480"/>
+		<e:Label id="tipTxt" x="73" y="171" size="24" textColor="0xDEE0E0" width="380" height="129" lineSpacing="5" text="123456"/>
+		<e:Label id="anyClick" size="18" text="点击屏幕继续" lineSpacing="5" right="25" bottom="25" textColor="0xA7A8A8"/>
+	</e:Group>
+	<e:Image id="handMC" source="use_skill_icon_png" x="80" y="334"/>
+	<e:Group id="stopClickGroup" height="100%" width="100%" x="0" y="0" locked="true">
+		<e:Group id="topRect" height="200" width="100%" x="0" y="0"/>
+		<e:Group id="leftRect" width="200" y="0" height="100%" x="0"/>
+		<e:Group id="rightRect" width="200" y="0" height="100%" right="0"/>
+		<e:Group id="bottomRect" width="100%" height="200" x="0" bottom="0"/>
+	</e:Group>
+</e:Skin>

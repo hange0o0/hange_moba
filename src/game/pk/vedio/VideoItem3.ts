@@ -230,7 +230,7 @@ class VideoItem3 extends game.BaseItem {
         else
         {
             var group = this.addGroup();
-            this.getMonster(data.atker,group);
+            this.getMonster(data.atker,group,mvo);
             var short = true
 
             switch(svo.mv) {
@@ -266,7 +266,7 @@ class VideoItem3 extends game.BaseItem {
 
             group.addChild(this.getWordText('【'+svo.name + '】',color,26))
 
-            if(short && data.defender.length == 1 && data.defender[0].list.length==1)
+            if(short && data.defender.length == 1 && data.defender[0].list.length==1 && data.defender[0].atker == data.defender[0].defender)
                 this.addEffect(data.defender[0].list[0],group);
             else
                 this.addEffectList(data);
@@ -510,11 +510,16 @@ class VideoItem3 extends game.BaseItem {
         group.width = 25;
         return group;
     }
-    private getMonster(id,group){
+    private getMonster(id,group,mvo?){
         var VC = VideoCode.getInstance();
         var mc = new VideoMonsterItem()
         group.addChild(mc);
-        mc.data = VC.getPlayerByID(id)
+        var playerVO = VC.getPlayerByID(id);
+        if(mvo)
+            playerVO.headVO = mvo;
+        else
+            playerVO.headVO = null;
+        mc.data = playerVO;
         return mc
     }
 }

@@ -16,6 +16,8 @@ class MonsterInfoBase extends game.BaseContainer {
     private levelText: eui.Label;
     private list: eui.List;
     private levelUpCon: eui.Group;
+    private levelUpCoinGroup: eui.Group;
+    private levelUpCardGroup: eui.Group;
     private levelUpCoinText: eui.Label;
     private levelUpBtn: eui.Button;
     private levelUpCardText: eui.Label;
@@ -34,6 +36,15 @@ class MonsterInfoBase extends game.BaseContainer {
         this.list.itemRenderer = MonsterInfoBaseItem;
 
         this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
+        this.addBtnEvent(this.levelUpCoinGroup, this.onAddCoin);
+        this.addBtnEvent(this.levelUpCardGroup, this.onAddCard);
+    }
+
+    private onAddCoin(){
+        ShopUI.getInstance().show('coin');
+    }
+    private onAddCard() {
+        ShopUI.getInstance().show('card');
     }
 
     private onLevelUp(){
@@ -71,21 +82,23 @@ class MonsterInfoBase extends game.BaseContainer {
         }
         if(cost > UM.coin)
         {
+            this.levelUpCoinText.textColor = 0xFF0000;
             levelUpAble = false
-            this.setHtml(this.levelUpCoinText, '<font color="#ff0000">' + NumberUtil.addNumSeparator(cost) + '</font>' );
         }
         else
-            this.levelUpCoinText.text = '' + NumberUtil.addNumSeparator(cost);
+            this.levelUpCoinText.textColor = 0xCCCCCC
+        this.levelUpCoinText.text = '' + NumberUtil.addNumSeparator(cost);
 
         if(collectNeed > collectNum)
         {
             levelUpAble = false
-            this.setHtml(this.levelUpCardText, '<font color="#ff0000">' + NumberUtil.addNumSeparator(collectNeed) + '</font>');
+            this.levelUpCardText.textColor = 0xFF0000
         }
         else
         {
-            this.levelUpCardText.text = '' + NumberUtil.addNumSeparator(collectNeed);
+            this.levelUpCardText.textColor = 0xCCCCCC
         }
+        this.levelUpCardText.text = '' + NumberUtil.addNumSeparator(collectNeed);
 
         if(levelUpAble)
             this.levelUpBtn.skinName = 'Btn_r1Skin'
@@ -122,11 +135,21 @@ class MonsterInfoBase extends game.BaseContainer {
 
         //战力表现相关
         var fightData;
+        var isFromPK = false
         if(specialData.isNPC)//有战力加成节点，表示是用战力加成值
         {
             var v = specialData.fight || 0;
             fightData = {atk:v,hp:v,speed:v};
             //this.levelGroup.visible = false;
+        }
+        else if(specialData.atk && specialData.hp && specialData.speed)//pk中进来的，已带3围
+        {
+            fightData = specialData;
+            if(specialData.lv)
+            {
+                nameStr += '  <font color="#226C17" size="22">(LV.' + specialData.lv + ')</font>';
+            }
+            isFromPK = true;
         }
         else
         {
@@ -155,9 +178,19 @@ class MonsterInfoBase extends game.BaseContainer {
 
         this.setHtml(this.nameText,nameStr)
 
-        var atk = Math.round(vo.atk * (1+fightData.atk/100));
-        var hp = Math.round(vo.hp * (1+fightData.hp/100));
-        var speed = Math.round(vo.speed * (1+fightData.speed/100));
+        if(isFromPK)
+        {
+            var atk = <number>fightData.atk;
+            var hp = <number>fightData.hp;
+            var speed =<number>fightData.speed;
+        }
+        else
+        {
+            var atk = Math.round(vo.atk * (1+fightData.atk/100));
+            var hp = Math.round(vo.hp * (1+fightData.hp/100));
+            var speed = Math.round(vo.speed * (1+fightData.speed/100));
+        }
+
         if(this.levelUpCon.visible)
         {
             //先模拟升一级

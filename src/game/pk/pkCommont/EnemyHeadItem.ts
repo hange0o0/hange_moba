@@ -32,6 +32,10 @@ class EnemyHeadItem extends game.BaseItem {
         Confirm('确定花费'+ cost +'金币对该单位进行秒杀吗？',function(value){
              if(value == 1)
              {
+                 if(!UM.testCoin(cost))
+                 {
+                     return;
+                 }
                  MainGameManager.getInstance().kill(self.data.index,function(){
                      MainGameUI.getInstance().renewPrice();
                      self.data.isKill = true;

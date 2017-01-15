@@ -83,7 +83,7 @@ class ServerGameEqualUI extends game.BaseUI {
         //更新敌人
         var enemyList = this.enemyArray = [];
         if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.gameid)
-            data.enemy.userinfo = {head:'???',nick:'神秘人',level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
+            data.enemy.userinfo = {head:'???',nick:Base64.encode('神秘人'),level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
         var specialData = {
             isEqual:true
         };
@@ -103,7 +103,7 @@ class ServerGameEqualUI extends game.BaseUI {
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
         var uf = data.enemy.userinfo;
-        this.nameText.text = uf.nick;
+        this.nameText.text = Base64.decode(uf.nick);
         //this.levelText.text = uf.level;
         this.winText.text = uf.win;
         this.rankText.text = uf.exp;
@@ -116,6 +116,9 @@ class ServerGameEqualUI extends game.BaseUI {
 
     private renewChoose(){
         var data = UM.server_game_equal;
+        if(!data.choose || !data.choose[0])
+            return;
+
         var specialData = {};
         //更新卡组1
         var chooseList1 = [];

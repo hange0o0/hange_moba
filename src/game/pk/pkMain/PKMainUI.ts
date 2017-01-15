@@ -69,19 +69,8 @@ class PKMainUI extends game.BaseUI {
 
         this.addChild(this.jumpBtn);
 
-        //var startY = 80 + this.itemHeight/2;
-        //var stepY = 115;
-        //this.posArray.push({x:320,y:startY});
-        //this.posArray.push({x:320 - 60,y:startY + stepY});
-        //this.posArray.push({x:320 + 60,y:startY + stepY});
-        //for(var i=0;i<7;i++)
-        //{
-        //    this.posArray.push({x:320,y:startY + stepY*(i+2)});
-        //}
         this.selfGroup.height = this.fightHeight;
 
-        //this.bg0.width = 325;
-        //this.bg1.width = 325;
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
         this.bg1.scrollRect = new egret.Rectangle(315,0,325,1500)
     }
@@ -213,6 +202,14 @@ class PKMainUI extends game.BaseUI {
     //加所有单位
     private addItemMovie(){
         var myTeam = PKManager.getInstance().team1Base.list
+        var enemyTeam = PKManager.getInstance().team2Base.list
+        if(PKManager.getInstance().teamChange)
+        {
+            var temp = enemyTeam
+            enemyTeam = myTeam
+            myTeam = temp
+        }
+
         var arr = [1,200,400,600,800,1000]
         this.randomSort(arr);
         arr.length =myTeam.length;
@@ -222,7 +219,7 @@ class PKMainUI extends game.BaseUI {
         }
         this.resetXY(this.itemSelf,1);
 
-        var enemyTeam = PKManager.getInstance().team2Base.list
+
         var arr = [1,200,400,600,800,1000]
         this.randomSort(arr);
         arr.length =enemyTeam.length;
@@ -289,6 +286,10 @@ class PKMainUI extends game.BaseUI {
                 item.x = (i%3)*150;
                 item.y = Math.floor(i/3)*150;
                 item.line = Math.floor(i/3) + 1
+                if(arr.length == 5 && i >= 3)
+                {
+                    item.x += 150 / 2
+                }
             }
 
             if(item.x > maxX)
@@ -313,72 +314,6 @@ class PKMainUI extends game.BaseUI {
                 item.y = 320 - item.y - decY;
             }
         }
-
-        //var ok = false
-        //var tryTime2 = 1000;
-        //var addArr = [];
-        //while(tryTime2 --){
-        //    addArr = [];
-        //    ok = false
-        //    var minX = 640;
-        //    var maxX = 0;
-        //    for(var i=0;i<arr.length;i++)
-        //    {
-        //        var tryTime = 30;
-        //        ok = false;
-        //        while(tryTime --)
-        //        {
-        //            var x1 = Math.floor(280 * this.random()) + 180
-        //            var y1 = Math.floor(280 * this.random()) + 60
-        //            ok = true
-        //            for(var s in addArr){
-        //                var dis = this.getDis({x:x1,y:y1},addArr[s]);
-        //                if(dis < 120)
-        //                {
-        //                    ok = false;
-        //                    break;
-        //                }
-        //            }
-        //            if(ok)  //成功加入一个位置
-        //            {
-        //                if(x1 < minX)
-        //                    minX = x1;
-        //                if(x1 > maxX)
-        //                    maxX = x1;
-        //                arr[i].x = x1;
-        //                arr[i].y = y1;
-        //                addArr.push({x:x1,y:y1})
-        //                break;
-        //            }
-        //        }
-        //        if(!ok)
-        //            break;
-        //    }
-        //    if(ok)  //成功加入所有位置
-        //    {
-        //        break;
-        //    }
-        //}
-        //var des = (640 - (maxX - minX))/2 - minX;
-        //var middle = this.fightHeight/2
-        //if(team == 1)
-        //{
-        //    ArrayUtil.sortByField(addArr,['y'],[0])
-        //    for(var i=0;i<arr.length;i++)
-        //    {
-        //        arr[i].x =  addArr[i].x + des;
-        //        arr[i].y =  addArr[i].y + middle + 40;
-        //    }
-        //}
-        //else
-        //{
-        //    ArrayUtil.sortByField(addArr,['y'],[1])
-        //    for(var i=0;i<arr.length;i++)
-        //    {
-        //        arr[i].x =  addArr[i].x + des;
-        //        arr[i].y =  addArr[i].y + (middle-440);
-        //    }
-        //}
     }
 
     //玩家出场动画
@@ -499,95 +434,6 @@ class PKMainUI extends game.BaseUI {
         }
     }
 
-    //离双方太远的，超出地图的，上次请求移动的
-    //private testNeedMove(){
-    //    var arr = this.itemSelf.concat(this.itemEnemy);
-    //    var mapPos = this.getCurrentMap();
-    //    var newPosObj = {};
-    //    var firstDeal = [];
-    //    var moveItem = [];
-    //    //先处理PK玩家
-    //    var player = this.player1;
-    //    if(player.x < 60 || player.x > 640 - 60 || player.y < 80 || player.y > this.fightHeight - 80)
-    //    {
-    //        firstDeal.push(player);
-    //    }
-    //    player = this.player2;
-    //    if(player.x < 60 || player.x > 640 - 60 || player.y < 80 || player.y > this.fightHeight - 80)
-    //    {
-    //        firstDeal.push(player);
-    //    }
-    //    if(firstDeal.length > 0)
-    //    {
-    //        for(var i=0;i<firstDeal.length;i++)
-    //        {
-    //            player = firstDeal[i];
-    //            var newPos = this.findRoundPos(player,mapPos,120)
-    //            newPosObj[player.id] = newPos;
-    //            mapPos[player.id] = newPos
-    //            moveItem.push(player)
-    //        }
-    //    }
-    //
-    //    var player1Pos = newPosObj[this.player1.id]?newPosObj[this.player1.id]:this.player1;
-    //    var player2Pos = newPosObj[this.player2.id]?newPosObj[this.player2.id]:this.player2;
-    //    //this.needMoveItem
-    //    for(var i=0;i<arr.length;i++)
-    //    {
-    //        var player = arr[i];
-    //        if(player.out)
-    //            continue;
-    //        if(player == this.player1)
-    //            continue;
-    //        if(player == this.player2)
-    //            continue;
-    //        var des1 = this.getDis(player,player1Pos);
-    //        var des2 = this.getDis(player,player2Pos);
-    //        if(des1 > 400 && des2 > 400)
-    //        {
-    //            var targetPlayer = des1 > des2?player2Pos:player1Pos;
-    //            var mpos = this.getMiddleXY(targetPlayer, player);
-    //            var newPos = this.findRoundPos(mpos,mapPos,120)
-    //            newPosObj[player.id] = newPos;
-    //            mapPos[player.id] = newPos
-    //            moveItem.push(player)
-    //            continue;
-    //        }
-    //        if(player.x < 60 || player.x > 640 - 60 || player.y < 80 || player.y > this.fightHeight - 80 || this.needMoveItem.indexOf(player) != -1) //超界了
-    //        {
-    //            var newPos = this.findRoundPos(player,mapPos,120)
-    //            newPosObj[player.id] = newPos;
-    //            mapPos[player.id] = newPos
-    //            moveItem.push(player);
-    //            continue;
-    //        }
-    //    }
-    //    this.needMoveItem.length = 0;
-    //    this.needMoveNum = moveItem.length;
-    //    if(moveItem.length > 0)
-    //    {
-    //        var VM = PKMainMV.getInstance();
-    //         for(var i=0;i<moveItem.length;i++)
-    //         {
-    //             var player = moveItem[i]
-    //             var des = this.getDis(player,newPosObj[player.id]);
-    //             if(des > 1000)
-    //                throw new Error(100 + '')
-    //             if(des>100)
-    //                 VM.jumpToXY(player,newPosObj[player.id],this.onNeedMoveFinish,this,player.isPKing?300:0,i*200)
-    //             else
-    //                 VM.moveToXY(player,newPosObj[player.id],this.onNeedMoveFinish,this,i*200)
-    //         }
-    //    }
-    //    return moveItem.length;
-    //}
-    //
-    //private onNeedMoveFinish(){
-    //    this.needMoveNum --;
-    //    console.log(this.needMoveNum)
-    //    if(this.needMoveNum == 0)
-    //        this.nextPK();
-    //}
 
     //行动动画
     private nextPK(){
@@ -718,7 +564,7 @@ class PKMainUI extends game.BaseUI {
                 return xy;
             }
             step+= 10;
-            if(step > 320)
+            if(step > 320 + 160)
             {
                 enemy = null
             }
@@ -770,6 +616,10 @@ class PKMainUI extends game.BaseUI {
             {
                 return;
             }
+            if(item.isPKing && this.randomJump(item,rePKOne))
+            {
+                return
+            }
             this.atkType0(item,skillData,shake);
         }
         else if(skillData.type ==1) //1远程对方
@@ -780,10 +630,15 @@ class PKMainUI extends game.BaseUI {
             }
             if(item.isPKing)
             {
+                if(this.randomJump(item,rePKOne))
+                {
+                    return
+                }
                 if(this.testOut(item,rePKOne,item.enemy,250,true))
                 {
                     return;
                 }
+
                 this.atkType1(item,skillData,shake);
             }
             else
@@ -799,10 +654,15 @@ class PKMainUI extends game.BaseUI {
             }
             if(item.isPKing)
             {
+                if(this.randomJump(item,rePKOne))
+                {
+                    return
+                }
                 if(this.testOut(item,rePKOne,item.enemy,250,true))
                 {
                     return;
                 }
+
                 this.atkType2(item,skillData,shake);
             }
             else
@@ -840,8 +700,17 @@ class PKMainUI extends game.BaseUI {
         {
              this.upArr(this.needUpArr2);
         }
+    }
 
-
+    //A跳向B附近，随机的
+    private randomJump(atker,fun,enemyDis = 150){
+        if(this.random() < 0.8)
+            return false;
+        var startPoint = atker;
+        var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),atker.enemy,enemyDis)
+        var VM = PKMainMV.getInstance();
+        VM.jumpToXY(atker,newPos,fun,this,300);
+        return true;
     }
 
     private upArr(arr){

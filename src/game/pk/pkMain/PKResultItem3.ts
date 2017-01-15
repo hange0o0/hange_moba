@@ -10,16 +10,18 @@ class PKResultItem3 extends game.BaseItem {
     private s1: eui.Image;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
+    private notFight: eui.Label;
+
 
 
     public index = 0;
 
     public childrenCreated() {
-        //this.addBtnEvent(this.closeBtn,this.onClose);
+        this.addBtnEvent(this,this.onClose);
     }
 
     private onClose() {
-
+        MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
     public dataChanged() {
@@ -27,7 +29,7 @@ class PKResultItem3 extends game.BaseItem {
         //mid:mid,
         //    level:team1Base.mb[mid].lv,
         //    win: PKM.winCount[i+team1ID]
-        this.headMC.source = MonsterVO.getObject(this.data.mid).thumb;
+        this.headMC.source = MonsterVO.getObject(this.data.id).thumb;
         if(this.data.level)
         {
             this.levelGroup.visible = true
@@ -43,6 +45,8 @@ class PKResultItem3 extends game.BaseItem {
         {
             this['s' + (i+1)].visible = win > i;
         }
+
+        this.notFight.visible = !this.data.action;
 
     }
 }

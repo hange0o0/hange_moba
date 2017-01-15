@@ -24,7 +24,8 @@ class FriendLogItem extends game.BaseItem {
         super.childrenCreated()
         this.addBtnEvent(this.agreeBtn,this.onAgree)
         this.addBtnEvent(this.refuseBtn,this.onRefuse)
-        this.addBtnEvent(this,this.onClick)
+        this.addBtnEvent(this.headMC,this.onClick)
+        //this.addBtnEvent(this.headMC,this.onClick)
     }
 
     private onClick(){
@@ -61,17 +62,30 @@ class FriendLogItem extends game.BaseItem {
 
     public dataChanged(){
         var FM = FriendManager.getInstance();
-        this.headMC.source = MyTool.getHeadUrl(this.data.head);
+
         this.btnGroup.visible = true;
-        this.nameText.text = this.data.content.nick;
         if(this.data.type == 3)  //聊天
         {
-
-            this.talkText.text =  StringUtil.getString(this.data.content.talk,this.talkText);
-            if(FM.friendData[this.data.from_gameid]) //是好友
+            if(FM.friendData[this.data.from_gameid] || FM.friendData[this.data.to_gameid]) //是好友
                 this.currentState = 'talk';
             else
                 this.currentState = 'talk2';
+
+            var gameid = UM.gameid == this.data.from_gameid?this.data.to_gameid:this.data.from_gameid
+            if(FM.friendData[gameid])
+            {
+                var info = FM.friendData[gameid].info;
+            }
+            else
+            {
+                var info = FM.getTalkInfo(gameid);
+            }
+
+            var arr = FM.getTalkList(gameid);
+
+            this.nameText.text = info.nick;
+            this.headMC.source = MyTool.getHeadUrl(info.head);
+            this.talkText.text =  StringUtil.getString(arr[arr.length-1].talk,this.talkText);
         }
         else
         {
@@ -79,6 +93,7 @@ class FriendLogItem extends game.BaseItem {
             this.nameText.text = this.data.content.nick;
             this.levelText.text = 'LV.' + this.data.content.level;
             this.forceText.text = '战力：' + this.data.content.force;
+            this.headMC.source = MyTool.getHeadUrl(this.data.content.head);
 
         }
 

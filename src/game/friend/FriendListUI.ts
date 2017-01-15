@@ -46,14 +46,19 @@ class FriendListUI extends game.BaseUI {
 
     }
 
+    private renewListE(){
+        if(this.tab.selectedIndex == 0)
+            this.renewFriend()
+        //this.renewInfo();
+    }
     private renewLogE(){
-        this.tab.selectedIndex = 1;
-        this.renewLog()
+        if(this.tab.selectedIndex == 1)
+            this.renewLog()
         //this.renewInfo();
     }
     private renewPKE(){
-        this.tab.selectedIndex = 2;
-        this.renewPK()
+        if(this.tab.selectedIndex == 2)
+            this.renewPK()
         //this.renewInfo();
     }
 
@@ -99,6 +104,11 @@ class FriendListUI extends game.BaseUI {
     }
 
     public show(index?){
+        if(UM.level < 3)
+        {
+            Alert('好友系统3级开放')
+            return;
+        }
         this.selectIndex = index;
 
         var self = this;
@@ -124,6 +134,7 @@ class FriendListUI extends game.BaseUI {
         //this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.friend_log_change,this.renewLogE)
         this.addPanelOpenEvent(GameEvent.client.friend_pk_change,this.renewPKE)
+        this.addPanelOpenEvent(GameEvent.client.friend_list_change,this.renewListE)
     }
 
     public renew(){

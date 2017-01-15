@@ -24,7 +24,10 @@ class VideoMonsterItem extends game.BaseItem {
 
     public dataChanged() {
 
-        this.headMC.source = 'head_png'
+        if(this.data.headVO)
+            this.headMC.source = this.data.headVO.thumb;
+        else
+            this.headMC.source = this.data.mvo.thumb;
         if(this.data.teamID == 1)
         {
             this.bg.fillColor = 0x011282
