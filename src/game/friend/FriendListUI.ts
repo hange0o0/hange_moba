@@ -46,6 +46,10 @@ class FriendListUI extends game.BaseUI {
 
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
     private renewListE(){
         if(this.tab.selectedIndex == 0)
             this.renewFriend()

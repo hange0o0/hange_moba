@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="114" height="110">
 	<e:Image id="lightMC" source="head_border_light1_png" scaleX="0.9" scaleY="0.9" x="-21" y="-23"/>
-	<e:Image source="border4_png" y="56" id="headMC" width="100" height="100" mask="headMask" x="56" anchorOffsetX="50" anchorOffsetY="50"/>
-	<e:Rect y="6" x="6" ellipseWidth="110" width="100" ellipseHeight="110" height="100" id="headMask"/>
+	<e:Image source="border4_png" y="56" id="headMC" width="100" height="100" x="56" anchorOffsetX="50" anchorOffsetY="50"/>
 	<e:Image id="headBG" source="head_border1_png" x="0" y="0"/>
 </e:Skin>

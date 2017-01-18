@@ -13,7 +13,6 @@ class VideoUI2 extends game.BaseUI {
     private upGroup: eui.Group;
     private upBtn: eui.Group;
     private playerGroup1: eui.Group;
-    private playerGroup2: eui.Group;
     private hpBar0: eui.Rect;
     private hpText0: eui.Label;
     private mpBar0: eui.Rect;
@@ -22,6 +21,7 @@ class VideoUI2 extends game.BaseUI {
     private apText0: eui.Label;
     private headMC0: eui.Image;
     private statList0: eui.List;
+    private playerGroup2: eui.Group;
     private hpBar1: eui.Rect;
     private hpText1: eui.Label;
     private mpBar1: eui.Rect;
@@ -33,6 +33,19 @@ class VideoUI2 extends game.BaseUI {
     private topUI: TopUI;
     private guideBtn: eui.Image;
     private guideMC: VideoGuide;
+    private resultMC: eui.Group;
+    private rbg1: eui.Image;
+    private rbg2: eui.Image;
+    private rbg3: eui.Image;
+    private myItemGroup: eui.Group;
+    private myItem0: VideoItem;
+    private myItem1: VideoItem;
+    private myItem2: VideoItem;
+    private enemyItemGroup: eui.Group;
+    private enemyItem0: VideoItem;
+    private enemyItem1: VideoItem;
+    private enemyItem2: VideoItem;
+
 
 
     private vGroup = new VScrollerGroup();
@@ -83,10 +96,41 @@ class VideoUI2 extends game.BaseUI {
         this.addBtnEvent(this.guideBtn,this.openGuide);
         this.addBtnEvent(this.playerGroup1,this.playerClick1);
         this.addBtnEvent(this.playerGroup2,this.playerClick2);
+
+        MyTool.removeMC(this.resultMC);
+
+        DragManager.getInstance().setDrag(this.guideBtn,true);
+        this.guideBtn.addEventListener('end_drag',this.onDragEnd,this);
     }
 
     public showMVDebug(v?){}
     public addToGroup(v?){}
+
+
+    private dragTimer = 0;
+    private onDragEnd(){
+        var w = 93
+        var h = 86
+        var toY = this.stage.stageHeight - h - 10;
+        var toX = 10;
+        if(this.guideBtn.x > 320)
+        {
+            toX = 640-w - 10;
+        }
+        var dis = MyTool.getDis(this.guideBtn,{x:toX,y:toY});
+        if(dis > 0)
+        {
+            var tw:egret.Tween = egret.Tween.get(this.guideBtn)
+            tw.to({x:toX,y:toY},Math.pow(dis,0.8));
+        }
+        this.dragTimer = egret.getTimer();
+    }
+
+
+    public beforeHide(){
+        this.clearList([this.list,this.statList0,this.statList1])
+    }
+
 
     private playerClick1(){
         this.showPlayer(1)
@@ -99,6 +143,8 @@ class VideoUI2 extends game.BaseUI {
     }
 
     private openGuide(){
+        if(egret.getTimer() - this.dragTimer < 200)
+            return;
         this.guideMC.visible = true;
         this.guideMC.renew(this.lastChooseData,this.listArray)
     }
@@ -220,6 +266,7 @@ class VideoUI2 extends game.BaseUI {
         //this.upGroup.visible = false;
         this.visible = false;
         this.openGuide();
+        this.onDragEnd();
     }
 
     //单个回合结束
@@ -248,8 +295,64 @@ class VideoUI2 extends game.BaseUI {
             this.onScroll();
             this.showFirstItem();
             this.upGroup.visible = true;
+            this.renewResultMC();
         },this,200)
         //this.list.dataProvider = new eui.ArrayCollection(this.listArray);
+
+    }
+
+    public renewResultMC(){
+        if(VideoManager.getInstance().baseData.result.w == 1)
+        {
+            this.rbg1.source = 'pk_win_png'
+            this.rbg2.source = 'pk_win_png'
+            this.rbg3.source = 'fight_win_png'
+        }
+        else
+        {
+            this.rbg1.source = 'pk_fail_png'
+            this.rbg2.source = 'pk_fail_png'
+            this.rbg3.source = 'fight_fail_1_png'
+        }
+
+        var VC = VideoCode.getInstance();
+        var team1 = [];
+        var team2 = [];
+        var hurt = 0
+        var heal = 0;
+        //var hurtMax = 0;
+        //var healMax = 0;
+        for(var s in VC.playerObject)
+        {
+            var player = VC.playerObject[s]
+            if(player.id >=10)
+            {
+                if(player.teamID == 1)
+                    team1.push(player);
+                else
+                    team2.push(player);
+            }
+            hurt = Math.max(hurt, player.hurtCount);
+            heal = Math.max(heal, player.healCount);
+        }
+        ArrayUtil.sortByField(team1,['id'],[0])
+        ArrayUtil.sortByField(team2,['id'],[0])
+        hurt = hurt || 1
+        heal = heal || 1
+        for(var i=0;i<3;i++)
+        {
+            var mc1 = this['myItem' + i];
+            var mc2 = this['enemyItem' + i];
+            if(team1[i])
+                mc1.data = {player:team1[i],heal:heal,hurt:hurt}
+            else
+                mc1.visible = false;
+
+            if(team2[i])
+                mc2.data = {player:team2[i],heal:heal,hurt:hurt}
+            else
+                mc2.visible = false;
+        }
     }
 
     //加入一个动画

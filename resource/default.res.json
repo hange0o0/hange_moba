@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,data_json,test_data_json",
+		"keys":"checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png",
 		"name":"preload"
 	},
 	{
@@ -19,6 +19,10 @@
 	{
 		"keys":"skill1_json,skill1_png,skill2_json,skill2_png,skill10_png,skill11_json,skill11_png,skill12_json,skill12_png,skill13_json,skill13_png,skill14_json,skill14_png,skill15_json,skill15_png,skill16_json,skill16_png,skill17_json,skill17_png,skill18_json,skill18_png,skill19_json,skill19_png,skill20_json,skill20_png,skill21_json,skill21_png,skill22_json,skill22_png,skill23_json,skill23_png,skill24_json,skill24_png,skill25_json,skill25_png,skill26_json,skill26_png,skill27_json,skill27_png,skill28_json,skill28_png,skill29_json,skill29_png,skill30_json,skill30_png,skill31_json,skill31_png,skill32_json,skill32_png,skill33_json,skill33_png,skill34_json,skill34_png,skill35_json,skill35_png,skill36_json,skill36_png,skill37_json,skill37_png,skill38_json,skill38_png,skill39_json,skill39_png,bullet1_png,bullet2_png,bullet3_png,bullet4_png,skill3_json,skill3_png,skill4_json,skill4_png,skill5_json,skill5_png,skill6_json,skill6_png,skill7_json,skill7_png,skill8_json,skill8_png,skill9_json,skill9_png,skill10_json,skill176_png,skill158_png,skill151_png,skill173_png,skill147_png,skill108_png,skill152_png,skill157_png,skill175_png,skill117_png,skill113_png,skill116_png,skill142_png,skill149_png,skill114_png,skill144_png,skill105_png,skill121_png,skill118_png,skill154_png,skill120_png,skill164_png,skill148_png,skill168_png,skill172_png,skill141_png,skill140_png,skill112_png,skill123_png,skill132_png,skill127_png,skill119_png,skill135_png,skill161_png,skill163_png,skill106_png,skill177_png,skill133_png,skill125_png,skill107_png,skill170_png,skill129_png,skill153_png,skill162_png,skill130_png,skill166_png,skill160_png,skill167_png,skill124_png,skill138_png,skill145_png,skill131_png,skill134_png,skill109_png,skill115_png,skill111_png,skill128_png,skill122_png,skill126_png,skill139_png,skill137_png,skill136_png,skill146_png,skill110_png,skill143_png,skill104_png,skill102_png,skill103_png,skill171_json,skill176_json,skill169_json,skill118_json,skill165_json,skill124_json,skill101_json,skill155_json,skill175_json,skill109_json,skill170_json,skill168_json,skill156_json,skill158_json,skill166_json,skill151_json,skill167_json,skill108_json,skill147_json,skill146_json,skill117_json,skill172_json,skill134_json,skill148_json,skill173_json,skill164_json,skill138_json,skill163_json,skill152_json,skill106_json,skill119_json,skill128_json,skill107_json,skill113_json,skill114_json,skill116_json,skill129_json,skill140_json,skill133_json,skill115_json,skill161_json,skill132_json,skill139_json,skill144_json,skill157_json,skill149_json,skill126_json,skill130_json,skill143_json,skill120_json,skill154_json,skill131_json,skill145_json,skill153_json,skill112_json,skill160_json,skill162_json,skill105_json,skill104_json,skill111_json,skill125_json,skill121_json,skill137_json,skill136_json,skill123_json,skill127_json,skill141_json,skill142_json,skill135_json,skill110_json,skill122_json,skill177_json,skill103_json,skill102_json,skill165_png,skill171_png,skill101_png,skill169_png,skill155_png,skill156_png",
 		"name":"ani"
+	},
+	{
+		"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png",
+		"name":"loginload"
 	}],
 	"resources":[
 	{
@@ -2205,5 +2209,25 @@
 		"name":"buff_x_png",
 		"type":"image",
 		"url":"game_assets/buff/buff_x.png"
+	},
+	{
+		"name":"loading_ani_json",
+		"type":"json",
+		"url":"game_assets/loading_ani.json"
+	},
+	{
+		"name":"loading_ani_png",
+		"type":"image",
+		"url":"game_assets/loading_ani.png"
+	},
+	{
+		"name":"ui_loading_json",
+		"type":"json",
+		"url":"game_assets/ui_loading.json"
+	},
+	{
+		"name":"ui_loading_png",
+		"type":"image",
+		"url":"game_assets/ui_loading.png"
 	}]
 }

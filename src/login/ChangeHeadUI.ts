@@ -24,6 +24,8 @@ class ChangeHeadUI extends game.BaseWindow {
     private okBtn: eui.Button;
     private head1: HeadItem;
     private head2: HeadItem;
+    private changeGroup: eui.Group;
+
 
 
 
@@ -54,9 +56,15 @@ class ChangeHeadUI extends game.BaseWindow {
     private onSelect(){
         this.head2.data = this.list.selectedItem
         if(this.dataIn == this.list.selectedItem)
+        {
             this.head2.currentState = 'up';
+            this.changeGroup.visible = false;
+        }
         else
+        {
             this.head2.currentState = 'down';
+            this.changeGroup.visible = true;
+        }
     }
 
     private onChoose(){
@@ -89,4 +97,5 @@ class ChangeHeadUI extends game.BaseWindow {
         this.onSelect();
 
     }
+
 }

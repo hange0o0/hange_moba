@@ -32,7 +32,7 @@ class Main extends eui.UILayer {
      * 加载进度界面
      * loading process interface
      */
-    private loadingView: LoadingUI;
+    private loadingView: MainLoadingUI;
     protected createChildren(): void {
         super.createChildren();
         //inject the custom material parser
@@ -42,12 +42,13 @@ class Main extends eui.UILayer {
         this.stage.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
         //Config loading process interface
         //设置加载进度界面
-        this.loadingView = new LoadingUI();
-        this.stage.addChild(this.loadingView);
+        this.loadingView = new MainLoadingUI();
+        this.loadingView.show(this);
         // initialize the Resource loading library
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         RES.loadConfig("resource/default.res.json", "resource/");
+
 
 
         UM = UserManager.getInstance();
@@ -67,13 +68,14 @@ class Main extends eui.UILayer {
         var theme = new eui.Theme("resource/default.thm.json", this.stage);
         theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
 
+
+
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-        RES.loadGroup("preload");
-        if(_get['debug'] == 2)
-            RES.loadGroup("gamepreload");
+        RES.loadGroup("loginload");
+
     }
     private isThemeLoadEnd: boolean = false;
     /**
@@ -82,6 +84,7 @@ class Main extends eui.UILayer {
      */
     private onThemeLoadComplete(): void {
         this.isThemeLoadEnd = true;
+
         this.createScene();
     }
     private isResourceLoadEnd: boolean = false;
@@ -90,8 +93,8 @@ class Main extends eui.UILayer {
      * preload resource group is loaded
      */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
-        if (event.groupName == "preload") {
-            this.stage.removeChild(this.loadingView);
+        if (event.groupName == "loginload") {
+            this.loadingView.setFinish();
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
@@ -107,6 +110,7 @@ class Main extends eui.UILayer {
     private createScene(){
         if(this.isThemeLoadEnd && this.isResourceLoadEnd){
             this.startCreateScene();
+            MyTool.removeMC(this.loadingView);
         }
     }
     /**
@@ -132,7 +136,7 @@ class Main extends eui.UILayer {
      * loading process of preload resource
      */
     private onResourceProgress(event:RES.ResourceEvent):void {
-        if (event.groupName == "preload") {
+        if (event.groupName == "loginload") {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
@@ -141,6 +145,14 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
+
+        if(_get['debug'] == 2)
+        {
+            egret.setTimeout(function(){
+                RES.loadGroup("gamepreload");//预加载第一阶段
+            },this,200)
+        }
+
         //var button = new eui.Button();
         //button.label = "Click!";
         //button.horizontalCenter = 0;

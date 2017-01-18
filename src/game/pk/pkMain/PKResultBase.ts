@@ -18,6 +18,7 @@ class PKResultBase extends game.BaseContainer {
     }
 
 
+
     public stepOne(){
         var award = PKManager.getInstance().pkAward;
         this.step ++;

@@ -61,6 +61,11 @@ class OtherInfoUI extends game.BaseUI {
         this.list.itemRenderer = EnemyHeadItem;
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
+
     private onDelete(){
         var self = this;
         Confirm('确定删除该好友吗？',function(b){

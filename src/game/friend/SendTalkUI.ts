@@ -30,6 +30,7 @@ class SendTalkUI extends game.BaseWindow {
 
     private onChange(){
         var len = StringUtil.getStringLength(this.editText.text);
+        this.editText.text = MyTool.replaceEmoji(this.editText.text);
         if(len > 200)
         {
             len = 200;

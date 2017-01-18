@@ -8,7 +8,6 @@ class EnemyHeadItem extends game.BaseItem {
     private headMC: eui.Image;
     private teamGroup: eui.Group;
     private headMC2: eui.Image;
-    private headMask: eui.Rect;
     private headBG: eui.Image;
     private closeBtn: eui.Button;
 
@@ -18,7 +17,6 @@ class EnemyHeadItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-        this.headMC2.mask = this.headMask
           this.addBtnEvent(this.closeBtn,this.onKill);
           this.addBtnEvent(this,this.onClick);
 
@@ -60,7 +58,7 @@ class EnemyHeadItem extends game.BaseItem {
         {
             MyTool.removeMC(this.chooseGroup);
             this.addChild(this.teamGroup);
-            this.headMC2.source = this.data.vo.thumb
+            this.headMC2.source = this.data.vo.thumbRound
             if(this.data.isMain)
             {
                 this.closeBtn.visible = !this.data.noKill;

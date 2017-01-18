@@ -7,7 +7,6 @@ class PKDressChooseItem extends game.BaseItem {
     private stateMC: eui.Image;
     private monsterGroup: eui.Group;
     private headMC: eui.Image;
-    private headMask: eui.Rect;
     private headBG: eui.Image;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
@@ -23,7 +22,6 @@ class PKDressChooseItem extends game.BaseItem {
     public childrenCreated(){
         //MyTool.addDoubleTouch(this,this.onDoubleClick,this)
         DragManager.getInstance().setDrag(this,true);
-        this.headMC.mask = this.headMask;
     }
 
     public setStaticVisible(b){
@@ -50,7 +48,7 @@ class PKDressChooseItem extends game.BaseItem {
         }
 
         var vo = MonsterVO.getObject(this.data.id);
-        this.headMC.source = vo.thumb;
+        this.headMC.source = vo.thumbRound;
         this.stateMC.visible = this.data.selected;
         this.levelText.text = PKManager.getInstance().getCostByNum(this.data.id,PKDressUI.getInstance().getMonsterNum(this.data.id)-1);
         this.levelGroup.visible = true

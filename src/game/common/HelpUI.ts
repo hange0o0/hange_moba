@@ -28,6 +28,10 @@ class HelpUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
     public show(data?){
         this.data = data;
         super.show();

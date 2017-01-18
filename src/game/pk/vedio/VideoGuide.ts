@@ -21,6 +21,7 @@ class VideoGuide extends game.BaseContainer {
 
     private onClose(){
         this.visible = false;
+        this.clearList([this.list])
     }
 
     public renew(lastChooseData,listArray) {

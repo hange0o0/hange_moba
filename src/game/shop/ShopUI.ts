@@ -33,6 +33,11 @@ class ShopUI extends game.BaseUI {
 
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
+
     public show(v?){
         this.dataIn = v;
         if(this.stage)

@@ -85,6 +85,11 @@ class MyInfoUI extends game.BaseUI {
 
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
+
     private onHead(){
         var self = this;
         ChangeHeadUI.getInstance().show(UM.head,false,function(id){

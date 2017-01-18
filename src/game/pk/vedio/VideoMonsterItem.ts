@@ -17,8 +17,6 @@ class VideoMonsterItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-        //this.headMask.visible = false;
-        //this.headMC.mask = this.headMask
         //this.addBtnEvent(this.closeBtn,this.onKill);
     }
 

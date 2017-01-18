@@ -6,6 +6,7 @@ class VideoItem3 extends game.BaseItem {
 
 
     private bg: eui.Rect;
+    private bg2: eui.Rect;
     private con: eui.Group;
     private roundText: eui.Label;
 
@@ -27,23 +28,31 @@ class VideoItem3 extends game.BaseItem {
 
     public setChoose(data,shake?){
         egret.Tween.removeTweens(this.roundText);
+        //this.roundText.size = 18;
         if(data == this.data)
         {
-            if(shake)
-            {
-                this.roundText.textColor = 0xFFFFFF;
-                var tw:egret.Tween = egret.Tween.get(this.roundText);
-                tw.wait(300).call(function(){this.roundText.textColor = 0xFFFF00;},this);
-                tw.wait(300).call(function(){this.roundText.textColor = 0xFFFFFF;},this);
-                tw.wait(300).call(function(){this.roundText.textColor = 0xFFFF00;},this);
-            }
-            else
-            {
+            this.bg.strokeColor = 0xFFFF00
+            this.bg2.strokeColor = 0xFFFF00
+            //if(shake)
+            //{
+            //    this.roundText.textColor = 0xFFFFFF;
+            //    var tw:egret.Tween = egret.Tween.get(this.roundText);
+            //    tw.wait(300).call(function(){this.roundText.textColor = 0xFFFF00;this.roundText.size = 22;},this);
+            //    tw.wait(300).call(function(){this.roundText.textColor = 0xFFFFFF;this.roundText.size = 20;},this);
+            //    tw.wait(300).call(function(){this.roundText.textColor = 0xFFFF00;this.roundText.size = 22;},this);
+            //}
+            //else
+            //{
                 this.roundText.textColor = 0xFFFF00;
-            }
+                //this.roundText.size = 22;
+            //}
         }
         else
+        {
             this.roundText.textColor = 0xFFFFFF;
+            this.bg.strokeColor = 0x9F6031
+            this.bg2.strokeColor = 0x9F6031
+        }
     }
 
     public dataChanged() {
@@ -56,12 +65,13 @@ class VideoItem3 extends game.BaseItem {
             this.currentState = 'team1'
             this.roundText.text = '战斗结束'
             this.con.removeChildren();
-            var group = this.addGroup();
-            if(data.isWin)
-                group.addChild(this.getWordText('战斗结束,获得胜利',0x00FF00))
-            else
-                group.addChild(this.getWordText('战斗结束,遗憾失败',0xFF0000))
-            group.height = 600;
+            this.con.addChild(VideoUI.getInstance()['resultMC'])
+            //var group = this.addGroup();
+            //if(data.isWin)
+            //    group.addChild(this.getWordText('战斗结束,获得胜利',0x00FF00))
+            //else
+            //    group.addChild(this.getWordText('战斗结束,遗憾失败',0xFF0000))
+            //group.height = 600;
             return;
         }
         var base = data[0];

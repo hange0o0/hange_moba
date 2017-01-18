@@ -30,6 +30,11 @@ class PKResultUI extends game.BaseUI {
         this.selfList.itemRenderer = PKResultItem3
     }
 
+
+    public beforeHide(){
+        this.clearList([this.list,this.enemyList,this.selfList])
+    }
+
     private onClick(){
 
     }

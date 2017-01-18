@@ -359,6 +359,7 @@ class VideoCode{
             {
                 var last = player.hp
                 player.addHp(value.value);
+                this.getPlayerByID(this.atker).atkerHP(value.value)
                 this.defenderMV('hp',{value:value.value,last:last,max:player.maxHp,current:player.hp,isNegative:value.isNegative})
                 //if(value.value < 0 && player.hp <= 0)
                 //{

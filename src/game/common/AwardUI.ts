@@ -29,6 +29,10 @@ class AwardUI extends game.BaseWindow {
         //AwardUI.getInstance().show({monster:{101:3}})
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
     public onShow(){
         var arr = [];
         if(this.data.coin)

@@ -39,6 +39,8 @@
     <!--game_files_start-->
 	<script egret="game" src="bin-debug/commont/BaseUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultBase.js"></script>
+	<script egret="game" src="bin-debug/commont/GameEvent.js"></script>
+	<script egret="game" src="bin-debug/commont/MyTool.js"></script>
 	<script egret="game" src="bin-debug/commont/MyWindow.js"></script>
 	<script egret="game" src="bin-debug/commont/Net.js"></script>
 	<script egret="game" src="bin-debug/commont/VScrollerGroup.js"></script>
@@ -112,12 +114,12 @@
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKItemBig.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKMainMV.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKMainUI.js"></script>
-	<script egret="game" src="bin-debug/game/pk/pkMain/PKManager.js"></script>
 	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
+	<script egret="game" src="bin-debug/game/pk/pkMain/PKManager.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem2.js"></script>
-	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem3.js"></script>
-	<script egret="game" src="bin-debug/commont/MyTool.js"></script>
+	<script egret="game" src="bin-debug/commont/Config.js"></script>
+	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKWinUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/serverGame/ServerGameManager.js"></script>
 	<script egret="game" src="bin-debug/game/pk/serverGame/ServerGameUI.js"></script>
@@ -191,12 +193,12 @@
 	<script egret="game" src="bin-debug/util/ShapeObject.js"></script>
 	<script egret="game" src="bin-debug/util/StringUtil.js"></script>
 	<script egret="game" src="bin-debug/util/md5.js"></script>
-	<script egret="game" src="bin-debug/commont/Config.js"></script>
-	<script egret="game" src="bin-debug/commont/GameEvent.js"></script>
 	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
+	<script egret="game" src="bin-debug/MsgingUI.js"></script>
+	<script egret="game" src="bin-debug/MainLoadingUI.js"></script>
 	<script egret="game" src="bin-debug/Main.js"></script>
 	<script egret="game" src="bin-debug/LoadingUI.js"></script>
-	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultUI.js"></script>
+	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem3.js"></script>
 	<!--game_files_end-->
 </head>
 <body>
@@ -214,7 +216,7 @@
          data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
     </div>
     <script>
-        egret.runEgret();
+        egret.runEgret({renderMode:"webgl"});
     </script>
 </body>
 </html>

@@ -25,6 +25,10 @@ class FriendAddUI extends game.BaseWindow {
 
         this.list.itemRenderer = FriendAddItem;
     }
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
 
     private onSearch(){
          if(this.refreshBtn.skinName == 'Btn_r2Skin')

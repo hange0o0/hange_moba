@@ -13,7 +13,7 @@ class MyTool {
             mc.parent.removeChild(mc)
     }
 
-    public static getDes(a,b){
+    public static getDis(a,b){
         return Math.pow(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2),0.5)
     }
 
@@ -140,6 +140,16 @@ class MyTool {
         if(code < 91)//65+26
             return code - 55//code - 65 + 10
         return  code - 61//code-97+10+26
+    }
+
+
+    public static replaceEmoji(str){
+        var ranges = [
+            '\ud83c[\udf00-\udfff]',
+            '\ud83d[\udc00-\ude4f]',
+            '\ud83d[\ude80-\udeff]'
+        ];
+        return str.replace(new RegExp(ranges.join('|'), 'g'), '');
     }
 }
 

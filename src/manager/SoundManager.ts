@@ -236,10 +236,12 @@ class SoundManager {
     public preLoad(){
         var self = this;
         var index = 0;
-        var nameList = ["b101","b102","b103","b104",
-            "f201","f202","f203","f204","f205","f206","f207","f208","f209","f210","f211","f212","f213","f214","f215","f216",
-            "f301","f302","f303","f304","f305","f306","f307","f308","f309","f310","f311","f312","f313","f314","f315","f316",
-            "f317","f318","f319","f320","f321","f322","f323"];
+        //var nameList = ["b101","b102","b103","b104",
+        //    "f201","f202","f203","f204","f205","f206","f207","f208","f209","f210","f211","f212","f213","f214","f215","f216",
+        //    "f301","f302","f303","f304","f305","f306","f307","f308","f309","f310","f311","f312","f313","f314","f315","f316",
+        //    "f317","f318","f319","f320","f321","f322","f323"];
+
+        var nameList = SoundConfig;
 
 
         var data = {groups:[],resources:[]}
@@ -255,7 +257,7 @@ class SoundManager {
         }
 
         this.pkKey.push('f211_mp3');
-        for(var i=0;i<nameList.length;i++){
+        for(var i in nameList){
             var op = this.getSoundObject(nameList[i]);
             if(nameList[i].indexOf('f') == 0)       {
                 addResources(nameList[i], "music/" + nameList[i]+'.mp3')
@@ -462,4 +464,18 @@ class SoundConfig {
     public static f321: string = "f321";
     public static f322: string = "f322";
     public static f323: string = "f323";
+    public static f324: string = "f324";
+    public static f325: string = "f325";
+    public static f326: string = "f326";
+    public static f327: string = "f327";
+    public static f328: string = "f328";
+    public static f329: string = "f329";
+    public static f330: string = "f330";
+    public static f331: string = "f331";
+    public static f332: string = "f332";
+    public static f333: string = "f333";
+    public static f334: string = "f334";
+    public static f335: string = "f335";
+    public static f336: string = "f336";
+    public static f337: string = "f337";
 }

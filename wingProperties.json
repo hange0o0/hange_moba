@@ -1578,6 +1578,16 @@
 					"isFolder":false,
 					"key":"buff_x_png",
 					"name":"buff_x_png"
+				},
+				{
+					"isFolder":false,
+					"key":"loading_ani_png",
+					"name":"loading_ani_png"
+				},
+				{
+					"isFolder":false,
+					"key":"ui_loading_png",
+					"name":"ui_loading_png"
 				}
 			]
 		}

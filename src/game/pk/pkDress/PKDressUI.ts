@@ -80,6 +80,10 @@ class PKDressUI extends game.BaseUI {
 
     }
 
+    public beforeHide(){
+        this.clearList([this.list,this.simpleList,this.enemyList])
+    }
+
     private onDragBefore(){
         this.scroller.scrollPolicyV = eui.ScrollPolicy.OFF;
     }

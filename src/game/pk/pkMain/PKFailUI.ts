@@ -29,6 +29,7 @@ class PKFailUI extends PKResultBase {
         this.addBtnEvent(this.okBtn, this.onRestart);
     }
 
+
     private onBack(){
         PKResultUI.getInstance().hide();
     }

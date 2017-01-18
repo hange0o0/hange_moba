@@ -68,11 +68,18 @@ class PopUpManager {
     public static testShape(){
         if(this.shape.parent)
         {
-            var index = this.shape.parent.getChildIndex(this.shape);
-            if(index == this.shape.parent.numChildren-1 && index >0)//在最上层
+            MyTool.removeMC(this.shape)
+            //找到最上一个BaseUI,放到其下方
+            for(var i=GameManager.container.numChildren-1 ;i>=0;i--)
             {
-                this.shape.parent.swapChildrenAt(index,index-1)
+                var ui = GameManager.container.getChildAt(i);
+                if(ui instanceof game.BaseWindow)
+                {
+                    GameManager.container.addChildAt(this.shape,i)
+                    return
+                }
             }
+
         }
     }
 }

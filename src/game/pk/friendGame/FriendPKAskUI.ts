@@ -55,6 +55,10 @@ class FriendPKAskUI extends game.BaseUI {
         this.scroller.bounces = false;
     }
 
+    public beforeHide(){
+        this.clearList([this.myList0,this.myList1])
+    }
+
     private onRadioChange(){
          if(this.ringRadio0.selected) //选中第一个
             this.specialData.isEqual = false;

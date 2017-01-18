@@ -36,6 +36,11 @@ class RankUI extends game.BaseUI {
         //this.addBtnEvent(this, this.onClick);
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
+
     private typeBarClick(){
         var self = this;
         this.list.dataProvider = new eui.ArrayCollection([]);

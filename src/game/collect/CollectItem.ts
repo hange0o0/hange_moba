@@ -15,7 +15,6 @@ class CollectItem extends game.BaseItem {
     public childrenCreated(){
         super.childrenCreated();
         this.addBtnEvent(this,this.onClick)
-        //this.headMC.mask = this.headMask;
     }
 
     private onClick(){

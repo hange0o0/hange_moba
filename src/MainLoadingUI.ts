@@ -27,7 +27,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-class LoadingUI extends egret.Sprite {
+class MainLoadingUI extends egret.Sprite {
 
     public constructor() {
         super();
@@ -35,17 +35,14 @@ class LoadingUI extends egret.Sprite {
     }
 
     private textField;
-    private loadingMC
     private shape
 
-    private timer
 
     private createView():void {
 
         this.shape = new eui.Rect();
         this.shape.width = 640;
         this.shape.fillColor = 0;
-        this.shape.fillAlpha = 0.8;
         this.shape.touchEnabled = true;
         this.addChild(this.shape)
 
@@ -57,46 +54,25 @@ class LoadingUI extends egret.Sprite {
         this.textField.height = 100;
         this.textField.textAlign = "center";
 
-
-        var data:any = RES.getRes("loading_ani" +  "_json"); //qid
-        var texture:egret.Texture = RES.getRes("loading_ani" + "_png");
-        var mcFactory = new egret.MovieClipDataFactory(data, texture);
-        this.loadingMC = new egret.MovieClip();
-        this.loadingMC.scaleX = this.loadingMC.scaleY = 1.5
-        this.addChild(this.loadingMC);
-        this.loadingMC.movieClipData = mcFactory.generateMovieClipData('loading_ani');
-        this.loadingMC.x = 220;
-
-
-
-
     }
 
-    public show(){
-        GameManager.container.addChild(this);
+    public show(con){
+        con.addChild(this);
 
         this.width = 640;
-        this.height = GameManager.stage.stageHeight;
-        this.shape.height = GameManager.stage.stageHeight;
-        this.loadingMC.gotoAndPlay(1,-1)
-        this.loadingMC.y = this.height/2 - 100;
+        this.height = con.stage.stageHeight;
+        this.shape.height = con.stage.stageHeight;
         this.textField.y = this.height/2;
-
-
-        this.textField.text = '加载准备中..';
-        this.visible = false;
-        egret.clearTimeout(this.timer);
-        this.timer = egret.setTimeout(function(){
-            this.visible = true;
-        },this,200)
+        this.textField.text = 'Loading...';
     }
+
+    public setFinish(){
+        this.textField.text = '加载完成，正在初始化....'
+    }
+
 
     public setProgress(current, total):void {
-        this.textField.text = "加载中..." + current + "/" + total;
+        this.textField.text = "Loading..." + current + "/" + total;
     }
 
-    public hide(){
-        MyTool.removeMC(this);
-        this.loadingMC.stop();
-    }
 }

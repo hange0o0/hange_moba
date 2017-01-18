@@ -6,7 +6,6 @@ class PKItem extends game.BaseItem {
 
     private lightMC: eui.Image;
     private headMC: eui.Image;
-    private headMask: eui.Rect;
     private headBG: eui.Image;
 
 
@@ -29,13 +28,13 @@ class PKItem extends game.BaseItem {
 
 
     public childrenCreated() {
-        this.headMC.mask = this.headMask;
+        this.headMC.mask = null;
     }
 
 
     public dataChanged() {
         var vo = this.data.vo;
-        this.headMC.source = vo.thumb
+        this.headMC.source = vo.thumbRound
         this.team = this.data.team
         this.index = this.data.index
         this.id = this.team * 100 + this.index;

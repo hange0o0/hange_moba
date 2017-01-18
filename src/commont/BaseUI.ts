@@ -17,9 +17,21 @@ module game {
         public childrenCreated() {
         }
                     
-        //public partAdded(partName:string, instance:any):void {
-        //    super.partAdded(partName, instance);
-        //}
+        public partAdded(partName:string, instance:any):void {
+            super.partAdded(partName, instance);
+            instance.id = partName;
+
+            //赋予btn图片按钮的行为
+            if(instance instanceof eui.Image) {
+                if(partName.toLowerCase().indexOf("btn") > -1) {
+                }else{
+                    instance.touchEnabled = false;
+                }
+            }
+            else if(instance instanceof eui.Label){ //label不可交互
+                instance.touchEnabled = false;
+            }
+        }
         //
         //public getImg(name:string):eui.Image{
         //    return <eui.Image>this[name];
@@ -65,6 +77,23 @@ module game {
         */ 
         public removeBtnEvent(btn: egret.DisplayObject, fun:any, thisObject?:any):void{
             btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, fun, thisObject || this);
+        }
+
+        public clearList(list:eui.List | Array<eui.List>){
+            var lists:any = list;
+            if(list instanceof eui.List){
+                lists = [list];
+            }
+            for(var key in lists){
+                try{
+                    lists[key].dataProvider = null;
+                    //必现调用下面2句，并且 需要在hide之前调用
+                    lists[key].dataProviderRefreshed();
+                }
+                catch(e){
+                }
+            }
+            this.validateNow();
         }
         
     }
@@ -180,7 +209,7 @@ module game {
             if(this.LoadFiles && this.LoadFiles.length > 0){
                 if(this.isStartLoad) return;
                 this.isStartLoad = true;
-                new LoadingFile().loadGroup(this.LoadFiles, this.showFun, this);
+                LoadingFile.getInstance().loadGroup(this.LoadFiles, this.showFun, this);
                 this.LoadFiles = [];
                 return;
             }
@@ -222,6 +251,7 @@ module game {
         }
                     
         public hide():any{
+            this.beforeHide();
 
             for(var key in this.panelEvents){
                 EM.removeEvent(key, this.panelEvents[key], this);
@@ -277,6 +307,12 @@ module game {
         public paySound(key:string, delay?:number):void{
             
         }
+
+
+
+        public beforeHide(){
+
+        }
                 
     }
     
@@ -287,7 +323,7 @@ module game {
 
         public constructor() {
             super(true);
-            this.canBGClose = true;
+            //this.canBGClose = true;
         }
     }
     
@@ -295,6 +331,22 @@ module game {
         public constructor() {
             super();
 
+        }
+
+        public partAdded(partName:string, instance:any):void {
+            super.partAdded(partName, instance);
+            instance.id = partName;
+
+            //赋予btn图片按钮的行为
+            if(instance instanceof eui.Image) {
+                if(partName.toLowerCase().indexOf("btn") > -1) {
+                }else{
+                    instance.touchEnabled = false;
+                }
+            }
+            else if(instance instanceof eui.Label){ //label不可交互
+                instance.touchEnabled = false;
+            }
         }
         
         /*
@@ -306,18 +358,19 @@ module game {
         }
                         
         /*
-        * 给按钮添加事件  
+        * 给按钮添加事件
         * this.addBtnEvent(this.btn, this.btnClick);
-        */ 
+        */
         public addBtnEvent(btn:eui.UIComponent, fun:any, thisObject?:any):void{
+            btn.touchEnabled = true;
             btn.addEventListener(egret.TouchEvent.TOUCH_TAP, fun, thisObject || this);
         }
 
-                                
+
         /*
-        * 给按钮移除事件  
+        * 给按钮移除事件
         * this.removeBtnEvent(this.btn, this.btnClick);
-        */ 
+        */
         public removeBtnEvent(btn:eui.UIComponent, fun:any, thisObject?:any):void{
             btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, fun, thisObject || this);
         }

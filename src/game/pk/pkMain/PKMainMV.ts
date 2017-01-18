@@ -7,16 +7,13 @@ class PKMainMV {
         return this._instance;
     }
 
-    private getDis(p1,p2){
-        return Math.pow(Math.pow(p1.x-p2.x,2) + Math.pow(p1.y-p2.y,2),0.5)
-    }
 
     //移向指定玩家
     public moveToTarget(a,b,fun1?,thisObj?){
         a.parent.addChild(a);
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
-        var dis = this.getDis(a,b);
+        var dis = MyTool.getDis(a,b);
         var rate = 100/dis;
         var x = b.x - (b.x - a.x)*rate;
         var y = b.y - (b.y - a.y)*rate;
@@ -31,7 +28,7 @@ class PKMainMV {
         //a.parent.addChild(a);
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
-        var dis = this.getDis(a,b);
+        var dis = MyTool.getDis(a,b);
         if(frontWait)
             tw.wait(frontWait);
         tw.to(b, Math.pow(dis,0.8) * 4);
@@ -45,7 +42,7 @@ class PKMainMV {
         var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
         a.jumping = true;
-        var dis = Math.max(400,this.getDis(a,b));
+        var dis = Math.max(400,MyTool.getDis(a,b));
         if(frontWait)
             tw.wait(frontWait);
         tw.to({x:b.x,y:b.y}, dis).call(function(){
@@ -66,7 +63,7 @@ class PKMainMV {
         //b.parent.addChild(b);
         //egret.Tween.removeTweens(b);
         var tw:egret.Tween = egret.Tween.get(b);
-        var dis = this.getDis(a,b);
+        var dis = MyTool.getDis(a,b);
         var rate = (dis + 50)/dis;
         var x = a.x + (b.x - a.x)*rate;
         var y = a.y + (b.y - a.y)*rate;
@@ -106,7 +103,7 @@ class PKMainMV {
         a.parent.addChild(a);
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
-        var dis = this.getDis(a,b);
+        var dis = MyTool.getDis(a,b);
         var rate = (dis + 30)/dis;
         var x = b.x + (a.x - b.x)*rate;
         var y = b.y + (a.y - b.y)*rate;
@@ -127,7 +124,7 @@ class PKMainMV {
 
     //a指向b,dd+为前进，-为后退
     public getDisPoint(a,b,dd){
-        var dis = this.getDis(a,b);
+        var dis = MyTool.getDis(a,b);
         var rate = (dis - dd)/dis;
         var x = b.x + (a.x - b.x)*rate;
         var y = b.y + (a.y - b.y)*rate;
@@ -176,7 +173,7 @@ class PKMainMV {
             from = xy;
         }
 
-        var dis = this.getDis(from,to);
+        var dis = MyTool.getDis(from,to);
         mc.x = from.x;
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);

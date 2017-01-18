@@ -31,6 +31,7 @@ class LoginUI extends game.BaseUI {
         }
         
         this.passwordText.text = '111111'
+        this.nameText.text = 'cai@cai.cai'
     }
 
     public onShow(){

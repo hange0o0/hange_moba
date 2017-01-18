@@ -150,10 +150,10 @@ class Net extends egret.EventDispatcher{
     }
 
     private addLoading(){
-
+        MsgingUI.getInstance().show();
     }
 
     private removeLoading(){
-
+        MsgingUI.getInstance().hide();
     }
 }

@@ -200,6 +200,9 @@ class MonsterVO {
     public get thumb(){
         return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
     }
+    public get thumbRound(){
+        return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
+    }
 
     public get url(){
         return Config.localResRoot + 'card/monster_'+this.id+'.jpg';

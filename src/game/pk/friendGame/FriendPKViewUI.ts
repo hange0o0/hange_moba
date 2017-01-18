@@ -48,6 +48,10 @@ class FriendPKViewUI extends game.BaseUI {
         this.scroller.bounces = false;
     }
 
+    public beforeHide(){
+        this.clearList([this.myList0,this.myList1,this.myList2])
+    }
+
     private onTimer(){
         if(!this.stage)
             return;

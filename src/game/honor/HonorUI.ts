@@ -58,6 +58,10 @@ class HonorUI extends game.BaseUI {
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
     private onSelect(){
         this.resort()
     }

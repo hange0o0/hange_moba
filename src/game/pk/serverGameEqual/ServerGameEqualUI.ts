@@ -59,6 +59,10 @@ class ServerGameEqualUI extends game.BaseUI {
 
     }
 
+    public beforeHide(){
+        this.clearList([this.myList,this.enemyList])
+    }
+
     private onCard1(){
         this.chooseInex = 0;
         this.renewChoose();

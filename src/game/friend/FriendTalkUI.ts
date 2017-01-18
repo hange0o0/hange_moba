@@ -41,6 +41,10 @@ class FriendTalkUI extends game.BaseUI {
 
     }
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
     private onTimer(){
         if(!this.stage)
             return;

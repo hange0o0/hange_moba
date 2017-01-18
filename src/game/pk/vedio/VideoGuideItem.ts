@@ -23,8 +23,6 @@ class VideoGuideItem extends game.BaseItem {
     private barWidth = 100;
 
     public childrenCreated() {
-        //this.headMask.visible = false;
-        //this.headMC.mask = this.headMask
         //this.addBtnEvent(this.closeBtn,this.onKill);
         this.tf.fillColor = 0x740714
         this.bf.fillColor = 0x740714

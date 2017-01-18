@@ -40,6 +40,10 @@ class DayGameUI extends game.BaseUI {
         //this.enemyList.add
     }
 
+    public beforeHide(){
+        this.clearList([this.myList0,this.enemyList])
+    }
+
     private onRing1(){
 
     }

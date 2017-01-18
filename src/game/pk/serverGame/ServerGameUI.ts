@@ -58,6 +58,10 @@ class ServerGameUI extends game.BaseUI {
         //this.enemyList.add
     }
 
+    public beforeHide(){
+        this.clearList([this.myList,this.enemyList])
+    }
+
     private onOtherInfo(){
         var gameid = UM.server_game.enemy.userinfo.gameid;
         if(gameid && gameid != UM.gameid)

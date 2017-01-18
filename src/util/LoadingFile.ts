@@ -11,7 +11,14 @@ class LoadingFile {
     private callBackTarget: any;
     private loadCount: number;
 
+    private static instance:LoadingFile;
+    public static getInstance() {
+        if (!this.instance) this.instance = new LoadingFile();
+        return this.instance;
+    }
+
     public constructor() {
+        this.loadingView = new LoadingUI();
     }
 
     /*
@@ -26,8 +33,8 @@ class LoadingFile {
         this.callBackTarget = callBackTarget;
         
         //设置加载进度界面
-        this.loadingView = new LoadingUI();
-        GameManager.stage.addChild(this.loadingView);
+
+        this.loadingView.show();
         
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
@@ -49,11 +56,12 @@ class LoadingFile {
         this.loadCount--;
         
         if (this.loadCount == 0) {
-            GameManager.stage.removeChild(this.loadingView);
+
+            this.loadingView.hide();
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
-            
+
             this.callBack.call(this.callBackTarget);
         }
     }

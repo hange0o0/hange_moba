@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RankItemSkin" width="640" height="80" currentState="up" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="up,self,info" >
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="640" height="80" x="0" visible.info="false"/>
-	<e:Rect height="100%" width="100%" x="0" y="0" fillColor="0xCCB48E" fillAlpha="0.5" visible.up="false" visible.info="false" fillAlpha.self="0.1"/>
+	<e:Rect height="100%" width="100%" x="0" y="0" visible.up="false" visible.info="false" fillAlpha="0.3" fillColor="0x2A0800"/>
 	<e:Image source="border2_png" y="9" width="60" height="60" x="94" visible.info="false"/>
 	<e:Image source="pk_bg_jpg" y="14" id="headMC" width="50" height="50" x="100" visible.info="false"/>
-	<e:Label id="nameText" text="标签" x="165" y="23" visible.info="false" textColor="0xCCB48E"/>
-	<e:Label id="scoreText" text="标签" y="23" visible.info="false" textColor="0xCCB48E" right="30"/>
+	<e:Label id="nameText" text="标签" x="165" y="23" visible.info="false" textColor="0xCCB48E" textColor.self="0xEB9501"/>
+	<e:Label id="scoreText" text="标签" y="23" visible.info="false" textColor="0xCCB48E" right="30" textColor.self="0xEB9501"/>
 	<e:BitmapLabel id="numText2"  y="20" font="font_num1_fnt" text="1" visible.info="false" horizontalCenter="-268"/>
-	<e:Label id="numText" text="标签" y="23" visible.info="false" horizontalCenter="-271" textColor="0xCCB48E"/>
+	<e:Label id="numText" text="标签" y="23" visible.info="false" horizontalCenter="-271" textColor="0xCCB48E" textColor.self="0xEB9501"/>
 	<e:Label id="infoText" text="标签" x="0" y="0" width="100%" height="100%" textAlign="center" verticalAlign="middle" visible.up="false" visible.self="false" size="22" lineSpacing="10" textColor="0xCCB48E"/>
 </e:Skin>

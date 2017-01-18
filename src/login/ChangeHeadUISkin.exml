@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ChangeHeadUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" states="choose,change"  height="810">
-	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="560" x="0"/>
+<e:Skin class="ChangeHeadUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" states="choose,change"  height="860">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="600" x="0"/>
 	<e:Label id="titleText" y="30" textColor="0xD0C7AD" horizontalCenter="0" text="请选择头像" x="10"/>
-	<e:Scroller id="scroller" top="74" bottom="116" horizontalCenter="0" top.change="315">
+	<e:Scroller id="scroller" top="74" bottom="116" horizontalCenter="0" top.change="293">
 		<e:Group>
 			<e:List id="list" x="0" y="0" itemRendererSkinName="HeadItemSkin">
 				<e:ArrayCollection>
@@ -26,15 +26,30 @@
 						<e:Object label="数据3"/>
 						<e:Object label="null"/>
 						<e:Object label="null"/>
+				<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
+						<e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/><e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
+						<e:Object label="数据1"/>
+						<e:Object label="数据2"/>
+						<e:Object label="数据3"/>
+						<e:Object label="null"/>
+						<e:Object label="null"/>
 					</e:Array>
 				</e:ArrayCollection>
 				<e:layout>
-					<e:TileLayout horizontalGap="20" requestedColumnCount="4" paddingLeft="5" verticalGap="20" paddingTop="20" paddingBottom="20"/>
+					<e:TileLayout horizontalGap="10" requestedColumnCount="5" paddingLeft="5" verticalGap="10" paddingTop="10" paddingBottom="20"/>
 				</e:layout>
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:Rect height="90" width="500" bottom="26" fillColor="0x130A05" fillAlpha="1" horizontalCenter="0"/>
+	<e:Rect height="90" width="530" bottom="26" fillColor="0x130A05" fillAlpha="1" horizontalCenter="0"/>
 	<e:Group id="btnGroup" horizontalCenter="0" bottom="45">
 		<e:Button id="cencelBtn" scaleY="0.9" scaleX="0.9" label="关闭" x="0" y="0" skinName="Btn_b2Skin"/>
 		<e:Button id="okBtn" scaleX="0.9" scaleY="0.9" label="确定" x="0" y="0" skinName="Btn_r2Skin"/>
@@ -42,10 +57,10 @@
 			<e:HorizontalLayout gap="30"/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="120" horizontalCenter="0" width="500" visible.choose="false">
+	<e:Group y="100" horizontalCenter="0" width="530" visible.choose="false">
 		<ns1:HeadItem id="head1" y="0" skinName="HeadItemSkin" left="80"/>
 		<ns1:HeadItem id="head2" skinName="HeadItemSkin" y="0" right="80"/>
-		<e:Group y="119.87878787878788" horizontalCenter="0">
+		<e:Group id="changeGroup" y="125" horizontalCenter="0">
 			<e:Label text="更换头像需消耗钻石:" y="0" size="24" textColor="0x918B2C" x="243.7878787878788"/>
 			<e:Image source="icon_token_png" x="0" y="132.12121212121212"/>
 			<e:Label y="10" size="24" text="100" textColor="0xE2DC46" x="243.7878787878788"/>

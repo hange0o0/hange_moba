@@ -150,6 +150,10 @@ class CollectUI extends game.BaseUI {
     //    })
     //}
 
+    public beforeHide(){
+        this.clearList([this.list])
+    }
+
     public show(){
         var self = this;
         self.superShow();

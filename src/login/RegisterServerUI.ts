@@ -34,6 +34,7 @@ class RegisterServerUI extends game.BaseWindow {
     }
 
     private onChange(){
+        this.nameText.text = MyTool.replaceEmoji(this.nameText.text);
         var len = StringUtil.getStringLength(this.nameText.text);
         if(len > 14)
         {

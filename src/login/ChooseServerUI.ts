@@ -53,6 +53,11 @@ class ChooseServerUI extends game.BaseUI {
         super.show();
     }
 
+    public beforeHide(){
+        this.clearList([this.list1,this.list2])
+    }
+
+
     public onShow(){
         var oo = LoginManager.getInstance().getAllServer();
         var my = oo.my;

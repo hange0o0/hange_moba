@@ -23,6 +23,9 @@ class PlayerVO {
 
     public buffList = [];
 
+    public hurtCount = 0
+    public healCount = 0
+
     public constructor(oo?,oo2?) {
         if(oo)
         {
@@ -40,6 +43,8 @@ class PlayerVO {
         this.speed = baseData.speed + (oo.add_speed || 0);
 
         this.mp = 0;
+        this.hurtCount = 0;
+        this.healCount = 0;
         this.actionCount = 0;
         this.tag = '';
 
@@ -135,5 +140,12 @@ class PlayerVO {
     }
     public addSpeed(v){
         this.speed += v;
+    }
+
+    public atkerHP(v){
+        if(v > 0)
+            this.healCount += v
+        else
+            this.hurtCount += -v
     }
 }

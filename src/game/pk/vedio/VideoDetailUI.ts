@@ -68,6 +68,10 @@ class VideoDetailUI extends game.BaseUI {
         this.buffDecList2.itemRenderer = VideoStatItem;
     }
 
+    public beforeHide(){
+        this.clearList([this.buffAddList0,this.buffDecList0,this.buffAddList1,this.buffDecList1,this.buffAddList2,this.buffDecList2])
+    }
+
     private onMonster0(){
         MonsterList.getInstance().show(this.clickObj,0)
     }

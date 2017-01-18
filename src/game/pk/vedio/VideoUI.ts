@@ -6,8 +6,8 @@ class VideoUI extends game.BaseUI {
     }
 
     private bg: eui.Image;
-    private enemyItem: VideoItem;
-    private selfItem: VideoItem;
+    private enemyItem;
+    private selfItem;
     private itemGroup: eui.Group;
     private jumpBtn: eui.Button;
     private skillGroup: eui.Group;
