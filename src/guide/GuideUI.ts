@@ -91,7 +91,7 @@ class GuideUI extends game.BaseContainer{
                 var toX = p1.x + (p2.x-p1.x)/2;
                 var toY = p2.y + 20
                 var toRotation = 0
-                if(this.tipsGroup.y < this.height/2) //指针在下半屏
+                if(this.tipsGroup.y < mc.y) //指针在下半屏
                 {
                     toRotation = 180
                     toY = p1.y - 20

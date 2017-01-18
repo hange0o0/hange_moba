@@ -154,6 +154,13 @@ class CollectUI extends game.BaseUI {
         this.clearList([this.list])
     }
 
+    public hide(){
+        super.hide();
+        GuideManager.getInstance().showGuide(MainPageUI.getInstance());
+        MainPageUI.getInstance()['currentPage'] = 1;
+        MainPageUI.getInstance().scrollToCurrentPage();
+        MainPageUI.getInstance().renewPage();
+    }
     public show(){
         var self = this;
         self.superShow();
@@ -171,6 +178,8 @@ class CollectUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.collect_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renew);
+
+        GuideManager.getInstance().showGuide(CollectUI.getInstance());
     }
 
     public renew(){

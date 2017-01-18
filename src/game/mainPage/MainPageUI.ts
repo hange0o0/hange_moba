@@ -324,7 +324,7 @@ class MainPageUI extends game.BaseUI {
         this.renewMiddle();
 
         GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
-        GuideManager.getInstance().showGuide()
+        GuideManager.getInstance().showGuide(MainPageUI.getInstance())
 
         //GuideManager.getInstance().guideStep = 13;
         //MyTool.removeMC(PopUpManager.shape);

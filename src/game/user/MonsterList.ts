@@ -197,6 +197,11 @@ class MonsterList extends game.BaseUI {
         this.show([{id:id}])
     }
 
+    public hide(){
+        super.hide();
+        GuideManager.getInstance().showGuide(CollectUI.getInstance());
+    }
+
     public show(list?,index?){
         this.dataArray = list;
         this.index = index || 0;
@@ -232,6 +237,8 @@ class MonsterList extends game.BaseUI {
 
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewLevelUp)
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewLevelUp)
+
+        GuideManager.getInstance().showGuide(MonsterList.getInstance());
     }
 
     private renewLevelUp(){
