@@ -20,7 +20,11 @@ class GameEvent {
         main_kill:'main_kill',
         change_head:'change_head',
         pk_start:'pk_start',
-        get_card:'get_card',
+        get_card:'get_card', //获得对战卡组
+        monster_level_change:'monster_level_change',
+
+        friend_red_change:'friend_red_change',
+
 
 
         timer:'timer'

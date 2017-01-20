@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MyTabItemSkin" currentState="up" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  states="up,upAndSelected"  width="120" height="40">
-	<e:Rect width="100%" x="0" height="100%" y="0" fillColor.upAndSelected="0x261212"/>
+	<e:Rect width="100%" x="0" height="100%" y="0" fillColor.upAndSelected="0x3D0000"/>
 	<e:Rect height="100%" width="1" x="0" y="0" fillColor="0x333333"/>
 	<e:Rect width="1" y="0" height="100%" right="0" fillColor="0x333333"/>
-	<e:Label id="label" text="{data.label}" size="22" verticalAlign="middle" touchEnabled="false" textAlign="center"  textColor="0xF7CE87" width="106" height="22" verticalCenter="0" horizontalCenter="0" textColor.upAndSelected="0xC09E68" stroke.upAndSelected="1"/>
+	<e:Label id="label" text="{data.label}" size="22" verticalAlign="middle" touchEnabled="false" textAlign="center"  textColor="0xF7CE87" width="106" height="22" verticalCenter="0" horizontalCenter="0" stroke.upAndSelected="1" textColor.upAndSelected="0xFCD7B3"/>
 </e:Skin>

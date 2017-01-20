@@ -64,6 +64,7 @@ class SyncManager{
                     {
                         UM.tec.monster[ss] = value[ss];
                     }
+                    EM.dispatch(GameEvent.client.monster_level_change);
                     break;
                 case 'sync_collect_num':
                     if(!UM.collect.num)

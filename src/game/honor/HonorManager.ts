@@ -124,6 +124,7 @@ class HonorManager{
         Net.send(GameEvent.honor.honor_more,oo,function(data){
             var msg = data.msg;
             UM.honor = msg.honor;
+            EM.dispatch(GameEvent.client.honor_change);
             if(fun)
                 fun();
         });

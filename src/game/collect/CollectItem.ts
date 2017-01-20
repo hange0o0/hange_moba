@@ -48,7 +48,7 @@ class CollectItem extends game.BaseItem {
             {
                 this.arrowMC.visible = true;
                 var cost = TecManager.getInstance().needCoin(level + 1)
-                if(cost < UM.coin)
+                if(cost <= UM.coin)
                 {
                     this.arrowMC.source = 'arrow5_png'
                     this.arrowMC.scaleY = 1;

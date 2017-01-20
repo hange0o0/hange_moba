@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MyCheckBoxSkin" states="up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*">
+    <e:Group width="100%" height="100%">
+        <e:layout>
+            <e:HorizontalLayout verticalAlign="middle"/>
+        </e:layout>
+        <e:Group width="35" height="35">
+            <e:Rect width="35" height="35" strokeWeight="1" top="0"  fillColor="0x000000" strokeColor="0xF1BB64"/>
+            <e:Image fillMode="scale"
+                 source="choose_icon_png" includeIn="upAndSelected,downAndSelected"  y="2" x="3"/>
+        </e:Group>
+        <e:Label id="labelDisplay" size="24"
+                 textAlign="center" verticalAlign="middle"
+                 fontFamily="Tahoma" text="123456" textColor="0xFFDD00"/>
+    </e:Group>
+</e:Skin>

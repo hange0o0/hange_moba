@@ -106,6 +106,11 @@ class FriendPKAskUI extends game.BaseUI {
         }
         this.renewCardList();
         this.scroller.viewport.scrollV = 0;
+
+
+        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewCardList);
+        this.addPanelOpenEvent(GameEvent.client.card_change,this.renewCardList);
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewCardList);
     }
 
     private renewCardList(){

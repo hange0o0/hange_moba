@@ -156,10 +156,13 @@ class CollectUI extends game.BaseUI {
 
     public hide(){
         super.hide();
-        GuideManager.getInstance().showGuide(MainPageUI.getInstance());
-        MainPageUI.getInstance()['currentPage'] = 1;
-        MainPageUI.getInstance().scrollToCurrentPage();
-        MainPageUI.getInstance().renewPage();
+        if(GuideManager.getInstance().isGuiding)
+        {
+            GuideManager.getInstance().showGuide(MainPageUI.getInstance());
+            MainPageUI.getInstance()['currentPage'] = 1;
+            MainPageUI.getInstance().scrollToCurrentPage();
+            MainPageUI.getInstance().renewPage();
+        }
     }
     public show(){
         var self = this;

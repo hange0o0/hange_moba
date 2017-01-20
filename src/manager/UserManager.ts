@@ -39,6 +39,8 @@ class UserManager {
     public energy: any;
     public pk_common: any;
 
+
+    public friendtime: number;   //登录时，好友最新消息的时间点
     public maxEnergy = 60;
 
 
@@ -67,6 +69,10 @@ class UserManager {
         this.energy = data.energy; //  '{"v":0,"t":0,"rmb":0}'
         this.active = data.active; //  '{task:{}}'
         this.pk_common = data.pk_common; //  '{history:{}}'
+
+
+
+        this.friendtime = data.friendtime || 0;
     }
 
     public getDiamond(rmb=false){

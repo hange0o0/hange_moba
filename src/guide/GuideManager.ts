@@ -8,7 +8,7 @@ class GuideManager {
     public currentStepId: Number;
     public isGuiding:Boolean=true;
 
-    public guideStep = 13;
+    public guideStep = 0;
     private guideArr = [];
     public constructor() {
         this.init();

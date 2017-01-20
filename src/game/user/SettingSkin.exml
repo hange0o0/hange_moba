@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="SettingSkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="580" x="1" y="10"/>
+	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="设置" x="20"/>
+	<e:CheckBox id="musicCB" label="音乐" x="73" y="115" skinName="MyCheckBoxSkin"/>
+	<e:CheckBox id="soundCB" x="300" label="音效" y="115" skinName="MyCheckBoxSkin"/>
+	<e:Button id="closeBtn" label="返回" skinName="Btn_r2Skin" horizontalCenter="0" bottom="50"/>
+	<e:Group x="63" y="206">
+		<e:Label y="2" textColor="0xEFE5AD" size="24" text="玩家ID：" x="0"/>
+		<e:Label id="idText" y="0" textColor="0xEDCB24" size="24" text="1624431545@qq.com" x="98"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="63" y="264">
+		<e:Label y="4" textColor="0xEFE5AD" size="24" text="游戏官方QQ群：" x="0"/>
+		<e:Label id="qqText" y="0" textColor="0xEDCB24" size="24" text="1624431545" x="192"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="63" y="315">
+		<e:Label text="如遇到BUG或有好的建议，可发送邮件至：" x="0" y="0" textColor="0xEFE5AD" size="24"/>
+		<e:Label id="emailText" y="43" size="24" text="1624431545@qq.com" textColor="0xEDCB24" x="0"/>
+	</e:Group>
+	<e:Rect width="500" y="180" height="1" horizontalCenter="0" fillColor="0x95612D"/>
+</e:Skin>

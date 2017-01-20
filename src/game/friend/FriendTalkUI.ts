@@ -7,16 +7,21 @@ class FriendTalkUI extends game.BaseUI {
 
     private topUI: TopUI;
     private scroller: eui.Scroller;
-    private list: eui.List;
+    private scrollGroup: eui.Group;
     private btnGroup: eui.Group;
     private closeBtn: eui.Button;
     private sendBtn: eui.Button;
 
 
 
+    private vGroup = new VScrollerGroup();
+
+
     public gameid;
     public otherHead;
     public otherNick;
+
+    public lastTalkArr
 
     public constructor() {
         super();
@@ -27,10 +32,17 @@ class FriendTalkUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.list.itemRenderer = FriendTalkItem;
-        this.scroller.viewport = this.list;
+        //this.list.itemRenderer = FriendTalkItem;
+        //this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        this.scroller.bounces = false;
 
+
+        this.scrollGroup.addChild(this.vGroup)
+        this.vGroup.itemRenderer = FriendTalkItem;
+        this.vGroup.scroller = this.scroller;
+        this.vGroup.margin = 20;
+        this.vGroup.initScroller(this.scroller);
 
         this.topUI.addEventListener('hide',this.hide,this);
 
@@ -42,7 +54,7 @@ class FriendTalkUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        this.clearList([this.list])
+        this.vGroup.clean()
     }
 
     private onTimer(){
@@ -95,8 +107,38 @@ class FriendTalkUI extends game.BaseUI {
         this.topUI.setTitle('私聊-'+this.otherNick);
         this.renew();
 
-        this.addPanelOpenEvent(GameEvent.client.talk_change,this.renew)
+        this.addPanelOpenEvent(GameEvent.client.talk_change,this.onTalkChange)
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
+    }
+
+    private onTalkChange(){
+        var FM = FriendManager.getInstance();
+        var arr = FM.getTalkList(this.gameid);
+
+        var addList = [];
+        for(var i=arr.length-1;i>=0;i--)
+        {
+            if(arr[i].id > this.lastTalkArr[i].id)
+                addList.unshift(this.lastTalkArr[i]);
+        }
+        this.lastTalkArr = arr;
+
+        for(var i=0;i<addList.length;i++)
+        {
+            this.vGroup.addItem(addList[i]);
+        }
+
+
+        if(FM.friendData[this.gameid])
+        {
+            this.btnGroup.addChild(this.sendBtn);
+            this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'
+        }
+        else
+        {
+            MyTool.removeMC(this.sendBtn);
+        }
+        this.vGroup.scrollToLast()
     }
 
     private renew(){
@@ -104,12 +146,18 @@ class FriendTalkUI extends game.BaseUI {
             return;
 
         var FM = FriendManager.getInstance();
-        var arr = FM.getTalkList(this.gameid);
-        this.list.dataProvider = new eui.ArrayCollection(arr);
-        this.once(egret.Event.ENTER_FRAME,function(){
-            this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
-            //console.log(this.scroller.viewport.scrollV)
-        },this)
+        var arr = this.lastTalkArr = FM.getTalkList(this.gameid);
+        this.vGroup.setData(arr);
+
+        this.validateNow();
+        this.vGroup.scrollToLast();
+        //egret.setTimeout(function(){
+        //    this.vGroup.scrollToLast();
+        //},this,100)
+        //this.once(egret.Event.ENTER_FRAME,function(){
+        //    this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+        //    //console.log(this.scroller.viewport.scrollV)
+        //},this)
 
         if(FM.friendData[this.gameid])
         {

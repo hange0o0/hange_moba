@@ -45,11 +45,16 @@ class MainPageUI extends game.BaseUI {
     private taskText: eui.Label;
     private helpBtn: eui.Group;
     private videoBtn: eui.Group;
-    private rankBtn: eui.Group;
-    private friendBtn: eui.Group;
-    private collectBtn: eui.Group;
+    private setBtn: eui.Group;
     private honorBtn: eui.Group;
+    private honorRed: eui.Image;
+    private rankBtn: eui.Group;
+    private collectBtn: eui.Group;
+    private collectRed: eui.Image;
+    private friendBtn: eui.Group;
+    private friendRed: eui.Image;
     private bagBtn: eui.Group;
+
 
 
 
@@ -77,13 +82,12 @@ class MainPageUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
 
 
-
         this.addBtnEvent(this.friendBtn, this.onFriend);
         this.addBtnEvent(this.collectBtn, this.onCollect);
         this.addBtnEvent(this.bagBtn, this.onBag);
         this.addBtnEvent(this.honorBtn, this.onHonor);
         this.addBtnEvent(this.rankBtn, this.onRank);
-        //this.addBtnEvent(this.tecBtn, this.onTec);
+        this.addBtnEvent(this.setBtn, this.onSetting);
 
 
         //this.addBtnEvent(this.img, this.onMain);
@@ -103,7 +107,19 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.pk_start,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.get_card,this.scrollToCurrentPage,this);
 
+
+        EM.addEvent(GameEvent.client.monster_level_change,this.renewCollectRed,this);
+        EM.addEvent(GameEvent.client.card_change,this.renewCollectRed,this);
+        EM.addEvent(GameEvent.client.coin_change,this.renewCollectRed,this);
+
+
+        EM.addEvent(GameEvent.client.honor_change,this.renewHonorRed,this);
+
+        EM.addEvent(GameEvent.client.friend_red_change,this.renewFriendRed,this);
+
         EM.addEvent(GameEvent.client.timer,this.onTimer,this);
+
+
 
         for(var i=0;i<=3;i++)
         {
@@ -117,6 +133,47 @@ class MainPageUI extends game.BaseUI {
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
+    }
+
+
+    private renewCollectRed(){
+        var mdata = CM.table[MonsterVO.dataKey];
+        for(var s in mdata)
+        {
+            var vo = mdata[s];
+            if(vo.level<= UM.level && vo.canLevelUp())
+            {
+                this.collectRed.visible = true;
+                 return
+            }
+        }
+        this.collectRed.visible = false;
+    }
+
+    private renewHonorRed(){
+        if(UM.honor.monster)
+        {
+            for(var s in UM.honor.monster)
+            {
+                var oo = UM.honor.monster[s]
+                var awardLevel = oo.a || 0; //已领奖的等级
+                if(awardLevel == 5)
+                    continue;
+                var num = HonorManager.getInstance().awardBase[awardLevel + 1].num
+                if(oo.w >= num)
+                {
+                    this.honorRed.visible =  true;
+                    return
+                }
+            }
+            this.honorRed.visible =  false;
+        }
+        else
+            this.honorRed.visible =  UM.honor.isred;
+    }
+    private renewFriendRed(){
+        var FM = FriendManager.getInstance();
+        this.friendRed.visible = FM.friendRed();
     }
 
     private onTimer(){
@@ -283,6 +340,10 @@ class MainPageUI extends game.BaseUI {
         BagUI.getInstance().show();
 
     }
+    private onSetting(){
+        SettingUI.getInstance().show();
+    }
+
     private onHonor(){
         HonorUI.getInstance().show();
 
@@ -322,6 +383,10 @@ class MainPageUI extends game.BaseUI {
         this.scrollToCurrentPage();
 
         this.renewMiddle();
+
+        this.renewFriendRed();
+        this.renewCollectRed();
+        this.renewHonorRed();
 
         GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
         GuideManager.getInstance().showGuide(MainPageUI.getInstance())

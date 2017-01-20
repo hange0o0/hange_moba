@@ -140,7 +140,7 @@ class HonorUI extends game.BaseUI {
             count += arr[i].level;
         }
         this.infoText.text = '领奖进度：' + count + '/' + arr.length*5;
-        this.sortListFun(arr,true);
+        this.sortListFun(arr);
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.list.validateNow();
         //egret.callLater(function(){
@@ -158,14 +158,13 @@ class HonorUI extends game.BaseUI {
         this.renewBtn();
     }
 
-    private sortListFun(arr,noDefault = false)
+    private sortListFun(arr)
     {
         this.sortText.text = this.sortList.selectedItem.label;
          switch(this.sortList.selectedIndex)
          {
-             case 0:     //默认
-                 if(!noDefault)
-                    arr.sort(this.sortByDefault)
+             case 0://领奖状态
+                 arr.sort(this.sortByState)
                  break;
              case 1://使用次数
                  arr.sort(this.sortByUse)
@@ -176,8 +175,8 @@ class HonorUI extends game.BaseUI {
              case 3://胜率
                  arr.sort(this.sortByRate)
                  break;
-             case 4://领奖状态
-                 arr.sort(this.sortByState)
+             case 4://默认
+                 arr.sort(this.sortByDefault)
                  break;
          }
     }

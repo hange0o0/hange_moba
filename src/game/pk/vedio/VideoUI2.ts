@@ -9,7 +9,7 @@ class VideoUI2 extends game.BaseUI {
 
     private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
-    private list: eui.List;
+    //private list: eui.List;
     private upGroup: eui.Group;
     private upBtn: eui.Group;
     private playerGroup1: eui.Group;
@@ -128,7 +128,8 @@ class VideoUI2 extends game.BaseUI {
 
 
     public beforeHide(){
-        this.clearList([this.list,this.statList0,this.statList1])
+        this.clearList([this.statList0,this.statList1])
+        this.vGroup.clean()
     }
 
 
@@ -254,19 +255,23 @@ class VideoUI2 extends game.BaseUI {
     //}
 
     public onShow(){
+        //return;
         this.upGroup.visible = false;
         this.listArray = [];
         this.currentList = [];
         this.lastChooseData = null;
         this.listArray.push(this.currentList);
-        var VM = VideoManager.getInstance();
-        var VC = VideoCode.getInstance()
-        VC.initData(VM.baseData);
-        VC.play(true);
-        //this.upGroup.visible = false;
-        this.visible = false;
-        this.openGuide();
-        this.onDragEnd();
+        //this.once(egret.Event.ENTER_FRAME,function(){
+            var VM = VideoManager.getInstance();
+            var VC = VideoCode.getInstance()
+            VC.initData(VM.baseData);
+            VC.play(true);
+            //this.upGroup.visible = false;
+            //this.visible = false;
+            this.openGuide();
+            this.onDragEnd();
+        //},this)
+
     }
 
     //单个回合结束
@@ -293,10 +298,18 @@ class VideoUI2 extends game.BaseUI {
         this.scroller.viewport.scrollV = 0;
         egret.setTimeout(function(){
             this.onScroll();
-            this.showFirstItem();
-            this.upGroup.visible = true;
+
+            for(var i=0;i<this.vGroup.numChildren;i++)
+            {
+                (<any>this.vGroup.getChildAt(i)).setChoose(this.lastChooseData);
+            }
+            //this.showFirstItem();
             this.renewResultMC();
         },this,200)
+
+        this.setChoose(this.listArray[0])
+        this.upGroup.visible = true;
+
         //this.list.dataProvider = new eui.ArrayCollection(this.listArray);
 
     }

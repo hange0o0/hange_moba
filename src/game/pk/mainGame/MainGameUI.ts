@@ -62,6 +62,10 @@ class MainGameUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.renewEnemy)
         this.addPanelOpenEvent(GameEvent.client.force_change,this.renewSelf)
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewPrice)
+
+        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewSelf);
+        this.addPanelOpenEvent(GameEvent.client.card_change,this.renewSelf);
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewSelf);
     }
 
     public renewPrice(){

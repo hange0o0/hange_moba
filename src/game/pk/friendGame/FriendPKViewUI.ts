@@ -88,6 +88,8 @@ class FriendPKViewUI extends game.BaseUI {
                 vo: MonsterVO.getObject(id),
                 type:1,
 
+                stopRed:true,
+
                 id: id,
                 specialData: specialData,
 
@@ -106,6 +108,8 @@ class FriendPKViewUI extends game.BaseUI {
             chooseList2.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
+
+                stopRed:true,
 
                 id: id,
                 specialData: specialData,

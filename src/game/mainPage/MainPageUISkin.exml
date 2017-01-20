@@ -107,22 +107,36 @@
 	</e:Group>
 	<e:Group x="0" bottom="0">
 		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>
-		<e:Group id="rankBtn" x="60" y="29">
-			<e:Image source="menu_icon_1_png" x="18" y="0"/>
-			<e:Image source="menu_icon_1_png" y="13" x="0"/>
-			<e:Label text="排行" x="2" y="79" textColor="0xCCB48E"/>
-		</e:Group>
-		<e:Group id="friendBtn" y="20" x="495">
-			<e:Image source="menu_icon_4_png" x="0" y="0"/>
-			<e:Label y="88" text="好友" x="18" textColor="0xCCB48E"/>
-		</e:Group>
-		<e:Group id="collectBtn" x="196" y="15">
-			<e:Image source="menu_icon_2_png" x="0" y="0"/>
-			<e:Label y="93" text="收集" x="14" textColor="0xCCB48E"/>
-		</e:Group>
-		<e:Group id="honorBtn" x="350.5" y="16">
-			<e:Image source="menu_icon_3_png" x="0" y="0" scaleX="0.85" scaleY="0.85"/>
-			<e:Label y="92" text="成就" x="9" textColor="0xCCB48E"/>
+		<e:Group horizontalCenter="0" bottom="10">
+			<e:Group id="setBtn" y="11.666666666666742" x="10.000000000000007" width="100">
+				<e:Image y="0" source="menu_icon_6_png" horizontalCenter="0"/>
+				<e:Label y="92" textColor="0xCCB48E" text="设置" horizontalCenter="0"/>
+			</e:Group>
+			<e:Group id="honorBtn" x="290.4166666666667" y="0.8333333333333712" width="100">
+				<e:Image source="menu_icon_3_png" y="0" scaleX="0.85" scaleY="0.85" horizontalCenter="0"/>
+				<e:Image id="honorRed" source="red_point_png" y="6" x="67"/>
+				<e:Label y="92" text="成就" textColor="0xCCB48E" horizontalCenter="0"/>
+			</e:Group>
+			<e:Group id="rankBtn" x="0" y="13.750000000000114" width="100">
+				<e:Group y="0" horizontalCenter="0">
+					<e:Image source="menu_icon_1_png" x="18" y="0"/>
+					<e:Image source="menu_icon_1_png" y="13" x="0"/>
+				</e:Group>
+				<e:Label text="排行" y="79" textColor="0xCCB48E" horizontalCenter="0"/>
+			</e:Group>
+			<e:Group id="collectBtn" x="135.83333333333334" y="0" width="100">
+				<e:Image source="menu_icon_2_png" y="0" horizontalCenter="0"/>
+				<e:Image id="collectRed" source="red_point_png" y="5" x="65"/>
+				<e:Label y="93" text="收集" textColor="0xCCB48E" horizontalCenter="0"/>
+			</e:Group>
+			<e:Group id="friendBtn" y="5.000000000000114" x="435" width="100">
+				<e:Image source="menu_icon_4_png" y="0" horizontalCenter="0"/>
+				<e:Image id="friendRed" source="red_point_png" y="3" x="70"/>
+				<e:Label y="94" text="好友" textColor="0xCCB48E" horizontalCenter="0"/>
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="bottom" gap="20"/>
+			</e:layout>
 		</e:Group>
 
 		<e:Group id="bagBtn" x="395" y="19" visible="false">
@@ -130,5 +144,6 @@
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
 		</e:Group>
 	</e:Group>
+	<e:Image source="red_point_png" x="-728" y="788"/>
 
 </e:Skin>

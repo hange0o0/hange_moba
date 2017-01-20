@@ -6,6 +6,8 @@ class MyHeadItem extends game.BaseItem {
 
     private headMC: eui.Image;
     private levelText: eui.Label;
+    private redMC: eui.Image;
+
 
 
     public index;
@@ -27,6 +29,17 @@ class MyHeadItem extends game.BaseItem {
         this.levelText.text = 'LV.' + UM.getMonsterLevel(vo.id);
         this.headMC.source = vo.url;
         if(this.data.specialData.isEqual)
+        {
             this.levelText.text = '修正'
+            this.redMC.visible = false;
+        }
+        else
+        {
+            this.redMC.visible = vo.canLevelUp();
+        }
+
+        if(this.data.stopRed)
+            this.redMC.visible = false;
+
     }
 }

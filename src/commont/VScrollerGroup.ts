@@ -9,12 +9,32 @@ class VScrollerGroup extends eui.Group{
     private pool = [];
     private itemArr = [];
     private heightObj = {};
+
+    private scrollTime;
     public constructor() {
         super();
     }
 
     public childrenCreated() {
 
+    }
+
+    public initScroller(scroller){
+        this.scroller = scroller;
+        this.scroller.addEventListener(egret.Event.CHANGE,this.onScrollEvent,this)
+        this.scroller.addEventListener(eui.UIEvent.CHANGE_END,this.onScrollEndEvent,this)
+    }
+    private onScrollEvent(){
+        if(!this.dataArr)
+            return;
+        this.onScroll(this.scroller.viewport.scrollV)
+        this.scrollTime = egret.getTimer();
+    }
+    private onScrollEndEvent(){
+        if(!this.dataArr)
+            return;
+        if(egret.getTimer() - this.scrollTime < 500)
+            this.onScrollEvent();
     }
 
     private getItem():any{
@@ -44,11 +64,24 @@ class VScrollerGroup extends eui.Group{
     }
 
     public setData(arr){
-        while(this.itemArr.length > 0)
-            this.feeItem(this.itemArr.pop());
+        this.clean();
         this.heightObj = {};
         this.dataArr = arr;
         this.height = 100;
+    }
+
+    public clean(){
+        while(this.itemArr.length > 0)
+            this.feeItem(this.itemArr.pop());
+    }
+
+    public addItem(data){
+        this.dataArr.push(data);
+    }
+
+    public scrollToLast(){
+        if(this.dataArr.length > 0)
+            this.scrollToItem(this.dataArr[this.dataArr.length-1])
     }
 
     public scrollToItem(data){
@@ -78,6 +111,8 @@ class VScrollerGroup extends eui.Group{
         this.onScroll(v);
         if(this.scroller.viewport.scrollV + this.scroller.height > this.height)
             this.scroller.viewport.scrollV = Math.max(0,this.height - this.scroller.height);
+        if(v != this.scroller.viewport.scrollV)
+            this.onScroll(this.scroller.viewport.scrollV);
     }
 
     public onScroll(v){

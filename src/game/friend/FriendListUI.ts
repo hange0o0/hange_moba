@@ -11,6 +11,9 @@ class FriendListUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private list: eui.List;
     private emptyText: eui.Label;
+    private red1: eui.Image;
+    private red2: eui.Image;
+
 
 
 
@@ -44,6 +47,12 @@ class FriendListUI extends game.BaseUI {
 
         //this.addBtnEvent(this.searchBtn, this.onSearch);
 
+    }
+
+    private renewRed(){
+        var FM = FriendManager.getInstance();
+        this.red1.visible = FM.logRed();
+        this.red2.visible = FM.pkRed();
     }
 
     public beforeHide(){
@@ -103,6 +112,11 @@ class FriendListUI extends game.BaseUI {
             this.onSearch();
             return;
         }
+        var FM = FriendManager.getInstance();
+        if(this.tab.selectedIndex == 1)
+            FM.setOpen('log');
+        else if(this.tab.selectedIndex == 2)
+            FM.setOpen('pk');
         this.selectIndex = this.tab.selectedIndex;
         this.renew();
     }
@@ -116,8 +130,11 @@ class FriendListUI extends game.BaseUI {
         this.selectIndex = index;
 
         var self = this;
-        FriendManager.getInstance().getList(function(){
-            self.superShow()
+        var FM = FriendManager.getInstance();
+        FM.getList(function(){
+            FM.getLog(function(){
+                self.superShow()
+            })
         })
     }
 
@@ -134,11 +151,13 @@ class FriendListUI extends game.BaseUI {
         this.infoCount = 5;
         this.infoType = 0
         this.renew();
+        this.renewRed();
 
         //this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.friend_log_change,this.renewLogE)
         this.addPanelOpenEvent(GameEvent.client.friend_pk_change,this.renewPKE)
         this.addPanelOpenEvent(GameEvent.client.friend_list_change,this.renewListE)
+        this.addPanelOpenEvent(GameEvent.client.friend_red_change,this.renewRed)
     }
 
     public renew(){

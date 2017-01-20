@@ -13,7 +13,7 @@ class FriendManager{
     public lastGetLog = 0
     public friendList;
     public friendData = {};
-    public logList
+    public logList = []
     public pkObject = {};
 
     public otherInfo = {};
@@ -28,6 +28,9 @@ class FriendManager{
 
     public missArray = [];
     public missTime = 0;
+
+    private logOpenTime
+    private pkOpenTime
 
     public constructor() {
         var oo = SharedObjectManager.instance.getMyValue('friendData');
@@ -48,6 +51,64 @@ class FriendManager{
                 this.shareCreateDate = 0;
             }
         }
+
+        var oo2 = SharedObjectManager.instance.getMyValue('friendRedData');
+        if(oo2)
+        {
+            this.logOpenTime = oo2.logOpenTime;
+            this.pkOpenTime = oo2.pkOpenTime;
+        }
+        else
+        {
+            this.logOpenTime = 0;
+            this.pkOpenTime = 0;
+        }
+    }
+
+    public friendRed(){
+        if(UM.level < 3)
+        {
+            return false;
+        }
+         return  Math.max(this.logOpenTime,this.pkOpenTime) <UM.friendtime || this.logRed() || this.pkRed();
+    }
+
+    public logRed(){
+        if(this.logList[0])
+        {
+             return this.logOpenTime < this.logList[0].time;
+        }
+        return false
+    }
+    public pkRed(){
+        var arr = this.getPKArray();
+        if(arr[0])
+        {
+             return this.pkOpenTime < arr[0].time;
+        }
+        return false
+    }
+
+    public setOpen(type,stopSend = false){
+        if(type == 'log')
+        {
+            if(this.logList[0])
+            {
+                this.logOpenTime = this.logList[0].time;
+                SharedObjectManager.instance.setMyValue('friendRedData',{logOpenTime:this.logOpenTime,pkOpenTime:this.pkOpenTime});
+            }
+        }
+        else if(type == 'pk')
+        {
+            var arr = this.getPKArray();
+            if(arr[0])
+            {
+                this.pkOpenTime = arr[0].time;
+                SharedObjectManager.instance.setMyValue('friendRedData',{logOpenTime:this.logOpenTime,pkOpenTime:this.pkOpenTime});
+            }
+        }
+        if(!stopSend)
+            EM.dispatchEventWith(GameEvent.client.friend_red_change)
     }
 
     public showPKUI(id){
@@ -515,10 +576,23 @@ class FriendManager{
                     }
                     talkPlayer[id] = true;
                 }
+                if(FriendListUI.getInstance().stage && FriendListUI.getInstance()['tab'].selectedIndex == 1) //不显示红点
+                {
+                    self.setOpen('log',true);
+                }
+
                 EM.dispatchEventWith(GameEvent.client.friend_log_change)
             }
             if(pkChange)
+            {
+                if(FriendListUI.getInstance().stage && FriendListUI.getInstance()['tab'].selectedIndex == 2) //不显示红点
+                {
+                    self.setOpen('pk',true);
+                }
                 EM.dispatchEventWith(GameEvent.client.friend_pk_change)
+            }
+
+            self.setOpen('red');
             self.saveToLocal();
             if(fun)
                 fun();

@@ -3,13 +3,7 @@
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="80">
-		<e:Group>
-			<e:List id="list" width="640" x="0" y="0" itemRendererSkinName="FriendTalkItemSkin">
-				<e:layout>
-					<e:VerticalLayout gap="20" paddingTop="20"/>
-				</e:layout>
-			
-			</e:List>
+		<e:Group id="scrollGroup">
 		</e:Group>
 	</e:Scroller>
 	<e:Group x="0" bottom="-40" width="640">

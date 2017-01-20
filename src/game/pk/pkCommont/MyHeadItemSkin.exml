@@ -8,6 +8,7 @@
 
 
 	<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="142" horizontalCenter="1" textColor="0xEED1A7"/>
+	<e:Image id="redMC" source="red_point_png" x="108" y="0"/>
 
 
 </e:Skin>

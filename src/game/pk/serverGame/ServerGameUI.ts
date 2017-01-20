@@ -117,6 +117,9 @@ class ServerGameUI extends game.BaseUI {
 
 
         this.addPanelOpenEvent(GameEvent.client.force_change,this.renewChoose)
+        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewChoose);
+        this.addPanelOpenEvent(GameEvent.client.card_change,this.renewChoose);
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewChoose);
     }
 
     private renewChoose(){

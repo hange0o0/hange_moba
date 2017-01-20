@@ -17,5 +17,6 @@
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
+	<e:Image id="redMC" source="red_point_png" x="126" y="-2" visible="false"/>
 
 </e:Skin>

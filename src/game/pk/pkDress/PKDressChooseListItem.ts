@@ -10,6 +10,8 @@ class PKDressChooseListItem extends game.BaseItem {
     private coinText: eui.Label;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
+    private redMC: eui.Image;
+
 
 
 
@@ -56,11 +58,13 @@ class PKDressChooseListItem extends game.BaseItem {
         if(this.data.specialData.isEqual)
         {
             MyTool.removeMC(this.levelGroup);
+            this.redMC.visible = false;
         }
         else  //我自己
         {
             this.infoGroup.addChild(this.levelGroup);
             this.levelText.text = '' + UM.getMonsterLevel(vo.id)
+            this.redMC.visible = vo.canLevelUp()
         }
 
 
