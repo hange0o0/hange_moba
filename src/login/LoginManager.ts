@@ -82,6 +82,11 @@ class LoginManager{
             var msg = data.msg;
             if(msg.fail == 1)
             {
+                if(password == '@password')
+                {
+                    self.register(name,password);
+                    return;
+                }
                 Alert('用户或密码错误');
                 //if(Config.isDebug)
                 //{

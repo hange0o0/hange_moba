@@ -59,6 +59,8 @@ class VideoUI2 extends game.BaseUI {
     private scrollTime;
     private setChooseTimer
 
+    public debugShow = false
+
 
 
     public constructor() {
@@ -271,6 +273,9 @@ class VideoUI2 extends game.BaseUI {
             this.openGuide();
             this.onDragEnd();
         //},this)
+
+        if(this.debugShow)
+            this.visible = false;
 
     }
 

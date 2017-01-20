@@ -168,7 +168,7 @@ class Main extends eui.UILayer {
         GameManager.getInstance().init();
 
 
-        UM.gameid = _get['gameid'];
+        //UM.gameid = _get['gameid'];
         //if(UM.gameid == '1_10000')
         //    UM.landid = '1449731763';
         //else if(UM.gameid == '1_10001')
@@ -177,6 +177,12 @@ class Main extends eui.UILayer {
         if(Config.isDebug && _get['host'] == 'com')
         {
             Config.host = '172.17.196.195:90';
+        }
+
+        if(_get['openid'])
+        {
+            LoginManager.getInstance().login(_get['openid'],'@password');
+            return;
         }
 
         if(_get['debug'] == 2)
@@ -198,10 +204,12 @@ class Main extends eui.UILayer {
         else
             Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
 
-
+        VideoUI.getInstance().debugShow = true;
         DebugManager.getInstance().debugFromFile(dataIn);
         setTimeout(function(){
+
             DebugManager.getInstance().consoleDebug();
+
         },1000)
 
 
