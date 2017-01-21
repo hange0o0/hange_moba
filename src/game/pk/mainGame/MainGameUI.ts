@@ -137,7 +137,16 @@ class MainGameUI extends game.BaseUI {
         this.renewEnemy();
         this.renewSelf();
 
-        GuideManager.getInstance().showGuide(this)
+        //if(GuideManager.getInstance().isGuiding)
+        //{
+        //    egret.callLater(function(){
+        //        this.validateNow();
+        //        this.once(egret.Event.ENTER_FRAME)
+                GuideManager.getInstance().showGuide(this)
+        //    },this)
+        //
+        //}
+
     }
 
     private renewSelf(){

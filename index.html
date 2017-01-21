@@ -204,10 +204,11 @@
 </head>
 <body>
 
-    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+    <div id="gameCon" style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
          data-orientation="portrait"
          data-scale-mode="fixedWidth"
+		 data-resolution-mode="retina"
          data-frame-rate="30"
          data-content-width="640"
          data-content-height="960"
@@ -218,6 +219,16 @@
     </div>
     <script>
         egret.runEgret({renderMode:"webgl"});
+
+		var ua = navigator.userAgent.toLowerCase();
+		var isWindow = ua.indexOf('windows') != -1 || ua.indexOf('macintosh') != -1;
+		if(isWindow){
+
+			var ww = 640, hh = 960;
+			//ww = 940, hh = 600; //新浪
+			window["gameCon"].style["width"] = (ww)+"px";
+			window["gameCon"].style["height"] = (hh)+"px";
+		}
     </script>
 </body>
 </html>

@@ -41,11 +41,12 @@ class ChooseServerUI extends game.BaseUI {
         this.list1.selectedIndex = -1;
     }
     private onClick(){
-        this.hide();
+
         if(this.type == 1)
             LoginServerUI.getInstance().renewServer(this.list1.selectedItem.serverid)
         else
             LoginServerUI.getInstance().renewServer(this.list2.selectedItem.serverid)
+        this.hide();
     }
 
     public show(v?){

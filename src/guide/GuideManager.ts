@@ -43,8 +43,8 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
-            mc:"MainGameUI.getInstance()['enemyGroup']",
-            text:'我们已经得到系统给的卡组了，选观察一下对手的卡组，以方便我们制定合适的战术',
+            mc:"this.getMainGameRect()",
+            text:'我们已经得到系统给的卡组了，先观察一下对手的卡组，以方便我们制定合适的战术',
             fun:function(){self.showGuide(MainGameUI.getInstance())}
         })
 
@@ -219,6 +219,10 @@ class GuideManager {
         var h = Math.min(580,GameManager.stage.stageHeight - 180 -130)
         var top = (GameManager.stage.stageHeight - 180 -130 - h)/2 + 180
         return new egret.Rectangle(80,top,480,h);
+    }
+
+    private getMainGameRect(){
+        return new egret.Rectangle(0,80,640,340);
     }
 
 }

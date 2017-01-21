@@ -43,7 +43,29 @@ class LoginServerUI extends game.BaseUI {
     }
 
     public superShow(){
+        if(_get['serverid'] && _get['openid'])
+        {
+            this.autoServer();
+            return;
+        }
         super.show();
+    }
+
+    private autoServer(){
+        var serverid = _get['serverid']
+        var LM = LoginManager.getInstance();
+
+        if(LM.myServer[serverid]) //这个服上有号
+        {
+            LM.loginServer(serverid)
+        }
+        else
+        {
+            //var self = this;
+            LM.registerServer(_get['openid'],Math.floor(Math.random()*40),serverid,function(){
+                LM.loginServer(serverid)
+            });
+        }
     }
 
     public onShow(){
