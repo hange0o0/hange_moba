@@ -5,7 +5,7 @@
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
-				<e:Group y="-80" height="460" x="0">
+				<e:Group y="-80" height="440" x="0">
 					<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 					<e:Label id="winText" y="130" textColor="0xCCB48E" text="40.3%" x="164"/>
@@ -23,8 +23,12 @@
 						<e:HorizontalLayout verticalAlign="bottom"/>
 					</e:layout>
 				</e:Group>
-				<e:Image id="headMC" source="icon_power_png" x="23" y="6" width="72" height="72"/>
-				<e:List id="enemyList" height="259" y="94" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+				<e:Image id="headMC" source="icon_power_png" x="23" y="5" width="72" height="72"/>
+				<e:Group id="helpBtn" y="40" top="10" right="20" x="40">
+					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
+					<e:Label horizontalCenter="0" y="10" textColor="0xF8D05A" text="?"/>
+				</e:Group>
+				<e:List id="enemyList" height="259" y="95" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="20" verticalGap="10"/>
 					</e:layout>
@@ -42,12 +46,12 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group y="375.83333333333337" height="100%" minHeight="600" x="0">
+			<e:Group y="375.83333333333337" minHeight="510" x="0" height="100%">
 				<e:layout>
 					<e:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
 				</e:layout>
-				<e:Group id="myGroup" y="0" height="450" x="36.66666666666667">
-					<e:List y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList">
+				<e:Group id="myGroup" y="0" x="36.66666666666667" height="430">
+					<e:List y="50" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList">
 						<e:layout>
 							<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
 						</e:layout>
@@ -64,27 +68,20 @@
 							</e:Array>
 						</e:ArrayCollection>
 					</e:List>
-					<e:Group horizontalCenter="0" y="10" x="20">
+					<e:Group horizontalCenter="0" y="0" x="30">
 						<e:Image source="main_mc_png" y="509" x="10"/>
-						<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26" id="cardTitle"/>
+						<e:Label id="cardTitle" y="14" textColor="0xD9B67B" text="PK卡组" textAlign="center" width="140" horizontalCenter="0" size="26"/>
 						<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
 						<e:layout>
 							<e:HorizontalLayout verticalAlign="bottom"/>
 						</e:layout>
 					</e:Group>
 				</e:Group>
-				<e:Group width="468" height="70">
-					<e:Rect ellipseWidth="10" fillAlpha="0" y="0" strokeWeight="3" x="-3" strokeColor="0xF7B900" width="225" ellipseHeight="10" fillColor="0xF7B900" height="65" id="chooseMC"/>
-					<e:Button skinName="Btn_r3Skin" y="0" label="卡组1" id="card1Btn"/>
-					<e:Button id="card2Btn" label="卡组2" y="0" skinName="Btn_r3Skin" x="250"/>
-				</e:Group>
-				<e:Group width="640" y="395.83333333333337" x="0">
-					<e:Image source="line_png" y="499" x="0"/>
-					<e:Button id="chooseBtn" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
-					<e:Image source="line_png" y="509" x="10"/>
-					<e:layout>
-						<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
-					</e:layout>
+				<e:Group height="75" y="0" horizontalCenter="0">
+					<e:Rect ellipseWidth="10" fillAlpha="0" y="-3" strokeWeight="3" x="-3" strokeColor="0xF7B900" width="166" ellipseHeight="10" fillColor="0xF7B900" height="62" id="chooseMC"/>
+					<e:Button y="0" label="卡组1" id="card1Btn" skinName="Btn_b2Skin"/>
+					<e:Button id="card2Btn" label="卡组2" y="0" x="170" skinName="Btn_b2Skin"/>
+					<e:Button id="chooseBtn" label="使用出战" y="-2" skinName="Btn_r3Skin" x="370"/>
 				</e:Group>
 			</e:Group>
 			<e:layout>

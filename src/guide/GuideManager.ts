@@ -98,7 +98,7 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
-            mc:"PKResultUI.getInstance()['list']",
+            mc:"new egret.Rectangle(0,600,640,500)",
             text:'是不是很简单？如果想了解更详尽的PK过程，可以点击下方的对战信息进行查看',
             fun:function(){self.showGuide(PKWinUI.getInstance())}
         })

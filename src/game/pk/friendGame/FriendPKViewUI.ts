@@ -19,6 +19,7 @@ class FriendPKViewUI extends game.BaseUI {
     private myGroup1: eui.Group;
     private bg1: eui.Group;
     private myList1: eui.List;
+    private helpBtn: eui.Group;
 
 
 
@@ -46,6 +47,11 @@ class FriendPKViewUI extends game.BaseUI {
         this.myList2.itemRenderer =  EnemyHeadItem;
 
         this.scroller.bounces = false;
+        this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onHelp(){
+        HelpManager.getInstance().friendHelp();
     }
 
     public beforeHide(){

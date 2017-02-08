@@ -20,6 +20,7 @@ class PKDressUI extends game.BaseUI {
     private simpleList: eui.List;
     private topBtn: eui.Button;
     private enemyList: eui.List;
+    private helpBtn: eui.Group;
 
 
 
@@ -78,6 +79,11 @@ class PKDressUI extends game.BaseUI {
         this.addEventListener('before_drag',this.onDragBefore,this);
         this.addEventListener('after_drag',this.onDragAfter,this);
 
+        this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onHelp(){
+        HelpManager.getInstance().pkPosHelp();
     }
 
     public beforeHide(){

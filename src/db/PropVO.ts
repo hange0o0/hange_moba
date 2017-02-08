@@ -23,7 +23,7 @@ class PropVO {
     }
 
     public get thumb(){
-        return 'prop_thumb_' + this.id;
+        return 'prop_thumb_' + this.id + '_jpg';
     }
 
 

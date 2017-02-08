@@ -15,6 +15,7 @@ class MainGameUI extends game.BaseUI {
     private coinGroup: eui.Group;
     private myList0: eui.List;
     private chooseBtn0: eui.Button;
+    private helpBtn: eui.Group;
 
 
     public enemyArray;
@@ -40,6 +41,11 @@ class MainGameUI extends game.BaseUI {
 
 
         //this.enemyList.add
+        this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onHelp(){
+        HelpManager.getInstance().mainHelp();
     }
 
     public beforeHide(){
@@ -84,11 +90,15 @@ class MainGameUI extends game.BaseUI {
         };
         var enemyList = this.enemyArray = [];
         var arr = MainGameVO.getObject(UM.main_game.level).list;
+        var killNum = 0;
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
             if(MM.isKill(i))
+            {
+                killNum ++;
                 continue;
+            }
             enemyList.push({
                 vo: MonsterVO.getObject(id),
                 isMain:true,
@@ -97,7 +107,7 @@ class MainGameUI extends game.BaseUI {
                 id: id,
                 specialData: specialData,
 
-                index: i,
+                index: i-killNum,
 
                 list:enemyList
             });

@@ -101,6 +101,7 @@ class ServerGameManager{
             self.lastPKData = msg;
             msg.info.type = PKManager.PKType.SERVER;
             PKManager.getInstance().onPK(PKManager.PKType.SERVER,msg);
+            UM.server_game.pkdata = Config.pk_version;
 
             if(fun)
                 fun();
@@ -119,6 +120,11 @@ class ServerGameManager{
         }
         if(UM.server_game.pkdata)
         {
+            if(UM.server_game.pkdata != Config.pk_version)
+            {
+                Alert('录像已过期');
+                return;
+            }
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.SERVER,function(data){
                 self.lastPKData = data;

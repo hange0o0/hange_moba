@@ -3,10 +3,14 @@
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Group x="0" y="77" y.open="335">
-		<e:Image source="fu2_png" x="25" y="6"/>
-		<e:Label id="coinText" text="X100" x="65" y="12" textColor="0xCCB48E" size="22"/>
-		<e:Label id="forceText" y="12" textColor="0xCCB48E" text="标签" x="150" size="22"/>
-		<e:Button id="viewBtn" x="509" y="2" label="对手" skinName="Btn_b2Skin" scaleX="0.8" scaleY="0.8" label.normal="对手信息" label.open="关闭信息"/>
+		<e:Image source="fu2_png" x="25" y="7"/>
+		<e:Label id="coinText" text="X100" x="65" y="13" textColor="0xCCB48E" size="22"/>
+		<e:Label id="forceText" y="13" textColor="0xCCB48E" text="标签" x="150" size="22"/>
+		<e:Button id="viewBtn" y="4" label="对手" skinName="Btn_b2Skin" scaleX="0.8" scaleY="0.8" label.normal="对手信息" label.open="关闭信息" right="70"/>
+		<e:Group id="helpBtn" y="20" top="0" right="10" x="20">
+			<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
+			<e:Label y="10" horizontalCenter="0" textColor="0xF8D05A" text="?"/>
+		</e:Group>
 		<e:Image source="line_png" x="0" y="47" width="640"/>
 	</e:Group>
 	<e:Scroller id="scroller" x="0" width="640" top="135" bottom="0" top.open="395" bottom.open="0">

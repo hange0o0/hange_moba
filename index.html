@@ -218,17 +218,18 @@
          data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
     </div>
     <script>
-        egret.runEgret({renderMode:"webgl"});
-
 		var ua = navigator.userAgent.toLowerCase();
 		var isWindow = ua.indexOf('windows') != -1 || ua.indexOf('macintosh') != -1;
 		if(isWindow){
-
 			var ww = 640, hh = 960;
-			//ww = 940, hh = 600; //新浪
-			window["gameCon"].style["width"] = (ww)+"px";
-			window["gameCon"].style["height"] = (hh)+"px";
+			var dw = document.body.clientWidth;
+			var dh = document.body.clientHeight;
+			var scale = Math.min(1,dh/hh,dw/ww);
+			window["gameCon"].style["width"] = (ww*scale)+"px";
+			window["gameCon"].style["height"] = (hh*scale)+"px";
 		}
+
+		egret.runEgret({renderMode:"webgl"});
     </script>
 </body>
 </html>

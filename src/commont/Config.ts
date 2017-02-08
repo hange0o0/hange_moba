@@ -10,7 +10,8 @@ class Config {
     public static isDebug: boolean = true;
     public static host: string = 'hangegame.com';
     //public static host: string = '172.17.196.195:90';
-    public static version: string = "1";
+    public static version: number = 1;
+    public static pk_version: number = 1;
     public static cdn: string = "";
     public static localResRoot:string = "resource/";
 

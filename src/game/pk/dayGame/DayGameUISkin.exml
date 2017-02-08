@@ -5,13 +5,17 @@
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
-				<e:Group x="0" y="-80" height="400">
+				<e:Group x="0" y="-80" height="420">
 					<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" y="0" height="100%"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" y="0" height="100%"/>
 				</e:Group>
-
-				<e:Label id="desText" text="敌方卡组" y="5" textColor="0xCCB48E" horizontalCenter="0"/>
-				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="15">
+				<e:Group id="helpBtn" top="10" right="20">
+					<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
+					<e:Label text="?" y="10" textColor="0xF8D05A" horizontalCenter="0"/>
+					
+				</e:Group>
+				<e:Label id="desText" text="敌方卡组" y="15" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
 					<e:layout>
 						<e:TileLayout horizontalGap="30"/>
 					</e:layout>
@@ -27,7 +31,7 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group x="80" y="471" height="520" id="myGroup0">
+			<e:Group x="80" y="471" height="510" id="myGroup0">
 				<e:List y="70" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList0">
 					<e:layout>
 						<e:TileLayout horizontalGap="15" requestedColumnCount="4" verticalGap="10"/>
@@ -47,7 +51,7 @@
 				</e:List>
 				<e:Group horizontalCenter="0" y="10" x="20">
 					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26"/>
+					<e:Label y="14" textColor="0xD9B67B" text="PK卡组" textAlign="center" width="140" horizontalCenter="0" size="26"/>
 					<e:Image source="main_mc_png" y="519" scaleX="-1" x="20"/>
 					<e:layout>
 						<e:HorizontalLayout verticalAlign="bottom"/>
@@ -55,11 +59,9 @@
 				</e:Group>
 				<e:Group width="640" horizontalCenter="0" bottom="0">
 					<e:layout>
-						<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
+						<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
 					</e:layout>
-					<e:Image source="line_png" y="499" x="0"/>
 					<e:Button x="365" y="0" label="使用出战" skinName="Btn_r3Skin" id="chooseBtn0"/>
-					<e:Image source="line_png" y="509" x="10"/>
 				</e:Group>
 			</e:Group>
 

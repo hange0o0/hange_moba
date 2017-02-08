@@ -90,7 +90,7 @@ class DayGameManager{
             self.lastPKData = msg;
             msg.info.type = PKManager.PKType.DAY;
             PKManager.getInstance().onPK(PKManager.PKType.DAY,msg);
-
+            UM.day_game.pkdata = Config.pk_version;
             if(fun)
                 fun();
         });
@@ -139,6 +139,11 @@ class DayGameManager{
         }
         if(UM.day_game.pkdata)
         {
+            if(UM.day_game.pkdata != Config.pk_version)
+            {
+                Alert('录像已过期');
+                return;
+            }
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.DAY,function(data){
                 self.lastPKData = data;

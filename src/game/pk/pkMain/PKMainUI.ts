@@ -17,6 +17,9 @@ class PKMainUI extends game.BaseUI {
     private jumpBtn: eui.Button;
     //private enemyGroup: eui.Group;
     private selfGroup: eui.Group;
+    private topMC: eui.Image;
+    private bottomMC: eui.Image;
+
 
 
 
@@ -60,6 +63,8 @@ class PKMainUI extends game.BaseUI {
     private needUpArr1 = [];
     private needUpArr2 = [];
 
+    private scene;
+
 
 
 
@@ -98,17 +103,20 @@ class PKMainUI extends game.BaseUI {
     }
 
     public show(){
+        this.initSeed();
         var group = VideoManager.getInstance().getVideoAniGroup();
-        if(group.length == 0)
-            this.LoadFiles = [];
-        else
-        {
+        this.scene =  'pk_bg'+(1 + Math.floor(this.random()*20))+'_jpg';
+        group.push(this.scene);
+        //if(group.length == 0)
+        //    this.LoadFiles = [];
+        //else
+        //{
             RES.createGroup('skill_ani',group,true);
             this.LoadFiles = ['skill_ani'];
-        }
+        //}
 
         this.pkList = PKManager.getInstance().mainVideoList.concat();
-        this.initSeed();
+
         this.cardIndex1 = -1;
         this.cardIndex2 = -1;
         super.show();
@@ -148,9 +156,9 @@ class PKMainUI extends game.BaseUI {
         var stageHeight = this.stageHeight = this.stage.stageHeight;
         this.jumpBtn.visible = false;
 
-        var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
-        this.bg0.source = scene;
-        this.bg1.source = scene;
+        //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
+        this.bg0.source = this.scene;
+        this.bg1.source = this.scene;
 
         while(this.itemEnemy.length > 0)
         {
@@ -181,9 +189,6 @@ class PKMainUI extends game.BaseUI {
         this.bg1.scaleX = this.bg1.scaleY = scale;
         var tw:egret.Tween = egret.Tween.get(this.bg0);
         var tw2:egret.Tween = egret.Tween.get(this.bg0);
-
-
-
         tw.to({scaleX:1,scaleY:1},500);// .wait(200)
         tw2.to({x:0,y:Y},500,egret.Ease.sineIn); //.wait(200)
 
@@ -192,6 +197,21 @@ class PKMainUI extends game.BaseUI {
         var tw2:egret.Tween = egret.Tween.get(this.bg1);
         tw.to({scaleX:1,scaleY:1},500).call(this.shakeBG,this).wait(600).call(this.addItemMovie,this);    //.wait(100)
         tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
+
+
+        this.topMC.y = -123
+        this.bottomMC.y = this.stageHeight
+        var des = (this.stageHeight - this.fightHeight)/2;
+        if(des > 0)
+        {
+            var itemHeight = 123;
+            var tw:egret.Tween = egret.Tween.get(this.topMC);
+            tw.to({y:-itemHeight+des},des*1.2)
+            var tw:egret.Tween = egret.Tween.get(this.bottomMC);
+            tw.to({y:this.stageHeight-des},des*1.2)
+        }
+
+        this.jumpBtn.y = this.stageHeight- des - 70;
     }
 
     private shakeBG(){
@@ -278,13 +298,13 @@ class PKMainUI extends game.BaseUI {
             if(arr.length == 4)
             {
                 item.x = (i%2)*150;
-                item.y = Math.floor(i/2)*150;
+                item.y = Math.floor(i/2)*145;
                 item.line = Math.floor(i/2) + 1
             }
             else
             {
                 item.x = (i%3)*150;
-                item.y = Math.floor(i/3)*150;
+                item.y = Math.floor(i/3)*145;
                 item.line = Math.floor(i/3) + 1
                 if(arr.length == 5 && i >= 3)
                 {

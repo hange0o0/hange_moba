@@ -1,7 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="LoginUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="bg_jpg" x="0" y="0"/>
-	<e:Group horizontalCenter="0" bottom="120" width="440">
+<e:Skin class="LoginUISkin" width="640" height="1200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="0" verticalCenter="0">
+		<e:Image id="topMC" source="fire_top_jpg" x="0" y="1.1102230246251565e-16"/>
+		<e:Image source="login_bg_jpg" x="0" y="120.83333333333334"/>
+		<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="0" y="1205.8333333333333"/>
+		<e:layout>
+			<e:VerticalLayout gap="0"/>
+		</e:layout>
+	</e:Group>
+
+	<e:Group horizontalCenter="0" width="440" verticalCenter="320">
 		<e:Label text="用户名：" y="10" textColor="0xC4A36A" x="0"/>
 		<e:Label y="77" text="密码：" textColor="0xC4A36A" x="30"/>
 		<e:TextInput id="nameText" x="134" y="0" skinName="MyTextInputSkin" height="50"/>

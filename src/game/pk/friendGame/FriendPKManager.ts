@@ -145,7 +145,6 @@ class FriendPKManager{
 
             msg.info.type = PKManager.PKType.FRIEND;
             PKManager.getInstance().onPK(PKManager.PKType.FRIEND,msg);
-
             if(fun)
                 fun();
         });
@@ -160,6 +159,7 @@ class FriendPKManager{
                 fun();
             return;
         }
+
         var self = this;
         var oo:any = {};
         var pkObject = FriendManager.getInstance().pkObject[logid];
@@ -167,8 +167,20 @@ class FriendPKManager{
         oo.team1 = content.answer_choose;
         oo.team2 = content.ask_choose;
         oo.isequal = content.isequal;
+        oo.pk_version = content.pk_version;
+
+        if(Math.floor(content.pk_version) < Config.pk_version){
+            Alert('录像已过期');
+            return;
+        }
         Net.send(GameEvent.pkCore.pk_result,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 2)
+            {
+                Config.pk_version = Math.floor(msg.pk_version);
+                Alert('录像已过期');
+                return;
+            }
             self.lastPKData[logid] = msg//.pkdata;
 
             var info:any = msg.info = {};

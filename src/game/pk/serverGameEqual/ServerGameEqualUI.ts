@@ -15,14 +15,17 @@ class ServerGameEqualUI extends game.BaseUI {
     private nameText: eui.Label;
     private maxText: eui.Label;
     private headMC: eui.Image;
+    private helpBtn: eui.Group;
     private enemyList: eui.List;
     private myGroup: eui.Group;
     private myList: eui.List;
-    private cardTitle: eui.Label;
     private chooseMC: eui.Rect;
     private card1Btn: eui.Button;
     private card2Btn: eui.Button;
     private chooseBtn: eui.Button;
+    private cardTitle: eui.Label;
+
+
 
 
 
@@ -56,7 +59,11 @@ class ServerGameEqualUI extends game.BaseUI {
 
         //this.enemyList.add
 
+        this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
 
+    private onHelp(){
+        HelpManager.getInstance().serverEqualHelp();
     }
 
     public beforeHide(){
@@ -146,12 +153,12 @@ class ServerGameEqualUI extends game.BaseUI {
 
         if(this.chooseInex == 0)
         {
-            this.cardTitle.text = '卡组1'
+            this.cardTitle.text = 'PK卡组1'
             tw.to({x:this.card1Btn.x-3},100)
         }
         else
         {
-            this.cardTitle.text = '卡组2'
+            this.cardTitle.text = 'PK卡组2'
             tw.to({x:this.card2Btn.x-3},100)
         }
     }

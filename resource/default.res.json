@@ -9,7 +9,7 @@
 		"name":"js"
 	},
 	{
-		"keys":"btn_b1_png,btn_b1__png,btn_b2_png,btn_b2__png,btn_close1_png,btn_close1__png,btn_close2_png,btn_close2__png,btn_d1_png,btn_d2_png,btn_r1_png,btn_r1__png,btn_r2_png,btn_r2__png,btn_r3_png,btn_r3__png,border1_png,bg_jpg,main_button_bottom_jpg,window1_jpg,fire_top_jpg,top_bg_jpg,book_bg1_jpg,book_bg2_jpg,rate_bar_bg_png,window2_png,card_bg_png,bold_bg_png,rate_bar_drag_png,rate_ar_mc_png,window1_top_png,main_exp_jpg,bar2_png,bar_bg_png,bar1_png,line_png,main_item_bg_png,pk_vs_png,pk_result_line_png,pk_bottm_png,pk_fail_png,pk_win_png,border_head_png,border_light_png,border2_png,border3_png,border4_png,border5_png,border6_png,border7_png,border8_png,head_border_light1_png,head_border_light2_png,head_border_light3_png,head_border1_png,head_border2_png,head_border3_png,head_border4_png,head_border5_png,main_border_png,btn_down_png,btn_pk_png,btn_up_png,left_btn_png,tab1_png,tab2_png,icon_rank_png,icon_token_png,kulu_png,main_mc_png,menu_icon_1_png,menu_icon_2_png,menu_icon_3_png,menu_icon_4_png,menu_icon_5_png,menu_icon_6_png,pk_icon_png,point1_png,point2_png,radio_btn1_png,radio_btn2_png,red_point_png,replay_mc_png,stop_mc_png,view_mc_png,arrow1_png,arrow2_png,arrow3_png,arrow4_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu1_png,fu2_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_def_png,icon_empty_png,icon_lv_png,icon_money_png,icon_power_png,icon_pve_png,icon_pvp_2_png,icon_pvp_3_png,icon_pvp_ticket_png,fight_fail_1_png,font_num1_fnt,font_num2_fnt,font_num3_fnt,font_num4_fnt,icon_new_png,random_btn_png,note_icon_png,line2_png,border_light3_png,border_light1_png,border_light2_png,drop_png,tips_jpg,line3_png,drop2_png,fight_win_png,result_fnt,arrow5_png,soul_icon_png,icon_dec_png,icon_add_png,icon_server_png,card_battle_png,lock_icon_png,choose_icon_png,item_bg_jpg,box0_png,box1_png,box2_png,box4_png,box3_png,pay_coin_png,pay_energy_png,pk_bg2_jpg,pk_bg1_jpg,pk_bg4_jpg,pk_bg3_jpg,bar3_png,arrow7_png,arrow6_png,arrow8_png,flag_mc_png,bar_title_jpg,use_skill_icon_png,button_go_2_png,arrow9_png,bar4_png,buff_1_png,buff_2_png,buff_3_png,buff_11_png,buff_12_png,buff_13_png,buff_21_png,buff_22_png,buff_23_png,buff_24_png,buff_25_png,buff_31_png,buff_41_png,buff_42_png,buff_x_png",
+		"keys":"btn_b1_png,btn_b1__png,btn_b2_png,btn_b2__png,btn_close1_png,btn_close1__png,btn_close2_png,btn_close2__png,btn_d1_png,btn_d2_png,btn_r1_png,btn_r1__png,btn_r2_png,btn_r2__png,btn_r3_png,btn_r3__png,border1_png,bg_jpg,main_button_bottom_jpg,window1_jpg,fire_top_jpg,top_bg_jpg,book_bg1_jpg,book_bg2_jpg,rate_bar_bg_png,window2_png,card_bg_png,bold_bg_png,rate_bar_drag_png,rate_ar_mc_png,window1_top_png,main_exp_jpg,bar2_png,bar_bg_png,bar1_png,line_png,main_item_bg_png,pk_vs_png,pk_result_line_png,pk_bottm_png,pk_fail_png,pk_win_png,border_head_png,border_light_png,border2_png,border3_png,border4_png,border5_png,border6_png,border7_png,border8_png,head_border_light1_png,head_border_light2_png,head_border_light3_png,head_border1_png,head_border2_png,head_border3_png,head_border4_png,head_border5_png,main_border_png,btn_down_png,btn_pk_png,btn_up_png,left_btn_png,tab1_png,tab2_png,icon_rank_png,icon_token_png,kulu_png,main_mc_png,menu_icon_1_png,menu_icon_2_png,menu_icon_3_png,menu_icon_4_png,menu_icon_5_png,menu_icon_6_png,pk_icon_png,point1_png,point2_png,radio_btn1_png,radio_btn2_png,red_point_png,replay_mc_png,stop_mc_png,view_mc_png,arrow1_png,arrow2_png,arrow3_png,arrow4_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu1_png,fu2_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_def_png,icon_empty_png,icon_lv_png,icon_money_png,icon_power_png,icon_pve_png,icon_pvp_2_png,icon_pvp_3_png,icon_pvp_ticket_png,fight_fail_1_png,font_num1_fnt,font_num2_fnt,font_num3_fnt,font_num4_fnt,icon_new_png,random_btn_png,note_icon_png,line2_png,border_light3_png,border_light1_png,border_light2_png,drop_png,tips_jpg,line3_png,drop2_png,fight_win_png,result_fnt,arrow5_png,soul_icon_png,icon_dec_png,icon_add_png,icon_server_png,card_battle_png,lock_icon_png,choose_icon_png,item_bg_jpg,box0_png,box1_png,box2_png,box4_png,box3_png,pay_coin_png,pay_energy_png,bar3_png,arrow7_png,arrow6_png,arrow8_png,flag_mc_png,bar_title_jpg,use_skill_icon_png,button_go_2_png,arrow9_png,bar4_png",
 		"name":"gamepreload"
 	},
 	{
@@ -23,6 +23,14 @@
 	{
 		"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png",
 		"name":"loginload"
+	},
+	{
+		"keys":"pk_bg2_jpg,pk_bg3_jpg,pk_bg4_jpg,pk_bg5_jpg,pk_bg6_jpg,pk_bg7_jpg,pk_bg8_jpg,pk_bg10_jpg,pk_bg11_jpg,pk_bg12_jpg,pk_bg13_jpg,pk_bg14_jpg,pk_bg15_jpg,pk_bg16_jpg,pk_bg18_jpg,pk_bg19_jpg,pk_bg20_jpg,pk_bg1_jpg,pk_bg9_jpg,pk_bg17_jpg",
+		"name":"pk_bg"
+	},
+	{
+		"keys":"",
+		"name":"music"
 	}],
 	"resources":[
 	{
@@ -914,26 +922,6 @@
 		"name":"pay_energy_png",
 		"type":"image",
 		"url":"game_assets/pay_energy.png"
-	},
-	{
-		"name":"pk_bg2_jpg",
-		"type":"image",
-		"url":"game_assets/pk_bg2.jpg"
-	},
-	{
-		"name":"pk_bg1_jpg",
-		"type":"image",
-		"url":"game_assets/pk_bg1.jpg"
-	},
-	{
-		"name":"pk_bg4_jpg",
-		"type":"image",
-		"url":"game_assets/pk_bg4.jpg"
-	},
-	{
-		"name":"pk_bg3_jpg",
-		"type":"image",
-		"url":"game_assets/pk_bg3.jpg"
 	},
 	{
 		"name":"bar3_png",
@@ -2229,5 +2217,155 @@
 		"name":"ui_loading_png",
 		"type":"image",
 		"url":"game_assets/ui_loading.png"
+	},
+	{
+		"name":"pk_bg2_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg2.jpg"
+	},
+	{
+		"name":"pk_bg3_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg3.jpg"
+	},
+	{
+		"name":"pk_bg4_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg4.jpg"
+	},
+	{
+		"name":"pk_bg5_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg5.jpg"
+	},
+	{
+		"name":"pk_bg6_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg6.jpg"
+	},
+	{
+		"name":"pk_bg7_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg7.jpg"
+	},
+	{
+		"name":"pk_bg8_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg8.jpg"
+	},
+	{
+		"name":"pk_bg10_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg10.jpg"
+	},
+	{
+		"name":"pk_bg11_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg11.jpg"
+	},
+	{
+		"name":"pk_bg12_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg12.jpg"
+	},
+	{
+		"name":"pk_bg13_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg13.jpg"
+	},
+	{
+		"name":"pk_bg14_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg14.jpg"
+	},
+	{
+		"name":"pk_bg15_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg15.jpg"
+	},
+	{
+		"name":"pk_bg16_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg16.jpg"
+	},
+	{
+		"name":"pk_bg18_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg18.jpg"
+	},
+	{
+		"name":"pk_bg19_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg19.jpg"
+	},
+	{
+		"name":"pk_bg20_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg20.jpg"
+	},
+	{
+		"name":"pk_bg1_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg1.jpg"
+	},
+	{
+		"name":"pk_bg9_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg9.jpg"
+	},
+	{
+		"name":"pk_bg17_jpg",
+		"type":"image",
+		"url":"pk_bg/pk_bg17.jpg"
+	},
+	{
+		"name":"dungeon_monster_jpg",
+		"type":"image",
+		"url":"prop_icon/dungeon_monster.jpg"
+	},
+	{
+		"name":"prop_card_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_card.jpg"
+	},
+	{
+		"name":"prop_coin_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_coin.jpg"
+	},
+	{
+		"name":"prop_diamond_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_diamond.jpg"
+	},
+	{
+		"name":"prop_energy_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_energy.jpg"
+	},
+	{
+		"name":"prop_exp_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_exp.jpg"
+	},
+	{
+		"name":"prop_ticket_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_ticket.jpg"
+	},
+	{
+		"name":"prop_ticket2_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_ticket2.jpg"
+	},
+	{
+		"name":"prop_thumb_21_jpg",
+		"type":"image",
+		"url":"prop_icon/prop_thumb_21.jpg"
+	},
+	{
+		"name":"login_bg_jpg",
+		"type":"image",
+		"url":"game_assets/login_bg.jpg"
 	}]
 }

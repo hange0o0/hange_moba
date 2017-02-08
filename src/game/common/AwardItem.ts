@@ -21,27 +21,27 @@ class AwardItem extends game.BaseItem {
         {
             case 'diamond':
             {
-                this.mc.source = 'diamond'
+                this.mc.source = 'prop_diamond_jpg'
                 break;
             }
             case 'coin':
             {
-                this.mc.source = 'coin'
+                this.mc.source = 'prop_coin_jpg'
                 break;
             }
             case 'energy':
             {
-                this.mc.source = 'coin'
+                this.mc.source = 'prop_energy_jpg'
                 break;
             }
             case 'exp':
             {
-                this.mc.source = 'exp'
+                this.mc.source = 'prop_exp_jpg'
                 break;
             }
             case 'card':
             {
-                this.mc.source = 'card'
+                this.mc.source = 'prop_card_jpg'
                 break;
             }
             default:    //prop

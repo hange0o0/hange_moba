@@ -104,7 +104,7 @@ class PKResultUI extends game.BaseUI {
         this.selfList.dataProvider = new eui.ArrayCollection(arr)
 
         arr = [];
-        this.enemyText.text = '敌方战力：' +  team2Base.f;
+        this.enemyText.text = '敌方战力：' +  (team2Base.f || 0);
         for(var i=0;i<team2Base.list.length;i++)
         {
             var mid = team2Base.list[i]

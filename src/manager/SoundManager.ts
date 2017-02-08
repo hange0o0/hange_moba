@@ -94,7 +94,7 @@ class SoundManager {
             this.stopBgSound();
         }
         else{
-            this.playSound(SoundConfig.b101);
+            this.playSound(SoundConfig.bg);
         }
     }
     public set openShake(v){
@@ -120,7 +120,7 @@ class SoundManager {
     }
 
     public playBtn(){
-        this.playEffect(SoundConfig.f207);
+        this.playEffect(SoundConfig.effect_button);
     }
 
     public stopBgSound(){
@@ -256,22 +256,28 @@ class SoundManager {
             keysArr.push(name + "_mp3");
         }
 
-        this.pkKey.push('f211_mp3');
+
         for(var i in nameList){
             var op = this.getSoundObject(nameList[i]);
-            if(nameList[i].indexOf('f') == 0)       {
+            if(nameList[i].indexOf('effect_') == 0)       {
                 addResources(nameList[i], "music/" + nameList[i]+'.mp3')
-                if(nameList[i].indexOf('f3') == 0)
-                    this.pkKey.push(nameList[i] + "_mp3")
+            }
+            else if(nameList[i].indexOf('pk_') == 0)       {
+                addResources(nameList[i], "music/" + nameList[i]+'.mp3')
+                this.pkKey.push(nameList[i] + "_mp3")
             }
 
             index ++;
-            (function(op){
-                egret.setTimeout(function(){
-                    self.preLoadOne(op);
-                }, this,100*index)
-            })(op)
+            //(function(op){
+            //    egret.setTimeout(function(){
+            //        self.preLoadOne(op);
+            //    }, this,100*index)
+            //})(op)
         }
+
+        this.pkKey.push('effect_win_mp3');
+        this.pkKey.push('effect_loss_mp3');
+
         if(!this.isQzonePlay) {
             RES.parseConfig(data, Config.localResRoot);
             //RES.createGroup('sound', keysArr, true);
@@ -297,6 +303,18 @@ class SoundManager {
         }
         catch(e){}
     }
+
+
+    public loadPKSound(){
+        if(this.pkKey)
+        {
+            RES.createGroup('pksound', SoundManager.getInstance().pkKey, true);
+            RES.loadGroup("pksound");
+            this.pkKey = null;
+        }
+    }
+
+
     /************************************************************************************************** */
     
     private playTime:number;
@@ -421,61 +439,33 @@ class SoundManager {
 }
 
 class SoundConfig {
-    public static b101: string = "b101";
-    public static b102: string = "b102";
-    public static b103: string = "b103";
-    public static b104: string = "b104";
-    public static f201: string = "f201";
-    public static f202: string = "f202";
-    public static f203: string = "f203";
-    public static f204: string = "f204";
-    public static f205: string = "f205";
-    public static f206: string = "f206";
-    public static f207: string = "f207";
-    public static f208: string = "f208";
-    public static f209: string = "f209";
-    public static f210: string = "f210";
-    public static f211: string = "f211";
-    public static f212: string = "f212";
-    public static f213: string = "f213";
-    public static f214: string = "f214";
-    public static f215: string = "f215";
-    public static f216: string = "f216";
-    public static f301: string = "f301";
-    public static f302: string = "f302";
-    public static f303: string = "f303";
-    public static f304: string = "f304";
-    public static f305: string = "f305";
-    public static f306: string = "f306";
-    public static f307: string = "f307";
-    public static f308: string = "f308";
-    public static f309: string = "f309";
-    public static f310: string = "f310";
-    public static f311: string = "f311";
-    public static f312: string = "f312";
-    public static f313: string = "f313";
-    public static f314: string = "f314";
-    public static f315: string = "f315";
-    public static f316: string = "f316";
-    public static f317: string = "f317";
-    public static f318: string = "f318";
-    public static f319: string = "f319";
-    public static f320: string = "f320";
-    public static f321: string = "f321";
-    public static f322: string = "f322";
-    public static f323: string = "f323";
-    public static f324: string = "f324";
-    public static f325: string = "f325";
-    public static f326: string = "f326";
-    public static f327: string = "f327";
-    public static f328: string = "f328";
-    public static f329: string = "f329";
-    public static f330: string = "f330";
-    public static f331: string = "f331";
-    public static f332: string = "f332";
-    public static f333: string = "f333";
-    public static f334: string = "f334";
-    public static f335: string = "f335";
-    public static f336: string = "f336";
-    public static f337: string = "f337";
+    public static bg: string = "bg";
+    public static bg_pk: string = "bg_pk";
+    public static bg_pk_view: string = "bg_pk_view";
+    public static effect_buy: string = "effect_buy";
+    public static effect_button: string = "effect_button";
+    public static effect_join: string = "effect_join";
+    public static effect_loss: string = "effect_loss";
+    public static effect_m_up: string = "effect_m_up";
+    public static effect_u_up: string = "effect_u_up";
+    public static effect_win: string = "effect_win";
+    public static pk_effect1: string = "pk_effect1";
+    public static pk_effect2: string = "pk_effect2";
+    public static pk_effect3: string = "pk_effect3";
+    public static pk_effect4: string = "pk_effect4";
+    public static pk_effect5: string = "pk_effect5";
+    public static pk_effect6: string = "pk_effect6";
+    public static pk_effect7: string = "pk_effect7";
+    public static pk_effect8: string = "pk_effect8";
+    public static pk_effect9: string = "pk_effect9";
+    public static pk_effect10: string = "pk_effect10";
+    public static pk_effect11: string = "pk_effect11";
+    public static pk_effect12: string = "pk_effect12";
+    public static pk_effect13: string = "pk_effect13";
+    public static pk_effect14: string = "pk_effect14";
+    public static pk_effect15: string = "pk_effect15";
+    public static pk_effect16: string = "pk_effect16";
+    public static pk_jump: string = "pk_jump";
+    public static pk_jump2: string = "pk_jump2";
+    public static pk_run: string = "pk_run";
 }

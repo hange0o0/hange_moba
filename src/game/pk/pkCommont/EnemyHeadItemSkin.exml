@@ -8,6 +8,13 @@
 	<e:Group id="teamGroup" x="0" y="0">
 		<e:Image id="headMC2" source="border4_png" y="4" width="110" height="110" x="5"/>
 		<e:Image source="head_border1_png" y="0" x="0" id="headBG" width="120" height="120"/>
-		<e:Button id="closeBtn" scaleY="0.8" scaleX="0.8" skinName="Btn_close2Skin" x="75" y="-4"/>
+		<e:Group x="-5.984848484848485" y="-5">
+			<e:Image source="icon_empty_png" x="0" y="0"/>
+			<e:Label id="indexText" text="1" size="18" horizontalCenter="0" verticalCenter="0" textColor="0xDD9742"/>
+		</e:Group>
+		<e:Group id="closeBtn" y="90" horizontalCenter="1" locked="true">
+			<e:Rect height="36" width="120" y="-1.4210854715202004e-14" strokeWeight="1" x="0" strokeColor="0x971B1B" fillAlpha="1" ellipseWidth="10"/>
+			<e:Label text="秒杀" size="22" horizontalCenter="0" verticalCenter="0" textColor="0x971B1B"/>
+		</e:Group>
 	</e:Group>
 </e:Skin>

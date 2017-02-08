@@ -633,7 +633,6 @@ class DebugManager {
                 useObj[oo.id].push(vo.id);
                 if(oo.id2){
                     useObj[oo.id2].push(vo.id);
-                    console.log(oo.id)
                 }
 
             }
@@ -651,7 +650,6 @@ class DebugManager {
                 if(oo.id2)
                 {
                     useObj[oo.id2].push(vo.id);
-                    console.log(oo.id)
                 }
 
             }

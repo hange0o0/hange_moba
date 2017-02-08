@@ -166,6 +166,7 @@ class Main extends eui.UILayer {
         GameManager.stage = this.stage;
         GameManager.container = this;
         GameManager.getInstance().init();
+        SoundManager.getInstance().preLoad();
 
 
         //UM.gameid = _get['gameid'];

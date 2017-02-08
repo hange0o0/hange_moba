@@ -71,22 +71,6 @@ class ShopItem extends game.BaseItem {
             this.icon.source = 'icon_token_png';
         }
 
-
-        if(this.data.id < 10)
-        {
-            this.img.source = 'pay_energy_png'
-        }
-        else if(this.data.id < 20) {   //￥
-            this.img.source = 'pay_coin_png'
-        }
-        else if(this.data.id < 30) {   //卡包
-            this.img.source = 'pay_coin_png'
-        }
-        else if(this.data.id < 40) {   //门票
-            this.img.source = 'pay_coin_png'
-        }
-        else{  //钻石
-            this.img.source = 'box' + (this.data.id - 21)+'_png'
-        }
+        this.img.source = this.data.img;
     }
 }

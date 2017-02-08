@@ -218,6 +218,12 @@ class PKManager {
         Net.addUser(oo);
         Net.send(GameEvent.pkCore.pk_result_type,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 2)
+            {
+                Config.pk_version = Math.floor(msg.pk_version);
+                Alert('录像已过期');
+                return;
+            }
             msg.info.type = type;
             self.onPK(PKManager.PKType.REPLAY,msg);
             if(fun)
@@ -282,6 +288,8 @@ class PKManager {
         this.pkData = data.pkdata;
         this.team1Base = data.team1base;
         this.team2Base = data.team2base;
+        if(data.pk_version)
+            Config.pk_version = data.pk_version;
 
         //if(this.teamChange)
         //{

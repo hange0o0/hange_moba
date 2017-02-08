@@ -113,7 +113,9 @@ class MainGameManager{
                     i--;
                 }
             }
+
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
+            UM.main_game.pkdata = Config.pk_version;
 
             if(fun)
                 fun();
@@ -178,6 +180,11 @@ class MainGameManager{
         }
         if(UM.main_game.pkdata)
         {
+            if(UM.main_game.pkdata != Config.pk_version)
+            {
+                Alert('录像已过期');
+                return;
+            }
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.MAIN,function(data){
                 self.lastPKData = data;

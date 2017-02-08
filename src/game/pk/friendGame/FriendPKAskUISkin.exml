@@ -15,7 +15,13 @@
 				<e:RadioButton y="8" label="竞技场规则" skinName="MyRadioButtonSkin" id="ringRadio0" x="151"/>
 				<e:RadioButton x="304" label="修正场规则" y="9" skinName="MyRadioButtonSkin" id="ringRadio1"/>
 				<e:Label text="挑战宣言：" x="25" y="56" textColor="0xCCB48E" size="26"/>
-				<e:TextInput id="inputText" x="150" y="51" skinName="MyTextInputSkin" width="470" maxChars="20" prompt="你可敢与我一战？！"/>
+				<e:TextInput id="inputText" x="150" y="51" skinName="MyTextInputSkin" width="420" maxChars="20" prompt="你可敢与我一战？！"/>
+				<e:Group id="helpBtn" y="20" top="47" right="15" x="20">
+					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
+					<e:Label y="10" textColor="0xF8D05A" text="?" horizontalCenter="0"/>
+				</e:Group>
+
+
 			</e:Group>
 			<e:Group y="10" x="10" width="640" height="70" id="enemyGroup0">
 				<e:Group y="-180" height="250">
@@ -23,6 +29,10 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
 				<e:Label id="pkTypeText" textColor="0xCCB48E" text="PK类型：竞技场规则" x="25" y="15"/>
+				<e:Group id="helpBtn0" right="20" top="5" x="10" y="10">
+					<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
+					<e:Label y="10" textColor="0xF8D05A" text="?" horizontalCenter="0"/>
+				</e:Group>
 			</e:Group>
 			<e:Group id="myGroup0" y="481" height="520" x="90">
 				<e:List id="myList0" y="70" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
@@ -93,7 +103,8 @@
 					<e:Button id="chooseBtn1" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
 					<e:Image source="line_png" y="509" x="10"/>
 				</e:Group>
-			</e:Group>
+			</e:Group>
+
 			
 			<e:layout>
 				<e:VerticalLayout/>

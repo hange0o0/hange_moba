@@ -22,6 +22,7 @@ class ServerGameUI extends game.BaseUI {
     private card1Btn: eui.Button;
     private card2Btn: eui.Button;
     private chooseBtn: eui.Button;
+    private helpBtn: eui.Group;
 
 
 
@@ -56,7 +57,13 @@ class ServerGameUI extends game.BaseUI {
 
         this.scroller.bounces = false;
         //this.enemyList.add
+        this.addBtnEvent(this.helpBtn,this.onHelp);
     }
+
+    private onHelp(){
+        HelpManager.getInstance().serverHelp();
+    }
+
 
     public beforeHide(){
         this.clearList([this.myList,this.enemyList])
@@ -149,14 +156,14 @@ class ServerGameUI extends game.BaseUI {
 
         if(this.chooseInex == 0)
         {
-            this.cardTitle.text = '卡组1'
+            this.cardTitle.text = 'PK卡组1'
             //this.card1Btn.skinName = 'Btn_r2Skin'
             //this.card2Btn.skinName = 'Btn_b2Skin'
             tw.to({x:this.card1Btn.x-3},100)
         }
         else
         {
-            this.cardTitle.text = '卡组2'
+            this.cardTitle.text = 'PK卡组2'
             //this.card2Btn.skinName = 'Btn_r2Skin'
             //this.card1Btn.skinName = 'Btn_b2Skin'
             tw.to({x:this.card2Btn.x-3},100)

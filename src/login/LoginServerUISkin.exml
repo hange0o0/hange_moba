@@ -1,7 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="LoginServerUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Image source="bg_jpg" y="0" x="0"/>
-	<e:Group bottom="120" horizontalCenter="0" width="400">
+	<e:Rect height="100%" width="100%" x="0" y="0"/>
+	<e:Group x="0" bottom="-60">
+		<e:Image source="fire_top_jpg" y="1.1102230246251563e-16" x="0" id="topMC0"/>
+		<e:Image source="login_bg_jpg" y="120.83333333333334" x="0"/>
+		<e:Image source="fire_top_jpg" y="1205.8333333333333" anchorOffsetY="0" x="0" scaleY="-1" id="bottomMC0"/>
+		<e:layout>
+			<e:VerticalLayout gap="0"/>
+		</e:layout>
+	</e:Group>
+	<e:Group bottom="100" horizontalCenter="0" width="400">
 		<e:Group y="124" horizontalCenter="0">
 			<e:Button id="loginBtn" label="进入游戏" y="0" skinName="Btn_r2Skin" x="200"/>
 			<e:layout>
@@ -9,7 +17,7 @@
 			</e:layout>
 		</e:Group>
 		<e:Label id="nameText" y="0" text="角色名：密码123456" textColor="0xE0B3B3" horizontalCenter="0"/>
-		<e:Group id="serverGroup" y="40" horizontalCenter="0">
+		<e:Group id="serverGroup" y="50" horizontalCenter="0">
 			<e:Image source="border5_png" y="0" scale9Grid="14,11,51,6" width="200" height="50" x="0"/>
 			<e:Label y="10" textColor="0xCCB48E" text="密码123456" textAlign="left" size="26" id="serverName" horizontalCenter="0"/>
 		</e:Group>

@@ -200,8 +200,8 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onHelp(){
-        GuideUI.getInstance().show(null,'friend')
-        return;
+        //GuideUI.getInstance().show(null,'friend')
+        //return;
         var HM = HelpManager.getInstance()
         switch(this.currentPage)
         {

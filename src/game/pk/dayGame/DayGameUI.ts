@@ -14,6 +14,7 @@ class DayGameUI extends game.BaseUI {
     private myGroup0: eui.Group;
     private myList0: eui.List;
     private chooseBtn0: eui.Button;
+    private helpBtn: eui.Group;
 
 
 
@@ -38,6 +39,11 @@ class DayGameUI extends game.BaseUI {
 
         this.scroller.bounces = false;
         //this.enemyList.add
+        this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onHelp(){
+        HelpManager.getInstance().dayHelp();
     }
 
     public beforeHide(){

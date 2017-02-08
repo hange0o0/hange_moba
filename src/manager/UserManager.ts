@@ -73,6 +73,8 @@ class UserManager {
 
 
         this.friendtime = data.friendtime || 0;
+
+        Config.pk_version = Math.floor(data.pk_version);
     }
 
     public getDiamond(rmb=false){

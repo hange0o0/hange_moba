@@ -201,7 +201,7 @@ class MonsterVO {
         return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
     }
     public get thumbRound(){
-        return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
+        return Config.localResRoot + 'head/mr_head'+this.id+'.png';
     }
 
     public get url(){

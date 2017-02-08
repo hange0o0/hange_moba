@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="360" states="normal,selected,drag" >
-	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="360"/>
-	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="360" x="640"/>
+<e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="350" states="normal,selected,drag" >
+	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="350"/>
+	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="350" x="640"/>
 
 
 
@@ -25,17 +25,17 @@
 		<e:Image id="a7" source="arrow8_png" scaleY="-1" verticalCenter="97.5" horizontalCenter="99"/>
 		<e:Image id="a8" source="arrow8_png" scaleY="-1" verticalCenter="97.5" horizontalCenter="284"/>
 	</e:Group>
-	<e:Group width="640" y="271" x="0" visible.selected="false" visible.drag="false">
+	<e:Group width="640" x="0" visible.selected="false" visible.drag="false" y="271">
 		<e:Button id="pkBtn" horizontalCenter="0" y="2" label="出　战" skinName="Btn_r3Skin"/>
 	</e:Group>
-	<e:Group x="0" y="276" visible.normal="false" width="100%" visible.drag="false">
+	<e:Group x="0" visible.normal="false" width="100%" visible.drag="false" y="276">
 		<e:Button id="cancleBtn" y="0" label="返回" x="120" skinName="Btn_b2Skin"/>
 		<e:Button id="deleteBtn" label="下阵" x="10" y="0" skinName="Btn_r2Skin"/>
 		<e:layout>
 			<e:HorizontalLayout horizontalAlign="center" gap="20"/>
 		</e:layout>
 	</e:Group>
-	<e:Group id="removeGroup" width="100%" x="0" height="80" visible.normal="false" visible.selected="false" y="275">
+	<e:Group id="removeGroup" width="100%" x="0" height="80" visible.normal="false" visible.selected="false" bottom="0">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.5"/>
 		<e:Label id="removeText" text="拖到此处移除" verticalCenter="0" horizontalCenter="0" strokeColor="0xFFFF00" verticalAlign="middle" textAlign="center" width="640" height="80"/>
 	</e:Group>

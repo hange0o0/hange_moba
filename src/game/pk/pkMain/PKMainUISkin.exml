@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKMainUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Image id="bg1" source="bg_jpg" x="0" anchorOffsetY="600" y="500" width="640" height="1200"/>
-	<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="1200" y="500" anchorOffsetY="600"/>
-	<e:Button id="jumpBtn" label="跳过" skinName="Btn_d1Skin" right="10" bottom="10"/>
+	<e:Image id="bg1" source="bg_jpg" x="0" anchorOffsetY="480" y="480" width="640" height="960"/>
+	<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="480" anchorOffsetY="480"/>
+	<e:Button id="jumpBtn" label="跳过" skinName="Btn_d1Skin" y="888" width="100" right="10"/>
 	<e:Group id="enemyGroup" x="0" y="0" locked="true"/>
 	<e:Group id="selfGroup" x="0" y="0" locked="true"/>
+	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
+	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
 </e:Skin>

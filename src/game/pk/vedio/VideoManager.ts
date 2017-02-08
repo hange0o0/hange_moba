@@ -125,11 +125,17 @@ class VideoManager {
             play();
             return
         }
-
+        baseData.pk_version = PKManager.getInstance().pkResult.pk_version;
 
 
         Net.send(GameEvent.pkCore.pk_vedio,baseData,function(data){
             var msg = data.msg;
+            if(msg.fail == 2)
+            {
+                Config.pk_version = Math.floor(msg.pk_version);
+                Alert('录像已过期');
+                return;
+            }
             self.videoData[type][index] = msg.pkdata;
             play();
 

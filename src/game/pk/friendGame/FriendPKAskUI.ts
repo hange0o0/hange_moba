@@ -21,6 +21,8 @@ class FriendPKAskUI extends game.BaseUI {
     private myGroup1: eui.Group;
     private myList1: eui.List;
     private chooseBtn1: eui.Button;
+    private helpBtn: eui.Group;
+    private helpBtn0: eui.Group;
 
 
 
@@ -53,6 +55,12 @@ class FriendPKAskUI extends game.BaseUI {
         this.inputText.restrict = "^\\\\\"\'"
 
         this.scroller.bounces = false;
+        this.addBtnEvent(this.helpBtn,this.onHelp);
+        this.addBtnEvent(this.helpBtn0,this.onHelp);
+    }
+
+    private onHelp(){
+        HelpManager.getInstance().friendHelp();
     }
 
     public beforeHide(){

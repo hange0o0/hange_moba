@@ -1,4 +1,4 @@
-class HelpUI extends game.BaseUI {
+class HelpUI extends game.BaseWindow {
     private static instance:HelpUI;
     public static getInstance() {
         if (!this.instance) this.instance = new HelpUI();

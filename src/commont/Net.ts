@@ -103,7 +103,7 @@ class Net extends egret.EventDispatcher{
                 switch (data.error)
                 {
                     case 1:
-                        Alert('用户版本过低',refresh);
+                        Alert('游戏已更新，请登陆重进',refresh);
                         GameManager.getInstance().stopTimer();
                         break;
                     case 2:
