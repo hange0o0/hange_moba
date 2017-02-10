@@ -33,7 +33,7 @@ class MainServerItem extends game.BaseItem {
     public renew() {
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game;
-        this.titleText.text = '竞技场 [' + ServerGameManager.getInstance().getPKTableLevel(serverData.exp) + ']'
+        this.titleText.text = '竞技场 [' + ServerGameManager.getInstance().getPKTableLevel(serverData.exp) + '阶]'
         this.scoreText.text = '积分：' + serverData.exp;
         //this.totalText.text = '局数：' + serverData.total;
         //this.scoreText.text = '积分：' + serverData.exp;
@@ -51,12 +51,12 @@ class MainServerItem extends game.BaseItem {
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'
-                this.desText.text = '重新匹配需消耗体力：' + 2 + '\n重试需消耗体力：' + 3
+                this.desText.text = '重新匹配需消耗体力：' + 2 + '\n再试一次需消耗体力：' + 3
             }
             else if(serverData.choose)//已有卡版数据
             {
                 this.startBtn.label = '开始挑战';
-                this.desText.text = '卡组已获得'
+                this.desText.text = '卡组已获得，点击开始挑战'
             }
             else
             {

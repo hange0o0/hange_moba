@@ -38,7 +38,7 @@ class MainServerEqualItem extends game.BaseItem {
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game_equal;
         //this.totalText.text = '局数：' + serverData.total;
-        this.titleText.text = '修正场 [' + ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)+']';
+        this.titleText.text = '修正场 [' + ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)+'阶]';
         this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
@@ -61,7 +61,7 @@ class MainServerEqualItem extends game.BaseItem {
             else if(serverData.choose)//已有卡版数据
             {
                 this.startBtn.label = '开始挑战'
-                this.desText.text = '卡组已获得'
+                this.desText.text = '卡组已获得，点击开始挑战'
             }
             else
             {

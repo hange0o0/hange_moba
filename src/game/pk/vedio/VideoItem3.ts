@@ -50,8 +50,8 @@ class VideoItem3 extends game.BaseItem {
         else
         {
             this.roundText.textColor = 0xFFFFFF;
-            this.bg.strokeColor = 0x9F6031
-            this.bg2.strokeColor = 0x9F6031
+            this.bg.strokeColor = 0x673D1F
+            this.bg2.strokeColor = 0x673D1F
         }
     }
 
@@ -117,10 +117,10 @@ class VideoItem3 extends game.BaseItem {
                 var atker = data.atker;
                 var group = this.addGroup();
                 this.getMonster(atker,group)
-                group.addChild(this.getWordText('跳过了本次行动'))
+                group.addChild(this.getWordText('跳过了本次行动',0xAAAAAA))
                 break;
             case 50://物攻
-                this.decode_atk(data);
+                this.decode_atk(data,1);
                 break;
             case 51://秒杀
                 this.decode_kill(data);
@@ -170,11 +170,11 @@ class VideoItem3 extends game.BaseItem {
     }
 
     //解释物攻
-    private decode_atk(data){
+    private decode_atk(data,type){
         var group = this.addGroup();
         var effect = data.defender[0].list[0];
 
-        this.addAtk(data,group);
+        this.addAtk(data,group,type);
         if(data.defender.length == 1 && data.defender[0].list.length<=2)
             this.addEffectList(data,group);
         else
@@ -235,7 +235,7 @@ class VideoItem3 extends game.BaseItem {
 
         if(svo.mv == 'atk')
         {
-            this.decode_atk(data);
+            this.decode_atk(data,svo.type);
         }
         else
         {
@@ -270,8 +270,18 @@ class VideoItem3 extends game.BaseItem {
             var color = 0x8917F5;
             if(svo.type == 1)
             {
-                group.addChild(this.getSkill0Icon())
+                group.addChild(this.getSkill0Icon(svo.type))
                 color = 0xEB911B;
+            }
+            else if(svo.type == 2)
+            {
+                group.addChild(this.getSkill0Icon(svo.type))
+                color = 0x00DEFF;
+            }
+            else if(svo.type == 3)
+            {
+                group.addChild(this.getSkill0Icon(svo.type))
+                color = 0x6fda13;
             }
 
             group.addChild(this.getWordText('【'+svo.name + '】',color,26))
@@ -365,13 +375,13 @@ class VideoItem3 extends game.BaseItem {
     //}
 
 
-    private addAtk(data,group,defIndex=0){
+    private addAtk(data,group,type,defIndex=0){
         var atker = data.atker;
         var defender = data.defender;
 
         this.getMonster(atker,group)
 
-        group.addChild(this.getPKIcon())
+        group.addChild(this.getPKIcon(type))
 
         this.getMonster(defender[defIndex].defender,group)
     }
@@ -381,6 +391,11 @@ class VideoItem3 extends game.BaseItem {
         for(var i=0;i<arr.length;i++)
         {
             var list = arr[i].list;
+            if(begin>=list.length)//后面没有状态了
+            {
+                begin = 0;
+                continue;
+            }
             if(!group || i > 0)
                 group = this.addGroup();
             if(group.numChildren == 0)
@@ -493,7 +508,7 @@ class VideoItem3 extends game.BaseItem {
 
     private getWordText(txt='',color? ,size?){
         if(!color)
-            color = 0x999999;
+            color = 0xFFFFFF;
         if(!size)
             size = 20;
         var hpText = new eui.Label();
@@ -505,16 +520,16 @@ class VideoItem3 extends game.BaseItem {
         //this.addChild(hpText)
         //hpText.text = '-' + NumberUtil.formatStrBigNum(word)
     }
-    private getPKIcon(){
+    private getPKIcon(type){
        var mc =  new eui.Image()
         mc.source = 'pk_icon_png';
         mc.scaleX = mc.scaleY = 0.6
         return mc;
     }
-    private getSkill0Icon(){
+    private getSkill0Icon(type){
         var group = new eui.Group();
         var mc =  new eui.Image()
-        mc.source = 'icon_b1_png';
+        mc.source = 'icon_b'+type+'_png';
         mc.scaleX = mc.scaleY = 0.6
         group.addChild(mc)
         group.width = 25;

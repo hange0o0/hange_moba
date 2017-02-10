@@ -26,6 +26,7 @@ class PlayerVO {
     public hurtCount = 0
     public healCount = 0
 
+
     public constructor(oo?,oo2?) {
         if(oo)
         {
@@ -38,6 +39,7 @@ class PlayerVO {
         //{"rl":0,"r":1,"tl":null,"mb":{"101":{"hp":100,"atk":30,"speed":51}}
         var baseData = oo2.mb[oo.mid];
         this.hp = oo.hp;
+
         this.maxHp = baseData.hp + (oo.add_hp || 0);
         this.atk = baseData.atk + (oo.add_atk || 0);
         this.speed = baseData.speed + (oo.add_speed || 0);

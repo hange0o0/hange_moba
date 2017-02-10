@@ -475,14 +475,14 @@ class MainPageUI extends game.BaseUI {
 
     public renewPage(){
         if(this.currentPage == 0)
-            this.leftBtn.alpha = 0.5;
+            this.leftBtn.visible = false;
         else
-            this.leftBtn.alpha = 1;
+            this.leftBtn.visible = true;
 
         if(this.currentPage == this.pageArray.length - 1)
-            this.rightBtn.alpha = 0.5;
+            this.rightBtn.visible = false;
         else
-            this.rightBtn.alpha = 1;
+            this.rightBtn.visible = true;
 
         for(var i=0;i<this.pageArray.length;i++)
         {

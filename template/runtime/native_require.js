@@ -112,7 +112,6 @@ var game_file_list = [
 	"bin-debug/game/pk/vedio/VideoStatItem.js",
 	"bin-debug/game/pk/vedio/VideoTopStatItem.js",
 	"bin-debug/game/pk/vedio/VideoUI.js",
-	"bin-debug/game/pk/vedio/VideoUI2.js",
 	"bin-debug/game/rank/RankItem.js",
 	"bin-debug/game/rank/RankManager.js",
 	"bin-debug/game/rank/RankUI.js",

@@ -92,7 +92,6 @@
     "src/game/pk/vedio/VideoStatItemSkin.exml",
     "src/game/pk/vedio/VideoTopStatItemSkin.exml",
     "src/game/pk/vedio/VideoUI2Skin.exml",
-    "src/game/pk/vedio/VideoUISkin.exml",
     "src/game/rank/RankItemSkin.exml",
     "src/game/rank/RankUISkin.exml",
     "src/game/shop/ShopItem2Skin.exml",

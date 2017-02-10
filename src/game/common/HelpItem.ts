@@ -13,7 +13,7 @@ class HelpItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.setHtml(this.text,this.data.text.replace(/\[/g,'<font color="#FFF000">').replace(/\]/g,'<\/font>'))
+        this.setHtml(this.text,this.data.text.replace(/\[/g,'<font color="#FFFF00">').replace(/\]/g,'<\/font>'))
     }
 
 

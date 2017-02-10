@@ -53,7 +53,7 @@ class MainMainItem extends game.BaseItem {
         if(UM.main_game.choose)
         {
             this.startBtn.label = '开始挑战'
-            this.desText.text = '卡组已获得'
+            this.desText.text = '卡组已获得，点击开始挑战'
         }
         else
         {

@@ -41,6 +41,7 @@ class MonsterList extends game.BaseUI {
     public dataArray;
     public startPos
     public rota
+    public pageSize = 8
 
     //public isLevelUp = false
 
@@ -69,6 +70,34 @@ class MonsterList extends game.BaseUI {
 
         MyTool.removeMC(this.info2)
         this.info.addEventListener(egret.Event.RESIZE,this.onResizeInfo,this)
+
+        for(var i=0;i<10;i++)
+        {
+             var mc = this['p' + i];
+            mc.index = i-1;
+            this.addBtnEvent(mc,this.onPageClick)
+        }
+    }
+
+    private onPageClick(e){
+        var index = e.target.index
+        var page = Math.ceil((this.index+1)/this.pageSize)
+        index = index + (page-1)*this.pageSize;
+        if(index == this.index)
+            return;
+
+        if(index < this.index)
+        {
+            this.rota = -1;
+        }
+        else if(index > this.index)
+        {
+            this.rota = 1;
+        }
+
+        this.renewInfo2(index);
+        this.index = index;
+        this.scrollToCurrentPage()
     }
 
     private onResizeInfo(){
@@ -150,9 +179,11 @@ class MonsterList extends game.BaseUI {
         tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500)).call(this.renew,this);
     }
 
-    private renewInfo2(){
+    private renewInfo2(index = -1){
         this.info2.x = 640*this.rota;
-        var oo =  this.dataArray[this.index + this.rota];
+        if(index == -1)
+            index = this.index + this.rota
+        var oo =  this.dataArray[index];
         if(oo)
         {
             this.scrollGroup.addChild(this.info2);
@@ -290,16 +321,27 @@ class MonsterList extends game.BaseUI {
 
         this.pageText.text =  (this.index + 1) + '/' + this.dataArray.length;
 
-        var current = this.index%10;
-        var max = 10;
-        if(Math.ceil(this.dataArray.length/10) ==  Math.ceil((this.index+1)/10))//最后一页
+        var pageSize = this.pageSize;
+        var current = this.index%pageSize;
+        var max = pageSize;
+        var maxPage = Math.ceil(this.dataArray.length/pageSize);
+        var page = Math.ceil((this.index+1)/pageSize)
+        if(page == maxPage)//最后一页
         {
-            max = this.dataArray.length%10 || 10;
+            max = this.dataArray.length%pageSize || pageSize;
         }
 
-        for(var i=0;i<10;i++)
+        this.pageGroup.removeChildren()
+        if(page > 1)
         {
-            var mc = this['p' + i];
+            var mc = this['p' + 0];
+            this.pageGroup.addChild(mc);
+            mc.source = 'point1_png';
+        }
+
+        for(var i=0;i<pageSize;i++)
+        {
+            var mc = this['p' + (i+1)];
             if(i<max)
             {
                 this.pageGroup.addChild(mc);
@@ -308,10 +350,13 @@ class MonsterList extends game.BaseUI {
                 else
                     mc.source = 'point1_png';
             }
-            else
-            {
-                MyTool.removeMC(mc);
-            }
+        }
+
+        if(page < maxPage)
+        {
+            var mc = this['p' + 9];
+            this.pageGroup.addChild(mc);
+            mc.source = 'point1_png';
         }
     }
 }

@@ -232,9 +232,9 @@ class PKMainUI extends game.BaseUI {
             myTeam = temp
         }
 
-        var arr = [1,200,400,600,800,1000]
+        var arr = [1,200,400,600,800,1000,1200]
+        arr.length =myTeam.length+1
         this.randomSort(arr);
-        arr.length =myTeam.length;
         for(var i=0;i<myTeam.length;i++)
         {
             this.addOneItem(myTeam[i],1,i,arr[i]);
@@ -242,9 +242,9 @@ class PKMainUI extends game.BaseUI {
         this.resetXY(this.itemSelf,1);
 
 
-        var arr = [1,200,400,600,800,1000]
+        var arr = [1,200,400,600,800,1000,1200]
+        arr.length =myTeam.length+1
         this.randomSort(arr);
-        arr.length =enemyTeam.length;
         for(var i=0;i<enemyTeam.length;i++)
         {
             this.addOneItem(enemyTeam[i],2,i,arr[i]);
@@ -253,7 +253,7 @@ class PKMainUI extends game.BaseUI {
 
 
 
-        this.timer = egret.setTimeout(this.playOne,this,2000)
+        this.timer = egret.setTimeout(this.playOne,this,arr.length * 200 + 500)
         SoundManager.getInstance().loadPKSound();
 
     }

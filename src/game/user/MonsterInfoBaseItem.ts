@@ -21,6 +21,20 @@ class MonsterInfoBaseItem extends game.BaseItem {
         this.titleText.text = skill.name
        this.setHtml(this.text,'　　' + skill.des);
 
+        switch(skill.type)
+        {
+            case 1:
+                this.titleText.textColor = 0xEB911B;
+                break;
+            case 2:
+                this.titleText.textColor = 0x00DEFF;
+                break;
+            case 3:
+                this.titleText.textColor = 0x6fda13;
+                break;
+        }
+
+
         if(skill.type == 1)
         {
             this.typeText.text = '【绝招】'
@@ -39,7 +53,7 @@ class MonsterInfoBaseItem extends game.BaseItem {
                     }
                     else
                     {
-                        this.setHtml(this.typeText,'施法间隔：<font color="#C274FF">'+ skill.sp[1] + '</font>')
+                        this.setHtml(this.typeText,'<font color="#C274FF">施法间隔：</font>'+ skill.sp[1] + '')
                     }
 
                     break;

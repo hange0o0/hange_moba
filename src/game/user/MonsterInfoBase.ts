@@ -237,7 +237,7 @@ class MonsterInfoBase extends game.BaseContainer {
     }
 
     private changeTitle(str){
-        return this.createHtml(str,0xEB911B)
+        return this.createHtml(str,0xcc9900)
     }
 
 
