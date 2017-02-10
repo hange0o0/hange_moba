@@ -85,6 +85,7 @@ class ServerGameUI extends game.BaseUI {
     }
 
     public onShow(){
+        SoundManager.getInstance().playEffect(SoundConfig.effect_join);
         var data = UM.server_game;
         this.chooseInex = 0;
         this.chooseMC.x = -3;

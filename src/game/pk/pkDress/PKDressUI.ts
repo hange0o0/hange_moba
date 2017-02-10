@@ -153,16 +153,22 @@ class PKDressUI extends game.BaseUI {
             Alert('请先选择出战单位');
             return;
         }
-        if(!confirm && this.chooseList.length < 6 && this.getCurrentResource().coin > 10 && !GuideManager.getInstance().isGuiding)
+        if(!confirm && this.chooseList.length < 6  && !GuideManager.getInstance().isGuiding)
         {
-
-            Confirm('确定使用该卡组出战？',function(type){
-                if(type == 1)
+            for(var i=0;i<this.monsterList.length;i++)
+            {
+                var arr = this.chooseList.concat(this.monsterList[i])
+                if(PKManager.getInstance().getCost(arr) <= PKManager.PKCost)
                 {
-                    self.onPKStart(true);
+                    Confirm('还能继续上阵卡牌,确定就这样出战？',function(type){
+                        if(type == 1)
+                        {
+                            self.onPKStart(true);
+                        }
+                    })
+                    return;
                 }
-            })
-            return;
+            }
         }
         var chooseData = {list:this.chooseList,index:this.dataIn.index}
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){

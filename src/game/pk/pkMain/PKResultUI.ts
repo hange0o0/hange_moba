@@ -55,12 +55,21 @@ class PKResultUI extends game.BaseUI {
         {
             this.addChild(PKWinUI.getInstance());
             PKWinUI.getInstance().renew();
+            SoundManager.getInstance().playEffect(SoundConfig.pk_win);
         }
         else
         {
             this.addChild(PKFailUI.getInstance());
             PKFailUI.getInstance().renew();
+            SoundManager.getInstance().playEffect(SoundConfig.pk_loss);
         }
+
+        SoundManager.getInstance().playSound(SoundConfig.bg_pk_view);
+    }
+
+    public hide(){
+        super.hide();
+        SoundManager.getInstance().playSound(SoundConfig.bg);
     }
 
     public showMore(item){

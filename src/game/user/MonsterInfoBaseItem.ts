@@ -19,7 +19,7 @@ class MonsterInfoBaseItem extends game.BaseItem {
         var skill = this.data;
         this.icon.source = 'icon_b' + skill.type + '_png'
         this.titleText.text = skill.name
-       this.setHtml(this.text,skill.des);
+       this.setHtml(this.text,'　　' + skill.des);
 
         if(skill.type == 1)
         {

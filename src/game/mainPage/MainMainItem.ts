@@ -20,7 +20,7 @@ class MainMainItem extends game.BaseItem {
 
     public childrenCreated() {
         this.addBtnEvent(this.awardBtn, this.onAward);
-        this.addBtnEvent(this.startBtn, this.onStart);
+        this.addBtnEvent(this.startBtn, this.onStart,true);
     }
 
     private onAward(){

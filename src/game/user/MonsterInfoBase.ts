@@ -126,8 +126,7 @@ class MonsterInfoBase extends game.BaseContainer {
         //this.typeText.text = MonsterKindVO.getObject(vo.type).word
         var nameStr = vo.name;
 
-        this.mpText.text = '怒气上限：' + vo.mp;
-        this.coinText.text = '召唤花费：' + vo.cost;
+
         //this.levelText.text = 'LV.' + UM.getMonsterLevel(monsterID);
         this.levelGroup.visible = false;
         this.levelUpCon.visible = false;
@@ -203,16 +202,19 @@ class MonsterInfoBase extends game.BaseContainer {
             var atkAdd = Math.round(vo.atk * (1+fightData.atk/100)) - atk;
             var hpAdd = Math.round(vo.hp * (1+fightData.hp/100)) - hp;UM.tec.monster[monsterID] --;       //降回去
 
-            this.setHtml(this.atkText,'攻击：' + NumberUtil.addNumSeparator(atk) + '<font color="#00ff00"> +'+atkAdd+'</font>');
-            this.setHtml(this.hpText, '生命：' + NumberUtil.addNumSeparator(hp) + '<font color="#00ff00"> +'+hpAdd+'</font>');
-            this.speedText.text = '速度：' + NumberUtil.addNumSeparator(speed);
+            this.setHtml(this.atkText,this.changeTitle('攻击：') + NumberUtil.addNumSeparator(atk) + '<font color="#00ff00"> +'+atkAdd+'</font>');
+            this.setHtml(this.hpText, this.changeTitle('生命：') + NumberUtil.addNumSeparator(hp) + '<font color="#00ff00"> +'+hpAdd+'</font>');
+            this.setHtml(this.speedText, this.changeTitle('速度：') + NumberUtil.addNumSeparator(speed));
         }
         else
         {
-            this.atkText.text = '攻击：' + NumberUtil.addNumSeparator(atk);
-            this.hpText.text = '生命：' + NumberUtil.addNumSeparator(hp);
-            this.speedText.text = '速度：' + NumberUtil.addNumSeparator(speed);
+            this.setHtml(this.atkText, this.changeTitle('攻击：') + NumberUtil.addNumSeparator(atk));
+            this.setHtml(this.hpText, this.changeTitle('生命：') + NumberUtil.addNumSeparator(hp));
+            this.setHtml(this.speedText, this.changeTitle('速度：') + NumberUtil.addNumSeparator(speed));
         }
+
+        this.setHtml(this.mpText, this.changeTitle('怒气上限：') + vo.mp);
+        this.setHtml(this.coinText, this.changeTitle('召唤花费：') + vo.cost);
 
 
         //技能表现
@@ -234,7 +236,9 @@ class MonsterInfoBase extends game.BaseContainer {
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 
-
+    private changeTitle(str){
+        return this.createHtml(str,0xEB911B)
+    }
 
 
 }

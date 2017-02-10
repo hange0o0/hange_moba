@@ -19,7 +19,7 @@ class MainServerEqualItem extends game.BaseItem {
 
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
-        this.addBtnEvent(this.startBtn, this.onStart);
+        this.addBtnEvent(this.startBtn, this.onStart,true);
         EM.addEvent(GameEvent.client.prop_change,this.renew,this)
     }
 

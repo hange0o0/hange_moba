@@ -116,7 +116,7 @@ class MyInfoUI extends game.BaseUI {
 
     }
     private onAddForce(){
-        TecUI.getInstance().show();
+        CollectUI.getInstance().show();
     }
     private onAddCoin(){
         ShopUI.getInstance().show('coin');

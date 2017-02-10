@@ -75,6 +75,13 @@ module game {
                 SoundManager.getInstance().addBtnClickEffect(btn);
         }
 
+        public createHtml(str:string | number, color?:number, size?:number):string{
+            var str2 = "";
+            if(color != undefined) str2 += 'color="' + color + '"';
+            if(size != undefined) str2 += ' size="' + size + '"';
+            return '<font ' + str2 + '>'+ str + '</font>';
+        }
+
         /*
         * 给按钮移除事件  
         * this.removeBtnEvent(this.btn, this.btnClick);
@@ -365,16 +372,25 @@ module game {
         * 给按钮添加事件
         * this.addBtnEvent(this.btn, this.btnClick);
         */
-        public addBtnEvent(btn:eui.UIComponent, fun:any, thisObject?:any):void{
+        public addBtnEvent(btn:eui.UIComponent, fun:any,stopSound?):void{
             btn.touchEnabled = true;
-            btn.addEventListener(egret.TouchEvent.TOUCH_TAP, fun, thisObject || this);
+            btn.addEventListener(egret.TouchEvent.TOUCH_TAP, fun, this);
 
-            var btnName = (btn['id'] || '').toLocaleLowerCase();
-            if(btnName.indexOf('btn')!=-1 || btnName.indexOf('button')!=-1)
-                SoundManager.getInstance().addBtnClickEffect(btn);
+            if(!stopSound)
+            {
+                var btnName = (btn['id'] || '').toLocaleLowerCase();
+                if(btnName.indexOf('btn')!=-1 || btnName.indexOf('button')!=-1)
+                    SoundManager.getInstance().addBtnClickEffect(btn);
+            }
+
         }
 
-
+        public createHtml(str:string | number, color?:number, size?:number):string{
+            var str2 = "";
+            if(color != undefined) str2 += 'color="' + color + '"';
+            if(size != undefined) str2 += ' size="' + size + '"';
+            return '<font ' + str2 + '>'+ str + '</font>';
+        }
         /*
         * 给按钮移除事件
         * this.removeBtnEvent(this.btn, this.btnClick);

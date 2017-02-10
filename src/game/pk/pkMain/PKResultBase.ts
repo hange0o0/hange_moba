@@ -46,6 +46,7 @@ class PKResultBase extends game.BaseContainer {
             award.levelUp = false;
             this._desText.text += '升级了'
             this.timer = egret.setTimeout(this.stepOne,this,300);
+            SoundManager.getInstance().playEffect(SoundConfig.effect_u_up);
         }
         else if(award.finishTask)//完成任务了
         {

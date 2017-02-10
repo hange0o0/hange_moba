@@ -25,10 +25,41 @@ class AniManager {
         '176':{frameRate:24}
     };
 
+    public mvSoundConfig = {}
+
 
 
     public constructor() {
+        var sound = {
+           1:[5,6,16],
+           2:[136,137,162,166,167,15],
+           3:[30,109,119,138,139,128,36,134],
+           4:[7,107,108,117,125,145,151,157,158,177],
+           5:[12,32,148,168,135],
+           6:[],
+           7:[176,31,33,111,133],
+           8:[8,14,13,22,27,37,39,124,132,143,146,35,144,147,149,172],
+           9:[],
+           10:[],
+           11:[],
+           12:[23,38,105,110,126,129],
+           13:[],
+           14:[3,4,21,131],
+           15:[102,103,104,160,163,164,170,113,114,127,130,153,154],
+           16:[11,24,25,26,28,29,34,106,112,115,116,118,120,121,122,123,140,141,142,161,175],
+        }
 
+        for(var s in sound)
+        {
+            var temp = sound[s];
+            for(var i=0;i<temp.length;i++)
+            {
+                var skillID = temp[i];
+                if(this.mvSoundConfig[skillID])
+                    console.log('same' + s + '--' + skillID + '--' + this.mvSoundConfig[skillID])
+                this.mvSoundConfig[skillID] = s;
+            }
+        }
     }
 
     public removeAllMV(){

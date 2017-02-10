@@ -358,22 +358,26 @@ class MainPageUI extends game.BaseUI {
     }
 
 
-    private onMain(){
-        MainGameUI.getInstance().show();
-
-    }
-    private onServer(){
-        ServerGameUI.getInstance().show();
-
-    }
-    private onServerEqual(){
-        ServerGameEqualUI.getInstance().show();
-
-    }
-    private onDay(){
-        DayGameUI.getInstance().show();
-
-    }
+    //private onMain(){
+    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
+    //    MainGameUI.getInstance().show();
+    //
+    //}
+    //private onServer(){
+    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
+    //    ServerGameUI.getInstance().show();
+    //
+    //}
+    //private onServerEqual(){
+    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
+    //    ServerGameEqualUI.getInstance().show();
+    //
+    //}
+    //private onDay(){
+    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
+    //    DayGameUI.getInstance().show();
+    //
+    //}
 
     public onShow(){
         this.renewTop();
@@ -396,6 +400,13 @@ class MainPageUI extends game.BaseUI {
         //GuideManager.getInstance().showGuide(MainPageUI.getInstance())
         //MainPageUI.getInstance()['currentPage'] = 1;
         //MainPageUI.getInstance().scrollToCurrentPage();
+
+
+        SoundManager.getInstance().playSound(SoundConfig.bg);
+        setTimeout(function(){
+            SoundManager.getInstance().loadEffectSound();
+        },300)
+
     }
 
     public renewMiddle(){

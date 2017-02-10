@@ -127,6 +127,8 @@ class PKMainUI extends game.BaseUI {
         this.initView();
         this.addSceneMovie();
         this.isStop = false;
+
+        SoundManager.getInstance().playSound(SoundConfig.bg_pk);
     }
 
     private getItem():PKItem{
@@ -249,9 +251,10 @@ class PKMainUI extends game.BaseUI {
         }
         this.resetXY(this.itemEnemy,2);
 
-        this.jumpBtn.visible = true;
+
 
         this.timer = egret.setTimeout(this.playOne,this,2000)
+        SoundManager.getInstance().loadPKSound();
 
     }
 
@@ -364,12 +367,13 @@ class PKMainUI extends game.BaseUI {
 
         var tw:egret.Tween = egret.Tween.get(item);
 
-        tw.to({y:y + decY},300).to({y:y},100);
+        tw.to({y:y + decY},300).call(function(){SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);}).to({y:y},100);
     }
 
     //开始播放动画
     private playOne(){
         //console.log('playOne');
+        this.jumpBtn.visible = true;
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束
         {
@@ -753,6 +757,8 @@ class PKMainUI extends game.BaseUI {
     private atkType0(item,mv,shake){
         var VM = PKMainMV.getInstance();
         var pos = {x:item.x,y:item.y};
+
+        SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         var xy = VM.moveToTarget(item,item.enemy,function(){
             //被攻击击移后
             var xy = VM.behitMoveBack(item,item.enemy,function(){

@@ -605,9 +605,23 @@ class DebugManager {
         DebugSkillList.getInstance().show();
     }
 
+    public testNoSound(){
+        var noArr = [1,2,155,156,169,101,171,165,    9,10,17,18,19,20,152,173]
+        for(var i=1;i<180;i++)
+        {
+            if(!RES.hasRes('skill' + i + '_json'))
+                continue;
+            if(noArr.indexOf(i) == -1)
+            {
+                if(!AniManager.getInstance().mvSoundConfig[i])
+                    console.log(i)
+            }
+        }
+    }
+
     public getMVDetail(){
         var useObj = {};
-        var noArr = [1,2,155,156,169,101,171,165]
+        var noArr = [1,2,155,156,169,101,171,165    ]
         for(var i=1;i<180;i++)
         {
             if(!RES.hasRes('skill' + i + '_json'))

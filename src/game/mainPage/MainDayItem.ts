@@ -16,7 +16,7 @@ class MainDayItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-        this.addBtnEvent(this.startBtn, this.onStart);
+        this.addBtnEvent(this.startBtn, this.onStart,true);
     }
 
     private onStart(){

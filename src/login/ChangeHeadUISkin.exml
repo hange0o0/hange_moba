@@ -44,7 +44,7 @@
 					</e:Array>
 				</e:ArrayCollection>
 				<e:layout>
-					<e:TileLayout horizontalGap="10" requestedColumnCount="5" paddingLeft="5" verticalGap="10" paddingTop="10" paddingBottom="20"/>
+					<e:TileLayout horizontalGap="10" requestedColumnCount="5" paddingLeft="5" verticalGap="10" paddingTop="10" paddingBottom="20" paddingRight="5"/>
 				</e:layout>
 			</e:List>
 		</e:Group>

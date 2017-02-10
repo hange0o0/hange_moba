@@ -17,7 +17,7 @@ class MainServerItem extends game.BaseItem {
 
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
-        this.addBtnEvent(this.startBtn, this.onStart);
+        this.addBtnEvent(this.startBtn, this.onStart,true);
     }
 
     private onRetry(){

@@ -180,6 +180,7 @@ class TecManager{
                 Alert('已达最大升级等级');
                 return;
             }
+            SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
             if(fun)
                 fun();
         });

@@ -27,6 +27,7 @@ class SoundManager {
     private isLoad:boolean=false;
 
     public pkKey = [];
+    public effectKey = [];
     // private tween:egret.Tween
     
     private init(){
@@ -261,6 +262,7 @@ class SoundManager {
             var op = this.getSoundObject(nameList[i]);
             if(nameList[i].indexOf('effect_') == 0)       {
                 addResources(nameList[i], "music/" + nameList[i]+'.mp3')
+                this.effectKey.push(nameList[i] + "_mp3")
             }
             else if(nameList[i].indexOf('pk_') == 0)       {
                 addResources(nameList[i], "music/" + nameList[i]+'.mp3')
@@ -275,8 +277,6 @@ class SoundManager {
             //})(op)
         }
 
-        this.pkKey.push('effect_win_mp3');
-        this.pkKey.push('effect_loss_mp3');
 
         if(!this.isQzonePlay) {
             RES.parseConfig(data, Config.localResRoot);
@@ -311,6 +311,14 @@ class SoundManager {
             RES.createGroup('pksound', SoundManager.getInstance().pkKey, true);
             RES.loadGroup("pksound");
             this.pkKey = null;
+        }
+    }
+    public loadEffectSound(){
+        if(this.effectKey)
+        {
+            RES.createGroup('effectsound', SoundManager.getInstance().effectKey, true);
+            RES.loadGroup("effectsound");
+            this.effectKey = null;
         }
     }
 
@@ -445,10 +453,10 @@ class SoundConfig {
     public static effect_buy: string = "effect_buy";
     public static effect_button: string = "effect_button";
     public static effect_join: string = "effect_join";
-    public static effect_loss: string = "effect_loss";
     public static effect_m_up: string = "effect_m_up";
     public static effect_u_up: string = "effect_u_up";
-    public static effect_win: string = "effect_win";
+    public static pk_win: string = "pk_win";
+    public static pk_loss: string = "pk_loss";
     public static pk_effect1: string = "pk_effect1";
     public static pk_effect2: string = "pk_effect2";
     public static pk_effect3: string = "pk_effect3";

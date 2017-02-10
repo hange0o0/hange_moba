@@ -76,7 +76,7 @@ class PayManager{
                 AwardUI.getInstance().show(msg.award);
             else
                 ShowTips('购买成功!')
-
+            SoundManager.getInstance().playEffect(SoundConfig.effect_buy);
             if(fun)
                 fun();
         });
@@ -96,7 +96,7 @@ class PayManager{
             }
 
             ShowTips('购买成功')
-
+            SoundManager.getInstance().playEffect(SoundConfig.effect_buy);
 
             if(fun)
                 fun();

@@ -141,7 +141,7 @@ class MainGameUI extends game.BaseUI {
 
     public onShow(){
 
-
+        SoundManager.getInstance().playEffect(SoundConfig.effect_join);
         this.topUI.setTitle('试练场PK-第'+(UM.main_game.level)+'关');
 
         this.renewEnemy();

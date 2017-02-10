@@ -36,17 +36,19 @@ class PKMainMV {
             tw.call(fun1,thisObj)
     }
 
-    public jumpToXY(a,b,fun1?,thisObj?,wait?,frontWait?){
+    public jumpToXY(a,b,fun1?,thisObj?,wait?){       //,frontWait?
 
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
         a.jumping = true;
         var dis = Math.max(400,MyTool.getDis(a,b));
-        if(frontWait)
-            tw.wait(frontWait);
+        //if(frontWait)
+        //    tw.wait(frontWait);
+        SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
         tw.to({x:b.x,y:b.y}, dis).call(function(){
             a.jumping = false;
+            //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         });
         var tw:egret.Tween = egret.Tween.get(a);
         tw.to({scaleX:1.3,scaleY:1.3}, dis/2,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/2,egret.Ease.sineIn);
@@ -149,6 +151,8 @@ class PKMainMV {
             mv.x = item.x;
             mv.y = item.y;
         }
+
+        this.playSkillSound(key);
         item.parent.addChild(mv);
         var config = AM.mvConfig[key]
         if(config)
@@ -184,5 +188,15 @@ class PKMainMV {
             if(fun)
                 fun.apply(thisObj);
         });
+    }
+
+    public playSkillSound(id){
+        var soundID = AniManager.getInstance().mvSoundConfig[id];
+        if(soundID)
+        {
+            SoundManager.getInstance().playEffect('pk_effect' + soundID);
+        }
+        //else if(Config.isDebug)
+        //    console.log('no Sound:' + id);
     }
 }
