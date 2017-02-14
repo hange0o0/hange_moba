@@ -11,6 +11,7 @@ class PKDressChooseListItem extends game.BaseItem {
     private levelGroup: eui.Group;
     private levelText: eui.Label;
     private redMC: eui.Image;
+    private infoText: eui.Label;
 
 
 
@@ -26,6 +27,7 @@ class PKDressChooseListItem extends game.BaseItem {
 
         this.addBtnEvent(this.useBtn,this.onClick);
         this.addBtnEvent(this.infoGroup,this.onClick);
+        this.addBtnEvent(this.infoText,this.onClick);
         this.addBtnEvent(this,this.onInfo);
         //MyTool.addLongTouch(this,this.onLongTouch,this)
 
@@ -52,11 +54,10 @@ class PKDressChooseListItem extends game.BaseItem {
         //this.nickText.text = vo.name
 
 
-
-
-        //var fightData,star,forceStr;
+        var fightData;
         if(this.data.specialData.isEqual)
         {
+            fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
             MyTool.removeMC(this.levelGroup);
             this.redMC.visible = false;
         }
@@ -65,6 +66,11 @@ class PKDressChooseListItem extends game.BaseItem {
             this.infoGroup.addChild(this.levelGroup);
             this.levelText.text = '' + UM.getMonsterLevel(vo.id)
             this.redMC.visible = vo.canLevelUp()
+
+            var force = (UM.award_force + UM.tec_force);
+            fightData = UM.getTecMonsterAdd(vo.id);
+            fightData.atk += force;
+            fightData.hp += force;
         }
 
 
@@ -87,7 +93,9 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
 
-
+         this.setHtml(this.infoText,this.createHtml(Math.round(vo.atk * (1+fightData.atk/100)),0xD9A744) + '/' +
+             this.createHtml(Math.round(vo.hp * (1+fightData.hp/100)),0xE65140) + '/' +
+             this.createHtml(Math.round(vo.speed * (1+fightData.speed/100)),0x5B5BF2))
 
         //this.atkText.text = '攻：' +  Math.round(vo.atk * (1+fightData.atk/100));
         //this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));

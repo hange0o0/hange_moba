@@ -30,7 +30,7 @@
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
-				<e:Group right="10" top="10" id="helpBtn" x="10" y="10">
+				<e:Group right="20" top="10" id="helpBtn" x="10" y="10">
 					<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 					<e:Label horizontalCenter="0" textColor="0xF8D05A" y="10" text="?"/>
 				</e:Group>
@@ -66,7 +66,7 @@
 					<e:layout>
 						<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
 					</e:layout>
-					<e:Button id="chooseBtn0" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
+					<e:Button id="chooseBtn0" label="开始挑战" y="0" skinName="Btn_r3Skin" x="365"/>
 				</e:Group>
 			</e:Group>
 

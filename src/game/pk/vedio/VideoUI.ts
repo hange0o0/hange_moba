@@ -11,7 +11,6 @@ class VideoUI extends game.BaseUI {
     private scrollGroup: eui.Group;
     private list: eui.List;
     private upGroup: eui.Group;
-    private upBtn: eui.Group;
     private playerGroup1: eui.Group;
     private hpBar0: eui.Rect;
     private hpText0: eui.Label;
@@ -53,6 +52,7 @@ class VideoUI extends game.BaseUI {
     private enemyItem0: VideoItem;
     private enemyItem1: VideoItem;
     private enemyItem2: VideoItem;
+
 
 
 

@@ -49,7 +49,7 @@ class VideoMonsterItem extends game.BaseItem {
         {
             this.icon.source = 'icon_empty_png'
             this.posText.visible = true
-            this.posText.text = this.data.index
+            this.posText.text = (this.data.index+1)
         }
 
     }

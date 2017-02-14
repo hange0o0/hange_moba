@@ -337,8 +337,10 @@ class PKDressUI extends game.BaseUI {
                 (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 2;
                 if(this.dataIn.enemy.length ==4)
                     (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 2
-                else
+                else if(this.dataIn.enemy.length <=6)
                     (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
+                else
+                    (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 4
             }
         }
     }

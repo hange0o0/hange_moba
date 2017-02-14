@@ -53,7 +53,7 @@
 
 	<e:Group x="30" y="30">
 		<e:Image source="card_bg_png" x="0" y="0" height="350" scale9Grid="72,75,87,71" width="270"/>
-		<e:Image id="headMC" source="pk_bg_jpg" x="15" y="13" width="240" height="320"/>
+		<e:Image id="headMC" source="head_png" x="15" y="13" width="240" height="320"/>
 		<e:Group id="levelGroup" x="15" y="273">
 			<e:Rect height="60" width="240" x="0" y="0" fillAlpha="0.7" strokeWeight="1"/>
 			<e:Label id="levelText" y="15" text="X12" textColor="0xCBC08A" textAlign="center" horizontalCenter="0.5"/>

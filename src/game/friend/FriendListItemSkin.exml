@@ -1,10 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendListItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110" states="friend,add" >
+<e:Skin class="FriendListItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110" states="friend,add" >
+
+
+
+
+
 	<e:Group y="0" visible.add="false" horizontalCenter="0">
 		<e:Image source="item_bg_jpg" x="0" y="0" width="600" scale9Grid="20,12,437,76" height="110"/>
 		<e:Group x="22" y="17">
 			<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="76" height="76" x="0"/>
-			<e:Image id="headMC" source="pk_bg_jpg" y="3" width="70" height="70" x="3"/>
+			<e:Image id="headMC" source="head_png" y="3" width="70" height="70" x="3"/>
 		</e:Group>
 		<e:Group x="119" y="23">
 			<e:Label id="nameText" text="标签" x="0" y="0" textColor="0xCCB48E" size="30"/>
@@ -23,5 +28,6 @@
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle" gap="50"/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
 </e:Skin>

@@ -3,7 +3,13 @@
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller width="640" x="0" top="80" bottom="0" bounces="false">
-		<e:Group>
+		<e:Group>
+
+
+
+
+
+
 			<e:Group x="50" y="20">
 				<e:Group x="0" top="0" bottom="0">
 					<e:Image source="book_bg1_jpg" y="0" x="0"/>
@@ -15,7 +21,7 @@
 					<e:Group x="0" y="0" height="120">
 						<e:Group id="headGroup" x="-0.06969696969697026" y="0">
 							<e:Image source="border2_png" y="0" x="0" width="100" height="100"/>
-							<e:Image id="headMC" source="pk_bg_jpg" y="3" x="3" width="94" height="94"/>
+							<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
 							<e:Rect height="30" width="94" x="3" fillAlpha="0.7" bottom="3"/>
 							<e:Label text="更换" horizontalCenter="0" bottom="8" size="20" textColor="0xCCB48E"/>
 						</e:Group>
@@ -24,7 +30,7 @@
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">
 						<e:Label id="levelText" y="8" text="等级：LV.32" x="60" textColor="0xCCB48E" size="30"/>
-						<e:Label id="expText" x="242" y="15" textColor="0xCCB48E" text="经验：123456/456789" size="18"/>
+						<e:Label id="expText" x="242" y="18" text="经验：123456/456789" size="20" textColor="0xD19844"/>
 						<e:Image source="icon_lv_png" y="0" x="0"/>
 					</e:Group>
 					<e:Group x="0" y="164.0909090909091">
@@ -50,7 +56,7 @@
 								<e:Image source="icon_empty_png" x="0" y="0"/>
 								<e:Image source="icon_add_png" x="8" y="6"/>
 							</e:Group>
-							<e:Label id="reEnergyText" y="13" textColor="0xCCB48E" text="22：56 后增加一点" x="236.99999999999997" size="20"/>
+							<e:Label id="reEnergyText" y="13" text="22：56 后增加一点" x="236.99999999999997" size="20" textColor="0xD19844"/>
 							<e:layout>
 								<e:HorizontalLayout verticalAlign="bottom"/>
 							</e:layout>
@@ -136,7 +142,8 @@
 				<e:Label y="0" horizontalCenter="0" textColor="0xCCB48E" text="每日任务数据"/>
 				<e:Label id="dailyText1" horizontalCenter="0" textColor="0xCCB48E" size="24" y="61" text="当前进度：10/10"/>
 <e:Label y="105" textColor="0xCCB48E" text="累计通关次数：0" id="dailyText2" size="24" x="50"/>
-				<e:Label y="105" textColor="0xCCB48E" text="获得任务积分：0" id="dailyText3" size="24" x="300"/>			</e:Group>
+				<e:Label y="105" textColor="0xCCB48E" text="获得任务积分：0" id="dailyText3" size="24" x="300"/>			</e:Group>
+
 			<e:Group x="87" y="894" height="220">
 				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="160" horizontalCenter="0"/>
 				<e:Label y="0" textColor="0xCCB48E" text="竞技场数据" horizontalCenter="0"/>

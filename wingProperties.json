@@ -136,11 +136,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"bold_bg_png",
-					"name":"bold_bg_png"
-				},
-				{
-					"isFolder":false,
 					"key":"book_bg1_jpg",
 					"name":"book_bg1_jpg"
 				},
@@ -201,11 +196,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"btn_pk_png",
-					"name":"btn_pk_png"
-				},
-				{
-					"isFolder":false,
 					"key":"btn_up_png",
 					"name":"btn_up_png"
 				},
@@ -248,11 +238,6 @@
 					"isFolder":false,
 					"key":"fire_top_jpg",
 					"name":"fire_top_jpg"
-				},
-				{
-					"isFolder":false,
-					"key":"fu1_png",
-					"name":"fu1_png"
 				},
 				{
 					"isFolder":false,
@@ -321,11 +306,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"icon_def_png",
-					"name":"icon_def_png"
-				},
-				{
-					"isFolder":false,
 					"key":"icon_empty_png",
 					"name":"icon_empty_png"
 				},
@@ -356,11 +336,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"icon_pvp_2_png",
-					"name":"icon_pvp_2_png"
-				},
-				{
-					"isFolder":false,
 					"key":"icon_pvp_3_png",
 					"name":"icon_pvp_3_png"
 				},
@@ -378,11 +353,6 @@
 					"isFolder":false,
 					"key":"icon_token_png",
 					"name":"icon_token_png"
-				},
-				{
-					"isFolder":false,
-					"key":"kulu_png",
-					"name":"kulu_png"
 				},
 				{
 					"isFolder":false,
@@ -408,11 +378,6 @@
 					"isFolder":false,
 					"key":"main_exp_jpg",
 					"name":"main_exp_jpg"
-				},
-				{
-					"isFolder":false,
-					"key":"main_item_bg_png",
-					"name":"main_item_bg_png"
 				},
 				{
 					"isFolder":false,
@@ -451,11 +416,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"pk_bottm_png",
-					"name":"pk_bottm_png"
-				},
-				{
-					"isFolder":false,
 					"key":"pk_fail_png",
 					"name":"pk_fail_png"
 				},
@@ -468,11 +428,6 @@
 					"isFolder":false,
 					"key":"pk_result_line_png",
 					"name":"pk_result_line_png"
-				},
-				{
-					"isFolder":false,
-					"key":"pk_vs_png",
-					"name":"pk_vs_png"
 				},
 				{
 					"isFolder":false,
@@ -501,21 +456,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"rate_ar_mc_png",
-					"name":"rate_ar_mc_png"
-				},
-				{
-					"isFolder":false,
-					"key":"rate_bar_bg_png",
-					"name":"rate_bar_bg_png"
-				},
-				{
-					"isFolder":false,
-					"key":"rate_bar_drag_png",
-					"name":"rate_bar_drag_png"
-				},
-				{
-					"isFolder":false,
 					"key":"red_point_png",
 					"name":"red_point_png"
 				},
@@ -526,38 +466,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"stop_mc_png",
-					"name":"stop_mc_png"
-				},
-				{
-					"isFolder":false,
-					"key":"tab1_png",
-					"name":"tab1_png"
-				},
-				{
-					"isFolder":false,
-					"key":"tab2_png",
-					"name":"tab2_png"
-				},
-				{
-					"isFolder":false,
 					"key":"top_bg_jpg",
 					"name":"top_bg_jpg"
-				},
-				{
-					"isFolder":false,
-					"key":"view_mc_png",
-					"name":"view_mc_png"
-				},
-				{
-					"isFolder":false,
-					"key":"window1_jpg",
-					"name":"window1_jpg"
-				},
-				{
-					"isFolder":false,
-					"key":"window1_top_png",
-					"name":"window1_top_png"
 				},
 				{
 					"isFolder":false,
@@ -576,11 +486,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"line2_png",
-					"name":"line2_png"
-				},
-				{
-					"isFolder":false,
 					"key":"border_light1_png",
 					"name":"border_light1_png"
 				},
@@ -596,23 +501,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"drop_png",
-					"name":"drop_png"
-				},
-				{
-					"isFolder":false,
 					"key":"tips_jpg",
 					"name":"tips_jpg"
-				},
-				{
-					"isFolder":false,
-					"key":"line3_png",
-					"name":"line3_png"
-				},
-				{
-					"isFolder":false,
-					"key":"drop2_png",
-					"name":"drop2_png"
 				},
 				{
 					"isFolder":false,
@@ -621,18 +511,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"pk_bg_jpg",
-					"name":"pk_bg_jpg"
-				},
-				{
-					"isFolder":false,
 					"key":"arrow5_png",
 					"name":"arrow5_png"
-				},
-				{
-					"isFolder":false,
-					"key":"card_battle_png",
-					"name":"card_battle_png"
 				},
 				{
 					"isFolder":false,
@@ -648,16 +528,6 @@
 					"isFolder":false,
 					"key":"icon_server_png",
 					"name":"icon_server_png"
-				},
-				{
-					"isFolder":false,
-					"key":"soul_icon_png",
-					"name":"soul_icon_png"
-				},
-				{
-					"isFolder":false,
-					"key":"lock_icon_png",
-					"name":"lock_icon_png"
 				},
 				{
 					"isFolder":false,
@@ -708,11 +578,6 @@
 					"isFolder":false,
 					"key":"box3_png",
 					"name":"box3_png"
-				},
-				{
-					"isFolder":false,
-					"key":"box4_png",
-					"name":"box4_png"
 				},
 				{
 					"isFolder":false,
@@ -771,23 +636,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"arrow6_png",
-					"name":"arrow6_png"
-				},
-				{
-					"isFolder":false,
-					"key":"arrow7_png",
-					"name":"arrow7_png"
-				},
-				{
-					"isFolder":false,
 					"key":"arrow8_png",
 					"name":"arrow8_png"
-				},
-				{
-					"isFolder":false,
-					"key":"flag_mc_png",
-					"name":"flag_mc_png"
 				},
 				{
 					"isFolder":false,
@@ -993,11 +843,6 @@
 					"isFolder":false,
 					"key":"skill9_png",
 					"name":"skill9_png"
-				},
-				{
-					"isFolder":false,
-					"key":"bar_title_jpg",
-					"name":"bar_title_jpg"
 				},
 				{
 					"isFolder":false,

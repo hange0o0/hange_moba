@@ -14,12 +14,7 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="upGroup" x="0" y="70" locked="true">
-		<e:Group id="upBtn" horizontalCenter="0.5" bottom="-30" height="60" visible="false">
-			<e:Image source="button_go_2_png" y="14" horizontalCenter="0" scale9Grid="19,14,118,15"/>
-			<e:Image source="icon_dec_png" y="38" horizontalCenter="-1" width="36" height="20"/>
-			<e:Image source="arrow9_png" y="23" horizontalCenter="0"/>
-		</e:Group>
+	<e:Group id="upGroup" x="0" y="70">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillColor="0x120701"/>
 		<e:Rect height="100%" width="5" y="0" fillColor="0x272422" x="318"/>
 		<e:Group x="7" width="308" top="10" bottom="10" id="playerGroup1">

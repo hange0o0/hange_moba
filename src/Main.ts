@@ -146,12 +146,12 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
 
-        if(_get['debug'] == 2)
-        {
+        //if(_get['debug'] == 2)
+        //{
             egret.setTimeout(function(){
                 RES.loadGroup("gamepreload");//预加载第一阶段
             },this,200)
-        }
+        //}
 
         //var button = new eui.Button();
         //button.label = "Click!";

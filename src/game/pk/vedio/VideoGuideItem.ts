@@ -110,7 +110,7 @@ class VideoGuideItem extends game.BaseItem {
         {
             this.icon.source = 'icon_empty_png'
             this.posText.visible = true
-            this.posText.text = atker.index
+            this.posText.text = (atker.index+1)
         }
 
     }

@@ -3,15 +3,15 @@
 	<e:Image source="bg_jpg" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Rect height="60" width="640" x="0" y="74" strokeWeight="1"/>
-	<e:Group x="18" y="87">
+	<e:Group x="18" y="86">
 		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
 		<e:Image source="icon_money_png" y="1" x="0"/>
-		<e:Label y="7" textColor="0xCCCCCC" text="123456789" id="coinText" size="24" x="44"/>
+		<e:Label y="9" textColor="0xCCCCCC" text="123456789" id="coinText" size="24" x="44"/>
 	</e:Group>
-	<e:Group x="210" y="85">
+	<e:Group x="210" y="86">
 		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
 		<e:Image y="1" x="0" source="icon_pvp_ticket_png"/>
-		<e:Label id="cardText" y="7" textColor="0xCCCCCC" text="123456789" size="24" x="44"/>
+		<e:Label id="cardText" y="9" textColor="0xCCCCCC" text="123456789" size="24" x="44"/>
 	</e:Group>
 	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="135">
 		<e:Group>

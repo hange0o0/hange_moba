@@ -203,6 +203,7 @@ class FriendListUI extends game.BaseUI {
 
         var FM = FriendManager.getInstance();
         this.list.itemRenderer = FriendLogItem;
+        FM.removeTimeOut(FM.logList);
         this.list.dataProvider = new eui.ArrayCollection(FM.logList)
         this.emptyText.visible = FM.logList.length == 0;
     }

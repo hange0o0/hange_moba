@@ -2,7 +2,7 @@
 <e:Skin class="MyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="137" height="179">
 
 	<e:Image source="card_bg_png" y="0" height="179" x="0" width="137" scale9Grid="72,75,87,71"/>
-	<e:Image source="pk_bg_jpg" y="8" x="8" width="120" height="160" id="headMC"/>
+	<e:Image source="head_png" y="8" x="8" width="120" height="160" id="headMC"/>
 
 	<e:Rect height="35" width="120" fillAlpha="0.75" x="8" y="133"/>
 

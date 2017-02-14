@@ -1,8 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="CollectItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  width="150" height="200">		
+<e:Skin class="CollectItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  width="150" height="200">
+	
+	
 	<e:Image source="card_bg_png" y="0" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
-	<e:Image source="pk_bg_jpg" y="8" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>	
-	<e:Rect height="40" width="130" fillAlpha="0.75" x="10" bottom="10"/>		
+	<e:Image source="head_png" y="8" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>
+	
+	<e:Rect height="40" width="130" fillAlpha="0.75" x="10" bottom="10"/>
+	
+	
 	<e:Image id="arrowMC" y="170" right="15" anchorOffsetY="16" source="arrow4_png" scaleY="-1"/>
 	<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="159" horizontalCenter="0" textColor="0xEED1A7"/>
 	

@@ -403,9 +403,12 @@ class MainPageUI extends game.BaseUI {
 
 
         SoundManager.getInstance().playSound(SoundConfig.bg);
+        egret.setTimeout(function(){
+            RES.loadGroup("gamepreload2");//预加载第一阶段
+        },this,500)
         setTimeout(function(){
             SoundManager.getInstance().loadEffectSound();
-        },300)
+        },1000)
 
     }
 

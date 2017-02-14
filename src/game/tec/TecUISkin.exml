@@ -15,12 +15,12 @@
 			<e:Group id="propGroup1" x="185" y="12">
 				<e:Label id="propText1" y="7" text="123" x="48" size="26" textColor="0xCCB48E"/>
 				<e:Image source="border7_png" x="0" y="0" width="46" height="46"/>
-				<e:Image id="propMC1" source="pk_bg_jpg" x="5" y="5" width="30" height="30"/>
+				<e:Image id="propMC1" source="head_png" x="5" y="5" width="30" height="30"/>
 			</e:Group>
 			<e:Group id="propGroup2" y="12" x="306">
 				<e:Label id="propText2" y="7" textColor="0xCCB48E" size="26" text="123" x="48"/>
 				<e:Image source="border7_png" width="46" y="0" height="46" x="0"/>
-				<e:Image id="propMC2" source="pk_bg_jpg" width="30" y="5" height="30" x="5"/>
+				<e:Image id="propMC2" source="head_png" width="30" y="5" height="30" x="5"/>
 			</e:Group>
 		</e:Group>
 		<ns1:TecItem id="itemMC" x="42" y="12" skinName="TecItemSkin"/>
@@ -44,7 +44,8 @@
 				<e:Object label="卡牌"/>
 			</e:Array>
 		</e:ArrayCollection>
-	</e:TabBar>
+	</e:TabBar>
+
 	<e:Scroller id="scroller" width="640" x="0" top="390" bottom="0">
 		<e:Group>
 			<e:List id="list" height="200" width="640" x="0" y="0" itemRendererSkinName="TecItemSkin">
@@ -54,7 +55,9 @@
 
 			</e:List>
 		</e:Group>
-	</e:Scroller>
+	</e:Scroller>
+
+
 
 	<e:Group id="coinGroup" y="87" right="15">
 		<e:Image source="icon_money_png" y="0" x="0"/>

@@ -111,6 +111,19 @@ class FriendManager{
             EM.dispatchEventWith(GameEvent.client.friend_red_change)
     }
 
+    //把过期的消息去掉
+    public removeTimeOut(arr){
+        var endTime = TM.now() - 24*3600*3
+        for(var i=0;i<arr.length;i++)
+        {
+            if(arr[i].time < endTime)
+            {
+                arr.splice(i,1);
+                i--;
+            }
+        }
+    }
+
     public showPKUI(id){
         var self = this;
         var FPKM = FriendPKManager.getInstance();
@@ -131,6 +144,7 @@ class FriendManager{
     public getPKArray(){
         var arr = ObjectUtil.objToArray(this.pkObject);
         ArrayUtil.sortByField(arr,['id'],[1])
+        this.removeTimeOut(arr);
         return  arr;
     }
 

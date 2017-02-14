@@ -61,7 +61,7 @@
 					<e:layout>
 						<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
 					</e:layout>
-					<e:Button x="365" y="0" label="使用出战" skinName="Btn_r3Skin" id="chooseBtn0"/>
+					<e:Button x="365" y="0" label="开始挑战" skinName="Btn_r3Skin" id="chooseBtn0"/>
 				</e:Group>
 			</e:Group>
 

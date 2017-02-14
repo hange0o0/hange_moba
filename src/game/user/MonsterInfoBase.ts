@@ -163,6 +163,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
                 //this.levelGroup.visible = false;
                 fightData = {atk:0,hp:0,speed:0};
+                nameStr += '  <font color="#D9A744" size="22">(基础)</font>';
             }
             else  //我自己
             {
