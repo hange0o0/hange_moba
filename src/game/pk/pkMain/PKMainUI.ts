@@ -123,6 +123,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     public onShow() {
+        egret.Tween.removeAllTweens()
+        egret.clearTimeout(this.timer);
         PopUpManager.removeShape();
         this.initView();
         this.addSceneMovie();
@@ -147,7 +149,10 @@ class PKMainUI extends game.BaseUI {
         item.action = false
         return item;
     }
+
     private freeItem(item){
+        if(item.out)
+            return;
         item.out = true;
         this.itemCollect.push(item);
         MyTool.removeMC(item);
@@ -253,7 +258,7 @@ class PKMainUI extends game.BaseUI {
 
 
 
-        this.timer = egret.setTimeout(this.playOne,this,arr.length * 200 + 500)
+        this.timer = egret.setTimeout(this.playOne,this,arr.length * 200 + 300)
         SoundManager.getInstance().loadPKSound();
 
     }
@@ -330,12 +335,17 @@ class PKMainUI extends game.BaseUI {
             {
                 item.x = item.x + decX;
                 item.y = item.y + decY + 640;
+                item.ar = -1;
             }
             else
             {
                 item.x = 640 - item.x - decX;
                 item.y = 320 - item.y - decY;
+                item.ar = 1;
             }
+            item.ox = item.x
+            item.oy = item.y
+            console.log(team,item.y)
         }
     }
 
@@ -367,7 +377,7 @@ class PKMainUI extends game.BaseUI {
 
         var tw:egret.Tween = egret.Tween.get(item);
 
-        tw.to({y:y + decY},300).call(function(){SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);}).to({y:y},100);
+        tw.to({y:y + decY},200).call(function(){SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);}).to({y:y},100);
     }
 
     //开始播放动画
@@ -377,7 +387,7 @@ class PKMainUI extends game.BaseUI {
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束
         {
-            this.showResult();
+            this.timer = egret.setTimeout(this.showResult,this,300)
              return;
         }
         this.needUpArr1 = [];
@@ -422,7 +432,7 @@ class PKMainUI extends game.BaseUI {
         var player
         if(!oo)
         {
-            this.timer = egret.setTimeout(this.playOne,this,300);
+            this.timer = egret.setTimeout(this.playOne,this,200);
         }
         else if(oo.type == 'atk')
         {
@@ -606,18 +616,18 @@ class PKMainUI extends game.BaseUI {
                 startPoint = item.team == 1?{x:160,y:480} :{x:480,y:480}
             var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),enemy,enemyDis)
             var VM = PKMainMV.getInstance();
-            VM.jumpToXY(item,newPos,fun,this,300);
+            VM.jumpToXY(item,newPos,fun,this,100);
             item.action = true;
             return true
         }
         return false;
     }
 
-    private pkOne(item,shake?){
+    private pkOne(item,shake?,disDec=0){
 
         var self = this;
         function rePKOne(){
-            self.pkOne(item,shake);
+            self.pkOne(item,shake,disDec);
         }
 
         var mvo = item.data.vo;
@@ -658,8 +668,9 @@ class PKMainUI extends game.BaseUI {
                 {
                     return
                 }
-                if(this.testOut(item,rePKOne,item.enemy,250,true))
+                if(this.testOut(item,rePKOne,item.enemy,250+disDec,true))
                 {
+                    disDec -= 20;
                     return;
                 }
 
@@ -682,8 +693,9 @@ class PKMainUI extends game.BaseUI {
                 {
                     return
                 }
-                if(this.testOut(item,rePKOne,item.enemy,250,true))
+                if(this.testOut(item,rePKOne,item.enemy,250+disDec,true))
                 {
+                    disDec -= 20;
                     return;
                 }
 
@@ -702,8 +714,9 @@ class PKMainUI extends game.BaseUI {
             //}
             if(item.isPKing)
             {
-                if(this.testOut(item,rePKOne,item.enemy,250,true))
+                if(this.testOut(item,rePKOne,item.enemy,250+disDec,true))
                 {
+                    disDec -= 20;
                     return;
                 }
                 this.atkType3(item,skillData);
@@ -712,6 +725,19 @@ class PKMainUI extends game.BaseUI {
             {
                 this.atkType3(item,skillData);
             }
+        }
+        else if(skillData.type ==4) //移过去近攻,状态
+        {
+            //移过去
+            if(this.testOut(item.enemy,rePKOne,item,250))
+            {
+                return;
+            }
+            if(item.isPKing && this.randomJump(item,rePKOne))
+            {
+                return
+            }
+            this.atkType4(item,skillData,shake);
         }
 
         if(item.isPKing)
@@ -733,7 +759,7 @@ class PKMainUI extends game.BaseUI {
         var startPoint = atker;
         var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),atker.enemy,enemyDis)
         var VM = PKMainMV.getInstance();
-        VM.jumpToXY(atker,newPos,fun,this,300);
+        VM.jumpToXY(atker,newPos,fun,this,100);
         return true;
     }
 
@@ -758,11 +784,11 @@ class PKMainUI extends game.BaseUI {
         var VM = PKMainMV.getInstance();
         var pos = {x:item.x,y:item.y};
 
-        SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
+        //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         var xy = VM.moveToTarget(item,item.enemy,function(){
             //被攻击击移后
             var xy = VM.behitMoveBack(item,item.enemy,function(){
-                this.timer = egret.setTimeout(this.nextPK,this,500)
+                this.timer = egret.setTimeout(this.nextPK,this,200)
             },this)
             this.jumpOut(item.enemy,xy,[item]);
 
@@ -786,7 +812,7 @@ class PKMainUI extends game.BaseUI {
         var VM = PKMainMV.getInstance();
         VM.skillMV(item,function(){
             //被攻击击移后
-            this.timer = egret.setTimeout(this.nextPK,this,800)
+            this.timer = egret.setTimeout(this.nextPK,this,400)
 
             VM.behitMV(item.enemy);
             //击中动画
@@ -805,7 +831,7 @@ class PKMainUI extends game.BaseUI {
             VM.playBullet(mv.id,item,item.enemy,function(){
                 //被攻击击移后
                 var xy = VM.behitMoveBack(item,item.enemy,function(){
-                    this.timer = egret.setTimeout(this.nextPK,this,500)
+                    this.timer = egret.setTimeout(this.nextPK,this,200)
                 },this)
                 this.jumpOut(item.enemy,xy,[item]);
 
@@ -821,12 +847,39 @@ class PKMainUI extends game.BaseUI {
     private atkType3(item,mv){
         var VM = PKMainMV.getInstance();
         VM.skillMV(item,function(){
-            this.timer = egret.setTimeout(this.nextPK,this,800)
+            this.timer = egret.setTimeout(this.nextPK,this,400)
             //击中动画
             var id = mv.id;
             VM.playOnItem(id,item.self,null,null);
         },this)
 
+    }
+
+    private atkType4(item,mv,shake){
+        var VM = PKMainMV.getInstance();
+        var pos = {x:item.x,y:item.y};
+
+        //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
+        var xy = VM.moveToTarget(item,item.enemy,function(){
+            //被攻击击移后
+            var xy = VM.behitMoveBack(item,item.enemy,function(){
+                this.timer = egret.setTimeout(this.nextPK,this,200)
+            },this)
+            this.jumpOut(item.enemy,xy,[item]);
+
+            if(!item.isPKing)
+            {
+                VM.moveToXY(item,pos);
+            }
+
+            //击中动画
+            var id = mv.id;
+            VM.playOnItem(id,item.enemy,null,null,xy);
+            if(shake)
+                this.shakeBG();
+        },this)
+        if(item.isPKing)
+            this.jumpOut(item,xy,[item.enemy]);
     }
 
     //得到当前还在场上单位的布局

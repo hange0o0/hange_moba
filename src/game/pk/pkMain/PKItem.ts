@@ -33,6 +33,7 @@ class PKItem extends game.BaseItem {
 
 
     public dataChanged() {
+        this.stopMV();
         var vo = this.data.vo;
         this.headMC.source = vo.thumbRound
         this.team = this.data.team
