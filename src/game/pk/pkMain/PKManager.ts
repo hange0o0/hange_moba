@@ -27,6 +27,7 @@ class PKManager {
     public pkResult;
     public pkAward;
     public pkType;
+    //public videoType;
     public pkData;
     public team1Base;
     public team2Base;
@@ -43,6 +44,7 @@ class PKManager {
 
     public winCount//胜利的次数
     public action//是否有出战
+    public die//是否失败
 
     public teamChange = false//队伍ID发生过转换
 
@@ -87,24 +89,30 @@ class PKManager {
     }
 
 
-    public getPKBG(type){
+    public getPKBG(type,rd){
         var sceneID = 1;
+        var size = 3;
+        if(type == PKManager.PKType.REPLAY)
+            type = this.pkResult.info.type;
         switch(type)
         {
             case PKManager.PKType.MAIN:
-                sceneID = 1;
+                sceneID = (1 + Math.floor(rd*size)) + size * 0;
                 break;
             case PKManager.PKType.DAY:
-                sceneID = 2;
+                sceneID = (1 + Math.floor(rd*size)) + size * 1;
                 break;
             case PKManager.PKType.SERVER:
-                sceneID = 3;
+                sceneID = (1 + Math.floor(rd*size)) + size * 2;
                 break;
             case PKManager.PKType.SERVER_EQUAL:
-                sceneID = 4;
+                sceneID = (1 + Math.floor(rd*size)) + size * 3;
+                break;
+            case PKManager.PKType.FRIEND:
+                sceneID = (1 + Math.floor(rd*size)) + size * 4;
                 break;
             default:
-                sceneID = 1 + Math.floor(Math.random()*4);
+                sceneID = 1 + Math.floor(rd*15);
                 break;
         }
 
@@ -333,6 +341,7 @@ class PKManager {
         //表现动画，结果的数据
         var winCount = this.winCount = {};
         var action = this.action = {};
+        var die = this.die = {};
         this.pkList.length = 0;
         for(var i=0;i<data.pkdata.length;i++)
         {
@@ -453,7 +462,11 @@ class PKManager {
                 oo.isWin = true;
             }
             else
+            {
                 oo.after = 0;
+                die[p.id] = true;
+            }
+
             oo.afterMax = oo.beforeMax;
             if(nextP && nextP.id == p.id)
             {

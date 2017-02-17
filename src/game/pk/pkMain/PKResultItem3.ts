@@ -10,7 +10,7 @@ class PKResultItem3 extends game.BaseItem {
     private s1: eui.Image;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
-    private notFight: eui.Label;
+    private dieText: eui.Label;
 
 
 
@@ -46,7 +46,8 @@ class PKResultItem3 extends game.BaseItem {
             this['s' + (i+1)].visible = win > i;
         }
 
-        this.notFight.visible = !this.data.action;
+        //if(this.data.die)
+            this.dieText.visible = this.data.die;
 
     }
 }

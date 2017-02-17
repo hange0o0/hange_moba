@@ -10,6 +10,7 @@ class MainGameManager{
     }
 
     public lastPKData;
+    public maxLevel = 500;
 
     public loadCache(level,fun){
         var id = Math.ceil(level/100);

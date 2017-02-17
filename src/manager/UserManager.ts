@@ -73,6 +73,8 @@ class UserManager {
 
 
         this.friendtime = data.friendtime || 0;
+        if(TM.now() - this.friendtime > 3600*24*3)
+            this.friendtime = 0;
 
         Config.pk_version = Math.floor(data.pk_version);
     }

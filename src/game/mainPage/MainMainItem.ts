@@ -61,6 +61,12 @@ class MainMainItem extends game.BaseItem {
             this.desText.text = '抽取卡牌需消耗体力：1'
         }
 
+        if(level >= MainGameManager.getInstance().maxLevel)
+        {
+            MyTool.removeMC(this.startBtn)
+            this.desText.text = '更高层的试练场即将开放！'
+        }
+
 
         //this.coinText.text = '×' + level*100
         ////每过30小关奖一个普通道具

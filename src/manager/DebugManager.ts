@@ -152,8 +152,11 @@ class DebugManager {
         for(var i=1;i<this.maxMonsterID + 1;i++)
         {
             var vo = MonsterVO.getObject(i);
+
             if(vo)
             {
+                if(vo.level > 1)
+                    continue;
                 if(vo.cost <10)
                     card1.push(vo.id);
                 else if(vo.cost <20)

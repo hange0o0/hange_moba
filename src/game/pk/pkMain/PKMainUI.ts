@@ -105,8 +105,9 @@ class PKMainUI extends game.BaseUI {
     public show(){
         this.initSeed();
         var group = VideoManager.getInstance().getVideoAniGroup();
-        this.scene =  'pk_bg'+(1 + Math.floor(this.random()*20))+'_jpg';
+        this.scene =  PKManager.getInstance().getPKBG(PKManager.getInstance().pkType,this.random());
         group.push(this.scene);
+        //console.log(this.scene)
         //if(group.length == 0)
         //    this.LoadFiles = [];
         //else
@@ -345,7 +346,6 @@ class PKMainUI extends game.BaseUI {
             }
             item.ox = item.x
             item.oy = item.y
-            console.log(team,item.y)
         }
     }
 

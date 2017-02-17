@@ -107,6 +107,7 @@ class PKResultUI extends game.BaseUI {
 
                 level:team1Base.mb[mid].lv,
                 win: PKM.winCount[i+team1ID],
+                die: PKM.die[i+team1ID],
                 action: PKM.action[i+team1ID]
             })
         }
@@ -126,6 +127,7 @@ class PKResultUI extends game.BaseUI {
 
                 level:team2Base.mb[mid].lv,
                 win: PKM.winCount[i+team2ID],
+                die: PKM.die[i+team2ID],
                 action: PKM.action[i+team2ID]
             })
         }
