@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -1391,11 +1391,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"dungeon_monster_jpg",
-					"name":"dungeon_monster_jpg"
-				},
-				{
-					"isFolder":false,
 					"key":"prop_card_jpg",
 					"name":"prop_card_jpg"
 				},
@@ -1421,11 +1416,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"prop_ticket2_jpg",
-					"name":"prop_ticket2_jpg"
-				},
-				{
-					"isFolder":false,
 					"key":"prop_ticket_jpg",
 					"name":"prop_ticket_jpg"
 				},
@@ -1438,6 +1428,36 @@
 					"isFolder":false,
 					"key":"login_bg_jpg",
 					"name":"login_bg_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"dungeon_money_png",
+					"name":"dungeon_money_png"
+				},
+				{
+					"isFolder":false,
+					"key":"dungeon_monster_png",
+					"name":"dungeon_monster_png"
+				},
+				{
+					"isFolder":false,
+					"key":"prop_ticket_png",
+					"name":"prop_ticket_png"
+				},
+				{
+					"isFolder":false,
+					"key":"xuezhan_035_png",
+					"name":"xuezhan_035_png"
+				},
+				{
+					"isFolder":false,
+					"key":"guide1_png",
+					"name":"guide1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"guide2_png",
+					"name":"guide2_png"
 				}
 			]
 		}
