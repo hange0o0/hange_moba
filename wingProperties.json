@@ -1416,11 +1416,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"prop_ticket_jpg",
-					"name":"prop_ticket_jpg"
-				},
-				{
-					"isFolder":false,
 					"key":"prop_thumb_21_jpg",
 					"name":"prop_thumb_21_jpg"
 				},
@@ -1431,26 +1426,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"dungeon_money_png",
-					"name":"dungeon_money_png"
-				},
-				{
-					"isFolder":false,
-					"key":"dungeon_monster_png",
-					"name":"dungeon_monster_png"
-				},
-				{
-					"isFolder":false,
-					"key":"prop_ticket_png",
-					"name":"prop_ticket_png"
-				},
-				{
-					"isFolder":false,
-					"key":"xuezhan_035_png",
-					"name":"xuezhan_035_png"
-				},
-				{
-					"isFolder":false,
 					"key":"guide1_png",
 					"name":"guide1_png"
 				},
@@ -1458,6 +1433,51 @@
 					"isFolder":false,
 					"key":"guide2_png",
 					"name":"guide2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"shop_card_png",
+					"name":"shop_card_png"
+				},
+				{
+					"isFolder":false,
+					"key":"shop_energy_png",
+					"name":"shop_energy_png"
+				},
+				{
+					"isFolder":false,
+					"key":"shop_money_png",
+					"name":"shop_money_png"
+				},
+				{
+					"isFolder":false,
+					"key":"shop_ticket_png",
+					"name":"shop_ticket_png"
+				},
+				{
+					"isFolder":false,
+					"key":"video_atk1_png",
+					"name":"video_atk1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"video_atk2_png",
+					"name":"video_atk2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"video_atk3_png",
+					"name":"video_atk3_png"
+				},
+				{
+					"isFolder":false,
+					"key":"video_atk4_png",
+					"name":"video_atk4_png"
+				},
+				{
+					"isFolder":false,
+					"key":"title_png",
+					"name":"title_png"
 				}
 			]
 		}

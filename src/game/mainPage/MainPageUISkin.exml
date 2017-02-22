@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainPageUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
-	<e:Group x="-2" y="0" locked="true">
+	<e:Group x="-2" y="0">
 		<e:Image source="fire_top_jpg" x="2" y="0" locked="true"/>
 		<e:Image source="border_head_png" x="10" y="6"/>
+		<e:Rect  y="11" x="15" width="90" height="90" fillColor="0x200000"/>
 		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
 		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
 		<e:Image source="icon_empty_png" x="0" y="76"/>
@@ -15,9 +16,14 @@
 
 
 
-		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24" locked="true"/>
-		<e:BitmapLabel id="forceText" x="160" y="67" font="font_num4_fnt" text="12345" scaleY="1.8" scaleX="1.8"/>
-		<e:Image source="icon_power_png" x="114" y="60"/>
+		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24"/>
+		<e:Group x="124" y="63">
+			<e:Label y="10" text="战力:" x="10" size="26" textColor="0xF9D988"/>
+			<e:Label id="forceText" y="0" size="36" text="12345" x="0" textColor="0xF8B602" italic="true"/>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle"/>
+			</e:layout>
+		</e:Group>
 
 
 

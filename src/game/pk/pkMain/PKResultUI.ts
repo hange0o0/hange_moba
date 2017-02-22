@@ -133,6 +133,15 @@ class PKResultUI extends game.BaseUI {
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(arr)
 
+        this.selfText.stroke = 0
+        this.enemyText.stroke = 0
+        if(team1Base.f > team2Base.f)
+            this.selfText.stroke = 1;
+        else if(team1Base.f < team2Base.f)
+            this.enemyText.stroke = 1;
+
+
+
         GuideManager.getInstance().showGuide(this);
 
     }

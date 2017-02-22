@@ -6,11 +6,26 @@ class MonsterVO {
     }
     public static initFinish(){
         var data = CM.table[this.dataKey];
+        var rdata = {groups:[],resources:[]}
+        var arr = rdata.resources;
+        var addResources = function(name,path){
+            arr.push({
+                "name":name,
+                "type":"image",
+                "url": path
+            })
+        }
+
         for(var s in data)
         {
             var vo = data[s];
             vo.initSkill();
+
+            addResources('m_thumb_' + vo.id,vo.thumb)
+            addResources('m_thumbr_' + vo.id,vo.thumbRound)
+            addResources('m_url_' + vo.id,vo.url)
         }
+        RES.parseConfig(rdata, '');
     }
 
 

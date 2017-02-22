@@ -12,9 +12,13 @@
 		{
 			"name": "egret"
 		},
-		{
-			"name": "eui"
-		},
+	  {
+		"name": "eui"
+	  },
+	  {
+		"name": "nest",
+		"path": "/nest"
+	  },
 		{
 			"name": "res"
 		},

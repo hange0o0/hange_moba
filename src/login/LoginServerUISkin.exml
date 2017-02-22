@@ -23,4 +23,16 @@
 		</e:Group>
 	</e:Group>
 	<e:Label id="backBtn" text="&lt;&lt;　返回" x="20" bottom="20" italic="true" textColor="0xCCB48E" size="22"/>
+	<e:Group horizontalCenter="0" bottom="560">
+		<e:Image source="title_png" scaleX="0.8" scaleY="0.8" y="0" x="0"/>
+		<e:Group y="168" x="9">
+			<e:Image source="main_mc_png" x="0" y="0" width="104"/>
+			<e:Label text="天选之人" x="-764" y="903" textColor="0xC4A87C"/>
+			<e:Image source="main_mc_png" y="9.999999999999943" x="10" scaleX="-1" width="104"/>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="bottom" gap="20"/>
+			</e:layout>
+		</e:Group>
+		<e:Image source="shop_card_png" x="45" y="26" scaleX="0.8" scaleY="0.8"/>
+	</e:Group>
 </e:Skin>

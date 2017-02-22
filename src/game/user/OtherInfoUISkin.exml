@@ -22,6 +22,7 @@
 				<e:Group horizontalCenter="0" top="20" bottom="20">
 					<e:Group x="0" y="0" height="120">
 						<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="100" height="100"/>
+						<e:Rect y="3" x="3" width="94" height="94" fillColor="0x200000"/>
 						<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
 						<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCCB48E"/>
 						<e:Button id="friendBtn" label="加好友" x="440" y="0" skinName="Btn_r1Skin"/>

@@ -83,6 +83,7 @@ class PKResultItem2 extends game.BaseItem {
         }
         else
             this.decText0.text = '';
+        var dec0 = dec;
 
 
         var player = this.data.player2
@@ -118,6 +119,19 @@ class PKResultItem2 extends game.BaseItem {
         else
             this.decText1.text = '';
 
+
+
+        this.decText1.stroke = 0
+        this.decText0.stroke = 0
+        if((dec > 0 && dec0 > 0) || (dec < 0 && dec0 < 0))
+        {
+             var v0 = Math.abs(dec0)
+             var v1 = Math.abs(dec)
+            if(v0 > v1)
+                this.decText0.stroke = 1;
+            else if(v0 < v1)
+                this.decText1.stroke = 1;
+        }
 
 
         if(this.data.player1.isWin)

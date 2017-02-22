@@ -268,8 +268,8 @@ class PKManager {
         }
         else if(type == PKManager.PKType.SERVER || type == PKManager.PKType.SERVER_EQUAL)
         {
-            this.team2Head = info.head || '???';
-            this.team2Nick = info.nick || '???';
+            this.team2Head = info.head || 0;
+            this.team2Nick = info.nick || 0;
         }
         else if(type == PKManager.PKType.DAY)
         {

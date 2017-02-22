@@ -11,14 +11,17 @@ class PKMainUI extends game.BaseUI {
     }
 
 
-
+    private bgBlack: eui.Rect;
+    private bgGroup: eui.Group;
     private bg1: eui.Image;
     private bg0: eui.Image;
     private jumpBtn: eui.Button;
-    //private enemyGroup: eui.Group;
+    private enemyGroup: eui.Group;
     private selfGroup: eui.Group;
     private topMC: eui.Image;
     private bottomMC: eui.Image;
+
+
 
 
 
@@ -67,7 +70,7 @@ class PKMainUI extends game.BaseUI {
 
 
 
-
+    private loadGroup2 = []
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.jumpBtn, this.onJump);
@@ -81,7 +84,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private initSeed(){
-        var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
+        var arr = PKManager.getInstance().team2Base.list; //PKManager.getInstance().team1Base.list.concat(
         this.randomSeed = 0;
         for(var i=0;i<arr.length;i++)
         {
@@ -103,10 +106,25 @@ class PKMainUI extends game.BaseUI {
     }
 
     public show(){
+        this.loadGroup2 = [];
         this.initSeed();
         var group = VideoManager.getInstance().getVideoAniGroup();
         this.scene =  PKManager.getInstance().getPKBG(PKManager.getInstance().pkType,this.random());
         group.push(this.scene);
+
+        var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
+        var mObj = {};
+        for(var i=0;i<arr.length;i++)
+        {
+            mObj[arr[i]] = true;
+        }
+        console.log(mObj);
+        for(var s in mObj)
+        {
+            group.push('m_thumbr_' + s);
+            this.loadGroup2.push('m_thumb_' + s);
+        }
+
         //console.log(this.scene)
         //if(group.length == 0)
         //    this.LoadFiles = [];
@@ -124,6 +142,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     public onShow() {
+        this.bgBlack.visible = false;
         egret.Tween.removeAllTweens()
         egret.clearTimeout(this.timer);
         PopUpManager.removeShape();
@@ -132,6 +151,8 @@ class PKMainUI extends game.BaseUI {
         this.isStop = false;
 
         SoundManager.getInstance().playSound(SoundConfig.bg_pk);
+
+
     }
 
     private getItem():PKItem{
@@ -223,12 +244,13 @@ class PKMainUI extends game.BaseUI {
     }
 
     private shakeBG(){
-        var tw:egret.Tween = egret.Tween.get(this);
+        var tw:egret.Tween = egret.Tween.get(this.bgGroup);
         tw.to({x:-6,y:-5},80).to({x:5,y:3},120).to({x:-2,y:-1},50).to({x:0,y:0},30)
     }
 
     //加所有单位
     private addItemMovie(){
+        this.bgBlack.visible = true;
         var myTeam = PKManager.getInstance().team1Base.list
         var enemyTeam = PKManager.getInstance().team2Base.list
         if(PKManager.getInstance().teamChange)
@@ -261,6 +283,8 @@ class PKMainUI extends game.BaseUI {
 
         this.timer = egret.setTimeout(this.playOne,this,arr.length * 200 + 300)
         SoundManager.getInstance().loadPKSound();
+
+
 
     }
 
@@ -383,6 +407,13 @@ class PKMainUI extends game.BaseUI {
     //开始播放动画
     private playOne(){
         //console.log('playOne');
+        if(this.loadGroup2)
+        {
+            RES.createGroup('pk_load',this.loadGroup2,true);
+            RES.loadGroup("pk_load");
+            this.loadGroup2 = null;
+        }
+
         this.jumpBtn.visible = true;
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束

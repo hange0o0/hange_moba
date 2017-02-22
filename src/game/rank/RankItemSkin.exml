@@ -3,6 +3,7 @@
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="640" height="80" x="0" visible.info="false"/>
 	<e:Rect height="100%" width="100%" x="0" y="0" visible.up="false" visible.info="false" fillAlpha="0.3" fillColor="0x2A0800"/>
 	<e:Image source="border2_png" y="9" width="60" height="60" x="94" visible.info="false"/>
+	<e:Rect y="14" width="50" height="50" x="100" visible.info="false"/>
 	<e:Image source="head_png" y="14" id="headMC" width="50" height="50" x="100" visible.info="false"/>
 	<e:Label id="nameText" text="标签" x="165" y="23" visible.info="false" textColor="0xCCB48E" textColor.self="0xEB9501"/>
 	<e:Label id="scoreText" text="标签" y="23" visible.info="false" textColor="0xCCB48E" right="30" textColor.self="0xEB9501"/>

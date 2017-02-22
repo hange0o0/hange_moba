@@ -586,6 +586,18 @@ class DebugManager {
         }
     }
 
+    public testPHP(url,data){
+        var loader = new egret.URLLoader();
+        loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
+        var request = new egret.URLRequest(url);
+        //var request = new egret.URLRequest('http://qxu1606510485.my3w.com/new_index.php');
+        request.method = egret.URLRequestMethod.POST;
+        var variables = new egret.URLVariables('a=1');
+        variables.variables = data;
+        request.data = variables
+        loader.load(request);
+    }
+
     //显示指定基础动画
     private testBaseMV(i){
         if(!RES.hasRes('skill' + i + '_json'))

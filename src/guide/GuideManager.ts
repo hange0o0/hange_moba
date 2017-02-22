@@ -32,62 +32,65 @@ class GuideManager {
         var self = this;
         //            hideHand:false,
         this.addGuideObj({
-            fun:function(){self.showGuide()},
-            text:'欢迎来到卡斗士的乐园，在这里你会感受到不一样的卡牌对决的乐趣！现在，就让我们进入这趟神奇之旅吧！',
+            fun:function(){
+                MainPageUI.getInstance().onGuide0()
+                self.showGuide()
+            },
+            text:'欢迎来到卡斗士的乐园，在这里你会感受到不一样的卡牌对决的乐趣！现在，就让我们开始这趟神奇之旅吧！',
         })
 
         this.addGuideObj({
             mc:"MainPageUI.getInstance()['mainGame']['startBtn']",
-            text:'试练场是检测玩家实力的地方，玩家实力越强，将会走得越远。\n现在，我们开始第一次PK',
+            text:'试练场是检测玩家实力的地方，玩家实力越强，将会走得越远。我们马上开始进入第一次PK吧',
         })
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"this.getMainGameRect()",
-            text:'我们已经得到系统给的卡组了，先观察一下对手的卡组，以方便我们制定合适的战术',
+            text:'现在我们已经得到系统派发的卡组了。通常第一步是要先观察一下对手的卡组，以方便我们制定合适的战术',
             fun:function(){self.showGuide(MainGameUI.getInstance())}
         })
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"MainGameUI.getInstance()['chooseBtn0']",
-            text:'来，我们去布阵吧',
+            text:'看来对手的实力不怎么样嘛，就让我们去打败它吧！点击[挑战]按钮，进去布阵环节！',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'【人鱼战士】是一张不错的卡，我们就选它出战吧',
+            text:'我觉得【人鱼战士】是一张不错的卡牌，我们就选它出战吧',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'虽然多次出战会花费更多的符文，但我觉得这张卡值这个价',
+            text:'虽然重复出战会花费更多的符文，但我觉得这张卡牌值这个价',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(6)['useBtn']",
-            text:'我觉得我们还需要一张肉盾，就选它吧',
+            text:'我觉得我们还需要一张张大的肉盾，就选它吧。',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['h3']",
-            text:'我肉盾当然要站在前排才能发挥最大价值，让我们为它来调整一下出场顺序吧',
+            text:'肉盾当然要站在前排才能发挥最大价值，让我们为它来调整一下出场顺序吧。',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['a1']",
-            text:'点这里把它插到最前面',
+            text:'点这里可以把它移到最前面，当然你也可以拖动来完成这个操作。',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(7)['useBtn']",
-            text:'虽然我觉得这样的阵型足以打败对手了，但既然还有符文剩余，就多上张牌保险一点吧',
+            text:'虽然我觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多上一张牌吧',
         })
 
         this.addGuideObj({
@@ -99,50 +102,50 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"new egret.Rectangle(0,600,640,500)",
-            text:'是不是很简单？如果想了解更详尽的PK过程，可以点击下方的对战信息进行查看',
+            text:'是不是很简单？如果想了解更详尽的PK过程，可以点击下方的对战信息查看更多的信息',
             fun:function(){self.showGuide(PKWinUI.getInstance())}
         })
 
         this.addGuideObj({
             ui:"PKWinUI.getInstance()",
             mc:"PKWinUI.getInstance()['okBtn']",
-            text:'复盘还是先放一放，反正首页那里还有回放按钮，现在还是先退回首页了解一下其它功能吧',
+            text:'复盘的工作还是先放一放，反正首页那里还有回放按钮，现在还是先退回首页了解一下其它功能吧',
         })
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance()['collectBtn']",
-            text:'你可以在【收集】中，利用你获得的资源对你的卡牌进行提升。只有战力上去了，你才能在试练场和竞技场中走得更远！',
+            text:'刚才不是在PK中获得了一些卡牌碎片和金币吗，现在你就可以在【收集】中使用它们对你的卡牌进行提升了。',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
         })
 
         this.addGuideObj({
             ui:"CollectUI.getInstance()",
             mc:"CollectUI.getInstance()['list'].getChildAt(1)",
-            text:'你刚才是不是觉得【人鱼战士】挺厉害的？我们就让它更厉害一点吧',
+            text:'你是不是觉得【人鱼战士】挺厉害的？我也是这样认为的，那么现在我们就让它更厉害一点吧',
         })
 
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['info']['levelUpBtn']",
-            text:'升级【人鱼战士】的时候，我们的其它卡牌也会有一定的提升哦',
+            text:'升级所有的卡牌的时候，我们的总战力也会同步升高，因此我们的其它卡牌的出战战力也会得到相应提升',
         })
 
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['topUI']['closeBtn']",
-            text:'升完级是不是觉得自己害很多呢，想再去挑战一下其它玩家吧？让我们再看看游戏的其它对战功能吧',
+            text:'升完级是不是觉得自己害很多呢，想再去挑战一下其它玩家吧？没问题让我们再看看游戏的其它对战功能吧',
         })
 
         this.addGuideObj({
             ui:"CollectUI.getInstance()",
             mc:"CollectUI.getInstance()['topUI']['closeBtn']",
-            text:'别急，再点一下',
+            text:'点击【关闭】回到首页',
         })
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'每日任务每天会刷出10关让玩家进行挑战，通过积累任务积分会获得永久的战力加成奖励，是每天绝不能错过的玩法！',
+            text:'每日任务中，系统会刷出10关让玩家进行挑战，通过积累任务积分将会获得永久的战力加成，每一天所有玩家挑战的关卡是一样的哦！',
             hideHand:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
@@ -155,7 +158,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'在竞技场中，系统会为你匹配实力相当对手！\n你的选择是战力碾压还是智慧征服？',
+            text:'在竞技场中，系统会为你匹配实力相当对手！你的选择是战力碾压还是智慧征服？',
             hideHand:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
@@ -168,7 +171,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'修正场中的PK将不会受玩家战力高低的影响，只要你有实力，新手一样能打败老鸟！',
+            text:'在修正场中的PK将不会受到玩家战力高低的影响，只要你有实力，新手一样能打败老鸟！',
             hideHand:true,
             fun:function(){
                 self.showGuide()
@@ -178,7 +181,7 @@ class GuideManager {
 
 
         this.addGuideObj({
-            text:'好了，游戏的基础功能就介绍到这里，但还有更多有趣玩法需要你在游戏中慢慢发掘，88~',
+            text:'好了，游戏的基础功能就介绍到这里，但还有更多有趣玩法需要你在游戏中慢慢去发掘哦，88~',
             fun:function(){
                 self.isGuiding = false;
                 GuideUI.getInstance().hide();

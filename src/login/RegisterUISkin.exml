@@ -9,11 +9,12 @@
 	<e:Label y="218" textColor="0xC4A36A" size="22" text="密码确认：" x="53"/>
 	<e:TextInput id="passwordText2" width="280" y="207" skinName="MyTextInputSkin" height="45" x="171" prompt="重复一次上方密码" displayAsPassword="true"/>
 	<e:Group y="285" horizontalCenter="0">
-		<e:Button id="backBtn" label="返回" y="0" x="0" skinName="Btn_d2Skin"/>
+		<e:Button id="backBtn" label="返回" y="0" x="0" skinName="Btn_b2Skin"/>
 		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="注册" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
 	<e:Label id="titleText" text="用户注册" y="32" size="24" horizontalCenter="0" textColor="0xAAA6A6"/>
 </e:Skin>

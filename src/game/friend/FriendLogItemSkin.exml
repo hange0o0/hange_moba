@@ -3,6 +3,7 @@
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="600" height="110" horizontalCenter="0"/>
 	<e:Group x="38" y="17">
 		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="76" height="76" x="0"/>
+		<e:Rect y="3" width="70" height="70" x="3" fillColor="0x200000"/>
 		<e:Image id="headMC" source="head_png" y="3" width="70" height="70" x="3"/>
 	</e:Group>
 	<e:Group x="126" y="22">

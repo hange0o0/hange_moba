@@ -180,6 +180,12 @@ class Main extends eui.UILayer {
             Config.host = '172.17.196.195:90';
         }
 
+        if(_get['debug'] == 3)
+        {
+            EgretManager.getInstance().startup()
+            return;
+        }
+
         if(_get['openid'])
         {
             LoginManager.getInstance().login(_get['openid'],'@password');
@@ -198,13 +204,14 @@ class Main extends eui.UILayer {
         //    team1:{"list":[101,102,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}},
         //    team2:{"list":[101,101,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}}
         //};
+        Net.getInstance().serverHost = Config.host;
 
-        var dataIn = RES.getRes("test_data_json");
         if(_get['host'] == 'com')
             Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php'
         else
             Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
 
+        var dataIn = RES.getRes("test_data_json");
         VideoUI.getInstance().debugShow = true;
         DebugManager.getInstance().debugFromFile(dataIn);
         setTimeout(function(){

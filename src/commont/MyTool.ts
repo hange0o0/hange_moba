@@ -2,11 +2,13 @@ class MyTool {
     public constructor() {
     }
 
+    public static maxUserHead = 82;
+
     public static randomName(){
         return  'n'+Math.floor(Math.random()*999999);
     }
     public static getHeadUrl(id){
-        return Config.localResRoot + 'head/m_head'+id+'.jpg';
+        return Config.localResRoot + 'user_head/user_head'+id+'.png';
     }
     public static removeMC(mc:any){
         if(mc.parent)

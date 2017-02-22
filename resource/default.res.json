@@ -17,7 +17,7 @@
 			"name":"ani"
 		},
 		{
-			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png",
+			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png,title_png,login_bg_jpg,fire_top_jpg,btn_r2_png",
 			"name":"loginload"
 		},
 		{
@@ -25,8 +25,12 @@
 			"name":"pk_bg"
 		},
 		{
-			"keys":"book_bg1_jpg,book_bg2_jpg,window2_png,pk_result_line_png,pk_fail_png,pk_win_png,fight_fail_1_png,fight_win_png",
+			"keys":"book_bg1_jpg,book_bg2_jpg,window2_png,pk_result_line_png,pk_fail_png,pk_win_png,fight_fail_1_png,fight_win_png,box0_png,box1_png,box2_png,box3_png,pay_energy_png,prop_card_jpg,prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,shop_card_png,shop_energy_png,shop_money_png,shop_ticket_png,video_atk1_png,video_atk2_png,video_atk3_png,video_atk4_png",
 			"name":"gamepreload2"
+		},
+		{
+			"keys":"",
+			"name":"user_head"
 		}
 	],
 	"resources":[
@@ -2031,11 +2035,6 @@
 			"url":"prop_icon/prop_exp.jpg"
 		},
 		{
-			"name":"prop_ticket_jpg",
-			"type":"image",
-			"url":"prop_icon/prop_ticket.jpg"
-		},
-		{
 			"name":"prop_thumb_21_jpg",
 			"type":"image",
 			"url":"prop_icon/prop_thumb_21.jpg"
@@ -2066,29 +2065,9 @@
 			"url":"prop_icon/box3.png"
 		},
 		{
-			"name":"dungeon_money_png",
-			"type":"image",
-			"url":"prop_icon/dungeon_money.png"
-		},
-		{
-			"name":"dungeon_monster_png",
-			"type":"image",
-			"url":"prop_icon/dungeon_monster.png"
-		},
-		{
 			"name":"pay_energy_png",
 			"type":"image",
 			"url":"prop_icon/pay_energy.png"
-		},
-		{
-			"name":"prop_ticket_png",
-			"type":"image",
-			"url":"prop_icon/prop_ticket.png"
-		},
-		{
-			"name":"xuezhan_035_png",
-			"type":"image",
-			"url":"prop_icon/xuezhan_035.png"
 		},
 		{
 			"name":"guide2_png",
@@ -2099,6 +2078,56 @@
 			"name":"guide1_png",
 			"type":"image",
 			"url":"game_assets/guide1.png"
+		},
+		{
+			"name":"font_num5_fnt",
+			"type":"font",
+			"url":"game_assets/word/font_num5.fnt"
+		},
+		{
+			"name":"shop_card_png",
+			"type":"image",
+			"url":"prop_icon/shop_card.png"
+		},
+		{
+			"name":"shop_energy_png",
+			"type":"image",
+			"url":"prop_icon/shop_energy.png"
+		},
+		{
+			"name":"shop_money_png",
+			"type":"image",
+			"url":"prop_icon/shop_money.png"
+		},
+		{
+			"name":"shop_ticket_png",
+			"type":"image",
+			"url":"prop_icon/shop_ticket.png"
+		},
+		{
+			"name":"video_atk1_png",
+			"type":"image",
+			"url":"game_assets/video_atk1.png"
+		},
+		{
+			"name":"video_atk2_png",
+			"type":"image",
+			"url":"game_assets/video_atk2.png"
+		},
+		{
+			"name":"video_atk3_png",
+			"type":"image",
+			"url":"game_assets/video_atk3.png"
+		},
+		{
+			"name":"video_atk4_png",
+			"type":"image",
+			"url":"game_assets/video_atk4.png"
+		},
+		{
+			"name":"title_png",
+			"type":"image",
+			"url":"game_assets/title.png"
 		}
 	]
 }

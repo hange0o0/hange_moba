@@ -95,7 +95,7 @@ class ServerGameEqualUI extends game.BaseUI {
         //更新敌人
         var enemyList = this.enemyArray = [];
         if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.gameid)
-            data.enemy.userinfo = {head:'???',nick:Base64.encode('神秘人'),level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
+            data.enemy.userinfo = {head:0,nick:Base64.encode('神秘人'),level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
         var specialData = {
             isEqual:true
         };

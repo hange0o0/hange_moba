@@ -120,7 +120,7 @@ class VideoItem3 extends game.BaseItem {
                 group.addChild(this.getWordText('跳过了本次行动',0xAAAAAA))
                 break;
             case 50://物攻
-                this.decode_atk(data,1);
+                this.decode_atk(data,0);
                 break;
             case 51://秒杀
                 this.decode_kill(data);
@@ -381,7 +381,7 @@ class VideoItem3 extends game.BaseItem {
 
         this.getMonster(atker,group)
 
-        group.addChild(this.getPKIcon(type))
+        group.addChild(this.getPKIcon(atker,type))
 
         this.getMonster(defender[defIndex].defender,group)
     }
@@ -520,9 +520,26 @@ class VideoItem3 extends game.BaseItem {
         //this.addChild(hpText)
         //hpText.text = '-' + NumberUtil.formatStrBigNum(word)
     }
-    private getPKIcon(type){
+    private getPKIcon(atker,type){
        var mc =  new eui.Image()
-        mc.source = 'pk_icon_png';
+        var VC = VideoCode.getInstance();
+        var playerVO = VC.getPlayerByID(atker);
+
+        if(playerVO.teamID == 1)
+        {
+            if(type == 0)
+                mc.source = 'video_atk1_png';
+            else
+                mc.source = 'video_atk3_png';
+        }
+        else
+        {
+            if(type == 0)
+                mc.source = 'video_atk2_png';
+            else
+                mc.source = 'video_atk4_png';
+        }
+
         mc.scaleX = mc.scaleY = 0.6
         return mc;
     }

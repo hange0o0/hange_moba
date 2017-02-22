@@ -50,6 +50,10 @@ class RegisterServerUI extends game.BaseWindow {
     public onShow(){
         this.chooseHead = false;
         this.onRandom();
+        if(Config.platform == 'egret' && EgretManager.getInstance().nickName)
+        {
+            this.nameText.text = EgretManager.getInstance().nickName;
+        }
     }
 
     private onClick(){
@@ -65,7 +69,7 @@ class RegisterServerUI extends game.BaseWindow {
     private onRandom(){
         if(!this.chooseHead)
         {
-            this.headID = Math.floor(Math.random()*40);
+            this.headID = Math.floor(Math.random()*MyTool.maxUserHead);
             this.renewHead();
         }
         this.nameText.text = MyTool.randomName();

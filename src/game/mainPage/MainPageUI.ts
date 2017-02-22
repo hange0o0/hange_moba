@@ -412,6 +412,14 @@ class MainPageUI extends game.BaseUI {
 
     }
 
+    public onGuide0(){
+        if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
+        {
+            this.scroller.viewport.scrollV = this.scroller.viewport.contentHeight - this.scroller.viewport.height;
+            this.scroller.validateNow();
+        }
+    }
+
     public renewMiddle(){
         //this.scrollGroup.removeChildren();
         //this.scrollGroup.addChild(this.img);

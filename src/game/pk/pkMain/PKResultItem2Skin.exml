@@ -25,8 +25,8 @@
 		<e:Image id="headMC1" source="head_png" y="5" x="5" width="80" height="80"/>
 	</e:Group>
 	<e:Image id="winIcon" source="menu_icon_1_png" x="130" y="59"/>
-	<e:Label id="hpText0" text="12345/6758" x="125" y="28" size="22" textColor="0xC54040"/>
-	<e:Label id="decText0" y="85" textColor="0xC54040" text="985" size="30" right="340"/>
-	<e:Label y="85" textColor="0xC54040" text="14567" size="30" id="decText1" left="340"/>
-	<e:Label id="hpText1" y="28" textColor="0xC54040" size="22" text="12345/6758" right="125"/>
+	<e:Label id="hpText0" text="12345/6758" x="125" y="28" size="22" textColor="0xEA4E4E"/>
+	<e:Label id="decText0" y="85" textColor="0xC54040" text="985" size="30" right="340" strokeColor="0xFFFF00"/>
+	<e:Label y="85" textColor="0xC54040" text="14567" size="30" id="decText1" left="340" strokeColor="0xFFFF00"/>
+	<e:Label id="hpText1" y="28" size="22" text="12345/6758" right="125" textColor="0xEA4E4E"/>
 </e:Skin>

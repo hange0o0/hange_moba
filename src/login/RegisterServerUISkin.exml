@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520">
 	<e:Image y="0" width="520" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
-	<e:Rect height="60" width="490" x="15" y="16" fillColor="0xFFFFFF" fillAlpha="0.1" strokeWeight="1"/>
+	<e:Rect height="60" width="490" x="15" y="16" fillColor="0xFFFFFF" fillAlpha="0.1" strokeWeight="1"/>
+
 	<e:Label y="33" size="24" text="角色注册" textColor="0xAAA6A6" horizontalCenter="0"/>
 	<e:Group horizontalCenter="0" bottom="40">
-		<e:Button id="backBtn" y="0" skinName="Btn_d2Skin" label="返回" x="0"/>
+		<e:Button id="backBtn" y="0" skinName="Btn_b2Skin" label="返回" x="0"/>
 		<e:Button id="registerBtn" y="0" skinName="Btn_r2Skin" label="注册" x="176"/>
 		<e:layout>
 			<e:HorizontalLayout gap="30"/>
@@ -19,6 +20,7 @@
 	</e:Group>
 	<e:Group id="headGroup" y="100" horizontalCenter="0">
 		<e:Image source="border2_png" y="0" x="0" width="120" height="120" scale9Grid="11,11,68,68"/>
+		<e:Rect x="6" y="6" width="108" height="108" fillColor="0x200000"/>
 		<e:Image id="headMC" x="6" y="6" width="108" height="108" source="head_png"/>
 		<e:Rect height="30" width="108" x="6" bottom="6" fillAlpha="0.7"/>
 		<e:Label text="更换" bottom="6" horizontalCenter="0" size="22" textColor="0xE7C779"/>

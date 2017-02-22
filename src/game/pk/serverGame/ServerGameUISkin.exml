@@ -21,6 +21,7 @@
 					<e:Label y="10" horizontalCenter="0" textColor="0xF8D05A" text="?"/>
 				</e:Group>
 				<e:Label id="nameText" text="标签" x="112" y="8" textColor="0xCCB48E"/>
+				<e:Rect x="23" y="7" width="72" height="72" fillColor="0x200000"/>
 				<e:Image id="headMC" source="icon_power_png" x="23" y="7" width="72" height="72"/>
 				<e:List id="enemyList" height="259" y="95" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
@@ -77,7 +78,9 @@
 					<e:Button id="card2Btn" label="卡组2" y="0" skinName="Btn_b2Skin" x="170"/>
 					<e:Button id="chooseBtn" label="使用出战" y="-2" skinName="Btn_r3Skin" x="370"/>
 				</e:Group>
-			</e:Group>
+			</e:Group>
+
+
 			<e:layout>
 				<e:VerticalLayout horizontalAlign="center"/>
 			</e:layout>

@@ -4,13 +4,14 @@ class ShopItem extends game.BaseItem {
         this.skinName = "ShopItemSkin";
     }
 
-    private titleText: eui.Label;
     private buyBtn: eui.Button;
     private text1: eui.Label;
     private text2: eui.Label;
     private img: eui.Image;
+    private numText: eui.Label;
     private icon: eui.Image;
     private rmbMC: eui.Image;
+
 
 
 
@@ -45,6 +46,10 @@ class ShopItem extends game.BaseItem {
     }
 
     public dataChanged() {
+        if(this.data.rate)
+            this.numText.text = '×' + this.data.rate;
+        else
+            this.numText.text = '';
 
         if(this.data.shopType == 'coin')
             this.setHtml(this.text1,this.data.word + ' <font size="22">(金币X' + NumberUtil.addNumSeparator(PayManager.getInstance().getCoin(this.data.id)) + ')</font>');

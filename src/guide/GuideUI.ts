@@ -18,6 +18,8 @@ class GuideUI extends game.BaseContainer{
 
 
     private clickFun
+    private textIn
+    private textIndex
 
 
     private static instance: GuideUI;
@@ -52,21 +54,66 @@ class GuideUI extends game.BaseContainer{
 
     }
 
+    private handMove(){
+        this.handMC.anchorOffsetX = 70
+        this.handMC.anchorOffsetY = 30
+        var tw:egret.Tween = egret.Tween.get(this.handMC,{loop:true});
+        tw.to({anchorOffsetX:90,anchorOffsetY:-10},500).to({anchorOffsetX:70,anchorOffsetY:30},500)
+    }
+    private handStop(){
+        egret.Tween.removeTweens(this.handMC)
+    }
+
+    public showText(text){
+        this.textIndex = 1;
+        this.textIn = text || '';
+        this.tipTxt.removeEventListener(egret.Event.ENTER_FRAME,this.onText,this)
+        if(text.length > this.textIndex)
+        {
+            this.tipTxt.addEventListener(egret.Event.ENTER_FRAME,this.onText,this)
+        }
+        this.onText();
+    }
+
+    public onText(){
+        this.tipTxt.text = this.textIn.substr(0,this.textIndex);
+        this.textIndex ++;
+        if(this.textIndex > this.textIn.length)
+        {
+            this.tipTxt.removeEventListener(egret.Event.ENTER_FRAME,this.onText,this)
+        }
+    }
+
     public hide(){
         MyTool.removeMC(this);
     }
     
     public show(mc?,text?,fun?,hideHand?){
+        this.handStop();
+        this.tipTxt.text = '';
+        this.tipTxt.removeEventListener(egret.Event.ENTER_FRAME,this.onText,this)
         egret.callLater(function(){
             GameManager.container.addChild(this);
             this.height = GameManager.stage.stageHeight;
-
+            this.tipTxt.text = '';
             this.clickFun = fun;
-            this.tipTxt.text = text || '';
+
             this.anyClick.visible = fun != null;
-            this.tipsGroup.alpha = 0;
-            var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
-            tw.wait(200).to({alpha:1},200)
+
+            if(GuideManager.getInstance().guideStep == 1)
+            {
+                this.tipsGroup.alpha = 1;
+                this.showText(text);
+            }
+            else
+            {
+                this.tipsGroup.alpha = 0;
+                var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
+                tw.wait(200).to({alpha:1},200).call(function(){
+                    this.showText(text);
+                },this)
+            }
+
             if(mc)
             {
                 if(mc instanceof egret.Rectangle)
@@ -91,7 +138,7 @@ class GuideUI extends game.BaseContainer{
                 var toX = p1.x + (p2.x-p1.x)/2;
                 var toY = p2.y + 20
                 var toRotation = 0
-                if(this.tipsGroup.y < mc.y) //指针在下半屏
+                if(this.tipsGroup.y < toY) //指针在下半屏
                 {
                     toRotation = 180
                     toY = p1.y - 20
@@ -101,12 +148,18 @@ class GuideUI extends game.BaseContainer{
                     this.handMC.x = toX;
                     this.handMC.y = toY;
                     this.handMC.rotation = toRotation;
+                    this.handMove();
                 }
                 else
                 {
+                    if(this.handMC.rotation == toRotation && toX == this.handMC.x && toY == this.handMC.y)
+                    {
+                        toRotation += 360;
+                    }
                     var tw:egret.Tween = egret.Tween.get(this.handMC);
-                    tw.to({x:toX,y:toY,rotation:toRotation},200)
+                    tw.to({x:toX,y:toY,rotation:toRotation},200).call(this.handMove,this)
                 }
+                console.log(toRotation)
 
 
             }

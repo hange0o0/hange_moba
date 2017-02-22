@@ -2,7 +2,7 @@
 <e:Skin class="AlertSkin" width="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image x="0" width="540" y="0" source="card_bg_png" scale9Grid="91,65,73,99" height="100%"/>
 	<e:Group horizontalCenter="0" bottom="25">
-		<e:Button id="cancelBtn" y="4" label="按钮" x="0" skinName="Btn_d2Skin"/>
+		<e:Button id="cancelBtn" y="4" label="按钮" x="0" skinName="Btn_b2Skin"/>
 		<e:Button id="okBtn" label="按钮" x="198" y="0" skinName="Btn_r2Skin"/>
 		<e:layout>
 			<e:HorizontalLayout gap="30"/>

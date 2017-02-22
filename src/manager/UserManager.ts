@@ -85,6 +85,11 @@ class UserManager {
         return this.diamond.free + this.diamond.rmb;
     }
 
+    public addDiamond(value){
+        this.diamond.rmb += value;
+        EM.dispatch(GameEvent.client.diamond_change)
+    }
+
     public getForce(){
         return this.tec_force + this.award_force;
     }

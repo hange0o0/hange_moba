@@ -39,8 +39,7 @@ class RankItem extends game.BaseItem {
             this.infoText.text = str;
             return;
         }
-         this.headMC.source = MyTool.getHeadUrl(this.data.head);
-        this.nameText.text = this.data.nick
+
         this.scoreText.text = this.data.value
         if(this.data.index < 10)
         {
@@ -54,8 +53,16 @@ class RankItem extends game.BaseItem {
         }
 
         if(this.data.gameid == UM.gameid)
+        {
             this.currentState = 'self';
+            this.headMC.source = MyTool.getHeadUrl(UM.head);
+            this.nameText.text = UM.nick
+        }
         else
+        {
+            this.headMC.source = MyTool.getHeadUrl(this.data.head);
+            this.nameText.text = this.data.nick
             this.currentState = 'up';
+        }
     }
 }

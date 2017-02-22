@@ -12,23 +12,23 @@ class PayManager{
     public constructor() {
         this.shopItem = [
             {id:1,word:'每天自动回复体力+50%（永久）',type:'rmb',cost:12,shopType:'energy',img:'pay_energy_png'},
-            {id:2,word:'48点体力',type:'diamond',cost:60,shopType:'energy',img:'prop_energy_jpg'},
+            {id:2,word:'48点体力',type:'diamond',cost:60,shopType:'energy',img:'shop_energy_png'},
 
-            {id:11,word:'一袋金币',type:'diamond',cost:60,rate:1,shopType:'coin',img:'pay_coin_png'},    //相当于当前试练关卡的奖劢
-            {id:12,word:'一箱金币',type:'diamond',cost:300,rate:5.1,shopType:'coin',img:'pay_coin_png'},//*5
-            {id:13,word:'一大堆金币',type:'diamond',cost:1500,rate:31,shopType:'coin',img:'pay_coin_png'},//*30
+            {id:11,word:'小量金币',type:'diamond',cost:60,rate:1,shopType:'coin',img:'shop_money_png'},    //相当于当前试练关卡的奖劢
+            {id:12,word:'大量金币',type:'diamond',cost:300,rate:6,shopType:'coin',img:'shop_money_png'},//*5
+            {id:13,word:'无数金币',type:'diamond',cost:1500,rate:31,shopType:'coin',img:'shop_money_png'},//*30
 
-            {id:21,word:'小量卡片',type:'diamond',cost:60,rate:1,shopType:'card',img:'prop_card_jpg'},   //
-            {id:22,word:'大量卡片',type:'diamond',cost:300,rate:5.1,shopType:'card',img:'prop_card_jpg'},
-            {id:23,word:'极多卡片',type:'diamond',cost:1500,rate:31,shopType:'card',img:'prop_card_jpg'},
+            {id:21,word:'小量卡片',type:'diamond',cost:60,rate:1,shopType:'card',img:'shop_card_png'},   //
+            {id:22,word:'大量卡片',type:'diamond',cost:300,rate:6,shopType:'card',img:'shop_card_png'},
+            {id:23,word:'无数卡片',type:'diamond',cost:1500,rate:31,shopType:'card',img:'shop_card_png'},
 
-            {id:31,word:'修正场门票',type:'diamond',cost:60,shopType:'ticket',img:'prop_ticket_jpg'}, //5张
-            {id:32,word:'修正场门票包',type:'diamond',cost:300,shopType:'ticket',img:'prop_ticket2_jpg'}, //30张
+            {id:31,word:'修正场门票',type:'diamond',cost:60,rate:5,shopType:'ticket',img:'shop_ticket_png'}, //5张
+            {id:32,word:'修正场门票包',type:'diamond',cost:300,rate:30,shopType:'ticket',img:'shop_ticket_png'}, //30张
 
-            {id:101,word:'60钻石',type:'rmb',cost:6,shopType:'diamond',img:'box0_png'},
-            {id:102,word:'305钻石',type:'rmb',cost:30,shopType:'diamond',img:'box1_png'},
-            {id:103,word:'1530钻石',type:'rmb',cost:150,shopType:'diamond',img:'box2_png'},
-            {id:104,word:'6200钻石',type:'rmb',cost:600,shopType:'diamond',img:'box3_png'}
+            {id:101,word:'60钻石',type:'rmb',cost:6,shopType:'diamond',img:'box0_png',value:60},
+            {id:102,word:'305钻石',type:'rmb',cost:30,shopType:'diamond',img:'box1_png',value:305},
+            {id:103,word:'1530钻石',type:'rmb',cost:150,shopType:'diamond',img:'box2_png',value:1530},
+            {id:104,word:'6200钻石',type:'rmb',cost:600,shopType:'diamond',img:'box3_png',value:6200}
 
         ];
 
@@ -50,10 +50,13 @@ class PayManager{
     }
 
     public buy(id,fun){
-       if(this.shopItemObj[id].type == 'rmb')
-       {
-           this.rmbBuy(id,fun);
-       }
+        if(this.shopItemObj[id].type == 'rmb')
+        {
+            if(Config.platform == 'egret')
+                EgretManager.getInstance().pay(id,fun);
+            else
+                this.rmbBuy(id,fun);
+        }
         else
        {
            this.localBuy(id,fun);
@@ -101,8 +104,23 @@ class PayManager{
             if(fun)
                 fun();
         });
+    }
 
+    public onBuyFinish(goodsid,fun){
+        if(goodsid == 1)
+        {
+            UM.energy.vip = 1;
+            EM.dispatch(GameEvent.client.energy_change);
+        }
+        else
+        {
+             UM.addDiamond(this.shopItemObj[goodsid].value)
+        }
 
+        ShowTips('购买成功')
+        SoundManager.getInstance().playEffect(SoundConfig.effect_buy);
+        if(fun)
+            fun();
     }
 
     ////买体力

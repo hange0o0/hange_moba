@@ -8,7 +8,7 @@ class ChangeHeadUI extends game.BaseWindow {
     public constructor() {
         super();
         var arr = this.headArray = [];
-        for(var i=0;i<40;i++)
+        for(var i=0;i<MyTool.maxUserHead;i++)
         {
             arr.push(i+1);
         }
