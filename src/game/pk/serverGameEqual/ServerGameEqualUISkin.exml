@@ -23,7 +23,7 @@
 						<e:HorizontalLayout verticalAlign="bottom"/>
 					</e:layout>
 				</e:Group>
-				<e:Rect x="23" y="5" width="72" height="72" fillColor="0x200000"/>
+				<e:Image source="head_bg2_jpg"  x="23" y="5" width="72" height="72"/>
 				<e:Image id="headMC" source="icon_power_png" x="23" y="5" width="72" height="72"/>
 				<e:Group id="helpBtn" y="40" top="10" right="20" x="40">
 					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>

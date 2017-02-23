@@ -66,7 +66,7 @@
 		<e:Image source="line_png" x="0" width="640" bottom="0"/>
 	</e:Group>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
-	<e:Image id="guideBtn" source="menu_icon_6_png" y="864" x="534"/>
+	<e:Image id="guideBtn" source="menu_icon_4_png" y="864" x="534"/>
 	<ns1:VideoGuide id="guideMC" x="0" skinName="VideoGuideSkin" top="225" bottom="0" locked="true"/>
 	<e:Group id="resultMC" y="300" width="580" x="30">
 		<e:Group y="10" horizontalCenter="0">

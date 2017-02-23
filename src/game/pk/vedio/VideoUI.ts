@@ -391,6 +391,10 @@ class VideoUI extends game.BaseUI {
         this.renewResultHP();
         this.rheadMC0.data = VC.player1;
         this.rheadMC1.data = VC.player2;
+        if(VC.player1.hp == 0)
+            this.rheadMC0.changeGray()
+        if(VC.player2.hp == 0)
+            this.rheadMC1.changeGray()
     }
 
 

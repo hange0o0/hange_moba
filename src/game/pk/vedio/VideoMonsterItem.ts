@@ -21,7 +21,7 @@ class VideoMonsterItem extends game.BaseItem {
     }
 
     public dataChanged() {
-
+        this.headMC.filters = [];
         if(this.data.headVO)
             this.headMC.source = this.data.headVO.thumb;
         else
@@ -52,5 +52,9 @@ class VideoMonsterItem extends game.BaseItem {
             this.posText.text = (this.data.index+1)
         }
 
+    }
+
+    public changeGray(){
+        MyTool.changeGray(this.headMC);
     }
 }

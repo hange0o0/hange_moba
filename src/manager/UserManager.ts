@@ -42,6 +42,7 @@ class UserManager {
 
     public friendtime: number;   //登录时，好友最新消息的时间点
     public maxEnergy = 60;
+    public maxLevel = 50;
 
 
     public fill(data:any):void{

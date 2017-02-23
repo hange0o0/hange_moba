@@ -20,5 +20,6 @@ class EventManager extends egret.EventDispatcher {
     public removeEvent(type: string, func: Function, thisObj: any) {
         EventManager.getInstance().removeEventListener(type, func, thisObj);
     }
+
 }
 

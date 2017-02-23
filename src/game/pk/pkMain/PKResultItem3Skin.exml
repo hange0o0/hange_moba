@@ -12,7 +12,7 @@
 		<e:Image source="icon_empty_png" y="0" x="0"/>
 		<e:Label id="levelText" y="12" textColor="0xCCB48E" text="60" textAlign="center" size="20" horizontalCenter="1"/>
 	</e:Group>
-	<e:Label id="dieText" text="阵亡" x="5" size="20" stroke="3" textColor="0xE6C85C" y="5"/>
+	<e:Label id="dieText" text="阵亡" x="5" size="20" stroke="1" y="5" textColor="0xCCCCCC"/>
 
 
 

@@ -14,7 +14,7 @@ class MainPageUI extends game.BaseUI {
     private headMC: eui.Image;
     private expBar: eui.Image;
     private nameText: eui.Label;
-    private forceText: eui.BitmapLabel;
+    private forceText: eui.Label;
     private levelText: eui.Label;
     private coinGroup: eui.Group;
     private coinText: eui.Label;
@@ -42,6 +42,7 @@ class MainPageUI extends game.BaseUI {
     private leftBtn: eui.Image;
     private rightBtn: eui.Image;
     private taskGroup: eui.Group;
+    private taskMask: eui.Rect;
     private taskText: eui.Label;
     private helpBtn: eui.Group;
     private videoBtn: eui.Group;
@@ -54,6 +55,7 @@ class MainPageUI extends game.BaseUI {
     private friendBtn: eui.Group;
     private friendRed: eui.Image;
     private bagBtn: eui.Group;
+
 
 
 
@@ -120,6 +122,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.timer,this.onTimer,this);
 
 
+        this.taskText.mask = this.taskMask;
 
         for(var i=0;i<=3;i++)
         {
@@ -410,6 +413,7 @@ class MainPageUI extends game.BaseUI {
             SoundManager.getInstance().loadEffectSound();
         },1000)
 
+        this.renewTask();
     }
 
     public onGuide0(){
@@ -469,19 +473,11 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewTask(){
-        var task = UM.active.task;
-        if(task.doing)
-        {
-            this.taskGroup.visible = true;
-            var type = '修正场PK'
-            if(task.type == 'server_game')
-                type = '竞技场PK';
-            this.taskText.text = '任务：在'+task.targettotal+'场'+type+'中取得'+task.targetwin+'场胜利【战力+'+task.award+'】（'+task.win+'/'+task.total+'）';
-        }
-        else
-        {
-            this.taskGroup.visible = false;
-        }
+        this.taskText.x = 560;
+        this.setHtml(this.taskText,HelpManager.getInstance().getInfoText());
+        egret.Tween.removeTweens(this.taskText);
+        var tw:egret.Tween = egret.Tween.get(this.taskText);
+        tw.to({x:-this.taskText.textWidth}, (this.taskText.textWidth + 560)*20).call(this.renewTask,this);
     }
 
     public renewPage(){

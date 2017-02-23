@@ -137,17 +137,17 @@ class MyInfoUI extends game.BaseUI {
         var cd = UM.getNextEnergyCD();
         if(cd == 0)
         {
-            this.energyText.text = '体力：' + UM.energy.v + '/' + 60;
+            this.setText(this.energyText,'[体力：]' + UM.energy.v + '/' + 60);
             this.reEnergyText.text = '';
         }
         else
         {
-            this.energyText.text = '体力：' + UM.energy.v + '/' + 60;
+            this.setText(this.energyText,'[体力：]' + UM.energy.v + '/' + 60);
             this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+1+'点体力';
         }
 
 
-        this.thisLoginText.text = '本次游戏时间：' + DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000));
+        this.setText(this.thisLoginText,'[本次游戏时间：]' + DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000)));
     }
 
 
@@ -171,13 +171,13 @@ class MyInfoUI extends game.BaseUI {
         this.headMC.source = MyTool.getHeadUrl(UM.head);
 
         this.nameText.text = UM.nick;
-        this.levelText.text = '等级：LV.' + UM.level;
-        this.expText.text = '经验：' + UM.exp + '/' + UM.next_exp;
+        this.setText(this.levelText,'[等级：]LV.' + UM.level);
+        this.setText(this.expText,'[经验：]' + UM.exp + '/' + UM.next_exp);
 
-        this.forceText.text = '战力：' + (UM.award_force + UM.tec_force)
-        this.forceText1.text = '科技战力：' + UM.getTecForce();
-        this.forceText2.text = '等级战力：' + UM.getLevelForce();
-        this.forceText3.text = '奖励战力：' + UM.award_force;
+        this.setText(this.forceText,'[战力：]' + (UM.award_force + UM.tec_force))
+        this.setText(this.forceText1,'[科技战力：]' + UM.getTecForce());
+        this.setText(this.forceText2,'[等级战力：]' + UM.getLevelForce());
+        this.setText(this.forceText3,'[奖励战力：]' + UM.award_force);
 
 
 
@@ -185,16 +185,16 @@ class MyInfoUI extends game.BaseUI {
         this.onTimer();
 
 
-        this.coinText.text = '金币：' + UM.coin;
-        this.diamondText.text = '钻石：' + UM.getDiamond();
-        this.diamondFreeText.text = '卡券：' + UM.card;
+        this.setText(this.coinText,'[金币：]' + UM.coin);
+        this.setText(this.diamondText,'[钻石：]' + UM.getDiamond());
+        this.setText(this.diamondFreeText,'[卡券：]' + UM.card);
 
-        this.lastLoginText.text = '最近一次登陆：' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land));
+        this.setText(this.lastLoginText,'[最近一次登陆：]' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land)));
 
 
         var mainData = UM.main_game;
         var level:any = mainData.level;
-        this.mainLevelText.text = '当前等级：' + level
+        this.setText(this.mainLevelText,'[当前等级：]' + level)
         var award = MainGameManager.getInstance().getLocalAward(level);
         this.mainAward1.text = '' + award.coin;
         this.mainAward2.text = '' + award.card;
@@ -204,26 +204,26 @@ class MyInfoUI extends game.BaseUI {
 
 
         var myData = UM.day_game;
-        this.dailyText1.text = '当前进度：' + myData.level + '/10'
-        this.dailyText2.text = '累计通关次数：' +  myData.times
-        this.dailyText3.text = '获得任务积分：' +  myData.score
+        this.setText(this.dailyText1,'[当前进度：]' + myData.level + '/10')
+        this.setText(this.dailyText2,'[累计通关次数：]' +  myData.times)
+        this.setText(this.dailyText3,'[获得任务积分：]' +  myData.score)
 
         var serverData = UM.server_game;
         level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
-        this.serverText1.text = '积分：' + serverData.exp + '（历史最高：' + serverData.top + '）'
-        this.serverText2.text = '当前等级：'+level+'（下一级积分：'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）'
-        this.serverText3.text = '胜利次数：' + serverData.win
-        this.serverText4.text = '失败次数：' + (serverData.total - serverData.win);
+        this.setText(this.serverText1,'[积分：]' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
+        this.setText(this.serverText2,'[当前等级：]'+level+'（[下一级积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
+        this.setText(this.serverText3,'[胜利次数：]' + serverData.win)
+        this.setText(this.serverText4,'[失败次数：]' + (serverData.total - serverData.win));
 
 
         var serverData = UM.server_game_equal;
         level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
-        this.serverEqualText1.text =  '积分：' + serverData.exp + '（历史最高：' + serverData.top + '）'
-        this.serverEqualText2.text = '当前等级：'+level+'（下一级积分：'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）'
-        this.serverEqualText3.text =  '胜利次数：' + serverData.win
-        this.serverEqualText4.text = '失败次数：' + (serverData.total - serverData.win);
-        this.serverEqualText5.text = '当前连胜：' + serverData.last
-        this.serverEqualText6.text = '最高连胜：' + serverData.max
+        this.setText(this.serverEqualText1, '[积分]：' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
+        this.setText(this.serverEqualText2,'[当前等级：]'+level+'（[下一级积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
+        this.setText(this.serverEqualText3, '[胜利次数：]' + serverData.win)
+        this.setText(this.serverEqualText4,'[失败次数：]' + (serverData.total - serverData.win));
+        this.setText(this.serverEqualText5,'[当前连胜：]' + serverData.last)
+        this.setText(this.serverEqualText6,'[最高连胜：]' + serverData.max)
 
 
         var specialData = {
@@ -244,5 +244,16 @@ class MyInfoUI extends game.BaseUI {
         }
         this.list.dataProvider = new eui.ArrayCollection(arr)
 
+    }
+
+    private setText(text,str){
+        str = this.changeValue(str);
+        this.setHtml(text,str);
+    }
+
+    private changeValue(str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        return str;
     }
 }

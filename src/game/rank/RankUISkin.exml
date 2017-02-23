@@ -6,7 +6,7 @@
 		<e:Group>
 			<e:List id="list" width="640" itemRendererSkinName="TecItemSkin" x="0" top="0" bottom="370">
 				<e:layout>
-					<e:TileLayout horizontalGap="20" verticalGap="0"/>
+					<e:TileLayout horizontalGap="20" verticalGap="3"/>
 				</e:layout>
 			</e:List>
 		</e:Group>

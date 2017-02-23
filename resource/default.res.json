@@ -25,7 +25,7 @@
 			"name":"pk_bg"
 		},
 		{
-			"keys":"book_bg1_jpg,book_bg2_jpg,window2_png,pk_result_line_png,pk_fail_png,pk_win_png,fight_fail_1_png,fight_win_png,box0_png,box1_png,box2_png,box3_png,pay_energy_png,prop_card_jpg,prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,shop_card_png,shop_energy_png,shop_money_png,shop_ticket_png,video_atk1_png,video_atk2_png,video_atk3_png,video_atk4_png",
+			"keys":"book_bg1_jpg,book_bg2_jpg,window2_png,pk_result_line_png,pk_fail_png,pk_win_png,fight_fail_1_png,fight_win_png,box0_png,box1_png,box2_png,box3_png,pay_energy_png,prop_card_jpg,prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,shop_card_png,shop_energy_png,shop_money_png,shop_ticket_png,video_atk1_png,video_atk2_png,video_atk3_png,video_atk4_png,head_bg4_jpg,head_bg1_jpg,head_bg2_jpg,head_bg3_jpg,3th_png,1th_png,2th_png",
 			"name":"gamepreload2"
 		},
 		{
@@ -2128,6 +2128,41 @@
 			"name":"title_png",
 			"type":"image",
 			"url":"game_assets/title.png"
+		},
+		{
+			"name":"head_bg4_jpg",
+			"type":"image",
+			"url":"game_assets/border/head_bg4.jpg"
+		},
+		{
+			"name":"head_bg1_jpg",
+			"type":"image",
+			"url":"game_assets/border/head_bg1.jpg"
+		},
+		{
+			"name":"head_bg2_jpg",
+			"type":"image",
+			"url":"game_assets/border/head_bg2.jpg"
+		},
+		{
+			"name":"head_bg3_jpg",
+			"type":"image",
+			"url":"game_assets/border/head_bg3.jpg"
+		},
+		{
+			"name":"3th_png",
+			"type":"image",
+			"url":"game_assets/icons/3th.png"
+		},
+		{
+			"name":"1th_png",
+			"type":"image",
+			"url":"game_assets/icons/1th.png"
+		},
+		{
+			"name":"2th_png",
+			"type":"image",
+			"url":"game_assets/icons/2th.png"
 		}
 	]
 }

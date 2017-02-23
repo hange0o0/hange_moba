@@ -53,7 +53,7 @@ class SettingUI extends game.BaseWindow {
             {text: UM.gameid + "", style: {"underline": true}}
         ];
         this.qqText.textFlow = <Array<egret.ITextElement>>[
-            {text: "1624431545", style: {"underline": true}}
+            {text: "347331204", style: {"underline": true}}
         ];
         this.emailText.textFlow = <Array<egret.ITextElement>>[
             {text: "1624431545@qq.com", style: {"underline": true}}

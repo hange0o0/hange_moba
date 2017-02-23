@@ -22,7 +22,7 @@
 				<e:Group horizontalCenter="0" top="20" bottom="20">
 					<e:Group x="0" y="0" height="120">
 						<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="100" height="100"/>
-						<e:Rect y="3" x="3" width="94" height="94" fillColor="0x200000"/>
+						<e:Image source="head_bg2_jpg" y="3" x="3" width="94" height="94"/>
 						<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
 						<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xCCB48E"/>
 						<e:Button id="friendBtn" label="加好友" x="440" y="0" skinName="Btn_r1Skin"/>
@@ -53,48 +53,83 @@
 
 			</e:Group>
 			<e:Group id="friendGroup" x="0" y="130.00000000000003">
-				<e:Label y="15" textColor="0xCCB48E" horizontalCenter="0" text="好友PK" x="10"/>
-				<e:Image source="card_bg_png" y="50" scale9Grid="73,55,104,130" width="560" height="120" horizontalCenter="0"/>
+				<e:Group y="18" horizontalCenter="0">
+					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
+					<e:Label y="5" text="好友PK数据" x="205" textColor="0xC4A87C"/>
+					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+					</e:layout>
+				</e:Group>
+				<e:Image source="card_bg_png" y="50" scale9Grid="73,55,104,130" width="600" height="120" horizontalCenter="0"/>
 				<e:Label id="friendText" y="92" text="胜率：56.7%" textColor="0xCCB48E" size="24" right="40"/>
 				<e:Label id="friendWin" y="92" textColor="0xCCB48E" text="胜利：5040" size="24" left="40"/>
 				<e:Label id="friendFail" y="92" textColor="0xCCB48E" text="失败：125" size="24" horizontalCenter="0"/>
 			</e:Group>
 
 	<e:Group x="107" y="914">
-				<e:Image source="card_bg_png" y="40" width="560" height="120" scale9Grid="73,55,104,130" horizontalCenter="0"/>
-				<e:Label horizontalCenter="0" textColor="0xCCB48E" y="5" text="试练场数据"/>
+				<e:Image source="card_bg_png" y="40" width="600" height="120" scale9Grid="73,55,104,130" horizontalCenter="0"/>
+				<e:Group y="11" horizontalCenter="0">
+					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
+					<e:Label y="5" text="试练场数据" x="205" textColor="0xC4A87C"/>
+					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+					</e:layout>
+				</e:Group>
 				<e:Label id="mainLevelText" y="83" textColor="0xCCB48E" size="24" text="当前等级：12" horizontalCenter="0"/>
 
 
 			</e:Group>
 			<e:Group x="117" y="924">
-				<e:Image source="card_bg_png" y="35" width="560" height="120" scale9Grid="69,57,108,126" horizontalCenter="0"/>
-				<e:Label y="0" horizontalCenter="0" textColor="0xCCB48E" text="每日任务数据"/>
+				<e:Image source="card_bg_png" y="35" width="600" height="120" scale9Grid="69,57,108,126" horizontalCenter="0"/>
+				<e:Group y="7" horizontalCenter="0">
+					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
+					<e:Label y="5" text="每日任务数据" x="205" textColor="0xC4A87C"/>
+					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+					</e:layout>
+				</e:Group>
 
 				<e:Label id="dailyText2" textColor="0xCCB48E" size="24" y="82" text="累计通关次数：0" x="50"/>
-				<e:Label id="dailyText3" y="82" textColor="0xCCB48E" text="获得任务积分：0" size="24" x="300"/>
+				<e:Label id="dailyText3" y="82" textColor="0xCCB48E" text="获得任务积分：0" size="24" x="330"/>
 			</e:Group>
 
 			<e:Group x="87" y="894">
-				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="160" horizontalCenter="0"/>
-				<e:Label y="0" textColor="0xCCB48E" text="竞技场数据" horizontalCenter="0"/>
+				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="600" height="160" horizontalCenter="0"/>
+				<e:Group y="6" horizontalCenter="0">
+					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
+					<e:Label y="5" text="竞技场数据" x="205" textColor="0xC4A87C"/>
+					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+					</e:layout>
+				</e:Group>
 				<e:Label id="serverText1" y="101" textColor="0xCCB48E" text="积分：12345（历史最高：12345）" x="40" size="24"/>
 				<e:Label id="serverText2" y="61" textColor="0xCCB48E" text="当前等级：12" x="40" size="24"/>
 				<e:Label id="serverText3" y="139" textColor="0xCCB48E" size="24" text="胜利次数：123456" x="40"/>
-				<e:Label id="serverText4" y="139" textColor="0xCCB48E" size="24" text="失败次数：123456" x="300"/>
+				<e:Label id="serverText4" y="139" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
 			</e:Group>
 			<e:Group y="904" x="97">
-				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="560" height="150" horizontalCenter="0"/>
-				<e:Label horizontalCenter="0" y="0" textColor="0xCCB48E" text="修正场数据"/>
+				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="600" height="150" horizontalCenter="0"/>
+				<e:Group y="8" horizontalCenter="0">
+					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
+					<e:Label y="5" text="修正场数据" x="205" textColor="0xC4A87C"/>
+					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+					</e:layout>
+				</e:Group>
 				<e:Label id="serverEqualText1" y="61" textColor="0xCCB48E" size="24" text="积分：12345（历史最高：12345）" x="40"/>
 				<e:Label id="serverEqualText2" y="99" textColor="0xCCB48E" size="24" text="当前等级：12" x="40"/>
 				<e:Label id="serverEqualText3" y="135" textColor="0xCCB48E" size="24" text="胜利次数：123456" x="40"/>
-				<e:Label id="serverEqualText5" y="96" textColor="0xCCB48E" size="24" text="当前连胜：123456" x="298"/>
+				<e:Label id="serverEqualText5" y="96" textColor="0xCCB48E" size="24" text="当前连胜：123456" x="330"/>
 
-				<e:Label id="serverEqualText4" y="135" textColor="0xCCB48E" size="24" text="失败次数：123456" x="298"/>
+				<e:Label id="serverEqualText4" y="135" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
 			</e:Group>
 			<e:Group y="788" x="60">
-				<e:Label y="0" textColor="0xCCB48E" text="最近常用卡牌：" horizontalCenter="0"/>
+				<e:Label y="0" textColor="0xC4A87C" text="最近常用卡牌：" horizontalCenter="0"/>
 				<e:List id="list" y="40" height="270" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="25"/>

@@ -48,6 +48,12 @@ class PKResultItem3 extends game.BaseItem {
 
         //if(this.data.die)
             this.dieText.visible = this.data.die;
+        if(this.data.die)
+        {
+            MyTool.changeGray(this.headMC);
+        }
+
+
 
     }
 }

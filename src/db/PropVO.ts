@@ -4,7 +4,7 @@ class PropVO {
     public static getObject(id: number): PropVO{
         return CM.table[this.dataKey][id];
     }
-    public static maxLevel = 300;//最大关卡数
+    //public static maxLevel = 300;//最大关卡数
 
 
     public id

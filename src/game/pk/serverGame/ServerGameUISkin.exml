@@ -21,7 +21,7 @@
 					<e:Label y="10" horizontalCenter="0" textColor="0xF8D05A" text="?"/>
 				</e:Group>
 				<e:Label id="nameText" text="标签" x="112" y="8" textColor="0xCCB48E"/>
-				<e:Rect x="23" y="7" width="72" height="72" fillColor="0x200000"/>
+				<e:Image source="head_bg2_jpg"  x="23" y="7" width="72" height="72"/>
 				<e:Image id="headMC" source="icon_power_png" x="23" y="7" width="72" height="72"/>
 				<e:List id="enemyList" height="259" y="95" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>

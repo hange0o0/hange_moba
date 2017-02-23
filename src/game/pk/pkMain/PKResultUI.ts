@@ -69,6 +69,7 @@ class PKResultUI extends game.BaseUI {
 
     public hide(){
         super.hide();
+        MainPageUI.getInstance().renewTask();
         SoundManager.getInstance().playSound(SoundConfig.bg);
     }
 

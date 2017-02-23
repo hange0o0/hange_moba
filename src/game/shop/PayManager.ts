@@ -11,7 +11,7 @@ class PayManager{
 
     public constructor() {
         this.shopItem = [
-            {id:1,word:'每天自动回复体力+50%（永久）',type:'rmb',cost:12,shopType:'energy',img:'pay_energy_png'},
+            {id:1,word:'回复体力速度+20%（永久）',type:'rmb',cost:12,shopType:'energy',img:'pay_energy_png'},
             {id:2,word:'48点体力',type:'diamond',cost:60,shopType:'energy',img:'shop_energy_png'},
 
             {id:11,word:'小量金币',type:'diamond',cost:60,rate:1,shopType:'coin',img:'shop_money_png'},    //相当于当前试练关卡的奖劢
