@@ -11,6 +11,6 @@
         </e:Group>
         <e:Label id="labelDisplay" size="24"
                  textAlign="center" verticalAlign="middle"
-                 fontFamily="Tahoma" text="123456" textColor="0xFFDD00"/>
+                 fontFamily="Tahoma" text="123456" textColor="0xFFDD00" textColor.up="0xEFE5AD" textColor.down="0xEFE5AD" textColor.disabled="0xEFE5AD"/>
     </e:Group>
 </e:Skin>

@@ -58,7 +58,12 @@ class FriendListItem extends game.BaseItem {
         var data = FM.friendData[this.data].info;
         this.headMC.source = MyTool.getHeadUrl(data.head);
         this.nameText.text = data.nick;
-        this.levelText.text = 'LV.' + data.level;
-        this.forceText.text = '战力：' + data.force;
+        this.setText(this.levelText, '[等级：]' + data.level);
+        this.setText(this.forceText,'[战力：]' + data.force);
+    }
+    private setText(text,str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        this.setHtml(text,str);
     }
 }

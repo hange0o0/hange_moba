@@ -1,18 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendPKItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110" states="talk,log" >
+<e:Skin class="FriendPKItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110" >
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="600" height="110" horizontalCenter="0"/>
-	<e:Group x="40" y="17">
+	<e:Group x="40" y="17" locked="true">
 		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="76" height="76" x="0"/>
 		<e:Image source="head_bg2_jpg" y="3" width="70" height="70" x="3"/>
 		<e:Image id="headMC" source="head_png" y="3" width="70" height="70" x="3"/>
 	</e:Group>
 	<e:Label id="nameText" text="标签" x="133" y="21" textColor="0xCCB48E" size="24"/>
+	<e:Image id="icon" source="win_icon_png" x="83" y="58"/>
 	<e:Group id="btnGroup" y="37" right="30">
-		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10" label.talk="回复"/>
+		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="talkText" x="133" width="365" y="47" text="标签" visible.log="false" textColor="0xCCB48E" size="20" height="46" verticalAlign="middle"/>
+	<e:Label id="talkText" x="150" width="340" y="47" text="标签" textColor="0xE0A44A" size="20" height="46" verticalAlign="middle"/>
 	<e:Label id="dateText" text="剩余时间：20：20：20" right="40" textColor="0x9E9C9C" size="16" top="15"/>
 </e:Skin>

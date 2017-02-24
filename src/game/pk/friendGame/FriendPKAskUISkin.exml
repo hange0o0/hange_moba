@@ -14,8 +14,8 @@
 				<e:Label id="timesText" y="14" textColor="0xCCB48E" size="20" text="剩狡剩狡：12/12" right="20"/>
 				<e:RadioButton y="8" label="竞技场规则" skinName="MyRadioButtonSkin" id="ringRadio0" x="151"/>
 				<e:RadioButton x="304" label="修正场规则" y="9" skinName="MyRadioButtonSkin" id="ringRadio1"/>
-				<e:Label text="挑战宣言：" x="25" y="56" textColor="0xCCB48E" size="26"/>
-				<e:TextInput id="inputText" x="150" y="51" skinName="MyTextInputSkin" width="420" maxChars="20" prompt="你可敢与我一战？！"/>
+				<e:Label text="挑战宣言：" x="25" y="58" textColor="0xCCB48E" size="26"/>
+				<e:TextInput id="inputText" x="150" y="53" skinName="MyTextInputSkin" width="524" maxChars="20" prompt="你可敢与我一战？！" scaleX="0.8" scaleY="0.8"/>
 				<e:Group id="helpBtn" y="20" top="47" right="15" x="20">
 					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
 					<e:Label y="10" textColor="0xF8D05A" text="?" horizontalCenter="0"/>

@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -1513,6 +1513,21 @@
 					"isFolder":false,
 					"key":"head_bg4_jpg",
 					"name":"head_bg4_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"jump_btn_png",
+					"name":"jump_btn_png"
+				},
+				{
+					"isFolder":false,
+					"key":"lose_icon_png",
+					"name":"lose_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"win_icon_png",
+					"name":"win_icon_png"
 				}
 			]
 		}

@@ -37,25 +37,25 @@ class AwardUI extends game.BaseWindow {
         var arr = [];
         if(this.data.coin)
         {
-            arr.push({type:'coin',des:this.data.coin})
+            arr.push({type:'coin',des:'×' + this.data.coin})
         }
         if(this.data.energy)
         {
-            arr.push({type:'energy',des:this.data.energy})
+            arr.push({type:'energy',des:'×' + this.data.energy})
         }
         if(this.data.diamond)
         {
-            arr.push({type:'diamond',des:this.data.diamond})
+            arr.push({type:'diamond',des:'×' + this.data.diamond})
         }
         if(this.data.collect)
         {
-            arr.push({type:'card',des:this.data.collect})
+            arr.push({type:'card',des:'×' + this.data.collect})
         }
         if(this.data.prop)
         {
             for(var s in this.data.prop)
             {
-                arr.push({type:'prop',id:s,des:'X' + this.data.prop[s]})
+                arr.push({type:'prop',id:s,des:'×' + this.data.prop[s]})
             }
         }
         if(this.data.monster)

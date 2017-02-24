@@ -291,6 +291,8 @@ class FriendManager{
     public addFriend(data){
         if(!this.friendList)
             return;
+        if(data.nick)
+            data.nick = Base64.decode(data.nick);
         if(this.friendList.indexOf(data.gameid) == -1)
         {
             this.friendList.push(data.gameid);
@@ -417,7 +419,7 @@ class FriendManager{
                Alert('没有聊天符了');
                 return;
             }
-            FriendManager.getInstance().getLog(fun,true);
+            FriendManager.getInstance().getLog(fun,'log');
             if(fun)
                 fun();
         });
@@ -515,7 +517,7 @@ class FriendManager{
                 fun();
         });
     }
-    public getLog(fun?,force=false){
+    public getLog(fun?,force=null){
 
         if(!force && this.logList && TM.now() - this.lastGetLog < 30)//30S CD             10
         {
@@ -536,8 +538,8 @@ class FriendManager{
             if(!self.logList)
                 self.logList = [];
             var now = TM.now();
-            var logChange = false;
-            var pkChange = false;
+            var logChange = 0;
+            var pkChange = 0;
             for(var i=0;i<msg.list.length;i++)          //type 1:news 2pk 3talk
             {
                 msg.list[i].id = Math.floor(msg.list[i].id);
@@ -563,14 +565,18 @@ class FriendManager{
 
                     if(msg.list[i].type == 3)
                         self.saveTalk(msg.list[i]);
-                    logChange = true;
-
+                    logChange++;
                 }
                 else
                 {
                    self.pkObject[msg.list[i].id] = msg.list[i];
-                    pkChange = true;
+                    pkChange++;
                 }
+
+                //if(FriendListUI.getInstance().stage && FriendListUI.getInstance()['tab'].selectedIndex == 1) //不显示红点
+                //{
+                //    self.setOpen('log',true);
+                //}
             }
             if(logChange)
             {
@@ -594,6 +600,12 @@ class FriendManager{
                 {
                     self.setOpen('log',true);
                 }
+                else{
+                    if(force && force=='log')
+                        logChange --;
+                    if(!logChange)
+                        self.setOpen('log',true);
+                }
 
                 EM.dispatchEventWith(GameEvent.client.friend_log_change)
             }
@@ -602,6 +614,12 @@ class FriendManager{
                 if(FriendListUI.getInstance().stage && FriendListUI.getInstance()['tab'].selectedIndex == 2) //不显示红点
                 {
                     self.setOpen('pk',true);
+                }
+                else{
+                    if(force && force=='pk')
+                        pkChange --;
+                    if(!pkChange)
+                        self.setOpen('pk',true);
                 }
                 EM.dispatchEventWith(GameEvent.client.friend_pk_change)
             }

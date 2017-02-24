@@ -6,7 +6,9 @@ class CollectUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private coinGroup: eui.Group;
     private coinText: eui.Label;
+    private cardGroup: eui.Group;
     private cardText: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
@@ -42,12 +44,20 @@ class CollectUI extends game.BaseUI {
 
         this.addBtnEvent(this.sortBtn,this.onSort);
         this.addBtnEvent(this.sortText,this.onSort);
+        this.addBtnEvent(this.coinGroup,this.onCoin);
+        this.addBtnEvent(this.cardGroup,this.onCard);
 
         this.sortList.selectedIndex = 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
         this.sortGroup.visible = false;
     }
 
+    private onCard(){
+        ShopUI.getInstance().show('card')
+    }
+    private onCoin(){
+        ShopUI.getInstance().show('coin')
+    }
     private onSelect(){
         this.resort()
     }
@@ -241,6 +251,8 @@ class CollectUI extends game.BaseUI {
                 for(var i=0;i<arr.length;i++)
                 {
                     arr[i].lv = UM.getMonsterLevel(arr[i].id);
+                    if(MonsterVO.getObject(arr[i].id).level > UM.level)
+                        arr[i].lv = 9999;
                 }
                 arr.sort(this.sortByUp)
                 break;
@@ -248,6 +260,8 @@ class CollectUI extends game.BaseUI {
                 for(var i=0;i<arr.length;i++)
                 {
                     arr[i].lv = UM.getMonsterLevel(arr[i].id);
+                    if(MonsterVO.getObject(arr[i].id).level > UM.level)
+                        arr[i].lv = -9999;
                 }
                 arr.sort(this.sortByDown)
                 break;

@@ -38,9 +38,15 @@ class FriendAddItem extends game.BaseItem {
     public dataChanged(){
         var data = this.data;
         this.headMC.source = MyTool.getHeadUrl(data.head);
-        this.nameText.text = data.nick;
-        this.levelText.text = 'LV.' + data.level;
-        this.forceText.text = '战力：' + data.force;
+        this.nameText.text = Base64.decode(data.nick);
+        this.setText(this.levelText, '[等级：]' + data.level);
+        this.setText(this.forceText,'[战力：]' + data.force);
         this.addBtn.visible = !data.send;
+    }
+
+    private setText(text,str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        this.setHtml(text,str);
     }
 }

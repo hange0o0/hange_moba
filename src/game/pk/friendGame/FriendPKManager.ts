@@ -90,7 +90,7 @@ class FriendPKManager{
             }
             self.cardObject[oo.otherid] = null
             UM.addHistory(choose.list.join(','));
-            FriendManager.getInstance().getLog(fun,true);
+            FriendManager.getInstance().getLog(fun,'pk');
             //self.pkObject[msg.data.id] = (msg.data);
             //
             //if(fun)
@@ -141,7 +141,7 @@ class FriendPKManager{
 
             UM.addHistory(choose.list.join(','));
             self.lastPKData[self.logid] = msg//.pkdata;
-            FriendManager.getInstance().getLog(null,true);
+            FriendManager.getInstance().getLog(null,'pk');
 
             msg.info.type = PKManager.PKType.FRIEND;
             PKManager.getInstance().onPK(PKManager.PKType.FRIEND,msg);

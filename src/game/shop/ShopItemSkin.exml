@@ -7,5 +7,5 @@
 	<e:Image id="img" x="19" y="11" width="80" height="80" source="box0_png"/>
 	<e:Label id="numText" y="63" textColor="0xCCB48E" text="X123" size="22" stroke="3" right="502"/>
 	<e:Image id="icon" x="110" y="50" source="icon_empty_png"/>
-	<e:Image id="rmbMC" source="card_star_png" x="122" y="56" width="25" height="25"/>
+	<e:Image id="rmbMC" source="card_star_png" x="121" y="59" width="25" height="25"/>
 </e:Skin>

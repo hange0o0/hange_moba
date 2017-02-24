@@ -91,13 +91,19 @@ class FriendLogItem extends game.BaseItem {
         {
             this.currentState = 'log';
             this.nameText.text = this.data.content.nick;
-            this.levelText.text = 'LV.' + this.data.content.level;
-            this.forceText.text = '战力：' + this.data.content.force;
+            this.setText(this.levelText, '[等级：]' + this.data.content.level);
+            this.setText(this.forceText,'[战力：]' + this.data.content.force);
             this.headMC.source = MyTool.getHeadUrl(this.data.content.head);
 
         }
 
         this.dateText.text = '' + DateUtil.formatDate('MM-dd hh:mm:ss',DateUtil.timeToChineseDate(this.data.time));
 
+    }
+
+    private setText(text,str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        this.setHtml(text,str);
     }
 }
