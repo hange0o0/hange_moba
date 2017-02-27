@@ -16,6 +16,7 @@
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" x="73" y="30" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8"/>
+		<e:Image source="lock_icon_png" y="25" horizontalCenter="0" id="lockMC" x="30"/>
 		<e:Label id="desText" lineSpacing="8" y="90" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" height="36" horizontalCenter="0"/>
 		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
 	</e:Group>

@@ -36,6 +36,7 @@ class MainLoadingUI extends egret.Sprite {
 
     private textField;
     private shape
+    private icon
 
 
     private createView():void {
@@ -54,6 +55,11 @@ class MainLoadingUI extends egret.Sprite {
         this.textField.height = 100;
         this.textField.textAlign = "center";
 
+        this.icon = new eui.Image();
+        this.addChild(this.icon)
+        this.icon.source =  Config.localResRoot + 'game_assets/logo/logo_180.png';
+        this.icon.x = 230;
+
     }
 
     public show(con){
@@ -63,6 +69,7 @@ class MainLoadingUI extends egret.Sprite {
         this.height = con.stage.stageHeight;
         this.shape.height = con.stage.stageHeight;
         this.textField.y = this.height/2;
+        this.icon.y = this.textField.y - 220;
         this.textField.text = 'Loading...';
     }
 

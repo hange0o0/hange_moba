@@ -122,9 +122,9 @@ class FriendListUI extends game.BaseUI {
     }
 
     public show(index?){
-        if(UM.level < 3)
+        if(UM.level < Config.friendLevel)
         {
-            Alert('好友系统3级开放')
+            Alert('好友系统'+Config.friendLevel+'级开放')
             return;
         }
         this.selectIndex = index;

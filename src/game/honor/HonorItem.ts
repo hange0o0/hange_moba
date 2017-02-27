@@ -12,7 +12,14 @@ class HonorItem extends game.BaseItem {
     private barMC: eui.Image;
     private awardText: eui.Label;
     private finishText: eui.Label;
-    private nameText: eui.Label;
+    private sGroup: eui.Group;
+    private s0: eui.Image;
+    private s1: eui.Image;
+    private s2: eui.Image;
+    private s3: eui.Image;
+    private s4: eui.Image;
+
+
 
 
 
@@ -40,7 +47,6 @@ class HonorItem extends game.BaseItem {
         {
             //oo = UM.honor.monster[id];
             var mvo = MonsterVO.getObject(id);
-            this.nameText.text = mvo.name;
             this.headMC.source = mvo.thumb;
         }
         else
@@ -52,8 +58,8 @@ class HonorItem extends game.BaseItem {
         }
         //oo = oo ||  {t:0,w:0}
         var awardLevel = this.data.level;
-        this.useText.text = '使用：' + this.data.t;
-        this.winText.text = '胜利：' + this.data.w;
+        this.setText(this.useText ,'[使用：]' + this.data.t);
+        this.setText(this.winText, '[胜利：]' + this.data.w);
 
         if(awardLevel == 5)
         {
@@ -67,9 +73,22 @@ class HonorItem extends game.BaseItem {
         var award = HM.awardBase[awardLevel + 1]
 
         this.rateText.text = this.data.w + '/' + award.num;
-        this.barMC.width = 325*Math.min(1,this.data.w/award.num)
+        this.barMC.width = 280*Math.min(1,this.data.w/award.num)
         this.awardText.text = 'X' + award.diamond;
         this.awardBtn.visible = this.data.award
 
+        this.sGroup.removeChildren();
+        for(var i=0;i<5;i++)
+        {
+            if(awardLevel > i)
+                this.sGroup.addChild(this['s' + i]);
+        }
+
+    }
+
+    private setText(text,str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        this.setHtml(text,str);
     }
 }

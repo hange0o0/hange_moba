@@ -1528,6 +1528,11 @@
 					"isFolder":false,
 					"key":"win_icon_png",
 					"name":"win_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"lock_icon_png",
+					"name":"lock_icon_png"
 				}
 			]
 		}

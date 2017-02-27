@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520">
 	<e:Image y="0" width="520" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
-	<e:Rect height="60" width="490" x="15" y="16" fillColor="0xFFFFFF" fillAlpha="0.1" strokeWeight="1"/>
+	<e:Rect height="60" width="490" x="15" y="16" fillColor="0x262119" strokeWeight="1"/>
 
-	<e:Label y="33" size="24" text="角色注册" textColor="0xAAA6A6" horizontalCenter="0"/>
+	<e:Label y="33" size="24" text="角色注册" textColor="0xE3D1B6" horizontalCenter="0" stroke="2"/>
 	<e:Group horizontalCenter="0" bottom="40">
 		<e:Button id="backBtn" y="0" skinName="Btn_b2Skin" label="返回" x="0"/>
 		<e:Button id="registerBtn" y="0" skinName="Btn_r2Skin" label="注册" x="176"/>

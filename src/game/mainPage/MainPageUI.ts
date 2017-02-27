@@ -54,7 +54,9 @@ class MainPageUI extends game.BaseUI {
     private collectRed: eui.Image;
     private friendBtn: eui.Group;
     private friendRed: eui.Image;
+    private friendLockMC: eui.Image;
     private bagBtn: eui.Group;
+
 
 
 
@@ -102,7 +104,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.diamond_change,this.renewDiamond,this);
         EM.addEvent(GameEvent.client.force_change,this.renewForce,this);
         EM.addEvent(GameEvent.client.exp_change,this.renewExp,this);
-        EM.addEvent(GameEvent.client.level_change,this.renewExp,this);
+        EM.addEvent(GameEvent.client.level_change,this.onLevelChange,this);
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
         EM.addEvent(GameEvent.client.change_head,this.renewTop,this);
@@ -461,6 +463,12 @@ class MainPageUI extends game.BaseUI {
         this.expBar.scrollRect = new egret.Rectangle(0,0,Math.min(UM.exp/UM.next_exp,1)*640,6)
         this.levelText.text = UM.level + '';
     }
+
+    public onLevelChange(){
+        this.friendLockMC.visible = UM.level < Config.friendLevel;
+        this.scrollToCurrentPage();
+    }
+
     public renewEnergy(){
         this.energyText.text = UM.getEnergy() + '/' + UM.maxEnergy;
         //if(UM.energy.v >= UM.maxEnergy) //full

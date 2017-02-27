@@ -66,7 +66,7 @@ class FriendManager{
     }
 
     public friendRed(){
-        if(UM.level < 3)
+        if(UM.level < Config.friendLevel)
         {
             return false;
         }

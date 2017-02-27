@@ -69,7 +69,7 @@ class RegisterServerUI extends game.BaseWindow {
     private onRandom(){
         if(!this.chooseHead)
         {
-            this.headID = Math.floor(Math.random()*MyTool.maxUserHead);
+            this.headID = Math.floor(Math.random()*MyTool.maxUserHead + 1);
             this.renewHead();
         }
         this.nameText.text = MyTool.randomName();

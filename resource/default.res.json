@@ -5,7 +5,7 @@
 			"name":"js"
 		},
 		{
-			"keys":"btn_b1_png,btn_b1__png,btn_b2_png,btn_b2__png,btn_close1_png,btn_close1__png,btn_close2_png,btn_close2__png,btn_d1_png,btn_d2_png,btn_r1_png,btn_r1__png,btn_r2_png,btn_r2__png,btn_r3_png,btn_r3__png,border1_png,main_button_bottom_jpg,fire_top_jpg,top_bg_jpg,card_bg_png,main_exp_jpg,bar2_png,bar_bg_png,bar1_png,line_png,border_head_png,border_light_png,border2_png,border3_png,border4_png,border5_png,border6_png,border7_png,border8_png,head_border_light1_png,head_border_light2_png,head_border_light3_png,head_border1_png,head_border2_png,head_border3_png,head_border4_png,head_border5_png,main_border_png,btn_down_png,btn_up_png,left_btn_png,icon_rank_png,icon_token_png,main_mc_png,menu_icon_1_png,menu_icon_2_png,menu_icon_3_png,menu_icon_4_png,menu_icon_5_png,menu_icon_6_png,pk_icon_png,point1_png,point2_png,radio_btn1_png,radio_btn2_png,red_point_png,replay_mc_png,arrow1_png,arrow2_png,arrow3_png,arrow4_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu2_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_empty_png,icon_lv_png,icon_money_png,icon_power_png,icon_pve_png,icon_pvp_3_png,icon_pvp_ticket_png,font_num1_fnt,font_num2_fnt,font_num3_fnt,font_num4_fnt,icon_new_png,random_btn_png,note_icon_png,border_light3_png,border_light1_png,border_light2_png,tips_jpg,arrow5_png,icon_dec_png,icon_add_png,icon_server_png,choose_icon_png,item_bg_jpg,pay_coin_png,bar3_png,arrow8_png,use_skill_icon_png,bar4_png",
+			"keys":"btn_b1_png,btn_b1__png,btn_b2_png,btn_b2__png,btn_close1_png,btn_close1__png,btn_close2_png,btn_close2__png,btn_d1_png,btn_d2_png,btn_r1_png,btn_r1__png,btn_r2_png,btn_r2__png,btn_r3_png,btn_r3__png,border1_png,main_button_bottom_jpg,fire_top_jpg,top_bg_jpg,card_bg_png,main_exp_jpg,bar2_png,bar_bg_png,bar1_png,line_png,border_head_png,border_light_png,border2_png,border3_png,border4_png,border5_png,border6_png,border7_png,border8_png,head_border_light1_png,head_border_light2_png,head_border_light3_png,head_border1_png,head_border2_png,head_border3_png,head_border4_png,head_border5_png,main_border_png,btn_down_png,btn_up_png,left_btn_png,icon_rank_png,icon_token_png,main_mc_png,menu_icon_1_png,menu_icon_2_png,menu_icon_3_png,menu_icon_4_png,menu_icon_5_png,menu_icon_6_png,pk_icon_png,point1_png,point2_png,radio_btn1_png,radio_btn2_png,red_point_png,replay_mc_png,arrow1_png,arrow2_png,arrow3_png,arrow4_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu2_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_empty_png,icon_lv_png,icon_money_png,icon_power_png,icon_pve_png,icon_pvp_3_png,icon_pvp_ticket_png,font_num1_fnt,font_num2_fnt,font_num3_fnt,font_num4_fnt,icon_new_png,random_btn_png,note_icon_png,border_light3_png,border_light1_png,border_light2_png,tips_jpg,arrow5_png,icon_dec_png,icon_add_png,icon_server_png,choose_icon_png,item_bg_jpg,pay_coin_png,bar3_png,arrow8_png,use_skill_icon_png,bar4_png,lock_icon_png",
 			"name":"gamepreload"
 		},
 		{
@@ -17,7 +17,7 @@
 			"name":"ani"
 		},
 		{
-			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png,title_png,login_bg_jpg,fire_top_jpg,btn_r2_png",
+			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,ui_loading_json,ui_loading_png,title_png,login_bg_jpg,fire_top_jpg,btn_r2_png,shop_card_png,main_mc_png,border5_png,icon_server_png",
 			"name":"loginload"
 		},
 		{
@@ -2178,6 +2178,11 @@
 			"name":"lose_icon_png",
 			"type":"image",
 			"url":"game_assets/icons/lose_icon.png"
+		},
+		{
+			"name":"lock_icon_png",
+			"type":"image",
+			"url":"game_assets/icons/lock_icon.png"
 		}
 	]
 }

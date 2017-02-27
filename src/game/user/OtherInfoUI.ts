@@ -84,9 +84,9 @@ class OtherInfoUI extends game.BaseUI {
         FriendManager.getInstance().showPKUI(this.dataIn.gameid)
     }
     private onFriend(){
-        if(UM.level < 3)
+        if(UM.level < Config.friendLevel)
         {
-            Alert('努力升到3级，就可以加Ta为好友哦~')
+            Alert('努力升到'+Config.friendLevel+'级，就可以加Ta为好友哦~')
             return;
         }
         var self = this;

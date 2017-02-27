@@ -10,6 +10,7 @@ class MainServerEqualItem extends game.BaseItem {
     private scoreText: eui.Label;
     private desText: eui.Label;
     private titleText: eui.Label;
+    private lockMC: eui.Image;
 
 
 
@@ -43,9 +44,12 @@ class MainServerEqualItem extends game.BaseItem {
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
         //this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);
-        if(UM.level < 3)
+        this.lockMC.visible = UM.level < Config.serverEqualLevel
+        this.scoreText.visible = !this.lockMC.visible
+        if(this.lockMC.visible)
         {
-            this.desText.text = '3级开放'
+
+            this.desText.text = Config.serverEqualLevel + '级开放'
             this.btnGroup.visible = false;
         }
         else

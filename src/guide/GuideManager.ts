@@ -147,6 +147,7 @@ class GuideManager {
             mc:"this.getMainRect()",
             text:'每日任务中，系统会刷出10关让玩家进行挑战，通过积累任务积分将会获得永久的战力加成，每一天所有玩家挑战的关卡是一样的哦！',
             hideHand:true,
+            toBottom:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 2;
@@ -160,6 +161,7 @@ class GuideManager {
             mc:"this.getMainRect()",
             text:'在竞技场中，系统会为你匹配实力相当对手！你的选择是战力碾压还是智慧征服？',
             hideHand:true,
+            toBottom:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 3;
@@ -173,6 +175,7 @@ class GuideManager {
             mc:"this.getMainRect()",
             text:'在修正场中的PK将不会受到玩家战力高低的影响，只要你有实力，新手一样能打败老鸟！',
             hideHand:true,
+            toBottom:true,
             fun:function(){
                 self.showGuide()
             }
@@ -201,12 +204,14 @@ class GuideManager {
     private guideFun(ui){
         var self = this;
         var data = this.guideArr[this.guideStep];
-        var mc = data.mc;
-        if(mc && typeof mc == 'string')
-            mc = eval(mc);
-        var fun = data.fun;
-        var text = data.text;
-        var hideHand = data.hideHand || false;
+        var guideData:any = {};
+        guideData.mc = data.mc;
+        if(guideData.mc && typeof guideData.mc == 'string')
+            guideData.mc = eval(guideData.mc);
+        guideData.fun = data.fun;
+        guideData.text = data.text;
+        guideData.toBottom = data.toBottom;
+        guideData.hideHand = data.hideHand || false;
 
         var testUI = data.ui
         if(testUI && typeof testUI == 'string')
@@ -215,7 +220,7 @@ class GuideManager {
         if(testUI && ui != testUI)
             return;
         this.guideStep ++;
-        GuideUI.getInstance().show(mc,text,fun,hideHand)
+        GuideUI.getInstance().show(guideData)
     }
 
     private getMainRect(){

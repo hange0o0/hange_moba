@@ -23,7 +23,6 @@ class HonorManager{
     public getList1(){
         var arr = [];
         var mdata = CM.table[MonsterVO.dataKey];
-        var index = 0
         for(var s in mdata)
         {
             var vo = mdata[s];
@@ -32,15 +31,10 @@ class HonorManager{
                 arr.push(this.fillAwardStat({
                     id:vo.id,
                     userLevel:vo.level,
-                    index:index++,
                     honorType:1
                 }));
         }
         ArrayUtil.sortByField(arr,['id'],[0]);
-        for(var i=0;i<arr.length;i++)
-        {
-            arr[i].index = i;
-        }
         return arr;
     }
 

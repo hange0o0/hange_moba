@@ -20,15 +20,6 @@
 				<e:layout>
 					<e:TileLayout horizontalGap="8" verticalGap="30" paddingLeft="8" paddingRight="8" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left" requestedColumnCount="4"/>
 				</e:layout>
-				<e:ArrayCollection>
-					<e:Array>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-					</e:Array>
-				</e:ArrayCollection>
 			</e:List>
 		</e:Group>
 	</e:Scroller>

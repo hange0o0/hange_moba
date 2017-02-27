@@ -27,6 +27,7 @@ class GameEvent {
 
 
 
+        pass_day:'pass_day',
         timer:'timer'
     };
 

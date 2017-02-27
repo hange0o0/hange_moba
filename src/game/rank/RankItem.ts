@@ -46,7 +46,8 @@ class RankItem extends game.BaseItem {
         this.iconMC.visible = false
         this.numText2.text = '';
         this.numText.text = ''
-        this.scoreText.text = this.data.value
+        var typeName = ['','战力：','等级：LV.','关卡：','积分：','积分：',]
+        this.scoreText.text = typeName[this.data.type] +  NumberUtil.addNumSeparator(this.data.value);
         if(this.data.index < 4)
         {
             this.iconMC.visible = true

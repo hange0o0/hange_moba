@@ -8,6 +8,7 @@ class MainDayItem extends game.BaseItem {
     private startBtn: eui.Button;
     private scoreText: eui.Label;
     private desText: eui.Label;
+    private lockMC: eui.Image;
 
 
 
@@ -31,10 +32,13 @@ class MainDayItem extends game.BaseItem {
         var myData = UM.day_game;
         this.scoreText.text =  '当前进度：' + myData.level + '/10'
 
-        if(UM.level < 2)
+        this.lockMC.visible = UM.level < Config.dayLevel
+        this.scoreText.visible = !this.lockMC.visible
+        if(this.lockMC.visible)
         {
-            this.desText.text = '2级开放'
-            this.startBtn.visible = false;
+
+            this.desText.text = Config.dayLevel + '级开放'
+            this.btnGroup.visible = false;
         }
         else
         {

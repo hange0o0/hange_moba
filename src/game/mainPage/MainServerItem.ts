@@ -4,12 +4,13 @@ class MainServerItem extends game.BaseItem {
         this.skinName = "MainServerItemSkin";
     }
 
+    private titleText: eui.Label;
+    private scoreText: eui.Label;
+    private desText: eui.Label;
+    private lockMC: eui.Image;
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
-    private scoreText: eui.Label;
-    private desText: eui.Label;
-    private titleText: eui.Label;
 
 
 
@@ -38,9 +39,12 @@ class MainServerItem extends game.BaseItem {
         //this.totalText.text = '局数：' + serverData.total;
         //this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;
-        if(UM.level < 2)
+        this.lockMC.visible = UM.level < Config.serverLevel
+        this.scoreText.visible = !this.lockMC.visible
+        if(this.lockMC.visible)
         {
-            this.desText.text = '2级开放'
+
+            this.desText.text = Config.serverLevel + '级开放'
             this.btnGroup.visible = false;
         }
         else

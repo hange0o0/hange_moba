@@ -21,14 +21,23 @@ class MainMainItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.awardBtn, this.onAward);
         this.addBtnEvent(this.startBtn, this.onStart,true);
+        EM.addEvent(GameEvent.client.pass_day,this.renew,this)
     }
 
     private onAward(){
         var self = this;
         var MM = MainGameManager.getInstance();
-        MM.getAward(function(){
-            self.renew();
-        });
+        var cd = DateUtil.getNextDateTimeByHours(0) - TM.now()
+        Confirm('离下一次奖励刷新还剩：\n<font size="36">' + DateUtil.getStringBySecond(cd) + '</font>\n确定现在就领取该奖励吗？',function(v){
+            if(v == 1)
+            {
+                MM.getAward(function(){
+                    self.renew();
+                });
+            }
+        },['取消','领取'],{middle:true})
+
+
     }
     private onStart(){
         MainGameManager.getInstance().openPKView();

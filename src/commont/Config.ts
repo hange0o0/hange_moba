@@ -15,8 +15,11 @@ class Config {
     public static cdn: string = "";
     public static localResRoot:string = "resource/";
 
-    public static serverEqualLevel = 5;
+
+    public static dayLevel = 2;
     public static serverLevel = 3;
+    public static serverEqualLevel = 5;
+    public static friendLevel = 5;
     public static gambleLevel = 20;
 
     public static platform = '';

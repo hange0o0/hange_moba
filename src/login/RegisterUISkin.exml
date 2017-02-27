@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RegisterUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image x="0" y="0" width="520" height="380" source="card_bg_png" scale9Grid="52,33,122,125" locked="true"/>
-	<e:Rect y="14" strokeWeight="1" width="490" fillAlpha="0.1" height="60" x="15" fillColor="0xFFFFFF"/>
+	<e:Rect y="14" strokeWeight="1" width="490" fillAlpha="1" height="60" x="15" fillColor="0x262119"/>
 	<e:Label y="105" text="用户名：" x="75" size="22" textColor="0xC4A36A"/>
 	<e:TextInput x="171" skinName="MyTextInputSkin" y="93" height="45" id="nameText" width="280" prompt="请输入您的邮箱"/>
 	<e:Label y="162" textColor="0xC4A36A" size="22" text="密码：" x="97"/>
@@ -16,5 +16,5 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Label id="titleText" text="用户注册" y="32" size="24" horizontalCenter="0" textColor="0xAAA6A6"/>
+	<e:Label id="titleText" text="用户注册" y="32" size="24" horizontalCenter="0" textColor="0xE3D1B6" stroke="2"/>
 </e:Skin>

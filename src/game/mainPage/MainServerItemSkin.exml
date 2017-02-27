@@ -14,6 +14,7 @@
 		<e:Label id="scoreText" y="27" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" lineSpacing="8" width="335" height="36" horizontalCenter="0"/>
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
+		<e:Image source="lock_icon_png" y="25" horizontalCenter="0" id="lockMC" x="20"/>
 	</e:Group>
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>

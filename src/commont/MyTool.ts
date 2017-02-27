@@ -5,7 +5,14 @@ class MyTool {
     public static maxUserHead = 82;
 
     public static randomName(){
-        return  'n'+Math.floor(Math.random()*999999);
+        var len = Math.floor(Math.random()*3) + 2;
+        var s = '';
+        var wLen = BadWords.NAME_WORDS.length;
+        while(len--)
+        {
+            s += BadWords.NAME_WORDS.charAt(Math.floor(Math.random()*wLen));
+        }
+        return  s;
     }
     public static getHeadUrl(id){
         return Config.localResRoot + 'user_head/user_head'+id+'.png';

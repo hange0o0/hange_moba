@@ -12,6 +12,7 @@ class ConfirmUI extends game.BaseWindow {
     private textIn;
     private fun;
     private btnWord;
+    private sp;
 
     public childrenCreated() {
         super.childrenCreated();
@@ -20,16 +21,17 @@ class ConfirmUI extends game.BaseWindow {
         this.addBtnEvent(this.closeBtn, this.onCloseClick);
     }
 
-    public show(v?,fun?,btnWord?){
+    public show(v?,fun?,btnWord?,sp?){
         this.textIn = v;
         this.fun = fun;
         this.btnWord = btnWord;
+        this.sp = sp || {};
         super.show();
     }
 
     public onShow(){
-        this.text.text = this.textIn;
-        if(this.text.numLines > 1)
+        this.setHtml(this.text,this.textIn);
+        if(this.text.numLines > 1 && !this.sp.middle)
             this.text.textAlign = 'left'
         if(this.btnWord)
         {

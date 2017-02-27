@@ -28,6 +28,7 @@ class HonorUI extends game.BaseUI {
     private downArray;
 
     private itemHeight = 110 + 6;
+    private timer;
 
     public constructor() {
         super();
@@ -43,7 +44,7 @@ class HonorUI extends game.BaseUI {
         this.list.itemRenderer = HonorItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
-        this.scroller.addEventListener(eui.UIEvent.CHANGE_END,this.onScrollEnd,this)
+        this.scroller.addEventListener(eui.UIEvent.CHANGE,this.onScrollChange,this)
         this.scroller.bounces = false;
 
         //this.tab.selectedIndex = 0;
@@ -93,8 +94,9 @@ class HonorUI extends game.BaseUI {
         tw.to({scrollV:sv},Math.min(sv/2,300)).call(this.renewBtn,this)
     }
 
-    private onScrollEnd(){
-        this.renewBtn();
+    private onScrollChange(){
+        egret.clearTimeout(this.timer);
+        this.timer = egret.setTimeout(this.renewBtn,this,100)
     }
 
     //private typeBarClick(){
@@ -139,7 +141,7 @@ class HonorUI extends game.BaseUI {
         {
             count += arr[i].level;
         }
-        this.infoText.text = '领奖进度：' + count + '/' + arr.length*5;
+        this.setHtml(this.infoText,'<font color="#E0A44A">领奖进度：</font>' + count + '/' + arr.length*5);
         this.sortListFun(arr);
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.list.validateNow();
@@ -179,6 +181,10 @@ class HonorUI extends game.BaseUI {
                  arr.sort(this.sortByDefault)
                  break;
          }
+        for(var i=0;i<arr.length;i++)
+        {
+            arr[i].index = i;
+        }
     }
     private sortByDefault(a,b){
         if(a.openLevel < b.openLevel)

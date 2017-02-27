@@ -88,7 +88,12 @@ class GuideUI extends game.BaseContainer{
         MyTool.removeMC(this);
     }
     
-    public show(mc?,text?,fun?,hideHand?){
+    public show(dataIn){
+        var mc = dataIn.mc;
+        var text = dataIn.text;
+        var fun = dataIn.fun;
+        var hideHand = dataIn.hideHand;
+        var toBottom = dataIn.toBottom;
         this.handStop();
         this.tipTxt.text = '';
         this.tipTxt.removeEventListener(egret.Event.ENTER_FRAME,this.onText,this)
@@ -130,6 +135,8 @@ class GuideUI extends game.BaseContainer{
 
                 }
                 this.setBG(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y,fun == null);
+                if(toBottom)
+                    this.tipsGroup.y = GameManager.stage.stageHeight - this.tipsGroup.height;
                 //if(fun == null)
                 //    mc.once(egret.TouchEvent.TOUCH_TAP,this.hide, this);
 
