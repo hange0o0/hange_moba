@@ -5,6 +5,7 @@ class PKResultUI extends game.BaseUI {
         return this.instance;
     }
 
+    private bg: eui.Rect;
     private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
     private selfList: eui.List;
@@ -12,6 +13,8 @@ class PKResultUI extends game.BaseUI {
     private enemyList: eui.List;
     private enemyText: eui.Label;
     private list: eui.List;
+
+
 
 
 
@@ -45,8 +48,15 @@ class PKResultUI extends game.BaseUI {
     }
 
     public onShow() {
+        PopUpManager.removeShape();
         this.scroller.visible = false;
         this.scroller.viewport.scrollV = 0;
+
+        this.bg.visible = false;
+        this.height = Math.min(GameManager.stage.stageHeight,960)
+        this.y =  (GameManager.stage.stageHeight - this.height)/2
+
+
         MyTool.removeMC(PKWinUI.getInstance());
         MyTool.removeMC(PKFailUI.getInstance());
         var PKM = PKManager.getInstance();
@@ -67,10 +77,18 @@ class PKResultUI extends game.BaseUI {
         SoundManager.getInstance().playSound(SoundConfig.bg_pk_view);
     }
 
+    public showBG(){
+        this.bg.visible = true;
+        this.bg.alpha = 0;
+        var tw:egret.Tween = egret.Tween.get(this.bg);
+        tw.to({alpha:0.8},300);
+    }
+
     public hide(){
         super.hide();
         MainPageUI.getInstance().renewTask();
         SoundManager.getInstance().playSound(SoundConfig.bg);
+        PKMainUI.getInstance().hide();
     }
 
     public showMore(item){

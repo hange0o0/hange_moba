@@ -12,22 +12,24 @@ class MonsterInfoBase extends game.BaseContainer {
     private mpText: eui.Label;
     private coinText: eui.Label;
     private headMC: eui.Image;
-    private levelGroup: eui.Group;
-    private levelText: eui.Label;
     private list: eui.List;
     private levelUpCon: eui.Group;
     private levelUpCoinGroup: eui.Group;
-    private levelUpCardGroup: eui.Group;
     private levelUpCoinText: eui.Label;
     private levelUpBtn: eui.Button;
+    private levelUpCardGroup: eui.Group;
     private levelUpCardText: eui.Label;
+    private lockGroup: eui.Group;
+    private levelDes: eui.Label;
 
 
 
 
 
 
-     private vo;
+
+
+    private vo;
      private specialData;
 
 
@@ -128,8 +130,9 @@ class MonsterInfoBase extends game.BaseContainer {
 
 
         //this.levelText.text = 'LV.' + UM.getMonsterLevel(monsterID);
-        this.levelGroup.visible = false;
+
         this.levelUpCon.visible = false;
+        this.lockGroup.visible = false;
 
 
 
@@ -171,8 +174,18 @@ class MonsterInfoBase extends game.BaseContainer {
                 fightData = UM.getTecMonsterAdd(monsterID);
                 fightData.atk += force;
                 fightData.hp += force;
-                nameStr += '  <font color="#226C17" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
-                this.renewLevelUp();
+
+                if(UM.level >= vo.level)
+                {
+                    nameStr += '  <font color="#226C17" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
+                    this.renewLevelUp();
+                }
+                else
+                {
+                    this.lockGroup.visible = true;
+                    this.levelDes.text = vo.level + '级解锁';
+                }
+
             }
 
         }

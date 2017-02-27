@@ -69,7 +69,7 @@ class MainLoadingUI extends egret.Sprite {
         this.height = con.stage.stageHeight;
         this.shape.height = con.stage.stageHeight;
         this.textField.y = this.height/2;
-        this.icon.y = this.textField.y - 220;
+        this.icon.y = this.textField.y - 230;
         this.textField.text = 'Loading...';
     }
 

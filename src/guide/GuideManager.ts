@@ -101,7 +101,7 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
-            mc:"new egret.Rectangle(0,600,640,500)",
+            mc:"new egret.Rectangle(0,600+(GameManager.stage.stageHeight - 960)/2,640,360)",
             text:'是不是很简单？如果想了解更详尽的PK过程，可以点击下方的对战信息查看更多的信息',
             fun:function(){self.showGuide(PKWinUI.getInstance())}
         })

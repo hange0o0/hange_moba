@@ -389,7 +389,7 @@ class MainPageUI extends game.BaseUI {
 
         this.renewTask();
         this.renewPage();
-        this.scrollToCurrentPage();
+        this.onLevelChange();//内含this.scrollToCurrentPage();
 
         this.renewMiddle();
 

@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKResultItem2Skin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="120">
 	<e:Group height="100%" width="100%" x="0" y="0"/>
-	<e:Group y="0" horizontalCenter="0">
-		<e:Rect width="602" y="0" height="20" x="0" fillColor="0x240D0D"/>
+	<e:Group y="0" horizontalCenter="0" width="602">
+		<e:Rect width="298" y="0" height="20" x="0" fillColor="0x240D0D"/>
+		<e:Rect width="298" y="0" fillColor="0x240D0D" height="20" right="0"/>
 		<e:Group y="0" width="300" left="0">
 			<e:Rect id="b0" width="300" y="3" fillColor="0x6A1414" height="14" left="0"/>
 			<e:Rect id="f0" width="300" y="0" fillColor="0x6A1414" height="20" strokeWeight="1" strokeColor="0xFFCC00" left="0"/>

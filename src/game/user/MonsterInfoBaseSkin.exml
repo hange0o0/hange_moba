@@ -18,7 +18,7 @@
 
 
 
-	<e:Group x="340" y="30">
+	<e:Group x="340" y="30" locked="true">
 		<e:Label id="nameText" text="标签" x="336" y="47" textColor="0xCBC08A" verticalAlign="bottom" bold="true"/>
 		<e:Group x="5" y="0">
 
@@ -51,13 +51,9 @@
 	</e:Group>
 
 
-	<e:Group x="30" y="30">
+	<e:Group x="30" y="30" locked="true">
 		<e:Image source="card_bg_png" x="0" y="0" height="350" scale9Grid="72,75,87,71" width="270"/>
 		<e:Image id="headMC" source="head_png" x="15" y="13" width="240" height="320"/>
-		<e:Group id="levelGroup" x="15" y="273">
-			<e:Rect height="60" width="240" x="0" y="0" fillAlpha="0.7" strokeWeight="1"/>
-			<e:Label id="levelText" y="15" text="X12" textColor="0xCBC08A" textAlign="center" horizontalCenter="0.5"/>
-		</e:Group>
 	</e:Group>
 	<e:Rect width="580" horizontalCenter="0" top="400" bottom="20" ellipseHeight="10" ellipseWidth="10" strokeColor="0xC2A87D" strokeWeight="1" fillColor="0x180802"/>
 	<e:List id="list" x="38" top="410" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="30">
@@ -65,7 +61,7 @@
 			<e:VerticalLayout gap="10"/>
 		</e:layout>
 	</e:List>
-	<e:Group y="295" id="levelUpCon" x="335">
+	<e:Group y="295" id="levelUpCon" x="335" visible="false">
 		<e:Group x="0" y="0" id="levelUpCoinGroup">
 			<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
 			<e:Image source="icon_money_png" y="0" x="0"/>
@@ -85,5 +81,12 @@
 				<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
 			</e:Group>
 			</e:Group>
+	</e:Group>
+	<e:Group id="lockGroup" x="353" y="300" width="190">
+		<e:Image x="11" y="0" source="lock_icon2_png"/>
+		<e:Label id="levelDes" text="标签" x="0" y="10" textAlign="center" textColor="0xCBC08A" size="24"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="bottom" horizontalAlign="center" gap="10"/>
+		</e:layout>
 	</e:Group>
 </e:Skin>

@@ -18,25 +18,28 @@ class VideoDetailUI extends game.BaseUI {
     private apBar: eui.Rect;
     private apText: eui.Label;
     private valueText0: eui.Label;
-    private buffAddList0: eui.List;
     private buffDecList0: eui.List;
+    private buffAddList0: eui.List;
     private headGroup0: eui.Group;
     private headMC0: eui.Image;
     private nameText0: eui.Label;
     private g1: eui.Group;
     private valueText1: eui.Label;
-    private buffAddList1: eui.List;
     private buffDecList1: eui.List;
+    private buffAddList1: eui.List;
     private headGroup1: eui.Group;
     private headMC1: eui.Image;
     private nameText1: eui.Label;
     private g2: eui.Group;
     private valueText2: eui.Label;
-    private buffAddList2: eui.List;
     private buffDecList2: eui.List;
+    private buffAddList2: eui.List;
     private headGroup2: eui.Group;
     private headMC2: eui.Image;
     private nameText2: eui.Label;
+    private leftBtn: eui.Image;
+    private rightBtn: eui.Image;
+
 
 
 
@@ -59,6 +62,8 @@ class VideoDetailUI extends game.BaseUI {
         this.addBtnEvent(this.headGroup0,this.onMonster0);
         this.addBtnEvent(this.headGroup1,this.onMonster1);
         this.addBtnEvent(this.headGroup2,this.onMonster2);
+        this.addBtnEvent(this.leftBtn,this.onLeft);
+        this.addBtnEvent(this.rightBtn,this.onRight);
 
         this.buffAddList0.itemRenderer = VideoStatItem;
         this.buffDecList0.itemRenderer = VideoStatItem;
@@ -84,6 +89,16 @@ class VideoDetailUI extends game.BaseUI {
         MonsterList.getInstance().show(this.clickObj,2)
     }
 
+    private onLeft(){
+        this.dataIn.team = 1;
+        this.onShow()
+    }
+
+    private onRight(){
+        this.dataIn.team = 2;
+        this.onShow()
+    }
+
     public show(v?){
         this.dataIn = v;
         super.show();
@@ -104,6 +119,13 @@ class VideoDetailUI extends game.BaseUI {
             var teamBase = team == 1?PKM.team2Base:PKM.team1Base
         else
             var teamBase = team == 1?PKM.team1Base:PKM.team2Base
+
+        this.rightBtn.visible = (team == 1)
+        this.leftBtn.visible = !this.rightBtn.visible
+        if(team == 1)
+            this.topUI.setTitle('我方状态');
+        else
+            this.topUI.setTitle('敌方状态');
 
         for(var s in VC.playerObject)
         {
@@ -163,11 +185,11 @@ class VideoDetailUI extends game.BaseUI {
             //if(j == 0)
             //    console.log('def:',def)
             //console.log('buff:',JSON.stringify(arr))
-            if(arr1.length == 0)
-            {
-                arr1 = arr2;
-                arr2 = [];
-            }
+            //if(arr1.length == 0)
+            //{
+            //    arr1 = arr2;
+            //    arr2 = [];
+            //}
 
 
             this['renewMonster' + j]({
@@ -196,19 +218,19 @@ class VideoDetailUI extends game.BaseUI {
         this.apText.text = data.ap  +'/'+ PKManager.ApMax
 
         var baseData = dataIn.baseData
-        var str = '攻击：'+baseData.atk;
+        var str = '[攻击：]'+baseData.atk;
         if(dataIn.atk > 0)
             str += ' <font color="#00FF00">+'+dataIn.atk + '</font>';
         else if(dataIn.atk < 0)
             str += ' <font color="#FF0000">'+dataIn.atk + '</font>';
 
-        str += '\n速度：'+baseData.speed;
+        str += '\n[速度：]'+baseData.speed;
         if(dataIn.speed > 0)
             str += ' <font color="#00FF00">+'+dataIn.speed + '</font>';
         else if(dataIn.speed < 0)
             str += ' <font color="#FF0000">'+dataIn.speed + '</font>';
 
-        str += '\n防御：';
+        str += '\n[防御：]';
         if(dataIn.def > 0)
             str += ' <font color="#00FF00">+'+dataIn.def + '%</font>';
         else if(dataIn.def < 0)
@@ -216,7 +238,7 @@ class VideoDetailUI extends game.BaseUI {
         else
             str += '正常';
 
-        this.setHtml(this.valueText0,str)
+        this.setText(this.valueText0,str)
 
         this.headMC0.source =  baseData.mvo.url;
         this.nameText0.text =  baseData.mvo.name;
@@ -228,19 +250,19 @@ class VideoDetailUI extends game.BaseUI {
         this.scrollGroup.addChild(this.g1);
 
         var baseData = dataIn.baseData
-        var str = '攻击：'+baseData.atk;
+        var str = '[攻击：]'+baseData.atk;
         if(dataIn.atk > 0)
             str += ' <font color="#00FF00">+'+dataIn.atk + '</font>';
         else if(dataIn.atk < 0)
             str += ' <font color="#FF0000">'+dataIn.atk + '</font>';
 
-        str += '\n速度：'+baseData.speed;
+        str += '\n[速度：]'+baseData.speed;
         if(dataIn.speed > 0)
             str += ' <font color="#00FF00">+'+dataIn.speed + '</font>';
         else if(dataIn.speed < 0)
             str += ' <font color="#FF0000">'+dataIn.speed + '</font>';
 
-        this.setHtml(this.valueText1,str)
+        this.setText(this.valueText1,str)
 
         this.headMC1.source =  baseData.mvo.url;
         this.nameText1.text =  baseData.mvo.name;
@@ -252,24 +274,30 @@ class VideoDetailUI extends game.BaseUI {
         this.scrollGroup.addChild(this.g2);
 
         var baseData = dataIn.baseData
-        var str = '攻击：'+baseData.atk;
+        var str = '[攻击：]'+baseData.atk;
         if(dataIn.atk > 0)
             str += ' <font color="#00FF00">+'+dataIn.atk + '</font>';
         else if(dataIn.atk < 0)
             str += ' <font color="#FF0000">'+dataIn.atk + '</font>';
 
-        str += '\n速度：'+baseData.speed;
+        str += '\n[速度：]'+baseData.speed;
         if(dataIn.speed > 0)
             str += ' <font color="#00FF00">+'+dataIn.speed + '</font>';
         else if(dataIn.speed < 0)
             str += ' <font color="#FF0000">'+dataIn.speed + '</font>';
 
-        this.setHtml(this.valueText2,str)
+        this.setText(this.valueText2,str)
 
         this.headMC2.source =  baseData.mvo.url;
         this.nameText2.text =  baseData.mvo.name;
 
         this.buffAddList2.dataProvider = new eui.ArrayCollection(dataIn.buff)
         this.buffDecList2.dataProvider = new eui.ArrayCollection(dataIn.debuff)
+    }
+
+    private setText(text,str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        this.setHtml(text,str);
     }
 }

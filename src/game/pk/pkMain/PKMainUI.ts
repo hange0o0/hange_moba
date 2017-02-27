@@ -16,7 +16,6 @@ class PKMainUI extends game.BaseUI {
     private bg1: eui.Image;
     private bg0: eui.Image;
     private jumpBtn: eui.Button;
-    private enemyGroup: eui.Group;
     private selfGroup: eui.Group;
     private topMC: eui.Image;
     private bottomMC: eui.Image;
@@ -75,7 +74,7 @@ class PKMainUI extends game.BaseUI {
         super.childrenCreated();
         this.addBtnEvent(this.jumpBtn, this.onJump);
 
-        this.addChild(this.jumpBtn);
+
 
         this.selfGroup.height = this.fightHeight;
 
@@ -118,7 +117,6 @@ class PKMainUI extends game.BaseUI {
         {
             mObj[arr[i]] = true;
         }
-        console.log(mObj);
         for(var s in mObj)
         {
             group.push('m_thumbr_' + s);
@@ -172,6 +170,15 @@ class PKMainUI extends game.BaseUI {
         return item;
     }
 
+    private mvFreeItem(item){
+        if(item.out)
+            return;
+        var tw:egret.Tween = egret.Tween.get(item);
+        tw.to({alpha:0}, 1000).call(function(){
+            this.freeItem(item);
+        },this)
+    }
+
     private freeItem(item){
         if(item.out)
             return;
@@ -184,6 +191,7 @@ class PKMainUI extends game.BaseUI {
     private initView(){
         var stageHeight = this.stageHeight = this.stage.stageHeight;
         this.jumpBtn.visible = false;
+        this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
         this.bg0.source = this.scene;
@@ -197,6 +205,9 @@ class PKMainUI extends game.BaseUI {
         {
              this.freeItem(this.itemSelf.pop());
         }
+
+        this.selfGroup.removeChildren()
+
 
         //this.enemyGroup.y = stageHeight/2 - (400+40);
         this.selfGroup.y = (stageHeight - this.fightHeight)/2// + 40
@@ -418,7 +429,7 @@ class PKMainUI extends game.BaseUI {
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束
         {
-            this.timer = egret.setTimeout(this.showResult,this,300)
+            this.timer = egret.setTimeout(this.showResult,this,500)
              return;
         }
         this.needUpArr1 = [];
@@ -1194,11 +1205,11 @@ class PKMainUI extends game.BaseUI {
 
         while(this.itemEnemy.length > 0)
         {
-            this.freeItem(this.itemEnemy.pop());
+            this.mvFreeItem(this.itemEnemy.pop());
         }
         while(this.itemSelf.length > 0)
         {
-            this.freeItem(this.itemSelf.pop());
+            this.mvFreeItem(this.itemSelf.pop());
         }
 
         AniManager.getInstance().removeAllMV();
@@ -1207,7 +1218,7 @@ class PKMainUI extends game.BaseUI {
 
     private showResult()
     {
-        this.hide();
+        //this.hide();
         this.stopAll();
         PKResultUI.getInstance().show();
         //if(PKManager.getInstance().pkResult.result)

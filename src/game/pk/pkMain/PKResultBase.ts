@@ -17,7 +17,9 @@ class PKResultBase extends game.BaseContainer {
         this._list.itemRenderer = PKResultItem;
     }
 
-
+    private showBG(){
+        PKResultUI.getInstance().showBG();
+    }
 
     public stepOne(){
         var award = PKManager.getInstance().pkAward;
@@ -26,14 +28,14 @@ class PKResultBase extends game.BaseContainer {
         {
             this._desText.text = ''
             MyTool.removeMC(this._list);
-            //this.y = 300;
-            //this.scaleX = 0.1
-            //this.scaleY = 0.1
-            //this.x = (640 - 640*0.1)/2;
-            //var tw:egret.Tween = egret.Tween.get(this);
-            //tw.to({x:(640 - 640*0.6)/2,y:20,scaleX:0.6,scaleY:0.6}, 200,egret.Ease.sineIn).
-            //    to({x:0,y:80,scaleX:1,scaleY:1}, 300,egret.Ease.sineOut).wait(300).call(this.stepOne,this);
-            this.stepOne();
+            this.y = (GameManager.stage.stageHeight - 300)/2;
+            this.scaleX = 0.1
+            this.scaleY = 0.1
+            this.x = (640 - 640*0.1)/2;
+            var tw:egret.Tween = egret.Tween.get(this);
+            tw.to({x:(640 - 640*1.2)/2,y:100,scaleX:1.2,scaleY:1.2}, 200).
+                to({x:0,y:120,scaleX:1,scaleY:1}, 100).call(this.showBG,this).wait(300).call(this.stepOne,this);
+            //this.stepOne();
         }
         else if(!award)
         {
