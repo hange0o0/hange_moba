@@ -11,6 +11,7 @@ class MainServerItem extends game.BaseItem {
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
+    private bg: eui.Image;
 
 
 
@@ -32,6 +33,7 @@ class MainServerItem extends game.BaseItem {
     }
 
     public renew() {
+        this.bg.source = 'main3_png'
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game;
         this.titleText.text = '竞技场 [' + ServerGameManager.getInstance().getPKTableLevel(serverData.exp) + '阶]'

@@ -88,7 +88,7 @@ class MainPageUI extends game.BaseUI {
 
         this.addBtnEvent(this.friendBtn, this.onFriend);
         this.addBtnEvent(this.collectBtn, this.onCollect);
-        this.addBtnEvent(this.bagBtn, this.onBag);
+        //this.addBtnEvent(this.bagBtn, this.onBag);
         this.addBtnEvent(this.honorBtn, this.onHonor);
         this.addBtnEvent(this.rankBtn, this.onRank);
         this.addBtnEvent(this.setBtn, this.onSetting);
@@ -341,10 +341,10 @@ class MainPageUI extends game.BaseUI {
     private onCollect(){
         CollectUI.getInstance().show();
     }
-    private onBag(){
-        BagUI.getInstance().show();
-
-    }
+    //private onBag(){
+    //    BagUI.getInstance().show();
+    //
+    //}
     private onSetting(){
         SettingUI.getInstance().show();
     }
@@ -357,10 +357,10 @@ class MainPageUI extends game.BaseUI {
         RankUI.getInstance().show();
 
     }
-    private onTec(){
-        TecUI.getInstance().show();
-
-    }
+    //private onTec(){
+    //    TecUI.getInstance().show();
+    //
+    //}
 
 
     //private onMain(){
@@ -409,7 +409,9 @@ class MainPageUI extends game.BaseUI {
 
         SoundManager.getInstance().playSound(SoundConfig.bg);
         egret.setTimeout(function(){
-            RES.loadGroup("gamepreload2");//预加载第一阶段
+            RES.loadGroup("preload2_png",-10);//预加载第一阶段
+            RES.loadGroup("preload2_jpg",-10);//预加载第一阶段
+            RES.loadGroup("preload2_png32",-10);//预加载第一阶段
         },this,500)
         setTimeout(function(){
             SoundManager.getInstance().loadEffectSound();

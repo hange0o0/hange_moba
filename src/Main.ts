@@ -74,8 +74,7 @@ class Main extends eui.UILayer {
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-        RES.loadGroup("loginload");
-
+        RES.loadGroup("login_load");
     }
     private isThemeLoadEnd: boolean = false;
     /**
@@ -93,7 +92,7 @@ class Main extends eui.UILayer {
      * preload resource group is loaded
      */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
-        if (event.groupName == "loginload") {
+        if (event.groupName == "login_load") {
             this.loadingView.setFinish();
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
@@ -136,7 +135,7 @@ class Main extends eui.UILayer {
      * loading process of preload resource
      */
     private onResourceProgress(event:RES.ResourceEvent):void {
-        if (event.groupName == "loginload") {
+        if (event.groupName == "login_load") {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
@@ -149,7 +148,8 @@ class Main extends eui.UILayer {
         //if(_get['debug'] == 2)
         //{
             egret.setTimeout(function(){
-                RES.loadGroup("gamepreload");//预加载第一阶段
+                RES.loadGroup("preload_png");//预加载第一阶段
+                RES.loadGroup("preload_jpg");//预加载第一阶段
             },this,200)
         //}
 

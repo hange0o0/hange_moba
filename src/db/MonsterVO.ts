@@ -21,9 +21,9 @@ class MonsterVO {
             var vo = data[s];
             vo.initSkill();
 
-            addResources('m_thumb_' + vo.id,vo.thumb)
-            addResources('m_thumbr_' + vo.id,vo.thumbRound)
-            addResources('m_url_' + vo.id,vo.url)
+            addResources('m_thumb_' + vo.id,vo._thumb)
+            addResources('m_thumbr_' + vo.id,vo._thumbRound)
+            addResources('m_url_' + vo.id,vo._url)
         }
         RES.parseConfig(rdata, '');
     }
@@ -213,13 +213,24 @@ class MonsterVO {
     //}
 
     public get thumb(){
-        return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
+        return 'm_thumb_' + this.id
     }
     public get thumbRound(){
-        return Config.localResRoot + 'head/mr_head'+this.id+'.png';
+        return 'm_thumbr_' + this.id
     }
 
     public get url(){
+        return 'm_url_' + this.id
+        //return 'full_bg_jpg';
+    }
+    public get _thumb(){
+        return Config.localResRoot + 'head/m_head'+this.id+'.jpg';
+    }
+    public get _thumbRound(){
+        return Config.localResRoot + 'head/mr_head'+this.id+'.png';
+    }
+
+    public get _url(){
         return Config.localResRoot + 'card/monster_'+this.id+'.jpg';
         //return 'full_bg_jpg';
     }

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressSimpleItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="52" height="52">
+<e:Skin class="PKDressSimpleItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="52" height="52">
+
 	<e:Image source="border3_png" y="0" x="0" scaleX="0.7" scaleY="0.7"/>
-	<e:Image id="headMC" source="border8_png" x="6" y="5" width="41" height="42"/>
+	<e:Image id="headMC" source="head_png" x="6" y="5" width="41" height="42"/>
 </e:Skin>

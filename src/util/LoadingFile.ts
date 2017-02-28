@@ -11,6 +11,8 @@ class LoadingFile {
     private callBackTarget: any;
     private loadCount: number;
 
+    private groupData = {}
+
     private static instance:LoadingFile;
     public static getInstance() {
         if (!this.instance) this.instance = new LoadingFile();
@@ -40,9 +42,15 @@ class LoadingFile {
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
-        
+
+        this.groupData = {};
         for(var i = 0;i < array.length; i++){
-                RES.loadGroup(array[i]);
+
+            this.groupData[array[i]] = {
+                current:0,
+                total:RES.getGroupByName(array[i]).length
+            }
+            RES.loadGroup(array[i]);
         }
         
     }
@@ -53,6 +61,8 @@ class LoadingFile {
      * preload resource group is loaded
      */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
+        if(this.loadFiles.indexOf(event.groupName) == -1)
+            return;
         this.loadCount--;
         
         if (this.loadCount == 0) {
@@ -71,7 +81,18 @@ class LoadingFile {
     }
 
     private onResourceProgress(event:RES.ResourceEvent):void {
-        this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
+        if(this.loadFiles.indexOf(event.groupName) == -1)
+            return;
+        this.groupData[event.groupName].current = event.itemsLoaded;
+        var current = 0
+        var total = 0
+        for(var s in this.groupData)
+        {
+            current += this.groupData[s].current
+            total += this.groupData[s].total
+        }
+
+        this.loadingView.setProgress(current, total);
     }
 
 }

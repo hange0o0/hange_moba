@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoDetailSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0" locked="true"/>
-<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
-	<e:Scroller width="640" x="0" top="80" bottom="0" bounces="false">
+<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Scroller width="640" x="0" top="80" bottom="70" bounces="false">
 		<e:Group id="scrollGroup">
 			<e:Group id="g0" y="89" x="27">
 				<e:Group x="220" y="0">
@@ -120,10 +120,17 @@
 				</e:Group>
 			</e:Group>
 			<e:layout>
-				<e:VerticalLayout horizontalAlign="center" paddingTop="10" gap="20" paddingBottom="10"/>
+				<e:VerticalLayout horizontalAlign="center" paddingTop="10" gap="20" paddingBottom="20"/>
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Image source="left_btn_png" x="0" verticalCenter="40" id="leftBtn" y="10"/>
-	<e:Image source="left_btn_png" right="0" scaleX="-1" verticalCenter="40" id="rightBtn" x="10" y="10"/>
+	<e:Image source="line_png" width="660" bottom="58" x="-10" y="10"/>
+	<e:TabBar id="tab" width="640" height="61" itemRendererSkinName="MyTabItemSkin" x="0" bottom="0">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object label="我方状态"/>
+				<e:Object label="敌方状态"/>
+			</e:Array>
+		</e:ArrayCollection>
+	</e:TabBar>
 	</e:Skin>

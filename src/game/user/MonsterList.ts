@@ -176,7 +176,12 @@ class MonsterList extends game.BaseUI {
         egret.Tween.removeTweens(this.scrollGroup)
         var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
         var targetX = -this.rota * 640;
-        tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500)).call(this.renew,this);
+        tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500)).call(function(){
+            var temp = this.info;
+            this.info = this.info2;
+            this.info2 = temp;
+            this.renew();
+        },this);
     }
 
     private renewInfo2(index = -1){
@@ -280,6 +285,7 @@ class MonsterList extends game.BaseUI {
         this.rota = 0;
         MyTool.removeMC(this.info2)
         this.scrollGroup.x = 0;
+        this.info.x = 0;
         var oo =  this.dataArray[this.index];
         this.info.renew(oo.id,oo.specialData)
         //this.once(egret.Event.ENTER_FRAME,function(){

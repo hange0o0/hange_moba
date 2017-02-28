@@ -109,7 +109,8 @@ class PKMainUI extends game.BaseUI {
         this.initSeed();
         var group = VideoManager.getInstance().getVideoAniGroup();
         this.scene =  PKManager.getInstance().getPKBG(PKManager.getInstance().pkType,this.random());
-        group.push(this.scene);
+        if(!RES.getRes(this.scene))
+            group.push(this.scene);
 
         var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
         var mObj = {};
@@ -128,9 +129,16 @@ class PKMainUI extends game.BaseUI {
         //    this.LoadFiles = [];
         //else
         //{
-            RES.createGroup('skill_ani',group,true);
-            this.LoadFiles = ['skill_ani'];
+
         //}
+        this.LoadFiles = [];
+        if(!RES.isGroupLoaded('pk'))
+            this.LoadFiles.push('pk')
+        if(group.length > 0)
+        {
+            RES.createGroup('skill_ani',group,true);
+            this.LoadFiles.push('skill_ani')
+        }
 
         this.pkList = PKManager.getInstance().mainVideoList.concat();
 
@@ -421,7 +429,7 @@ class PKMainUI extends game.BaseUI {
         if(this.loadGroup2)
         {
             RES.createGroup('pk_load',this.loadGroup2,true);
-            RES.loadGroup("pk_load");
+            RES.loadGroup("pk_load",-2);
             this.loadGroup2 = null;
         }
 

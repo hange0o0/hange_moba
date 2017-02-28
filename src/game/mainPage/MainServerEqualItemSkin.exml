@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainServerEqualItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="110" y="-79" source="main4_png" fillMode="clip" height="500"/>
+<e:Skin class="MainServerEqualItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+
+
+
+
+	<e:Image x="110" y="-79" source="" fillMode="clip" height="500" id="bg"/>
+
 	<e:Group horizontalCenter="0" y="265" width="480" locked="true">
 		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:Label id="titleText" text="修正场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
@@ -8,7 +13,9 @@
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
+
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" width="335" y="31" textColor="0xCCB48E" text="积分：12345(LV.5)" textAlign="center" lineSpacing="8" horizontalCenter="0.5" height="36"/>

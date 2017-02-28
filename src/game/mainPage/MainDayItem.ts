@@ -9,6 +9,7 @@ class MainDayItem extends game.BaseItem {
     private scoreText: eui.Label;
     private desText: eui.Label;
     private lockMC: eui.Image;
+    private bg: eui.Image;
 
 
 
@@ -26,7 +27,7 @@ class MainDayItem extends game.BaseItem {
 
     public renew() {
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
-
+        this.bg.source = 'main2_png'
 
         DayGameManager.getInstance().resetDay();
         var myData = UM.day_game;

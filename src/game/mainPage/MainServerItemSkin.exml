@@ -1,6 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainServerItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image y="-71" x="102" source="main3_png" fillMode="clip" height="500"/>
+<e:Skin class="MainServerItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+
+
+
+
+
+
+
+
+
+	<e:Image y="-71" x="102" source="" fillMode="clip" height="500" id="bg"/>
 	<e:Group horizontalCenter="0" y="265" width="480">
 		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:Label id="titleText" text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>

@@ -79,11 +79,8 @@ class SoundManager {
     public set soundPlaying(v){
         if(this._soundPlaying!=v)
             SharedObjectManager.instance.setValue("sound",v)
-        if(!this.isLoad && v){
-            RES.loadGroup("musicEffect");
-            this.isLoad  = true;
-        }
         this._soundPlaying = v;
+        this.loadEffectSound();
     }
     public set bgPlaying(v){
         if(this._bgPlaying!=v){
@@ -306,18 +303,22 @@ class SoundManager {
 
 
     public loadPKSound(){
+        if(!this.soundPlaying)
+            return;
         if(this.pkKey)
         {
             RES.createGroup('pksound', SoundManager.getInstance().pkKey, true);
-            RES.loadGroup("pksound");
+            RES.loadGroup("pksound",-1);
             this.pkKey = null;
         }
     }
     public loadEffectSound(){
+        if(!this.soundPlaying)
+            return;
         if(this.effectKey)
         {
             RES.createGroup('effectsound', SoundManager.getInstance().effectKey, true);
-            RES.loadGroup("effectsound");
+            RES.loadGroup("effectsound",-100);
             this.effectKey = null;
         }
     }

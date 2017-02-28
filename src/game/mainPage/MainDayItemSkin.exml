@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainDayItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="75" y="-213" source="main2_png"/>
+	<e:Image x="75" y="-213" source="" id="bg"/>
 
-
+
+
+
+
 
 	<e:Group y="265" width="480" horizontalCenter="0">
 		<e:Image source="main_mc_png" y="0" x="0"/>

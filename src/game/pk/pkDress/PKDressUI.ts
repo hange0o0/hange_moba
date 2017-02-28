@@ -226,11 +226,10 @@ class PKDressUI extends game.BaseUI {
         }
         else
             this.currentState = 'open'
-        egret.callLater(function(){
-            if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
-                this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
-            this.onScroll();
-        },this)
+        this.validateNow();
+        if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
+            this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+        this.onScroll();
     }
 
     public addMonster(mid){

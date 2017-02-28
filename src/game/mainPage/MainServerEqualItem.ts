@@ -11,6 +11,7 @@ class MainServerEqualItem extends game.BaseItem {
     private desText: eui.Label;
     private titleText: eui.Label;
     private lockMC: eui.Image;
+    private bg: eui.Image;
 
 
 
@@ -36,6 +37,7 @@ class MainServerEqualItem extends game.BaseItem {
     }
 
     public renew() {
+        this.bg.source = 'main4_png'
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game_equal;
         //this.totalText.text = '局数：' + serverData.total;

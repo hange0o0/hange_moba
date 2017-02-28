@@ -4,35 +4,23 @@
 	"packGroups":[
 		{
 			"gap":4,
-			"name":"p_png",
+			"name":"login",
 			"res":[
 				{
 					"compress":false,
-					"key":"card_bg_png"
+					"key":"title_png"
 				},
 				{
 					"compress":false,
-					"key":"bar2_png"
+					"key":"ui_loading_png"
 				},
 				{
 					"compress":false,
-					"key":"bar_bg_png"
+					"key":"border5_png"
 				},
 				{
 					"compress":false,
-					"key":"bar1_png"
-				},
-				{
-					"compress":false,
-					"key":"line_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_rank_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_token_png"
+					"key":"shop_card_png"
 				},
 				{
 					"compress":false,
@@ -40,31 +28,46 @@
 				},
 				{
 					"compress":false,
-					"key":"menu_icon_1_png"
+					"key":"loading_ani_png"
 				},
 				{
 					"compress":false,
-					"key":"menu_icon_2_png"
+					"key":"icon_server_png"
 				},
 				{
 					"compress":false,
-					"key":"menu_icon_3_png"
+					"key":"btn_r2__png"
 				},
 				{
 					"compress":false,
-					"key":"menu_icon_4_png"
+					"key":"btn_r2_png"
+				}
+			],
+			"sort":0
+		},
+		{
+			"gap":4,
+			"name":"pl1_png",
+			"res":[
+				{
+					"compress":false,
+					"key":"window2_png"
 				},
 				{
 					"compress":false,
-					"key":"menu_icon_5_png"
+					"key":"replay_mc_png"
 				},
 				{
 					"compress":false,
-					"key":"menu_icon_6_png"
+					"key":"red_point_png"
 				},
 				{
 					"compress":false,
-					"key":"pk_icon_png"
+					"key":"random_btn_png"
+				},
+				{
+					"compress":false,
+					"key":"point2_png"
 				},
 				{
 					"compress":false,
@@ -72,7 +75,229 @@
 				},
 				{
 					"compress":false,
-					"key":"point2_png"
+					"key":"menu_icon_6_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_5_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_4_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_3_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_2_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_1_png"
+				},
+				{
+					"compress":false,
+					"key":"main_border_png"
+				},
+				{
+					"compress":false,
+					"key":"lock_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"line_png"
+				},
+				{
+					"compress":false,
+					"key":"left_btn_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_token_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_rank_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_pvp_ticket_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_pvp_3_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_pve_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_power_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_new_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_money_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_lv_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_empty_png"
+				},
+				{
+					"compress":false,
+					"key":"head_png"
+				},
+				{
+					"compress":false,
+					"key":"guide2_png"
+				},
+				{
+					"compress":false,
+					"key":"guide1_png"
+				},
+				{
+					"compress":false,
+					"key":"card_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_r3__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_r3_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_r1__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_r1_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_d2_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_d1_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_close2__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_close2_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_close1__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_close1_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_b2__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_b2_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_b1__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_b1_png"
+				},
+				{
+					"compress":false,
+					"key":"border_head_png"
+				},
+				{
+					"compress":false,
+					"key":"border1_png"
+				}
+			],
+			"sort":0
+		},
+		{
+			"gap":4,
+			"name":"pl1_jpg",
+			"res":[
+				{
+					"compress":false,
+					"key":"head_bg2_jpg"
+				},
+				{
+					"compress":false,
+					"key":"main_button_bottom_jpg"
+				},
+				{
+					"compress":false,
+					"key":"main_exp_jpg"
+				},
+				{
+					"compress":false,
+					"key":"tips_jpg"
+				},
+				{
+					"compress":false,
+					"key":"top_bg_jpg"
+				}
+			],
+			"sort":0
+		},
+		{
+			"gap":4,
+			"name":"pl2_png",
+			"res":[
+				{
+					"compress":false,
+					"key":"3th_png"
+				},
+				{
+					"compress":false,
+					"key":"1th_png"
+				},
+				{
+					"compress":false,
+					"key":"2th_png"
+				},
+				{
+					"compress":false,
+					"key":"jump_btn_png"
+				},
+				{
+					"compress":false,
+					"key":"win_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"lose_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"lock_icon2_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_icon_png"
 				},
 				{
 					"compress":false,
@@ -81,14 +306,6 @@
 				{
 					"compress":false,
 					"key":"radio_btn2_png"
-				},
-				{
-					"compress":false,
-					"key":"red_point_png"
-				},
-				{
-					"compress":false,
-					"key":"replay_mc_png"
 				},
 				{
 					"compress":false,
@@ -148,46 +365,6 @@
 				},
 				{
 					"compress":false,
-					"key":"icon_empty_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_lv_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_money_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_power_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_pve_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_pvp_3_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_pvp_ticket_png"
-				},
-				{
-					"compress":false,
-					"key":"icon_new_png"
-				},
-				{
-					"compress":false,
-					"key":"random_btn_png"
-				},
-				{
-					"compress":false,
-					"key":"note_icon_png"
-				},
-				{
-					"compress":false,
 					"key":"arrow5_png"
 				},
 				{
@@ -200,15 +377,19 @@
 				},
 				{
 					"compress":false,
-					"key":"icon_server_png"
-				},
-				{
-					"compress":false,
 					"key":"choose_icon_png"
 				},
 				{
 					"compress":false,
-					"key":"bar3_png"
+					"key":"shop_energy_png"
+				},
+				{
+					"compress":false,
+					"key":"shop_money_png"
+				},
+				{
+					"compress":false,
+					"key":"shop_ticket_png"
 				},
 				{
 					"compress":false,
@@ -216,34 +397,82 @@
 				},
 				{
 					"compress":false,
-					"key":"bar4_png"
+					"key":"border2_png"
+				},
+				{
+					"compress":false,
+					"key":"border3_png"
+				},
+				{
+					"compress":false,
+					"key":"border4_png"
+				},
+				{
+					"compress":false,
+					"key":"border6_png"
+				},
+				{
+					"compress":false,
+					"key":"box0_png"
+				},
+				{
+					"compress":false,
+					"key":"box1_png"
+				},
+				{
+					"compress":false,
+					"key":"box2_png"
+				},
+				{
+					"compress":false,
+					"key":"box3_png"
+				},
+				{
+					"compress":false,
+					"key":"head_border1_png"
+				},
+				{
+					"compress":false,
+					"key":"pay_energy_png"
 				}
 			],
 			"sort":0
 		},
 		{
 			"gap":4,
-			"name":"p_jpg",
+			"name":"pl2_jpg",
 			"res":[
 				{
 					"compress":false,
-					"key":"main_button_bottom_jpg"
+					"key":"prop_card_jpg"
 				},
 				{
 					"compress":false,
-					"key":"fire_top_jpg"
+					"key":"prop_coin_jpg"
 				},
 				{
 					"compress":false,
-					"key":"top_bg_jpg"
+					"key":"prop_diamond_jpg"
 				},
 				{
 					"compress":false,
-					"key":"main_exp_jpg"
+					"key":"prop_energy_jpg"
 				},
 				{
 					"compress":false,
-					"key":"tips_jpg"
+					"key":"prop_exp_jpg"
+				},
+				{
+					"compress":false,
+					"key":"prop_thumb_21_jpg"
+				},
+				{
+					"compress":false,
+					"key":"book_bg1_jpg"
+				},
+				{
+					"compress":false,
+					"key":"book_bg2_jpg"
 				},
 				{
 					"compress":false,
@@ -254,8 +483,63 @@
 		},
 		{
 			"gap":4,
-			"name":"p_png2",
+			"name":"pl2_png32",
 			"res":[
+				{
+					"compress":false,
+					"key":"border_light_png"
+				},
+				{
+					"compress":false,
+					"key":"border_light1_png"
+				},
+				{
+					"compress":false,
+					"key":"border_light3_png"
+				},
+				{
+					"compress":false,
+					"key":"head_border_light1_png"
+				},
+				{
+					"compress":false,
+					"key":"head_border_light3_png"
+				}
+			],
+			"sort":0
+		},
+		{
+			"gap":4,
+			"name":"pk",
+			"res":[
+				{
+					"compress":false,
+					"key":"video_atk1_png"
+				},
+				{
+					"compress":false,
+					"key":"video_atk2_png"
+				},
+				{
+					"compress":false,
+					"key":"video_atk3_png"
+				},
+				{
+					"compress":false,
+					"key":"video_atk4_png"
+				},
+				{
+					"compress":false,
+					"key":"bar2_png"
+				},
+				{
+					"compress":false,
+					"key":"bar_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"bar1_png"
+				},
 				{
 					"compress":false,
 					"key":"pk_result_line_png"
@@ -278,205 +562,11 @@
 				},
 				{
 					"compress":false,
-					"key":"box0_png"
+					"key":"bar3_png"
 				},
 				{
 					"compress":false,
-					"key":"box1_png"
-				},
-				{
-					"compress":false,
-					"key":"box2_png"
-				},
-				{
-					"compress":false,
-					"key":"box3_png"
-				},
-				{
-					"compress":false,
-					"key":"pay_coin_png"
-				},
-				{
-					"compress":false,
-					"key":"pay_energy_png"
-				}
-			],
-			"sort":0
-		},
-		{
-			"gap":4,
-			"name":"btns",
-			"res":[
-				{
-					"compress":false,
-					"key":"btn_b1_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_b1__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_b2_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_b2__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_close1_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_close1__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_close2_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_close2__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_d1_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_d2_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_r1_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_r1__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_r2_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_r2__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_r3_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_r3__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_down_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_up_png"
-				},
-				{
-					"compress":false,
-					"key":"left_btn_png"
-				}
-			],
-			"sort":0
-		},
-		{
-			"gap":4,
-			"name":"border",
-			"res":[
-				{
-					"compress":false,
-					"key":"border1_png"
-				},
-				{
-					"compress":false,
-					"key":"border_head_png"
-				},
-				{
-					"compress":false,
-					"key":"border_light_png"
-				},
-				{
-					"compress":false,
-					"key":"border2_png"
-				},
-				{
-					"compress":false,
-					"key":"border3_png"
-				},
-				{
-					"compress":false,
-					"key":"border4_png"
-				},
-				{
-					"compress":false,
-					"key":"border5_png"
-				},
-				{
-					"compress":false,
-					"key":"border6_png"
-				},
-				{
-					"compress":false,
-					"key":"border7_png"
-				},
-				{
-					"compress":false,
-					"key":"border8_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border_light1_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border_light2_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border_light3_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border1_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border2_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border3_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border4_png"
-				},
-				{
-					"compress":false,
-					"key":"head_border5_png"
-				},
-				{
-					"compress":false,
-					"key":"main_border_png"
-				},
-				{
-					"compress":false,
-					"key":"border_light3_png"
-				},
-				{
-					"compress":false,
-					"key":"border_light1_png"
-				},
-				{
-					"compress":false,
-					"key":"border_light2_png"
+					"key":"bar4_png"
 				}
 			],
 			"sort":0
@@ -489,14 +579,6 @@
 		{
 			"compress":false,
 			"key":"bg_jpg"
-		},
-		{
-			"compress":false,
-			"key":"head_png"
-		},
-		{
-			"compress":false,
-			"key":"full_bg_jpg"
 		},
 		{
 			"compress":false,
@@ -685,10 +767,6 @@
 		{
 			"compress":false,
 			"key":"skill9_png"
-		},
-		{
-			"compress":false,
-			"key":"use_skill_icon_png"
 		},
 		{
 			"compress":false,
@@ -1048,14 +1126,6 @@
 		},
 		{
 			"compress":false,
-			"key":"loading_ani_png"
-		},
-		{
-			"compress":false,
-			"key":"ui_loading_png"
-		},
-		{
-			"compress":false,
 			"key":"pk_bg2_jpg"
 		},
 		{
@@ -1136,55 +1206,11 @@
 		},
 		{
 			"compress":false,
-			"key":"dungeon_monster_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_card_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_coin_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_diamond_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_energy_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_exp_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_ticket_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_ticket2_jpg"
-		},
-		{
-			"compress":false,
-			"key":"prop_thumb_21_jpg"
+			"key":"fire_top_jpg"
 		},
 		{
 			"compress":false,
 			"key":"login_bg_jpg"
-		},
-		{
-			"compress":false,
-			"key":"window2_png"
-		},
-		{
-			"compress":false,
-			"key":"book_bg1_jpg"
-		},
-		{
-			"compress":false,
-			"key":"book_bg2_jpg"
 		}
 	]
 }

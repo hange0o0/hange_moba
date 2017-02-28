@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="CollectDrawResultUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="window2_png" x="0" y="0"/>
-	<ns1:CollectItem id="itemMC" y="116" skinName="CollectItemSkin" horizontalCenter="0"/>
-	<e:Label text="恭喜获得" y="30" textColor="0xD0C7AD" horizontalCenter="0"/>
-	<e:Button id="okBtn" label="确定" y="323" skinName="Btn_r2Skin" horizontalCenter="0"/>
-</e:Skin>

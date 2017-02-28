@@ -37,8 +37,8 @@ class VideoDetailUI extends game.BaseUI {
     private headGroup2: eui.Group;
     private headMC2: eui.Image;
     private nameText2: eui.Label;
-    private leftBtn: eui.Image;
-    private rightBtn: eui.Image;
+    private tab: eui.TabBar;
+
 
 
 
@@ -62,8 +62,6 @@ class VideoDetailUI extends game.BaseUI {
         this.addBtnEvent(this.headGroup0,this.onMonster0);
         this.addBtnEvent(this.headGroup1,this.onMonster1);
         this.addBtnEvent(this.headGroup2,this.onMonster2);
-        this.addBtnEvent(this.leftBtn,this.onLeft);
-        this.addBtnEvent(this.rightBtn,this.onRight);
 
         this.buffAddList0.itemRenderer = VideoStatItem;
         this.buffDecList0.itemRenderer = VideoStatItem;
@@ -71,6 +69,8 @@ class VideoDetailUI extends game.BaseUI {
         this.buffDecList1.itemRenderer = VideoStatItem;
         this.buffAddList2.itemRenderer = VideoStatItem;
         this.buffDecList2.itemRenderer = VideoStatItem;
+
+        this.tab.addEventListener(eui.ItemTapEvent.CHANGE, this.onTab, this);
     }
 
     public beforeHide(){
@@ -89,15 +89,11 @@ class VideoDetailUI extends game.BaseUI {
         MonsterList.getInstance().show(this.clickObj,2)
     }
 
-    private onLeft(){
-        this.dataIn.team = 1;
+    private onTab(){
+        this.dataIn.team = this.tab.selectedIndex + 1;
         this.onShow()
     }
 
-    private onRight(){
-        this.dataIn.team = 2;
-        this.onShow()
-    }
 
     public show(v?){
         this.dataIn = v;
@@ -120,8 +116,7 @@ class VideoDetailUI extends game.BaseUI {
         else
             var teamBase = team == 1?PKM.team1Base:PKM.team2Base
 
-        this.rightBtn.visible = (team == 1)
-        this.leftBtn.visible = !this.rightBtn.visible
+        this.tab.selectedIndex = team-1;
         if(team == 1)
             this.topUI.setTitle('我方状态');
         else

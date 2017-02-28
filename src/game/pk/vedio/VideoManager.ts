@@ -103,7 +103,8 @@ class VideoManager {
         var arr2 = [];
         for(var s in mObj)
         {
-            arr2.push(s);
+            if(!RES.getRes(s))
+                arr2.push(s);
             //arr2.push(s+'_json');
             //arr2.push(s+'_png');
         }

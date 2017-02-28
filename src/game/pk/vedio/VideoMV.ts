@@ -448,12 +448,12 @@ class VideoMV {
 
         if(value > 0)
         {
-            txt.font = 'font_num1_fnt'
+            //txt.font = 'font_num1_fnt'
             txt.text = '+' + value;
         }
         else
         {
-            txt.font = 'font_num1_fnt'
+            //txt.font = 'font_num1_fnt'
             txt.text = '' + value;
         }
         VideoUI.getInstance().addToGroup(txt);
