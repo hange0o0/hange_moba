@@ -328,7 +328,11 @@ class PKManager {
         }
 
         if(data.sync_level)
+        {
             this.pkAward.levelUp = true;
+            var temp = MonsterVO.getListByLevel(1)
+        }
+
         if(data.sync_tec_force || data.sync_award_force)
             this.pkAward.forceUp = true;
         if(data.finish_task)

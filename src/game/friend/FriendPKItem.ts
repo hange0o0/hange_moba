@@ -58,27 +58,30 @@ class FriendPKItem extends game.BaseItem {
         var toHead = this.getHead(this.data.to_gameid,this.data.content.tohead);
         this.dateText.text = '有效时间：' + DateUtil.getStringBySecond(Math.max(0,this.data.time+3600*24*3 - TM.now()));
         this.icon.visible = true;
+        this.talkText.x = 170
+        this.refuseBtn.skinName = 'Btn_r1Skin'
 
         if(this.data.from_gameid == UM.gameid)//我请求的
         {
             this.headMC.source = MyTool.getHeadUrl(toHead);
-            this.setHtml(this.nameText, '你向<font color="#CCB48E"> ' + toNick + ' </font>发出了挑战');
+            this.setHtml(this.nameText, '<font color="#CCB48E">' + toNick + ' </font>(应战方)');
             this.nameText.textColor = 0x485EA8;
             if(this.data.content.answer_choose)//对方已应战
             {
                 if(this.data.content.result)//对方胜
                 {
-                    this.talkText.textColor = 0x9F3E3E;
+                    this.talkText.textColor = 0x75BCFF;
                     this.talkText.text = '你被打败了。。';
                     this.icon.source = 'lose_icon_png';
                 }
                 else
                 {
-                    this.talkText.textColor = 0x049C04;
+                    this.talkText.textColor = 0xFFEE66;
                     this.talkText.text = '你取得了胜利！';
                     this.icon.source = 'win_icon_png';
                 }
                 this.refuseBtn.label = '录像'
+                this.refuseBtn.skinName = 'Btn_b1Skin'
                 this.state = 3;
             }
             else
@@ -93,23 +96,24 @@ class FriendPKItem extends game.BaseItem {
         else    //对方请求
         {
             this.headMC.source = MyTool.getHeadUrl(fromHead);
-            this.setHtml(this.nameText,'<font color="#CCB48E">' + fromNick + ' </font>向你发出挑战');
+            this.setHtml(this.nameText,'<font color="#CCB48E">' + fromNick + ' </font>(挑战方)');
             this.nameText.textColor = 0x9F3E3E;
             if(this.data.content.answer_choose)//对方已应战
             {
                 if(this.data.content.result)//我方胜
                 {
-                    this.talkText.textColor = 0x049C04;
+                    this.talkText.textColor = 0xFFEE66;
                     this.talkText.text = '你取得了胜利！';
                     this.icon.source = 'win_icon_png';
                 }
                 else
                 {
-                    this.talkText.textColor = 0x9F3E3E;
+                    this.talkText.textColor = 0x75BCFF;
                     this.talkText.text = '你被打败了。。';
                     this.icon.source = 'lose_icon_png';
                 }
                 this.refuseBtn.label = '录像'
+                this.refuseBtn.skinName = 'Btn_b1Skin'
                 this.state = 3;
             }
             else
@@ -120,6 +124,9 @@ class FriendPKItem extends game.BaseItem {
                 this.state = 2;
             }
         }
+
+        if(!this.icon.visible)
+            this.talkText.x = 130
     }
 
     private getNick(gameid,nick){

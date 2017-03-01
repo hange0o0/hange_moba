@@ -15,7 +15,8 @@ class MyTool {
         return  s;
     }
     public static getHeadUrl(id){
-        return Config.localResRoot + 'user_head/user_head'+id+'.png';
+        return MonsterVO.getObject(id).thumb
+        //return Config.localResRoot + 'user_head/user_head'+id+'.png';
     }
     public static removeMC(mc:any){
         if(mc.parent)

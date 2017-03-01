@@ -9,9 +9,12 @@ class VideoDetailUI extends game.BaseUI {
 
 
     private topUI: TopUI;
+    private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
+    private roundMC: VideoItem3;
     private g0: eui.Group;
     private hpBar: eui.Rect;
+    private hpBar0: eui.Rect;
     private hpText: eui.Label;
     private mpBar: eui.Rect;
     private mpText: eui.Label;
@@ -38,6 +41,16 @@ class VideoDetailUI extends game.BaseUI {
     private headMC2: eui.Image;
     private nameText2: eui.Label;
     private tab: eui.TabBar;
+    private leftBtn: eui.Group;
+    private la: eui.Image;
+    private lt: eui.Label;
+    private rightBtn: eui.Group;
+    private ra: eui.Image;
+    private rt: eui.Label;
+
+
+
+
 
 
 
@@ -46,6 +59,8 @@ class VideoDetailUI extends game.BaseUI {
 
     private dataIn;
     private clickObj;
+    private leftEnable = true
+    private rightEnable = true
 
     public constructor() {
         super();
@@ -71,7 +86,31 @@ class VideoDetailUI extends game.BaseUI {
         this.buffDecList2.itemRenderer = VideoStatItem;
 
         this.tab.addEventListener(eui.ItemTapEvent.CHANGE, this.onTab, this);
+
+        this.addBtnEvent(this.leftBtn, this.onLeft);
+        this.addBtnEvent(this.rightBtn, this.onRight);
+        this.roundMC.stopClick = true;
     }
+
+    private onLeft(){
+        if(this.leftEnable)
+            this.renewIndex(-1);
+    }
+
+    private onRight(){
+        if(this.rightEnable)
+            this.renewIndex(1);
+    }
+
+    private renewIndex(index){
+        var base = this.dataIn.data[0];
+        var currentIndex = base.index - 1;
+        var data = VideoUI.getInstance().listArray[currentIndex + index];
+        this.dataIn = {data:data,team:this.dataIn.team}
+        this.onShow();
+        VideoUI.getInstance().scrollTo(data);
+    }
+
 
     public beforeHide(){
         this.clearList([this.buffAddList0,this.buffDecList0,this.buffAddList1,this.buffDecList1,this.buffAddList2,this.buffDecList2])
@@ -101,12 +140,32 @@ class VideoDetailUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.scroller.viewport.scrollV = 0;
         this.scrollGroup.removeChildren();
 
+
+        var VC = VideoCode.getInstance();
+        var chooseData = this.dataIn.data;
         var PKM = PKManager.getInstance();
         var team = this.dataIn.team;
-        var chooseData = this.dataIn.data;
-        var VC = VideoCode.getInstance();
+
+        this.scrollGroup.addChild(this.roundMC)
+        this.roundMC.data = chooseData;
+        var base = chooseData[0];
+        var atker = VC.getPlayerByID(base.atker);
+        if(atker.teamID == team)
+        {
+            this.roundMC.setChoose(chooseData);
+        }
+        else
+        {
+            this.roundMC.setChoose(null);
+        }
+
+
+
+
+
         var item = chooseData[chooseData.length - 1];
         var data = item.result['player' + team];
         var otherBuff = item.result.otherBuff;
@@ -197,14 +256,59 @@ class VideoDetailUI extends game.BaseUI {
                 debuff:arr2
             })
         }
+
+
+        var currentIndex = base.index - 1;
+        if(currentIndex > 0)
+        {
+            this.la.source = 'arrow1_png'
+            this.lt.textColor = 0xCBB46B
+            this.leftEnable = true;
+        }
+        else
+        {
+            this.la.source = 'arrow3_png'
+            this.lt.textColor = 0x734B41
+            this.leftEnable = false;
+        }
+
+        if(currentIndex < VideoUI.getInstance().listArray.length-2)
+        {
+            this.ra.source = 'arrow1_png'
+            this.rt.textColor = 0xCBB46B
+            this.rightEnable = true;
+        }
+        else
+        {
+            this.ra.source = 'arrow3_png'
+            this.rt.textColor = 0x734B41
+            this.rightEnable = false;
+        }
     }
 
     private renewMonster0(dataIn){
         this.scrollGroup.addChild(this.g0);
          var width = 280;
         var data = dataIn.data;
-        this.hpBar.width = width * data.hp  / data.maxHp
+
+        //this.hpBar.width = width * data.hp  / data.maxHp
         this.hpText.text = data.hp  +'/'+ data.maxHp
+        var decColor = 0xFF0000
+        var addColor = 0x00AA00
+        var before = data.lhp/Math.max(data.lmhp,data.maxHp);
+        var after = data.hp/data.maxHp;
+        if(before > after) //-
+        {
+            this.hpBar.fillColor = decColor;
+            this.hpBar.width = width * before
+            this.hpBar0.width = width * after
+        }
+        else
+        {
+            this.hpBar.fillColor = addColor;
+            this.hpBar.width = width * after
+            this.hpBar0.width = width * before
+        }
 
         this.mpBar.width = width * data.mp  / data.maxMp
         this.mpText.text = data.mp  +'/'+ data.maxMp

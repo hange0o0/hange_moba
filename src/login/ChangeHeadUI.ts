@@ -7,11 +7,7 @@ class ChangeHeadUI extends game.BaseWindow {
 
     public constructor() {
         super();
-        var arr = this.headArray = [];
-        for(var i=0;i<MyTool.maxUserHead;i++)
-        {
-            arr.push(i+1);
-        }
+
         this.skinName = "ChangeHeadUISkin";
 
     }
@@ -46,7 +42,7 @@ class ChangeHeadUI extends game.BaseWindow {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scroller.bounces = false
 
-        this.list.dataProvider = new eui.ArrayCollection(this.headArray);
+
         this.list.addEventListener(egret.Event.CHANGE,this.onSelect,this)
 
         this.head1.touchEnabled = false
@@ -86,13 +82,21 @@ class ChangeHeadUI extends game.BaseWindow {
         {
             this.currentState = 'choose';
             MyTool.removeMC(this.cencelBtn);
+            this.headArray = MonsterVO.getListByLevel(1);
+
         }
         else
         {
             this.currentState = 'change';
             this.head1.data = this.dataIn;
             this.btnGroup.addChildAt(this.cencelBtn,0)
+            this.headArray = MonsterVO.getListByLevel(UM.level);
         }
+        for(var i=0;i<this.headArray.length;i++)
+        {
+            this.headArray[i] = this.headArray[i].id
+        }
+        this.list.dataProvider = new eui.ArrayCollection(this.headArray);
         this.list.selectedIndex = this.headArray.indexOf(Math.floor(this.dataIn));
         this.onSelect();
 

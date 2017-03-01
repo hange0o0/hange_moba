@@ -23,8 +23,8 @@
 							<e:Image source="border2_png" y="0" x="0" width="100" height="100"/>
 							<e:Image source="head_bg2_jpg" y="3" x="3" width="94" height="94"/>
 							<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
-							<e:Rect height="30" width="94" x="3" fillAlpha="0.7" bottom="3"/>
-							<e:Label text="更换" horizontalCenter="0" bottom="8" size="20" textColor="0xCCB48E"/>
+							<e:Rect height="30" width="94" x="3" fillAlpha="0.7" bottom="3" visible="false"/>
+							<e:Label text="更换头像" size="20" y="100" horizontalCenter="0" textColor="0xD19844"/>
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
 						<e:Button id="setBtn" skinName="Btn_r1Skin" y="40" label="设置" x="300" visible="false"/>

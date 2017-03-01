@@ -9,10 +9,14 @@ class VideoItem3 extends game.BaseItem {
     private bg2: eui.Rect;
     private con: eui.Group;
     private roundText: eui.Label;
+    private moreText: eui.Label;
+
 
 
 
     public index;
+    private isChoose
+    public stopClick = false;
     //private maxConWidth = 500;
     private showCleaning = false//正在显示清队状态
 
@@ -23,7 +27,13 @@ class VideoItem3 extends game.BaseItem {
     private onChoose(){
         if(this.data.type == 'over')
             return;
-        VideoUI.getInstance().setChoose(this.data,true);
+        if(this.isChoose)
+        {
+            var team = this.currentState == 'team1'?1:2;
+            VideoDetailUI.getInstance().show({data:this.data,team:team});
+        }
+        else
+            VideoUI.getInstance().setChoose(this.data,'item');
     }
 
     public setChoose(data,shake?){
@@ -31,8 +41,9 @@ class VideoItem3 extends game.BaseItem {
         //this.roundText.size = 18;
         if(data == this.data)
         {
-            this.bg.strokeColor = 0xFFFF00
-            this.bg2.strokeColor = 0xFFFF00
+            this.isChoose = true;
+            this.bg.strokeColor = 0x774D2F
+            this.bg2.strokeColor = 0x774D2F
             //if(shake)
             //{
             //    this.roundText.textColor = 0xFFFFFF;
@@ -52,7 +63,11 @@ class VideoItem3 extends game.BaseItem {
             this.roundText.textColor = 0xFFFFFF;
             this.bg.strokeColor = 0x673D1F
             this.bg2.strokeColor = 0x673D1F
+            this.isChoose = false;
         }
+        if(this.stopClick)
+            this.isChoose = false
+        this.moreText.visible = this.isChoose;
     }
 
     public dataChanged() {
@@ -284,7 +299,9 @@ class VideoItem3 extends game.BaseItem {
                 color = 0x6fda13;
             }
 
-            group.addChild(this.getWordText('【'+svo.name + '】',color,26))
+            var nameText = this.getWordText('【'+svo.name + '】',color,26)
+            group.addChild(nameText)
+            this.addItemClick(nameText,atker)
 
             if(short && data.defender.length == 1 && data.defender[0].list.length==1 && data.defender[0].atker == data.defender[0].defender)
                 this.addEffect(data.defender[0].list[0],group);
@@ -292,6 +309,26 @@ class VideoItem3 extends game.BaseItem {
                 this.addEffectList(data);
         }
     }
+
+    private addItemClick(mc,data){
+        var self = this;
+        var onDetail = function(e){
+            if(self.isChoose)
+                e.stopImmediatePropagation();
+            var PKM = PKManager.getInstance();
+            var team = data.teamID
+            if(PKM.teamChange)
+                var teamBase = team == 1?PKM.team2Base:PKM.team1Base
+            else
+                var teamBase = team == 1?PKM.team1Base:PKM.team2Base
+
+            MonsterList.getInstance().show([{id:data.mid,specialData:teamBase.mb[data.mid]}])
+        }
+
+        this.addBtnEvent(mc,onDetail);
+    }
+
+
 
     ////特效后使用攻击
     //private decode_satk(data){
@@ -562,6 +599,7 @@ class VideoItem3 extends game.BaseItem {
         else
             playerVO.headVO = null;
         mc.data = playerVO;
+        this.addItemClick(mc,playerVO)
         return mc
     }
 }

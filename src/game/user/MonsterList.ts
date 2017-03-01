@@ -69,7 +69,8 @@ class MonsterList extends game.BaseUI {
         this.scroller.bounces = false;
 
         MyTool.removeMC(this.info2)
-        this.info.addEventListener(egret.Event.RESIZE,this.onResizeInfo,this)
+        //this.info.addEventListener(egret.Event.RESIZE,this.onResizeInfo,this)
+        //this.info2.addEventListener(egret.Event.RESIZE,this.onResizeInfo,this)
 
         for(var i=0;i<10;i++)
         {
@@ -100,10 +101,10 @@ class MonsterList extends game.BaseUI {
         this.scrollToCurrentPage()
     }
 
-    private onResizeInfo(){
-        if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
-            this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
-    }
+    //private onResizeInfo(){
+    //    if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
+    //        this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+    //}
 
 
 
@@ -176,16 +177,24 @@ class MonsterList extends game.BaseUI {
         egret.Tween.removeTweens(this.scrollGroup)
         var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
         var targetX = -this.rota * 640;
-        tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500)).call(function(){
+        var cd = Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / 500);
+        tw.to({x: targetX}, cd).call(function(){
             var temp = this.info;
             this.info = this.info2;
             this.info2 = temp;
             this.renew();
         },this);
+
+        //this.info2.y = this.scroller.viewport.scrollV;
+
+
+        //var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
+        //tw.to({scrollV: 0},cd);
     }
 
     private renewInfo2(index = -1){
         this.info2.x = 640*this.rota;
+        this.info2.y = this.scroller.viewport.scrollV;
         if(index == -1)
             index = this.index + this.rota
         var oo =  this.dataArray[index];
@@ -282,6 +291,9 @@ class MonsterList extends game.BaseUI {
     }
 
     public renew(){
+        this.info.y = 0
+        this.info2.y = 0
+        this.scroller.viewport.scrollV = 0;
         this.rota = 0;
         MyTool.removeMC(this.info2)
         this.scrollGroup.x = 0;

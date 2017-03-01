@@ -79,8 +79,17 @@ class RankManager{
         //oo.serverid =  LoginManager.getInstance().lastSever;
         Net.send(GameEvent.rank.create_rank,oo,function(data){
             var msg = data.msg;
+            if(msg.ok)
+            {
+                for(var s in self.rankData)
+                {
+                    self.rankData[s].getTime = 0;
+                }
+                if(RankUI.getInstance().stage)
+                    RankUI.getInstance().typeBarClick();
+            }
             if(fun)
                 fun();
-        });
+        },false);
     }
 }

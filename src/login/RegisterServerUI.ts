@@ -69,7 +69,8 @@ class RegisterServerUI extends game.BaseWindow {
     private onRandom(){
         if(!this.chooseHead)
         {
-            this.headID = Math.floor(Math.random()*MyTool.maxUserHead + 1);
+            var arr = MonsterVO.getListByLevel(1);
+            this.headID = ArrayUtil.randomOne(arr).id;
             this.renewHead();
         }
         this.nameText.text = MyTool.randomName();

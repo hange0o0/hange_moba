@@ -12,9 +12,10 @@
 				<e:Object label="好友PK"/>
 				<e:Object label="查找好友"/>
 			</e:Array>
-		</e:ArrayCollection>
+		</e:ArrayCollection>
+
 	</e:TabBar>
-	<e:Scroller id="scroller" width="640" x="0" top="140" bottom="0" locked="true">
+	<e:Scroller id="scroller" width="640" x="0" top="140" bottom="0" locked="true" bounces="false">
 		<e:Group>
 			<e:List id="list" height="200" width="200" x="68" y="56">
 				<e:layout>
@@ -25,5 +26,6 @@
 	</e:Scroller>
 	<e:Label id="emptyText" text="暂无消息.." textColor="0xBEA449" size="22" horizontalCenter="0" verticalCenter="0"/>
 	<e:Image id="red1" source="red_point_png" x="290" y="77"/>
-	<e:Image id="red2" source="red_point_png" y="77" x="451"/>
+	<e:Image id="red2" source="red_point_png" y="77" x="451"/>
+
 </e:Skin>

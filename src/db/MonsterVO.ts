@@ -4,6 +4,20 @@ class MonsterVO {
     public static getObject(id: any): MonsterVO{
         return CM.table[this.dataKey][id];
     }
+    public static getListByLevel(lv){
+        var arr = [];
+        var data = CM.table[this.dataKey];
+        for(var s in data)
+        {
+            var vo = data[s];
+            if(vo.level <= lv)
+            {
+                arr.push(vo)
+            }
+        }
+        ArrayUtil.sortByField(arr,['level','id'],[1,0])
+        return arr;
+    }
     public static initFinish(){
         var data = CM.table[this.dataKey];
         var rdata = {groups:[],resources:[]}

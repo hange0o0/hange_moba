@@ -44,6 +44,13 @@ class AwardItem extends game.BaseItem {
                 this.mc.source = 'prop_card_jpg'
                 break;
             }
+            case 'monster':
+            {
+                var mvo = MonsterVO.getObject(this.data.id);
+                this.mc.source = mvo.thumb;
+                this.desText.text = mvo.name;
+                break;
+            }
             default:    //prop
             {
                 this.mc.source = PropVO.getObject(this.data.id).thumb;

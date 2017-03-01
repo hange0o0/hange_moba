@@ -1,6 +1,6 @@
-function Alert(msg,fun?){
+function Alert(msg,fun?,btnLabel?){
     var panel = new AlertUI();
-    panel.show(msg,fun);
+    panel.show(msg,fun,btnLabel);
 }
 
 //fun(type){type:1确定，2：取消，3右上角关闭}

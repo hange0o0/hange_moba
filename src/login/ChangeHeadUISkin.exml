@@ -5,44 +5,7 @@
 	<e:Scroller id="scroller" top="74" bottom="116" horizontalCenter="0" top.change="293">
 		<e:Group>
 			<e:List id="list" x="0" y="0" itemRendererSkinName="HeadItemSkin">
-				<e:ArrayCollection>
-					<e:Array>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/><e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-				<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/><e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-						<e:Object label="数据1"/>
-						<e:Object label="数据2"/>
-						<e:Object label="数据3"/>
-						<e:Object label="null"/>
-						<e:Object label="null"/>
-					</e:Array>
-				</e:ArrayCollection>
+				
 				<e:layout>
 					<e:TileLayout horizontalGap="10" requestedColumnCount="5" paddingLeft="5" verticalGap="10" paddingTop="10" paddingBottom="20" paddingRight="5"/>
 				</e:layout>

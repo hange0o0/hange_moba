@@ -11,6 +11,7 @@ class AlertUI extends game.BaseWindow {
 
     private textIn;
     private fun;
+    private btnLabel;
 
     public childrenCreated() {
         super.childrenCreated();
@@ -19,15 +20,16 @@ class AlertUI extends game.BaseWindow {
         MyTool.removeMC(this.cancelBtn)
     }
 
-    public show(v?,fun?){
+    public show(v?,fun?,btnLabel?){
         this.textIn = v;
         this.fun = fun;
+        this.btnLabel = btnLabel;
         super.show();
     }
 
     public onShow(){
         this.text.text = this.textIn;
-        this.okBtn.label = '确认'
+        this.okBtn.label = this.btnLabel || '确认'
         if(this.text.numLines > 1)
             this.text.textAlign = 'left'
 

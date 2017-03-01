@@ -48,7 +48,7 @@ class PKResultItem2 extends game.BaseItem {
         this.f1.fillColor = defColor;
 
 
-        this.titleText.text = '第'+this.data.index+'轮';
+        this.titleText.text = '第 '+this.data.index+' 轮';
 
 
         var player = this.data.player1
@@ -68,7 +68,7 @@ class PKResultItem2 extends game.BaseItem {
             this.b0.width = barWidth * after
             this.f0.width = barWidth * before
         }
-        this.hpText0.text =  player.after + '/' + player.afterMax;
+        this.hpText0.text =  player.after + ' / ' + player.afterMax;
 
         var dec = player.after - player.before
         if(dec > 0)
@@ -103,7 +103,7 @@ class PKResultItem2 extends game.BaseItem {
             this.b1.width = barWidth * after
             this.f1.width = barWidth * before
         }
-        this.hpText1.text =  player.after + '/' + player.afterMax;
+        this.hpText1.text =  player.after + ' / ' + player.afterMax;
 
         var dec = player.after - player.before
         if(dec > 0)

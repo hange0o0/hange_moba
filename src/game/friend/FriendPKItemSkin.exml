@@ -6,14 +6,14 @@
 		<e:Image source="head_bg2_jpg" y="3" width="70" height="70" x="3"/>
 		<e:Image id="headMC" source="head_png" y="3" width="70" height="70" x="3"/>
 	</e:Group>
-	<e:Label id="nameText" text="标签" x="133" y="21" textColor="0xCCB48E" size="24"/>
-	<e:Image id="icon" source="win_icon_png" x="83" y="58"/>
+	<e:Label id="nameText" text="标签" x="130" y="21" textColor="0xCCB48E" size="24"/>
+	<e:Image id="icon" source="win_icon_png" x="122" y="49"/>
 	<e:Group id="btnGroup" y="37" right="30">
 		<e:Button id="refuseBtn" skinName="Btn_r1Skin" y="10" label="拒绝" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="talkText" x="150" width="340" y="47" text="标签" textColor="0xE0A44A" size="20" height="46" verticalAlign="middle"/>
-	<e:Label id="dateText" text="剩余时间：20：20：20" right="40" textColor="0x9E9C9C" size="16" top="15"/>
+	<e:Label id="talkText" x="170" width="320" y="49" text="标签" textColor="0xE0A44A" size="20" height="46" verticalAlign="middle"/>
+	<e:Label id="dateText" text="剩余时间：20：20：20" right="40" size="16" top="15" textColor="0xBBBBBB"/>
 </e:Skin>

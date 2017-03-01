@@ -19,6 +19,7 @@ class VideoUI extends game.BaseUI {
     private apBar0: eui.Rect;
     private apText0: eui.Label;
     private headMC0: eui.Image;
+    private team1BG: eui.Image;
     private statList0: eui.List;
     private playerGroup2: eui.Group;
     private hpBar1: eui.Rect;
@@ -28,6 +29,7 @@ class VideoUI extends game.BaseUI {
     private apBar1: eui.Rect;
     private apText1: eui.Label;
     private headMC1: eui.Image;
+    private team2BG: eui.Image;
     private statList1: eui.List;
     private topUI: TopUI;
     private guideBtn: eui.Image;
@@ -52,6 +54,9 @@ class VideoUI extends game.BaseUI {
     private enemyItem0: VideoItem;
     private enemyItem1: VideoItem;
     private enemyItem2: VideoItem;
+    private tipsGroup: eui.Group;
+
+
 
 
 
@@ -60,7 +65,7 @@ class VideoUI extends game.BaseUI {
     private vGroup = new VScrollerGroup();
 
 
-    private listArray = [];
+    public listArray = [];
     private currentList = []
     private barWidth = 220;
     //private upGroupY = 70;
@@ -112,6 +117,8 @@ class VideoUI extends game.BaseUI {
 
         DragManager.getInstance().setDrag(this.guideBtn,true);
         this.guideBtn.addEventListener('end_drag',this.onDragEnd,this);
+
+        this.tipsGroup.touchChildren = this.tipsGroup.touchEnabled = false;
     }
 
     public showMVDebug(v?){}
@@ -164,7 +171,7 @@ class VideoUI extends game.BaseUI {
     public scrollTo(item){
         this.guideMC.visible = false;
         this.vGroup.scrollToItem(item);
-        this.setChoose(item,true)
+        this.setChoose(item)
     }
 
     private onScroll(){
@@ -189,10 +196,12 @@ class VideoUI extends game.BaseUI {
     }
 
     public setChoose(chooseData,isClick?){
+
         egret.clearTimeout(this.setChooseTimer);
         if(this.lastChooseData == chooseData)
             return;
 
+        this.team1BG.visible = this.team2BG.visible = false
         var item = chooseData[chooseData.length - 1];
         if(!item || !item.result)
             return;
@@ -201,8 +210,24 @@ class VideoUI extends game.BaseUI {
         {
             this.scrollTime = 0;
             this.scroller.stopAnimation();
+            if(this.tipsGroup.alpha)
+            {
+                this.tipsGroup.visible = true;
+                var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
+                tw.wait(800).to({alpha:0}, 300).call(function(){
+                    this.tipsGroup.visible = false;
+                },this)
+            }
+
         }
         var VC = VideoCode.getInstance();
+
+        var base = chooseData[0];
+        var atker = VC.getPlayerByID(base.atker);
+        if(atker.teamID == 1)
+            this.team1BG.visible = true;
+        else
+            this.team2BG.visible = true;
 
         var data = item.result.player1;
         this.headMC0.source = VC.player1.mvo.thumb;
@@ -285,6 +310,8 @@ class VideoUI extends game.BaseUI {
 
         if(this.debugShow)
             this.visible = false;
+
+        this.tipsGroup.visible = false;
 
     }
 

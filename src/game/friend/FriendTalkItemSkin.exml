@@ -5,6 +5,6 @@
 		<e:Image source="head_bg2_jpg" y="5" width="50" height="50" x="6"/>
 		<e:Image source="head_png" y="5" id="headMC" width="50" height="50" x="6"/>
 	</e:Group>
-	<e:Label id="talkText" text="11" x="110" textColor="0xCCB48E" size="24" top="20" bottom="10" right.self="110" textAlign.self="left" maxWidth="420"  left.other="110"/>
-	<e:Label id="dayText" text="sdfsdf" x="110" y="0" size="16" textColor="0x999999" right.self="110" left.other="110"/>
+	<e:Label id="talkText" text="11" x="110" textColor="0xCCB48E" size="24" top="25" bottom="10" right.self="110" textAlign.self="left" maxWidth="420"  left.other="110"/>
+	<e:Label id="dayText" text="sdfsdf" x="110" y="0" size="18" right.self="110" left.other="110" textColor="0xBBBBBB"/>
 </e:Skin>

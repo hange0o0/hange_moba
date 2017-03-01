@@ -388,6 +388,10 @@ class VideoCode{
             {
                 //this.defenderMV('mhp',value.value)
                 player.addMaxHp(value.value);
+                if(value.value > 0)
+                    player.buffList.push({id:5,value:value.value})
+                else if(value.value < 0)
+                    player.buffList.push({id:15,value:value.value})
                 break;
             }
             case '5'://    "MP"=>'5',

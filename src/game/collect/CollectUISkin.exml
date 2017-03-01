@@ -13,7 +13,7 @@
 		<e:Image y="1" x="0" source="icon_pvp_ticket_png"/>
 		<e:Label id="cardText" y="9" textColor="0xCCCCCC" text="123456789" size="24" x="44"/>
 	</e:Group>
-	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="135">
+	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="135" bounces="false">
 		<e:Group>
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 
@@ -40,5 +40,9 @@
 				</e:Array>
 			</e:ArrayCollection>
 		</e:List>
-	</e:Group>
+	</e:Group>
+
+
+
+
 </e:Skin>

@@ -102,18 +102,18 @@ class Net extends egret.EventDispatcher{
                 switch (data.error)
                 {
                     case 1:
-                        Alert('游戏已更新，请登陆重进',refresh);
+                        Alert('游戏已更新，请登陆重进',refresh,'重新登陆');
                         GameManager.getInstance().stopTimer();
                         break;
                     case 2:
-                        Alert('该用户已在其它地方登录',refresh);
+                        Alert('该用户已在其它地方登录',refresh,'重新登陆');
                         GameManager.getInstance().stopTimer();
                         break;
                     case 3:
-                        Alert('通信出错',refresh);
+                        Alert('通信出错',refresh,'重新登陆');
                         break;
                     case 4:
-                        Alert('用户数据写入失败',refresh);
+                        Alert('用户数据写入失败',refresh,'重新登陆');
                         GameManager.getInstance().stopTimer();
                         break;
                 }

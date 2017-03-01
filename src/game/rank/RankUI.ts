@@ -41,7 +41,7 @@ class RankUI extends game.BaseUI {
     }
 
 
-    private typeBarClick(){
+    public typeBarClick(){
         var self = this;
         this.list.dataProvider = new eui.ArrayCollection([]);
         RankManager.getInstance().getRank(this.tab.selectedIndex + 1,function(){

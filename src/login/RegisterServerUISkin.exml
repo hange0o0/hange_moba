@@ -21,8 +21,7 @@
 	<e:Group id="headGroup" y="100" horizontalCenter="0">
 		<e:Image source="border2_png" y="0" x="0" width="120" height="120" scale9Grid="11,11,68,68"/>
 		<e:Image source="head_bg2_jpg" x="6" y="6" width="108" height="108"/>
-		<e:Image id="headMC" x="6" y="6" width="108" height="108" source="head_png"/>
-		<e:Rect height="30" width="108" x="6" bottom="6" fillAlpha="0.7"/>
-		<e:Label text="更换" bottom="6" horizontalCenter="0" size="22" textColor="0xE7C779"/>
+		<e:Image id="headMC" x="6" y="6" width="108" height="108" source="head_png"/>
+		<e:Label text="点击更换" bottom="8" horizontalCenter="0" size="20" textColor="0xE7C779" stroke="2"/>
 	</e:Group>
 </e:Skin>

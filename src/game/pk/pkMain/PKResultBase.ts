@@ -46,7 +46,7 @@ class PKResultBase extends game.BaseContainer {
         else if(award.levelUp)//升级了
         {
             award.levelUp = false;
-            this._desText.text += '升级了'
+            this._desText.text += '玩家升到 '+UM.level+' 级'
             this.timer = egret.setTimeout(this.stepOne,this,300);
             SoundManager.getInstance().playEffect(SoundConfig.effect_u_up);
         }

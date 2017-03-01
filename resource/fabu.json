@@ -12,10 +12,6 @@
 				},
 				{
 					"compress":false,
-					"key":"ui_loading_png"
-				},
-				{
-					"compress":false,
 					"key":"border5_png"
 				},
 				{
@@ -25,10 +21,6 @@
 				{
 					"compress":false,
 					"key":"main_mc_png"
-				},
-				{
-					"compress":false,
-					"key":"loading_ani_png"
 				},
 				{
 					"compress":false,
@@ -567,6 +559,70 @@
 				{
 					"compress":false,
 					"key":"bar4_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_1_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_2_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_3_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_11_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_12_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_13_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_21_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_22_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_23_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_24_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_25_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_31_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_41_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_42_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_5_png"
+				},
+				{
+					"compress":false,
+					"key":"buff_15_png"
 				}
 			],
 			"sort":0
@@ -1066,66 +1122,6 @@
 		},
 		{
 			"compress":false,
-			"key":"buff_1_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_2_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_3_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_11_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_12_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_13_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_21_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_22_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_23_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_24_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_25_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_31_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_41_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_42_png"
-		},
-		{
-			"compress":false,
-			"key":"buff_x_png"
-		},
-		{
-			"compress":false,
 			"key":"pk_bg2_jpg"
 		},
 		{
@@ -1211,6 +1207,14 @@
 		{
 			"compress":false,
 			"key":"login_bg_jpg"
+		},
+		{
+			"compress":false,
+			"key":"ui_loading_png"
+		},
+		{
+			"compress":false,
+			"key":"loading_ani_png"
 		}
 	]
 }

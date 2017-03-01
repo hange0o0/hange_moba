@@ -2,9 +2,9 @@
 <e:Skin class="RankUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="bg_jpg" y="0" x="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller top="146" x="0" bottom="0" width="640" id="scroller" y="10">
+	<e:Scroller top="146" x="0" bottom="0" width="640" id="scroller" y="10" bounces="false">
 		<e:Group>
-			<e:List id="list" width="640" itemRendererSkinName="TecItemSkin" x="0" top="0" bottom="370">
+			<e:List id="list" width="640" x="0" top="0" bottom="370">
 				<e:layout>
 					<e:TileLayout horizontalGap="20" verticalGap="3"/>
 				</e:layout>
@@ -22,6 +22,7 @@
 				<e:Object label="修正榜"/>
 			</e:Array>
 		</e:ArrayCollection>
-	</e:TabBar>
+	</e:TabBar>
+
 	<e:Label id="emptyText" text="当前没有排行数据" y="332" horizontalCenter="0"/>
 </e:Skin>

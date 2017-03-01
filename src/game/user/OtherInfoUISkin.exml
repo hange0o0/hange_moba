@@ -9,18 +9,18 @@
 
 
 
-			<e:Group x="50" y="20">
+			<e:Group id="topGroup" x="50" y="20" height="300">
 				<e:Group x="0" top="0" bottom="0">
 					<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" height="300" bottom="0"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" height="300" bottom="0"/>
-					<e:Image source="book_bg1_jpg" y="0" x="0" height="280"/>
-					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" x="640" height="280"/>
+					<e:Image source="book_bg1_jpg" y="0" x="0" height="200" scale9Grid="40,44,240,266"/>
+					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" x="640" height="200" scale9Grid="40,44,240,266"/>
 				</e:Group>
 
 
 
 				<e:Group horizontalCenter="0" top="20" bottom="20">
-					<e:Group x="0" y="0" height="120">
+					<e:Group x="0" y="0" height="110">
 						<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="100" height="100"/>
 						<e:Image source="head_bg2_jpg" y="3" x="3" width="94" height="94"/>
 						<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
@@ -45,7 +45,7 @@
 							<e:Image source="icon_power_png" y="0" x="0"/>
 						</e:Group>
 					</e:Group>
-					<e:Label id="landText" text="该玩家已超过 7 天没登录" x="-190" y="418" textColor="0xB30017"/>
+					<e:Label id="landText" text="该玩家已超过 7 天没登录" x="-190" y="418" size="26" textAlign="center" width="100%" height="40" verticalAlign="middle" textColor="0xCCB48E"/>
 					<e:layout>
 						<e:VerticalLayout gap="20" paddingTop="10"/>
 					</e:layout>
@@ -53,7 +53,7 @@
 
 			</e:Group>
 			<e:Group id="friendGroup" x="0" y="130.00000000000003">
-				<e:Group y="18" horizontalCenter="0">
+				<e:Group y="20" horizontalCenter="0">
 					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
 					<e:Label y="5" text="好友PK数据" x="205" textColor="0xC4A87C"/>
 					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>

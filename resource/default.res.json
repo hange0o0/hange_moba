@@ -41,7 +41,7 @@
 			"name":"preload2_jpg"
 		},
 		{
-			"keys":"video_atk4_png,bar_bg_png,bar1_png,bar2_png,bar3_png,bar4_png,fight_fail_1_png,fight_win_png,pk_fail_png,pk_result_line_png,pk_win_png,video_atk1_png,video_atk2_png,video_atk3_png",
+			"keys":"video_atk4_png,bar_bg_png,bar1_png,bar2_png,bar3_png,bar4_png,fight_fail_1_png,fight_win_png,pk_fail_png,pk_result_line_png,pk_win_png,video_atk1_png,video_atk2_png,video_atk3_png,card_battle_png",
 			"name":"pk"
 		}
 	],
@@ -1317,11 +1317,6 @@
 			"url":"game_assets/buff/buff_42.png"
 		},
 		{
-			"name":"buff_x_png",
-			"type":"image",
-			"url":"game_assets/buff/buff_x.png"
-		},
-		{
 			"name":"pk_bg2_jpg",
 			"type":"image",
 			"url":"pk_bg/pk_bg2.jpg"
@@ -2095,6 +2090,21 @@
 			"name":"video_atk3_png",
 			"type":"image",
 			"url":"game_assets/pk/video_atk3.png"
+		},
+		{
+			"name":"buff_5_png",
+			"type":"image",
+			"url":"game_assets/buff/buff_5.png"
+		},
+		{
+			"name":"buff_15_png",
+			"type":"image",
+			"url":"game_assets/buff/buff_15.png"
+		},
+		{
+			"name":"card_battle_png",
+			"type":"image",
+			"url":"game_assets/pk/card_battle.png"
 		}
 	]
 }

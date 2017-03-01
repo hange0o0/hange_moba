@@ -7,11 +7,12 @@ class OtherInfoUI extends game.BaseUI {
 
     private topUI: TopUI;
     private scrollGroup: eui.Group;
+    private topGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
     private friendBtn: eui.Button;
-    private talkBtn: eui.Button;
     private deleteBtn: eui.Button;
+    private talkBtn: eui.Button;
     private pkBtn: eui.Button;
     private levelText: eui.Label;
     private forceText: eui.Label;
@@ -217,13 +218,15 @@ class OtherInfoUI extends game.BaseUI {
 
 
         var cd = Math.floor((TM.now() - dataIn.last_land)/(24*3600));
-        if(cd >=7)
+        if(cd >=7 || true)
         {
-            this.landText.text = '该玩家已超过 '+cd+' 天没登录'
+            this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+cd+'</font> 天没登录');
+            this.topGroup.height = 300;
         }
         else
         {
             this.landText.text = '';
+            this.topGroup.height = 230;
         }
 
 

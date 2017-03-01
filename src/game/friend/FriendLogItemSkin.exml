@@ -27,5 +27,5 @@
 		</e:layout>
 	</e:Group>
 	<e:Label id="talkText" x="129" width="380" y="61" text="标签" visible.log="false" size="22" textColor="0xE0A44A"/>
-	<e:Label textColor="0x9E9C9C" text="剩余时间：20：20：20" right="40" size="16" top="15" id="dateText" x="10" y="10"/>
+	<e:Label textColor="0xBBBBBB" text="剩余时间：20：20：20" right="40" size="16" top="15" id="dateText" x="10" y="10"/>
 </e:Skin>

@@ -17,8 +17,10 @@ class VideoMonsterItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-        //this.addBtnEvent(this.closeBtn,this.onKill);
+        //this.addBtnEvent(this,this.onDetail);
     }
+
+
 
     public dataChanged() {
         this.headMC.filters = [];

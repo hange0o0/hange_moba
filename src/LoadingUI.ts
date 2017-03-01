@@ -35,6 +35,7 @@ class LoadingUI extends egret.Sprite {
     }
 
     private textField;
+    private infoText;
     private loadingMC
     private shape
 
@@ -56,6 +57,14 @@ class LoadingUI extends egret.Sprite {
         this.textField.width = 480;
         this.textField.height = 100;
         this.textField.textAlign = "center";
+
+        this.infoText = new eui.Label();
+        this.addChild(this.infoText);
+        this.infoText.x = 40;
+        this.infoText.width = 560;
+        this.infoText.textColor = 0xB59E7D;
+        this.infoText.size = 22;
+        this.infoText.lineSpacing = 6;
 
 
         var data:any = RES.getRes("loading_ani" +  "_json"); //qid
@@ -82,8 +91,16 @@ class LoadingUI extends egret.Sprite {
         this.loadingMC.y = this.height/2 - 100;
         this.textField.y = this.height/2;
 
+        MyTool.setHtml(this.infoText,HelpManager.getInstance().getInfoText());
+        this.infoText.y = this.height - this.infoText.textHeight - 20;
+        if(this.infoText.numLines > 1)
+            this.infoText.textAlign = 'left'
+        else
+            this.infoText.textAlign = 'center'
+
 
         this.textField.text = '加载准备中..';
+
         this.visible = false;
         egret.clearTimeout(this.timer);
         this.timer = egret.setTimeout(function(){

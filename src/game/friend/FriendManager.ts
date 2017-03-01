@@ -7,7 +7,7 @@ class FriendManager{
     }
 
     public maxFriendNum = 30;
-    public maxTalk = 50;
+    public maxTalk = 100;
     public maxPK = 10;
     public lastGetFriend = 0;
     public lastGetLog = 0

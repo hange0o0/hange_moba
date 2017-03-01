@@ -57,6 +57,19 @@ class PlayerVO {
         this.maxMp = this.mvo.mp;
 
         this.buffList = [];
+
+        if(oo.add_hp)
+        {
+            this.buffList.push({id:5,value:oo.add_hp})
+        }
+        if(oo.add_atk)
+        {
+            this.buffList.push({id:1,value:oo.add_atk})
+        }
+        if(oo.add_speed)
+        {
+            this.buffList.push({id:2,value:oo.add_atk})
+        }
     }
 
     public addBuff(data){

@@ -1199,8 +1199,12 @@ class PKMainUI extends game.BaseUI {
             item.parent.addChild(item);
         var x = this.x;
         var v = 2
-        var tw:egret.Tween = egret.Tween.get(item);
-        tw.to({alpha:0,scaleX:3,scaleY:3}, 300).call(function(){
+
+        var VM = PKMainMV.getInstance();
+        var pos = {x:item.x,y:-60}
+        if(item.team == 1)
+            pos = {x:item.x,y:this.fightHeight + 60}
+        VM.jumpToXY(item,pos,function(){
             this.freeItem(item);
         },this)
     }

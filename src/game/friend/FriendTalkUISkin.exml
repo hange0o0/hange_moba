@@ -2,8 +2,9 @@
 <e:Skin class="FriendTalkUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="80">
-		<e:Group id="scrollGroup">
+	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="80" bounces="false">
+		<e:Group id="scrollGroup">
+
 		</e:Group>
 	</e:Scroller>
 	<e:Group x="0" bottom="-40" width="640">

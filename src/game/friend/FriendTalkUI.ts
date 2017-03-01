@@ -132,7 +132,7 @@ class FriendTalkUI extends game.BaseUI {
         if(FM.friendData[this.gameid])
         {
             this.btnGroup.addChild(this.sendBtn);
-            this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'
+            this.sendBtn.label = '发送聊天'
         }
         else
         {
@@ -162,7 +162,7 @@ class FriendTalkUI extends game.BaseUI {
         if(FM.friendData[this.gameid])
         {
             this.btnGroup.addChild(this.sendBtn);
-            this.sendBtn.label = '发送（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）'
+            this.sendBtn.label = '发送聊天' //（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）
         }
         else
         {

@@ -14,7 +14,7 @@
 					</e:Array>
 				</e:ArrayCollection>
 				<e:layout>
-					<e:VerticalLayout gap="15"/>
+					<e:VerticalLayout/>
 				</e:layout>
 			</e:List>
 			
