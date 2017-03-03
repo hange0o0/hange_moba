@@ -11,6 +11,7 @@ class MainPageUI extends game.BaseUI {
     }
 
 
+    private starGroup: eui.Group;
     private headMC: eui.Image;
     private expBar: eui.Image;
     private nameText: eui.Label;
@@ -56,6 +57,7 @@ class MainPageUI extends game.BaseUI {
     private friendRed: eui.Image;
     private friendLockMC: eui.Image;
     private bagBtn: eui.Group;
+
 
 
 
@@ -183,6 +185,32 @@ class MainPageUI extends game.BaseUI {
 
     private onTimer(){
         this.renewEnergy();
+
+        if(this.parent.getChildIndex(this) == this.parent.numChildren - 1)
+        {
+            this.addStar();
+            egret.setTimeout(this.addStar,this,500);
+        }
+    }
+
+    private addStar(){
+        if(Math.random()<0.2) {
+            var p = {
+                x:Math.random()*320 + 20,
+                y:Math.random()*120 + 60
+            };
+            AniManager.getInstance().showStar2(this.starGroup, p)
+        }
+        else
+        {
+            var p = {
+                x:Math.random()*600 + 20,
+                y:Math.random()*160 + 20
+            };
+            AniManager.getInstance().showStar1(this.starGroup,p)
+        }
+
+
     }
     
     private onVideo(){

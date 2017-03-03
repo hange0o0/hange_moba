@@ -4,12 +4,16 @@ class LoginServerUI extends game.BaseUI {
         if (!this.instance) this.instance = new LoginServerUI();
         return this.instance;
     }
-    
+
+    private topMC0: eui.Image;
+    private bgGroup: eui.Group;
+    private bottomMC0: eui.Image;
+    private backBtn: eui.Label;
     private loginBtn: eui.Button;
     private nameText: eui.Label;
     private serverGroup: eui.Group;
     private serverName: eui.Label;
-    private backBtn: eui.Label;
+
 
 
 
@@ -88,6 +92,28 @@ class LoginServerUI extends game.BaseUI {
             }
         }
         this.renewServer(this.serverid);
+        this.addPanelOpenEvent('timer',this.onTimer)
+        this.onTimer();
+        this.onTimer();
+    }
+
+    private onTimer(){
+        if(Math.random()<0.2) {
+            var p = {
+                x: Math.random() * 100 + 300,
+                y: Math.random() * 100 + 80
+            };
+            AniManager.getInstance().showStar2(this.bgGroup, p)
+        }
+        else
+        {
+            var p = {
+                x:Math.random()*320 + 300,
+                y:Math.random()*190
+            };
+            AniManager.getInstance().showStar1(this.bgGroup,p)
+        }
+
     }
 
     public renewServer(id){

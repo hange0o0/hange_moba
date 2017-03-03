@@ -149,7 +149,7 @@ class PKMainUI extends game.BaseUI {
 
     public onShow() {
         this.bgBlack.visible = false;
-        egret.Tween.removeAllTweens()
+        this.removeAllTweens()
         egret.clearTimeout(this.timer);
         PopUpManager.removeShape();
         this.initView();
@@ -157,8 +157,19 @@ class PKMainUI extends game.BaseUI {
         this.isStop = false;
 
         SoundManager.getInstance().playSound(SoundConfig.bg_pk);
+    }
 
-
+    private removeAllTweens(){
+        egret.Tween.removeTweens(this.bgGroup);
+        egret.Tween.removeTweens(this.bg0);
+        egret.Tween.removeTweens(this.bg1);
+        egret.Tween.removeTweens(this.topMC);
+        egret.Tween.removeTweens(this.bottomMC);
+        var arr = this.itemEnemy.concat(this.itemSelf)
+        for(var i=0;i<arr.length;i++)
+        {
+            arr[i].stopMV();
+        }
     }
 
     private getItem():PKItem{
@@ -1213,7 +1224,7 @@ class PKMainUI extends game.BaseUI {
     private stopAll()
     {
         egret.clearTimeout(this.timer);
-        egret.Tween.removeAllTweens()
+        this.removeAllTweens()
 
         while(this.itemEnemy.length > 0)
         {

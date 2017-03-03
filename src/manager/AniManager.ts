@@ -148,4 +148,53 @@ class AniManager {
         this.removeMV(e.currentTarget);
 
     }
+
+    //在某个位置闪一下
+    public showStar1(con,point,scaleIn = 0){
+        var mc = new eui.Image()
+        mc.source = 'coin_mv2_png';
+        con.addChild(mc);
+        mc.x = point.x
+        mc.y = point.y
+        mc.anchorOffsetX = 100/2
+        mc.anchorOffsetY = 100/2
+        mc.scaleX = 0
+        mc.scaleY = 0
+        mc.rotation = Math.random()*90
+        var scale = scaleIn || (0.2 + Math.random()*0.5);
+        var cd = 100/scale/scale + Math.random()*700 + 200;
+        if(scaleIn)
+            cd /= 2;
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.to({scaleX:scale,scaleY:scale,rotation:mc.rotation + 180},cd).to({scaleX:0,scaleY:0,rotation:mc.rotation + 360},cd).call(function(){
+            MyTool.removeMC(mc);
+        })
+    }
+
+    //流星
+    public showStar2(con,point){
+        var mc = new eui.Image()
+        mc.source = 'coin_mv1_png';
+        con.addChild(mc);
+
+        mc.anchorOffsetX = 10
+        mc.anchorOffsetY = 12
+        mc.scale9Grid = new egret.Rectangle(5,20,10,160)
+        var scale = 0.5 + Math.random()*0.3;
+        mc.scaleX = scale
+        mc.scaleY = scale
+        var rota = Math.random()*20;
+        mc.rotation = rota + 240
+        mc.height = 190/scale
+
+        mc.x = 700
+        mc.y = point.y - Math.tan((270 - mc.rotation)/180*Math.PI) * (mc.x - point.x)
+        var cd = MyTool.getDis(mc,point)*1/scale;
+
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.to({x:point.x,y:point.y},cd).to({height:20},100/scale).call(function(){
+            MyTool.removeMC(mc);
+            this.showStar1(con,point,scale)
+        },this)
+    }
 }

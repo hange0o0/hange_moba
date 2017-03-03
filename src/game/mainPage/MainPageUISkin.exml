@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainPageUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
+	<e:Group id="starGroup" height="300" width="100%" x="0" y="120"/>
 	<e:Group x="-2" y="0">
 		<e:Image source="fire_top_jpg" x="2" y="0" locked="true"/>
 		<e:Image source="border_head_png" x="10" y="6"/>

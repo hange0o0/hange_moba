@@ -19,6 +19,7 @@ class VideoItem3 extends game.BaseItem {
     public stopClick = false;
     //private maxConWidth = 500;
     private showCleaning = false//正在显示清队状态
+    private lastClickTime = 0;
 
     public childrenCreated() {
         this.addBtnEvent(this,this.onChoose);
@@ -29,8 +30,12 @@ class VideoItem3 extends game.BaseItem {
             return;
         if(this.isChoose)
         {
-            var team = this.currentState == 'team1'?1:2;
-            VideoDetailUI.getInstance().show({data:this.data,team:team});
+            if(egret.getTimer() - this.lastClickTime < 800)
+            {
+                var team = this.currentState == 'team1'?1:2;
+                VideoDetailUI.getInstance().show({data:this.data,team:team});
+            }
+            this.lastClickTime = egret.getTimer();
         }
         else
             VideoUI.getInstance().setChoose(this.data,'item');
@@ -67,7 +72,7 @@ class VideoItem3 extends game.BaseItem {
         }
         if(this.stopClick)
             this.isChoose = false
-        this.moreText.visible = this.isChoose;
+        //this.moreText.visible = this.isChoose;
     }
 
     public dataChanged() {

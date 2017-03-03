@@ -27,7 +27,7 @@ class HonorUI extends game.BaseUI {
     private upArray;
     private downArray;
 
-    private itemHeight = 110 + 6;
+    private itemHeight = 120 + 6;
     private timer;
 
     public constructor() {
@@ -77,21 +77,23 @@ class HonorUI extends game.BaseUI {
     }
 
     private onUp(){
+        this.scroller.stopAnimation();
         var oo = this.upArray.pop();
         var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
-        var sv = oo.index*this.itemHeight;
-        tw.to({scrollV:sv},Math.min(sv/2,300)).call(this.renewBtn,this)
+        var sv = Math.max(0,oo.index*this.itemHeight);
+        tw.to({scrollV:sv},Math.min(Math.abs(sv - this.scroller.viewport.scrollV)/2,300)).call(this.renewBtn,this)
         //this.scroller.viewport.scrollV = oo.index*this.itemHeight;
     }
 
     private onDown(){
+        this.scroller.stopAnimation();
         var oo = this.downArray.shift();
-        var sv = oo.index*this.itemHeight + this.scroller.height - this.itemHeight - 50;
+        var sv = oo.index*this.itemHeight - this.scroller.height + this.itemHeight + 20;
         if(sv > this.scroller.viewport.contentHeight - this.scroller.height)//到底了
             sv = this.scroller.viewport.contentHeight - this.scroller.height;
 
         var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
-        tw.to({scrollV:sv},Math.min(sv/2,300)).call(this.renewBtn,this)
+        tw.to({scrollV:sv},Math.min(Math.abs(sv - this.scroller.viewport.scrollV)/2,300)).call(this.renewBtn,this)
     }
 
     private onScrollChange(){
@@ -277,7 +279,7 @@ class HonorUI extends game.BaseUI {
         if(this.downArray.length > 0)
         {
             this.downBtn.visible = true;
-            this.downText.text = '' + this.upArray.length;
+            this.downText.text = '' + this.downArray.length;
         }
         else
             this.downBtn.visible = false;
