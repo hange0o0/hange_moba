@@ -74,10 +74,10 @@ class PlayerVO {
 
     public addBuff(data){
         var id = data.id;
-        if(id == 24)
-        {
-            console.log(data)
-        }
+        //if(id == 24)
+        //{
+        //    console.log(data)
+        //}
         var cd = data.cd;
         var value = data.value;
         if(cd)

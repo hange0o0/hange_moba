@@ -4,6 +4,7 @@ class PKDressChooseListItem extends game.BaseItem {
         this.skinName = "PKDressChooseListItemSkin";
     }
 
+    private chooseBG: eui.Rect;
     private headMC: eui.Image;
     private useBtn: eui.Button;
     private infoGroup: eui.Group;
@@ -20,6 +21,7 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
 
+     private infoStr;
 
     public childrenCreated(){
         super.childrenCreated();
@@ -46,12 +48,22 @@ class PKDressChooseListItem extends game.BaseItem {
             MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
+    public setChoose(id){
+        this.chooseBG.visible = this.data.vo.id == id;
+        if(this.chooseBG.visible)
+            return this.infoStr;
+        return '';
+    }
+
     public dataChanged(){
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.url
+        this.chooseBG.visible = false;
 
         //this.typeText.text = MonsterKindVO.getObject(vo.type).word;
         //this.nickText.text = vo.name
+
+        this.infoStr = this.createHtml(vo.name,0xE0A44A,16);
 
 
         var fightData;
@@ -63,9 +75,11 @@ class PKDressChooseListItem extends game.BaseItem {
         }
         else  //我自己
         {
+            var lv = UM.getMonsterLevel(vo.id);
             this.infoGroup.addChild(this.levelGroup);
-            this.levelText.text = '' + UM.getMonsterLevel(vo.id)
+            this.levelText.text = '' + lv
             this.redMC.visible = vo.canLevelUp()
+            this.infoStr += '(LV.'+lv+')'
 
             var force = (UM.award_force + UM.tec_force);
             fightData = UM.getTecMonsterAdd(vo.id);
@@ -87,15 +101,27 @@ class PKDressChooseListItem extends game.BaseItem {
         if(!num)
             this.coinText.text = vo.cost;
         else
-            this.coinText.text = PKManager.getInstance().getCostByNum(vo.id,num)// + ' (初始:' + vo.cost + ')';
+        {
+            this.coinText.text = PKManager.getInstance().getCostByNum(vo.id,num)
+            var temp = [vo.cost];
+            for(var i=1;i<num;i++)
+                temp.push(PKManager.getInstance().getCostByNum(vo.id,i));
+            this.infoStr += this.createHtml('   花费：',0xE0A44A) + temp.join(this.createHtml('/',0xE0A44A))
+        }
+
+        // + ' (初始:' + vo.cost + ')';
         //this.woodText.text = vo.wood;
         //this.woodGroup.visible = vo.wood;
+        this.infoStr += '\n'
 
+        var atkStr =  this.createHtml(Math.round(vo.atk * (1+fightData.atk/100)),0xD9A744);
+        var hpStr = this.createHtml(Math.round(vo.hp * (1+fightData.hp/100)),0xE65140);
+        var speedStr = this.createHtml(Math.round(vo.speed * (1+fightData.speed/100)),0x5B5BF2);
 
-
-         this.setHtml(this.infoText,this.createHtml(Math.round(vo.atk * (1+fightData.atk/100)),0xD9A744) + '/' +
-             this.createHtml(Math.round(vo.hp * (1+fightData.hp/100)),0xE65140) + '/' +
-             this.createHtml(Math.round(vo.speed * (1+fightData.speed/100)),0x5B5BF2))
+         this.setHtml(this.infoText, atkStr + '/' +  hpStr + '/' + speedStr);
+        this.infoStr += this.createHtml('攻击：',0xE0A44A) + atkStr +
+            this.createHtml('   血量：',0xE0A44A) + hpStr +
+            this.createHtml('   速度：',0xE0A44A) + speedStr;
 
         //this.atkText.text = '攻：' +  Math.round(vo.atk * (1+fightData.atk/100));
         //this.hpText.text = '血：' +  Math.round(vo.hp * (1+fightData.hp/100));

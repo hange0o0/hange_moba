@@ -23,10 +23,11 @@ class PKDressChooseUI extends game.BaseContainer {
     private a7: eui.Image;
     private a8: eui.Image;
     private pkBtn: eui.Button;
-    private cancleBtn: eui.Button;
+    private desText: eui.Label;
     private deleteBtn: eui.Button;
     private removeGroup: eui.Group;
     private removeText: eui.Label;
+
 
 
 
@@ -49,7 +50,26 @@ class PKDressChooseUI extends game.BaseContainer {
     public list//数据
 
 
-   private selectIndex = -1;
+   private _selectIndex = -1;
+    private get selectIndex(){
+        return this._selectIndex;
+    }
+    private set selectIndex(v){
+        this._selectIndex = v;
+        var monsterID = null;
+        if(v != -1)
+        {
+            monsterID = this.mcArray[v].data.id;
+            egret.callLater(function(){
+                PKDressUI.getInstance().once(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this,false,-9999);
+            },this)
+        }
+        else
+        {
+            PKDressUI.getInstance().removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this);
+        }
+        this.dispatchEventWith('chooseItem',false,monsterID)
+    }
 
     private outPos
 
@@ -113,7 +133,8 @@ class PKDressChooseUI extends game.BaseContainer {
 
         this.addBtnEvent(this.pkBtn, this.onPKStart);
         this.addBtnEvent(this.deleteBtn, this.onDelete);
-        this.addBtnEvent(this.cancleBtn, this.onCancel);
+        //this.addBtnEvent(this.cancleBtn, this.onCancel);
+
         //this.addBtnEvent(this.moreBtn, this.onMore);
 
         this.dragTarget = new PKDressChooseItem();
@@ -121,6 +142,10 @@ class PKDressChooseUI extends game.BaseContainer {
 
 
         //console.log(this.posArray);
+    }
+
+    public setDesText(str){
+        this.setHtml(this.desText,str || '');
     }
 
     private renewChoosing(b){
@@ -146,6 +171,16 @@ class PKDressChooseUI extends game.BaseContainer {
         this.dragTarget.x = e.data.x - this.dragTarget.width/2;
         this.dragTarget.y = e.data.y - this.dragTarget.height/2;
         this.overTarget = -1;
+
+        if(this.overTarget== -1 && this.removeGroup.hitTestPoint(e.data.x,e.data.y))
+        {
+            this.removeText.stroke = 2
+            this.overTarget = 20;
+        }
+        else
+        {
+            this.removeText.stroke = 0
+        }
 
         for(var i=0;i<this.splicaArray.length;i++)
         {
@@ -179,17 +214,7 @@ class PKDressChooseUI extends game.BaseContainer {
             }
         }
 
-        if(this.overTarget== -1 && this.removeGroup.hitTestPoint(e.data.x,e.data.y))
-        {
-            this.removeText.stroke = 1
-            this.removeText.text = '删除'
-            this.overTarget = 20;
-        }
-        else
-        {
-            this.removeText.stroke = 0
-            this.removeText.text = '拖到此处移除'
-        }
+
 
     }
     private onDragEnd(e){
@@ -260,6 +285,11 @@ class PKDressChooseUI extends game.BaseContainer {
         MonsterList.getInstance().show(chooseList,index)
     }
 
+
+    private onClickStage(){
+        if(this.selectIndex != -1)
+            this.onCancel();
+    }
 
     private onCancel(){
         this.changeState('normal')

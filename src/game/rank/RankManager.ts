@@ -14,6 +14,10 @@ class RankManager{
     public getRankList(rankType){
          return this.rankData[rankType].data;
     }
+    public isRankOpen(){
+        var serverTime = LoginManager.getInstance().serverList[LoginManager.getInstance().lastServer].timeNum;
+        return (TM.now()>serverTime && !DateUtil.isSameDay(serverTime))
+    }
 
     //取排行榜数据
     public getRank(rankType,fun?){
@@ -76,7 +80,7 @@ class RankManager{
     public createRank(fun?){
         var self = this;
         var oo:any = {};
-        //oo.serverid =  LoginManager.getInstance().lastSever;
+        //oo.serverid =  LoginManager.getInstance().lastServer;
         Net.send(GameEvent.rank.create_rank,oo,function(data){
             var msg = data.msg;
             if(msg.ok)

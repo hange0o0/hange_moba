@@ -10,7 +10,7 @@ class TimeManager {
         return TimeManager._instance;
     }
     
-    public timeDiff: number;
+    public timeDiff: number = 0;
     
     public init(time:number):void{
         //本地和服务器的时间差

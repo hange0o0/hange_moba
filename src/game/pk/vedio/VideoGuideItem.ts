@@ -6,14 +6,16 @@ class VideoGuideItem extends game.BaseItem {
 
     private headMC: eui.Image;
     private bg: eui.Rect;
-    private tb: eui.Rect;
-    private tf: eui.Rect;
-    private bb: eui.Rect;
-    private bf: eui.Rect;
     private roundText: eui.Label;
     private icon: eui.Image;
     private currentMC: eui.Rect;
     private posText: eui.Label;
+    private bb: eui.Rect;
+    private bf: eui.Rect;
+    private tb: eui.Rect;
+    private tf: eui.Rect;
+    private skillIcon: eui.Image;
+
 
 
 
@@ -41,7 +43,9 @@ class VideoGuideItem extends game.BaseItem {
             this.visible = false;
             return;
         }
-
+        var base = chooseData[0];
+        if(base.index == 20)
+            console.log(999)
         this.visible = true;
 
         var data = item.result.player1;
@@ -73,7 +77,7 @@ class VideoGuideItem extends game.BaseItem {
             this.bb.width = this.barWidth * data.hp/data.maxHp
         }
 
-        var base = chooseData[0];
+
         var VC = VideoCode.getInstance();
 
         this.roundText.text = base.index;
@@ -91,9 +95,9 @@ class VideoGuideItem extends game.BaseItem {
         else
             this.headMC.source = atker.mvo.thumb
         if(atker.teamID == 1)
-            this.bg.fillColor = 0x01014F
+            this.bg.fillColor = 0x0000FF
         else
-            this.bg.fillColor = 0x4F0105
+            this.bg.fillColor = 0xFF0000
         this.currentMC.visible = VideoUI.getInstance().lastChooseData == this.data;
 
         this.icon.visible = true
@@ -112,6 +116,13 @@ class VideoGuideItem extends game.BaseItem {
             this.posText.visible = true
             this.posText.text = (atker.index+1)
         }
+
+        //这里要拿出技能者的
+        this.skillIcon.visible = (atker.isPKing && base.skillID == 0)
+
+
+
+
 
     }
 }

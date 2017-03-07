@@ -8,11 +8,15 @@ class PKResultUI extends game.BaseUI {
     private bg: eui.Rect;
     private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
+    private titleBG: eui.Image;
+    private rateText: eui.Label;
     private selfList: eui.List;
     private selfText: eui.Label;
     private enemyList: eui.List;
     private enemyText: eui.Label;
     private list: eui.List;
+
+
 
 
 
@@ -61,7 +65,7 @@ class PKResultUI extends game.BaseUI {
         MyTool.removeMC(PKFailUI.getInstance());
         var PKM = PKManager.getInstance();
 
-        if((PKM.pkResult.result && !PKM.teamChange) || (!PKM.pkResult.result && PKM.teamChange))
+        if(PKM.isWin)
         {
             this.addChild(PKWinUI.getInstance());
             PKWinUI.getInstance().renew();
@@ -159,9 +163,24 @@ class PKResultUI extends game.BaseUI {
         else if(team1Base.f < team2Base.f)
             this.enemyText.stroke = 1;
 
-
+        this.rateText.text = Math.max(1,Math.min(100,Math.round(PKM.winnerRate*100))) + '';
+        if(PKM.isWin)
+            this.rateText.textColor = 0x00FF00
+        else
+            this.rateText.textColor = 0xFF0000
 
         GuideManager.getInstance().showGuide(this);
+
+
+        this.titleBG.y = 5;
+        this.rateText.visible = false;
+        this.rateText.y = -50;
+        var tw:egret.Tween = egret.Tween.get(this.titleBG);
+        tw.wait(300).to({y:55},200)
+        var tw:egret.Tween = egret.Tween.get(this.rateText);
+        tw.wait(450).call(function(){
+            this.rateText.visible = true;
+        },this).to({y:18},200)
 
     }
 }

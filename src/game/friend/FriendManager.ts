@@ -668,7 +668,7 @@ class FriendManager{
         var self = this;
         var oo:any = {};
         oo.otherid = otherid;
-        //oo.serverid =  LoginManager.getInstance().lastSever;
+        //oo.serverid =  LoginManager.getInstance().lastServer;
         Net.send(GameEvent.user.get_other_info,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)
@@ -700,7 +700,7 @@ class FriendManager{
         var self = this;
         var oo:any = {};
         oo.othernick = othernick;
-        //oo.serverid =  LoginManager.getInstance().lastSever;
+        //oo.serverid =  LoginManager.getInstance().lastServer;
         Net.send(GameEvent.user.get_other_info,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)

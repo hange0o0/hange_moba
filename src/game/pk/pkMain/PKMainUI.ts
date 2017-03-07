@@ -313,7 +313,7 @@ class PKMainUI extends game.BaseUI {
 
         this.timer = egret.setTimeout(this.playOne,this,arr.length * 200 + 300)
         SoundManager.getInstance().loadPKSound();
-
+        this.jumpBtn.visible = true;
 
 
     }
@@ -436,6 +436,8 @@ class PKMainUI extends game.BaseUI {
 
     //开始播放动画
     private playOne(){
+        if(this.isStop)
+            return;
         //console.log('playOne');
         if(this.loadGroup2)
         {
@@ -444,7 +446,7 @@ class PKMainUI extends game.BaseUI {
             this.loadGroup2 = null;
         }
 
-        this.jumpBtn.visible = true;
+
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束
         {
@@ -489,6 +491,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private stepOne(){
+        if(this.isStop)
+            return;
          var oo = this.currentStep.list.shift();
         var player
         if(!oo)
@@ -532,6 +536,8 @@ class PKMainUI extends game.BaseUI {
 
     //行动动画
     private nextPK(){
+        if(this.isStop)
+            return;
         this.pkStep ++;
         var player
         switch(this.pkStep){
@@ -685,7 +691,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private pkOne(item,shake?,disDec=0){
-
+        if(this.isStop)
+            return;
         var self = this;
         function rePKOne(){
             self.pkOne(item,shake,disDec);

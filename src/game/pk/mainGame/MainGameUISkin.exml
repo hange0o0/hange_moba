@@ -10,7 +10,7 @@
 					<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
-				<e:Group y="15" horizontalCenter="0.5">
+				<e:Group y="15" x="20">
 					<e:Group x="134" y="0" id="coinGroup">
 						<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="220" height="40" x="21"/>
 						<e:Image source="icon_money_png" y="0" x="0"/>

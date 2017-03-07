@@ -106,7 +106,7 @@ class VideoItem3 extends game.BaseItem {
             this.currentState = 'team2';
         }
 
-        this.roundText.text = 'Round ' + this.index;
+        this.roundText.text = 'Round ' + this.index + '';
 
         //if(atker.isPKing)
         //    this.bg.strokeColor = 0xBC703A;

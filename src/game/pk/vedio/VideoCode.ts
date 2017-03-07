@@ -154,6 +154,7 @@ class VideoCode{
         }
         else //回合结束
         {
+            this.actionCountSkillData = this.skillData;
             this.onRoundOver();
             this.setOrginHp();
             this.index2 = 0;
@@ -223,16 +224,18 @@ class VideoCode{
                 this.getPlayerByID(this.atker).onAction();
                 this.getPlayerByID(this.atker).actionCount =  action.times;
 
-
-                if(this.actionCountSkillData && this.actionCountSkillData == this.skillData && this.atker >= 10)
+                if(this.actionCountSkillData && this.actionCountSkillData == this.skillData)    //主要是因为会跳过     && this.atker >= 10
                 {
                     this.skillData = {index:this.index,atker:this.atker,skillID:-1,defender:[]};
-                    this.actionCountSkillData = this.skillData;
-                    VideoUI.getInstance().playSkill(this.skillData);
-                    break;
+                    if(this.atker >= 10)
+                    {
+                        this.actionCountSkillData = this.skillData;
+                        VideoUI.getInstance().playSkill(this.skillData);
+                        break;
+                    }
 
                 }
-                this.actionCountSkillData = this.skillData;
+                //this.actionCountSkillData = this.skillData;
                 this.stepOne();
                 break;
             }
@@ -357,9 +360,13 @@ class VideoCode{
         {
             case '1'://"HP"=>'1',
             {
+                var atker = this.getPlayerByID(this.atker);
                 var last = player.hp
                 player.addHp(value.value);
-                this.getPlayerByID(this.atker).atkerHP(value.value)
+                if(player.teamID != atker.teamID && value.value < 0)
+                    atker.atkerHP(value.value);
+                else if(player.teamID == atker.teamID && value.value > 0)
+                    atker.atkerHP(value.value);
                 this.defenderMV('hp',{value:value.value,last:last,max:player.maxHp,current:player.hp,isNegative:value.isNegative})
                 //if(value.value < 0 && player.hp <= 0)
                 //{

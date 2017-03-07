@@ -45,6 +45,8 @@ class PKManager {
     public winCount//胜利的次数
     public action//是否有出战
     public die//是否失败
+    public winnerRate//胜利者剩余血量百分比
+    public isWin//胜利
 
     public teamChange = false//队伍ID发生过转换
 
@@ -100,7 +102,7 @@ class PKManager {
                 sceneID = (1 + Math.floor(rd*size)) + size * 0;
                 break;
             case PKManager.PKType.DAY:
-                sceneID = (1 + Math.floor(rd*size)) + size * 1;
+                sceneID = (1 + Math.floor(rd*size)) + size * 4;
                 break;
             case PKManager.PKType.SERVER:
                 sceneID = (1 + Math.floor(rd*size)) + size * 2;
@@ -109,7 +111,7 @@ class PKManager {
                 sceneID = (1 + Math.floor(rd*size)) + size * 3;
                 break;
             case PKManager.PKType.FRIEND:
-                sceneID = (1 + Math.floor(rd*size)) + size * 4;
+                sceneID = (1 + Math.floor(rd*size)) + size * 1;
                 break;
             default:
                 sceneID = 1 + Math.floor(rd*15);
@@ -363,6 +365,33 @@ class PKManager {
             oo.index = i+1;
             this.pkList.push(oo);
         }
+        //算胜者剩下血量
+        var teamBase = data.team1base;
+        var begin = 10;
+        if(data.result != 1)
+        {
+            teamBase = data.team2base;
+            begin = 30;
+        }
+        var total = 0;
+        var current = 0;
+        for(var i=0;i<teamBase.list.length;i++)
+        {
+            var mid = teamBase.list[i];
+            var id = begin  + i
+            total += teamBase.mb[mid].hp;
+            if(this.action[id])
+            {
+                if(this.die[id] || this.winCount[id] == 3)
+                    continue;
+                current += data.pkdata[data.pkdata.length - 1].result.hp;
+            }
+            else
+                current += teamBase.mb[mid].hp;
+        }
+        this.winnerRate = current/total;
+        this.isWin = (this.pkResult.result && !this.teamChange) || (!this.pkResult.result && this.teamChange)
+
         //表现
         this.mainVideoList.length = 0;
         for(var i=0;i<this.pkList.length;i++)
@@ -412,31 +441,6 @@ class PKManager {
             if(this.pkList[i+1])
             {
                 listObj.next = true;
-                //var player1 = this.pkList[i+1].player1
-                //var player2 = this.pkList[i+1].player2
-                //if(player1.speed == player2.speed)
-                //{
-                //    for(var j=0;j<movePlayerArr.length;j++)
-                //    {
-                //        if(player1.id == movePlayerArr[j].id || player2.id == movePlayerArr[j].id)
-                //        {
-                //            listObj.quick = true;
-                //            break;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    var movePlayer = player1.speed > player2.speed ? player1:player2
-                //    for(var j=0;j<movePlayerArr.length;j++)
-                //    {
-                //        if(movePlayer.id == movePlayerArr[j].id)
-                //        {
-                //            listObj.quick = true;
-                //            break;
-                //        }
-                //    }
-                //}
             }
 
         }

@@ -105,7 +105,7 @@ class DayGameManager{
         }
         var self = this;
         var oo:any = {};
-        //oo.serverid = LoginManager.getInstance().lastSever;
+        //oo.serverid = LoginManager.getInstance().lastServer;
         //Net.addUser(oo);
         Net.send(GameEvent.dayGame.get_day_game,oo,function(data){
             var msg = data.msg;

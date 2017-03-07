@@ -75,9 +75,9 @@ class LoginServerUI extends game.BaseUI {
     public onShow(){
         var LM = LoginManager.getInstance();
 
-        if(LM.myServer[LM.lastSever]) //这个服上有号
+        if(LM.myServer[LM.lastServer]) //这个服上有号
         {
-            this.serverid = LM.lastSever
+            this.serverid = LM.lastServer
         }
         else
         {

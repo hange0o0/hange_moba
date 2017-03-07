@@ -50,6 +50,11 @@ class RankUI extends game.BaseUI {
     }
 
     public show(rankType = 1){
+        if(!RankManager.getInstance().isRankOpen())
+        {
+            Alert('排行榜明天开放！')
+            return;
+        }
         this.indexIn = rankType - 1;
         var self = this;
         RankManager.getInstance().getRank(rankType,function(){

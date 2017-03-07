@@ -71,6 +71,7 @@ class PKDressUI extends game.BaseUI {
         this.simpleList.itemRenderer = PKDressSimpleItem;
 
         this.pkDressChooseUI.addEventListener('change', this.onChooseChange, this)
+        this.pkDressChooseUI.addEventListener('chooseItem', this.onChooseItem, this)
         this.pkDressChooseUI.specialData = this.specialData;
 
         this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
@@ -254,6 +255,15 @@ class PKDressUI extends game.BaseUI {
         }
 
         GuideManager.getInstance().showGuide(this);
+    }
+    private onChooseItem(e){
+        e = e || {};
+        var infoStr;
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            infoStr = (<any>this.list.getChildAt(i)).setChoose(e.data) || infoStr;
+        }
+        this.pkDressChooseUI.setDesText(infoStr);
     }
 
     private renewSimpleList(){

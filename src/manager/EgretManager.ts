@@ -117,7 +117,7 @@ class EgretManager {
         //购买数量，当前默认传1，暂不支持其他值
         info.goodsNumber = "1";
         //所在服
-        info.serverId = LoginManager.getInstance().lastSever;
+        info.serverId = LoginManager.getInstance().lastServer;
         //透传参数
         var oo:any = {};
         oo.id = goodsid;

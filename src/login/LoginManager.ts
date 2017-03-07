@@ -16,13 +16,13 @@ class LoginManager{
 
     public lastUser;  //上次的登录的用户
     public lastPassword; //上次的登录的密码（只有在游客模式下有）
-    public lastSever; //最近登陆的服务器
+    public lastServer; //最近登陆的服务器
 
     public constructor() {
         var oo =  SharedObjectManager.instance.getValue('user') || {};
         this.lastUser = oo.user;
         this.lastPassword = oo.password;
-        this.lastSever = oo.lastSever;
+        this.lastServer = oo.lastServer;
         this.myServer = oo.myServer;
     }
 
@@ -52,10 +52,12 @@ class LoginManager{
         var oo = {my:[],other:[]};
         for(var s in this.serverList)
         {
-             if(this.myServer[s])//有号
-                 oo.my.push(this.serverList[s]);
+            if(this.serverList[s].timeNum > TM.now())
+                continue;
+            if(this.myServer[s])//有号
+                oo.my.push(this.serverList[s]);
             else
-                 oo.other.push(this.serverList[s]);
+                oo.other.push(this.serverList[s]);
         }
         ArrayUtil.sortByField(oo.my,['serverid'],[1]);
         ArrayUtil.sortByField(oo.other,['serverid'],[1]);
@@ -64,7 +66,7 @@ class LoginManager{
 
     private writeDB(){
         var oo:any = {user:this.lastUser,password:this.lastPassword}
-        oo.lastSever = this.lastSever;
+        oo.lastServer = this.lastServer;
         oo.myServer = this.myServer;
         SharedObjectManager.instance.setValue('user',oo)
     }
@@ -238,9 +240,9 @@ class LoginManager{
         {
             var arr = serverArr[i].split('|');
             this.myServer[arr[0]] = arr[1];
-            if(!this.lastSever && i == serverArr.length-1)
+            if(!this.lastServer && i == serverArr.length-1)
             {
-                this.lastSever = arr[0];
+                this.lastServer = arr[0];
             }
         }
     }
@@ -279,8 +281,7 @@ class LoginManager{
             for(var s in msg.list)
             {
                 var oo = msg.list[s];
-                var time = oo.time.split("-");
-                var now = new Date(Date.UTC(time[0],time[1]-1,time[2]));
+                var now = DateUtil.StringToDate(oo.time);
                 oo.timeNum = Math.floor(now.getTime()/1000);
                 oo.serverid = s;
                 list[s] = oo;
@@ -325,7 +326,7 @@ class LoginManager{
 
             UM.fill(msg.data);
 
-            self.lastSever = serverid;
+            self.lastServer = serverid;
             self.writeDB();
 
 
@@ -374,10 +375,10 @@ class LoginManager{
 
             self.addUserServer(serverid,nick);
             self.myServer[serverid] = nick;
-            self.lastSever = serverid;
+            self.lastServer = serverid;
             LoginServerUI.getInstance().onShow();
             RegisterServerUI.getInstance().hide();
-            //self.lastSever = serverid;
+            //self.lastServer = serverid;
             //self.writeDB();
             if(fun)
                 fun();

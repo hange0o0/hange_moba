@@ -15,6 +15,8 @@ class MyTool {
         return  s;
     }
     public static getHeadUrl(id){
+        if(id == 0)
+            return 'head_png'
         return MonsterVO.getObject(id).thumb
         //return Config.localResRoot + 'user_head/user_head'+id+'.png';
     }
