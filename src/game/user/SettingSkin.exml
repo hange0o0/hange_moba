@@ -21,7 +21,7 @@
 	</e:Group>
 	<e:Group x="63" y="315">
 		<e:Label text="如遇到BUG或有好的建议，可发送邮件至：" x="0" y="0" textColor="0xEFE5AD" size="24"/>
-		<e:Label id="emailText" y="43" size="24" text="1624431545@qq.com" textColor="0xEDCB24" x="0"/>
+		<e:Label id="emailText" y="43" size="24" text="1624431545@qq.com" textColor="0xEDCB24" x="50"/>
 	</e:Group>
 	<e:Rect width="500" y="180" height="1" horizontalCenter="0" fillColor="0x95612D"/>
 </e:Skin>

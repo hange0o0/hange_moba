@@ -9,5 +9,5 @@
 	<e:Group id="selfGroup" x="0" y="0" locked="true" width="100%"/>
 	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
-	<e:Image id="jumpBtn" source="jump_btn_png" right="10" bottom="10"/>
+	<e:Image id="jumpBtn" source="jump_btn_png" x="566" y="886"/>
 </e:Skin>

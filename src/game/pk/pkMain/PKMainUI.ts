@@ -165,6 +165,7 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.bg1);
         egret.Tween.removeTweens(this.topMC);
         egret.Tween.removeTweens(this.bottomMC);
+        egret.Tween.removeTweens(this.jumpBtn);
         var arr = this.itemEnemy.concat(this.itemSelf)
         for(var i=0;i<arr.length;i++)
         {
@@ -209,8 +210,9 @@ class PKMainUI extends game.BaseUI {
 
     private initView(){
         var stageHeight = this.stageHeight = this.stage.stageHeight;
-        this.jumpBtn.visible = false;
-        this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
+        this.jumpBtn.x = 720;
+        //this.jumpBtn.visible = false;
+        //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
         this.bg0.source = this.scene;
@@ -301,7 +303,7 @@ class PKMainUI extends game.BaseUI {
 
 
         var arr = [1,200,400,600,800,1000,1200]
-        arr.length =myTeam.length+1
+        arr.length =enemyTeam.length+1
         this.randomSort(arr);
         for(var i=0;i<enemyTeam.length;i++)
         {
@@ -313,7 +315,10 @@ class PKMainUI extends game.BaseUI {
 
         this.timer = egret.setTimeout(this.playOne,this,arr.length * 200 + 300)
         SoundManager.getInstance().loadPKSound();
-        this.jumpBtn.visible = true;
+
+        var tw:egret.Tween = egret.Tween.get(this.jumpBtn);
+        tw.to({x:556},300).to({x:566},100)
+        //this.jumpBtn.visible = true;
 
 
     }
@@ -450,7 +455,7 @@ class PKMainUI extends game.BaseUI {
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束
         {
-            this.timer = egret.setTimeout(this.showResult,this,500)
+            this.timer = egret.setTimeout(this.showResult,this,1000)
              return;
         }
         this.needUpArr1 = [];
@@ -495,6 +500,10 @@ class PKMainUI extends game.BaseUI {
             return;
          var oo = this.currentStep.list.shift();
         var player
+        //if(oo)
+        //{
+        //    console.log(oo.type)
+        //}
         if(!oo)
         {
             this.timer = egret.setTimeout(this.playOne,this,200);
@@ -1222,9 +1231,13 @@ class PKMainUI extends game.BaseUI {
         var pos = {x:item.x,y:-60}
         if(item.team == 1)
             pos = {x:item.x,y:this.fightHeight + 60}
-        VM.jumpToXY(item,pos,function(){
+
+        var tw:egret.Tween = egret.Tween.get(item);
+        item.parent.addChild(item);
+        var dis = Math.max(400,MyTool.getDis(pos,item));
+        tw.to({scaleX:1.3,scaleY:1.3}, 300,egret.Ease.sineOut).to({scaleX:1.2,scaleY:1.2}, 200).to({scaleX:1.3,scaleY:1.3}, 200).to({x:pos.x,y:pos.y,scaleX:1,scaleY:1}, dis/2).call(function(){
             this.freeItem(item);
-        },this)
+        },this);
     }
 
 

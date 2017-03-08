@@ -3,7 +3,7 @@
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<e:Rect height="60" width="640" x="0" y="0" fillColor="0x2b1b0c"/>
 	<e:Image source="line_png" x="-5" y="52" width="650"/>
-	<e:Scroller id="scroller" width="640" x="0" top="60" bottom="0">
+	<e:Scroller id="scroller" width="640" x="0" top="60" bottom="0" bounces="false">
 		<e:Group>
 			<e:List id="list" height="200" width="200" x="18" y="39">
 				<e:layout>

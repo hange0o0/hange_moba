@@ -59,6 +59,7 @@ class PKFailUI extends PKResultBase {
         }
         else if(PKM.pkType == PKManager.PKType.DAY){
             DayGameUI.getInstance().show();
+            PKResultUI.getInstance().hide();
         }
 
         function onOpenPKView(){

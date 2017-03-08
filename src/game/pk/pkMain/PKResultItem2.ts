@@ -41,14 +41,14 @@ class PKResultItem2 extends game.BaseItem {
     public dataChanged() {
         var decColor = 0xFF0000
         var addColor = 0x00FF00
-        var defColor = 0x740714
+        var defColor = 0x860819
         var barWidth = 295;
 
         this.f0.fillColor = defColor;
         this.f1.fillColor = defColor;
 
 
-        this.titleText.text = '第 '+this.data.index+' 轮';
+        this.setHtml(this.titleText,'第 '+this.createHtml(this.data.index,0xFFFFFF)+' 轮');
 
 
         var player = this.data.player1
@@ -69,6 +69,10 @@ class PKResultItem2 extends game.BaseItem {
             this.f0.width = barWidth * before
         }
         this.hpText0.text =  player.after + ' / ' + player.afterMax;
+        if(player.after == 0)
+            this.hpText0.textColor = 0x999999
+        else
+            this.hpText0.textColor = 0xEA4E4E
 
         var dec = player.after - player.before
         if(dec > 0)
@@ -104,6 +108,10 @@ class PKResultItem2 extends game.BaseItem {
             this.f1.width = barWidth * before
         }
         this.hpText1.text =  player.after + ' / ' + player.afterMax;
+        if(player.after == 0)
+            this.hpText1.textColor = 0x999999
+        else
+            this.hpText1.textColor = 0xEA4E4E
 
         var dec = player.after - player.before
         if(dec > 0)
@@ -121,21 +129,28 @@ class PKResultItem2 extends game.BaseItem {
 
 
 
-        this.decText1.stroke = 0
-        this.decText0.stroke = 0
-        if((dec > 0 && dec0 > 0) || (dec < 0 && dec0 < 0))
+        this.decText1.textColor = dec<0?0xC54040:0x46C646
+        this.decText0.textColor = dec0<0?0xC54040:0x46C646
+        if(dec < 0 && dec0 < 0)
         {
              var v0 = Math.abs(dec0)
              var v1 = Math.abs(dec)
-            if(v0 > v1)
-                this.decText0.stroke = 1;
-            else if(v0 < v1)
-                this.decText1.stroke = 1;
+                if(v0 > v1)
+                    this.decText0.textColor = 0xFF0000;
+                else if(v0 < v1)
+                    this.decText1.textColor = 0xFF0000;
+        }
+        else if(dec > 0 && dec0 > 0)
+        {
+            if(dec0 > dec)
+                this.decText0.textColor = 0x00FF00;
+            else if(dec0 < dec)
+                this.decText1.textColor = 0x00FF00;
         }
 
 
         if(this.data.player1.isWin)
-            this.winIcon.x = 130;
+            this.winIcon.x = 140;
         else
             this.winIcon.x = 640-130-50;
 

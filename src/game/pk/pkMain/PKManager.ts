@@ -319,28 +319,35 @@ class PKManager {
             forceUp:false,
             prop:[]
         }
-        var award = data.award || {};
-        if(award.coin)
-            this.pkAward.prop.push({type:'coin',des:'×' + award.coin})
-        if(award.exp)
-            this.pkAward.prop.push({type:'exp',des:'×' + award.exp})
-        for(var s in award.prop)
+
+        if(!data.dealAward)
         {
-            this.pkAward.prop.push({type:'prop',des:'×' + award.prop[s],id:s})
+            var award = data.award || {};
+            if(award.coin)
+                this.pkAward.prop.push({type:'coin',des:'×' + award.coin})
+            if(award.exp)
+                this.pkAward.prop.push({type:'exp',des:'×' + award.exp})
+            for(var s in award.prop)
+            {
+                this.pkAward.prop.push({type:'prop',des:'×' + award.prop[s],id:s})
+            }
+
+            if(data.sync_level)
+            {
+                this.pkAward.levelUp = true;
+                var temp = MonsterVO.getListByLevel(1)
+            }
+
+            if(data.sync_tec_force || data.sync_award_force)
+                this.pkAward.forceUp = true;
+            if(data.finish_task)
+                this.pkAward.finishTask = true;
+            if(data.new_task)
+                this.pkAward.newTask = true;
         }
 
-        if(data.sync_level)
-        {
-            this.pkAward.levelUp = true;
-            var temp = MonsterVO.getListByLevel(1)
-        }
 
-        if(data.sync_tec_force || data.sync_award_force)
-            this.pkAward.forceUp = true;
-        if(data.finish_task)
-            this.pkAward.finishTask = true;
-        if(data.new_task)
-            this.pkAward.newTask = true;
+        data.dealAward = true;
 
         VideoManager.getInstance().cleanVideo(type);
 

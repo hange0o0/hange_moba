@@ -9,7 +9,12 @@ class VideoItem3 extends game.BaseItem {
     private bg2: eui.Rect;
     private con: eui.Group;
     private roundText: eui.Label;
-    private moreText: eui.Label;
+    private closeBtn: eui.Label;
+    private openBtn: eui.Label;
+    private bottomLine: eui.Image;
+
+
+
 
 
 
@@ -17,17 +22,24 @@ class VideoItem3 extends game.BaseItem {
     public index;
     private isChoose
     public stopClick = false;
+    public closeFlag = false;
     //private maxConWidth = 500;
     private showCleaning = false//正在显示清队状态
     private lastClickTime = 0;
 
     public childrenCreated() {
         this.addBtnEvent(this,this.onChoose);
+        this.addBtnEvent(this.closeBtn,this.onClose);
     }
 
     private onChoose(){
         if(this.data.type == 'over')
             return;
+        if(this.openBtn.visible)
+        {
+            this.onClose();
+            return;
+        }
         if(this.isChoose)
         {
             if(egret.getTimer() - this.lastClickTime < 800)
@@ -41,10 +53,17 @@ class VideoItem3 extends game.BaseItem {
             VideoUI.getInstance().setChoose(this.data,'item');
     }
 
+    private onClose(e?){
+        if(e)
+            e.stopImmediatePropagation();
+        this.closeFlag = !this.closeFlag;
+        this.dataChanged();
+    }
+
     public setChoose(data,shake?){
         egret.Tween.removeTweens(this.roundText);
         //this.roundText.size = 18;
-        if(data == this.data)
+        if(data == this.data && !this.stopClick)
         {
             this.isChoose = true;
             this.bg.strokeColor = 0x774D2F
@@ -70,8 +89,10 @@ class VideoItem3 extends game.BaseItem {
             this.bg2.strokeColor = 0x673D1F
             this.isChoose = false;
         }
-        if(this.stopClick)
-            this.isChoose = false
+
+
+        //if(this.stopClick)
+        //    this.isChoose = false
         //this.moreText.visible = this.isChoose;
     }
 
@@ -119,11 +140,17 @@ class VideoItem3 extends game.BaseItem {
         //this.currentState = 'left'
         //this.currentState = 'right'
         this.con.removeChildren();
-
-        for(var i=0;i<data.length;i++)
+        if(!this.closeFlag)
         {
-            this.addOneSkill(data[i])
+            for(var i=0;i<data.length;i++)
+            {
+                this.addOneSkill(data[i])
+            }
         }
+
+        this.closeBtn.visible = this.stopClick && !this.closeFlag
+        this.openBtn.visible = this.stopClick  && this.closeFlag
+        this.bottomLine.visible = this.stopClick
         //console.log(this.currentState)
     }
 
@@ -520,19 +547,19 @@ class VideoItem3 extends game.BaseItem {
         {
             var str = '怒气上限：';
             if(effect.value > 0)
-                str += '+' + effect.value;
+                str += this.createHtml('+' + effect.value,0x3EE5FC);
             else
                 str += '' + effect.value;
-            group.addChild(this.getWordText(str))
+            group.addChild(this.getWordText(str,0x0090FF))
         }
         else if(effect.key == 'mp')
         {
             var str = '怒气：';
             if(effect.value > 0)
-                str += '+' + effect.value;
+                str += this.createHtml('+' + effect.value,0x3EE5FC);
             else
                 str += '' + effect.value;
-            group.addChild(this.getWordText(str))
+            group.addChild(this.getWordText(str,0x0090FF))
         }
     }
 
@@ -555,7 +582,7 @@ class VideoItem3 extends game.BaseItem {
             size = 20;
         var hpText = new eui.Label();
         hpText.size = size;
-        hpText.text = txt;
+        this.setHtml(hpText,txt);
         hpText.textColor = color
         return hpText;
         //hpText.horizontalCenter = 0;

@@ -159,6 +159,13 @@ class MonsterInfoBase extends game.BaseContainer {
             if(specialData.isEqual)
             {
                 fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
+                if(specialData.equalAdd)
+                {
+                     for(var s in fightData)
+                     {
+                         fightData[s] += specialData.equalAdd;
+                     }
+                }
                 //this.levelGroup.visible = false;
             }
 

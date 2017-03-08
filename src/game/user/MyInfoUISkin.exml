@@ -193,9 +193,9 @@
 			</e:Group>
 			<e:Group y="788" x="60">
 				<e:Label y="0" text="最近常用卡牌：" horizontalCenter="0" textColor="0xC4A87C"/>
-				<e:List id="list" y="40" height="270" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+				<e:List id="list" y="40" height="280" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="25"/>
+						<e:TileLayout requestedColumnCount="4" horizontalGap="25" verticalGap="20"/>
 					</e:layout>
 				</e:List>
 			</e:Group>

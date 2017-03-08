@@ -117,10 +117,18 @@ class ServerGameEqualUI extends game.BaseUI {
         var uf = data.enemy.userinfo;
         this.nameText.text = Base64.decode(uf.nick);
         //this.levelText.text = uf.level;
-        this.winText.text = uf.win;
+        if(uf.win == '???')
+            this.winText.text = uf.win;
+        else
+        {
+            if(uf.win == 0)
+                this.winText.text = '0%';
+            else
+                this.winText.text = MyTool.toFixed(uf.win/uf.total*100,1) + '%';
+        }
         this.rankText.text = uf.exp;
         this.forceText.text = uf.force;
-        this.maxText.text = uf.max;
+        this.maxText.text = '(LV.'+uf.level+')';// + uf.max;
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 
         this.renewChoose();
@@ -155,11 +163,15 @@ class ServerGameEqualUI extends game.BaseUI {
         if(this.chooseInex == 0)
         {
             this.cardTitle.text = 'PK卡组1'
+            this.card1Btn.skinName = 'Btn_b2Skin'
+            this.card2Btn.skinName = 'Btn_d2Skin'
             tw.to({x:this.card1Btn.x-3},100)
         }
         else
         {
             this.cardTitle.text = 'PK卡组2'
+            this.card2Btn.skinName = 'Btn_b2Skin'
+            this.card1Btn.skinName = 'Btn_d2Skin'
             tw.to({x:this.card2Btn.x-3},100)
         }
     }

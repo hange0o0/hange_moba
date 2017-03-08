@@ -9,10 +9,12 @@ class ServerGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
-    private levelText: eui.Label;
     private winText: eui.Label;
+    private rankText: eui.Label;
     private forceText: eui.Label;
     private nameText: eui.Label;
+    private levelText: eui.Label;
+    private helpBtn: eui.Group;
     private headMC: eui.Image;
     private enemyList: eui.List;
     private myGroup: eui.Group;
@@ -22,7 +24,7 @@ class ServerGameUI extends game.BaseUI {
     private card1Btn: eui.Button;
     private card2Btn: eui.Button;
     private chooseBtn: eui.Button;
-    private helpBtn: eui.Group;
+
 
 
 
@@ -93,7 +95,7 @@ class ServerGameUI extends game.BaseUI {
         //更新敌人
         var enemyList = this.enemyArray = [];
         if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.gameid)
-            data.enemy.userinfo = {head:0,nick:Base64.encode('神秘人'),level:'???',force:'???',win:'???',total:'???','exp':"???"}
+            data.enemy.userinfo = {head:0,nick:Base64.encode('神秘人'),level:'??',force:'???',win:'???',total:'???','exp':"???"}
 
         var specialData:any = {
             isBase:true
@@ -115,9 +117,17 @@ class ServerGameUI extends game.BaseUI {
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
         var uf = data.enemy.userinfo;
         this.nameText.text = Base64.decode(uf.nick);
-        this.levelText.text = uf.level;
-        this.winText.text = uf.win;
-        //this.rankText.text = uf.exp;
+        this.levelText.text = '(LV.'+uf.level+')';
+        if(uf.win == '???')
+            this.winText.text = uf.win;
+        else
+        {
+            if(uf.win == 0)
+                this.winText.text = '0%';
+            else
+                this.winText.text = MyTool.toFixed(uf.win/uf.total*100,1) + '%';
+        }
+        this.rankText.text = uf.exp;
         this.forceText.text = uf.force;
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 
@@ -158,15 +168,15 @@ class ServerGameUI extends game.BaseUI {
         if(this.chooseInex == 0)
         {
             this.cardTitle.text = 'PK卡组1'
-            //this.card1Btn.skinName = 'Btn_r2Skin'
-            //this.card2Btn.skinName = 'Btn_b2Skin'
+            this.card1Btn.skinName = 'Btn_b2Skin'
+            this.card2Btn.skinName = 'Btn_d2Skin'
             tw.to({x:this.card1Btn.x-3},100)
         }
         else
         {
             this.cardTitle.text = 'PK卡组2'
-            //this.card2Btn.skinName = 'Btn_r2Skin'
-            //this.card1Btn.skinName = 'Btn_b2Skin'
+            this.card2Btn.skinName = 'Btn_b2Skin'
+            this.card1Btn.skinName = 'Btn_d2Skin'
             tw.to({x:this.card2Btn.x-3},100)
         }
     }

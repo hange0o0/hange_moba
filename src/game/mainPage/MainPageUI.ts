@@ -194,7 +194,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     private addStar(){
-        if(Math.random()<0.2) {
+        if(Math.random()<0.1) {
             var p = {
                 x:Math.random()*320 + 20,
                 y:Math.random()*120 + 60

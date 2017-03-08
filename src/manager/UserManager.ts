@@ -100,7 +100,7 @@ class UserManager {
     }
 
     public getEnergy(){
-        var v = this.energy.vip?24:30;
+        var v = (this.energy.vip?24:30)*60;
         var t = TM.now();
         var add =   Math.floor((t - this.energy.t)/v)
         if(add > 0)

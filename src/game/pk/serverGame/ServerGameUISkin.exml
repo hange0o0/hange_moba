@@ -8,24 +8,32 @@
 				<e:Group y="-80" height="440" x="0">
 					<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
-					<e:Label id="levelText" y="130" textColor="0xCCB48E" text="12" x="164"/>
-					<e:Image source="icon_lv_png" x="113" y="125"/>
-					<e:Label id="winText" y="130" textColor="0xCCB48E" text="40.3%" x="281"/>
-					<e:Image source="icon_pvp_3_png" x="230" y="125"/>
-					<e:Label id="forceText" y="130" textColor="0xCCB48E" text="12345" x="440"/>
-					<e:Image source="icon_power_png" x="390" y="121"/>
+					<e:Rect height="90" width="620" x="10" y="80" fillAlpha="0.4"/>
+					<e:Label id="winText" y="130" textColor="0xCCB48E" text="40.3%" x="164"/>
+					<e:Image source="icon_pvp_3_png" x="113" y="125"/>
+					<e:Label id="rankText" y="131" textColor="0xCCB48E" text="12345" x="318"/>
+					<e:Label id="forceText" y="133" textColor="0xCCB48E" text="12345" x="479"/>
+					<e:Image source="icon_power_png" y="124" x="429"/>
+					<e:Image source="icon_rank_png" x="275" y="126"/>
+				</e:Group>
+				<e:Image source="border_head_png" x="20" y="3" width="80" height="80"/>
+				<e:Group x="112" y="6">
+					<e:Label id="nameText" text="标签" x="0" y="1" textColor="0xE0A44A"/>
+					<e:Label id="levelText" y="0" text="标签" size="22" x="115" textColor="0xCCB48E"/>
+					<e:layout>
+						<e:HorizontalLayout verticalAlign="bottom"/>
+					</e:layout>
 				</e:Group>
 				<e:Image source="border_head_png" x="20" y="4" width="80" height="80"/>
 				<e:Group id="helpBtn" y="20" top="10" right="20" x="20">
 					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
 					<e:Label y="10" horizontalCenter="0" textColor="0xF8D05A" text="?"/>
 				</e:Group>
-				<e:Label id="nameText" text="标签" x="112" y="8" textColor="0xCCB48E"/>
 				<e:Image source="head_bg2_jpg"  x="23" y="7" width="72" height="72"/>
 				<e:Image id="headMC" source="icon_power_png" x="23" y="7" width="72" height="72"/>
 				<e:List id="enemyList" height="259" y="95" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+						<e:TileLayout requestedColumnCount="4" horizontalGap="10" verticalGap="10"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>

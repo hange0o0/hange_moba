@@ -77,6 +77,11 @@ class HonorItem extends game.BaseItem {
         this.awardText.text = 'X' + award.diamond;
         this.awardBtn.visible = this.data.award
 
+        if(this.awardBtn.visible)
+            this.barMC.source = 'bar1_png'
+        else
+            this.barMC.source = 'bar3_png'
+
         this.sGroup.removeChildren();
         for(var i=0;i<5;i++)
         {

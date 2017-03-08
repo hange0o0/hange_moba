@@ -2,8 +2,8 @@
 <e:Skin class="EnemyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="120" height="120" >
 
 	<e:Group id="chooseGroup" x="0" y="0">
-		<e:Image source="border2_png" x="0" y="0" scale9Grid="11,11,68,68" width="120" height="120"/>
-		<e:Image id="headMC" x="5" y="5" width="110" height="110" source=""/>
+		<e:Image source="border2_png" x="2" y="2" scale9Grid="11,11,68,68" width="116" height="116"/>
+		<e:Image id="headMC" x="7" y="7" width="106" height="106" source=""/>
 	</e:Group>
 	<e:Group id="teamGroup" x="0" y="0">
 		<e:Image id="headMC2" source="" y="4" width="110" height="110" x="5"/>

@@ -1,6 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainMainItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="105" y="-166" source="main1_png"/>
+	<e:Image x="105" y="-166" source="main1_png"/>
+
+
+
+
+
+
 	<e:Group horizontalCenter="0" y="265" width="480" locked="true">
 		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:Label text="试练场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
@@ -8,11 +14,12 @@
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
 	<e:Group y="300" horizontalCenter="0" locked="true">
 		<e:Image y="0" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
 		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" x="73"/>
-		<e:Label id="desText" lineSpacing="8" y="90" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" height="36" horizontalCenter="0.5"/>
+		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect height="1" width="400" x="48" y="74" fillColor="0x494747"/>
 	</e:Group>
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
@@ -24,5 +31,6 @@
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
 </e:Skin>

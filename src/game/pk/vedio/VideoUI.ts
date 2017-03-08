@@ -97,7 +97,8 @@ class VideoUI extends game.BaseUI {
         this.scrollGroup.addChild(this.vGroup)
         this.vGroup.itemRenderer = VideoItem3;
         this.vGroup.scroller = this.scroller;
-        this.vGroup.margin = 20;
+        this.vGroup.margin = 0;
+        this.vGroup.desTop = 0;
 
         this.topUI.setTitle('战斗回放');
         this.topUI.addEventListener('hide',this.hide,this);

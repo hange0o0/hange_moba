@@ -1473,6 +1473,11 @@
 					"isFolder":false,
 					"key":"coin_mv2_png",
 					"name":"coin_mv2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"button_go_2_png",
+					"name":"button_go_2_png"
 				}
 			]
 		}

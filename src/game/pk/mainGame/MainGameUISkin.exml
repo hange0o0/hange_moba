@@ -10,11 +10,11 @@
 					<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
-				<e:Group y="15" x="20">
-					<e:Group x="134" y="0" id="coinGroup">
-						<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="220" height="40" x="21"/>
-						<e:Image source="icon_money_png" y="0" x="0"/>
-						<e:Label id="moneyText" y="8" textColor="0xCCCCCC" text="12345/1234567" size="24" x="44"/>
+				<e:Group y="15" horizontalCenter="0">
+					<e:Group x="120" y="0" id="coinGroup">
+						<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="100%" height="40" x="0"/>
+						<e:Image source="icon_money_png" y="-1" x="0"/>
+						<e:Label id="moneyText" y="8" textColor="0xCCCCCC" text="12345/129999" size="24" left="44" right="20"/>
 					</e:Group>
 					<e:Label y="5" textColor="0xCCB48E" text="秒杀价格：" x="0" size="26"/>
 				</e:Group>

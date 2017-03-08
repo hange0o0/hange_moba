@@ -121,7 +121,7 @@
 					</e:Group>
 				</e:Group>
 				<e:layout>
-					<e:VerticalLayout horizontalAlign="center" paddingTop="10" gap="20" paddingBottom="20"/>
+					<e:VerticalLayout horizontalAlign="center" paddingTop="0" gap="20" paddingBottom="20"/>
 				</e:layout>
 			</e:Group>
 		</e:Scroller>

@@ -77,7 +77,7 @@ class DayGameUI extends game.BaseUI {
         //更新敌人
         var specialData:any = {
             isNPC:true,
-            fight:(myData.level + 1 - 1)*9 + Config.equalValue
+            fight:(myData.level + 1 - 1)*15 + Config.equalValue
         };
         var enemyList = this.enemyArray = [];
         var arr = DM.data.levels[myData.level].list;
