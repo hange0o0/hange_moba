@@ -12,13 +12,13 @@ class ServerGameEqualManager{
     public lastPKData;
 
     //打开PK对战内容的表现
-    public openPKView(fun?){
+    public openPKView(isAgain?,fun?){
         var serverData = UM.server_game_equal;
-        if(serverData.pk)//已PK过，不能再打
+        if(isAgain)//已PK过
         {
-            this.getCard(false,onGetCard);
+            this.getCard(true,onGetCard);
         }
-        else if(serverData.choose)//已有卡版数据
+        else if(!serverData.pk && serverData.choose)//已有卡版数据
         {
             onGetCard();
         }

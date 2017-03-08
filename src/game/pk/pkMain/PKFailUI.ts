@@ -38,19 +38,19 @@ class PKFailUI extends PKResultBase {
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.SERVER)
         {
-            Confirm('再次挑战需要耗费2点体力，是否继续？',function(type){
+            Confirm('再次挑战需要耗费3点体力，是否继续？',function(type){
                 if(type == 1)
                 {
-                    ServerGameManager.getInstance().openPKView(onOpenPKView);
+                    ServerGameManager.getInstance().openPKView(true,onOpenPKView);
                 }
             });
         }
         else if(PKM.pkType == PKManager.PKType.SERVER_EQUAL)
         {
-            Confirm('再次挑战需要耗费2个入场券，是否继续？',function(type){
+            Confirm('再次挑战需要耗费1个入场券，是否继续？',function(type){
                 if(type == 1)
                 {
-                    ServerGameEqualManager.getInstance().openPKView(onOpenPKView);
+                    ServerGameEqualManager.getInstance().openPKView(true,onOpenPKView);
                 }
             });
         }
@@ -58,7 +58,7 @@ class PKFailUI extends PKResultBase {
             MainGameManager.getInstance().openPKView(onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.DAY){
-            DayGameUI.getInstance().show();
+            DayGameUI.getInstance().show(true);
             PKResultUI.getInstance().hide();
         }
 

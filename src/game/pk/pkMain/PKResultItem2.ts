@@ -28,6 +28,50 @@ class PKResultItem2 extends game.BaseItem {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this,this.onView);
+        //this.addBtnEvent(this.headMC0,this.onHead0);
+        //this.addBtnEvent(this.headMC1,this.onHead1);
+    }
+
+    private onHead0(e){
+        e.stopImmediatePropagation();
+
+        var PKM = PKManager.getInstance();
+        if(PKM.teamChange)
+        {
+            var teamBase = PKM.team2Base
+        }
+        else
+        {
+            var teamBase = PKM.team1Base
+        }
+        var mid = this.data.player1.mid;
+        var specialData = teamBase.mb[mid];
+        var oo = {
+            id:mid,
+            specialData:specialData,
+        }
+        MonsterList.getInstance().show([oo])
+    }
+
+    private onHead1(e){
+        e.stopImmediatePropagation();
+
+        var PKM = PKManager.getInstance();
+        if(PKM.teamChange)
+        {
+            var teamBase = PKM.team1Base
+        }
+        else
+        {
+            var teamBase = PKM.team2Base
+        }
+        var mid = this.data.player2.mid;
+        var specialData = teamBase.mb[mid];
+        var oo = {
+            id:mid,
+            specialData:specialData,
+        }
+        MonsterList.getInstance().show([oo])
     }
 
     private onView() {

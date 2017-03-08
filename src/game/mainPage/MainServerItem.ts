@@ -23,10 +23,7 @@ class MainServerItem extends game.BaseItem {
     }
 
     private onRetry(){
-        var SM = ServerGameManager.getInstance();
-        SM.getCard(true,function(){
-            ServerGameUI.getInstance().show();
-        });
+        ServerGameEqualManager.getInstance().openPKView(true);
     }
     private onStart(){
         ServerGameManager.getInstance().openPKView();
@@ -53,7 +50,7 @@ class MainServerItem extends game.BaseItem {
         {
             this.btnGroup.visible = true;
             MyTool.removeMC(this.retryBtn);
-            if(serverData.pk)//已PK过，不能再打
+            if(serverData.pk)//已PK过
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'

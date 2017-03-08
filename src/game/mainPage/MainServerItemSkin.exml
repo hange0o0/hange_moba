@@ -26,7 +26,7 @@
 		<e:Image source="lock_icon_png" y="25" horizontalCenter="0" id="lockMC" x="20"/>
 	</e:Group>
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
-		<e:Button id="retryBtn" x="20" skinName="Btn_r2Skin" y="20" label="再试一次"/>
+		<e:Button id="retryBtn" x="20" skinName="Btn_b2Skin" y="20" label="再次挑战"/>
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>

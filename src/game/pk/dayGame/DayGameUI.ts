@@ -19,6 +19,7 @@ class DayGameUI extends game.BaseUI {
 
 
     private enemyArray;
+    private quickStart
 
     public constructor() {
         super();
@@ -58,7 +59,8 @@ class DayGameUI extends game.BaseUI {
 
     }
 
-    public show(){
+    public show(v?){
+        this.quickStart = v
         var self = this;
         DayGameManager.getInstance().getDayGame(function(){
             self.superShow();
@@ -133,6 +135,10 @@ class DayGameUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
+        if(this.quickStart){
+            this.onChoose1();
+            this.hide();
+        }
 
     }
 

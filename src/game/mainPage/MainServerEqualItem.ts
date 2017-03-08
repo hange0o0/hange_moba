@@ -26,10 +26,7 @@ class MainServerEqualItem extends game.BaseItem {
     }
 
     private onRetry(){
-        var SM = ServerGameEqualManager.getInstance();
-        SM.getCard(true,function(){
-            ServerGameEqualUI.getInstance().show();
-        });
+        ServerGameEqualManager.getInstance().openPKView(true);
     }
     private onStart(){
         ServerGameEqualManager.getInstance().openPKView();
@@ -58,7 +55,7 @@ class MainServerEqualItem extends game.BaseItem {
         {
             this.btnGroup.visible = true;
             MyTool.removeMC(this.retryBtn);
-            if(serverData.pk)//已PK过，不能再打
+            if(serverData.pk)//已PK过
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'
@@ -67,7 +64,7 @@ class MainServerEqualItem extends game.BaseItem {
             else if(serverData.choose)//已有卡版数据
             {
                 this.startBtn.label = '开始挑战'
-                this.desText.text = '卡组已获得，点击开始挑战'
+                this.desText.text = '卡组已获得，点击开始挑战' + '\n剩余入场券数量：' + UM.getPropNum(21);
             }
             else
             {

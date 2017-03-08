@@ -100,12 +100,20 @@ class ServerGameUI extends game.BaseUI {
         var specialData:any = {
             isBase:true
         };
-        for(var i=0;i<data.enemy.base.list.length;i++)
+        var isTeam = false;
+        var arr = data.enemy.base.list;
+        if(data.enemy.pkdata)
         {
-            var id = data.enemy.base.list[i];
+            arr = data.enemy.pkdata.list;
+            isTeam = true;
+        }
+        for(var i=0;i<arr.length;i++)
+        {
+            var id = arr[i];
             enemyList.push({
                 vo: MonsterVO.getObject(id),
-                type:1,
+                isTeam:isTeam,
+                //type:1,
 
                 id: id,
                 specialData: specialData,
@@ -115,6 +123,29 @@ class ServerGameUI extends game.BaseUI {
             });
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
+
+        if(enemyList.length <4)
+        {
+            (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 0;
+            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 1
+        }
+        else
+        {
+            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 2;
+            if(enemyList.length ==4)
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 2
+            else if(enemyList.length <=6)
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
+            else
+                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 4
+        }
+
+
+
+
+
+
+
         var uf = data.enemy.userinfo;
         this.nameText.text = Base64.decode(uf.nick);
         this.levelText.text = '(LV.'+uf.level+')';
