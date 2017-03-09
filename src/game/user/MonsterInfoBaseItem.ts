@@ -12,7 +12,7 @@ class MonsterInfoBaseItem extends game.BaseItem {
 
 
     public childrenCreated(){
-
+        this.text.wordWrap = true;
     }
 
     public dataChanged(){

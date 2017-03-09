@@ -9,7 +9,7 @@
 		<e:layout>
 			<e:VerticalLayout horizontalAlign="center" gap="15"/>
 		</e:layout>
-		<e:Label id="desText" y="0" textColor="0xFFFF00" text="标签" x="111"/>
+		<e:Label id="desText" y="0" textColor="0xFFFF00" text="标签" x="111" textAlign="center" lineSpacing="10"/>
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
 			<e:layout>
 				<e:TileLayout/>

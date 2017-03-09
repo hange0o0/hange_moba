@@ -47,7 +47,12 @@ class MainDayItem extends game.BaseItem {
             if(myData.level == 10)
                 this.desText.text = '今日已通关';
             else
-                this.desText.text = '每次PK消耗体力：1';
+            {
+                if(UM.getEnergy() >= 1)
+                    this.setHtml(this.desText,'每次PK消耗体力：' + this.createHtml('1',0xFFFF00));
+                else
+                    this.setHtml(this.desText,'每次PK消耗体力：' + this.createHtml('1',0xFF0000));
+            }
         }
 
 

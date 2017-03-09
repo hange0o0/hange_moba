@@ -67,7 +67,10 @@ class MainMainItem extends game.BaseItem {
         else
         {
             this.startBtn.label = '抽取卡牌'
-            this.desText.text = '抽取卡牌需消耗体力：1'
+            if(UM.getEnergy() >= 1)
+                this.setHtml(this.desText,'抽取卡牌需消耗体力：' + this.createHtml('1',0xFFFF00));
+            else
+                this.setHtml(this.desText,'抽取卡牌需消耗体力：' + this.createHtml('1',0xFF0000));
         }
 
         if(level >= MainGameManager.getInstance().maxLevel)

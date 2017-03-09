@@ -112,6 +112,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.change_head,this.renewTop,this);
         EM.addEvent(GameEvent.client.pk_start,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.get_card,this.scrollToCurrentPage,this);
+        EM.addEvent(GameEvent.client.energy_change,this.scrollToCurrentPage,this);
 
 
         EM.addEvent(GameEvent.client.monster_level_change,this.renewCollectRed,this);

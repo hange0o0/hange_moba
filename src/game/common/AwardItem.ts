@@ -9,6 +9,8 @@ class AwardItem extends game.BaseItem {
     private desText: eui.Label;
     private infoGroup: eui.Group;
     private infoText: eui.Label;
+    private newIcon: eui.Image;
+
 
 
 
@@ -21,6 +23,12 @@ class AwardItem extends game.BaseItem {
     }
 
     private onClick(){
+        if(this.data.type == 'monster')
+        {
+            this.newIcon.visible = false;
+            MonsterList.getInstance().show([this.data]);
+            return;
+        }
         this.infoGroup.visible = true;
         this.timer = egret.setTimeout(function(){
             this.infoGroup.visible = false;
@@ -28,6 +36,7 @@ class AwardItem extends game.BaseItem {
     }
 
     public dataChanged() {
+        this.newIcon.visible = false;
         this.infoGroup.visible = false;
         egret.clearTimeout(this.timer);
         this.desText.text = this.data.des;
@@ -82,6 +91,7 @@ class AwardItem extends game.BaseItem {
                 var mvo = MonsterVO.getObject(this.data.id);
                 this.mc.source = mvo.thumb;
                 this.desText.text = mvo.name;
+                this.newIcon.visible = true;
                 break;
             }
             default:    //prop

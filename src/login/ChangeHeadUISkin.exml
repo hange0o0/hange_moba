@@ -26,7 +26,7 @@
 		<e:Group id="changeGroup" y="125" horizontalCenter="0">
 			<e:Label text="更换头像需消耗钻石:" y="0" size="24" x="243.7878787878788" textColor="0xEFE5AD"/>
 			<e:Image source="icon_token_png" x="0" y="132.12121212121212"/>
-			<e:Label y="10" size="24" text="100" x="243.7878787878788" textColor="0xFFFF00"/>
+			<e:Label y="10" size="24" text="100" x="243.7878787878788" textColor="0xE0A44A"/>
 			<e:layout>
 				<e:HorizontalLayout verticalAlign="middle"/>
 			</e:layout>

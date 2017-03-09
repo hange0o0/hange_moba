@@ -54,7 +54,10 @@ class MainServerItem extends game.BaseItem {
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'
-                this.desText.text = '匹配或重试需消耗体力：' + 2;
+                if(UM.getEnergy() >= 2)
+                    this.setHtml(this.desText,'匹配或重试需消耗体力：' + this.createHtml('2',0xFFFF00));
+                else
+                    this.setHtml(this.desText,'匹配或重试需消耗体力：' + this.createHtml('2',0xFF0000));
             }
             else if(serverData.choose)//已有卡版数据
             {
@@ -64,7 +67,10 @@ class MainServerItem extends game.BaseItem {
             else
             {
                 this.startBtn.label = '开始匹配'
-                this.desText.text = '匹配需消耗体力：' + 2;
+                if(UM.getEnergy() >= 2)
+                    this.setHtml(this.desText,'匹配需消耗体力：' + this.createHtml('2',0xFFFF00));
+                else
+                    this.setHtml(this.desText,'匹配需消耗体力：' + this.createHtml('2',0xFF0000));
             }
         }
 

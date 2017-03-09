@@ -28,7 +28,10 @@ class MonsterSkillVO {
     public fill(data){
 
         this.name = data.name;
-        this.des = data.des.replace(/\[/g,'<font color="#FFFF00">').replace(/\]/g,'</font>')//.replace(/$$/g,'\n');
+        this.des = data.des.replace(/\[r/g,'<font color="#FF0000">').
+            replace(/\[g/g,'<font color="#00FF00">').
+            replace(/\[/g,'<font color="#FFFF00">').
+            replace(/\]/g,'</font>')//.replace(/$$/g,'\n');
         this.mid = data.mid;
         this.index = data.index;
         this.mv = data.mv;

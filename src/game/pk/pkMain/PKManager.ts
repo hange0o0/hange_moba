@@ -395,7 +395,11 @@ class PKManager {
             if(data.sync_level)
             {
                 this.pkAward.levelUp = true;
-                var temp = MonsterVO.getListByLevel(1)
+                var temp = MonsterVO.getListByLevel(UM.level,true);
+                for(var i=0;i<temp.length;i++)
+                {
+                    this.pkAward.prop.push({type:'monster',id:temp[i].id})
+                }
             }
 
             if(data.sync_tec_force || data.sync_award_force)
