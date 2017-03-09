@@ -23,7 +23,7 @@ class MainServerItem extends game.BaseItem {
     }
 
     private onRetry(){
-        ServerGameEqualManager.getInstance().openPKView(true);
+        ServerGameManager.getInstance().openPKView(true);
     }
     private onStart(){
         ServerGameManager.getInstance().openPKView();
@@ -54,7 +54,7 @@ class MainServerItem extends game.BaseItem {
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'
-                this.desText.text = '重新匹配需消耗体力：' + 2 + '\n再试一次需消耗体力：' + 3
+                this.desText.text = '匹配或重试需消耗体力：' + 2;
             }
             else if(serverData.choose)//已有卡版数据
             {

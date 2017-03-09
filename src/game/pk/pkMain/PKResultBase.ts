@@ -43,35 +43,49 @@ class PKResultBase extends game.BaseContainer {
             var tw:egret.Tween = egret.Tween.get(this);
             tw.to({y:0}, 300).call(this.onMVFinish,this);
         }
+        else if(award.gLevelUp)//升级了
+        {
+
+            if(this._desText.text)
+                this._desText.text += '\n';
+            if(PKManager.getInstance().pkType == PKManager.PKType.SERVER)
+                this._desText.text += '竞技场升到 '+award.gLevelUp+' 阶'
+            else
+                this._desText.text += '修正场升到 '+award.gLevelUp+' 阶'
+            award.gLevelUp = 0;
+            this.timer = egret.setTimeout(this.stepOne,this,300);
+        }
         else if(award.levelUp)//升级了
         {
             award.levelUp = false;
+            if(this._desText.text)
+                this._desText.text += '\n';
             this._desText.text += '玩家升到 '+UM.level+' 级'
             this.timer = egret.setTimeout(this.stepOne,this,300);
             SoundManager.getInstance().playEffect(SoundConfig.effect_u_up);
         }
-        else if(award.finishTask)//完成任务了
-        {
-            award.finishTask = false;
-            if(this._desText.text)
-                this._desText.text += '\n';
-            this._desText.text += '当前阶段任务已完成'
-        }
+        //else if(award.finishTask)//完成任务了
+        //{
+        //    award.finishTask = false;
+        //    if(this._desText.text)
+        //        this._desText.text += '\n';
+        //    this._desText.text += '当前阶段任务已完成'
+        //}
         else if(award.forceUp)//战力提升了
         {
             award.forceUp = false;
             this._desText.text += '\n战力提升到：' + UM.getForce()
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }
-        else if(award.newTask)//新增任务了
-        {
-            award.newTask = false;
-            var task = UM.active.task;
-                var type = '修正场PK'
-                if(task.type == 'server_game')
-                    type = '竞技场PK';
-            this._desText.text += '\n新增阶段任务：\n在'+task.targettotal+'场'+type+'中取得'+task.targetwin+'场胜利【战力+'+task.award+'】';
-        }
+        //else if(award.newTask)//新增任务了
+        //{
+        //    award.newTask = false;
+        //    var task = UM.active.task;
+        //        var type = '修正场PK'
+        //        if(task.type == 'server_game')
+        //            type = '竞技场PK';
+        //    this._desText.text += '\n新增阶段任务：\n在'+task.targettotal+'场'+type+'中取得'+task.targetwin+'场胜利【战力+'+task.award+'】';
+        //}
         else if(award.prop && award.prop.length)//加入道具
         {
             this._resultGroup.addChildAt(this._list,1);
@@ -82,6 +96,27 @@ class PKResultBase extends game.BaseContainer {
             }
             this._list.visible = true;
             this._list.dataProvider = new eui.ArrayCollection(arr);
+
+            if(arr.length <=4)
+            {
+                (<eui.TileLayout>this._list.layout).requestedColumnCount = 0;
+                (<eui.TileLayout>this._list.layout).requestedRowCount = 1
+            }
+            else if(arr.length <=8)
+            {
+                (<eui.TileLayout>this._list.layout).requestedRowCount = 2
+                if(arr.length <=6)
+                    (<eui.TileLayout>this._list.layout).requestedColumnCount = 3;
+                else
+                    (<eui.TileLayout>this._list.layout).requestedColumnCount = 4;
+            }
+            else
+            {
+                (<eui.TileLayout>this._list.layout).requestedColumnCount = 4;
+                (<eui.TileLayout>this._list.layout).requestedRowCount = 0
+            }
+
+
             this.timer = egret.setTimeout(this.stepOne,this,arr.length * 100 + 500);
             award.prop = null;
         }

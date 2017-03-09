@@ -48,8 +48,12 @@ class ArrayUtil {
         return data;
     }
     
-    public static randomOne(arr:Array<any>):any{
-        return arr[Math.floor(arr.length * Math.random())];
+    public static randomOne(arr:Array<any>,splice = false):any{
+        var index = Math.floor(arr.length * Math.random())
+        var data = arr[index];
+        if(splice)
+            arr.splice(index,1);
+        return data;
     }
 
     public static random(arr,deep = 1){

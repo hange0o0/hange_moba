@@ -150,7 +150,7 @@ class ServerGameUI extends game.BaseUI {
         this.nameText.text = Base64.decode(uf.nick);
         this.levelText.text = '(LV.'+uf.level+')';
         if(uf.win == '???')
-            this.winText.text = uf.win;
+            this.winText.text = '??';
         else
         {
             if(uf.win == 0)

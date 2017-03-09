@@ -90,6 +90,56 @@ class PKManager {
         return count;
     }
 
+    //取一个随机布局
+    public getRandomCard(list){
+        var index = 0;
+        var history = {};
+        var total = 88;
+        while(true)
+        {
+            var returnArr = [];
+            var newList = list.concat(list);
+            for(var i=0;i<30;i++)
+            {
+                if(newList.length == 0)
+                    break;
+                var id = ArrayUtil.randomOne(newList,true);
+                returnArr.push(id);
+                if(this.getCost(returnArr) > 88)
+                {
+                    returnArr.pop();
+                }
+                if(returnArr.length >= 6)
+                    break;
+            }
+            var cost = this.getCost(returnArr);
+            if(!history[cost])
+                history[cost] = [];
+            history[cost].push(returnArr);
+
+            index ++;
+            if(index >= 5)
+            {
+                index = 0;
+                var arr = [];
+                for(var i=88;i>=total;i--)
+                {
+                    var temp = history[i];
+                    if(temp)
+                        arr = arr.concat(temp);
+                }
+                if(arr.length > 0)
+                {
+                    break
+                }
+                total --
+            }
+        }
+        returnArr = ArrayUtil.randomOne(arr);
+        ArrayUtil.random(returnArr);
+        return returnArr;
+    }
+
 
     public getPKBG(type,rd){
         var sceneID = 1;
@@ -314,6 +364,7 @@ class PKManager {
 
         this.pkAward = {
             levelUp:false,
+            gLevelUp:0,
             newTask:false,
             finishTask:false,
             forceUp:false,
@@ -327,6 +378,15 @@ class PKManager {
                 this.pkAward.prop.push({type:'coin',des:'×' + award.coin})
             if(award.exp)
                 this.pkAward.prop.push({type:'exp',des:'×' + award.exp})
+            if(award.g_exp)
+            {
+                if(award.g_exp > 0)
+                    this.pkAward.prop.push({type:'g_exp',des:'×' + award.g_exp})
+                else
+                    this.pkAward.prop.push({type:'g_exp',des: award.g_exp,color:'red'})
+            }
+
+
             for(var s in award.prop)
             {
                 this.pkAward.prop.push({type:'prop',des:'×' + award.prop[s],id:s})
@@ -344,6 +404,8 @@ class PKManager {
                 this.pkAward.finishTask = true;
             if(data.new_task)
                 this.pkAward.newTask = true;
+            if(data.g_level_up)
+                this.pkAward.gLevelUp = data.g_level_up;
         }
 
 

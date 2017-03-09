@@ -72,7 +72,7 @@ class ShopUI extends game.BaseUI {
             }
             else if(oo.id == 31)
             {
-                listObj = {txt:'购买修正场门券',wType:'ticket',list:[]};
+                listObj = {txt:'购买修正币',wType:'ticket',list:[]};
                 dataArr.push(listObj);
             }
             else if(oo.id == 101)

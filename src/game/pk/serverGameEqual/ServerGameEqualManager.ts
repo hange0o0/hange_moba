@@ -53,7 +53,7 @@ class ServerGameEqualManager{
         var oo:any = {};
         if(UM.getPropNum(21) < 1)
         {
-            Confirm('入场券数量不足！\n在竞技场、每日任务中，都有机会获得入场券\n是否先购买几张玩玩？',function(v){
+            Confirm('修正币数量不足！\n在竞技场、每日任务中，都有机会获得入场券\n是否先购买几张玩玩？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('ticket');

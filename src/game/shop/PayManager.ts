@@ -22,8 +22,8 @@ class PayManager{
             {id:22,word:'大量卡片',type:'diamond',cost:300,rate:6,shopType:'card',img:'shop_card_png'},
             {id:23,word:'无数卡片',type:'diamond',cost:1500,rate:31,shopType:'card',img:'shop_card_png'},
 
-            {id:31,word:'修正场门票',type:'diamond',cost:60,rate:5,shopType:'ticket',img:'shop_ticket_png'}, //5张
-            {id:32,word:'修正场门票包',type:'diamond',cost:300,rate:30,shopType:'ticket',img:'shop_ticket_png'}, //30张
+            {id:31,word:'修正币',type:'diamond',cost:60,rate:5,shopType:'ticket',img:'shop_ticket_png'}, //5张
+            {id:32,word:'修正币包',type:'diamond',cost:300,rate:30,shopType:'ticket',img:'shop_ticket_png'}, //30张
 
             {id:101,word:'60钻石',type:'rmb',cost:6,shopType:'diamond',img:'box0_png',value:60},
             {id:102,word:'305钻石',type:'rmb',cost:30,shopType:'diamond',img:'box1_png',value:305},

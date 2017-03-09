@@ -10,11 +10,11 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 					<e:Rect fillAlpha="0.4" width="620" y="80" height="90" x="10"/>
 					<e:Label id="winText" y="130" textColor="0xCCB48E" text="40.3%" x="164"/>
-					<e:Image source="icon_pvp_3_png" x="113" y="125"/>
+					<e:Image source="icon_rank_png" x="113" y="125"/>
 					<e:Label id="rankText" y="131" textColor="0xCCB48E" text="12345" x="318"/>
 					<e:Label id="forceText" y="133" textColor="0xCCB48E" text="12345" x="479"/>
 					<e:Image source="icon_power_png" y="124" x="429"/>
-					<e:Image source="icon_rank_png" x="275" y="126"/>
+					<e:Image source="icon_pvp_3_png" x="275" y="126"/>
 				</e:Group>
 				<e:Image source="border_head_png" x="20" y="3" width="80" height="80"/>
 				<e:Group x="112" y="6">

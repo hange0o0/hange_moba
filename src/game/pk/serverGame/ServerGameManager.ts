@@ -54,9 +54,9 @@ class ServerGameManager{
             Alert('体力不足2点，无法挑战');
             return;
         }
-        if(isagain && UM.getEnergy()<3)
+        if(isagain && UM.getEnergy()<2)
         {
-            Alert('体力不足3点，无法再次挑战');
+            Alert('体力不足2点，无法再次挑战');
             return;
         }
         var self = this;

@@ -12,8 +12,8 @@
 		<e:Label id="desText" y="0" textColor="0xFFFF00" text="标签" x="111"/>
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
 			<e:layout>
-				<e:HorizontalLayout gap="10"/>
-			</e:layout>
+				<e:TileLayout/>
+			</e:layout>
 		</e:List>
 		<e:Group id="btnGroup" x="65" y="175">
 			<e:Button id="backBtn" y="0" label="返回" x="0" skinName="Btn_b2Skin"/>

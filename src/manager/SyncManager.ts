@@ -112,16 +112,24 @@ class SyncManager{
                     EM.dispatch(GameEvent.client.force_change);
                     break;
                 case 'sync_server_game':
+                    var lastLevel = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
                     for(ss in value)
                     {
                         UM.server_game[ss] = value[ss];
                     }
+                    var nowLevel = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
+                    if(nowLevel > lastLevel)
+                        data.g_level_up = nowLevel;
                     break;
                 case 'sync_server_game_equal':
+                    var lastLevel = ServerGameManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
                     for(ss in value)
                     {
                         UM.server_game_equal[ss] = value[ss];
                     }
+                    var nowLevel = ServerGameManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
+                    if(nowLevel > lastLevel)
+                        data.g_level_up = nowLevel;
                     break;
                 case 'sync_main_game':
                     for(ss in value)
