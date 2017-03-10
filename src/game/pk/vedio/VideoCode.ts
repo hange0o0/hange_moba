@@ -436,9 +436,15 @@ class VideoCode{
             }
             case 'b'://单位死亡
             {
-                player.buffList.length = 0;
+                player.onDie();
                 this.defenderMV('die',1);
                 this.stepOne();
+                break;
+            }
+            case 'c':       //stat
+            {
+                this.defenderMV('stat',value.value)
+                this.getPlayerByID(this.defender).addBuff(value.value);
                 break;
             }
         }

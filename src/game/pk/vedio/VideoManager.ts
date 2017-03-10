@@ -185,6 +185,11 @@ class VideoManager {
         for(var i=0;i<len;i++)
         {
             var action = this.decode(array[i]);
+            if(action.type == 0) //用于测试打点
+            {
+                console.log(action.orgin)
+                continue
+            }
             if(action.type == 6)
             {
                 if(gameStart || temp.length != 0)
@@ -222,6 +227,7 @@ class VideoManager {
     private decode(str){
         var oo:any = {};
         oo.type = MyTool.str2Num(str.charAt(0));
+
         switch(oo.type)
         {
             case 1: //转攻击者
@@ -256,6 +262,9 @@ class VideoManager {
             //    break
             //case 12: //单位死亡
             //    break
+            default:
+                oo.orgin = str;
+                break
         }
         return oo;
     }
@@ -266,6 +275,8 @@ class VideoManager {
         var value:any;
         if(type == 'a')
             value = {id:MyTool.str2Num(str.charAt(1)) ,cd: MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
+        else if(type == 'c')
+            value = {id:MyTool.str2Num(str.charAt(1))+100 ,cd: MyTool.str2Num(str.charAt(2)),value: str.substr(3).split('_')};
         else if(type == '3')
             value = {id:MyTool.str2Num(str.charAt(1)) ,cd:  MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
         else

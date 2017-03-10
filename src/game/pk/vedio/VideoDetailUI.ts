@@ -25,6 +25,7 @@ class VideoDetailUI extends game.BaseUI {
     private buffAddList0: eui.List;
     private headGroup0: eui.Group;
     private headMC0: eui.Image;
+    private isAtk0: eui.Image;
     private nameText0: eui.Label;
     private g1: eui.Group;
     private valueText1: eui.Label;
@@ -32,6 +33,7 @@ class VideoDetailUI extends game.BaseUI {
     private buffAddList1: eui.List;
     private headGroup1: eui.Group;
     private headMC1: eui.Image;
+    private isAtk1: eui.Image;
     private nameText1: eui.Label;
     private g2: eui.Group;
     private valueText2: eui.Label;
@@ -39,6 +41,7 @@ class VideoDetailUI extends game.BaseUI {
     private buffAddList2: eui.List;
     private headGroup2: eui.Group;
     private headMC2: eui.Image;
+    private isAtk2: eui.Image;
     private nameText2: eui.Label;
     private tab: eui.TabBar;
     private leftBtn: eui.Group;
@@ -47,6 +50,7 @@ class VideoDetailUI extends game.BaseUI {
     private rightBtn: eui.Group;
     private ra: eui.Image;
     private rt: eui.Label;
+
 
 
 
@@ -247,6 +251,7 @@ class VideoDetailUI extends game.BaseUI {
 
 
             this['renewMonster' + j]({
+                isAtker:baseData.id == base.atker,
                 baseData:baseData,
                 data:data,
                 atk:atk,
@@ -344,6 +349,8 @@ class VideoDetailUI extends game.BaseUI {
 
         this.buffAddList0.dataProvider = new eui.ArrayCollection(dataIn.buff)
         this.buffDecList0.dataProvider = new eui.ArrayCollection(dataIn.debuff)
+
+        this.isAtk0.visible = dataIn.isAtker;
     }
     private renewMonster1(dataIn){
         this.scrollGroup.addChild(this.g1);
@@ -368,6 +375,8 @@ class VideoDetailUI extends game.BaseUI {
 
         this.buffAddList1.dataProvider = new eui.ArrayCollection(dataIn.buff)
         this.buffDecList1.dataProvider = new eui.ArrayCollection(dataIn.debuff)
+
+        this.isAtk1.visible = dataIn.isAtker;
     }
     private renewMonster2(dataIn){
         this.scrollGroup.addChild(this.g2);
@@ -392,6 +401,8 @@ class VideoDetailUI extends game.BaseUI {
 
         this.buffAddList2.dataProvider = new eui.ArrayCollection(dataIn.buff)
         this.buffDecList2.dataProvider = new eui.ArrayCollection(dataIn.debuff)
+
+        this.isAtk2.visible = dataIn.isAtker;
     }
 
     private setText(text,str){

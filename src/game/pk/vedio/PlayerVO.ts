@@ -111,6 +111,16 @@ class PlayerVO {
         }
     }
 
+    public onDie(){
+        for(var i=0;i<this.buffList.length;i++){
+            var oo = this.buffList[i];
+            if(oo.forever)
+                continue;
+            this.buffList.splice(i,1);
+            i--;
+        }
+    }
+
 
     public getSave()
     {

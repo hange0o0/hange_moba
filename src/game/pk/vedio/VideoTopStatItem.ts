@@ -13,6 +13,9 @@ class VideoTopStatItem extends game.BaseItem {
     }
 
     public dataChanged() {
-         this.mc.source = 'buff_'+this.data.id+'_png'
+        if(this.data.id > 100)
+            this.mc.source = 'buff_XX_png'
+        else
+            this.mc.source = 'buff_'+this.data.id+'_png'
     }
 }

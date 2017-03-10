@@ -132,12 +132,17 @@ class PKDressUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
         this.addPanelOpenEvent(GameEvent.client.force_change,this.renewList)
 
-        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewList);
+        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.onMonsterLevel);
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewList);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewList);
 
 
         GuideManager.getInstance().showGuide(this);
+    }
+
+    private onMonsterLevel(){
+        this.pkDressChooseUI.renew(this.chooseList);
+        this.renewList();
     }
 
     private mainGameChange(){

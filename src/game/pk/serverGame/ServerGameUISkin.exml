@@ -33,7 +33,7 @@
 				<e:Image id="headMC" source="icon_power_png" x="23" y="7" width="72" height="72"/>
 				<e:List id="enemyList" height="259" y="95" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="10" verticalGap="10"/>
+						<e:TileLayout requestedColumnCount="4" horizontalGap="10" verticalGap="10" horizontalAlign="center"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>

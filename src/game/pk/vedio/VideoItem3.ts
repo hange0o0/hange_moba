@@ -167,7 +167,7 @@ class VideoItem3 extends game.BaseItem {
                 group.addChild(this.getWordText('跳过了本次行动',0xAAAAAA))
                 break;
             case 50://物攻
-                this.decode_atk(data,0);
+                this.decode_atk(data,{type:0});
                 break;
             case 51://秒杀
                 this.decode_kill(data);
@@ -217,11 +217,11 @@ class VideoItem3 extends game.BaseItem {
     }
 
     //解释物攻
-    private decode_atk(data,type){
+    private decode_atk(data,svo){
         var group = this.addGroup();
         var effect = data.defender[0].list[0];
 
-        this.addAtk(data,group,type);
+        this.addAtk(data,group,svo);
         if(data.defender.length == 1 && data.defender[0].list.length<=2)
             this.addEffectList(data,group);
         else
@@ -282,7 +282,7 @@ class VideoItem3 extends game.BaseItem {
 
         if(svo.mv == 'atk')
         {
-            this.decode_atk(data,svo.type);
+            this.decode_atk(data,svo);
         }
         else
         {
@@ -444,13 +444,21 @@ class VideoItem3 extends game.BaseItem {
     //}
 
 
-    private addAtk(data,group,type,defIndex=0){
+    private addAtk(data,group,svo,defIndex=0){
+        var type = svo.type;
         var atker = data.atker;
         var defender = data.defender;
 
         this.getMonster(atker,group)
 
         group.addChild(this.getPKIcon(atker,type))
+
+        if(type && svo.name != '助攻')
+        {
+            var nameText = this.getWordText('【'+svo.name + '】',svo.type == 2?0x00DEFF:0x6fda13,26)
+            group.addChild(nameText)
+            this.addItemClick(nameText,VideoCode.getInstance().getPlayerByID(atker))
+        }
 
         this.getMonster(defender[defIndex].defender,group)
     }

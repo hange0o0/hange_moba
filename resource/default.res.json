@@ -2120,6 +2120,11 @@
 			"name":"button_go_2_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/button_go_2.png"
+		},
+		{
+			"name":"buff_XX_png",
+			"type":"image",
+			"url":"game_assets/buff/buff_XX.png"
 		}
 	]
 }

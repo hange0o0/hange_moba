@@ -49,24 +49,34 @@ class VideoStatItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        var oo = this.baseData[this.data.id];
-        this.icon.source = 'buff_'+this.data.id+'_png'
-        if(oo.stat == 'upStat')
-            this.valueText.textColor = 0xFFDC5B
-        else
-            this.valueText.textColor = 0xFE7430
-        if(this.data.value)
+        if(this.data.id > 100)
         {
-            if(this.data.value > 0)
-                this.valueText.text = oo.txt + ' +' + this.data.value;
-            else
-                this.valueText.text = oo.txt + ' ' + this.data.value;
-
-            if(this.data.id == 3 || this.data.id == 13)
-                this.valueText.text += '%'
+            this.icon.source = 'buff_XX_png'
+            this.valueText.textColor = 0xFFDC5B
+            this.valueText.text = MonsterVO.getObject(this.data.value[0]).getSkillByID(this.data.value[1],this.data.value[2]).name;
         }
         else
-            this.valueText.text = oo.txt + ''
+        {
+            var oo = this.baseData[this.data.id];
+            this.icon.source = 'buff_'+this.data.id+'_png'
+            if(oo.stat == 'upStat')
+                this.valueText.textColor = 0xFFDC5B
+            else
+                this.valueText.textColor = 0xFE7430
+            if(this.data.value)
+            {
+                if(this.data.value > 0)
+                    this.valueText.text = oo.txt + ' +' + this.data.value;
+                else
+                    this.valueText.text = oo.txt + ' ' + this.data.value;
+
+                if(this.data.id == 3 || this.data.id == 13)
+                    this.valueText.text += '%'
+            }
+            else
+                this.valueText.text = oo.txt + ''
+        }
+
 
         if(this.data.cd)
             this.cdText.text = '/' +(this.data.cd) // || this.data.num

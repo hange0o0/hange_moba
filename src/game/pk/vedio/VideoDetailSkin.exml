@@ -50,6 +50,7 @@
 					<e:Group id="headGroup0" x="0" y="10">
 						<e:Image source="card_bg_png" scale9Grid="72,75,87,71" y="0" height="306" x="0" scaleX="0.8" scaleY="0.8"/>
 						<e:Image id="headMC0" source="head_png" y="8" x="11" width="168" height="224"/>
+						<e:Image id="isAtk0" source="card_battle_png" y="8" x="8"/>
 						<e:Group x="10" y="184">
 							<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
 							<e:Label id="nameText0" y="13" size="24" text="血量压力" horizontalCenter="0" textColor="0xCCB48E"/>
@@ -82,6 +83,7 @@
 					<e:Group id="headGroup1" y="30" x="19" scaleY="0.8" scaleX="0.8">
 						<e:Image source="card_bg_png" y="0" scaleX="0.8" scale9Grid="72,75,87,71" scaleY="0.8" height="306" x="0"/>
 						<e:Image source="head_png" y="8" id="headMC1" width="168" height="224" x="11"/>
+						<e:Image source="card_battle_png" y="8" x="8" id="isAtk1"/>
 						<e:Group x="10" y="184">
 							<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
 							<e:Label y="13" size="24" text="血量压力" id="nameText1" horizontalCenter="0" textColor="0xCCB48E"/>
@@ -114,6 +116,7 @@
 					<e:Group id="headGroup2" y="30" scaleX="0.8" scaleY="0.8" x="19">
 						<e:Image source="card_bg_png" y="0" scaleX="0.8" scale9Grid="72,75,87,71" scaleY="0.8" height="306" x="0"/>
 						<e:Image source="head_png" y="8" id="headMC2" width="168" height="224" x="11"/>
+						<e:Image source="card_battle_png" y="8" id="isAtk2" x="8"/>
 						<e:Group x="10" y="184">
 							<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
 							<e:Label y="13" textColor="0xCCB48E" text="血量压力" horizontalCenter="0" size="24" id="nameText2"/>

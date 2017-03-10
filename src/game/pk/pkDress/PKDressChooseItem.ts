@@ -8,8 +8,10 @@ class PKDressChooseItem extends game.BaseItem {
     private monsterGroup: eui.Group;
     private headMC: eui.Image;
     private headBG: eui.Image;
+    private lvText: eui.Label;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
+
 
 
 
@@ -38,6 +40,7 @@ class PKDressChooseItem extends game.BaseItem {
     //stat 0,无发光，1选中，2加成
     public dataChanged(){
 
+        this.lvText.text = '';
         if(!this.data)
         {
             this.stateMC.visible = false;
@@ -53,6 +56,10 @@ class PKDressChooseItem extends game.BaseItem {
         this.levelText.text = PKManager.getInstance().getCostByNum(this.data.id,PKDressUI.getInstance().getMonsterNum(this.data.id)-1);
         this.levelGroup.visible = true
         this.stopDrag = false;
+
+        var lv = UM.getMonsterLevel(this.data.id);
+        if(!this.data.specialData.isEqual && lv)
+            this.lvText.text = 'LV.' + lv;
 
 
     }

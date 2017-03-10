@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="640"  states="team1,team2" >
 
-	<e:Rect id="bg" fillAlpha="1" width="640" x="0" height="50" y="0" fillColor="0x360000" fillColor.team1="0x000036" strokeColor="0x673D1F"/>
+	<e:Rect id="bg" fillAlpha="1" width="640" x="0" height="50" y="0" fillColor="0x360000" strokeColor="0x673D1F" fillColor.team1="0x000022" fillColor.team2="0x220000"/>
 	<e:Rect id="bg2" width="640" x="0" top="30" bottom="0" strokeColor="0x673D1F" fillColor="0x000000"/>
 	<e:Group id="con" minWidth="300" top="40" bottom="10" minHeight="27" left="20" right="20">
 		<e:layout>
