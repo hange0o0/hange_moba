@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -1483,6 +1483,11 @@
 					"isFolder":false,
 					"key":"buff_XX_png",
 					"name":"buff_XX_png"
+				},
+				{
+					"isFolder":false,
+					"key":"prop_score_jpg",
+					"name":"prop_score_jpg"
 				}
 			]
 		}

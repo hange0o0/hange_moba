@@ -91,14 +91,35 @@ class PKManager {
     }
 
     //取一个随机布局
-    public getRandomCard(list){
+    public getRandomCard(list,isEqual){
+        list = list.concat();
         var index = 0;
         var history = {};
         var total = 88;
+
+        if(!isEqual) //低于(平均等级-1)的只留一个(太差的才处理)
+        {
+            var level = 0;
+            var levelObj = {};
+            for(var i=0;i<list.length;i++)
+            {
+                var id = list[i];
+                levelObj[id] = UM.getMonsterLevel(id);
+                level += levelObj[id];
+            }
+            level = Math.floor(level/list.length) - 1;
+            for(var s in levelObj)
+            {
+                if(levelObj[s] >= level)
+                    list.push(parseInt(s));
+            }
+        }
+        else
+            list = list.concat(list);
         while(true)
         {
             var returnArr = [];
-            var newList = list.concat(list);
+            var newList = list.concat();
             for(var i=0;i<30;i++)
             {
                 if(newList.length == 0)

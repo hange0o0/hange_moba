@@ -42,10 +42,15 @@ class TecManager{
 
     //level是指目标等级
     public needCoin(level){
-        return Math.floor(Math.pow(level,2.2)*100);
+        //=FLOOR(POWER(A1,2.4)*(10*(A1/10+1)),1)+39*FLOOR(A1/5+1,1)
+        return Math.floor(Math.pow(level,2.4)*(10*(level/10 + 1))) +39*level;
     }
     public collectNeed(level){   //升级需要碎片数量
-        return Math.floor(Math.pow(1.25,level)*level) - Math.floor(Math.pow(1.25,level-1)*(level-1));
+        //=FLOOR(POWER(1.25,A30)*(A30*0.6) + A30,1)
+        var targetFun = function(level){
+             return Math.floor(Math.pow(1.25,level)*level*0.6 + level)
+        }
+        return targetFun(level) - targetFun(level - 1);
     }
 
     //得到指定怪物的升级时显示的碎片信息

@@ -37,7 +37,7 @@
 			"name":"preload2_png32"
 		},
 		{
-			"keys":"prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,book_bg1_jpg,book_bg2_jpg,item_bg_jpg,prop_card_jpg",
+			"keys":"prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,book_bg1_jpg,book_bg2_jpg,item_bg_jpg,prop_card_jpg,prop_score_jpg",
 			"name":"preload2_jpg"
 		},
 		{
@@ -2125,6 +2125,11 @@
 			"name":"buff_XX_png",
 			"type":"image",
 			"url":"game_assets/buff/buff_XX.png"
+		},
+		{
+			"name":"prop_score_jpg",
+			"type":"image",
+			"url":"game_assets/preload2_jpg/prop_score.jpg"
 		}
 	]
 }

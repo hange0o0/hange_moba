@@ -82,7 +82,7 @@ class AwardItem extends game.BaseItem {
             }
             case 'g_exp':
             {
-                this.mc.source = 'prop_card_jpg'
+                this.mc.source = 'prop_score_jpg'
                 this.infoText.text = '积分';
                 break;
             }

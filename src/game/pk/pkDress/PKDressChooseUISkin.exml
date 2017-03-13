@@ -13,7 +13,11 @@
 		<ns1:PKDressChooseItem id="h4" y="130" x="72" skinName="PKDressChooseItemSkin"/>
 		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" y="130" x="259"/>
 
-		<ns1:PKDressChooseItem id="h6" y="130" x="445" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h6" y="130" x="445" skinName="PKDressChooseItemSkin"/>
+
+
+
+
 	</e:Group>
 	<e:Group id="spliceGroup" x="3" touchEnabled="false" visible.normal="false" y="8" width="612" height="253">
 		<e:Image id="a1" source="arrow8_png" verticalCenter="-96.5" horizontalCenter="-262"/>
@@ -30,6 +34,10 @@
 		<e:Group id="randomBtn" scaleX="0.5" scaleY="0.5" right="20" verticalCenter="0">
 			<e:Image source="main_border_png" x="0" y="0"/>
 			<e:Image source="random_btn_png" horizontalCenter="0" verticalCenter="0"/>
+		</e:Group>
+		<e:Group id="resetBtn" right="95" verticalCenter="0" x="10" y="10">
+			<e:Image source="main_border_png" y="0" x="0" scaleX="0.5" scaleY="0.5"/>
+			<e:Image horizontalCenter="0" verticalCenter="0" source="fu2_png"/>
 		</e:Group>
 	</e:Group>
 	<e:Group x="0" visible.normal="false" width="100%" visible.drag="false" y="271" height="66">

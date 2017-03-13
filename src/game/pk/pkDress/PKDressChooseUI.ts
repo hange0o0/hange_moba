@@ -24,6 +24,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private a8: eui.Image;
     private pkBtn: eui.Button;
     private randomBtn: eui.Group;
+    private resetBtn: eui.Group;
     private desText: eui.Label;
     private deleteBtn: eui.Button;
     private removeGroup: eui.Group;
@@ -136,6 +137,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.addBtnEvent(this.pkBtn, this.onPKStart);
         this.addBtnEvent(this.deleteBtn, this.onDelete);
         this.addBtnEvent(this.randomBtn, this.onRandom);
+        this.addBtnEvent(this.resetBtn, this.onReset);
 
         //this.addBtnEvent(this.moreBtn, this.onMore);
 
@@ -148,6 +150,9 @@ class PKDressChooseUI extends game.BaseContainer {
 
     public onRandom(){
         this.dispatchEventWith('random');
+    }
+    public onReset(){
+        this.dispatchEventWith('reset');
     }
 
     public setDesText(str){

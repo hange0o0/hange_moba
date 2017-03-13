@@ -73,6 +73,7 @@ class PKDressUI extends game.BaseUI {
         this.pkDressChooseUI.addEventListener('change', this.onChooseChange, this)
         this.pkDressChooseUI.addEventListener('chooseItem', this.onChooseItem, this)
         this.pkDressChooseUI.addEventListener('random', this.onRandom, this)
+        this.pkDressChooseUI.addEventListener('reset', this.onReset, this)
         this.pkDressChooseUI.specialData = this.specialData;
 
         this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
@@ -85,7 +86,14 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onRandom(){
-        this.chooseList = PKManager.getInstance().getRandomCard(this.monsterList);
+        this.changeChooseList(PKManager.getInstance().getRandomCard(this.monsterList,this.isEqual));
+    }
+    private onReset(){
+         this.changeChooseList([]);
+    }
+
+    private changeChooseList(list){
+        this.chooseList = list
         this.pkDressChooseUI.renew(this.chooseList);
         this.saveHistory();
         this.renew();

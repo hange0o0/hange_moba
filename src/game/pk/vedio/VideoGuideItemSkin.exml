@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoGuideItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="130" width="100">
 	<e:Group x="0" y="0">
-		<e:Image source="head_png" y="0" id="headMC" width="96" height="96" x="2"/>
+		<e:Group id="headGroup" x="0" y="0">
+			<e:Image source="head_png" y="0" id="headMC" width="96" height="96" x="2"/>
+			<e:Image source="border_head_png" x="0" y="0"/>
+		</e:Group>
 		<e:Rect id="bg" height="30" width="100" x="0" fillAlpha="0.5" y="71" fillColor="0xFF0000"/>
-		<e:Image source="border_head_png" x="0" y="0"/>
 		<e:Label id="roundText" text="1" x="11" y="75" size="18" stroke="2"/>
 		<e:Image id="icon" x="67" y="70" scaleY="0.6" scaleX="0.6" source="icon_empty_png"/>
 		<e:Rect id="currentMC" height="100" width="100" x="0" y="0" fillAlpha="0" strokeColor="0xFFFF00" strokeWeight="3" ellipseHeight="10" ellipseWidth="10"/>

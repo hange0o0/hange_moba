@@ -4,6 +4,7 @@ class VideoGuideItem extends game.BaseItem {
         this.skinName = "VideoGuideItemSkin";
     }
 
+    private headGroup: eui.Group;
     private headMC: eui.Image;
     private bg: eui.Rect;
     private roundText: eui.Label;
@@ -15,6 +16,7 @@ class VideoGuideItem extends game.BaseItem {
     private tb: eui.Rect;
     private tf: eui.Rect;
     private skillIcon: eui.Image;
+
 
 
 
@@ -44,8 +46,6 @@ class VideoGuideItem extends game.BaseItem {
             return;
         }
         var base = chooseData[0];
-        if(base.index == 20)
-            console.log(999)
         this.visible = true;
 
         var data = item.result.player1;
@@ -120,7 +120,10 @@ class VideoGuideItem extends game.BaseItem {
         //这里要拿出技能者的
         this.skillIcon.visible = (atker.isPKing && base.skillID == 0)
 
-
+        // if(base.skillID == -1)
+        //    MyTool.changeGray(this.headGroup);
+        //else
+        //     this.headGroup.filters = null;
 
 
 

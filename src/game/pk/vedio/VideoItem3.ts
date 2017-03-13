@@ -302,7 +302,10 @@ class VideoItem3 extends game.BaseItem {
             switch(svo.sp[0])
             {
                 case 'TYPE':
-                    group.addChild(this.getWordText('触发'))
+                    if(svo.type == 3)
+                        group.addChild(this.getWordText('使用'))
+                    else
+                        group.addChild(this.getWordText('触发'))
                     break;
                 case 'CD':
                     if(parseInt(svo.sp[1]))
