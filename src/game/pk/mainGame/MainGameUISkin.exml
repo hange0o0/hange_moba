@@ -36,37 +36,39 @@
 				</e:Group>
 
 			</e:Group>
-			<e:Group id="myGroup0" y="461" x="70" height="510">
-				<e:List id="myList0" y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
-					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
-					</e:layout>
-					<e:ArrayCollection>
-						<e:Array>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-							<e:Object label="数据3"/>
-							<e:Object label="数据1"/>
-							<e:Object label="数据2"/>
-						</e:Array>
-					</e:ArrayCollection>
-				</e:List>
-				<e:Group horizontalCenter="0" y="10" x="20">
-					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-					<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
-				</e:Group>
-				<e:Group width="640" horizontalCenter="0" bottom="0">
-					<e:layout>
-						<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
-					</e:layout>
-					<e:Button id="chooseBtn0" label="开始挑战" y="0" skinName="Btn_r3Skin" x="365"/>
+			<e:Group x="0" y="350.00000000000006" height="100%">
+				<e:Group id="myGroup0" x="0" height="510" verticalCenter="0">
+					<e:List id="myList0" y="60" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
+						<e:layout>
+							<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
+						</e:layout>
+						<e:ArrayCollection>
+							<e:Array>
+								<e:Object label="数据1"/>
+								<e:Object label="数据2"/>
+								<e:Object label="数据3"/>
+								<e:Object label="数据1"/>
+								<e:Object label="数据2"/>
+								<e:Object label="数据3"/>
+								<e:Object label="数据1"/>
+								<e:Object label="数据2"/>
+							</e:Array>
+						</e:ArrayCollection>
+					</e:List>
+					<e:Group horizontalCenter="0" y="10" x="20">
+						<e:Image source="main_mc_png" y="509" x="10"/>
+						<e:Label y="14" textColor="0xD9B67B" text="PK卡组" textAlign="center" width="140" horizontalCenter="0" size="26"/>
+						<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
+						<e:layout>
+							<e:HorizontalLayout verticalAlign="bottom"/>
+						</e:layout>
+					</e:Group>
+					<e:Group width="640" horizontalCenter="0" bottom="0">
+						<e:layout>
+							<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
+						</e:layout>
+						<e:Button id="chooseBtn0" label="开始挑战" y="0" skinName="Btn_r3Skin" x="365"/>
+					</e:Group>
 				</e:Group>
 			</e:Group>
 

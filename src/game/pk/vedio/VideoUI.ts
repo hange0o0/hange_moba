@@ -46,6 +46,7 @@ class VideoUI extends game.BaseUI {
     private f0: eui.Rect;
     private rhpText0: eui.Label;
     private rheadMC0: VideoMonsterItem;
+    private resultText: eui.Label;
     private myItemGroup: eui.Group;
     private myItem0: VideoItem;
     private myItem1: VideoItem;
@@ -55,6 +56,7 @@ class VideoUI extends game.BaseUI {
     private enemyItem1: VideoItem;
     private enemyItem2: VideoItem;
     private tipsGroup: eui.Group;
+
 
 
 
@@ -120,6 +122,7 @@ class VideoUI extends game.BaseUI {
         this.guideBtn.addEventListener('end_drag',this.onDragEnd,this);
 
         this.tipsGroup.touchChildren = this.tipsGroup.touchEnabled = false;
+        this.setHtml(this.resultText,this.createHtml('伤害',0xFF0000) + ' & ' + this.createHtml('治疗',0x00FF00))
     }
 
     public showMVDebug(v?){}

@@ -5,6 +5,8 @@
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group y="10" x="10" width="640" height="50" id="enemyGroup0">
+				<e:Rect height="100%" width="100%" x="0" y="0" fillColor="0x150A03" fillAlpha="1"/>
+				<e:Image source="line_png" x="-5" width="650" bottom="-12"/>
 				<e:Label id="pkTypeText" textColor="0xCCB48E" text="PK类型：竞技场规则" x="15" size="26" verticalCenter="0"/>
 				<e:Label id="timeText" textColor="0xCCB48E" text="PK类型：竞技场规则" size="26" verticalCenter="0" right="80"/>
 				<e:Group right="15" top="0" id="helpBtn" x="10" y="10">

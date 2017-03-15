@@ -652,8 +652,8 @@ class DebugManager {
             for(var i=0;i<vo.mvType1.length;i++)
             {
                 var oo = vo.mvType1[i];
-                if(oo.type > 3)
-                    throw new Error('mvType1_' + vo.id)
+                //if(oo.type > 3)
+                //    throw new Error('mvType1_' + vo.id)
                 if(noArr.indexOf(oo.id) != -1)
                     throw new Error('mvType1_' + vo.id)
                 if(oo.id2 && noArr.indexOf(oo.id2) != -1)
@@ -668,8 +668,8 @@ class DebugManager {
             for(var i=0;i<vo.mvType2.length;i++)
             {
                 var oo = vo.mvType2[i];
-                if(oo.type > 3)
-                    throw new Error('mvType2' + vo.id)
+                //if(oo.type > 3)
+                //    throw new Error('mvType2' + vo.id)
                 if(noArr.indexOf(oo.id) != -1)
                     throw new Error('mvType1_' + vo.id)
                 if(oo.id2 && noArr.indexOf(oo.id2) != -1)

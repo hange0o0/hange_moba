@@ -8,6 +8,7 @@
 	<e:Group id="teamGroup" x="0" y="0">
 		<e:Image id="headMC2" source="" y="4" width="110" height="110" x="5"/>
 		<e:Image source="head_border1_png" y="0" x="0" id="headBG" width="120" height="120"/>
+		<e:Label y="92" textColor="0xCCB48E" stroke="2" text="LV.60" textAlign="center" right="0" size="22" id="lvText" x="10"/>
 		<e:Group x="-5.984848484848485" y="-5">
 			<e:Image source="icon_empty_png" x="0" y="0"/>
 			<e:Label id="indexText" text="1" size="18" horizontalCenter="0" verticalCenter="0" textColor="0xDD9742"/>

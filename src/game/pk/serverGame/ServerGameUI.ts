@@ -102,14 +102,26 @@ class ServerGameUI extends game.BaseUI {
         };
         var isTeam = false;
         var arr = data.enemy.base.list;
-        if(data.enemy.pkdata)
+        var pkData = data.enemy.pkdata;
+        if(pkData)
         {
-            arr = data.enemy.pkdata.list;
+
+            arr = pkData.list;
             isTeam = true;
         }
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i];
+            if(isTeam)
+            {
+                var fight = pkData.fight;
+                if(pkData.tec && pkData.tec[id])
+                    fight += pkData.tec[id];
+                var lv = 0;
+                if(pkData.mlevel && pkData.mlevel[id])
+                    lv = pkData.mlevel[id];
+                specialData = PKManager.getInstance().createMonsterFight(id,fight,lv);
+            }
             enemyList.push({
                 vo: MonsterVO.getObject(id),
                 isTeam:isTeam,
@@ -148,7 +160,10 @@ class ServerGameUI extends game.BaseUI {
 
         var uf = data.enemy.userinfo;
         this.nameText.text = Base64.decode(uf.nick);
-        this.levelText.text = '(LV.'+uf.level+')';
+        if(uf.level == '??')
+            this.levelText.text = '';
+        else
+            this.levelText.text = '(LV.'+uf.level+')';
         if(uf.win == '???')
             this.winText.text = '??';
         else
@@ -213,6 +228,6 @@ class ServerGameUI extends game.BaseUI {
     }
 
     private onChoose(){
-        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose[this.chooseInex],enemy:this.enemyArray,index:this.chooseInex})
+        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose,enemy:this.enemyArray,index:this.chooseInex})
     }
 }

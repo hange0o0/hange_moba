@@ -143,7 +143,7 @@ class DayGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'day_game',data:DayGameManager.getInstance().data.choose,enemy: this.enemyArray,isEqual:true})
+        PKDressUI.getInstance().show({pktype:'day_game',data:[DayGameManager.getInstance().data.choose],enemy: this.enemyArray,isEqual:true})
     }
 
 }

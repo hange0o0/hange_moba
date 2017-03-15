@@ -185,7 +185,7 @@ class MainGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.main_game.choose[0],enemy: this.enemyArray})
+        PKDressUI.getInstance().show({pktype:'main_game',data:UM.main_game.choose,enemy: this.enemyArray})
     }
 
 }

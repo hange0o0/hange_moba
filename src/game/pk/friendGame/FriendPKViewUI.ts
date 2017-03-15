@@ -70,13 +70,7 @@ class FriendPKViewUI extends game.BaseUI {
         super.show();
     }
 
-    public onShow(){
-        if(this.data.content.isequal)
-            this.pkTypeText.text = '使用规则：修正场规则';
-        else
-            this.pkTypeText.text = '使用规则：竞技场规则';
-        this.onTimer();
-
+    private renewCards(){
         var data = this.data.content.from_list;
         var specialData:any = this.specialData = {};
         if(this.data.content.isequal)
@@ -125,8 +119,23 @@ class FriendPKViewUI extends game.BaseUI {
             });
         }
         this.myList1.dataProvider = new eui.ArrayCollection(chooseList2);
+    }
 
-         //我选中的卡组
+    private renew(){
+        this.renewCards();
+        if(this.data.content.isequal)
+            this.pkTypeText.text = '使用规则：修正场规则';
+        else
+            this.pkTypeText.text = '使用规则：竞技场规则';
+        this.onTimer();
+
+        var specialData:any = {};
+        if(this.data.content.isequal)
+        {
+            specialData.isEqual = true;
+        }
+
+        //我选中的卡组
         var myChoose = this.data.content.ask_choose;
         var index = myChoose.index || 0;
         //var ringIndex = 0;
@@ -151,6 +160,16 @@ class FriendPKViewUI extends game.BaseUI {
         for(var i=0;i<myChoose.list.length;i++)
         {
             var id = myChoose.list[i]
+            if(!this.data.content.isequal)
+            {
+                var fight = myChoose.fight;
+                if(myChoose.tec && myChoose.tec[id])
+                    fight += myChoose.tec[id];
+                var lv = 0;
+                if(myChoose.mlevel && myChoose.mlevel[id])
+                    lv = myChoose.mlevel[id];
+                specialData = PKManager.getInstance().createMonsterFight(id,fight,lv);
+            }
             chooseList3.push({
                 vo: MonsterVO.getObject(id),
                 isTeam:true,
@@ -177,8 +196,13 @@ class FriendPKViewUI extends game.BaseUI {
             else
                 (<eui.TileLayout>this.myList2.layout).requestedColumnCount = 3
         }
-        //this.chooseMC.x = 200 + ringIndex * 300;
+    }
 
+    public onShow(){
+
+        //this.chooseMC.x = 200 + ringIndex * 300;
+        this.renew();
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
+        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewCards);
     }
 }

@@ -177,7 +177,7 @@ class FriendPKAskUI extends game.BaseUI {
         if(this.isAnswer)
         {
             FPKM.logid = this.data.id;
-            PKDressUI.getInstance().show({pktype:'friend_answer',data:this.data.content.from_list[index],isEqual:isEqual,index:index})
+            PKDressUI.getInstance().show({pktype:'friend_answer',data:this.data.content.from_list,isEqual:isEqual,index:index})
         }
         else
         {
@@ -186,7 +186,7 @@ class FriendPKAskUI extends game.BaseUI {
             FPKM.otherhead = this.data.otherhead;
             FPKM.isequal = isEqual;
             FPKM.talk = this.inputText.text;
-            PKDressUI.getInstance().show({pktype:'friend_ask',data:this.data.content.from_list[index],isEqual:isEqual,index:index})
+            PKDressUI.getInstance().show({pktype:'friend_ask',data:this.data.content.from_list,isEqual:isEqual,index:index})
         }
 
     }

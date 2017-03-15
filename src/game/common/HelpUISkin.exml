@@ -3,7 +3,7 @@
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="580"/>
 	<e:Label id="titleText" y="29" textColor="0xD0C7AD" horizontalCenter="0" text="请选择服务器" x="10"/>
 	<e:Button bottom="40" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
-	<e:Scroller id="scroller" width="480" top="90" bottom="110" horizontalCenter="0">
+	<e:Scroller id="scroller" width="480" top="90" bottom="120" horizontalCenter="0" bounces="false">
 		<e:Group>
 			<e:List id="list" x="0" y="0" itemRendererSkinName="HelpItemSkin">
 				<e:ArrayCollection>

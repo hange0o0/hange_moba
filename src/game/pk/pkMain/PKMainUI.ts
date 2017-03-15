@@ -538,7 +538,7 @@ class PKMainUI extends game.BaseUI {
             else
                 player = (this.player2)
             this.playWinRemove(player);
-            this.stepOne();
+            this.timer = egret.setTimeout(this.stepOne,this,200);
         }
     }
 
@@ -564,7 +564,7 @@ class PKMainUI extends game.BaseUI {
 
                 if(this.random() < 0.6) //可能会少播2回合
                     this.pkStep += 2;
-                else if(this.random() < 0.2) //有一定的几率跳过下一回合
+                else if(this.random() < 0.3) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 3:
@@ -573,7 +573,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.player2)
 
-                if(this.random() < 0.2) //有一定的几率跳过下一回合
+                if(this.random() < 0.3) //有一定的几率跳过下一回合
                     this.pkStep += 1;
 
                 break;
@@ -583,7 +583,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.player1)
 
-                if(this.random() < 0.3) //有一定的几率跳过下一回合
+                if(this.random() < 0.4) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 5:
@@ -592,7 +592,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.itemEnemy[this.currentStep.p2 + 1])
 
-                if(this.random() < 0.3) //有一定的几率跳过下一回合
+                if(this.random() < 0.4) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 6:
@@ -601,7 +601,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.itemSelf[this.currentStep.p1 + 1])
 
-                if(this.random() < 0.3) //有一定的几率跳过下一回合
+                if(this.random() < 0.4) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 7:
@@ -610,7 +610,7 @@ class PKMainUI extends game.BaseUI {
                 else
                     player = (this.itemEnemy[this.currentStep.p2 + 2])
 
-                if(this.random() < 0.3) //有一定的几率跳过下一回合
+                if(this.random() < 0.4) //有一定的几率跳过下一回合
                     this.pkStep += 1;
                break;
             case 8:
@@ -718,7 +718,12 @@ class PKMainUI extends game.BaseUI {
         }
 
         var skillData = arr[Math.floor(arr.length * this.random())];
+        while((shake && skillData.type == 3) || (!shake && skillData.isLast))
+        {
+            skillData = arr[Math.floor(arr.length * this.random())];
+        }
 
+        var type = skillData.type;
         var newPos:any;
         if(skillData.type ==0) //移过去近攻
         {
@@ -831,7 +836,7 @@ class PKMainUI extends game.BaseUI {
 
     //A跳向B附近，随机的
     private randomJump(atker,fun,enemyDis = 150){
-        if(this.random() < 0.8)
+        if(this.random() < 0.9)
             return false;
         var startPoint = atker;
         var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),atker.enemy,enemyDis)
@@ -932,6 +937,7 @@ class PKMainUI extends game.BaseUI {
 
     }
 
+    //近攻，动画放在对方面上
     private atkType4(item,mv,shake){
         var VM = PKMainMV.getInstance();
         var pos = {x:item.x,y:item.y};

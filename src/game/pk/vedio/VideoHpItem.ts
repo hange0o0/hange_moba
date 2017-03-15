@@ -24,8 +24,8 @@ class VideoHpItem extends game.BaseItem {
         var current = this.data.current;
         if(!this.data.isNegative)
         {
-            if(this.data.value < 0)
-                console.log(this.data)
+            //if(this.data.value < 0)
+            //    console.log(this.data)
             this.hpText.text = '+' + this.data.value
             this.hpText.textColor = 0x00ff00;
             this.backBar.source = 'bar1_png'

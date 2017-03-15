@@ -101,6 +101,9 @@ class VideoItem3 extends game.BaseItem {
         var data = this.data;
         this.setChoose(null);
         this.showCleaning = false;
+        this.closeBtn.visible = this.stopClick && !this.closeFlag
+        this.openBtn.visible = this.stopClick  && this.closeFlag
+        this.bottomLine.visible = this.stopClick
         if(data.type == 'over')
         {
             this.currentState = 'team1'
@@ -148,9 +151,7 @@ class VideoItem3 extends game.BaseItem {
             }
         }
 
-        this.closeBtn.visible = this.stopClick && !this.closeFlag
-        this.openBtn.visible = this.stopClick  && this.closeFlag
-        this.bottomLine.visible = this.stopClick
+
         //console.log(this.currentState)
     }
 

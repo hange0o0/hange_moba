@@ -60,8 +60,8 @@ class LoadingUI extends egret.Sprite {
 
         this.infoText = new eui.Label();
         this.addChild(this.infoText);
-        this.infoText.x = 40;
-        this.infoText.width = 560;
+        this.infoText.x = 70;
+        this.infoText.width = 500;
         this.infoText.textColor = 0xB59E7D;
         this.infoText.size = 22;
         this.infoText.lineSpacing = 6;

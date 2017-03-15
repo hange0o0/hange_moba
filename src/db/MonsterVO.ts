@@ -76,7 +76,7 @@ class MonsterVO {
     public sfn4
     public sfn5
 
-    //0，近程，1远程对方，2远程对方子弹,3远程已方
+    //0，近程，1远程对方，2远程对方子弹,3远程已方，4近攻
     public mvType1:any = [{type:0,id:6},{type:1,id:16},{type:2,id:10,id2:28}]
     public mvType2:any = [{type:3,id:136}]
     //public mvType1 = {type:0,mv:[6,16,136]}
@@ -140,6 +140,7 @@ class MonsterVO {
     }
 
     private addMV(mv,dataArr){
+        //mv = '0|6'
         var arr = mv.split(',');
         for(var i=0;i<arr.length;i++)
         {
@@ -155,6 +156,12 @@ class MonsterVO {
                 {
                     throw new Error('monster' + this.id)
                 }
+            }
+
+            if(oo.type > 10)
+            {
+                oo['isLast'] = true;
+                oo.type -= 10;
             }
         }
     }

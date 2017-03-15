@@ -81,11 +81,11 @@ class VideoManager {
         //mArr.push(RingVO.getObject(PKM.team1Ring).getSkillVO().mv)
 
         //mObj['skill22_png'] = true
-        mObj['skill28_png'] = true
-        mObj['skill34_png'] = true
+        //mObj['skill28_png'] = true
+        //mObj['skill34_png'] = true
         //mObj['skill22_json'] = true
-        mObj['skill28_json'] = true
-        mObj['skill34_json'] = true
+        //mObj['skill28_json'] = true
+        //mObj['skill34_json'] = true
         for(var i=0;i<mArr.length;i++)
         {
             mObj[mArr[i]] = true;

@@ -561,58 +561,13 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill1_png",
-					"name":"skill1_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill2_png",
-					"name":"skill2_png"
-				},
-				{
-					"isFolder":false,
 					"key":"arrow8_png",
 					"name":"arrow8_png"
 				},
 				{
 					"isFolder":false,
-					"key":"bullet1_png",
-					"name":"bullet1_png"
-				},
-				{
-					"isFolder":false,
-					"key":"bullet2_png",
-					"name":"bullet2_png"
-				},
-				{
-					"isFolder":false,
-					"key":"bullet3_png",
-					"name":"bullet3_png"
-				},
-				{
-					"isFolder":false,
-					"key":"bullet4_png",
-					"name":"bullet4_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill10_png",
 					"name":"skill10_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill11_png",
-					"name":"skill11_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill12_png",
-					"name":"skill12_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill13_png",
-					"name":"skill13_png"
 				},
 				{
 					"isFolder":false,
@@ -631,26 +586,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill17_png",
-					"name":"skill17_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill18_png",
-					"name":"skill18_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill19_png",
-					"name":"skill19_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill20_png",
-					"name":"skill20_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill21_png",
 					"name":"skill21_png"
 				},
@@ -658,26 +593,6 @@
 					"isFolder":false,
 					"key":"skill22_png",
 					"name":"skill22_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill23_png",
-					"name":"skill23_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill24_png",
-					"name":"skill24_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill25_png",
-					"name":"skill25_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill26_png",
-					"name":"skill26_png"
 				},
 				{
 					"isFolder":false,
@@ -691,73 +606,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill29_png",
-					"name":"skill29_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill30_png",
 					"name":"skill30_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill31_png",
-					"name":"skill31_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill32_png",
-					"name":"skill32_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill33_png",
-					"name":"skill33_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill34_png",
-					"name":"skill34_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill35_png",
-					"name":"skill35_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill36_png",
-					"name":"skill36_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill37_png",
-					"name":"skill37_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill38_png",
-					"name":"skill38_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill39_png",
-					"name":"skill39_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill3_png",
-					"name":"skill3_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill4_png",
-					"name":"skill4_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill5_png",
-					"name":"skill5_png"
 				},
 				{
 					"isFolder":false,
@@ -766,53 +616,13 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill7_png",
-					"name":"skill7_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill8_png",
-					"name":"skill8_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill9_png",
-					"name":"skill9_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill101_png",
-					"name":"skill101_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill102_png",
 					"name":"skill102_png"
 				},
 				{
 					"isFolder":false,
-					"key":"skill103_png",
-					"name":"skill103_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill104_png",
-					"name":"skill104_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill105_png",
 					"name":"skill105_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill106_png",
-					"name":"skill106_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill107_png",
-					"name":"skill107_png"
 				},
 				{
 					"isFolder":false,
@@ -823,11 +633,6 @@
 					"isFolder":false,
 					"key":"skill109_png",
 					"name":"skill109_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill110_png",
-					"name":"skill110_png"
 				},
 				{
 					"isFolder":false,
@@ -846,28 +651,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill114_png",
-					"name":"skill114_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill115_png",
-					"name":"skill115_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill116_png",
 					"name":"skill116_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill117_png",
-					"name":"skill117_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill118_png",
-					"name":"skill118_png"
 				},
 				{
 					"isFolder":false,
@@ -881,68 +666,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill121_png",
-					"name":"skill121_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill122_png",
-					"name":"skill122_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill123_png",
-					"name":"skill123_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill124_png",
-					"name":"skill124_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill125_png",
-					"name":"skill125_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill126_png",
 					"name":"skill126_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill127_png",
-					"name":"skill127_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill128_png",
-					"name":"skill128_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill129_png",
-					"name":"skill129_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill130_png",
-					"name":"skill130_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill131_png",
-					"name":"skill131_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill132_png",
-					"name":"skill132_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill133_png",
-					"name":"skill133_png"
 				},
 				{
 					"isFolder":false,
@@ -951,108 +676,13 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill135_png",
-					"name":"skill135_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill136_png",
 					"name":"skill136_png"
 				},
 				{
 					"isFolder":false,
-					"key":"skill137_png",
-					"name":"skill137_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill138_png",
-					"name":"skill138_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill139_png",
-					"name":"skill139_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill140_png",
-					"name":"skill140_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill141_png",
-					"name":"skill141_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill142_png",
-					"name":"skill142_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill143_png",
-					"name":"skill143_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill144_png",
-					"name":"skill144_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill145_png",
-					"name":"skill145_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill146_png",
-					"name":"skill146_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill147_png",
-					"name":"skill147_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill148_png",
-					"name":"skill148_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill149_png",
 					"name":"skill149_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill151_png",
-					"name":"skill151_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill152_png",
-					"name":"skill152_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill153_png",
-					"name":"skill153_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill154_png",
-					"name":"skill154_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill155_png",
-					"name":"skill155_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill156_png",
-					"name":"skill156_png"
 				},
 				{
 					"isFolder":false,
@@ -1066,73 +696,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill160_png",
-					"name":"skill160_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill161_png",
 					"name":"skill161_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill162_png",
-					"name":"skill162_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill163_png",
-					"name":"skill163_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill164_png",
-					"name":"skill164_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill165_png",
-					"name":"skill165_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill166_png",
-					"name":"skill166_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill167_png",
-					"name":"skill167_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill168_png",
-					"name":"skill168_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill169_png",
-					"name":"skill169_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill170_png",
-					"name":"skill170_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill171_png",
-					"name":"skill171_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill172_png",
-					"name":"skill172_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill173_png",
-					"name":"skill173_png"
 				},
 				{
 					"isFolder":false,

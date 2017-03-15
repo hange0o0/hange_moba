@@ -165,7 +165,7 @@ class ServerGameEqualUI extends game.BaseUI {
         if(!data.choose || !data.choose[0])
             return;
 
-        var specialData = {};
+        var specialData = {isEqual:true};
         //更新卡组1
         var chooseList1 = [];
         PKManager.getInstance().sortMonster(data.choose[this.chooseInex].list);
@@ -203,7 +203,7 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
     private onChoose(){
-        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose[this.chooseInex],enemy:this.enemyArray,index:this.chooseInex,isEqual:true})
+        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose,enemy:this.enemyArray,index:this.chooseInex,isEqual:true})
     }
 
 }

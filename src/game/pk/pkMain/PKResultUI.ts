@@ -87,7 +87,7 @@ class PKResultUI extends game.BaseUI {
         this.bg.visible = true;
         this.bg.alpha = 0;
         var tw:egret.Tween = egret.Tween.get(this.bg);
-        tw.to({alpha:0.8},300);
+        tw.to({alpha:0.5},300);
     }
 
     public hide(){
@@ -167,7 +167,7 @@ class PKResultUI extends game.BaseUI {
 
         this.rateText.text = Math.max(1,Math.min(100,Math.round(PKM.winnerRate*100))) + '';
         if(PKM.isWin)
-            this.rateText.textColor = 0x00FF00
+            this.rateText.textColor = 0xFFFF00
         else
             this.rateText.textColor = 0xFF0000
 

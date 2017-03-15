@@ -9,8 +9,10 @@ class EnemyHeadItem extends game.BaseItem {
     private teamGroup: eui.Group;
     private headMC2: eui.Image;
     private headBG: eui.Image;
+    private lvText: eui.Label;
     private indexText: eui.Label;
     private closeBtn: eui.Group;
+
 
 
 
@@ -62,6 +64,7 @@ class EnemyHeadItem extends game.BaseItem {
             this.addChild(this.teamGroup);
             this.headMC2.source = this.data.vo.thumbRound
             this.indexText.text = (this.data.index + 1) + ''
+            this.lvText.text = '';
             if(this.data.isMain)
             {
                 this.closeBtn.visible = !this.data.noKill;
@@ -69,7 +72,10 @@ class EnemyHeadItem extends game.BaseItem {
             else
             {
                 this.closeBtn.visible = false;
+                if(this.data.specialData.lv)
+                    this.lvText.text = 'LV.' + this.data.specialData.lv;
             }
+
         }
         else
         {

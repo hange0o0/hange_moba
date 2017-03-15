@@ -166,6 +166,7 @@ class MonsterInfoBase extends game.BaseContainer {
                          fightData[s] += specialData.equalAdd;
                      }
                 }
+                nameStr += '  <font color="#D9A744" size="22">(修正)</font>';
                 //this.levelGroup.visible = false;
             }
 

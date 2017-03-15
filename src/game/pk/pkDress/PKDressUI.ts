@@ -11,7 +11,10 @@ class PKDressUI extends game.BaseUI {
     private topUI: TopUI;
     private coinText: eui.Label;
     private forceText: eui.Label;
+    private upBtnGroup: eui.Group;
+    private changeBtn: eui.Button;
     private viewBtn: eui.Button;
+    private helpBtn: eui.Group;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private pkDressChooseUI: PKDressChooseUI;
@@ -19,8 +22,9 @@ class PKDressUI extends game.BaseUI {
     private topGroup: eui.Group;
     private simpleList: eui.List;
     private topBtn: eui.Button;
+    private enemyGroup: eui.Group;
     private enemyList: eui.List;
-    private helpBtn: eui.Group;
+
 
 
 
@@ -40,8 +44,10 @@ class PKDressUI extends game.BaseUI {
     public orginData; //卡组的原始数据
     public pkType; //PK类型
     public key;//记录上一次选择的TAB
+    public index = 0;
 
     public chooseMonster;
+    public historyKey;
 
 
     public constructor() {
@@ -54,13 +60,14 @@ class PKDressUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('调整位置')
+        this.topUI.setTitle('调整位置');
         this.topUI.addEventListener('hide', this.hide, this);
 
 
         this.addBtnEvent(this.viewBtn, this.onView);
         //this.addBtnEvent(this.forceText, this.onForceText);
         this.addBtnEvent(this.topBtn, this.scrollToTop);
+        this.addBtnEvent(this.changeBtn, this.changeCardIndex);
 
 
         this.list.itemRenderer = PKDressChooseListItem;
@@ -118,24 +125,28 @@ class PKDressUI extends game.BaseUI {
     private onDragAfter(){
         this.scroller.scrollPolicyV = eui.ScrollPolicy.ON;
     }
+    private changeCardIndex(){
+        this.index ++;
+        if(this.index >= this.dataIn.data.length)
+            this.index = 0;
+        this.initUserData();
+    }
 
 
     public show(data?){
         this.dataIn = data
         this.pkType = data.pktype;
-        this.orginData = data.data;
+        this.index = data.index || 0
         this.isEqual = data.isEqual || false;
         this.specialData.isEqual = this.isEqual;
 
-        this.key = this.orginData.list.join(',');
+
 
 
         super.show();
     }
 
     public onShow(){
-        this.monsterList = this.orginData.list;
-        PKManager.getInstance().sortMonster(this.monsterList);
         this.reInitData();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
         this.addPanelOpenEvent(GameEvent.client.force_change,this.renewList)
@@ -312,7 +323,7 @@ class PKDressUI extends game.BaseUI {
         return count;
     }
     private saveHistory(){
-        this.history[this.pkType] = {key:this.key,list:this.chooseList,time:TM.now()};
+        this.history[this.historyKey] = {key:this.key,list:this.chooseList,time:TM.now()};
         SharedObjectManager.instance.setMyValue('dress_history',this.history);
     }
 
@@ -326,10 +337,25 @@ class PKDressUI extends game.BaseUI {
     }
 
     public reInitData(){
-        if(!this.history[this.pkType] || this.history[this.pkType].key != this.key)
-            this.history[this.pkType] = {key:this.key,list:[],time:TM.now()};
-        var data = this.history[this.pkType];
+        this.currentState = 'normal'
+        this.initUserData();
+        this.renewEnemy();
 
+        this.topGroup.visible = false;
+        this.scroller.viewport.scrollV = 0;
+    }
+
+    private initUserData(){
+        this.orginData = this.dataIn.data[this.index];
+        this.monsterList = this.orginData.list;
+        PKManager.getInstance().sortMonster(this.monsterList);
+
+        this.key = this.orginData.list.join(',');
+        this.historyKey = this.pkType + '_' + this.index;
+
+        if(!this.history[this.historyKey] || this.history[this.historyKey].key != this.key)
+            this.history[this.historyKey] = {key:this.key,list:[],time:TM.now()};
+        var data = this.history[this.historyKey];
         this.chooseList = data.list;
         if(GuideManager.getInstance().isGuiding)
             this.chooseList.length = 0;
@@ -337,11 +363,6 @@ class PKDressUI extends game.BaseUI {
 
         this.list.selectedIndex = -1;
         this.chooseMonster = null;
-        this.scroller.viewport.scrollV = 0;
-
-
-        this.currentState = 'normal'
-         this.renewEnemy();
 
 
         this.pkDressChooseUI.renew(this.chooseList);
@@ -349,18 +370,28 @@ class PKDressUI extends game.BaseUI {
         this.renew();
         this.renewSimpleList();
 
-        this.topGroup.visible = false;
-        this.scroller.viewport.scrollV = 0;
-    }
+        this.upBtnGroup.removeChildren()
 
-    private renewEnemy(){
-        if(!this.dataIn.enemy)
+        if(this.dataIn.data.length > 1)
         {
-            this.viewBtn.visible = false;
+            var nextIndex = this.index+1;
+            if(nextIndex >= this.dataIn.data.length)
+                nextIndex = 0;
+            this.topUI.setTitle('调整位置-卡组' + (this.index + 1) + '');
+            this.upBtnGroup.addChild(this.changeBtn);
+            this.changeBtn.label = '切换卡组' + (nextIndex + 1);
         }
         else
         {
-            this.viewBtn.visible = true;
+            this.topUI.setTitle('调整位置');
+        }
+        if(this.dataIn.enemy)
+            this.upBtnGroup.addChild(this.viewBtn);
+    }
+
+    private renewEnemy(){
+        if(this.dataIn.enemy)
+        {
             this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);
             if(this.dataIn.enemy.length <4)
             {
@@ -408,54 +439,8 @@ class PKDressUI extends game.BaseUI {
     public renew(){
         var oo = this.getCurrentResource();
         //资源
-        this.coinText.text = '剩余卡符：' + oo.coin + '';
+        this.setHtml(this.coinText,this.createHtml('剩余卡符：',0xE0A44A) + oo.coin + '');
         this.forceText.text = '';
-        //this.woodText.text = oo.wood + '';
-        //this.coinText0.text = oo.coin + '';
-        //this.woodText0.text = oo.wood + '';
-
-        //战力加成相关
-        var fight = 0;
-        var list = []//this.chooseUI.getChooseList();
-        var monsterRecord = {};
-        var count = 0;
-        for(var i=0;i<list.length;i++)
-        {
-            var monsterID = list[i];
-            if(monsterRecord[monsterID])
-                continue;
-            monsterRecord[monsterID] = 1;
-            count ++;
-            //if(UM.getMonsterCollect(monsterID) == 4)//4星对全体战力加成2%
-            //{
-                //if(MonsterVO.getObject(monsterID).wood)
-                //    fight += 5;
-                //else
-                //    fight += 2;
-            //}
-        }
-        //if(count*2 > list.length) //过载
-        //{
-        //    fight -= 8;
-        //    this.forceText.textColor = 0xFF0000;
-        //    if(fight < 0)
-        //        this.forceText.text = '' + fight + '%' + '(过载)'
-        //    else
-        //        this.forceText.text = '+' + fight + '%' + '(过载)'
-        //}
-        //else if(fight > 0)
-        //{
-        //    this.forceText.textColor = 0x00FF00;
-        //    this.forceText.text = '+' + fight + '%'
-        //}
-        //else
-        //{
-        //    this.forceText.text = '';
-        //}
-        //
-        //this.forceText0.text = this.forceText.text;
-        //this.forceText0.textColor = this.forceText.textColor;
-
 
     }
 

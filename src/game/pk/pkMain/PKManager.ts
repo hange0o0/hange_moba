@@ -90,6 +90,15 @@ class PKManager {
         return count;
     }
 
+    //构成怪物的战斗数据
+    public createMonsterFight(mid,fight,lv?){
+        var mvo = MonsterVO.getObject(mid)
+         var oo = {atk:mvo.atk,hp:mvo.hp,speed:mvo.speed,lv:lv}
+        oo.atk = Math.round(oo.atk * (1+fight/100));
+        oo.hp = Math.round(oo.hp * (1+fight/100));
+        return oo;
+    }
+
     //取一个随机布局
     public getRandomCard(list,isEqual){
         list = list.concat();
