@@ -105,6 +105,9 @@ class DayGameManager{
         }
         var self = this;
         var oo:any = {};
+        var serverData = UM.server_game_equal;
+        oo.level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp);
+        oo.user_level = UM.level;
         //oo.serverid = LoginManager.getInstance().lastServer;
         //Net.addUser(oo);
         Net.send(GameEvent.dayGame.get_day_game,oo,function(data){

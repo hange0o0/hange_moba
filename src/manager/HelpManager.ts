@@ -110,6 +110,7 @@ class HelpManager {
         this.helpObj['temp'] = {
             list:[
                 '当前服务器的卡牌等级上限是'+TecManager.getInstance().maxLevel+'级，玩家的等级上限是'+UM.maxLevel+'级',
+                '卡牌升级的最优化选择是：[平衡发展]，只有在所有卡牌等级一致时，才优先选择自己擅长的',
                 '玩家的体力上限是'+UM.maxEnergy+',每['+30+'分钟]回复1点体力。购买体力回复回成后，回复时间将缩短为[24分钟]'
             ]
         }

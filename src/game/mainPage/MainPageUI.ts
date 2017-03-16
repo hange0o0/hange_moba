@@ -501,7 +501,11 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewEnergy(){
-        this.energyText.text = UM.getEnergy() + '/' + UM.maxEnergy;
+        var energy = UM.getEnergy();
+        if(energy)
+            this.energyText.text = energy + '/' + UM.maxEnergy;
+        else
+            this.setHtml(this.energyText,this.createHtml(DateUtil.getStringBySecond(UM.getNextEnergyCD()).substr(-5),0xFF0000));
         //if(UM.energy.v >= UM.maxEnergy) //full
         //    this.energyText.textColor = 0xF9D36C
         //else if(UM.energy.v == 0) //empty

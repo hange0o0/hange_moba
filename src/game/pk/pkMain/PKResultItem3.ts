@@ -8,9 +8,9 @@ class PKResultItem3 extends game.BaseItem {
     private s3: eui.Image;
     private s2: eui.Image;
     private s1: eui.Image;
-    private levelGroup: eui.Group;
     private levelText: eui.Label;
-    private dieText: eui.Label;
+    //private dieText: eui.Label;
+
 
 
 
@@ -32,12 +32,11 @@ class PKResultItem3 extends game.BaseItem {
         this.headMC.source = MonsterVO.getObject(this.data.id).thumb;
         if(this.data.level)
         {
-            this.levelGroup.visible = true
-            this.levelText.text = this.data.level
+            this.levelText.text = 'Lv' + this.data.level
         }
         else
         {
-            this.levelGroup.visible = false
+            this.levelText.text = ''
         }
 
         var win = this.data.win || 0;
@@ -47,7 +46,7 @@ class PKResultItem3 extends game.BaseItem {
         }
 
         //if(this.data.die)
-            this.dieText.visible = this.data.die;
+        //    this.dieText.visible = this.data.die;
         if(this.data.die)
         {
             MyTool.changeGray(this.headMC);

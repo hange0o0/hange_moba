@@ -431,7 +431,7 @@ class VideoCode{
             case 'a':       //stat
             {
                 this.defenderMV('stat',value.value)
-                this.getPlayerByID(this.defender).addBuff(value.value);
+                this.getPlayerByID(this.defender).addBuff(value.value,this.atker);
                 break;
             }
             case 'b'://单位死亡
@@ -444,7 +444,7 @@ class VideoCode{
             case 'c':       //stat
             {
                 this.defenderMV('stat',value.value)
-                this.getPlayerByID(this.defender).addBuff(value.value);
+                this.getPlayerByID(this.defender).addBuff(value.value,this.atker);
                 break;
             }
         }

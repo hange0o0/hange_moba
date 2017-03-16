@@ -38,7 +38,7 @@
 					<e:HorizontalLayout gap="30"/>
 				</e:layout>
 			</e:Group>
-			<e:Label id="nameText" y="32" text="角色名：密码123456" horizontalCenter="0" textColor="0xFFDD00"/>
+			<e:Label id="nameText" y="32" text="角色名：密码123456" horizontalCenter="0" textColor="0xFFDD00" height="30" verticalAlign="bottom"/>
 			<e:Group id="serverGroup" y="85" horizontalCenter="0">
 				<e:Image source="border5_png" y="0" scale9Grid="14,11,51,6" width="200" height="50" x="0"/>
 				<e:Image source="icon_server_png" x="-12" y="0" scaleX="1.2" scaleY="1.2"/>

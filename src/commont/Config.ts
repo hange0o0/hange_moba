@@ -17,10 +17,12 @@ class Config {
 
 
     public static dayLevel = 2;
-    public static serverLevel = 3;
-    public static serverEqualLevel = 5;
     public static friendLevel = 5;
     public static gambleLevel = 20;
+
+    public static serverLevel = 10;//试练场10级开放
+    public static serverEqualLevel = 50;  //试练场50级开放
+
 
     public static platform = '';
     public static equalValue = 300;

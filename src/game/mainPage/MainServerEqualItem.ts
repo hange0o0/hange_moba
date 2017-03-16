@@ -43,12 +43,12 @@ class MainServerEqualItem extends game.BaseItem {
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
         //this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);
-        this.lockMC.visible = UM.level < Config.serverEqualLevel
+        this.lockMC.visible = UM.main_game.level < Config.serverEqualLevel
         this.scoreText.visible = !this.lockMC.visible
         if(this.lockMC.visible)
         {
 
-            this.desText.text = Config.serverEqualLevel + '级开放'
+            this.desText.text = '试练场达' + Config.serverEqualLevel + '级后开放'
             this.btnGroup.visible = false;
         }
         else

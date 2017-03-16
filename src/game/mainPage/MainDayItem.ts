@@ -43,7 +43,7 @@ class MainDayItem extends game.BaseItem {
         }
         else
         {
-            this.startBtn.visible = true;
+            this.btnGroup.visible = true;
             if(myData.level == 10)
                 this.desText.text = '今日已通关';
             else

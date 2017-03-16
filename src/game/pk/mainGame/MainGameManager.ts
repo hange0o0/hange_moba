@@ -29,12 +29,12 @@ class MainGameManager{
     //杀一个敌人的花费
     public getKillCost(){
         var level = UM.main_game.level;
-        return level*200*(UM.main_game.kill.length+1)*3;
+        return level*100*(UM.main_game.kill.length+1)*2;
     }
 
     public getLocalAward(level){
         level =  level || UM.main_game.level;
-        return {coin:level*200,card:Math.floor(level/30+1)};
+        return {coin:level*100,card:Math.floor(level/30+1)};
     }
 
     //该位置是否被杀了

@@ -41,6 +41,7 @@
 		</e:Group>
 	</e:Group>
 	<e:Group x="0" visible.normal="false" width="100%" visible.drag="false" y="271" height="66">
+		<e:Rect fillAlpha="0.5" width="620" y="0" height="100%" x="10"/>
 		<e:Label id="desText" text="标签" x="20" verticalAlign="bottom" size="24" textColor="0xCCB48E" verticalCenter="0" lineSpacing="5"/>
 		<e:Button id="deleteBtn" label="下阵" skinName="Btn_r2Skin" right="20" verticalCenter="0"/>
 	</e:Group>

@@ -37,14 +37,14 @@ class PayManager{
 
     public getCoin(id)
     {
-        var level = UM.level;
+        var level = UM.level+5;
         var rate = this.shopItemObj[id].rate
         return Math.round(Math.pow(1.2,level)*1000*rate);
     }
 
     public getCard(id)
     {
-        var level = UM.level;
+        var level = UM.level+5;
         var rate = this.shopItemObj[id].rate
         return Math.round(Math.pow(1.2,level)*10*rate);
     }

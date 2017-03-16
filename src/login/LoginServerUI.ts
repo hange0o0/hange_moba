@@ -124,11 +124,15 @@ class LoginServerUI extends game.BaseUI {
         {
             this.nameText.text = LM.myServer[this.serverid];
             this.loginBtn.label = '开始游戏';
+            this.nameText.textColor = 0xFFDD00
+            this.nameText.size = 30
         }
         else
         {
-            this.nameText.text = '';
-            this.loginBtn.label = '注册用户';
+            this.nameText.text = '请先建立角色';
+            this.nameText.textColor = 0x999999
+            this.nameText.size = 22
+            this.loginBtn.label = '建立角色';
         }
     }
 

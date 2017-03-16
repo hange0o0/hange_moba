@@ -304,10 +304,10 @@ class PKDressUI extends game.BaseUI {
     }
 
     private renewSimpleList(){
-        var arr = [];
-        for(var i=0;i<6;i++)
+        var arr = this.pkDressChooseUI.getChooseList(this.pkDressChooseUI)();
+        for(var i=arr.length;i<6;i++)
         {
-            arr.push(this.chooseList[i]);
+            arr.push(null);
         }
         this.simpleList.dataProvider = new eui.ArrayCollection(arr)
     }

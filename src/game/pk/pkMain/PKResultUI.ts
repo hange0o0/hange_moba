@@ -15,6 +15,8 @@ class PKResultUI extends game.BaseUI {
     private selfText: eui.Label;
     private enemyList: eui.List;
     private enemyText: eui.Label;
+    private teamInfo1: eui.List;
+    private teamInfo2: eui.List;
     private list: eui.List;
 
 
@@ -37,11 +39,14 @@ class PKResultUI extends game.BaseUI {
         this.list.itemRenderer = PKResultItem2;
         this.enemyList.itemRenderer = PKResultItem3
         this.selfList.itemRenderer = PKResultItem3
+
+        this.teamInfo1.itemRenderer = PKResultItem4
+        this.teamInfo2.itemRenderer = PKResultItem4
     }
 
 
     public beforeHide(){
-        this.clearList([this.list,this.enemyList,this.selfList])
+        this.clearList([this.list,this.enemyList,this.selfList,this.teamInfo1,this.teamInfo2])
     }
 
     private onClick(){
@@ -118,45 +123,66 @@ class PKResultUI extends game.BaseUI {
             var team2ID = 30
         }
 
-        var arr = [];
+        var totalData:any = {};
+        var hp = 0;
+        var atk = 0;
+        var speed = 0;
+        var speed2 = 999;
+        var info1 = [];
+        var info2 = [];
+
         this.selfText.text = '我方战力：' +  team1Base.f;
         for(var i=0;i<team1Base.list.length;i++)
         {
             var mid = team1Base.list[i]
             var specialData = team1Base.mb[mid];
-            arr.push({
+            var oo = {
                 id:mid,
-                list:arr,
+                    list:info1,
                 specialData:specialData,
                 index:i,
-
+                
+                totalData:totalData,
                 level:team1Base.mb[mid].lv,
                 win: PKM.winCount[i+team1ID],
                 die: PKM.die[i+team1ID],
                 action: PKM.action[i+team1ID]
-            })
-        }
-        this.selfList.dataProvider = new eui.ArrayCollection(arr)
+            }
+            info1.push(oo)
 
-        arr = [];
+            hp = Math.max(specialData.hp,hp)
+            atk = Math.max(specialData.atk,atk)
+            speed = Math.max(specialData.speed,speed)
+            speed2 = Math.min(specialData.speed,speed2)
+        }
+        this.selfList.dataProvider = new eui.ArrayCollection(info1)
+
         this.enemyText.text = '敌方战力：' +  (team2Base.f || 0);
         for(var i=0;i<team2Base.list.length;i++)
         {
             var mid = team2Base.list[i]
             var specialData = team2Base.mb[mid];
-            arr.push({
+            specialData.id = mid;
+            var oo = {
                 id:mid,
-                list:arr,
+                list:info2,
                 specialData:specialData,
                 index:i,
 
+                totalData:totalData,
                 level:team2Base.mb[mid].lv,
                 win: PKM.winCount[i+team2ID],
                 die: PKM.die[i+team2ID],
                 action: PKM.action[i+team2ID]
-            })
+            }
+            info2.push(oo)
+
+            hp = Math.max(specialData.hp,hp)
+            atk = Math.max(specialData.atk,atk)
+            speed = Math.max(specialData.speed,speed)
+            speed2 = Math.min(specialData.speed,speed2)
         }
-        this.enemyList.dataProvider = new eui.ArrayCollection(arr)
+        this.enemyList.dataProvider = new eui.ArrayCollection(info2)
 
         this.selfText.textColor = 0xFFFFFF
         this.enemyText.textColor = 0xFFFFFF
@@ -170,6 +196,18 @@ class PKResultUI extends game.BaseUI {
             this.rateText.textColor = 0xFFFF00
         else
             this.rateText.textColor = 0xFF0000
+
+
+        totalData.hp = hp;
+        totalData.atk = atk;
+        totalData.speed = speed;
+        totalData.speed2 = speed2;
+        this.teamInfo1.dataProvider = new eui.ArrayCollection(info1)
+        this.teamInfo2.dataProvider = new eui.ArrayCollection(info2)
+
+
+
+
 
 
         GuideManager.getInstance().showGuide(this);

@@ -442,7 +442,7 @@ class PKDressChooseUI extends game.BaseContainer {
             var mc = this['h' + i]
             if(list[i-1])
             {
-                mc.data = {id:list[i-1],specialData:this.specialData,vo:MonsterVO.getObject(list[i-1]),type:2,state:0,index:i};
+                mc.data = {id:list[i-1],specialData:this.specialData,vo:MonsterVO.getObject(list[i-1]),type:2,state:0,index:i,getChooseList:this.getChooseList(this)};
             }
             else
             {
@@ -513,7 +513,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
     public addItem(mid){
         var mc = this.mcArray[this.listLength];
-        mc.data = {vo:MonsterVO.getObject(mid),type:2,state:0,id:mid,specialData:this.specialData};
+        mc.data = {vo:MonsterVO.getObject(mid),type:2,state:0,id:mid,specialData:this.specialData,getChooseList:this.getChooseList(this)};
         this.listLength ++;
         this.renewSplice();
         this.dispatchEventWith('change');
@@ -521,6 +521,18 @@ class PKDressChooseUI extends game.BaseContainer {
         for(var i=0;i<this.mcArray.length;i++)   //上面拿了数据才会改变使用数量
         {
             this.mcArray[i].dataChanged();
+        }
+    }
+
+    public getChooseList(self){
+        return function(){
+            var arr = []
+            for(var i=0;i<self.mcArray.length;i++) {
+                var mc = self.mcArray[i];
+                if(mc.data)
+                    arr.push(mc.data);
+            }
+            return arr;
         }
     }
 

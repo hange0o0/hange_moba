@@ -237,7 +237,7 @@ class PKMainUI extends game.BaseUI {
 
     private addSceneMovie(){
         var Y =this.stageHeight/2;
-        var desY =  this.random()*600-300
+        var desY =  this.random()*200-100
         var scale = 1.5
 
         this.bg0.x = -320-170;

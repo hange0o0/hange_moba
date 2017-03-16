@@ -6,8 +6,8 @@
 		<e:Group id="scrollGroup">
 			<e:Group id="moreGroup" x="0" y="0">
 				<e:Group x="0" y="0" height="82" width="640">
-					<e:Image source="book_bg1_jpg" x="0" y="35"/>
-					<e:Image source="book_bg1_jpg" y="35" right="0" scaleX="-1"/>
+					<e:Image source="book_bg1_jpg" x="0" y="35" scale9Grid="40,44,240,266" height="800"/>
+					<e:Image source="book_bg1_jpg" y="35" right="0" scaleX="-1" scale9Grid="40,44,240,266" height="800"/>
 					<e:Group id="titleBG" y="54.99999999999999" horizontalCenter="0">
 						<e:Image source="main_border_png" y="-2" height="70" scale9Grid="14,1,90,56" x="0" scaleX="0.9" scaleY="0.9"/>
 						<e:Label id="rateText" text="99" y="20" stroke="2" horizontalCenter="0.5" size="26"/>
@@ -33,6 +33,21 @@
 					</e:Group>
 					<e:layout>
 						<e:HorizontalLayout gap="0"/>
+					</e:layout>
+				</e:Group>
+				<e:Group y="98" x="20">
+					<e:List id="teamInfo1" top="30" x="0" bottom="10" width="300" itemRendererSkinName="PKResultItem4Skin">
+						<e:layout>
+							<e:VerticalLayout/>
+						</e:layout>
+					</e:List>
+					<e:List id="teamInfo2" bottom="10" width="300" top="30" x="10" y="10" itemRendererSkinName="PKResultItem4_Skin">
+						<e:layout>
+							<e:VerticalLayout/>
+						</e:layout>
+					</e:List>
+					<e:layout>
+						<e:HorizontalLayout/>
 					</e:layout>
 				</e:Group>
 				<e:List id="list" width="640" x="0" y="134" itemRendererSkinName="PKResultItem2Skin">

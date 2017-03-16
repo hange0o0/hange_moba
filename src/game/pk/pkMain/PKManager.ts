@@ -408,6 +408,8 @@ class PKManager {
                 this.pkAward.prop.push({type:'coin',des:'×' + award.coin})
             if(award.exp)
                 this.pkAward.prop.push({type:'exp',des:'×' + award.exp})
+            if(award.collect)
+                this.pkAward.prop.push({type:'card',des:'×' + award.collect})
             if(award.g_exp)
             {
                 if(award.g_exp > 0)
@@ -415,6 +417,7 @@ class PKManager {
                 else
                     this.pkAward.prop.push({type:'g_exp',des: award.g_exp,color:'red'})
             }
+
 
 
             for(var s in award.prop)

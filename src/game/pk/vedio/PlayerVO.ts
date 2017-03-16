@@ -72,7 +72,7 @@ class PlayerVO {
         }
     }
 
-    public addBuff(data){
+    public addBuff(data,atker){
         var id = data.id;
         //if(id == 24)
         //{
@@ -81,9 +81,25 @@ class PlayerVO {
         var cd = data.cd;
         var value = data.value;
         if(cd)
-            this.buffList.push({id:id,cd:cd,value:value})
+            this.buffList.push({id:id,cd:cd,value:value,atker:atker})
         else
-            this.buffList.push({id:id,forever:true,value:value})
+        {
+            var b = true
+            //如果只是去掉之前自己技能产生的效果
+            for(var i=0;i<this.buffList.length;i++)
+            {
+                var item = this.buffList[i];
+                if(item.forever && Math.abs(item.value) == Math.abs(value) && item.atker == atker && Math.abs(item.id - id) == 10)
+                {
+                    this.buffList.splice(i,1);
+                    b = false;
+                    break;
+                }
+            }
+            if(b)
+                this.buffList.push({id:id,forever:true,value:value,atker:atker})
+        }
+
     }
 
     public cleanBuff(id,cd,value){

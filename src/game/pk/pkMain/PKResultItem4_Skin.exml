@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKResultItem4_Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  width="300">	<e:Group x="78" y="3">
+		<e:Rect id="hpBar" height="20" width="150" x="0" y="5" fillColor="0x990000" strokeColor="0xFF0000"/>
+		<e:Label id="hpText" text="123456" x="29" y="0" size="22" textColor="0x990000"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="78" y="27">
+		<e:Rect id="atkBar" width="100" y="5" height="20" x="0" strokeColor="0xFFFF00" fillColor="0x999900"/>
+		<e:Label id="atkText" y="0" size="22" text="标签" x="29" textColor="0xAAAA00"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group y="51" x="78">
+		<e:Rect id="speedBar" y="5" width="100" height="20" x="0" strokeColor="0x0000FF" fillColor="0x006666"/>
+		<e:Label id="speedText" y="0" text="标签" x="29" size="22" textColor="0x009999"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="0" y="0" scaleY="0.75" scaleX="0.75" locked="true">
+		<e:Image source="border2_png" width="100" y="0" height="100" x="0"/>
+		<e:Image source="head_png" y="5" x="5" width="90" height="90" id="headMC"/>
+	</e:Group>
+	<e:Group y="50" right="230">
+		<e:Image source="fu2_png" x="0" y="0" scaleX="0.6" scaleY="0.6"/>
+		<e:Label id="costText" text="70" x="264" y="0" size="20" textColor="0xFFFF5B" stroke="2"/>
+		<e:layout>
+			<e:HorizontalLayout gap="1"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

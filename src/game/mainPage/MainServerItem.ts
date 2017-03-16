@@ -38,12 +38,12 @@ class MainServerItem extends game.BaseItem {
         //this.totalText.text = '局数：' + serverData.total;
         //this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;
-        this.lockMC.visible = UM.level < Config.serverLevel
+        this.lockMC.visible = UM.main_game.level < Config.serverLevel
         this.scoreText.visible = !this.lockMC.visible
         if(this.lockMC.visible)
         {
 
-            this.desText.text = Config.serverLevel + '级开放'
+            this.desText.text = '试练场达' + Config.serverLevel + '级后开放'
             this.btnGroup.visible = false;
         }
         else

@@ -1,5 +1,5 @@
 {
-	"close":false,
+	"close":true,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -1053,6 +1053,11 @@
 					"isFolder":false,
 					"key":"prop_score_jpg",
 					"name":"prop_score_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"note_icon_png",
+					"name":"note_icon_png"
 				}
 			]
 		}
