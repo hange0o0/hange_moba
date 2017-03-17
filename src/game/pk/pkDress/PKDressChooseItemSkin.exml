@@ -13,6 +13,5 @@
 			<e:Label id="levelText" text="60" y="12" size="20" x="8" width="30" textAlign="center" textColor="0xCCB48E"/>
 		</e:Group>
 	</e:Group>
-	<e:Image id="noteIcon" source="note_icon_png" y="-10" x="81"/>
 
 </e:Skin>

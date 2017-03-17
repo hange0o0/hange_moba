@@ -42,14 +42,15 @@ class MonsterInfoBase extends game.BaseContainer {
         this.addBtnEvent(this.levelUpCardGroup, this.onAddCard);
     }
 
-    private onAddCoin(){
+    private onAddCoin(e){
         ShopUI.getInstance().show('coin');
     }
-    private onAddCard() {
+    private onAddCard(e) {
         ShopUI.getInstance().show('card');
     }
 
-    private onLevelUp(){
+    private onLevelUp(e){
+        e.stopImmediatePropagation();
         if(this.levelUpBtn.skinName != 'Btn_r1Skin')
             return;
         var self = this;
@@ -117,6 +118,12 @@ class MonsterInfoBase extends game.BaseContainer {
         this.renewMonster();
     }
 
+    private renewUnlockText(){
+        var vo = this.vo
+        this.lockGroup.visible = true;
+        this.setHtml(this.levelDes,this.changeTitle('解锁等级：') + vo.level);
+    }
+
     public renewMonster(){
         var vo = this.vo
         var specialData = this.specialData
@@ -175,6 +182,7 @@ class MonsterInfoBase extends game.BaseContainer {
                 //this.levelGroup.visible = false;
                 fightData = {atk:0,hp:0,speed:0};
                 nameStr += '  <font color="#D9A744" size="22">(基础)</font>';
+
             }
             else  //我自己
             {
@@ -188,14 +196,18 @@ class MonsterInfoBase extends game.BaseContainer {
                     nameStr += '  <font color="#226C17" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
                     this.renewLevelUp();
                 }
-                else
-                {
-                    this.lockGroup.visible = true;
-                    this.levelDes.text = vo.level + '级解锁';
-                }
+                //else
+                //{
+                //    this.renewUnlockText()
+                //}
 
             }
 
+        }
+
+        if(UM.level < vo.level)
+        {
+            this.renewUnlockText()
         }
 
         this.setHtml(this.nameText,nameStr)

@@ -3,5 +3,6 @@
 	<e:Rect height="44" width="44" x="4" y="4" fillColor="0x111111"/>
 	<e:Image id="headMC" source="head_png" y="4" width="44" height="44" x="4"/>
 
-	<e:Image source="border3_png" y="0" x="0" scaleX="0.7" scaleY="0.7"/>
+	<e:Image source="border3_png" y="0" x="0" scaleX="0.7" scaleY="0.7"/>
+	<e:Image id="chooseMC" source="border_light_png" width="73" height="73" x="-11" y="-11"/>
 </e:Skin>

@@ -27,16 +27,16 @@ class ShopItem extends game.BaseItem {
 
     private onBuy(){
         var self = this;
-        if(this.data.type == 'free' && UM.getDiamond() < this.data.cost)
+        if(this.data.type == 'diamond' && UM.getDiamond() < this.data.cost)
         {
             Alert('钻石不足！')
             return;
         }
-        else if(this.data.type == 'diamond' && UM.getDiamond(true) < this.data.cost)
-        {
-            Alert('钻石不足！')
-            return;
-        }
+        //else if(this.data.type == 'diamond' && UM.getDiamond(true) < this.data.cost)
+        //{
+        //    Alert('钻石不足！')
+        //    return;
+        //}
         PayManager.getInstance().buy(this.data.id,function(){
               if(self.data.id == 1)
               {
@@ -65,11 +65,11 @@ class ShopItem extends game.BaseItem {
             this.icon.source = 'icon_empty_png';
             this.text2.text = '￥' + this.data.cost;
         }  
-        else if(this.data.type == 'free')
-        {
-            this.text2.text = '点券/钻石:' + this.data.cost;
-            this.icon.source = 'icon_pvp_ticket_png';
-        }
+        //else if(this.data.type == 'free')
+        //{
+        //    this.text2.text = '点券/钻石:' + this.data.cost;
+        //    this.icon.source = 'icon_pvp_ticket_png';
+        //}
         else if(this.data.type == 'diamond')
         {
             this.text2.text = '钻石:' + this.data.cost;

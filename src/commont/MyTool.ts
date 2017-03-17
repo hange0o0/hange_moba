@@ -63,6 +63,13 @@ class MyTool {
         return str
     }
 
+    public static resetScrollV(scroller){
+        if(scroller.viewport.scrollV < 0)
+            scroller.viewport.scrollV = 0;
+        else if(scroller.viewport.scrollV + scroller.viewport.height > scroller.viewport.contentHeight)
+            scroller.viewport.scrollV =  Math.max(0,scroller.viewport.contentHeight - scroller.viewport.height);
+    }
+
 
 
 

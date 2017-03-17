@@ -11,7 +11,7 @@ class PKDressChooseItem extends game.BaseItem {
     private lvText: eui.Label;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
-    private noteIcon: eui.Image;
+    //private noteIcon: eui.Image;
 
 
 
@@ -25,13 +25,13 @@ class PKDressChooseItem extends game.BaseItem {
     public childrenCreated(){
         //MyTool.addDoubleTouch(this,this.onDoubleClick,this)
         DragManager.getInstance().setDrag(this,true);
-        this.addBtnEvent(this.noteIcon,this.onNote)
+        //this.addBtnEvent(this.noteIcon,this.onNote)
     }
 
-    private onNote(e){
-        var list = this.data.getChooseList();
-        MonsterList.getInstance().show(list,list.indexOf(this.data))
-    }
+    //private onNote(e){
+    //    var list = this.data.getChooseList();
+    //    MonsterList.getInstance().show(list,list.indexOf(this.data))
+    //}
 
     public setStaticVisible(b){
         this.stateMC.visible = b;
@@ -49,11 +49,12 @@ class PKDressChooseItem extends game.BaseItem {
     //stat 0,无发光，1选中，2加成
     public dataChanged(){
 
+        //this.noteIcon.visible = false;
         this.lvText.text = '';
         if(!this.data)
         {
             this.stateMC.visible = false;
-            this.noteIcon.visible = false;
+
             this.headMC.source = null;
             this.levelGroup.visible = false
             this.stopDrag = true;
@@ -63,7 +64,7 @@ class PKDressChooseItem extends game.BaseItem {
         var vo = MonsterVO.getObject(this.data.id);
         this.headMC.source = vo.thumbRound;
         this.stateMC.visible = this.data.selected;
-        this.noteIcon.visible = this.data.selected;
+        //this.noteIcon.visible = this.data.selected;
         this.levelText.text = PKManager.getInstance().getCostByNum(this.data.id,PKDressUI.getInstance().getMonsterNum(this.data.id)-1);
         this.levelGroup.visible = true
         this.stopDrag = false;

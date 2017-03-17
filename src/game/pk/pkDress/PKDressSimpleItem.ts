@@ -5,6 +5,9 @@ class PKDressSimpleItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
+    private chooseMC: eui.Image;
+
+
     public index;
 
     public childrenCreated() {
@@ -15,12 +18,17 @@ class PKDressSimpleItem extends game.BaseItem {
         if(this.data)
         {
             var list = this.data.getChooseList();
-            MonsterList.getInstance().show(list,list.indexOf(this.data))
+            this.dispatchEventWith('selectIndex',true,list.indexOf(this.data));
         }
 
     }
 
+    public setChoose(data){
+        this.chooseMC.visible = (data == this.data);
+    }
+
     public dataChanged() {
+        this.chooseMC.visible = false;
         if(this.data)
         {
             this.headMC.source = this.data.vo.thumb;

@@ -36,6 +36,7 @@
 					</e:Array>
 				</e:ArrayCollection>
 			</e:List>
+			<ns1:MonsterInfoBase id="monsterInfo" x="-26" y="917" skinName="MonsterInfoBaseSkin"/>
 			<e:layout>
 				<e:VerticalLayout horizontalAlign="center" gap="0"/>
 			</e:layout>

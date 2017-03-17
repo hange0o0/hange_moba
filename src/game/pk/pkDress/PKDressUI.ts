@@ -19,6 +19,7 @@ class PKDressUI extends game.BaseUI {
     private scrollerGroup: eui.Group;
     private pkDressChooseUI: PKDressChooseUI;
     private list: eui.List;
+    private monsterInfo: MonsterInfoBase;
     private topGroup: eui.Group;
     private simpleList: eui.List;
     private topBtn: eui.Button;
@@ -81,6 +82,7 @@ class PKDressUI extends game.BaseUI {
         this.pkDressChooseUI.addEventListener('chooseItem', this.onChooseItem, this)
         this.pkDressChooseUI.addEventListener('random', this.onRandom, this)
         this.pkDressChooseUI.addEventListener('reset', this.onReset, this)
+        this.simpleList.addEventListener('selectIndex', this.onClickSimpleList, this)
         this.pkDressChooseUI.specialData = this.specialData;
 
         this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
@@ -97,6 +99,13 @@ class PKDressUI extends game.BaseUI {
     }
     private onReset(){
          this.changeChooseList([]);
+    }
+
+    private onClickSimpleList(e){
+        this.scroller.stopAnimation();
+        this.pkDressChooseUI.selectMCByIndex(e.data || 0)
+        this.validateNow();
+        MyTool.resetScrollV(this.scroller);
     }
 
     private changeChooseList(list){
@@ -130,6 +139,9 @@ class PKDressUI extends game.BaseUI {
         if(this.index >= this.dataIn.data.length)
             this.index = 0;
         this.initUserData();
+        this.validateNow();
+        MyTool.resetScrollV(this.scroller);
+        this.onScroll();
     }
 
 
@@ -160,7 +172,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onMonsterLevel(){
-        this.pkDressChooseUI.renew(this.chooseList);
+        this.pkDressChooseUI.justRenewList();
         this.renewList();
     }
 
@@ -265,8 +277,7 @@ class PKDressUI extends game.BaseUI {
         else
             this.currentState = 'open'
         this.validateNow();
-        if(this.scroller.viewport.scrollV + this.scroller.height > this.scroller.viewport.contentHeight)
-            this.scroller.viewport.scrollV = Math.max(0,this.scroller.viewport.contentHeight - this.scroller.height);
+        MyTool.resetScrollV(this.scroller)
         this.onScroll();
     }
 
@@ -296,11 +307,27 @@ class PKDressUI extends game.BaseUI {
     private onChooseItem(e){
         e = e || {};
         var infoStr;
-        for(var i=0;i<this.list.numChildren;i++)
+        if(e.data)
         {
-            infoStr = (<any>this.list.getChildAt(i)).setChoose(e.data) || infoStr;
+            for(var i=0;i<this.list.numChildren;i++)
+            {
+                infoStr = (<any>this.list.getChildAt(i)).setChoose(e.data.id) || infoStr;
+            }
+            this.pkDressChooseUI.setDesText(infoStr);
+
+            this.monsterInfo.renew(e.data.id,e.data.specialData);
+            MyTool.removeMC(this.list);
+            this.scrollerGroup.addChild(this.monsterInfo)
         }
-        this.pkDressChooseUI.setDesText(infoStr);
+        else
+        {
+            MyTool.removeMC(this.monsterInfo);
+            this.scrollerGroup.addChild(this.list)
+        }
+        for(var i=0;i<this.simpleList.numChildren;i++)
+        {
+            (<any>this.simpleList.getChildAt(i)).setChoose(e.data);
+        }
     }
 
     private renewSimpleList(){
@@ -387,6 +414,10 @@ class PKDressUI extends game.BaseUI {
         }
         if(this.dataIn.enemy)
             this.upBtnGroup.addChild(this.viewBtn);
+
+
+        MyTool.removeMC(this.monsterInfo);
+        this.scrollerGroup.addChild(this.list)
     }
 
     private renewEnemy(){

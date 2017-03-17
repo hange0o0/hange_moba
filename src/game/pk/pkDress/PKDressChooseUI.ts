@@ -59,19 +59,19 @@ class PKDressChooseUI extends game.BaseContainer {
     }
     private set selectIndex(v){
         this._selectIndex = v;
-        var monsterID = null;
+        var monsterData = null;
         if(v != -1)
         {
-            monsterID = this.mcArray[v].data.id;
+            monsterData = this.mcArray[v].data;
             egret.callLater(function(){
-                PKDressUI.getInstance().once(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this,false,-9999);
+                this.once(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this,false,-9999);
             },this)
         }
         else
         {
-            PKDressUI.getInstance().removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this);
+            this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this);
         }
-        this.dispatchEventWith('chooseItem',false,monsterID)
+        this.dispatchEventWith('chooseItem',false,monsterData)
     }
 
     private outPos
@@ -386,6 +386,24 @@ class PKDressChooseUI extends game.BaseContainer {
          }
     }
 
+    public selectMCByIndex(index){
+        if(this.selectIndex == index)
+            return;
+        if(this.selectIndex != -1)
+        {
+            var item = this.mcArray[this.selectIndex];
+            item.data.selected = false;
+            item.dataChanged();
+        }
+        var item = this.mcArray[index];
+        this.selectIndex = index;
+        item.data.selected = true;
+        item.dataChanged();
+        this.renewSplice();
+        this.changeState('selected')
+        GuideManager.getInstance().showGuide(PKDressUI.getInstance())
+    }
+
     private onMCClick(e){
         var item = e.currentTarget;
         var index = this.mcArray.indexOf(item);
@@ -432,8 +450,6 @@ class PKDressChooseUI extends game.BaseContainer {
     }
 
     public renew(list){
-
-
         this.selectIndex = -1;
         this.list = list
         this.listLength = list.length;
@@ -544,6 +560,13 @@ class PKDressChooseUI extends game.BaseContainer {
                 chooseList.push(mc.data.vo.id);
         }
         return chooseList;
+    }
+
+    public justRenewList(){
+        for(var i=0;i<this.mcArray.length;i++) {
+            var mc = this.mcArray[i];
+            mc.dataChanged();
+        }
     }
 
 }

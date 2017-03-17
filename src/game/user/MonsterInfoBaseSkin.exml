@@ -82,11 +82,8 @@
 			</e:Group>
 			</e:Group>
 	</e:Group>
-	<e:Group id="lockGroup" x="353" y="300" width="190">
-		<e:Image x="11" y="0" source="lock_icon2_png"/>
-		<e:Label id="levelDes" text="标签" x="0" y="10" textAlign="center" textColor="0xCBC08A" size="24"/>
-		<e:layout>
-			<e:HorizontalLayout verticalAlign="bottom" horizontalAlign="center" gap="10"/>
-		</e:layout>
+	<e:Group id="lockGroup" x="348" y="285">
+		<e:Image x="0" y="0" source="lock_icon2_png"/>
+		<e:Label id="levelDes" text="标签" x="32" y="3" textAlign="center" textColor="0xCBC08A" size="24"/>
 	</e:Group>
 </e:Skin>
