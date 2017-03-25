@@ -4,6 +4,7 @@ class MainServerItem extends game.BaseItem {
         this.skinName = "MainServerItemSkin";
     }
 
+    private bg: eui.Image;
     private titleText: eui.Label;
     private scoreText: eui.Label;
     private desText: eui.Label;
@@ -11,7 +12,7 @@ class MainServerItem extends game.BaseItem {
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
-    private bg: eui.Image;
+    private headMC: MainHeadItem;
 
 
 

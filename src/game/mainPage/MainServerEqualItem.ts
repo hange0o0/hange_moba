@@ -12,6 +12,7 @@ class MainServerEqualItem extends game.BaseItem {
     private titleText: eui.Label;
     private lockMC: eui.Image;
     private bg: eui.Image;
+    private headMC: MainHeadItem;
 
 
 

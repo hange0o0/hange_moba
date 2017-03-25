@@ -9,6 +9,7 @@ class MainMainItem extends game.BaseItem {
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
     private awardBtn: eui.Group;
+    private headMC: MainHeadItem;
 
 
 

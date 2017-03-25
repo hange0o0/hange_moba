@@ -10,6 +10,7 @@ class MainDayItem extends game.BaseItem {
     private desText: eui.Label;
     private lockMC: eui.Image;
     private bg: eui.Image;
+    private headMC: MainHeadItem;
 
 
 

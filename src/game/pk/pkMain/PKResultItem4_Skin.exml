@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKResultItem4_Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  width="300">	<e:Group x="78" y="3">
 		<e:Rect id="hpBar" height="20" width="150" x="0" y="5" fillColor="0x990000" strokeColor="0xFF0000"/>
-		<e:Label id="hpText" text="123456" x="29" y="0" size="22" textColor="0x990000"/>
+		<e:Label id="hpText" text="123456" x="29" y="0" size="22" textColor="0xCC0000"/>
 		<e:layout>
 			<e:HorizontalLayout/>
 		</e:layout>

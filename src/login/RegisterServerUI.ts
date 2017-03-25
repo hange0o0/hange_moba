@@ -50,10 +50,10 @@ class RegisterServerUI extends game.BaseWindow {
     public onShow(){
         this.chooseHead = false;
         this.onRandom();
-        if(Config.platform == 'egret' && EgretManager.getInstance().nickName)
-        {
-            this.nameText.text = EgretManager.getInstance().nickName;
-        }
+        //if(Config.platform == 'egret' && EgretManager.getInstance().nickName)
+        //{
+        //    this.nameText.text = EgretManager.getInstance().nickName;
+        //}
     }
 
     private onClick(){

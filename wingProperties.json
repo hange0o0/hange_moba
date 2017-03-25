@@ -1,5 +1,5 @@
 {
-	"close":false,
+	"close":true,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -1058,6 +1058,11 @@
 					"isFolder":false,
 					"key":"note_icon_png",
 					"name":"note_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"king_icon_png",
+					"name":"king_icon_png"
 				}
 			]
 		}

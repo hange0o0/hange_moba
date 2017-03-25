@@ -1,24 +1,22 @@
 {
 	"native": {
-		"path_ignore": []
+		"path_ignore": [],
+		"android_path": "I:/hd/adt-bundle-windows-x86_64-20140702/carder_app",
+		"android_as_path": "I:/hd/adt-bundle-windows-x86_64-20140702/carder_app"
 	},
 	"publish": {
 		"web": 0,
 		"native": 1,
 		"path": "bin-release"
 	},
-	"egret_version": "3.2.4",
+	"egret_version": "4.0.3",
 	"modules": [
 		{
 			"name": "egret"
 		},
-	  {
-		"name": "eui"
-	  },
-	  {
-		"name": "nest",
-		"path": "/nest"
-	  },
+		{
+			"name": "eui"
+		},
 		{
 			"name": "res"
 		},

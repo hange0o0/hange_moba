@@ -25,10 +25,8 @@
 	<script egret="lib" src="libs/modules/egret/egret.js" src-release="libs/modules/egret/egret.min.js"></script>
 	<script egret="lib" src="libs/modules/egret/egret.web.js" src-release="libs/modules/egret/egret.web.min.js"></script>
 	<script egret="lib" src="libs/modules/eui/eui.js" src-release="libs/modules/eui/eui.min.js"></script>
-	<script egret="lib" src="libs/modules/nest/nest.js" src-release="libs/modules/nest/nest.min.js"></script>
 	<script egret="lib" src="libs/modules/res/res.js" src-release="libs/modules/res/res.min.js"></script>
 	<script egret="lib" src="libs/modules/game/game.js" src-release="libs/modules/game/game.min.js"></script>
-	<script egret="lib" src="libs/modules/game/game.web.js" src-release="libs/modules/game/game.web.min.js"></script>
 	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
 	<!--modules_files_end-->
 
@@ -38,8 +36,8 @@
 
     <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
     <!--game_files_start-->
-	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
 	<script egret="game" src="bin-debug/commont/BaseUI.js"></script>
+	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultBase.js"></script>
 	<script egret="game" src="bin-debug/commont/Config.js"></script>
 	<script egret="game" src="bin-debug/commont/GameEvent.js"></script>
 	<script egret="game" src="bin-debug/commont/MyTool.js"></script>
@@ -83,11 +81,19 @@
 	<script egret="game" src="bin-debug/game/honor/HonorManager.js"></script>
 	<script egret="game" src="bin-debug/game/honor/HonorUI.js"></script>
 	<script egret="game" src="bin-debug/game/mainPage/MainDayItem.js"></script>
+	<script egret="game" src="bin-debug/game/mainPage/MainHeadItem.js"></script>
 	<script egret="game" src="bin-debug/game/mainPage/MainMainItem.js"></script>
 	<script egret="game" src="bin-debug/game/mainPage/MainPageItem.js"></script>
 	<script egret="game" src="bin-debug/game/mainPage/MainPageUI.js"></script>
 	<script egret="game" src="bin-debug/game/mainPage/MainServerEqualItem.js"></script>
 	<script egret="game" src="bin-debug/game/mainPage/MainServerItem.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterInfoBase.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterInfoBaseItem.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterList.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterSendStarUI.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterSendTalkUI.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterTalkItem.js"></script>
+	<script egret="game" src="bin-debug/game/monster/MonsterTalkUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/dayGame/DayGameManager.js"></script>
 	<script egret="game" src="bin-debug/game/pk/dayGame/DayGameUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/friendGame/FriendPKAskUI.js"></script>
@@ -103,13 +109,13 @@
 	<script egret="game" src="bin-debug/game/pk/pkDress/PKDressChooseUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkDress/PKDressSimpleItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkDress/PKDressUI.js"></script>
-	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultBase.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKFailUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKItemBig.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKMainMV.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKMainUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKManager.js"></script>
+	<script egret="game" src="bin-debug/util/StringUtil.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem2.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultItem3.js"></script>
@@ -142,9 +148,6 @@
 	<script egret="game" src="bin-debug/game/shop/ShopItem2.js"></script>
 	<script egret="game" src="bin-debug/game/shop/ShopUI.js"></script>
 	<script egret="game" src="bin-debug/game/tec/TecManager.js"></script>
-	<script egret="game" src="bin-debug/game/user/MonsterInfoBase.js"></script>
-	<script egret="game" src="bin-debug/game/user/MonsterInfoBaseItem.js"></script>
-	<script egret="game" src="bin-debug/game/user/MonsterList.js"></script>
 	<script egret="game" src="bin-debug/game/user/MyInfoUI.js"></script>
 	<script egret="game" src="bin-debug/game/user/OtherInfoUI.js"></script>
 	<script egret="game" src="bin-debug/game/user/SettingUI.js"></script>
@@ -191,7 +194,7 @@
 	<script egret="game" src="bin-debug/util/ObjectUtil.js"></script>
 	<script egret="game" src="bin-debug/util/PopUpManager.js"></script>
 	<script egret="game" src="bin-debug/util/ShapeObject.js"></script>
-	<script egret="game" src="bin-debug/util/StringUtil.js"></script>
+	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
 	<!--game_files_end-->
 </head>
 <body>

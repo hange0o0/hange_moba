@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MonsterTalkItemSkin" width="580" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="10" y="10">
+		<e:Image source="border2_png" width="80" y="0" height="80" x="0"/>
+		<e:Rect width="70" y="5" height="70" x="5"/>
+		<e:Image id="headMC" source="head_png" y="5" width="70" height="70" x="5"/>
+	</e:Group>
+	<e:Label id="nameText" text="标签" x="100" y="15" size="24" textColor="0xFCA944"/>
+	<e:Label id="desText" x="100" size="22" text="标签" width="467" lineSpacing="8" top="45" bottom="50" textColor="0xCBC08A"/>
+	<e:Group right="20" bottom="15">
+		<e:Label id="dingText" text="顶[12345]" x="0" y="0" size="22"/>
+		<e:Label id="caiText" y="9.999999999999986" size="22" text="顶[12345]" x="10"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Rect bottom="0" width="100%" fillColor="0x8F7B5C" height="1" x="0" y="10"/>
+	<e:Rect y="-1" width="100%" fillColor="0x8F7B5C" height="1" x="0"/>
+</e:Skin>

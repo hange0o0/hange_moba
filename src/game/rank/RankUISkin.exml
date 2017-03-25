@@ -18,6 +18,7 @@
 				<e:Object label="战力榜"/>
 				<e:Object label="等级榜"/>
 				<e:Object label="试练榜"/>
+				<e:Object label="挑战榜"/>
 				<e:Object label="竞技榜"/>
 				<e:Object label="修正榜"/>
 			</e:Array>

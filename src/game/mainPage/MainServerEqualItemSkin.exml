@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainServerEqualItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="MainServerEqualItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 
 
 
 
-	<e:Image x="110" y="-79" source="" fillMode="clip" height="500" id="bg"/>
+	<e:Image x="110" y="-79" fillMode="clip" height="500" id="bg" source="main4_png"/>
 
 	<e:Group horizontalCenter="0" y="265" width="480" locked="true">
 		<e:Image source="main_mc_png" y="0" x="0"/>
@@ -30,4 +30,5 @@
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
+	<ns1:MainHeadItem id="headMC" x="398" y="-7" skinName="MainHeadSkin"/>
 </e:Skin>

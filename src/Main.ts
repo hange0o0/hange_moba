@@ -182,7 +182,7 @@ class Main extends eui.UILayer {
 
         if(_get['debug'] == 3)
         {
-            EgretManager.getInstance().startup()
+            //EgretManager.getInstance().startup()
             return;
         }
 

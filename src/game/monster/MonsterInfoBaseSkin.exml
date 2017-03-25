@@ -86,4 +86,5 @@
 		<e:Image x="0" y="0" source="lock_icon2_png"/>
 		<e:Label id="levelDes" text="标签" x="32" y="3" textAlign="center" textColor="0xCBC08A" size="24"/>
 	</e:Group>
+	<e:Image id="talkBtn" source="menu_icon_4_png" x="20" y="287"/>
 </e:Skin>

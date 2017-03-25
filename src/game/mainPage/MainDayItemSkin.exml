@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainDayItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="75" y="-213" source="" id="bg"/>
+<e:Skin class="MainDayItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Image x="75" y="-213" id="bg" source="main2_png"/>
 
 
 
@@ -30,4 +30,5 @@
 		</e:layout>
 	</e:Group>
 
+	<ns1:MainHeadItem id="headMC" x="203" y="72" skinName="MainHeadSkin"/>
 </e:Skin>

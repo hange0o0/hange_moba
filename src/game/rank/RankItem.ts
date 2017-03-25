@@ -35,7 +35,7 @@ class RankItem extends game.BaseItem {
             this.currentState = 'info';
             var str = '';
             if(this.data.self)
-                str += '你当前在第<font color="#FFFF00" size="35"><b>' + this.data.self + '</b></font>名';
+                str += '你当前在第<font color="#FFFF00" size="26"><b> ' + this.data.self + ' </b></font>名';
             else
                 str += '你还没进榜';
             str += '\n排行榜生成时间：'+DateUtil.formatDate('yyyy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(this.data.time));
@@ -46,7 +46,7 @@ class RankItem extends game.BaseItem {
         this.iconMC.visible = false
         this.numText2.text = '';
         this.numText.text = ''
-        var typeName = ['','战力：','等级：LV.','关卡：','积分：','积分：',]
+        var typeName = ['','战力：','等级：LV.','关卡：','关卡：','积分：','积分：',]
         this.scoreText.text = typeName[this.data.type] +  NumberUtil.addNumSeparator(this.data.value);
         if(this.data.index < 4)
         {
