@@ -9,6 +9,7 @@ class MyInfoUI extends game.BaseUI {
     private headGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
+    private desText: eui.Label;
     private setBtn: eui.Button;
     private levelText: eui.Label;
     private expText: eui.Label;
@@ -77,6 +78,7 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.addDiamondBtn, this.onAddDiamon);
         this.addBtnEvent(this.addEnergyBtn, this.onAddEnergy);
         this.addBtnEvent(this.addCardBtn, this.onAddCard);
+        this.addBtnEvent(this.desText, this.onChangeWord);
 
         this.addBtnEvent(this.headGroup, this.onHead);
 
@@ -87,6 +89,10 @@ class MyInfoUI extends game.BaseUI {
 
     public beforeHide(){
         this.clearList([this.list])
+    }
+
+    private onChangeWord(){
+        UserChangeWordUI.getInstance().show();
     }
 
 
@@ -164,11 +170,17 @@ class MyInfoUI extends game.BaseUI {
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.energy_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.change_head,this.renew);
+        this.addPanelOpenEvent(GameEvent.client.word_change,this.renew);
     }
 
     public renew(){
 
         this.headMC.source = MyTool.getHeadUrl(UM.head);
+
+        if(UM.word)
+            this.setHtml(this.desText,'　　' + UM.word  + this.createHtml(' 【点击修改】',0x999999,20));
+        else
+            this.setHtml(this.desText,this.createHtml('\n　　点击此处编辑宣言',0x999999))
 
         this.nameText.text = UM.nick;
         this.setText(this.levelText,'[等级：]LV.' + UM.level);

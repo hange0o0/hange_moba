@@ -4,6 +4,8 @@ class VScrollerGroup extends eui.Group{
     public scroller:eui.Scroller;
     public desTop = 10;
     public margin = 10;
+    public marginLeft = 0;
+    public marginBottom = 0;
 
     private dataArr;
     private pool = [];
@@ -27,8 +29,10 @@ class VScrollerGroup extends eui.Group{
     private onScrollEvent(){
         if(!this.dataArr)
             return;
+        MyTool.resetScrollV(this.scroller)
         this.onScroll(this.scroller.viewport.scrollV)
         this.scrollTime = egret.getTimer();
+
     }
     private onScrollEndEvent(){
         if(!this.dataArr)
@@ -40,7 +44,10 @@ class VScrollerGroup extends eui.Group{
     private getItem():any{
         var item = this.pool.pop();
         if(!item)
+        {
             item = new this.itemRenderer();
+            item['x'] = this.marginLeft || 0
+        }
         this.addChild(item);
         return item;
     }
@@ -229,6 +236,6 @@ class VScrollerGroup extends eui.Group{
             else
                 break;
         }
-        this.height = count + count/i*(len - i) + this.desTop;
+        this.height = count + count/i*(len - i) + this.desTop + this.marginBottom;
     }
 }

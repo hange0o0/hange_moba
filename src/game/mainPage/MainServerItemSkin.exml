@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainServerItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Group y="200" id="bgGroup" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" x="320">
+		<e:Image y="-71" x="102" fillMode="clip" height="500" id="bg" source="main3_png"/>
+	</e:Group>
 
 
 
@@ -9,11 +12,10 @@
 
 
 
-	<e:Image y="-71" x="102" fillMode="clip" height="500" id="bg" source="main3_png"/>
 	<e:Group horizontalCenter="0" y="265" width="480">
-		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label id="titleText" text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
+		<e:Label id="titleText" text="竞技场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
+		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>
@@ -33,5 +35,5 @@
 		</e:layout>
 	</e:Group>
 
-	<ns1:MainHeadItem id="headMC" x="163" y="3" skinName="MainHeadSkin"/>
+	<ns1:MainHeadItem id="headMC" x="80" y="0" skinName="MainHeadSkin"/>
 </e:Skin>

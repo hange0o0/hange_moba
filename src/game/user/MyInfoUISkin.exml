@@ -27,6 +27,7 @@
 							<e:Label text="更换头像" size="20" y="100" horizontalCenter="0" textColor="0xD19844"/>
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
+						<e:Label id="desText" x="124" y="48" textColor="0xCCB48E" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88"/>
 						<e:Button id="setBtn" skinName="Btn_r1Skin" y="40" label="设置" x="300" visible="false"/>
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">

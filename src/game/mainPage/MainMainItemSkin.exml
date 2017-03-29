@@ -1,16 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainMainItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Image x="105" y="-166" source="main1_png"/>
+	<e:Group y="200" id="bgGroup" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" x="320">
+		<e:Image x="105" y="-166" source="main1_png"/>
+	</e:Group>
 
 
 
 
 
 
-	<e:Group horizontalCenter="0" y="265" width="480" locked="true">
-		<e:Image source="main_mc_png" y="0" x="0"/>
-		<e:Label text="试练场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
+	<e:Group horizontalCenter="0" y="265" width="480">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
+		<e:Label text="试练场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
+		<e:Image source="main_mc_png" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>
@@ -32,5 +34,5 @@
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
-	<ns1:MainHeadItem id="headMC" x="349" y="33" skinName="MainHeadSkin"/>
+	<ns1:MainHeadItem id="headMC" y="0" skinName="MainHeadSkin" x="0"/>
 </e:Skin>

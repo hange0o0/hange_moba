@@ -68,6 +68,9 @@ class MyTool {
             scroller.viewport.scrollV = 0;
         else if(scroller.viewport.scrollV + scroller.viewport.height > scroller.viewport.contentHeight)
             scroller.viewport.scrollV =  Math.max(0,scroller.viewport.contentHeight - scroller.viewport.height);
+        else
+            return;
+        scroller.stopAnimation();
     }
 
 

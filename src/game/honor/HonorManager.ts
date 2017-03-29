@@ -66,14 +66,18 @@ class HonorManager{
         return arr;
     }
 
+    public getMonsterHonorData(id){
+         return UM.honor.monster[id] || {t:0,w:0}
+    }
+
     //是否可以领奖
     public fillAwardStat(data){
         var oo;
-        if(data.honorType == 1)
-            oo = UM.honor.monster[data.id];
-        else
-            oo = UM.honor.ring[data.id];
-        oo = oo ||  {t:0,w:0}
+        //if(data.honorType == 1)
+        oo = this.getMonsterHonorData(data.id)
+        //else
+        //    oo = UM.honor.ring[data.id];
+        //oo = oo ||  {t:0,w:0}
         var awardLevel = oo.a || 0; //已领奖的等级
         data.w = oo.w;
         data.t = oo.t;

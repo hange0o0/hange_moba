@@ -62,6 +62,7 @@ var game_file_list = [
 	"bin-debug/game/monster/MonsterInfoBase.js",
 	"bin-debug/game/monster/MonsterInfoBaseItem.js",
 	"bin-debug/game/monster/MonsterList.js",
+	"bin-debug/game/monster/MonsterManager.js",
 	"bin-debug/game/monster/MonsterSendStarUI.js",
 	"bin-debug/game/monster/MonsterSendTalkUI.js",
 	"bin-debug/game/monster/MonsterTalkItem.js",
@@ -87,7 +88,7 @@ var game_file_list = [
 	"bin-debug/game/pk/pkMain/PKMainMV.js",
 	"bin-debug/game/pk/pkMain/PKMainUI.js",
 	"bin-debug/game/pk/pkMain/PKManager.js",
-	"bin-debug/util/StringUtil.js",
+	"bin-debug/AssetAdapter.js",
 	"bin-debug/game/pk/pkMain/PKResultItem.js",
 	"bin-debug/game/pk/pkMain/PKResultItem2.js",
 	"bin-debug/game/pk/pkMain/PKResultItem3.js",
@@ -123,6 +124,7 @@ var game_file_list = [
 	"bin-debug/game/user/MyInfoUI.js",
 	"bin-debug/game/user/OtherInfoUI.js",
 	"bin-debug/game/user/SettingUI.js",
+	"bin-debug/game/user/UserChangeWordUI.js",
 	"bin-debug/guide/GuideManager.js",
 	"bin-debug/guide/GuideUI.js",
 	"bin-debug/LoadingUI.js",
@@ -166,7 +168,7 @@ var game_file_list = [
 	"bin-debug/util/ObjectUtil.js",
 	"bin-debug/util/PopUpManager.js",
 	"bin-debug/util/ShapeObject.js",
-	"bin-debug/AssetAdapter.js",
+	"bin-debug/util/StringUtil.js",
 	//----auto game_file_list end----
 ];
 

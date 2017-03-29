@@ -13,6 +13,7 @@ class MainServerEqualItem extends game.BaseItem {
     private lockMC: eui.Image;
     private bg: eui.Image;
     private headMC: MainHeadItem;
+    private bgGroup: eui.Group;
 
 
 
@@ -24,6 +25,7 @@ class MainServerEqualItem extends game.BaseItem {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart,true);
         EM.addEvent(GameEvent.client.prop_change,this.renew,this)
+        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onRetry(){
@@ -81,5 +83,7 @@ class MainServerEqualItem extends game.BaseItem {
 
             }
         }
+
+        //RankManager.getInstance().renewPageHead(this.bgGroup,this.headMC,6);
     }
 }

@@ -10,6 +10,7 @@ class OtherInfoUI extends game.BaseUI {
     private topGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
+    private desText: eui.Label;
     private friendBtn: eui.Button;
     private deleteBtn: eui.Button;
     private talkBtn: eui.Button;
@@ -34,6 +35,7 @@ class OtherInfoUI extends game.BaseUI {
     private serverEqualText5: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -96,12 +98,17 @@ class OtherInfoUI extends game.BaseUI {
         })
     }
 
-    public showID(id){
+    public showID(id,stopAlert?){
+        if(id == UM.gameid)
+        {
+            MyInfoUI.getInstance().show();
+            return;
+        }
         var FM = FriendManager.getInstance();
         var self = this;
         FM.getOtherInfoByID(id,function(){
             self.show(FM.otherInfo[id]);
-        })
+        },stopAlert)
     }
 
     public showNick(nick){
@@ -181,6 +188,7 @@ class OtherInfoUI extends game.BaseUI {
 
         this.headMC.source = MyTool.getHeadUrl(dataIn.head);
         this.nameText.text = dataIn.nick;
+        this.desText.text = '　　' + (dataIn.word || '我无话可说..');
         this.setText(this.levelText, '[等级：]$$','LV.'+ UM.level,'LV.'+ dataIn.level);
         this.setText(this.forceText, '[战力：]$$',UM.getForce(),dataIn.force);
 
@@ -218,15 +226,15 @@ class OtherInfoUI extends game.BaseUI {
 
 
         var cd = Math.floor((TM.now() - dataIn.last_land)/(24*3600));
-        if(cd >=7 || true)
+        if(cd >=7)
         {
             this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+cd+'</font> 天没登录');
-            this.topGroup.height = 300;
+            //this.topGroup.height = 300;
         }
         else
         {
             this.landText.text = '';
-            this.topGroup.height = 230;
+            //this.topGroup.height = 260;
         }
 
 

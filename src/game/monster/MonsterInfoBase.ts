@@ -21,7 +21,6 @@ class MonsterInfoBase extends game.BaseContainer {
     private levelUpCardText: eui.Label;
     private lockGroup: eui.Group;
     private levelDes: eui.Label;
-    private talkBtn: eui.Image;
 
 
 
@@ -42,11 +41,6 @@ class MonsterInfoBase extends game.BaseContainer {
         this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
         this.addBtnEvent(this.levelUpCoinGroup, this.onAddCoin);
         this.addBtnEvent(this.levelUpCardGroup, this.onAddCard);
-        this.addBtnEvent(this.talkBtn, this.onTalk);
-    }
-
-    private onTalk(){
-        MonsterTalkUI.getInstance().show(this.vo.id);
     }
 
     private onAddCoin(e){

@@ -18,6 +18,7 @@ class FriendManager{
 
     public otherInfo = {};
     public otherInfoNick = {};
+    public errorOpenID = {};
 
     public shareCreateDate = 0; //shareObject里面的数据只保存一天
 
@@ -658,7 +659,7 @@ class FriendManager{
     }
 
     //查看他人详情   otherid,othernick只用传其中一个
-    public getOtherInfoByID(otherid,fun?){
+    public getOtherInfoByID(otherid,fun?,stopAlert?){
         if(this.otherInfo[otherid] && TM.now() - this.otherInfo[otherid].getTime <  60)
         {
             if(fun)
@@ -666,6 +667,10 @@ class FriendManager{
             return
         }
         var self = this;
+        if(self.errorOpenID[otherid]){
+            Alert(stopAlert || '该用户不存在')
+            return;
+        }
         var oo:any = {};
         oo.otherid = otherid;
         //oo.serverid =  LoginManager.getInstance().lastServer;
@@ -673,7 +678,8 @@ class FriendManager{
             var msg = data.msg;
             if(msg.fail == 1)
             {
-                Alert('该用户不存在')
+                self.errorOpenID[otherid] = true;
+                Alert(stopAlert || '该用户不存在')
                 return;
             }
             var info = msg.info;
@@ -742,6 +748,22 @@ class FriendManager{
             UM.head = headid;
             EM.dispatch(GameEvent.client.change_head);
 
+            if(fun)
+                fun();
+        });
+    }
+
+    //改宣言
+    public changeWord(word,fun?){
+
+        var self = this;
+        var oo:any = {};
+        oo.word = word;
+        Net.addUser(oo);
+        Net.send(GameEvent.user.change_word,oo,function(data){
+            var msg = data.msg;
+            UM.word = word;
+            EM.dispatch(GameEvent.client.word_change);
             if(fun)
                 fun();
         });

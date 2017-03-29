@@ -1,13 +1,13 @@
-class MonsterSendTalkUI extends game.BaseWindow {
-    private static instance:MonsterSendTalkUI;
+class UserChangeWordUI extends game.BaseWindow {
+    private static instance:UserChangeWordUI;
     public static getInstance() {
-        if (!this.instance) this.instance = new MonsterSendTalkUI();
+        if (!this.instance) this.instance = new UserChangeWordUI();
         return this.instance;
     }
 
     public constructor() {
         super();
-        this.skinName = "MonsterSendTalkSkin";
+        this.skinName = "UserChangeWordSkin";
     }
 
     private titleText: eui.Label;
@@ -18,13 +18,14 @@ class MonsterSendTalkUI extends game.BaseWindow {
 
 
 
-    private monsterID
+
 
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.cancelBtn, this.hide);
         this.addBtnEvent(this.sendBtn, this.onSend);
-        this.editText.restrict = "^\\\\\"\'"
+        this.editText.restrict = "^\\\\\"\'\n\r"
+        this.editText.prompt = "宣言最多25个中文"
 
         this.editText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
     }
@@ -32,10 +33,9 @@ class MonsterSendTalkUI extends game.BaseWindow {
     private onChange(){
         var len = StringUtil.getStringLength(this.editText.text);
         this.editText.text = MyTool.replaceEmoji(this.editText.text);
-        if(len > 1000)
+        if(len > 50)
         {
-            len = 1000;
-            this.editText.text = StringUtil.getStringByLength(this.editText.text,500);
+            this.editText.text = StringUtil.getStringByLength(this.editText.text,25);
         }
 
     }
@@ -52,25 +52,22 @@ class MonsterSendTalkUI extends game.BaseWindow {
             Alert('文字中含有非法字符')
             return
         }
-        if(!UM.testEnergy(1))
+        if(this.editText.text == UM.word)
         {
+            this.hide();
             return;
         }
-        MonsterManager.getInstance().sendTalk(this.monsterID,this.editText.text,function(){
+        FriendManager.getInstance().changeWord(this.editText.text,function(){
             self.hide();
-            MonsterTalkUI.getInstance().renewTalk();
         })
     }
 
     public show(data?){
-        this.monsterID = data;
         super.show();
     }
 
     public onShow(){
-        var vo = MonsterVO.getObject(this.monsterID);
-        this.titleText.text = '请输入你对' + vo.name + '的评论'
-        this.editText.text = '';
+        this.editText.text = UM.word || '';
         this.editText.setFocus();
 
 

@@ -41,6 +41,16 @@ class SendTalkUI extends game.BaseWindow {
 
     private onSend(){
         var self = this;
+        if(!this.editText.text)
+        {
+            Alert('没输入任何内容')
+            return
+        }
+        if(BadWordsFilter.validateWords(this.editText.text))
+        {
+            Alert('文字中含有非法字符')
+            return
+        }
         FriendManager.getInstance().talk(this.gameid,this.editText.text,function(){
              self.hide();
         })

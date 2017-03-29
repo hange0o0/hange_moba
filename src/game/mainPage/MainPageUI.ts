@@ -71,6 +71,7 @@ class MainPageUI extends game.BaseUI {
     private pageArray = [];
     private currentPage= 0;
     private startPos;
+    private playHeadTime = 0;
 
     public childrenCreated() {
         super.childrenCreated();
@@ -191,6 +192,15 @@ class MainPageUI extends game.BaseUI {
         {
             this.addStar();
             egret.setTimeout(this.addStar,this,500);
+
+            if(egret.getTimer() > this.playHeadTime){
+                this.playHeadTime = egret.getTimer() + 20*1000
+                this.playRankHead();
+            }
+        }
+        else if(egret.getTimer() > this.playHeadTime-5*1000)
+        {
+            this.playHeadTime = egret.getTimer() + 5*1000;
         }
     }
 
@@ -414,6 +424,8 @@ class MainPageUI extends game.BaseUI {
     //}
 
     public onShow(){
+        GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
+
         this.renewTop();
 
         this.renewTask();
@@ -426,7 +438,7 @@ class MainPageUI extends game.BaseUI {
         this.renewCollectRed();
         this.renewHonorRed();
 
-        GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
+
         GuideManager.getInstance().showGuide(MainPageUI.getInstance())
 
         //GuideManager.getInstance().guideStep = 13;
@@ -568,26 +580,54 @@ class MainPageUI extends game.BaseUI {
                 tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / pageSize));
             }
         }
-
+        var currentView;
         switch(this.currentPage)
         {
             case 0:
-                this.mainGame.renew();
+                currentView = this.mainGame;
                 this.videoBtn.visible = UM.main_game.pkdata;
                 break;
             case 1:
-                this.dayGame.renew();
+                currentView = this.dayGame;
                 this.videoBtn.visible = UM.day_game.pkdata;
                 break;
             case 2:
-                this.serverGame.renew();
+                currentView = this.serverGame;
                 this.videoBtn.visible = UM.server_game.pkdata;
                 break;
             case 3:
-                this.serverGameEqual.renew();
+                currentView = this.serverGameEqual;
                 this.videoBtn.visible = UM.server_game_equal.pkdata;
                 break;
 
+        }
+        if(currentView)
+        {
+            currentView.renew();
+            this.playHeadTime = Math.max(this.playHeadTime,egret.getTimer() + 5*1000);
+        }
+    }
+
+    private playRankHead(){
+        var currentView;
+        switch(this.currentPage)
+        {
+            case 0:
+                currentView = this.mainGame;
+                break;
+            case 1:
+                currentView = this.dayGame;
+                break;
+            case 2:
+                currentView = this.serverGame;
+                break;
+            case 3:
+                currentView = this.serverGameEqual;
+                break;
+        }
+        if(currentView)
+        {
+            RankManager.getInstance().renewPageHead(currentView.bgGroup,currentView.headMC,this.currentPage + 3);
         }
     }
 

@@ -13,6 +13,7 @@ class MainServerItem extends game.BaseItem {
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
     private headMC: MainHeadItem;
+    private bgGroup: eui.Group;
 
 
 
@@ -21,6 +22,7 @@ class MainServerItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart,true);
+        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onRetry(){

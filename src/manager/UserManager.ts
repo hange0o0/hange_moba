@@ -16,6 +16,7 @@ class UserManager {
     public gameid: string;
     public landid: string;
 
+    public word: string;
     public nick: string;
     public head: string;
     public coin: number;
@@ -49,6 +50,7 @@ class UserManager {
         this.gameid = data.gameid;
         this.landid = data.land_key;
         this.nick = data.nick;
+        this.word = data.word;
         this.head = data.head;
         this.coin = data.coin;
         this.exp = data.exp;
@@ -295,6 +297,20 @@ class UserManager {
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('coin');
+                }
+            },['取消','购买'])
+            return false;
+        }
+        return true;
+
+    }
+    public testEnergy(v){
+        if(UM.getEnergy() < v)
+        {
+            Confirm('体力不足！\n需要：' +v+'当前：'+UM.getEnergy() + '\n是否前往购买体力？',function(v){
+                if(v == 1)
+                {
+                    ShopUI.getInstance().show('energy');
                 }
             },['取消','购买'])
             return false;

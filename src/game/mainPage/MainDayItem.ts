@@ -4,13 +4,15 @@ class MainDayItem extends game.BaseItem {
         this.skinName = "MainDayItemSkin";
     }
 
+    private bgGroup: eui.Group;
+    private bg: eui.Image;
+    private scoreText: eui.Label;
+    private lockMC: eui.Image;
+    private desText: eui.Label;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
-    private scoreText: eui.Label;
-    private desText: eui.Label;
-    private lockMC: eui.Image;
-    private bg: eui.Image;
     private headMC: MainHeadItem;
+
 
 
 
@@ -20,6 +22,7 @@ class MainDayItem extends game.BaseItem {
 
     public childrenCreated() {
         this.addBtnEvent(this.startBtn, this.onStart,true);
+        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onStart(){
@@ -57,7 +60,7 @@ class MainDayItem extends game.BaseItem {
         }
 
 
-
+        //RankManager.getInstance().renewPageHead(this.bgGroup,this.headMC,4);
         //var level = myData.level + 1;
         //this.coinText.text = '×' + level*100;
         //

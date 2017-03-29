@@ -10,6 +10,7 @@ class MainMainItem extends game.BaseItem {
     private startBtn: eui.Button;
     private awardBtn: eui.Group;
     private headMC: MainHeadItem;
+    private bgGroup: eui.Group;
 
 
 
@@ -23,6 +24,7 @@ class MainMainItem extends game.BaseItem {
         this.addBtnEvent(this.awardBtn, this.onAward);
         this.addBtnEvent(this.startBtn, this.onStart,true);
         EM.addEvent(GameEvent.client.pass_day,this.renew,this)
+        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onAward(){
@@ -81,6 +83,8 @@ class MainMainItem extends game.BaseItem {
         }
 
 
+        //RankManager.getInstance().renewPageHead(this.bgGroup,this.headMC,3);
+
         //this.coinText.text = '×' + level*100
         ////每过30小关奖一个普通道具
         //var num = Math.floor(level/30);
@@ -107,4 +111,6 @@ class MainMainItem extends game.BaseItem {
         //}
 
     }
+
+
 }

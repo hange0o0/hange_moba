@@ -30,6 +30,8 @@ class MonsterList extends game.BaseUI {
     private p7: eui.Image;
     private p8: eui.Image;
     private p9: eui.Image;
+    private talkBtn: eui.Image;
+
 
 
 
@@ -42,6 +44,7 @@ class MonsterList extends game.BaseUI {
     public startPos
     public rota
     public pageSize = 8
+    private dragTimer = 0;
 
     //public isLevelUp = false
 
@@ -78,6 +81,35 @@ class MonsterList extends game.BaseUI {
             mc.index = i-1;
             this.addBtnEvent(mc,this.onPageClick)
         }
+        this.addBtnEvent(this.talkBtn, this.onTalk);
+        DragManager.getInstance().setDrag(this.talkBtn,true);
+        this.talkBtn.addEventListener('end_drag',this.onDragEnd,this);
+    }
+
+    private onDragEnd(){
+        var w = 93
+        var h = 86
+        var toY = this.stage.stageHeight - h - 10;
+        if(this.bottomGroup.visible)
+            toY -= 80;
+        var toX = 10;
+        if(this.talkBtn.x > 320)
+        {
+            toX = 640-w - 10;
+        }
+        var dis = MyTool.getDis(this.talkBtn,{x:toX,y:toY});
+        if(dis > 0)
+        {
+            var tw:egret.Tween = egret.Tween.get(this.talkBtn)
+            tw.to({x:toX,y:toY},Math.pow(dis,0.8));
+        }
+        this.dragTimer = egret.getTimer();
+    }
+
+    private onTalk(){
+        if(egret.getTimer() - this.dragTimer < 200)
+            return;
+        MonsterTalkUI.getInstance().show(this.dataArray[this.index].id);
     }
 
     private onPageClick(e){
@@ -262,6 +294,11 @@ class MonsterList extends game.BaseUI {
     //}
 
     public onShow(){
+
+        var w = 93
+        var h = 86
+        var toY = this.stage.stageHeight - h - 10;
+        var toX = 640-w - 10;
         if(this.dataArray.length <2)
         {
             this.bottomGroup.visible = false;
@@ -271,7 +308,11 @@ class MonsterList extends game.BaseUI {
         {
             this.bottomGroup.visible = true;
             this.scroller.bottom = 80;
+            toY -= 80;
         }
+        this.talkBtn.x = toX
+        this.talkBtn.y = toY
+
 
         this.scroller.viewport.scrollV = 0;
         this.renew();

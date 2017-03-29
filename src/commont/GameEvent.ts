@@ -19,6 +19,7 @@ class GameEvent {
         honor_change:'honor_change',
         main_kill:'main_kill',
         change_head:'change_head',
+        word_change:'word_change',
         pk_start:'pk_start',
         get_card:'get_card', //获得对战卡组
         monster_level_change:'monster_level_change',
@@ -72,6 +73,7 @@ class GameEvent {
 
     public static user = {
         get_other_info:'get_other_info',
+        change_word:'change_word',
         change_head:'change_head'
     }
 
@@ -105,6 +107,13 @@ class GameEvent {
     public static honor = {
         honor_more:'honor_more',
         honor_award:'honor_award'
+    }
+
+    public static monster_talk = {
+        get:'monster_talk_get',
+        star:'monster_talk_star',
+        comment:'monster_talk_comment',
+        add:'monster_talk_add'
     }
 
     public static collect = {

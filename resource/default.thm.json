@@ -101,6 +101,7 @@
     "src/game/user/MyInfoUISkin.exml",
     "src/game/user/OtherInfoUISkin.exml",
     "src/game/user/SettingSkin.exml",
+    "src/game/user/UserChangeWordSkin.exml",
     "src/guide/GuideSkin.exml",
     "src/login/HeadItemSkin.exml",
     "src/login/ChangeHeadUISkin.exml",

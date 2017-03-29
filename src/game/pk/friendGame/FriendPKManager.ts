@@ -54,6 +54,7 @@ class FriendPKManager{
             ShowTips('今次请求PK的次数已用完')
             return;
         }
+
         var self = this;
         var oo:any = {};
         oo.choose = choose;

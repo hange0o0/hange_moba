@@ -181,11 +181,17 @@ class FriendPKAskUI extends game.BaseUI {
         }
         else
         {
+            if(BadWordsFilter.validateWords(this.inputText.text || ''))
+            {
+                Alert('挑战宣言中含有非法字符')
+                return
+            }
             FPKM.otherid = this.data.otherid;
             FPKM.othernick = this.data.othernick;
             FPKM.otherhead = this.data.otherhead;
             FPKM.isequal = isEqual;
             FPKM.talk = this.inputText.text;
+
             PKDressUI.getInstance().show({pktype:'friend_ask',data:this.data.content.from_list,isEqual:isEqual,index:index})
         }
 

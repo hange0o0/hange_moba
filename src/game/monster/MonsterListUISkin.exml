@@ -37,5 +37,6 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
+	<e:Image source="menu_icon_4_png" y="297" x="30" id="talkBtn"/>
 
 </e:Skin>
