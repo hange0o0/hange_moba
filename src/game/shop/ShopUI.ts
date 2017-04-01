@@ -42,6 +42,12 @@ class ShopUI extends game.BaseUI {
         this.dataIn = v;
         if(this.stage)
         {
+            if(FromManager.getInstance().isTapTap && this.dataIn == 'diamond')
+            {
+                HonorUI.getInstance().show();
+                this.hide();
+                return;
+            }
             this.renewScroll(this.dataIn,true);
             return;
         }
@@ -88,6 +94,11 @@ class ShopUI extends game.BaseUI {
 
         if(this.dataIn)
         {
+            if(FromManager.getInstance().isTapTap && this.dataIn == 'diamond')
+            {
+                HonorUI.getInstance().show();
+                this.hide();
+            }
             this.renewScroll(this.dataIn);
         }
         this.dataIn = null;

@@ -24,6 +24,8 @@ class SoundManager {
 
     private currentChannel:egret.SoundChannel;
     private currentKey :string;
+    private bgKey :string;
+    private lastBGKey :string;
     private isLoad:boolean=false;
 
     public pkKey = [];
@@ -122,7 +124,14 @@ class SoundManager {
     }
 
     public stopBgSound(){
+        this.lastBGKey = this.bgKey;
+        this.bgKey = null;
         try{
+            if(_get['app'])
+            {
+                AppManager.getInstance().stopBG();
+                return;
+            }
             // if(this.tween){
             //     this.tween.pause();
             //     this.tween = null;
@@ -144,6 +153,12 @@ class SoundManager {
     public playEffect(v:string, delay:number = 0){
         if(!this.soundPlaying) return;
 
+        if(_get['app'])
+        {
+            AppManager.getInstance().playEffect(v + ".mp3");
+            return;
+        }
+
         try{
             if(this.isQzonePlay){
                 window["QZAppExternal"].playLocalSound(this.getSoundObject(v));
@@ -162,13 +177,30 @@ class SoundManager {
         }
     }
 
+    public resumeSound(){
+        if(this.lastBGKey)
+            this.playSound(this.lastBGKey);
+    }
+
     private tempLoop:number;
     public playSound(key:string, loop:number = 5999){
+
+
         if(!this.bgPlaying) return;
+        if(this.bgKey == key) return;
+
+        this.bgKey = key;
+        if(_get['app'])
+        {
+            AppManager.getInstance().playBG(key +".mp3");
+            return;
+        }
 
         var url = Config.localResRoot + "music/" + key +".mp3"
         if(this.currentKey == url) return;
         this.currentKey=url;
+
+
         
         try{
             if(this.isQzonePlay){

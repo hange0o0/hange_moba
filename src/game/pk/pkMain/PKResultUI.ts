@@ -92,7 +92,7 @@ class PKResultUI extends game.BaseUI {
         this.bg.visible = true;
         this.bg.alpha = 0;
         var tw:egret.Tween = egret.Tween.get(this.bg);
-        tw.to({alpha:0.5},300);
+        tw.to({alpha:0.6},300);
     }
 
     public hide(){

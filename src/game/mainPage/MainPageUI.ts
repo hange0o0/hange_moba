@@ -457,8 +457,6 @@ class MainPageUI extends game.BaseUI {
         setTimeout(function(){
             SoundManager.getInstance().loadEffectSound();
         },1000)
-
-        this.renewTask();
     }
 
     public onGuide0(){
