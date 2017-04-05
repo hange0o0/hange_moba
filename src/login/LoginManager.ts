@@ -13,6 +13,7 @@ class LoginManager{
     public myServer; //我的服务器列表   {key:name}
     public lastLand;
     public serverList = {}; //所有服务器的集合
+    public haveGetServerList = false
 
     public lastUser;  //上次的登录的用户
     public quickPassword; //上次的登录的密码//（只有在游客模式下有）
@@ -249,12 +250,11 @@ class LoginManager{
         }
     }
     private onUserLogin(){
-        PopUpManager.movieChange(function(){
+        this.getServerList(function(){
             RegisterUI.getInstance().hide();
-            LoginUI.getInstance().hide();
             LoginServerUI.getInstance().show();
+            PopUpManager.movieChange(LoginUI.getInstance(),LoginServerUI.getInstance(),1)
         })
-
     }
 
     //----------------------------------以下是整个平台的用户管理------------------
@@ -279,6 +279,11 @@ class LoginManager{
     }
 
     public getServerList(fun?){
+        if(this.haveGetServerList){
+            if(fun)
+                fun();
+            return;
+        }
         var self = this;
         Net.send(GameEvent.sys.get_server_list,{},function(data){
             var msg = data.msg;
@@ -292,6 +297,7 @@ class LoginManager{
                 list[s] = oo;
             }
             self.serverList = list;
+            self.haveGetServerList = true;
             if(fun)
                 fun();
         },true,2);
@@ -336,7 +342,8 @@ class LoginManager{
 
 
             MainPageUI.getInstance().show();
-            LoginServerUI.getInstance().hide();
+            PopUpManager.movieChange(LoginServerUI.getInstance(),MainPageUI.getInstance(),1)
+            //LoginServerUI.getInstance().hide();
             if(fun)
                 fun();
         });

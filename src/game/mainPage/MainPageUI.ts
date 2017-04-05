@@ -125,7 +125,7 @@ class MainPageUI extends game.BaseUI {
 
         EM.addEvent(GameEvent.client.friend_red_change,this.renewFriendRed,this);
 
-        EM.addEvent(GameEvent.client.timer,this.onTimer,this);
+
 
 
         this.taskText.mask = this.taskMask;
@@ -457,6 +457,8 @@ class MainPageUI extends game.BaseUI {
         setTimeout(function(){
             SoundManager.getInstance().loadEffectSound();
         },1000)
+
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
     }
 
     public onGuide0(){

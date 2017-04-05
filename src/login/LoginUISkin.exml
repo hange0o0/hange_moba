@@ -1,14 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="LoginUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group x="0" verticalCenter="0">
-		<e:Image id="topMC" source="fire_top_jpg" x="0" y="1.1102230246251565e-16"/>
-		<e:Group id="bgGroup" x="0" y="123.00000000000006">
+	<e:Group x="0" verticalCenter="0" height="1207">
+		<e:Group id="bgGroup" x="0" y="123">
 			<e:Image source="login_bg_jpg" x="0" y="0"/>
 		</e:Group>
-		<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="0" y="1205.8333333333333"/>
-		<e:layout>
-			<e:VerticalLayout gap="0"/>
-		</e:layout>
+		<e:Image id="topMC" source="fire_top_jpg" x="0" y="0"/>
+		<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="0" bottom="0"/>
 	</e:Group>
 
 	

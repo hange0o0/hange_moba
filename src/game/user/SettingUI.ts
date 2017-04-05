@@ -8,10 +8,12 @@ class SettingUI extends game.BaseWindow {
 
     private musicCB: eui.CheckBox;
     private soundCB: eui.CheckBox;
+    private loginBtn: eui.Button;
     private closeBtn: eui.Button;
     private idText: eui.Label;
     private qqText: eui.Label;
     private emailText: eui.Label;
+
 
 
 
@@ -28,9 +30,16 @@ class SettingUI extends game.BaseWindow {
         this.addBtnEvent(this.musicCB,this.onMusic);
         this.addBtnEvent(this.soundCB,this.onSound);
         this.addBtnEvent(this.closeBtn,this.hide);
+        this.addBtnEvent(this.loginBtn,this.onLoginOut);
         //this.addBtnEvent(this.qqBtn,this.onQQ);
 
         //this.addBtnEvent(this.okBtn, this.onChoose);
+    }
+
+    private onLoginOut(){
+        this.hide();
+        LoginServerUI.getInstance().show();
+        PopUpManager.movieChange(MainPageUI.getInstance(),LoginServerUI.getInstance(),-1)
     }
 
     private onMusic(){

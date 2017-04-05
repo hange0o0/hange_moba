@@ -4,7 +4,13 @@
 	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="设置" x="20"/>
 	<e:CheckBox id="musicCB" label="音乐" x="73" y="115" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="soundCB" x="300" label="音效" y="115" skinName="MyCheckBoxSkin"/>
-	<e:Button id="closeBtn" label="返回" skinName="Btn_r2Skin" horizontalCenter="0" bottom="50"/>
+	<e:Group y="493.93939393939394" horizontalCenter="0">
+		<e:Button id="loginBtn" label="登出" x="0" y="0" skinName="Btn_b2Skin"/>
+		<e:Button id="closeBtn" label="返回" skinName="Btn_r2Skin" x="0" y="0"/>
+		<e:layout>
+			<e:HorizontalLayout gap="50"/>
+		</e:layout>
+	</e:Group>
 	<e:Group x="63" y="206">
 		<e:Label y="2" textColor="0xEFE5AD" size="24" text="玩家ID：" x="0"/>
 		<e:Label id="idText" y="0" textColor="0xEDCB24" size="24" text="1624431545@qq.com" x="98"/>

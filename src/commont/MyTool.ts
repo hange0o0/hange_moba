@@ -21,8 +21,12 @@ class MyTool {
         //return Config.localResRoot + 'user_head/user_head'+id+'.png';
     }
     public static removeMC(mc:any){
-        if(mc.parent)
+        if(mc && mc.parent)
             mc.parent.removeChild(mc)
+    }
+    public static upMC(mc:any){
+        if(mc && mc.parent)
+            mc.parent.addChild(mc)
     }
 
     public static getDis(a,b){

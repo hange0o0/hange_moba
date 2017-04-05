@@ -5,31 +5,23 @@
  */
 class PopUpManager {
     public static shape:eui.Rect;
-    public static shape2:eui.Rect;
 	public constructor() {
 	}
 
-    public static movieChange(fun){
-        if(!this.shape2)
-        {
-            this.shape2 = new eui.Rect();
-            this.shape2.width = 640;
-            this.shape2.fillColor = 0;
-
-            this.shape2.top = 0
-            this.shape2.bottom = 0
-        }
-        var shape = this.shape2;
-        shape.alpha = 0;
-        GameManager.container.addChild(shape);
-        egret.Tween.removeTweens(shape);
-        var tw:egret.Tween = egret.Tween.get(shape);
-        tw.to({alpha:1},300).wait(50).call(function(){
-            fun();
-            GameManager.container.addChild(shape);
-        },this).wait(50).to({alpha:0},400).call(function(){
-            MyTool.removeMC(shape);
+    public static movieChange(oldWindow,newWindow,rota){
+        console.log(33);
+        this.removeShape();
+        //MyTool.upMC(oldWindow)
+        //MyTool.upMC(newWindow)
+        newWindow.x = rota*640;
+        egret.Tween.removeTweens(oldWindow);
+        egret.Tween.removeTweens(newWindow);
+        var tw:egret.Tween = egret.Tween.get(oldWindow);
+        tw.to({x:-rota*640},300).call(function(){
+            oldWindow.hide();
         },this)
+        var tw:egret.Tween = egret.Tween.get(newWindow);
+        tw.to({x:0},300)
     }
 
     public static removeShape(){

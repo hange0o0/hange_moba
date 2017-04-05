@@ -35,17 +35,17 @@ class LoginServerUI extends game.BaseUI {
     }
 
     private onBack(){
-        this.hide();
-        LoginManager.getInstance().quickPassword = null;
+        //LoginManager.getInstance().quickPassword = null;
         LoginUI.getInstance().show();
+        PopUpManager.movieChange(LoginServerUI.getInstance(),LoginUI.getInstance(),-1)
     }
 
     public show(){
         var LM = LoginManager.getInstance();
         var self = this;
-        LM.getServerList(function(){
+        //LM.getServerList(function(){
             self.superShow();
-        })
+        //})
     }
 
     public superShow(){
