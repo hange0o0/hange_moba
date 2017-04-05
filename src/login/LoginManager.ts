@@ -15,13 +15,13 @@ class LoginManager{
     public serverList = {}; //所有服务器的集合
 
     public lastUser;  //上次的登录的用户
-    public lastPassword; //上次的登录的密码（只有在游客模式下有）
+    public quickPassword; //上次的登录的密码//（只有在游客模式下有）
     public lastServer; //最近登陆的服务器
 
     public constructor() {
         var oo =  SharedObjectManager.instance.getValue('user') || {};
         this.lastUser = oo.user;
-        this.lastPassword = oo.password;
+        this.quickPassword = oo.password;
         this.lastServer = oo.lastServer;
         this.myServer = oo.myServer;
     }
@@ -65,7 +65,7 @@ class LoginManager{
     }
 
     private writeDB(){
-        var oo:any = {user:this.lastUser,password:this.lastPassword}
+        var oo:any = {user:this.lastUser,password:this.quickPassword}
         oo.lastServer = this.lastServer;
         oo.myServer = this.myServer;
         SharedObjectManager.instance.setValue('user',oo)
@@ -76,10 +76,10 @@ class LoginManager{
         var self = this;
         var oo:any = {};
         oo.name = name;
-        if(this.lastPassword == password)
-            oo.password = password;
-        else
+        if(password)
             oo.password = md5.incode(password);
+        else
+            oo.quick_password = this.quickPassword;
         Net.send(GameEvent.sys.login,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 1)
@@ -89,15 +89,17 @@ class LoginManager{
                     self.register(name,password);
                     return;
                 }
-                Alert('用户或密码错误');
-                //if(Config.isDebug)
-                //{
-                //    self.register(name,password,function(){
-                //        egret.setTimeout(function(){
-                //            self.login(name,password,fun);
-                //        },self,1000);
-                //    });
-                //}
+                if(password)
+                {
+                    Alert('用户或密码错误');
+                }
+                else
+                {
+                    Alert('用户登录状态已失效');
+                    LoginUI.getInstance().onChangeUser();
+                    self.quickPassword = null;
+                    self.writeDB();
+                }
                 return;
             }
 
@@ -115,7 +117,7 @@ class LoginManager{
 
 
             self.lastUser = name;
-            self.lastPassword = null
+            self.quickPassword = msg.quick_password;
             self.writeDB();
 
             self.onUserLogin();
@@ -149,7 +151,7 @@ class LoginManager{
             self.myServer = {};
 
             self.lastUser = name;
-            self.lastPassword = null
+            self.quickPassword = msg.quick_password
             self.writeDB();
 
             self.onUserLogin();
@@ -158,80 +160,80 @@ class LoginManager{
         },true,2);
     }
 
-    //创建一个游客账号
-    public quickRegister(fun?){
-        var self = this;
-        var oo:any = {};
-        Net.send(GameEvent.sys.quick_register,oo,function(data){
-            var msg = data.msg;
-            if(msg.fail == 1)
-            {
-                Alert('注册失败');
-                return;
-            }
-
-            if(msg.fail == 2)
-            {
-                Alert('该用户名已被使用');
-                return;
-            }
-
-            self.gameid = msg.data.id;
-            self.openKey = msg.data.cdkey;
-            self.lastLand = msg.data.last_land;
-            self.myServer = {};
-
-            self.lastUser = msg.data.name;
-            self.lastPassword = msg.data.password;
-            self.writeDB();
-
-            self.onUserLogin();
-            if(fun)
-                fun();
-        },true,2);
-    }
-
-    //把游客帐号变成注册账号
-    public reRegister(name,password,fun?){
-        var self = this;
-        var oo:any = {};
-        oo.name = name;
-        oo.password = password;
-
-        oo.last_name = self.lastUser;
-        oo.last_password = self.lastPassword;
-        Net.send(GameEvent.sys.re_register,oo,function(data){
-            var msg = data.msg;
-            if(msg.fail == 1)
-            {
-                Alert('注册失败');
-                return;
-            }
-
-            if(msg.fail == 2)
-            {
-                Alert('该用户名已被使用');
-                return;
-            }
-
-
-            self.gameid = msg.userdata.id;
-            self.openKey = msg.userdata.cdkey;
-            self.lastLand = msg.userdata.last_land;
-            self.fillServer(msg.userdata.server);
-
-
-
-            self.lastUser = name;
-            self.lastPassword = null
-            self.writeDB();
-
-
-            self.onUserLogin();
-            if(fun)
-                fun();
-        },true,2);
-    }
+    ////创建一个游客账号
+    //public quickRegister(fun?){
+    //    var self = this;
+    //    var oo:any = {};
+    //    Net.send(GameEvent.sys.quick_register,oo,function(data){
+    //        var msg = data.msg;
+    //        if(msg.fail == 1)
+    //        {
+    //            Alert('注册失败');
+    //            return;
+    //        }
+    //
+    //        if(msg.fail == 2)
+    //        {
+    //            Alert('该用户名已被使用');
+    //            return;
+    //        }
+    //
+    //        self.gameid = msg.data.id;
+    //        self.openKey = msg.data.cdkey;
+    //        self.lastLand = msg.data.last_land;
+    //        self.myServer = {};
+    //
+    //        self.lastUser = msg.data.name;
+    //        self.lastPassword = msg.data.password;
+    //        self.writeDB();
+    //
+    //        self.onUserLogin();
+    //        if(fun)
+    //            fun();
+    //    },true,2);
+    //}
+    //
+    ////把游客帐号变成注册账号
+    //public reRegister(name,password,fun?){
+    //    var self = this;
+    //    var oo:any = {};
+    //    oo.name = name;
+    //    oo.password = password;
+    //
+    //    oo.last_name = self.lastUser;
+    //    oo.last_password = self.lastPassword;
+    //    Net.send(GameEvent.sys.re_register,oo,function(data){
+    //        var msg = data.msg;
+    //        if(msg.fail == 1)
+    //        {
+    //            Alert('注册失败');
+    //            return;
+    //        }
+    //
+    //        if(msg.fail == 2)
+    //        {
+    //            Alert('该用户名已被使用');
+    //            return;
+    //        }
+    //
+    //
+    //        self.gameid = msg.userdata.id;
+    //        self.openKey = msg.userdata.cdkey;
+    //        self.lastLand = msg.userdata.last_land;
+    //        self.fillServer(msg.userdata.server);
+    //
+    //
+    //
+    //        self.lastUser = name;
+    //        self.lastPassword = null
+    //        self.writeDB();
+    //
+    //
+    //        self.onUserLogin();
+    //        if(fun)
+    //            fun();
+    //    },true,2);
+    //}
 
     private fillServer(server){
         this.myServer = {};
@@ -247,9 +249,12 @@ class LoginManager{
         }
     }
     private onUserLogin(){
-        RegisterUI.getInstance().hide();
-        LoginUI.getInstance().hide();
-        LoginServerUI.getInstance().show();
+        PopUpManager.movieChange(function(){
+            RegisterUI.getInstance().hide();
+            LoginUI.getInstance().hide();
+            LoginServerUI.getInstance().show();
+        })
+
     }
 
     //----------------------------------以下是整个平台的用户管理------------------

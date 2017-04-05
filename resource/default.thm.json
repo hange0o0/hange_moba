@@ -72,6 +72,7 @@
     "src/game/pk/pkMain/PKFailUISkin.exml",
     "src/game/pk/pkMain/PKItemBigSkin.exml",
     "src/game/pk/pkMain/PKItemSkin.exml",
+    "src/game/pk/pkMain/PKLoadingUISkin.exml",
     "src/game/pk/pkMain/PKMainUISkin.exml",
     "src/game/pk/pkMain/PKResultItem2Skin.exml",
     "src/game/pk/pkMain/PKResultItem3Skin.exml",

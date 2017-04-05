@@ -201,6 +201,32 @@ class PKManager {
         return 'pk_bg'+sceneID+'_jpg';
     }
 
+    public getLoadingBG(type){
+        var sceneID = 1;
+        if(type == PKManager.PKType.REPLAY)
+            type = this.pkResult.info.type;
+        switch(type)
+        {
+            case PKManager.PKType.MAIN:
+                sceneID = 1;
+                break;
+            case PKManager.PKType.DAY:
+                sceneID = 2;
+                break;
+            case PKManager.PKType.SERVER:
+                sceneID = 3;
+                break;
+            case PKManager.PKType.SERVER_EQUAL:
+                sceneID = 4;
+                break;
+            default:
+                sceneID = 1 + Math.floor(Math.random()*4);
+                break;
+        }
+
+        return 'main'+sceneID+'_png';
+    }
+
     //PK通用报错处理
     public pkError(oo){
         if(oo.fail == 101)//没这个令牌

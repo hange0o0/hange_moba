@@ -5,13 +5,17 @@ class LoadingFile {
      * 加载进度界面
      * loading process interface
      */
-    private loadingView:LoadingUI;
+    private _loadingView:LoadingUI;
+    private loadingView:any;
     private loadFiles:Array<string>;
     private callBack: any;
     private callBackTarget: any;
     private loadCount: number;
 
     private groupData = {}
+
+    private loadingData
+    private loadtimer
 
     private static instance:LoadingFile;
     public static getInstance() {
@@ -20,23 +24,26 @@ class LoadingFile {
     }
 
     public constructor() {
-        this.loadingView = new LoadingUI();
+        this._loadingView = new LoadingUI();
     }
 
     /*
      * array ['party', 'js_xxxxx'];
      */ 
-    public loadGroup(array:Array<string>, callBack:any, callBackTarget:any):void {
-        
+    public loadGroup(array:Array<string>, callBack:any, callBackTarget:any,loadingUI?,loadingData?):void {
+
+        this.loadtimer = egret.getTimer();
+        loadingData = loadingData || {};
+        loadingData.start =  this.loadtimer;
         this.loadFiles = array;
         this.callBack = callBack;
         this.loadCount = array.length;
         this.callBack = callBack;
         this.callBackTarget = callBackTarget;
-        
-        //设置加载进度界面
+        this.loadingData = loadingData;
 
-        this.loadingView.show();
+        this.loadingView = loadingUI || this._loadingView;
+        this.loadingView.show(loadingData);
         
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
@@ -67,12 +74,23 @@ class LoadingFile {
         
         if (this.loadCount == 0) {
 
-            this.loadingView.hide();
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+            var loadPass = egret.getTimer() - this.loadtimer
+            if(this.loadingData.min && loadPass < this.loadingData.min)
+            {
+                  egret.setTimeout(function(){
+                      this.loadingView.hide();
+                      this.callBack.call(this.callBackTarget);
+                  },this,this.loadingData.min - loadPass);
+            }
+            else
+            {
+                this.loadingView.hide();
+                this.callBack.call(this.callBackTarget);
+            }
 
-            this.callBack.call(this.callBackTarget);
         }
     }
 

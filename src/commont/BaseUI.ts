@@ -129,6 +129,10 @@ module game {
         public isHideFlag:boolean = true;
         public canBGClose:boolean = false;
 
+
+        public loadData = null;
+        public loadUI = null;
+
         private panelEvents: any = {};
 
         public constructor(isWindow?:boolean) {
@@ -220,7 +224,7 @@ module game {
             if(this.LoadFiles && this.LoadFiles.length > 0){
                 if(this.isStartLoad) return;
                 this.isStartLoad = true;
-                LoadingFile.getInstance().loadGroup(this.LoadFiles, this.showFun, this);
+                LoadingFile.getInstance().loadGroup(this.LoadFiles, this.showFun, this,this.loadUI,this.loadData);
                 this.LoadFiles = [];
                 return;
             }

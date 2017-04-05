@@ -76,6 +76,9 @@ class PKMainUI extends game.BaseUI {
 
 
 
+
+
+
         this.selfGroup.height = this.fightHeight;
 
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
@@ -120,7 +123,8 @@ class PKMainUI extends game.BaseUI {
         }
         for(var s in mObj)
         {
-            group.push('m_thumbr_' + s);
+            if(!RES.getRes('m_thumbr_' + s))
+                group.push('m_thumbr_' + s);
             this.loadGroup2.push('m_thumb_' + s);
         }
 
@@ -144,6 +148,20 @@ class PKMainUI extends game.BaseUI {
 
         this.cardIndex1 = -1;
         this.cardIndex2 = -1;
+
+
+        if(!_get['app'] && this.LoadFiles.length > 0)
+        {
+            this.loadData = {
+                min:1500,
+                source:PKManager.getInstance().getLoadingBG(PKManager.getInstance().pkType)
+            }
+            this.loadUI = PKLoadingUI.getInstance();
+        }
+        else
+        {
+            this.loadUI = null;
+        }
         super.show();
     }
 
@@ -1268,6 +1286,7 @@ class PKMainUI extends game.BaseUI {
     private showResult()
     {
         //this.hide();
+        PKLoadingUI.getInstance().realHide();
         this.stopAll();
         PKResultUI.getInstance().show();
         //if(PKManager.getInstance().pkResult.result)

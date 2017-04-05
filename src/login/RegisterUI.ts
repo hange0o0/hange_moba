@@ -25,6 +25,7 @@ class RegisterUI extends game.BaseWindow {
         this.addBtnEvent(this.backBtn, this.hide);
 
         this.nameText.restrict = "^\\\\\"\'"
+
     }
 
     public show(v?){
@@ -41,6 +42,9 @@ class RegisterUI extends game.BaseWindow {
         {
              this.titleText.text = '注册账号'
         }
+        this.nameText.text = ''
+        this.passwordText1.text = ''
+        this.passwordText2.text = ''
     }
 
     private onClick(){

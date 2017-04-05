@@ -8,11 +8,12 @@ class LoginServerUI extends game.BaseUI {
     private topMC0: eui.Image;
     private bgGroup: eui.Group;
     private bottomMC0: eui.Image;
-    private backBtn: eui.Label;
     private loginBtn: eui.Button;
     private nameText: eui.Label;
     private serverGroup: eui.Group;
     private serverName: eui.Label;
+    private backBtn: eui.Group;
+
 
 
 
@@ -35,6 +36,7 @@ class LoginServerUI extends game.BaseUI {
 
     private onBack(){
         this.hide();
+        LoginManager.getInstance().quickPassword = null;
         LoginUI.getInstance().show();
     }
 

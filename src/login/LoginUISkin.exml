@@ -1,26 +1,56 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="LoginUISkin" width="640" height="1200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="LoginUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group x="0" verticalCenter="0">
 		<e:Image id="topMC" source="fire_top_jpg" x="0" y="1.1102230246251565e-16"/>
-		<e:Image source="login_bg_jpg" x="0" y="120.83333333333334"/>
+		<e:Group id="bgGroup" x="0" y="123.00000000000006">
+			<e:Image source="login_bg_jpg" x="0" y="0"/>
+		</e:Group>
 		<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="0" y="1205.8333333333333"/>
 		<e:layout>
 			<e:VerticalLayout gap="0"/>
 		</e:layout>
 	</e:Group>
 
-	<e:Group horizontalCenter="0" width="440" verticalCenter="320">
-		<e:Label text="用户名：" y="10" textColor="0xC4A36A" x="0"/>
-		<e:Label y="77" text="密码：" textColor="0xC4A36A" x="30"/>
-		<e:TextInput id="nameText" x="134" y="0" skinName="MyTextInputSkin" height="50"/>
-		<e:TextInput id="passwordText" skinName="MyTextInputSkin" y="67" height="50" x="134"/>
-		<e:Group y="155" horizontalCenter="0">
-			<e:Button id="registerBtn" y="0" label="注册" x="0" skinName="Btn_d1Skin"/>
-			<e:Button id="loginBtn" label="登陆" x="137" y="4" skinName="Btn_r2Skin"/>
-			<e:Button id="tryBtn" y="0" label="试玩" x="319" skinName="Btn_d1Skin"/>
+	
+	
+	
+	<e:Group width="480" height="260" horizontalCenter="0" verticalCenter="260">
+		<e:Rect x="0" width="100%" y="0" strokeAlpha="0.6" ellipseHeight="20" fillAlpha="0.4" strokeWeight="1" height="100%" ellipseWidth="20" strokeColor="0xEFE5AD"/>
+		<e:Group height="200" y="-180" horizontalCenter="0">
+			<e:Image source="title_png" scaleX="0.8" scaleY="0.8" y="0" x="0"/>
+			<e:Image source="shop_card_png" y="10" scaleX="0.8" scaleY="0.8" rotation="110" x="235"/>
+			<e:Image source="shop_card_png" y="8" scaleX="0.8" scaleY="0.8" rotation="85" x="200"/>
+		</e:Group>
+		<e:Group id="logGroup" width="440" y="30" horizontalCenter="0">
+			<e:Label text="用户名：" y="10" textColor="0xC4A36A" x="0"/>
+			<e:Label y="77" text="密码：" textColor="0xC4A36A" x="30"/>
+			<e:TextInput id="nameText" x="134" y="0" skinName="MyTextInputSkin" height="50"/>
+			<e:TextInput id="passwordText" skinName="MyTextInputSkin" y="67" height="50" x="134"/>
+			<e:Group y="155" horizontalCenter="0">
+				<e:Button id="registerBtn" y="0" label="注册" x="0" skinName="Btn_b2Skin"/>
+				<e:Button id="loginBtn" label="登陆" x="137" y="4" skinName="Btn_r2Skin"/>
+				<e:layout>
+					<e:HorizontalLayout verticalAlign="middle" gap="20"/>
+				</e:layout>
+			</e:Group>
+		</e:Group>
+		<e:Group id="reloginGroup" width="440" y="30" horizontalCenter="0" x="10">
+			<e:Label id="reloginNameText" y="40" textColor="0xC4A36A" text="用户名：" horizontalCenter="0"/>
+			<e:Group y="120" horizontalCenter="0">
+				<e:layout>
+					<e:HorizontalLayout gap="20" verticalAlign="middle"/>
+				</e:layout>
+				<e:Button id="changeBtn" y="0" label="切换用户" skinName="Btn_b2Skin" x="0"/>
+				<e:Button id="loginBtn2" x="137" y="4" label="登陆" skinName="Btn_r2Skin"/>
+			</e:Group>
+		</e:Group>
+		<e:Group y="-40" horizontalCenter="0">
 			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle" gap="20"/>
+				<e:HorizontalLayout gap="20" verticalAlign="bottom"/>
 			</e:layout>
+			<e:Image source="main_mc_png" width="104" y="9.999999999999943" x="10" scaleX="-1"/>
+			<e:Label x="-764" width="180" y="903" textColor="0xC4A87C" stroke="3"/>
+			<e:Image source="main_mc_png" width="104" y="0" x="0"/>
 		</e:Group>
 	</e:Group>
 </e:Skin>

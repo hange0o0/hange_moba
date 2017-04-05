@@ -192,7 +192,7 @@ class Main extends eui.UILayer {
             return;
         }
 
-        if(_get['debug'] == 2)
+        if(!_get['debug'])
         {
             LoginUI.getInstance().show();
             return;
