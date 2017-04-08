@@ -21,7 +21,8 @@
 								<e:TileLayout paddingLeft="5" requestedColumnCount="3" horizontalGap="0"/>
 							</e:layout>
 						</e:List>
-						<e:Label id="selfText" text="我方战力：1234" y="0" size="24" horizontalCenter="0" stroke="1"/>
+						<e:Label id="selfText" text="战力：1234" y="-9" size="24" stroke="1" x="60"/>
+						<e:Image source="icon_atk_png" x="11" y="-20"/>
 					</e:Group>
 					<e:Group x="10" y="10">
 						<e:List id="enemyList" x="0" width="310" top="30" bottom="10">
@@ -29,7 +30,8 @@
 								<e:TileLayout requestedColumnCount="3" paddingLeft="5" horizontalGap="0"/>
 							</e:layout>
 						</e:List>
-						<e:Label id="enemyText" y="0" size="24" text="我方战力：1234" horizontalCenter="0" stroke="1"/>
+						<e:Label id="enemyText" y="-9" size="24" text="我方战力：1234" stroke="1" right="60"/>
+						<e:Image source="icon_atk_png" y="-20" right="11"/>
 					</e:Group>
 					<e:layout>
 						<e:HorizontalLayout gap="0"/>

@@ -226,7 +226,6 @@ module game {
                 this.isStartLoad = true;
                 LoadingFile.getInstance().loadGroup(this.LoadFiles, this.showFun, this,this.loadUI,this.loadData);
                 this.LoadFiles = [];
-                console.log(11);
                 return;
             }
             this.showFun();
@@ -260,7 +259,6 @@ module game {
                     this.onShow();
             }
             BaseUI.setStopEevent();
-            console.log(22);
         }
 
         public isHide():boolean{

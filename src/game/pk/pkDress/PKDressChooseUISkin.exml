@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="350" states="normal,selected,drag" >
-	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="350"/>
-	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="350" x="640"/>
+<e:Skin class="PKDressChooseUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"  height="420" states="normal,selected,drag" >
+	<e:Image source="book_bg2_jpg" y="0" x="0" scale9Grid="40,44,240,266" height="100%"/>
+	<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 
 
 
 
-    <e:Group id="itemGroup" x="0" y="14" width="640">
+    <e:Group id="itemGroup" x="0" y="25" width="640">
 		<ns1:PKDressChooseItem id="h1" skinName="PKDressChooseItemSkin" x="72" y="2"/>
 		<ns1:PKDressChooseItem id="h2" y="2" skinName="PKDressChooseItemSkin" x="260"/>
 		<ns1:PKDressChooseItem id="h3" y="2" x="445" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h4" y="130" x="72" skinName="PKDressChooseItemSkin"/>
-		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" y="130" x="259"/>
+		<ns1:PKDressChooseItem id="h4" y="155" x="72" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h5" skinName="PKDressChooseItemSkin" y="155" x="259"/>
 
-		<ns1:PKDressChooseItem id="h6" y="130" x="445" skinName="PKDressChooseItemSkin"/>
+		<ns1:PKDressChooseItem id="h6" y="155" x="445" skinName="PKDressChooseItemSkin"/>
 
 
 
@@ -24,28 +24,28 @@
 		<e:Image id="a2" source="arrow8_png" verticalCenter="-96.5" horizontalCenter="-84"/>
 		<e:Image id="a3" source="arrow8_png" verticalCenter="-96.5" horizontalCenter="99"/>
 		<e:Image id="a4" source="arrow8_png" verticalCenter="-96.5" horizontalCenter="284"/>
-		<e:Image id="a5" source="arrow8_png" scaleY="-1" verticalCenter="97.5" horizontalCenter="-262"/>
-		<e:Image id="a6" source="arrow8_png" scaleY="-1" verticalCenter="97.5" horizontalCenter="-84"/>
-		<e:Image id="a7" source="arrow8_png" scaleY="-1" verticalCenter="97.5" horizontalCenter="99"/>
-		<e:Image id="a8" source="arrow8_png" scaleY="-1" verticalCenter="97.5" horizontalCenter="284"/>
+		<e:Image id="a5" source="arrow8_png" scaleY="-1" verticalCenter="154.5" horizontalCenter="-262"/>
+		<e:Image id="a6" source="arrow8_png" scaleY="-1" verticalCenter="154.5" horizontalCenter="-84"/>
+		<e:Image id="a7" source="arrow8_png" scaleY="-1" verticalCenter="154.5" horizontalCenter="99"/>
+		<e:Image id="a8" source="arrow8_png" scaleY="-1" verticalCenter="154.5" horizontalCenter="284"/>
 	</e:Group>
-	<e:Group width="640" x="0" visible.selected="false" visible.drag="false" y="271">
-		<e:Button id="pkBtn" horizontalCenter="0" y="2" label="出　战" skinName="Btn_r3Skin"/>
-		<e:Group id="randomBtn" scaleX="0.5" scaleY="0.5" right="20" verticalCenter="0">
+	<e:Group width="640" x="0" visible.selected="false" visible.drag="false" y="320" height="90">
+		<e:Button id="pkBtn" horizontalCenter="0" label="出　战" skinName="Btn_r3Skin" verticalCenter="0"/>
+		<e:Group id="randomBtn" scaleX="0.6" scaleY="0.6" right="20" verticalCenter="0">
 			<e:Image source="main_border_png" x="0" y="0"/>
 			<e:Image source="random_btn_png" horizontalCenter="0" verticalCenter="0"/>
 		</e:Group>
-		<e:Group id="resetBtn" right="95" verticalCenter="0" x="10" y="10">
-			<e:Image source="main_border_png" y="0" x="0" scaleX="0.5" scaleY="0.5"/>
-			<e:Image horizontalCenter="0" verticalCenter="0" source="fu2_png"/>
+		<e:Group id="resetBtn" right="100" verticalCenter="0" x="10" y="10">
+			<e:Image source="main_border_png" y="0" x="0" scaleX="0.6" scaleY="0.6"/>
+			<e:Image horizontalCenter="0" verticalCenter="0" source="fu2_png" scaleX="1.2" scaleY="1.2"/>
 		</e:Group>
 	</e:Group>
-	<e:Group x="0" visible.normal="false" width="100%" visible.drag="false" y="271" height="66">
-		<e:Rect fillAlpha="0.5" width="620" y="0" height="100%" x="10"/>
+	<e:Group x="10" visible.normal="false" width="620" visible.drag="false" y="320" height="90">
+		<e:Rect fillAlpha="0.5" width="620" y="0" height="100%" x="0"/>
 		<e:Label id="desText" text="标签" x="20" verticalAlign="bottom" size="24" textColor="0xCCB48E" verticalCenter="0" lineSpacing="5"/>
 		<e:Button id="deleteBtn" label="下阵" skinName="Btn_r2Skin" right="20" verticalCenter="0"/>
 	</e:Group>
-	<e:Group id="removeGroup" width="100%" x="0" height="80" visible.normal="false" visible.selected="false" bottom="0">
+	<e:Group id="removeGroup" width="620" x="10" height="90" visible.normal="false" visible.selected="false" bottom="10">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.5"/>
 		<e:Label id="removeText" text="拖到此处移除" verticalCenter="0" horizontalCenter="0" strokeColor="0xFFFF00" verticalAlign="middle" textAlign="center" width="640" height="80"/>
 	</e:Group>

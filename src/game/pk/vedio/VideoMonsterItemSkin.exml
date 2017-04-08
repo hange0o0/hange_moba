@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="VideoMonsterItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Rect id="bg" height="56" width="56" x="0" y="0" ellipseHeight="10" ellipseWidth="10"/>
+<e:Skin class="VideoMonsterItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="56" height="56">
 	<e:Image y="3" id="headMC" width="50" height="50" x="3" source="head_png"/>
-	<e:Image source="icon_empty_png" y="32" x="31" scaleX="0.5" scaleY="0.5" id="icon"/>
-	<e:Label x="39" y="37" size="12" text="1" id="posText"/>
+	<e:Rect id="bg" height="56" width="56" x="0" y="0" ellipseHeight="15" ellipseWidth="15" fillAlpha="0" strokeWeight="3"/>
+	<e:Image source="icon_empty_png" y="29" x="28" scaleX="0.7" scaleY="0.7" id="icon"/>
+	<e:Label x="29" y="36" size="18" text="1" id="posText" width="30" textAlign="center"/>
 </e:Skin>

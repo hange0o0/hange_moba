@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ChooseServerItemSkin" xmlns:e="http://ns.egret.com/eui" states="up,down" >
-	<e:Image y="0" height="50" width="170" x="50" source="border5_png" scale9Grid="14,11,51,6"/>
-	<e:Label textColor="0xCCB48E" text="密码密码" id="serverName" size="26" verticalCenter="0" x="62" y="10" textAlign="left"/>
+<e:Skin class="ChooseServerItemSkin" xmlns:e="http://ns.egret.com/eui" states="up,down"  width="270" height="50">
+	<e:Image y="0" height="50" width="190" x="50" source="border5_png" scale9Grid="14,11,51,6"/>
+	<e:Label textColor="0xCCB48E" text="密码密码[12区]" id="serverName" size="24" verticalCenter="0" x="46" y="10" textAlign="center" width="200"/>
 	<e:Image source="icon_server_png" x="5" y="4"/>
-	<e:Image source="choose_icon_png" x="182" y="7" visible.up="false"/>
+	<e:Image source="choose_icon_png" y="7" visible.up="false" right="0"/>
 </e:Skin>

@@ -158,7 +158,7 @@ class MonsterInfoBase extends game.BaseContainer {
             fightData = specialData;
             if(specialData.lv)
             {
-                nameStr += '  <font color="#226C17" size="22">(LV.' + specialData.lv + ')</font>';
+                nameStr += '  <font color="#3C9A2D" size="22">(LV.' + specialData.lv + ')</font>';
             }
             isFromPK = true;
         }

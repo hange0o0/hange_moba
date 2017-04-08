@@ -4,11 +4,11 @@
 	<e:Image source="window2_png" bottom="50" top="50" scale9Grid="95,128,25,230" y="10" left="20" right="20"/>
 	<e:Label y="80" textColor="0xD0C7AD" horizontalCenter="0" text="请选择服务器" x="10"/>
 	<e:Button bottom="100" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
-	<e:Scroller left="60" right="60" top="140" bottom="180">
+	<e:Scroller left="50" right="50" top="140" bottom="180">
 		<e:Group id="scrollerGroup">
 			<e:Group id="myGroup" x="0" y="0">
-				<e:Label text="我的服务器：" x="0" y="0" textColor="0xCCB48E" size="24"/>
-				<e:List id="list1" width="520" x="0" y="45" itemRendererSkinName="ChooseServerItemSkin">
+				<e:Label text="我的服务器：" x="10" y="0" textColor="0xCCB48E" size="24"/>
+				<e:List id="list1" width="550" x="0" y="45" itemRendererSkinName="ChooseServerItemSkin">
 					<e:ArrayCollection>
 						<e:Array>
 							<e:Object label="数据1"/>
@@ -17,13 +17,13 @@
 						</e:Array>
 					</e:ArrayCollection>
 					<e:layout>
-						<e:TileLayout horizontalGap="40" verticalGap="10" paddingLeft="20"/>
+						<e:TileLayout horizontalGap="0" verticalGap="10" paddingLeft="10"/>
 					</e:layout>
 				</e:List>
 			</e:Group>
 			<e:Group id="otherGroup" x="0" y="160">
-				<e:Label text="最新服务器：" x="0" y="0" textColor="0xCCB48E" size="24"/>
-				<e:List id="list2" width="520" x="0" y="45" itemRendererSkinName="ChooseServerItemSkin">
+				<e:Label text="最新服务器：" x="10" y="0" textColor="0xCCB48E" size="24"/>
+				<e:List id="list2" width="550" x="0" y="45" itemRendererSkinName="ChooseServerItemSkin">
 					<e:ArrayCollection>
 						<e:Array>
 							<e:Object label="数据1"/>
@@ -32,7 +32,7 @@
 						</e:Array>
 					</e:ArrayCollection>
 					<e:layout>
-						<e:TileLayout horizontalGap="40" verticalGap="10" paddingLeft="20"/>
+						<e:TileLayout horizontalGap="0" verticalGap="10" paddingLeft="10"/>
 					</e:layout>
 				</e:List>
 			</e:Group>

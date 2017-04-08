@@ -5,7 +5,7 @@
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
-				<e:Group x="0" y="-80" height="420">
+				<e:Group x="0" y="-20" height="420">
 					<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" y="0" height="100%"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" y="0" height="100%"/>
 				</e:Group>
@@ -17,7 +17,7 @@
 				<e:Label id="desText" text="敌方卡组" y="15" textColor="0xCCB48E" horizontalCenter="0"/>
 				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
 					<e:layout>
-						<e:TileLayout horizontalGap="30"/>
+						<e:TileLayout horizontalGap="40" verticalGap="40"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>
@@ -31,9 +31,9 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group x="0" y="345.83333333333337" height="100%">
-				<e:Group x="0" height="510" id="myGroup0" verticalCenter="0">
-					<e:List y="70" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList0">
+			<e:Group x="0" y="345.83333333333337" height="100%" minHeight="520">
+				<e:Group x="0" id="myGroup0" verticalCenter="0" width="640">
+					<e:List y="70" horizontalCenter="0" itemRendererSkinName="MyHeadItemSkin" id="myList0">
 						<e:layout>
 							<e:TileLayout horizontalGap="15" requestedColumnCount="4" verticalGap="10"/>
 						</e:layout>
@@ -58,13 +58,16 @@
 							<e:HorizontalLayout verticalAlign="bottom"/>
 						</e:layout>
 					</e:Group>
-					<e:Group width="640" horizontalCenter="0" bottom="0">
-						<e:layout>
-							<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
-						</e:layout>
-						<e:Button x="365" y="0" label="开始挑战" skinName="Btn_r3Skin" id="chooseBtn0"/>
-					</e:Group>
 				</e:Group>
+				<e:Group width="640" horizontalCenter="0" height="100%">
+					<e:layout>
+						<e:HorizontalLayout gap="10" verticalAlign="middle" horizontalAlign="right" paddingRight="25"/>
+					</e:layout>
+					<e:Button x="365" y="0" label="开始挑战" skinName="Btn_r3Skin" id="chooseBtn0"/>
+				</e:Group>
+				<e:layout>
+					<e:VerticalLayout/>
+				</e:layout>
 			</e:Group>
 
 			<e:layout>

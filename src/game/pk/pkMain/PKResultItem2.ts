@@ -114,7 +114,7 @@ class PKResultItem2 extends game.BaseItem {
         }
         this.hpText0.text =  player.after + ' / ' + player.afterMax;
         if(player.after == 0)
-            this.hpText0.textColor = 0x999999
+            this.hpText0.textColor = 0xAAAAAA
         else
             this.hpText0.textColor = 0xEA4E4E
 
@@ -153,7 +153,7 @@ class PKResultItem2 extends game.BaseItem {
         }
         this.hpText1.text =  player.after + ' / ' + player.afterMax;
         if(player.after == 0)
-            this.hpText1.textColor = 0x999999
+            this.hpText1.textColor = 0xCCCCCC
         else
             this.hpText1.textColor = 0xEA4E4E
 

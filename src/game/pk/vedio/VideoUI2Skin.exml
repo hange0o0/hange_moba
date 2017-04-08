@@ -21,17 +21,17 @@
 			<e:Group x="87" y="7">
 				<e:Rect x="0" width="220" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
 				<e:Rect id="hpBar0" height="24" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
-				<e:Label stroke="1" text="12300/45600" size="18" id="hpText0" textColor="0xCCB48E" x="9" verticalCenter="0"/>
+				<e:Label stroke="1" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="87" y="33">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar0" y="0" strokeColor="0xFAED05" width="140" height="24" x="0" fillColor="0x0E178F"/>
-				<e:Label id="mpText0" stroke="1" textColor="0xCCB48E" text="12300/45600" x="9" size="18" verticalCenter="0"/>
+				<e:Label id="mpText0" stroke="1" text="12300/45600" x="9" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="87" y="59">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar0" y="0" strokeColor="0xFAED05" width="10" height="24" x="0" fillColor="0xB4A502"/>
-				<e:Label id="apText0" textColor="0xCCB48E" text="12300/45600" stroke="1" size="18" x="9" verticalCenter="0" verticalAlign="top"/>
+				<e:Label id="apText0" text="12300/45600" stroke="1" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="0">
 				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
@@ -48,17 +48,17 @@
 			<e:Group x="0" y="7" width="220">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="hpBar1" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="24" right="0"/>
-				<e:Label id="hpText1" stroke="1" textColor="0xCCB48E" verticalCenter="0" text="12300/45600" size="18" right="9"/>
+				<e:Label id="hpText1" stroke="1" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="33" width="220">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0x0E178F" height="24" right="0"/>
-				<e:Label id="mpText1" textColor="0xCCB48E" verticalCenter="0" text="12300/45600" stroke="1" size="18" right="9"/>
+				<e:Label id="mpText1" verticalCenter="0" text="12300/45600" stroke="1" size="18" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="59" width="220">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0xB4A502" height="24" right="0"/>
-				<e:Label id="apText1" textColor="0xCCB48E" verticalCenter="0" text="12300/45600" size="18" stroke="1" right="9"/>
+				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="1" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group y="0" right="0">
 				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
@@ -114,7 +114,7 @@
 		</e:Group>
 	</e:Group>
 	<e:Group id="tipsGroup" y="150" horizontalCenter="0">
-		<e:Rect height="40" width="200" x="0" y="0" fillAlpha="0.7" ellipseHeight="20" ellipseWidth="20"/>
-		<e:Label text="点击此处查看更多" horizontalCenter="0" size="22" verticalCenter="0" textColor="0xD3B777"/>
+		<e:Rect height="40" width="220" x="0" y="0" fillAlpha="0.8" ellipseHeight="20" ellipseWidth="20" strokeWeight="1" strokeColor="0xFCE1B8"/>
+		<e:Label text="点击此处查看更多" horizontalCenter="0" size="22" verticalCenter="0" textColor="0xFCE1B8"/>
 	</e:Group>
 	</e:Skin>

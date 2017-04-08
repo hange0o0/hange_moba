@@ -172,8 +172,8 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onMonsterLevel(){
-        this.pkDressChooseUI.justRenewList();
         this.renewList();
+        this.pkDressChooseUI.justRenewList();
     }
 
     private mainGameChange(){

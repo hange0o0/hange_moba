@@ -30,11 +30,11 @@ class VideoMonsterItem extends game.BaseItem {
             this.headMC.source = this.data.mvo.thumb;
         if(this.data.teamID == 1)
         {
-            this.bg.fillColor = 0x011282
+            this.bg.strokeColor = 0x1C30AE
         }
         else
         {
-            this.bg.fillColor = 0x820107
+            this.bg.strokeColor = 0x820107
         }
 
         this.icon.visible = true

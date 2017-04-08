@@ -24,7 +24,7 @@ class VideoGuideItem extends game.BaseItem {
 
     private decColor = 0xFF0000
     private addColor = 0x00FF00
-    private barWidth = 100;
+    private barWidth = 115;
 
     public childrenCreated() {
         //this.addBtnEvent(this.closeBtn,this.onKill);

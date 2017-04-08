@@ -1027,11 +1027,6 @@
 			"url":"game_assets/preload2_png/3th.png"
 		},
 		{
-			"name":"arrow1_png",
-			"type":"image",
-			"url":"game_assets/preload2_png/arrow1.png"
-		},
-		{
 			"name":"arrow2_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/arrow2.png"
@@ -1290,6 +1285,11 @@
 			"name":"king_icon_png",
 			"type":"image",
 			"url":"game_assets/preload_png/king_icon.png"
+		},
+		{
+			"name":"arrow1_png",
+			"type":"image",
+			"url":"game_assets/login/arrow1.png"
 		}
 	]
 }

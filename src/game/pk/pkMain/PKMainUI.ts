@@ -277,18 +277,19 @@ class PKMainUI extends game.BaseUI {
         tw.to({scaleX:1,scaleY:1},500).call(this.shakeBG,this).wait(600).call(this.addItemMovie,this);    //.wait(100)
         tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
 
-
-        this.topMC.y = -123
-        this.bottomMC.y = this.stageHeight
+        var itemHeight = 123;
         var des = (this.stageHeight - this.fightHeight)/2;
-        if(des > 0)
-        {
-            var itemHeight = 123;
-            var tw:egret.Tween = egret.Tween.get(this.topMC);
-            tw.to({y:-itemHeight+des},des*1.2)
-            var tw:egret.Tween = egret.Tween.get(this.bottomMC);
-            tw.to({y:this.stageHeight-des},des*1.2)
-        }
+        this.topMC.y = -itemHeight+des
+        this.bottomMC.y = this.stageHeight-des
+        //if(des > 0)
+        //{
+        //    this.topMC.alpha = 0
+        //    this.bottomMC.alpha = 0
+        //    var tw:egret.Tween = egret.Tween.get(this.topMC);
+        //    tw.to({alpha:1},100)
+        //    var tw:egret.Tween = egret.Tween.get(this.bottomMC);
+        //    tw.to({alpha:1},100)
+        //}
 
         this.jumpBtn.y = this.stageHeight- des - 70;
     }
@@ -473,6 +474,7 @@ class PKMainUI extends game.BaseUI {
         var oo:any = this.currentStep = this.pkList.shift();
         if(oo == null)//pk结束
         {
+            this.jumpBtn.visible = false;
             this.timer = egret.setTimeout(this.showResult,this,1000)
              return;
         }

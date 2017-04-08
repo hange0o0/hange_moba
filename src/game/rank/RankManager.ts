@@ -20,8 +20,8 @@ class RankManager{
     }
 
     //取排行榜数据
-    public getRank(rankType,fun?){
-        if(this.rankData[rankType] && (DateUtil.isSameDay(this.rankData[rankType].time) || TM.now() - this.rankData[rankType].getTime < 60))
+    public getRank(rankType,fun?,isFromMain?){
+        if(this.rankData[rankType] && (isFromMain || DateUtil.isSameDay(this.rankData[rankType].time) || TM.now() - this.rankData[rankType].getTime < 60))
         {
             if(fun)
                 fun();
@@ -98,7 +98,7 @@ class RankManager{
     }
 
     public renewPageHead(bgCon,headMC,rankType){
-        if(!GuideManager.getInstance().isGuiding)
+        if(!GuideManager.getInstance().isGuiding && RankManager.getInstance().isRankOpen())
         {
             var self = this;
             RankManager.getInstance().getRank(rankType,function(){
@@ -111,7 +111,7 @@ class RankManager{
                     self.startTween(bgCon,headMC)
                     //headMC.time = TM.now();
                 }
-            })
+            },true)
         }
         else
             headMC.visible = false;

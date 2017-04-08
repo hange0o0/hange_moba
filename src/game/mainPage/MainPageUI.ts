@@ -438,8 +438,9 @@ class MainPageUI extends game.BaseUI {
         this.renewCollectRed();
         this.renewHonorRed();
 
-
-        GuideManager.getInstance().showGuide(MainPageUI.getInstance())
+        egret.setTimeout(function() {
+            GuideManager.getInstance().showGuide(MainPageUI.getInstance())
+        },this,300);
 
         //GuideManager.getInstance().guideStep = 13;
         //MyTool.removeMC(PopUpManager.shape);

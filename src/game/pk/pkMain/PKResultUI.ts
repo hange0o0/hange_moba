@@ -92,7 +92,7 @@ class PKResultUI extends game.BaseUI {
         this.bg.visible = true;
         this.bg.alpha = 0;
         var tw:egret.Tween = egret.Tween.get(this.bg);
-        tw.to({alpha:0.6},300);
+        tw.to({alpha:0.8},300);
     }
 
     public hide(){
@@ -131,7 +131,7 @@ class PKResultUI extends game.BaseUI {
         var info1 = [];
         var info2 = [];
 
-        this.selfText.text = '我方战力：' +  team1Base.f;
+        this.selfText.text = '战力:' +  team1Base.f;
         for(var i=0;i<team1Base.list.length;i++)
         {
             var mid = team1Base.list[i]
@@ -157,7 +157,7 @@ class PKResultUI extends game.BaseUI {
         }
         this.selfList.dataProvider = new eui.ArrayCollection(info1)
 
-        this.enemyText.text = '敌方战力：' +  (team2Base.f || 0);
+        this.enemyText.text = '战力:' +  (team2Base.f || 0);
         for(var i=0;i<team2Base.list.length;i++)
         {
             var mid = team2Base.list[i]

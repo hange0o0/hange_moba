@@ -3,11 +3,13 @@
 
 	<e:Image source="card_bg_png" y="0" height="179" x="0" width="137" scale9Grid="72,75,87,71"/>
 	<e:Image source="head_png" y="8" x="8" width="120" height="160" id="headMC"/>
+
 
-	<e:Rect height="35" width="120" fillAlpha="0.75" x="8" y="133"/>
 
-
-	<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="142" horizontalCenter="1" textColor="0xEED1A7"/>
+	<e:Group id="levelGroup" x="8" y="133">
+		<e:Rect height="35" width="100%" fillAlpha="0.75" x="0" y="0"/>
+		<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="7" textColor="0xEED1A7" left="5" right="8"/>
+	</e:Group>
 	<e:Image id="redMC" source="red_point_png" x="108" y="0"/>
 
 

@@ -44,7 +44,7 @@ class LoginUI extends game.BaseUI {
         //}
         
         //this.passwordText.text = '111111'
-        //this.nameText.text = 'cai@cai.cai'
+        this.nameText.text = ''
     }
 
     public onChangeUser(){
@@ -68,6 +68,11 @@ class LoginUI extends game.BaseUI {
                 this.reloginGroup.visible = false
                 this.logGroup.visible = true
             }
+        }
+        else
+        {
+            this.reloginGroup.visible = false
+            this.logGroup.visible = true
         }
         this.addPanelOpenEvent('timer',this.onTimer)
         this.onTimer();

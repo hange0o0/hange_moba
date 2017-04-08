@@ -9,7 +9,6 @@ class PopUpManager {
 	}
 
     public static movieChange(oldWindow,newWindow,rota){
-        console.log(33);
         this.removeShape();
         //MyTool.upMC(oldWindow)
         //MyTool.upMC(newWindow)

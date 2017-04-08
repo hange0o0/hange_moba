@@ -9,7 +9,7 @@
 		</e:layout>
 	</e:Group>
 	<e:Label id="roundText" text="标签" size="18" horizontalCenter="0" strokeColor="0xFFFF00" stroke="0" y="4" height="22" verticalAlign="middle"/>
-	<e:Label id="closeBtn" text="[ 关闭 ]" size="22" width="100" right="10" textAlign="right" y="5" height="50" textColor="0xCCCCCC"/>
+	<e:Label id="closeBtn" text="[ 隐藏 ]" size="22" width="100" right="15" textAlign="right" y="5" height="50" textColor="0xFCE1B8"/>
 	<e:Label id="openBtn" text="点击查看战斗过程" size="22" x="0" y="43" width="100%" textAlign="center" textColor="0xFDBA93"/>
 	<e:Image id="bottomLine" source="line_png" width="650" x="-5" bottom="-5"/>
 </e:Skin>
