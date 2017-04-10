@@ -158,7 +158,7 @@ class MonsterInfoBase extends game.BaseContainer {
             fightData = specialData;
             if(specialData.lv)
             {
-                nameStr += '  <font color="#3C9A2D" size="22">(LV.' + specialData.lv + ')</font>';
+                nameStr += '  <font color="#cc9900" size="22">(LV.' + specialData.lv + ')</font>';
             }
             isFromPK = true;
         }
@@ -174,7 +174,7 @@ class MonsterInfoBase extends game.BaseContainer {
                          fightData[s] += specialData.equalAdd;
                      }
                 }
-                nameStr += '  <font color="#D9A744" size="22">(修正)</font>';
+                nameStr += '  <font color="#cc9900" size="22">(修正)</font>';
                 //this.levelGroup.visible = false;
             }
 
@@ -182,7 +182,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
                 //this.levelGroup.visible = false;
                 fightData = {atk:0,hp:0,speed:0};
-                nameStr += '  <font color="#D9A744" size="22">(基础)</font>';
+                nameStr += '  <font color="#cc9900" size="22">(基础)</font>';
 
             }
             else  //我自己
@@ -194,7 +194,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
                 if(UM.level >= vo.level)
                 {
-                    nameStr += '  <font color="#226C17" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
+                    nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
                     this.renewLevelUp();
                 }
                 //else

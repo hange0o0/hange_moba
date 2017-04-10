@@ -78,9 +78,9 @@
 						<e:VerticalLayout gap="10"/>
 					</e:layout>
 				</e:Group>
-				<e:Button id="talkBtn" label="发表评论" y="260" x="445" skinName="Btn_r2Skin"/>
-				<e:Button id="scoreBtn" skinName="Btn_r1Skin" y="256" label="评分" x="322"/>
-				<e:Label id="disableText" y="267" stroke="1" text="该卡获得 [0/10] 胜后才能发言" size="22" textColor="0xCBC08A" horizontalCenter="132"/>
+				<e:Button id="talkBtn" label="发表评论" y="260" x="255" skinName="Btn_r2Skin"/>
+				<e:Button id="scoreBtn" skinName="Btn_r1Skin" y="256" label="评分" x="430"/>
+				<e:Label id="disableText" y="268" stroke="1" text="该卡获得 [0/10] 胜后才能发言" size="22" textColor="0xCBC08A" x="260"/>
 			</e:Group>
 		</e:Group>
 	</e:Scroller>

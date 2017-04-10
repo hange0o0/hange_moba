@@ -6,11 +6,15 @@ class FriendTalkUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private con: eui.Group;
     private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
-    private btnGroup: eui.Group;
-    private closeBtn: eui.Button;
+    private talkGroup: eui.Group;
+    private inputText: eui.EditableText;
     private sendBtn: eui.Button;
+    private numText: eui.Label;
+
+
 
 
 
@@ -47,12 +51,45 @@ class FriendTalkUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
 
-        this.addBtnEvent(this.sendBtn, this.onClick);
-        this.addBtnEvent(this.closeBtn, this.hide);
+        //this.addBtnEvent(this.sendBtn, this.onClick);
+        //this.addBtnEvent(this.closeBtn, this.hide);
 
+        this.addBtnEvent(this.sendBtn, this.onSend);
+        this.inputText.restrict = "^\\\\\"\'"
 
+        this.inputText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
     }
 
+    private onChange(){
+        var len = StringUtil.getStringLength(this.inputText.text);
+        this.inputText.text = MyTool.replaceEmoji(this.inputText.text);
+        this.inputText.height = this.inputText.textHeight
+        this.talkGroup.validateNow();
+        if(len > 200)
+        {
+            len = 200;
+            this.inputText.text = StringUtil.getStringByLength(this.inputText.text,100);
+        }
+        this.numText.text = '' + len + '/200'
+    }
+
+    private onSend(){
+        var self = this;
+        if(!this.inputText.text)
+        {
+            Alert('没输入任何内容')
+            return
+        }
+        if(BadWordsFilter.validateWords(this.inputText.text))
+        {
+            Alert('文字中含有非法字符')
+            return
+        }
+        FriendManager.getInstance().talk(this.gameid,this.inputText.text,function(){
+            self.inputText.text = '';
+            //self.hide();
+        })
+    }
     public beforeHide(){
         this.vGroup.clean()
     }
@@ -62,15 +99,15 @@ class FriendTalkUI extends game.BaseUI {
             return;
         FriendManager.getInstance().getLog();  //底层有30S取一次的限制
     }
-    private onClick(){
-        var FM = FriendManager.getInstance();
-        if(UM.getFriendTalk() <= 0)
-        {
-            Alert('今天的聊天次数已用完')
-            return;
-        }
-        SendTalkUI.getInstance().show(this.gameid);
-    }
+    //private onClick(){
+    //    var FM = FriendManager.getInstance();
+    //    if(UM.getFriendTalk() <= 0)
+    //    {
+    //        Alert('今天的聊天次数已用完')
+    //        return;
+    //    }
+    //    SendTalkUI.getInstance().show(this.gameid);
+    //}
 
     public hide(){
         super.hide();
@@ -89,6 +126,7 @@ class FriendTalkUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.inputText.text = '';
         var FM = FriendManager.getInstance();
 
         if(FM.friendData[this.gameid])
@@ -131,12 +169,11 @@ class FriendTalkUI extends game.BaseUI {
 
         if(FM.friendData[this.gameid])
         {
-            this.btnGroup.addChild(this.sendBtn);
-            this.sendBtn.label = '发送聊天'
+            this.con.addChild(this.talkGroup)
         }
         else
         {
-            MyTool.removeMC(this.sendBtn);
+            MyTool.removeMC(this.talkGroup);
         }
         this.vGroup.scrollToLast()
     }
@@ -161,12 +198,11 @@ class FriendTalkUI extends game.BaseUI {
 
         if(FM.friendData[this.gameid])
         {
-            this.btnGroup.addChild(this.sendBtn);
-            this.sendBtn.label = '发送聊天' //（'+UM.getFriendTalk() + '/'+FM.maxTalk+'）
+            this.con.addChild(this.talkGroup)
         }
         else
         {
-            MyTool.removeMC(this.sendBtn);
+            MyTool.removeMC(this.talkGroup);
         }
 
 

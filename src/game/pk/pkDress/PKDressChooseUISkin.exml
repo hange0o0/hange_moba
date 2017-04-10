@@ -30,22 +30,26 @@
 		<e:Image id="a8" source="arrow8_png" scaleY="-1" verticalCenter="154.5" horizontalCenter="284"/>
 	</e:Group>
 	<e:Group width="640" x="0" visible.selected="false" visible.drag="false" y="320" height="90">
-		<e:Button id="pkBtn" horizontalCenter="0" label="出　战" skinName="Btn_r3Skin" verticalCenter="0"/>
-		<e:Group id="randomBtn" scaleX="0.6" scaleY="0.6" right="20" verticalCenter="0">
+		<e:Button id="pkBtn" label="出　战" skinName="Btn_r3Skin" x="211" y="13.5"/>
+		<e:Group id="randomBtn" scaleX="0.6" scaleY="0.6" x="549" y="10.100000000000001">
 			<e:Image source="main_border_png" x="0" y="0"/>
 			<e:Image source="random_btn_png" horizontalCenter="0" verticalCenter="0"/>
 		</e:Group>
-		<e:Group id="resetBtn" right="100" verticalCenter="0" x="10" y="10">
+		<e:Group id="resetBtn" x="469" y="10">
 			<e:Image source="main_border_png" y="0" x="0" scaleX="0.6" scaleY="0.6"/>
 			<e:Image horizontalCenter="0" verticalCenter="0" source="fu2_png" scaleX="1.2" scaleY="1.2"/>
 		</e:Group>
+		<e:Group id="sortBtn" x="20" y="30.5">
+			<e:Image source="arrow7_png" x="0" y="0"/>
+			<e:Label id="sortText" text="等级排序" x="40" y="0" textColor="0xCCB48E"/>
+		</e:Group>
 	</e:Group>
-	<e:Group x="10" visible.normal="false" width="620" visible.drag="false" y="320" height="90">
+	<e:Group x="10" visible.normal="false" width="620" visible.drag="false" y="320" height="90" visible="false">
 		<e:Rect fillAlpha="0.5" width="620" y="0" height="100%" x="0"/>
 		<e:Label id="desText" text="标签" x="20" verticalAlign="bottom" size="24" textColor="0xCCB48E" verticalCenter="0" lineSpacing="5"/>
 		<e:Button id="deleteBtn" label="下阵" skinName="Btn_r2Skin" right="20" verticalCenter="0"/>
 	</e:Group>
-	<e:Group id="removeGroup" width="620" x="10" height="90" visible.normal="false" visible.selected="false" bottom="10">
+	<e:Group id="removeGroup" width="620" x="10" height="90" visible.normal="false" visible.selected="false" bottom="10" visible="false">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.5"/>
 		<e:Label id="removeText" text="拖到此处移除" verticalCenter="0" horizontalCenter="0" strokeColor="0xFFFF00" verticalAlign="middle" textAlign="center" width="640" height="80"/>
 	</e:Group>

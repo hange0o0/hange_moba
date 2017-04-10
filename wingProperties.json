@@ -1063,6 +1063,11 @@
 					"isFolder":false,
 					"key":"king_icon_png",
 					"name":"king_icon_png"
+				},
+				{
+					"isFolder":false,
+					"key":"arrow7_png",
+					"name":"arrow7_png"
 				}
 			]
 		}

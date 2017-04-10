@@ -66,7 +66,7 @@ class SendTalkUI extends game.BaseWindow {
         this.onChange();
         this.validateNow()
         //this.once(egret.Event.ENTER_FRAME,function(){
-            this.editText.setFocus();
+        //    this.editText.setFocus();
         //},this)
 
     }

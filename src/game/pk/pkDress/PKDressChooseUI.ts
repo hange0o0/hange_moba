@@ -25,10 +25,13 @@ class PKDressChooseUI extends game.BaseContainer {
     private pkBtn: eui.Button;
     private randomBtn: eui.Group;
     private resetBtn: eui.Group;
+    private sortBtn: eui.Group;
+    private sortText: eui.Label;
     private desText: eui.Label;
     private deleteBtn: eui.Button;
     private removeGroup: eui.Group;
     private removeText: eui.Label;
+
 
 
 
@@ -51,6 +54,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private mcArray = [];//没用到的MC
     private listLength ;//当前有效卡组长度
     public list//数据
+    public atkData:any = {};
 
 
    private _selectIndex = -1;
@@ -82,6 +86,8 @@ class PKDressChooseUI extends game.BaseContainer {
     private overTarget
 
 
+    public sortIndex = 0;
+    private sortArr = ['费用排序','血量排序','攻击排序','速度排序'];
     public childrenCreated() {
         super.childrenCreated();
 
@@ -138,14 +144,25 @@ class PKDressChooseUI extends game.BaseContainer {
         this.addBtnEvent(this.deleteBtn, this.onDelete);
         this.addBtnEvent(this.randomBtn, this.onRandom);
         this.addBtnEvent(this.resetBtn, this.onReset);
+        this.addBtnEvent(this.sortBtn, this.onSort);
 
         //this.addBtnEvent(this.moreBtn, this.onMore);
 
         this.dragTarget = new PKDressChooseItem();
         this.dragTarget.alpha = 0.5
 
-
+        this.sortIndex = SharedObjectManager.instance.getMyValue('monster_sort') || 0;
+        this.sortText.text = this.sortArr[this.sortIndex];
         //console.log(this.posArray);
+    }
+
+    private onSort(){
+        this.sortIndex ++
+        if(this.sortIndex >= this.sortArr.length)
+            this.sortIndex = 0;
+        this.sortText.text = this.sortArr[this.sortIndex];
+        SharedObjectManager.instance.setMyValue('monster_sort',this.sortIndex)
+        this.dispatchEventWith('sort');
     }
 
     public onRandom(){
@@ -330,10 +347,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.renewSplice();
         this.dispatchEventWith('change');
 
-        for(var i=0;i<this.mcArray.length;i++)   //上面拿了数据才会改变使用数量
-        {
-            this.mcArray[i].dataChanged();
-        }
+        this.justRenewList();
     }
 
     //插入
@@ -471,6 +485,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.changeState('normal')
         this.renewPos(null,true);
         this.renewSplice();
+        this.justRenewList();
     }
 
     //交换位置
@@ -534,10 +549,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.renewSplice();
         this.dispatchEventWith('change');
 
-        for(var i=0;i<this.mcArray.length;i++)   //上面拿了数据才会改变使用数量
-        {
-            this.mcArray[i].dataChanged();
-        }
+        this.justRenewList();
     }
 
     public getChooseList(self){
@@ -563,6 +575,38 @@ class PKDressChooseUI extends game.BaseContainer {
     }
 
     public justRenewList(){
+        this.atkData = {
+            atk:[],
+            hp:[],
+            speed:[],
+        }
+        //var temp:any = this.atkData[vo.id] = {};
+        //temp.hp =  Math.round(vo.hp * (1+fightData.hp/100));
+        //temp.atk =  Math.round(vo.atk * (1+fightData.atk/100));
+        //temp.speed =  Math.round(vo.speed * (1+fightData.speed/100));
+        //this.atkData.hp.push(temp.hp);
+        //this.atkData.atk.push(temp.atk);
+        //this.atkData.speed.push(temp.speed);
+        for(var i=0;i<this.mcArray.length;i++) {
+            var mc = this.mcArray[i];
+            if(mc.data)
+            {
+                var temp = PKDressUI.getInstance().atkData[mc.data.id];
+                this.atkData.hp.push(temp.hp);
+                this.atkData.atk.push(temp.atk);
+                this.atkData.speed.push(temp.speed);
+            }
+        }
+
+        var sortNumber = function(a,b)
+        {
+            return b - a;
+        }
+        this.atkData.hp.sort(sortNumber);
+        this.atkData.atk.sort(sortNumber);
+        this.atkData.speed.sort(sortNumber);
+
+
         for(var i=0;i<this.mcArray.length;i++) {
             var mc = this.mcArray[i];
             mc.dataChanged();

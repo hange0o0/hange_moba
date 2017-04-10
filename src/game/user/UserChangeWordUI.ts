@@ -25,7 +25,7 @@ class UserChangeWordUI extends game.BaseWindow {
         this.addBtnEvent(this.cancelBtn, this.hide);
         this.addBtnEvent(this.sendBtn, this.onSend);
         this.editText.restrict = "^\\\\\"\'\n\r"
-        this.editText.prompt = "宣言最多25个中文"
+        //this.editText.prompt = "宣言最多25个中文"
 
         this.editText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
     }
@@ -68,7 +68,7 @@ class UserChangeWordUI extends game.BaseWindow {
 
     public onShow(){
         this.editText.text = UM.word || '';
-        this.editText.setFocus();
+        //this.editText.setFocus();
 
 
     }

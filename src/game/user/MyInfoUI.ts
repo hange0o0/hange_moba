@@ -178,9 +178,9 @@ class MyInfoUI extends game.BaseUI {
         this.headMC.source = MyTool.getHeadUrl(UM.head);
 
         if(UM.word)
-            this.setHtml(this.desText,'　　' + UM.word  + this.createHtml(' 【点击修改】',0x999999,20));
+            this.setHtml(this.desText,'　　' + UM.word  + this.createHtml(' 【点击修改】',0xAAAAAA,20));
         else
-            this.setHtml(this.desText,this.createHtml('\n　　点击此处编辑宣言',0x999999))
+            this.setHtml(this.desText,this.createHtml('　　点击此处编辑宣言',0xAAAAAA))
 
         this.nameText.text = UM.nick;
         this.setText(this.levelText,'[等级：]LV.' + UM.level);

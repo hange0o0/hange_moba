@@ -50,6 +50,8 @@ class PKDressUI extends game.BaseUI {
     public chooseMonster;
     public historyKey;
 
+    public atkData:any = {};
+
 
     public constructor() {
         super();
@@ -82,6 +84,7 @@ class PKDressUI extends game.BaseUI {
         this.pkDressChooseUI.addEventListener('chooseItem', this.onChooseItem, this)
         this.pkDressChooseUI.addEventListener('random', this.onRandom, this)
         this.pkDressChooseUI.addEventListener('reset', this.onReset, this)
+        this.pkDressChooseUI.addEventListener('sort', this.onSort, this)
         this.simpleList.addEventListener('selectIndex', this.onClickSimpleList, this)
         this.pkDressChooseUI.specialData = this.specialData;
 
@@ -99,6 +102,9 @@ class PKDressUI extends game.BaseUI {
     }
     private onReset(){
          this.changeChooseList([]);
+    }
+    private onSort(){
+         this.renewList();
     }
 
     private onClickSimpleList(e){
@@ -375,7 +381,7 @@ class PKDressUI extends game.BaseUI {
     private initUserData(){
         this.orginData = this.dataIn.data[this.index];
         this.monsterList = this.orginData.list;
-        PKManager.getInstance().sortMonster(this.monsterList);
+
 
         this.key = this.orginData.list.join(',');
         this.historyKey = this.pkType + '_' + this.index;
@@ -392,10 +398,11 @@ class PKDressUI extends game.BaseUI {
         this.chooseMonster = null;
 
 
-        this.pkDressChooseUI.renew(this.chooseList);
+
         this.renewList();
         this.renew();
         this.renewSimpleList();
+        this.pkDressChooseUI.renew(this.chooseList);
 
         this.upBtnGroup.removeChildren()
 
@@ -443,9 +450,14 @@ class PKDressUI extends game.BaseUI {
     }
 
 
+
+
     private renewList(){
         var arr = [];
-        var selectVO = MonsterVO.getObject(this.chooseMonster);
+        this.atkData = {};
+        this.atkData.atk = []
+        this.atkData.hp = []
+        this.atkData.speed = []
 
         var ro = this.getCurrentResource();
         for(var i=0;i<this.monsterList.length;i++)
@@ -457,13 +469,68 @@ class PKDressUI extends game.BaseUI {
             oo.id = vo.id;
             oo.specialData =  this.specialData;
             //oo.num = this.getMonsterNum(vo.id);
-            oo.index = i;
+
             oo.list = arr;
             oo.chooseList = this.chooseList;
             arr.push(oo);
+
+
+
+
+            var fightData;
+            if(this.specialData.isEqual)
+            {
+                fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
+            }
+            else  //我自己
+            {
+                var force = (UM.award_force + UM.tec_force);
+                fightData = UM.getTecMonsterAdd(vo.id);
+                fightData.atk += force;
+                fightData.hp += force;
+            }
+            var temp:any = this.atkData[vo.id] = {};
+            temp.hp =  Math.round(vo.hp * (1+fightData.hp/100));
+            temp.atk =  Math.round(vo.atk * (1+fightData.atk/100));
+            temp.speed =  Math.round(vo.speed * (1+fightData.speed/100));
+            this.atkData.hp.push(temp.hp);
+            this.atkData.atk.push(temp.atk);
+            this.atkData.speed.push(temp.speed);
+
+
+            oo.cost = vo.cost
+            oo.hp = vo.hp
+            oo.atk = vo.atk
+            oo.speed = vo.speed
+        }
+
+        var sortNumber = function(a,b)
+        {
+            return b - a;
+        }
+        this.atkData.hp.sort(sortNumber);
+        this.atkData.atk.sort(sortNumber);
+        this.atkData.speed.sort(sortNumber);
+
+        if(this.pkDressChooseUI.sortIndex == 0)
+            ArrayUtil.sortByField(arr,['cost','id'],[0,0]);
+        else if(this.pkDressChooseUI.sortIndex == 1)
+            ArrayUtil.sortByField(arr,['hp','id'],[1,0]);
+        else if(this.pkDressChooseUI.sortIndex == 2)
+            ArrayUtil.sortByField(arr,['atk','id'],[1,0]);
+        else if(this.pkDressChooseUI.sortIndex == 3)
+            ArrayUtil.sortByField(arr,['speed','id'],[1,0]);
+
+        for(var i=0;i<arr.length;i++)
+        {
+            arr[i].index = i;
         }
 
         this.list.dataProvider = new eui.ArrayCollection(arr);
+    }
+
+    private sortMonster(arr){
+
     }
 
 

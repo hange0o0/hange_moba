@@ -12,14 +12,14 @@ class MonsterInfoBaseItem extends game.BaseItem {
 
 
     public childrenCreated(){
-        //this.text.wordWrap = true;
+        this.text.wordWrap = true;
     }
 
     public dataChanged(){
         var skill = this.data;
         this.icon.source = 'icon_b' + skill.type + '_png'
         this.titleText.text = skill.name
-       this.setHtml(this.text,'　　' + skill.des);
+       this.setHtml(this.text,'' + skill.des);
 
         switch(skill.type)
         {

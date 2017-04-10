@@ -7,6 +7,7 @@ class MyHeadItem extends game.BaseItem {
     private headMC: eui.Image;
     private levelText: eui.Label;
     private redMC: eui.Image;
+    private levelGroup: eui.Group;
 
 
 
@@ -26,20 +27,25 @@ class MyHeadItem extends game.BaseItem {
         if(!this.data.vo)
             this.data.vo = MonsterVO.getObject(this.data.id);
         var vo:MonsterVO = this.data.vo;
-        this.levelText.text = 'LV.' + UM.getMonsterLevel(vo.id);
+
         this.headMC.source = vo.url;
         if(this.data.specialData.isEqual)
         {
-            this.levelText.text = '修正'
+            this.levelGroup.visible = false
             this.redMC.visible = false;
         }
         else
         {
-            this.redMC.visible = vo.canLevelUp();
+            this.levelGroup.visible = true
+            this.levelText.text = 'LV.' + UM.getMonsterLevel(vo.id);
+
+            if(this.data.stopRed)
+                this.redMC.visible = false;
+            else
+                this.redMC.visible = vo.canLevelUp();
         }
 
-        if(this.data.stopRed)
-            this.redMC.visible = false;
+
 
     }
 }

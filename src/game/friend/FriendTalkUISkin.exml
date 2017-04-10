@@ -1,20 +1,22 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="FriendTalkUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
-	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller id="scroller" width="640" x="0" bottom="80" top="80" bounces="false">
-		<e:Group id="scrollGroup">
-
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group id="con" x="0" top="80" bottom="0">
+		<e:Scroller id="scroller" width="640" x="0" bounces="false" y="966" height="100%">
+			<e:Group id="scrollGroup"/>
+		</e:Scroller>
+		<e:Group id="talkGroup" x="0" width="640" y="0" height="150">
+			<e:Image source="line_png" x="-5" y="0" width="650"/>
+			<e:Group left="10" right="130" top="12" bottom="5">
+				<e:Rect height="100%" width="100%" x="0" y="0" strokeWeight="2" ellipseHeight="10" ellipseWidth="10" strokeColor="0xCCB48E"/>
+				<e:EditableText id="inputText" size="26" textColor="0xCCB48E" wordWrap="true" multiline="true" lineSpacing="3" width="480" x="10" text="a a a a a a a a a a a a a a a a a a a a a a aA a a a a a a a " minHeight="30" top="10" bottom="10" verticalAlign="top"/>
+			</e:Group>
+			<e:Button id="sendBtn" label="发送" skinName="Btn_r1Skin" right="10" y="15"/>
+			<e:Label id="numText" text="200/200" x="522" size="22" width="102" textAlign="center" bottom="10" textColor="0xBBBAB8"/>
 		</e:Group>
-	</e:Scroller>
-	<e:Group x="0" bottom="-40" width="640">
-		<e:Image source="fire_top_jpg" x="0" y="116" scaleY="-1"/>
-		<e:Group id="btnGroup" horizontalCenter="0" bottom="50">
-			<e:Button id="closeBtn" label="关闭" y="10" x="0" skinName="Btn_b2Skin"/>
-			<e:Button id="sendBtn" label="发送消息" y="0" skinName="Btn_r3Skin" x="0"/>
-			<e:layout>
-				<e:HorizontalLayout gap="50" verticalAlign="middle"/>
-			</e:layout>
-		</e:Group>
+		<e:layout>
+			<e:VerticalLayout gap="0"/>
+		</e:layout>
 	</e:Group>
 </e:Skin>

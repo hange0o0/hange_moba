@@ -76,10 +76,28 @@ class PKDressChooseItem extends game.BaseItem {
         this.levelGroup.visible = true
         this.stopDrag = false;
 
+        var str = ''
         var lv = UM.getMonsterLevel(this.data.id);
         if(!this.data.specialData.isEqual && lv)
-            this.lvText.text = 'LV.' + lv;
+            str = 'LV.' + lv;
 
 
+        var atkData = PKDressUI.getInstance()['pkDressChooseUI'].atkData;
+        if(atkData.atk && atkData.atk.length > 1)
+        {
+            var fightList = PKDressUI.getInstance().atkData;
+            var fightData = fightList[this.data.id];
+             if(str)
+                str += '\n';
+            var arr = [];
+            arr.push({w:this.createHtml('血',0xFF4747),v:atkData.hp.indexOf(fightData.hp),v2:fightList.hp.indexOf(fightData.hp),v3:1})
+            arr.push({w:this.createHtml('攻',0xFDC04F),v:atkData.atk.indexOf(fightData.atk),v2:fightList.atk.indexOf(fightData.atk),v3:1})
+            arr.push({w:this.createHtml('速',0x747DFF),v:atkData.speed.indexOf(fightData.speed),v2:fightList.speed.indexOf(fightData.speed),v3:1})
+            ArrayUtil.sortByField(arr,['v','v2','v3'],[0,0,0])
+            str += arr[0].w + arr[1].w + arr[2].w;
+            //str += '\n' + arr[0].v +','+ arr[1].v+',' + arr[2].v;
+        }
+
+        this.setHtml(this.lvText,str);
     }
 }

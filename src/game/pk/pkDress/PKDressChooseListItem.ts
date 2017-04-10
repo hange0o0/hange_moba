@@ -75,10 +75,10 @@ class PKDressChooseListItem extends game.BaseItem {
         this.infoStr = ''//this.createHtml(vo.name,0xE0A44A,16);
 
 
-        var fightData;
+        //var fightData;
         if(this.data.specialData.isEqual)
         {
-            fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
+            //fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
             //MyTool.removeMC(this.levelGroup);
             this.redMC.visible = false;
             this.levelGroup.visible = false;
@@ -91,10 +91,10 @@ class PKDressChooseListItem extends game.BaseItem {
             this.redMC.visible = vo.canLevelUp()
             //this.infoStr += '(LV.'+lv+')'
 
-            var force = (UM.award_force + UM.tec_force);
-            fightData = UM.getTecMonsterAdd(vo.id);
-            fightData.atk += force;
-            fightData.hp += force;
+            //var force = (UM.award_force + UM.tec_force);
+            //fightData = UM.getTecMonsterAdd(vo.id);
+            //fightData.atk += force;
+            //fightData.hp += force;
         }
 
 
@@ -137,9 +137,27 @@ class PKDressChooseListItem extends game.BaseItem {
         //
         // this.setHtml(this.infoText, atkStr + '/' +  hpStr + '/' + speedStr);
 
-        this.hpText.text = '血:' +  Math.round(vo.hp * (1+fightData.hp/100));
-        this.atkText.text = '攻:' +  Math.round(vo.atk * (1+fightData.atk/100));
-        this.speedText.text = '速:' +  Math.round(vo.speed * (1+fightData.speed/100));
+        var atkData = PKDressUI.getInstance().atkData
+        var fightData = atkData[vo.id];
+        this.hpText.text = '血:' +  fightData.hp
+        this.atkText.text = '攻:' +  fightData.atk
+        this.speedText.text = '速:' +  fightData.speed
+
+        this.hpIndex.text = (atkData.hp.indexOf(fightData.hp) + 1)
+        this.atkIndex.text = (atkData.atk.indexOf(fightData.atk) + 1)
+        this.speedIndex.text = (atkData.speed.indexOf(fightData.speed) + 1)
+
+        this.hpIndex.textColor = this.hpIndex.text == '1'?0xffff00:0xCCCCCC
+        this.atkIndex.textColor = this.atkIndex.text == '1'?0xffff00:0xCCCCCC
+        this.speedIndex.textColor = this.speedIndex.text == '1'?0xffff00:0xCCCCCC
+        if(this.hpIndex.text == '1')
+            this.hpIndex.text = '♕';
+        if(this.atkIndex.text == '1')
+            this.atkIndex.text = '♕';
+        if(this.speedIndex.text == '1')
+            this.speedIndex.text = '♕';
+
+
         //this.infoStr += this.createHtml('攻击：',0xE0A44A) + atkStr +
         //    this.createHtml('   血量：',0xE0A44A) + hpStr +
         //    this.createHtml('   速度：',0xE0A44A) + speedStr;

@@ -71,7 +71,7 @@ class MonsterSendTalkUI extends game.BaseWindow {
         var vo = MonsterVO.getObject(this.monsterID);
         this.titleText.text = '请输入你对' + vo.name + '的评论'
         this.editText.text = '';
-        this.editText.setFocus();
+        //this.editText.setFocus();
 
 
     }
