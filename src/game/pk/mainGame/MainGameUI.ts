@@ -9,13 +9,15 @@ class MainGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private coinGroup: eui.Group;
     private moneyText: eui.Label;
     private enemyList: eui.List;
-    private myGroup0: eui.Group;
-    private coinGroup: eui.Group;
-    private myList0: eui.List;
-    private chooseBtn0: eui.Button;
     private helpBtn: eui.Group;
+    private myGroup0: eui.Group;
+    private myList0: eui.List;
+    private resetBtn: eui.Button;
+    private chooseBtn0: eui.Button;
+
 
 
     public enemyArray;
@@ -34,6 +36,7 @@ class MainGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         this.addBtnEvent(this.coinGroup, this.onCoin);
+        this.addBtnEvent(this.resetBtn, this.onReset);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
@@ -42,6 +45,22 @@ class MainGameUI extends game.BaseUI {
 
         //this.enemyList.add
         this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onReset(){
+        var self = this;
+         Confirm('确定消耗1点体力选择新的卡组吗？',function(v){
+             if(v == 1)
+             {
+                 if(!UM.testEnergy(1))
+                 {
+                     return;
+                 }
+                 MainGameManager.getInstance().getCard(function(){
+                     self.renewSelf();
+                 },true)
+             }
+         })
     }
 
     private onHelp(){

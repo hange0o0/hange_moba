@@ -1,22 +1,24 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="VideoGuideItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="115" height="155">
+<e:Skin class="VideoGuideItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="115" height="180">
 	<e:Group x="0" y="0">
-		<e:Group id="headGroup" x="0" y="0">
+		<e:Group id="headGroup" x="0" y="0" height="140">
 			<e:Image source="head_png" y="3" id="headMC" width="109" height="109" x="3"/>
-			<e:Image source="border_head_png" x="0" y="0" width="115" height="115" scale9Grid="19,21,61,24"/>
+			<e:Image source="border_head_png" x="0" y="0" width="115" height="140" scale9Grid="19,21,61,24"/>
 		</e:Group>
-		<e:Rect id="bg" height="30" width="105" x="5" fillAlpha="0.5" y="80" fillColor="0xFF0000"/>
-		<e:Label id="roundText" text="1" x="11" y="86" size="18" stroke="2"/>
-		<e:Image id="icon" x="75" y="78" scaleY="0.8" scaleX="0.8" source="icon_empty_png"/>
-		<e:Rect id="currentMC" height="115" width="115" x="0" y="0" fillAlpha="0" strokeColor="0xFFFF00" strokeWeight="5" ellipseHeight="15" ellipseWidth="15"/>
-		<e:Label id="posText" text="2" x="78" y="85" size="20" width="30" textAlign="center"/>
+		<e:Group x="5" y="103">
+			<e:Rect id="bg" height="30" width="105" x="0" fillAlpha="1" y="2.0454545454545467" ellipseWidth="5" ellipseHeight="5" fillColor="0x990000"/>
+			<e:Label id="roundText" text="1" x="5.984848484848484" y="8.030303030303031" size="18" stroke="2"/>
+			<e:Image id="icon" x="70" y="0" scaleY="0.8" scaleX="0.8" source="icon_empty_png"/>
+			<e:Label id="posText" text="2" x="72.95454545454545" y="7.045454545454547" size="20" width="30" textAlign="center"/>
+		</e:Group>
+		<e:Rect id="currentMC" height="140" width="115" x="0" y="0" fillAlpha="0" strokeColor="0xFFFF00" strokeWeight="5" ellipseHeight="15" ellipseWidth="15" locked="true"/>
 	</e:Group>
-	<e:Group x="0" y="140">
+	<e:Group x="0" y="163">
 		<e:Rect width="115" y="0" height="15" x="0"/>
 		<e:Rect id="bb" width="100" y="0" height="15" x="0"/>
 		<e:Rect id="bf" width="100" y="0" height="15" x="0"/>
 	</e:Group>
-	<e:Group x="0" y="120">
+	<e:Group x="0" y="143">
 		<e:Rect width="115" y="0" height="15" x="0"/>
 		<e:Rect id="tb" width="100" y="0" height="15" x="0"/>
 		<e:Rect id="tf" width="100" y="0" height="15" x="0"/>

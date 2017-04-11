@@ -95,9 +95,9 @@ class VideoGuideItem extends game.BaseItem {
         else
             this.headMC.source = atker.mvo.thumb
         if(atker.teamID == 1)
-            this.bg.fillColor = 0x0000FF
+            this.bg.fillColor = 0x000099
         else
-            this.bg.fillColor = 0xFF0000
+            this.bg.fillColor = 0x990000
         this.currentMC.visible = VideoUI.getInstance().lastChooseData == this.data;
 
         this.icon.visible = true

@@ -77,9 +77,7 @@ class PKDressChooseItem extends game.BaseItem {
         this.stopDrag = false;
 
         var str = ''
-        var lv = UM.getMonsterLevel(this.data.id);
-        if(!this.data.specialData.isEqual && lv)
-            str = 'LV.' + lv;
+
 
 
         var atkData = PKDressUI.getInstance()['pkDressChooseUI'].atkData;
@@ -87,15 +85,32 @@ class PKDressChooseItem extends game.BaseItem {
         {
             var fightList = PKDressUI.getInstance().atkData;
             var fightData = fightList[this.data.id];
-             if(str)
-                str += '\n';
-            var arr = [];
-            arr.push({w:this.createHtml('血',0xFF4747),v:atkData.hp.indexOf(fightData.hp),v2:fightList.hp.indexOf(fightData.hp),v3:1})
-            arr.push({w:this.createHtml('攻',0xFDC04F),v:atkData.atk.indexOf(fightData.atk),v2:fightList.atk.indexOf(fightData.atk),v3:1})
-            arr.push({w:this.createHtml('速',0x747DFF),v:atkData.speed.indexOf(fightData.speed),v2:fightList.speed.indexOf(fightData.speed),v3:1})
-            ArrayUtil.sortByField(arr,['v','v2','v3'],[0,0,0])
-            str += arr[0].w + arr[1].w + arr[2].w;
+            if(atkData.hp[0] == fightData.hp)
+                str += this.createHtml('血',0xFF4747)
+            if(atkData.atk[0] == fightData.atk)
+                str += this.createHtml('攻',0xFDC04F)
+            if(atkData.speed[0] == fightData.speed)
+                str += this.createHtml('速',0x747DFF)
+
+            //var arr = [];
+            //arr.push({w:this.createHtml('血',0xFF4747),v:atkData.hp.indexOf(fightData.hp),v2:fightList.hp.indexOf(fightData.hp),v3:1})
+            //arr.push({w:this.createHtml('攻',0xFDC04F),v:atkData.atk.indexOf(fightData.atk),v2:fightList.atk.indexOf(fightData.atk),v3:1})
+            //arr.push({w:this.createHtml('速',0x747DFF),v:atkData.speed.indexOf(fightData.speed),v2:fightList.speed.indexOf(fightData.speed),v3:1})
+            //ArrayUtil.sortByField(arr,['v','v2','v3'],[0,0,0])
+            //str += arr[0].w + arr[1].w + arr[2].w;
             //str += '\n' + arr[0].v +','+ arr[1].v+',' + arr[2].v;
+        }
+        this.lvText.x = 5;
+        var lv = UM.getMonsterLevel(this.data.id);
+        if(!this.data.specialData.isEqual && lv)
+        {
+            if(str)
+                str += '\n';
+            str += 'LV.' + lv;
+        }
+        else
+        {
+            this.lvText.x = 10;
         }
 
         this.setHtml(this.lvText,str);

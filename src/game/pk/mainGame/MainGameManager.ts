@@ -62,8 +62,8 @@ class MainGameManager{
         }
     }
 
-    public getCard(fun?){
-        if(UM.main_game.choose)
+    public getCard(fun?,force?){
+        if(!force && UM.main_game.choose)
         {
             if(fun)
                 fun();
@@ -71,17 +71,22 @@ class MainGameManager{
         }
         if(UM.getEnergy()<1)
         {
-            Alert('体力不足1点，无法挑战');
+            Alert('体力不足1点，无法获取卡组');
             return;
         }
         var self = this;
-        var oo:any = {};
+        var oo:any = {force:force};
         Net.addUser(oo);
         Net.send(GameEvent.mainGame.get_main_card,oo,function(data){
             var msg = data.msg;
             if(msg.fail == 4)
             {
                 Alert('体力不足');
+                return;
+            }
+            if(msg.fail == 3)
+            {
+                Alert('获取卡组失败');
                 return;
             }
 

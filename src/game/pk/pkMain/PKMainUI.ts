@@ -150,7 +150,7 @@ class PKMainUI extends game.BaseUI {
         this.cardIndex2 = -1;
 
 
-        if(!_get['app'] && this.LoadFiles.length > 0)
+        if(this.LoadFiles.length > 0)
         {
             this.loadData = {
                 min:1500,

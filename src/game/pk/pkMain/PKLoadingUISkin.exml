@@ -8,7 +8,7 @@
 			<e:Image id="mc" source="main1_png" horizontalCenter="0" y="32"/>
 			<e:Label id="desText" text="标签" horizontalCenter="0" width="560" bottom="100" textAlign="center" textColor="0xFCD07F" size="26"/>
 			<e:Rect height="30" width="100%" x="0" bottom="0"/>
-			<e:Rect id="barMC" bottom="0" width="400" height="30" x="0" fillColor="0x2C0000"/>
+			<e:Rect id="barMC" bottom="0" width="400" height="30" x="0" fillColor="0x580000"/>
 			<e:Label id="rateText" horizontalCenter="0" text="50%" textAlign="center" bottom="2" size="26" x="10" y="10" textColor="0xCE7F00"/>
 		</e:Group>
 		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="1563"/>

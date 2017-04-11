@@ -1,6 +1,6 @@
 {
-	"addCrc":true,
-	"cleanPublishPath":false,
+	"addCrc":false,
+	"cleanPublishPath":true,
 	"packGroups":[
 		{
 			"gap":4,
@@ -45,6 +45,14 @@
 				{
 					"compress":false,
 					"key":"arrow1_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_b2__png"
+				},
+				{
+					"compress":false,
+					"key":"btn_b2_png"
 				}
 			],
 			"sort":0
@@ -212,14 +220,6 @@
 				{
 					"compress":false,
 					"key":"btn_close1_png"
-				},
-				{
-					"compress":false,
-					"key":"btn_b2__png"
-				},
-				{
-					"compress":false,
-					"key":"btn_b2_png"
 				},
 				{
 					"compress":false,
@@ -442,6 +442,10 @@
 				{
 					"compress":false,
 					"key":"button_go_2_png"
+				},
+				{
+					"compress":false,
+					"key":"arrow7_png"
 				}
 			],
 			"sort":0
@@ -660,7 +664,7 @@
 			"sort":0
 		}
 	],
-	"publishCopyAll":false,
+	"publishCopyAll":true,
 	"publishPath":"D:/myFile/git_test/hange_moba/resource_Publish/",
 	"sourcePath":"D:/myFile/git_test/hange_moba/resource/",
 	"unPackGroup":[

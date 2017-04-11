@@ -87,7 +87,12 @@ class PKDressChooseUI extends game.BaseContainer {
 
 
     public sortIndex = 0;
-    private sortArr = ['费用排序','血量排序','攻击排序','速度排序'];
+    private sortArr = [
+        {w:'费用排序',c:0xCCB48E},
+        {w:'血量排序',c:0xFF4747},
+        {w:'攻击排序',c:0xFDC04F},
+        {w:'速度排序',c:0x747DFF}
+    ];
     public childrenCreated() {
         super.childrenCreated();
 
@@ -152,7 +157,8 @@ class PKDressChooseUI extends game.BaseContainer {
         this.dragTarget.alpha = 0.5
 
         this.sortIndex = SharedObjectManager.instance.getMyValue('monster_sort') || 0;
-        this.sortText.text = this.sortArr[this.sortIndex];
+        this.sortText.text = this.sortArr[this.sortIndex].w;
+        this.sortText.textColor = this.sortArr[this.sortIndex].c;
         //console.log(this.posArray);
     }
 
@@ -160,7 +166,8 @@ class PKDressChooseUI extends game.BaseContainer {
         this.sortIndex ++
         if(this.sortIndex >= this.sortArr.length)
             this.sortIndex = 0;
-        this.sortText.text = this.sortArr[this.sortIndex];
+        this.sortText.text = this.sortArr[this.sortIndex].w;
+        this.sortText.textColor = this.sortArr[this.sortIndex].c;
         SharedObjectManager.instance.setMyValue('monster_sort',this.sortIndex)
         this.dispatchEventWith('sort');
     }
@@ -187,7 +194,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.changeState('drag')
         e.stopImmediatePropagation();
         e.target.alpla = 0.8;
-        this.selectIndex = this.mcArray.indexOf(e.target);
+        this._selectIndex = this.mcArray.indexOf(e.target);
         this.dragTarget.data = e.target.data
         this.stage.addChild(this.dragTarget);
         this.dragTarget.x = e.data.x;

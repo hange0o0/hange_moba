@@ -34,8 +34,8 @@
 				<e:Label id="apText0" text="12300/45600" stroke="1" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="0">
+				<e:Image id="headMC0" y="4" x="5" width="80" height="80" source="head_png"/>
 				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
-				<e:Image id="headMC0" source="icon_power_png" y="5" x="4" width="80" height="80"/>
 			</e:Group>
 			<e:Image id="team1BG" source="card_battle_png" x="0" y="0"/>
 			<e:List id="statList0" width="300" x="4" top="95" height="40">
@@ -61,8 +61,8 @@
 				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="1" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group y="0" right="0">
+				<e:Image id="headMC1" y="4" x="5" width="80" height="80" source="head_png"/>
 				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
-				<e:Image id="headMC1" source="icon_power_png" y="5" x="4" width="80" height="80"/>
 			</e:Group>
 			<e:Image id="team2BG" source="card_battle_png" y="0" right="0"/>
 			<e:List id="statList1" top="95" height="40" right="4">

@@ -66,9 +66,10 @@
 				</e:Group>
 				<e:Group width="640" horizontalCenter="0" y="556" height="100%">
 					<e:layout>
-						<e:HorizontalLayout verticalAlign="middle" horizontalAlign="center" paddingRight="25"/>
+						<e:HorizontalLayout verticalAlign="middle" horizontalAlign="center" gap="50" paddingLeft="10"/>
 					</e:layout>
-					<e:Button id="chooseBtn0" label="开始挑战" y="0" skinName="Btn_r3Skin" x="365"/>
+					<e:Button id="resetBtn" label="重新选牌" y="10" x="375" skinName="Btn_b2Skin"/>
+					<e:Button id="chooseBtn0" label="开始挑战" y="0" x="365" skinName="Btn_r3Skin"/>
 				</e:Group>
 				<e:layout>
 					<e:VerticalLayout/>
