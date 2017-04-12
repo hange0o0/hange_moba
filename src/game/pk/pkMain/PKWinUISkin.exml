@@ -7,7 +7,13 @@
 				<e:TileLayout/>
 			</e:layout>
 		</e:List>
-		<e:Button id="okBtn" label="返回" y="121" skinName="Btn_r2Skin" x="61"/>
+		<e:Group id="btnGroup" x="0" y="60">
+			<e:Button id="backBtn" label="返回" y="71" x="0" skinName="Btn_b2Skin"/>
+			<e:Button id="okBtn" label="继续挑战" y="0" skinName="Btn_r2Skin" x="0"/>
+			<e:layout>
+				<e:HorizontalLayout gap="20"/>
+			</e:layout>
+		</e:Group>
 		<e:layout>
 			<e:VerticalLayout horizontalAlign="center" gap="15"/>
 		</e:layout>

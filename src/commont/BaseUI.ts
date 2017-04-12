@@ -70,9 +70,9 @@ module game {
             btn.touchEnabled = true;
             btn.addEventListener(egret.TouchEvent.TOUCH_TAP,fun,thisObject || this);
 
-            var btnName = (btn['id'] || '').toLocaleLowerCase();
-            if(btnName.indexOf('btn')!=-1 || btnName.indexOf('button')!=-1)
-                SoundManager.getInstance().addBtnClickEffect(btn);
+            //var btnName = (btn['id'] || '').toLocaleLowerCase();
+            //if(btnName.indexOf('btn')!=-1 || btnName.indexOf('button')!=-1)
+            //    SoundManager.getInstance().addBtnClickEffect(btn);
         }
 
         public createHtml(str:string | number, color?:number, size?:number):string{
@@ -380,12 +380,12 @@ module game {
             btn.touchEnabled = true;
             btn.addEventListener(egret.TouchEvent.TOUCH_TAP, fun, this);
 
-            if(!stopSound)
-            {
-                var btnName = (btn['id'] || '').toLocaleLowerCase();
-                if(btnName.indexOf('btn')!=-1 || btnName.indexOf('button')!=-1)
-                    SoundManager.getInstance().addBtnClickEffect(btn);
-            }
+            //if(!stopSound)
+            //{
+            //    var btnName = (btn['id'] || '').toLocaleLowerCase();
+            //    if(btnName.indexOf('btn')!=-1 || btnName.indexOf('button')!=-1)
+            //        SoundManager.getInstance().addBtnClickEffect(btn);
+            //}
 
         }
 

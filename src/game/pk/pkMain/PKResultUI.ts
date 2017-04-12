@@ -141,6 +141,7 @@ class PKResultUI extends game.BaseUI {
                     list:info1,
                 specialData:specialData,
                 index:i,
+                teamID:1,
                 
                 totalData:totalData,
                 level:team1Base.mb[mid].lv,
@@ -165,6 +166,7 @@ class PKResultUI extends game.BaseUI {
             specialData.id = mid;
             var oo = {
                 id:mid,
+                teamID:2,
                 list:info2,
                 specialData:specialData,
                 index:i,
@@ -211,20 +213,20 @@ class PKResultUI extends game.BaseUI {
 
 
         GuideManager.getInstance().showGuide(this);
-        this.moreGroup.alpha = 0;
+        //this.moreGroup.alpha = 0;
 
         this.titleBG.y = 5;
         this.rateText.visible = false;
         this.rateText.alpha = 0;
-        var tw:egret.Tween = egret.Tween.get(this.moreGroup);
-        tw.to({alpha:1},300).call(function(){
+        //var tw:egret.Tween = egret.Tween.get(this.moreGroup);
+        //tw.to({alpha:1},300).call(function(){
             var tw:egret.Tween = egret.Tween.get(this.titleBG);
             tw.wait(300).to({y:55},200)
             var tw:egret.Tween = egret.Tween.get(this.rateText);
             tw.wait(450).call(function(){
                 this.rateText.visible = true;
             },this).to({alpha:1},200)
-        },this)
+        //},this)
 
 
 

@@ -34,6 +34,7 @@ class AwardUI extends game.BaseWindow {
     }
 
     public onShow(){
+        SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
         var arr = [];
         if(this.data.coin)
         {

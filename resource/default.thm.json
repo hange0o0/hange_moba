@@ -61,6 +61,7 @@
     "src/game/pk/dayGame/DayGameUISkin.exml",
     "src/game/pk/friendGame/FriendPKAskUISkin.exml",
     "src/game/pk/friendGame/FriendPKViewUISkin.exml",
+    "src/game/pk/mainGame/MainAwardBeforeSkin.exml",
     "src/game/pk/mainGame/MainGameUISkin.exml",
     "src/game/pk/pkCommont/EnemyHeadItemSkin.exml",
     "src/game/pk/pkCommont/MyHeadItemSkin.exml",

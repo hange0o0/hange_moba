@@ -28,18 +28,7 @@ class MainMainItem extends game.BaseItem {
     }
 
     private onAward(){
-        var self = this;
-        var MM = MainGameManager.getInstance();
-        var cd = DateUtil.getNextDateTimeByHours(0) - TM.now()
-        Confirm('离下一次奖励刷新还剩：\n<font size="36">' + DateUtil.getStringBySecond(cd) + '</font>\n确定现在就领取该奖励吗？',function(v){
-            if(v == 1)
-            {
-                MM.getAward(function(){
-                    self.renew();
-                });
-            }
-        },['取消','领取'],{middle:true})
-
+        MainAwardBeforeUI.getInstance().show();
 
     }
     private onStart(){

@@ -72,7 +72,7 @@ class DayGameUI extends game.BaseUI {
     }
 
     public onShow(){
-        SoundManager.getInstance().playEffect(SoundConfig.effect_join);
+        SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         var DM = DayGameManager.getInstance();
         var myData = UM.day_game;
         this.desText.text = '当前进度：' + myData.level + '/10'

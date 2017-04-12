@@ -45,7 +45,7 @@ class PKMainMV {
         var dis = Math.max(400,MyTool.getDis(a,b));
         //if(frontWait)
         //    tw.wait(frontWait);
-        SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
+        //SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
         tw.to({x:b.x,y:b.y}, dis).call(function(){
             a.jumping = false;
             //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);

@@ -170,6 +170,7 @@ class MainGameManager{
                 return;
             }
             AwardUI.getInstance().show(msg.award);
+            EM.dispatch(GameEvent.client.get_card)
             if(fun)
                 fun();
         });

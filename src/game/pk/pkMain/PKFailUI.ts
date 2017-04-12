@@ -91,6 +91,9 @@ class PKFailUI extends PKResultBase {
 
     protected onStepOver(){
         this.btnGroup.visible = true;
+        this.btnGroup.alpha = 0
+        var tw:egret.Tween = egret.Tween.get(this.btnGroup);
+        tw.wait(500).to({alpha:1}, 200);
     }
 
 }

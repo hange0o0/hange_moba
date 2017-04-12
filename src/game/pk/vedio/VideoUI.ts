@@ -350,7 +350,7 @@ class VideoUI extends game.BaseUI {
             }
             //this.showFirstItem();
             this.renewResultMC();
-        },this,200)
+        },this,500)
 
         this.setChoose(this.listArray[0])
         this.upGroup.visible = true;

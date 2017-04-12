@@ -274,7 +274,10 @@ class PKMainUI extends game.BaseUI {
 
         var tw:egret.Tween = egret.Tween.get(this.bg1);
         var tw2:egret.Tween = egret.Tween.get(this.bg1);
-        tw.to({scaleX:1,scaleY:1},500).call(this.shakeBG,this).wait(600).call(this.addItemMovie,this);    //.wait(100)
+        tw.to({scaleX:1,scaleY:1},500).call(function(){
+            this.bgBlack.visible = true;
+            this.shakeBG();
+        },this).wait(600).call(this.addItemMovie,this);    //.wait(100)
         tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
 
         var itemHeight = 123;
@@ -301,7 +304,7 @@ class PKMainUI extends game.BaseUI {
 
     //加所有单位
     private addItemMovie(){
-        this.bgBlack.visible = true;
+
         var myTeam = PKManager.getInstance().team1Base.list
         var enemyTeam = PKManager.getInstance().team2Base.list
         if(PKManager.getInstance().teamChange)
@@ -455,7 +458,7 @@ class PKMainUI extends game.BaseUI {
 
         var tw:egret.Tween = egret.Tween.get(item);
 
-        tw.to({y:y + decY},200).call(function(){SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);}).to({y:y},100);
+        tw.to({y:y + decY},200).to({y:y},100);
     }
 
     //开始播放动画

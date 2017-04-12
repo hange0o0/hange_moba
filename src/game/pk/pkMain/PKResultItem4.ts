@@ -34,9 +34,29 @@ class PKResultItem4 extends game.BaseItem {
         this.hpText.text = player.hp
         this.atkText.text = player.atk;
         this.speedText.text = player.speed;
-        this.hpBar.width = 150 * (player.hp/this.data.totalData.hp)
-        this.atkBar.width = 150 * (player.atk/this.data.totalData.atk)
-        this.speedBar.width = 150 * ((player.speed - this.data.totalData.speed2*4/5)/(this.data.totalData.speed-this.data.totalData.speed2*4/5))
+        this.hpBar.width = 140 * (player.hp/this.data.totalData.hp)
+        this.atkBar.width = 140 * (player.atk/this.data.totalData.atk)
+        this.speedBar.width = 140 * ((player.speed - this.data.totalData.speed2*4/5)/(this.data.totalData.speed-this.data.totalData.speed2*4/5))
+
+        if(this.data.teamID == 1)
+        {
+            if(player.hp == this.data.totalData.hp)
+                this.hpText.text = '♕ ' + player.hp
+            if(player.atk == this.data.totalData.atk)
+                this.atkText.text = '♕ '  + player.atk
+            if(player.speed == this.data.totalData.speed)
+                this.speedText.text = '♕ '  + player.speed
+        }
+        else
+        {
+            if(player.hp == this.data.totalData.hp)
+                this.hpText.text += ' ♕'
+            if(player.atk == this.data.totalData.atk)
+                this.atkText.text += ' ♕'
+            if(player.speed == this.data.totalData.speed)
+                this.speedText.text += ' ♕'
+        }
+
 
     }
 

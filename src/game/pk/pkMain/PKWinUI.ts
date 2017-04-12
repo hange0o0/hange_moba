@@ -8,7 +8,10 @@ class PKWinUI extends PKResultBase {
     private resultGroup: eui.Group;
     private desText: eui.Label;
     private list: eui.List;
+    private btnGroup: eui.Group;
+    private backBtn: eui.Button;
     private okBtn: eui.Button;
+
 
 
 
@@ -24,10 +27,11 @@ class PKWinUI extends PKResultBase {
         this._list = this.list;
         this._resultGroup = this.resultGroup;
         super.childrenCreated();
-        this.addBtnEvent(this.okBtn, this.onClick);
+        this.addBtnEvent(this.okBtn, this.onContinue);
+        this.addBtnEvent(this.backBtn, this.onBack);
     }
 
-    private onClick(){
+    private onBack(){
         PKResultUI.getInstance().hide();
 
         if(GuideManager.getInstance().isGuiding)
@@ -38,12 +42,46 @@ class PKWinUI extends PKResultBase {
         }
 
     }
+    private onContinue(){
+        var self = this;
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType == PKManager.PKType.SERVER)
+        {
+            ServerGameManager.getInstance().openPKView(false,onOpenPKView);;
+        }
+        else if(PKM.pkType == PKManager.PKType.SERVER_EQUAL)
+        {
+            ServerGameEqualManager.getInstance().openPKView(false,onOpenPKView);
+        }
+        else if(PKM.pkType == PKManager.PKType.MAIN){
+            MainGameManager.getInstance().openPKView(onOpenPKView);
+        }
+        else if(PKM.pkType == PKManager.PKType.DAY){
+            DayGameUI.getInstance().show();
+            PKResultUI.getInstance().hide();
+        }
+
+
+        function onOpenPKView(){
+            self.onBack();
+        }
+    }
 
     public renew(){
 
         this.desText.text = ''
         this.list.visible = false;
-        this.okBtn.visible = false;
+        this.btnGroup.visible = false;
+
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND)
+        {
+            MyTool.removeMC(this.okBtn)
+        }
+        else
+        {
+            this.btnGroup.addChild(this.okBtn);
+        }
 
 
         this.step = 0;
@@ -51,7 +89,10 @@ class PKWinUI extends PKResultBase {
     }
 
     protected onStepOver(){
-        this.okBtn.visible = true;
+        this.btnGroup.visible = true;
+        this.btnGroup.alpha = 0
+        var tw:egret.Tween = egret.Tween.get(this.btnGroup);
+        tw.wait(500).to({alpha:1}, 200);
     }
 
 }
