@@ -59,6 +59,7 @@ class PKResultUI extends game.BaseUI {
     }
 
     public onShow() {
+        PKResultUI.getInstance().initMore()
         PopUpManager.removeShape();
         this.scroller.visible = false;
         this.scroller.viewport.scrollV = 0;
@@ -92,7 +93,17 @@ class PKResultUI extends game.BaseUI {
         this.bg.visible = true;
         this.bg.alpha = 0;
         var tw:egret.Tween = egret.Tween.get(this.bg);
-        tw.to({alpha:0.8},300);
+        tw.to({alpha:0.7},500);
+
+    }
+
+    public tempHide(){
+        MyTool.removeMC(PKMainUI.getInstance())
+        MyTool.removeMC(this)
+    }
+    public tempShow(){
+        GameManager.container.addChild(PKMainUI.getInstance());
+        GameManager.container.addChild(this);
     }
 
     public hide(){
@@ -102,10 +113,8 @@ class PKResultUI extends game.BaseUI {
         PKMainUI.getInstance().hide();
     }
 
-    public showMore(item){
+    public initMore(){
         var PKM = PKManager.getInstance();
-        this.scrollGroup.addChildAt(item,0);
-        this.scroller.visible = true;
         this.list.dataProvider = new eui.ArrayCollection(PKManager.getInstance().pkList);
 
         if(PKM.teamChange)
@@ -123,6 +132,12 @@ class PKResultUI extends game.BaseUI {
             var team2ID = 30
         }
 
+        var commonAdd = 0
+        if(PKM.pkResult.isequal)
+        {
+            commonAdd =  Config.equalValue
+        }
+
         var totalData:any = {};
         var hp = 0;
         var atk = 0;
@@ -131,18 +146,18 @@ class PKResultUI extends game.BaseUI {
         var info1 = [];
         var info2 = [];
 
-        this.selfText.text = '战力:' +  team1Base.f;
+        this.selfText.text = '战力:' +  (Math.floor(team1Base.f) + commonAdd);
         for(var i=0;i<team1Base.list.length;i++)
         {
             var mid = team1Base.list[i]
             var specialData = team1Base.mb[mid];
             var oo = {
                 id:mid,
-                    list:info1,
+                list:info1,
                 specialData:specialData,
                 index:i,
                 teamID:1,
-                
+
                 totalData:totalData,
                 level:team1Base.mb[mid].lv,
                 win: PKM.winCount[i+team1ID],
@@ -158,7 +173,7 @@ class PKResultUI extends game.BaseUI {
         }
         this.selfList.dataProvider = new eui.ArrayCollection(info1)
 
-        this.enemyText.text = '战力:' +  (team2Base.f || 0);
+        this.enemyText.text = '战力:' +  (Math.floor(team2Base.f) + commonAdd);;
         for(var i=0;i<team2Base.list.length;i++)
         {
             var mid = team2Base.list[i]
@@ -206,6 +221,13 @@ class PKResultUI extends game.BaseUI {
         totalData.speed2 = speed2;
         this.teamInfo1.dataProvider = new eui.ArrayCollection(info1)
         this.teamInfo2.dataProvider = new eui.ArrayCollection(info2)
+    }
+
+    public showMore(item){
+
+        this.scrollGroup.addChildAt(item,0);
+        this.scroller.visible = true;
+
 
 
 

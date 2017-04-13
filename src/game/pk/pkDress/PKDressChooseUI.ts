@@ -156,7 +156,8 @@ class PKDressChooseUI extends game.BaseContainer {
         this.dragTarget = new PKDressChooseItem();
         this.dragTarget.alpha = 0.5
 
-        this.sortIndex = SharedObjectManager.instance.getMyValue('monster_sort') || 0;
+        if(!GuideManager.getInstance().isGuiding)
+            this.sortIndex = SharedObjectManager.instance.getMyValue('monster_sort') || 0;
         this.sortText.text = this.sortArr[this.sortIndex].w;
         this.sortText.textColor = this.sortArr[this.sortIndex].c;
         //console.log(this.posArray);

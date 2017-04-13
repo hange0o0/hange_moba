@@ -107,6 +107,7 @@ class PKDressUI extends game.BaseUI {
     }
     private onSort(){
          this.renewList();
+        GuideManager.getInstance().showGuide(this);
     }
 
     private onClickSimpleList(e){
@@ -194,7 +195,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private mainGameChange(){
-        this.dataIn.enemy = MainGameUI.getInstance().enemyArray;
+        this.dataIn.enemy = MainGameUI.getInstance().renewEnemy();
         this.renewEnemy()
     }
 

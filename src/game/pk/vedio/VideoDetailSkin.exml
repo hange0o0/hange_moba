@@ -13,19 +13,19 @@
 							<e:Rect x="60" width="280" fillColor="0x240D0D" height="24" y="0"/>
 							<e:Rect id="hpBar" x="60" strokeColor="0xFAED05" width="280" fillColor="0x8C0101" height="24" y="0"/>
 							<e:Rect id="hpBar0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101" width="280" height="24" x="60"/>
-							<e:Label id="hpText" text="12300/45600" stroke="1" size="18" x="70" verticalCenter="0" textColor="0xFCE1B8"/>
+							<e:Label id="hpText" text="12300/45600" stroke="2" size="18" x="70" verticalCenter="0" textColor="0xFCE1B8"/>
 						</e:Group>
 						<e:Group x="7" y="37">
 							<e:Label y="0" size="24" text="怒气：" x="0" textColor="0xE0A44A"/>
 							<e:Rect x="60" width="280" fillColor="0x240D0D" height="24" y="0"/>
 							<e:Rect id="mpBar" y="0" strokeColor="0xFAED05" width="280" fillColor="0x0E178F" height="24" x="60"/>
-							<e:Label id="mpText" text="12300/45600" stroke="1" size="18" verticalCenter="0" x="70" textColor="0xFCE1B8"/>
+							<e:Label id="mpText" text="12300/45600" stroke="2" size="18" verticalCenter="0" x="70" textColor="0xFCE1B8"/>
 						</e:Group>
 						<e:Group x="7" y="74">
 							<e:Label y="0" size="24" text="必杀：" x="0" textColor="0xE0A44A"/>
 							<e:Rect x="60" width="280" fillColor="0x240D0D" height="24" y="0"/>
 							<e:Rect id="apBar" y="0" strokeColor="0xFAED05" width="10" fillColor="0xB4A502" height="24" x="60"/>
-							<e:Label x="70" text="12300/45600" verticalAlign="top" stroke="1" size="18" verticalCenter="0" id="apText" textColor="0xFCE1B8"/>
+							<e:Label x="70" text="12300/45600" verticalAlign="top" stroke="2" size="18" verticalCenter="0" id="apText" textColor="0xFCE1B8"/>
 						</e:Group>
 						<e:Label id="valueText0" y="115" size="24" text="血量:280+56" x="7" lineSpacing="8" textColor="0xCCB48E"/>
 						<e:Group x="0" y="161">

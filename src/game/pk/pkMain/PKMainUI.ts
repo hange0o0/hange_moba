@@ -153,7 +153,7 @@ class PKMainUI extends game.BaseUI {
         if(this.LoadFiles.length > 0)
         {
             this.loadData = {
-                min:1500,
+                min:1200,
                 source:PKManager.getInstance().getLoadingBG(PKManager.getInstance().pkType)
             }
             this.loadUI = PKLoadingUI.getInstance();

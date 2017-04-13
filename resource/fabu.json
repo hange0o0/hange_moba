@@ -16,10 +16,6 @@
 				},
 				{
 					"compress":false,
-					"key":"shop_card_png"
-				},
-				{
-					"compress":false,
 					"key":"main_mc_png"
 				},
 				{
@@ -240,6 +236,10 @@
 				{
 					"compress":false,
 					"key":"king_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"shop_card_png"
 				}
 			],
 			"sort":0

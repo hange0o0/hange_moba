@@ -228,6 +228,7 @@ class ServerGameUI extends game.BaseUI {
     }
 
     private onChoose(){
+        this.hide();
         PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose,enemy:this.enemyArray,index:this.chooseInex})
     }
 }

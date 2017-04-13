@@ -21,17 +21,17 @@
 			<e:Group x="87" y="7">
 				<e:Rect x="0" width="220" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
 				<e:Rect id="hpBar0" height="24" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
-				<e:Label stroke="1" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
+				<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="87" y="33">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar0" y="0" strokeColor="0xFAED05" width="140" height="24" x="0" fillColor="0x0E178F"/>
-				<e:Label id="mpText0" stroke="1" text="12300/45600" x="9" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
+				<e:Label id="mpText0" stroke="2" text="12300/45600" x="9" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="87" y="59">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar0" y="0" strokeColor="0xFAED05" width="10" height="24" x="0" fillColor="0xB4A502"/>
-				<e:Label id="apText0" text="12300/45600" stroke="1" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
+				<e:Label id="apText0" text="12300/45600" stroke="2" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="0">
 				<e:Image id="headMC0" y="4" x="5" width="80" height="80" source="head_png"/>
@@ -48,17 +48,17 @@
 			<e:Group x="0" y="7" width="220">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="hpBar1" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="24" right="0"/>
-				<e:Label id="hpText1" stroke="1" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
+				<e:Label id="hpText1" stroke="2" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="33" width="220">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0x0E178F" height="24" right="0"/>
-				<e:Label id="mpText1" verticalCenter="0" text="12300/45600" stroke="1" size="18" right="9" textColor="0xFCE1B8"/>
+				<e:Label id="mpText1" verticalCenter="0" text="12300/45600" stroke="2" size="18" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group x="0" y="59" width="220">
 			<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0xB4A502" height="24" right="0"/>
-				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="1" right="9" textColor="0xFCE1B8"/>
+				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="2" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
 			<e:Group y="0" right="0">
 				<e:Image id="headMC1" y="4" x="5" width="80" height="80" source="head_png"/>

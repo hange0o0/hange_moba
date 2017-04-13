@@ -48,7 +48,10 @@ class GuideManager {
             ui:"MainGameUI.getInstance()",
             mc:"this.getMainGameRect()",
             text:'现在我们已经得到系统派发的卡组了。通常第一步是要先观察一下对手的卡组，以方便我们制定合适的战术',
-            fun:function(){self.showGuide(MainGameUI.getInstance())}
+            fun:function(){
+                MainGameUI.getInstance().scrollToEnd();
+                self.showGuide(MainGameUI.getInstance())
+            }
         })
 
         this.addGuideObj({
@@ -71,8 +74,14 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
-            mc:"PKDressUI.getInstance()['list'].getChildAt(6)['useBtn']",
-            text:'我觉得我们还需要一张张大的肉盾，就选它吧。',
+            mc:"PKDressUI.getInstance()['pkDressChooseUI']['sortBtn']",
+            text:'我觉得我们还需要一张张大的肉盾，看看有啥合适的？点击排序按钮，调整为按血量排序',
+        })
+
+        this.addGuideObj({
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
+            text:'这个肉盾血量够多，那就选它吧。',
         })
 
         this.addGuideObj({
@@ -84,12 +93,12 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['a1']",
-            text:'点这里可以把它移到最前面，当然你也可以拖动来完成这个操作。',
+            text:'点这里可以把它移到最前面，当然你也可以通过拖动来完成这个操作。',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
-            mc:"PKDressUI.getInstance()['list'].getChildAt(7)['useBtn']",
+            mc:"PKDressUI.getInstance()['list'].getChildAt(1)['useBtn']",
             text:'虽然我觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多上一张牌吧',
         })
 
@@ -108,7 +117,7 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKWinUI.getInstance()",
-            mc:"PKWinUI.getInstance()['okBtn']",
+            mc:"PKWinUI.getInstance()['backBtn']",
             text:'复盘的工作还是先放一放，反正首页那里还有回放按钮，现在还是先退回首页了解一下其它功能吧',
         })
 
@@ -230,7 +239,7 @@ class GuideManager {
     }
 
     private getMainGameRect(){
-        return new egret.Rectangle(0,80,640,340);
+        return new egret.Rectangle(0,80,640,390);
     }
 
 }

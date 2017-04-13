@@ -203,6 +203,7 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
     private onChoose(){
+        this.hide();
         PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose,enemy:this.enemyArray,index:this.chooseInex,isEqual:true})
     }
 

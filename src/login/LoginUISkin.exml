@@ -14,9 +14,7 @@
 	<e:Group width="480" height="260" horizontalCenter="0" verticalCenter="260">
 		<e:Rect x="0" width="100%" y="0" strokeAlpha="0.6" ellipseHeight="20" fillAlpha="0.4" strokeWeight="1" height="100%" ellipseWidth="20" strokeColor="0xEFE5AD"/>
 		<e:Group height="200" y="-180" horizontalCenter="0">
-			<e:Image source="title_png" scaleX="0.8" scaleY="0.8" y="0" x="0"/>
-			<e:Image source="shop_card_png" y="10" scaleX="0.8" scaleY="0.8" rotation="110" x="235"/>
-			<e:Image source="shop_card_png" y="8" scaleX="0.8" scaleY="0.8" rotation="85" x="200"/>
+			<e:Image source="title_png" scaleX="0.7" scaleY="0.7" y="0" x="0"/>
 		</e:Group>
 		<e:Group id="logGroup" width="440" y="30" horizontalCenter="0">
 			<e:Label text="用户名：" y="10" textColor="0xC4A36A" x="0"/>

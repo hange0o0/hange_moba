@@ -79,7 +79,7 @@ class DayGameUI extends game.BaseUI {
         //更新敌人
         var specialData:any = {
             isNPC:true,
-            fight:(myData.level + 1 - 1)*15 + Config.equalValue
+            fight:(myData.level + 1 - 1)*10 + Config.equalValue
         };
         var enemyList = this.enemyArray = [];
         var arr = DM.data.levels[myData.level].list;
@@ -143,6 +143,7 @@ class DayGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
+        this.hide();
         PKDressUI.getInstance().show({pktype:'day_game',data:[DayGameManager.getInstance().data.choose],enemy: this.enemyArray,isEqual:true})
     }
 

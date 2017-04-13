@@ -47,6 +47,11 @@ class MainGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
     }
 
+    public scrollToEnd(){
+      if(this.scroller.viewport.height < this.scroller.viewport.contentHeight)
+            this.scroller.viewport.scrollV =  this.scroller.viewport.contentHeight -  this.scroller.viewport.height;
+    }
+
     private onReset(){
         var self = this;
          Confirm('确定消耗1点体力选择新的卡组吗？',function(v){
@@ -101,7 +106,7 @@ class MainGameUI extends game.BaseUI {
             this.moneyText.text = '' + cost + '/' + UM.coin;
     }
 
-    private renewEnemy(){
+    public renewEnemy(){
         var MM = MainGameManager.getInstance();
         //更新敌人
         var specialData:any = {
@@ -204,6 +209,7 @@ class MainGameUI extends game.BaseUI {
     }
 
     private onChoose1(){
+        this.hide();
         PKDressUI.getInstance().show({pktype:'main_game',data:UM.main_game.choose,enemy: this.enemyArray})
     }
 
