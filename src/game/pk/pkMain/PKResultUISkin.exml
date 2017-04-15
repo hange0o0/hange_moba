@@ -2,7 +2,7 @@
 <e:Skin class="PKResultUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect id="bg" height="100%" width="100%" x="0" y="0"/>
 
-	<e:Scroller id="scroller" width="640" x="0" top="0" bottom="0" bounces="false">
+	<e:Scroller id="scroller" width="640" x="0" top="0" bottom="0" bounces="false" locked="true">
 		<e:Group id="scrollGroup">
 			<e:Group id="moreGroup" x="0" y="0">
 				<e:Group x="0" y="0" height="82" width="640">
@@ -66,4 +66,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
+	<e:Group id="topBtn" width="80" height="80" right="0" bottom="0">
+		<e:Image rotation="90" horizontalCenter="0" verticalCenter="0" source="arrow1_png"/>
+	</e:Group>
 </e:Skin>

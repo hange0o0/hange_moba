@@ -533,7 +533,7 @@ class MainPageUI extends game.BaseUI {
         this.setHtml(this.taskText,HelpManager.getInstance().getInfoText());
         egret.Tween.removeTweens(this.taskText);
         var tw:egret.Tween = egret.Tween.get(this.taskText);
-        tw.to({x:-this.taskText.textWidth}, (this.taskText.textWidth + 560)*20).call(this.renewTask,this);
+        tw.to({x:-this.taskText.textWidth-100}, (this.taskText.textWidth + 560+100)*20).call(this.renewTask,this);
     }
 
     public renewPage(){

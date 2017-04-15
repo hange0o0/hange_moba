@@ -16,6 +16,7 @@ class MainHeadItem extends game.BaseItem {
          this.addBtnEvent(this,this.onClick)
         this.anchorOffsetX = 50
         this.anchorOffsetY = 50
+        this.touchChildren = false;
     }
 
     private onClick(){

@@ -18,6 +18,8 @@ class PKResultUI extends game.BaseUI {
     private teamInfo1: eui.List;
     private teamInfo2: eui.List;
     private list: eui.List;
+    private topBtn: eui.Group;
+
 
 
 
@@ -34,7 +36,7 @@ class PKResultUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        //this.addBtnEvent(this, this.onClick);
+        this.addBtnEvent(this.topBtn, this.onTop);
 
         this.list.itemRenderer = PKResultItem2;
         this.enemyList.itemRenderer = PKResultItem3
@@ -42,6 +44,22 @@ class PKResultUI extends game.BaseUI {
 
         this.teamInfo1.itemRenderer = PKResultItem4
         this.teamInfo2.itemRenderer = PKResultItem4
+
+        this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
+    }
+
+    private onScroll(){
+        var scrollV = this.scroller.viewport.scrollV;
+        if(scrollV > 80)
+            this.topBtn.visible = true;
+        else
+            this.topBtn.visible = false;
+    }
+
+    private onTop(){
+        this.scroller.stopAnimation();
+        var tw = egret.Tween.get(this.scroller.viewport);
+        tw.to({scrollV:0},300);
     }
 
 
@@ -63,6 +81,7 @@ class PKResultUI extends game.BaseUI {
         PopUpManager.removeShape();
         this.scroller.visible = false;
         this.scroller.viewport.scrollV = 0;
+        this.topBtn.visible = false;
 
         this.bg.visible = false;
         this.height = Math.min(GameManager.stage.stageHeight,960)

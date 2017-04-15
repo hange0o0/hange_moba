@@ -7,11 +7,14 @@ class DayGameManager{
     }
 
     public constructor() {
+        this.logList = SharedObjectManager.instance.getMyValue('pk_day_log') || [];
     }
 
     public data;
     public dataTime = 0;
     public lastPKData;
+
+    public logList
 
     public getHeadByLevel(level){
         return level%50 + 1;
@@ -26,6 +29,24 @@ class DayGameManager{
             UM.day_game.lasttime = TM.now()
             UM.day_game.level = 0;
         }
+    }
+
+    public getLogList(){
+         for(var i=0;i<this.logList.length;i++)
+         {
+             if(!DateUtil.isSameDay(this.logList[i].time))
+             {
+                 this.logList.length = i;
+                 break;
+             }
+         }
+        return this.logList;
+    }
+
+    public addLogList(data){
+         var list = this.getLogList();
+        list.unshift(data);
+        SharedObjectManager.instance.setMyValue('pk_day_log',list);
     }
 
     public getCard(fun?){
@@ -91,6 +112,7 @@ class DayGameManager{
             msg.info.type = PKManager.PKType.DAY;
             PKManager.getInstance().onPK(PKManager.PKType.DAY,msg);
             UM.day_game.pkdata = Config.pk_version;
+            self.addLogList(PKManager.getInstance().getLogData({round:oo.level,type:PKManager.PKType.DAY}));
             if(fun)
                 fun();
         });

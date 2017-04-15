@@ -55,7 +55,7 @@ class HonorUI extends game.BaseUI {
         this.addBtnEvent(this.sortBtn,this.onSort);
         this.addBtnEvent(this.sortText,this.onSort);
 
-        this.sortList.selectedIndex = 0;
+        this.sortList.selectedIndex = SharedObjectManager.instance.getMyValue('honor_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
     }
 
@@ -64,6 +64,7 @@ class HonorUI extends game.BaseUI {
     }
 
     private onSelect(){
+        SharedObjectManager.instance.setMyValue('honor_sort',this.sortList.selectedIndex)
         this.resort()
     }
 

@@ -1,15 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="640"  states="team1,team2" >
 
-	<e:Rect id="bg" fillAlpha="1" width="640" x="0" height="50" y="0" fillColor="0x360000" strokeColor="0x673D1F" fillColor.team1="0x000033" fillColor.team2="0x330000"/>
+	<e:Rect id="bg" fillAlpha="1" width="640" x="0" height="50" y="0" fillColor="0x360000" strokeColor="0x673D1F" fillColor.team2="0x330000" fillColor.team1="0x000036"/>
 	<e:Rect id="bg2" width="640" x="0" top="30" bottom="0" strokeColor="0x673D1F" fillColor="0x000000"/>
-	<e:Group id="con" minWidth="300" top="40" bottom="10" minHeight="27" left="20" right="20">
+	<e:Group id="hpGroup" x="0" y="30">
+		<e:Rect width="100%" y="0" height="15" x="0" fillColor="0x111111"/>
+		<e:Rect width="2" y="0" height="15" horizontalCenter="0" fillColor="0x999999"/>
+		<e:Group y="0" width="319" x="321">
+			<e:Rect id="bb" width="100" y="0" height="15" x="0"/>
+			<e:Rect id="bf" width="100" y="0" height="15" x="0" fillColor="0x740714"/>
+		</e:Group>
+		<e:Group width="319" y="0" x="0">
+			<e:Rect id="tb" right="0" width="100" y="0" height="15"/>
+			<e:Rect id="tf" y="0" right="0" width="100" height="15" fillColor="0x740714"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="con" minWidth="300" top="55" bottom="15" minHeight="27" left="20" right="20">
 		<e:layout>
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
 	<e:Label id="roundText" text="标签" size="18" horizontalCenter="0" strokeColor="0xFFFF00" stroke="0" y="4" height="22" verticalAlign="middle"/>
 	<e:Label id="closeBtn" text="[ 隐藏 ]" size="22" width="100" right="15" textAlign="right" y="5" height="50" textColor="0xFCE1B8"/>
-	<e:Label id="openBtn" text="点击查看战斗过程" size="22" x="0" y="43" width="100%" textAlign="center" textColor="0xFDBA93"/>
+	<e:Label id="openBtn" text="点击查看战斗过程" size="22" x="0" y="57" width="100%" textAlign="center" textColor="0xFDBA93"/>
 	<e:Image id="bottomLine" source="line_png" width="650" x="-5" bottom="-5"/>
 </e:Skin>

@@ -49,32 +49,36 @@ class VideoGuideItem extends game.BaseItem {
         this.visible = true;
 
         var data = item.result.player1;
-        if(data.lhp > data.hp)//-
+        var rate1 = data.lhp/data.lmhp
+        var rate2 = data.hp/data.maxHp
+        if(rate1 > rate2)//-
         {
            this.tb.fillColor = this.decColor;
-           this.tb.width = this.barWidth * data.lhp/data.lmhp
-           this.tf.width = this.barWidth * data.hp/data.maxHp
+           this.tb.width = this.barWidth * rate1
+           this.tf.width = this.barWidth * rate2
         }
         else
         {
             this.tb.fillColor = this.addColor;
-            this.tf.width = this.barWidth * data.lhp/data.lmhp
-            this.tb.width = this.barWidth * data.hp/data.maxHp
+            this.tf.width = this.barWidth * rate1
+            this.tb.width = this.barWidth * rate2
         }
 
 
         var data = item.result.player2;
-        if(data.lhp > data.hp)//-
+        var rate1 = data.lhp/data.lmhp
+        var rate2 = data.hp/data.maxHp
+        if(rate1 > rate2)//-
         {
            this.bb.fillColor = this.decColor;
-           this.bb.width = this.barWidth * data.lhp/data.lmhp
-           this.bf.width = this.barWidth * data.hp/data.maxHp
+           this.bb.width = this.barWidth * rate1
+           this.bf.width = this.barWidth * rate2
         }
         else
         {
             this.bb.fillColor = this.addColor;
-            this.bf.width = this.barWidth * data.lhp/data.lmhp
-            this.bb.width = this.barWidth * data.hp/data.maxHp
+            this.bf.width = this.barWidth * rate1
+            this.bb.width = this.barWidth * rate2
         }
 
 

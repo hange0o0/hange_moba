@@ -347,6 +347,30 @@ class PKManager {
         });
     }
 
+    public getReplayByData(type,oo,fun?){
+        if(Math.floor(oo.pk_version) < Config.pk_version){
+            Alert('录像已过期');
+            return;
+        }
+        var self = this;
+        Net.send(GameEvent.pkCore.pk_result,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 2)
+            {
+                Config.pk_version = Math.floor(msg.pk_version);
+                Alert('录像已过期');
+                return;
+            }
+            if(!msg.info)
+                msg.info = {};
+            msg.info.type = type;
+            self.onPK(PKManager.PKType.REPLAY,msg);
+            PKMainUI.getInstance().show();
+            if(fun)
+                fun();
+        });
+    }
+
     //设双方的用户信息(用于展示)
     public setUserInfo(data){
         var info = data.info;
@@ -469,6 +493,8 @@ class PKManager {
                 this.pkAward.newTask = true;
             if(data.g_level_up)
                 this.pkAward.gLevelUp = data.g_level_up;
+            if(data.day_award)
+                this.pkAward.dayAward = true;
         }
 
 
@@ -668,5 +694,64 @@ class PKManager {
         return arrIn;
     }
 
+    //返回日志相关格式
+    public getLogData(data){
+        if(this.teamChange)
+        {
+            var team1Base = this.team2Base
+            var team2Base = this.team1Base
+            var team1ID = 30
+            var team2ID = 10
+        }
+        else
+        {
+            var team1Base = this.team1Base
+            var team2Base = this.team2Base
+            var team1ID = 10
+            var team2ID = 30
+        }
+
+
+        var info1 = [];
+        var info2 = [];
+
+        for(var i=0;i<team1Base.list.length;i++)
+        {
+            var mid = team1Base.list[i]
+            var oo = {
+                id:mid,
+                win: this.winCount[i+team1ID],
+                die: this.die[i+team1ID]
+            }
+            info1.push(oo)
+        }
+        for(var i=0;i<team2Base.list.length;i++)
+        {
+            var mid = team2Base.list[i]
+            var oo = {
+                id:mid,
+                win: this.winCount[i+team2ID],
+                die: this.die[i+team2ID]
+            }
+            info2.push(oo)
+        }
+
+        var videoData = {
+            team1:this.team1Base,
+            team2:this.team2Base,
+            isequal:this.pkResult.isequal,
+            pk_version:Config.pk_version
+        }
+
+        return {
+            sp:data,
+            videoData:videoData,
+            info1:info1,
+            info2:info2,
+            isWin:this.isWin,
+            rate:this.winnerRate,
+            time:TM.now()
+        }
+    }
 
 }

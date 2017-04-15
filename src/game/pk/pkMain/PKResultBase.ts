@@ -64,6 +64,14 @@ class PKResultBase extends game.BaseContainer {
             this.timer = egret.setTimeout(this.stepOne,this,300);
             SoundManager.getInstance().playEffect(SoundConfig.effect_u_up);
         }
+        else if(award.dayAward)//日常奖战力
+        {
+            award.dayAward = false;
+            if(this._desText.text)
+                this._desText.text += '\n';
+            this._desText.text += '日常任务积分达到10的倍数';
+            this.timer = egret.setTimeout(this.stepOne,this,300);
+        }
         //else if(award.finishTask)//完成任务了
         //{
         //    award.finishTask = false;

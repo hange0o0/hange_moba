@@ -151,6 +151,8 @@ class PKDressChooseUI extends game.BaseContainer {
         this.addBtnEvent(this.resetBtn, this.onReset);
         this.addBtnEvent(this.sortBtn, this.onSort);
 
+        this.sortBtn.touchChildren = false;
+
         //this.addBtnEvent(this.moreBtn, this.onMore);
 
         this.dragTarget = new PKDressChooseItem();

@@ -20,6 +20,9 @@ class VideoUI extends game.BaseUI {
     private apText0: eui.Label;
     private headMC0: eui.Image;
     private team1BG: eui.Image;
+    private atkText0: eui.Label;
+    private speedText0: eui.Label;
+    private defendText0: eui.Label;
     private statList0: eui.List;
     private playerGroup2: eui.Group;
     private hpBar1: eui.Rect;
@@ -30,6 +33,9 @@ class VideoUI extends game.BaseUI {
     private apText1: eui.Label;
     private headMC1: eui.Image;
     private team2BG: eui.Image;
+    private atkText1: eui.Label;
+    private speedText1: eui.Label;
+    private defendText1: eui.Label;
     private statList1: eui.List;
     private topUI: TopUI;
     private guideBtn: eui.Image;
@@ -56,6 +62,7 @@ class VideoUI extends game.BaseUI {
     private enemyItem1: VideoItem;
     private enemyItem2: VideoItem;
     private tipsGroup: eui.Group;
+
 
 
 
@@ -241,7 +248,40 @@ class VideoUI extends game.BaseUI {
         this.hpBar0.width =  Math.min(1,data.hp  / data.maxHp) * this.barWidth;
         this.mpBar0.width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
         this.apBar0.width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
-        this.statList0.dataProvider = new eui.ArrayCollection(getList(JSON.parse(data.buffList)));
+
+        var buff = JSON.parse(data.buffList);
+        var valueAdd = this.getValueAdd(buff);
+        if(valueAdd.atk)
+        {
+            this.setHtml(this.atkText0,this.createHtml(valueAdd.atk + VC.player1.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
+        }
+        else
+        {
+            this.atkText0.text = VC.player1.atk;
+        }
+
+        if(valueAdd.speed)
+        {
+            this.setHtml(this.speedText0,this.createHtml(valueAdd.speed + VC.player1.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
+        }
+        else
+        {
+            this.speedText0.text = VC.player1.speed;
+        }
+
+        if(valueAdd.def)
+        {
+            if(valueAdd.def > 0)
+                this.setHtml(this.defendText0,'防:' + this.createHtml('+' + valueAdd.def,0x00FF00));
+            else
+                this.setHtml(this.defendText0,'防:' + this.createHtml('' + valueAdd.def,0xFF0000));
+        }
+        else
+        {
+            this.defendText0.text = '';
+        }
+
+        this.statList0.dataProvider = new eui.ArrayCollection(getList(buff));
 
 
 
@@ -254,7 +294,41 @@ class VideoUI extends game.BaseUI {
         this.hpBar1.width =  Math.min(1,data.hp  / data.maxHp) * this.barWidth;
         this.mpBar1.width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
         this.apBar1.width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
-        this.statList1.dataProvider = new eui.ArrayCollection(getList(JSON.parse(data.buffList)));
+
+        var buff = JSON.parse(data.buffList);
+        var valueAdd = this.getValueAdd(buff);
+        if(valueAdd.atk)
+        {
+            this.setHtml(this.atkText1,this.createHtml(valueAdd.atk + VC.player2.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
+        }
+        else
+        {
+            this.atkText1.text = VC.player2.atk;
+        }
+
+        if(valueAdd.speed)
+        {
+            this.setHtml(this.speedText1,this.createHtml(valueAdd.speed + VC.player2.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
+        }
+        else
+        {
+            this.speedText1.text = VC.player2.speed;
+        }
+
+        if(valueAdd.def)
+        {
+            if(valueAdd.def > 0)
+                this.setHtml(this.defendText1,'防' + this.createHtml('+' + valueAdd.def,0x00FF00) + '%');
+            else
+                this.setHtml(this.defendText1,'防' + this.createHtml('' + valueAdd.def,0xFF0000)+'%');
+        }
+        else
+        {
+            this.defendText1.text = '';
+        }
+
+        this.statList1.dataProvider = new eui.ArrayCollection(getList(buff));
+
 
         for(var i=0;i<this.vGroup.numChildren;i++)
         {
@@ -276,6 +350,36 @@ class VideoUI extends game.BaseUI {
                 }
             }
             return arr;
+        }
+    }
+
+    private getValueAdd(list){
+        var atk = 0
+        var speed = 0
+        var def = 0;
+        for(var i=0;i<list.length;i++)
+        {
+            var oo = list[i];
+            switch(oo.id)
+            {
+                case 1:
+                case 11:
+                    atk += oo.value;
+                    break;
+                case 2:
+                case 12:
+                    speed += oo.value;
+                    break;
+                case 3:
+                case 13:
+                    def += oo.value;
+                    break;
+            }
+        }
+        return{
+            atk:atk,
+            speed:speed,
+            def:def,
         }
     }
 
@@ -324,13 +428,13 @@ class VideoUI extends game.BaseUI {
 
     //单个回合结束
     public roundOver(v?){
+        var VC = VideoCode.getInstance();
         if(this.currentList.length > 0)
         {
+            VC.addRoundOverData();
             this.currentList = [];
             this.listArray.push(this.currentList);
         }
-
-        var VC = VideoCode.getInstance();
         VC.onMovieOver();
     }
 

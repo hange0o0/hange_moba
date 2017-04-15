@@ -9,12 +9,14 @@ class DayGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private helpBtn: eui.Group;
     private desText: eui.Label;
     private enemyList: eui.List;
     private myGroup0: eui.Group;
     private myList0: eui.List;
+    private todayBtn: eui.Button;
     private chooseBtn0: eui.Button;
-    private helpBtn: eui.Group;
+
 
 
 
@@ -34,6 +36,7 @@ class DayGameUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
+        this.addBtnEvent(this.todayBtn, this.onLog);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
@@ -51,8 +54,8 @@ class DayGameUI extends game.BaseUI {
         this.clearList([this.myList0,this.enemyList])
     }
 
-    private onRing1(){
-
+    private onLog(){
+        DayLogUI.getInstance().show();
     }
     
     private onRing2(){

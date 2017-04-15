@@ -31,9 +31,9 @@ class PKResultItem4 extends game.BaseItem {
         var vo = MonsterVO.getObject(this.data.id);
         this.costText.text = vo.cost
         this.headMC.source = vo.thumb;
-        this.hpText.text = player.hp
-        this.atkText.text = player.atk;
-        this.speedText.text = player.speed;
+        var hpText = player.hp
+        var atkText = player.atk;
+        var speedText = player.speed;
         this.hpBar.width = 140 * (player.hp/this.data.totalData.hp)
         this.atkBar.width = 140 * (player.atk/this.data.totalData.atk)
         this.speedBar.width = 140 * ((player.speed - this.data.totalData.speed2*4/5)/(this.data.totalData.speed-this.data.totalData.speed2*4/5))
@@ -41,21 +41,27 @@ class PKResultItem4 extends game.BaseItem {
         if(this.data.teamID == 1)
         {
             if(player.hp == this.data.totalData.hp)
-                this.hpText.text = '♕ ' + player.hp
+                hpText = this.createHtml('♕',0xFFFFFF) + player.hp
             if(player.atk == this.data.totalData.atk)
-                this.atkText.text = '♕ '  + player.atk
+                atkText = this.createHtml('♕',0xFFFFFF)  + player.atk
             if(player.speed == this.data.totalData.speed)
-                this.speedText.text = '♕ '  + player.speed
+                speedText = this.createHtml('♕',0xFFFFFF)  + player.speed
         }
         else
         {
             if(player.hp == this.data.totalData.hp)
-                this.hpText.text += ' ♕'
+                hpText += this.createHtml('♕',0xFFFFFF)
             if(player.atk == this.data.totalData.atk)
-                this.atkText.text += ' ♕'
+                atkText += this.createHtml('♕',0xFFFFFF)
             if(player.speed == this.data.totalData.speed)
-                this.speedText.text += ' ♕'
+                speedText += this.createHtml('♕',0xFFFFFF)
         }
+
+
+
+        this.setHtml(this.hpText,hpText);
+        this.setHtml(this.atkText,atkText);
+        this.setHtml(this.speedText,speedText);
 
 
     }

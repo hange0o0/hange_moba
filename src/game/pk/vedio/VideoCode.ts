@@ -27,6 +27,7 @@ class VideoCode{
     public playerObject = {}; //所有单位的集合
 
     private orginHP
+    private actionCount = 0;//有效操作记录（转目标为无效操作）
 
     private actionCountSkillData//发生多次回合计数
 
@@ -155,8 +156,7 @@ class VideoCode{
         else //回合结束
         {
             this.actionCountSkillData = this.skillData;
-            this.onRoundOver();
-            this.setOrginHp();
+
             this.index2 = 0;
             this.index ++;
 
@@ -184,9 +184,14 @@ class VideoCode{
 
     }
 
+    public addRoundOverData(){
+        this.onRoundOver();
+        this.setOrginHp();
+    }
+
     private onGameOver(){
          console.log('finish');
-
+        this.addRoundOverData();
         VideoUI.getInstance().onOver();
     }
 

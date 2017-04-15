@@ -53,6 +53,7 @@ class MainLoadingUI extends egret.Sprite {
 
         this.textField.width = 480;
         this.textField.height = 100;
+        this.textField.text = 'Loading...';
         this.textField.textAlign = "center";
 
         this.icon = new eui.Image();

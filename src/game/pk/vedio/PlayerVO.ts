@@ -176,12 +176,12 @@ class PlayerVO {
     public addMaxHp(v){
         this.maxHp += v;
     }
-    public addAtk(v){
-        this.atk += v;
-    }
-    public addSpeed(v){
-        this.speed += v;
-    }
+    //public addAtk(v){
+    //    this.atk += v;
+    //}
+    //public addSpeed(v){
+    //    this.speed += v;
+    //}
 
     public atkerHP(v){
         if(v > 0)

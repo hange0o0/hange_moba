@@ -12,6 +12,13 @@ class VideoItem3 extends game.BaseItem {
     private closeBtn: eui.Label;
     private openBtn: eui.Label;
     private bottomLine: eui.Image;
+    private hpGroup: eui.Group;
+    private bb: eui.Rect;
+    private bf: eui.Rect;
+    private tb: eui.Rect;
+    private tf: eui.Rect;
+
+
 
 
 
@@ -106,6 +113,7 @@ class VideoItem3 extends game.BaseItem {
         this.bottomLine.visible = this.stopClick
         if(data.type == 'over')
         {
+            this.hpGroup.visible = false;
             this.currentState = 'team1'
             this.roundText.text = '战斗结束'
             this.con.removeChildren();
@@ -149,6 +157,45 @@ class VideoItem3 extends game.BaseItem {
             {
                 this.addOneSkill(data[i])
             }
+        }
+
+        this.hpGroup.visible = true;
+        var decColor = 0xFF0000
+        var addColor = 0x00FF00
+        var barWidth = 319;
+        var chooseData = this.data;
+        var item = chooseData[chooseData.length - 1];
+        var data = item.result.player1;
+        var rate1 = data.lhp/data.lmhp
+        var rate2 = data.hp/data.maxHp
+        if(rate1 > rate2)//-
+        {
+            this.tb.fillColor = decColor;
+            this.tb.width = barWidth * rate1
+            this.tf.width = barWidth * rate2
+        }
+        else
+        {
+            this.tb.fillColor = addColor;
+            this.tf.width = barWidth * rate1
+            this.tb.width = barWidth * rate2
+        }
+
+
+        var data = item.result.player2;
+        var rate1 = data.lhp/data.lmhp
+        var rate2 = data.hp/data.maxHp
+        if(rate1 > rate2)//-
+        {
+            this.bb.fillColor = decColor;
+            this.bb.width = barWidth * rate1
+            this.bf.width = barWidth * rate2
+        }
+        else
+        {
+            this.bb.fillColor = addColor;
+            this.bf.width = barWidth * rate1
+            this.bb.width = barWidth * rate2
         }
 
 

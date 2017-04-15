@@ -7,6 +7,7 @@ class HonorItem extends game.BaseItem {
     private headMC: eui.Image;
     private useText: eui.Label;
     private winText: eui.Label;
+    private winRateText: eui.Label;
     private rateText: eui.Label;
     private awardBtn: eui.Button;
     private barMC: eui.Image;
@@ -18,6 +19,7 @@ class HonorItem extends game.BaseItem {
     private s2: eui.Image;
     private s3: eui.Image;
     private s4: eui.Image;
+
 
 
 
@@ -60,6 +62,7 @@ class HonorItem extends game.BaseItem {
         var awardLevel = this.data.level;
         this.setText(this.useText ,'[使用：]' + this.data.t);
         this.setText(this.winText, '[胜利：]' + this.data.w);
+        this.setText(this.winRateText, '[胜率：]' + MyTool.toFixed(this.data.w/(this.data.t || 0)*100,1) + '%');
 
         if(awardLevel == 5)
         {

@@ -57,6 +57,7 @@ class LoadingUI extends egret.Sprite {
         this.textField.width = 480;
         this.textField.height = 100;
         this.textField.textAlign = "center";
+        this.textField.text = '加载准备中..';
 
         this.infoText = new eui.Label();
         this.addChild(this.infoText);
@@ -65,6 +66,7 @@ class LoadingUI extends egret.Sprite {
         this.infoText.textColor = 0xB59E7D;
         this.infoText.size = 22;
         this.infoText.lineSpacing = 6;
+
 
 
         var data:any = RES.getRes("loading_ani" +  "_json"); //qid

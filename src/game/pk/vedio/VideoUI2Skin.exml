@@ -5,7 +5,7 @@
 
 
 
-	<e:Scroller id="scroller" width="640" top="225" bottom="0" horizontalCenter="0" locked="true">
+	<e:Scroller id="scroller" width="640" top="260" bottom="0" horizontalCenter="0">
 		<e:Group id="scrollGroup">
 			<e:List id="list" height="200" width="200" x="68" y="64" visible="false">
 				<e:layout>
@@ -15,8 +15,8 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Group id="upGroup" x="0" y="70" width="640">
-		<e:Image source="book_bg2_jpg" x="-5" y="-200" width="325"/>
-		<e:Image source="book_bg2_jpg" y="-200" scaleX="-1" width="325" right="-5"/>
+		<e:Image source="book_bg2_jpg" x="-5" y="-160" width="325"/>
+		<e:Image source="book_bg2_jpg" y="-160" scaleX="-1" width="325" right="-5"/>
 		<e:Group x="10" width="308" top="10" bottom="10" id="playerGroup1">
 			<e:Group x="87" y="7">
 				<e:Rect x="0" width="220" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
@@ -38,7 +38,21 @@
 				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
 			</e:Group>
 			<e:Image id="team1BG" source="card_battle_png" x="0" y="0"/>
-			<e:List id="statList0" width="300" x="4" top="95" height="40">
+			<e:Group x="5" y="100">
+				<e:Group x="0" y="0" width="100">
+					<e:Image source="card_icon_1_png" y="0" scaleY="0.65" x="0" scaleX="0.65"/>
+					<e:Label id="atkText0" text="1234" x="35" y="1.6500000000000004" textColor="0xCBC08A" size="24"/>
+				</e:Group>
+				<e:Group x="91.06060606060606" y="1.9696969696969688" width="100">
+					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
+					<e:Label id="speedText0" y="0" textColor="0xCBC08A" size="24" text="123" x="35"/>
+				</e:Group>
+				<e:Label id="defendText0" y="1.9696969696969688" size="24" text="防+150%" x="193.03030303030303" width="100" textColor="0xCC9900"/>
+				<e:layout>
+					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
+				</e:layout>
+			</e:Group>
+			<e:List id="statList0" width="300" x="4" top="135" height="40">
 				<e:layout>
 					<e:HorizontalLayout/>
 				</e:layout>
@@ -65,7 +79,21 @@
 				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
 			</e:Group>
 			<e:Image id="team2BG" source="card_battle_png" y="0" right="0"/>
-			<e:List id="statList1" top="95" height="40" right="4">
+			<e:Group y="100" right="5">
+				<e:layout>
+					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
+				</e:layout>
+				<e:Label y="1.9696969696969688" text="防+150%" x="193.03030303030303" width="100" size="24" id="defendText1" textColor="0xCC9900"/>
+				<e:Group width="100" y="1.9696969696969688" x="91.06060606060606">
+					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
+					<e:Label y="0" textColor="0xCBC08A" text="123" id="speedText1" size="24" x="35"/>
+				</e:Group>
+				<e:Group width="100" y="0" x="0">
+					<e:Image source="card_icon_1_png" y="0" scaleY="0.65" x="0" scaleX="0.65"/>
+					<e:Label y="1.6500000000000004" textColor="0xCBC08A" text="1234" x="35" size="24" id="atkText1"/>
+				</e:Group>
+			</e:Group>
+			<e:List id="statList1" top="135" height="40" right="4">
 				<e:layout>
 					<e:HorizontalLayout/>
 				</e:layout>
@@ -75,7 +103,7 @@
 	</e:Group>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
 	<e:Image id="guideBtn" source="menu_icon_4_png" y="864" x="534"/>
-	<ns1:VideoGuide id="guideMC" x="0" skinName="VideoGuideSkin" top="225" bottom="0" locked="true"/>
+	<ns1:VideoGuide id="guideMC" x="0" skinName="VideoGuideSkin" top="260" bottom="0" visible="false"/>
 	<e:Group id="resultMC" y="300" width="600" x="20">
 		<e:Group y="10" horizontalCenter="0">
 			<e:Image id="rbg1" y="0" x="0" source="pk_fail_png"/>
