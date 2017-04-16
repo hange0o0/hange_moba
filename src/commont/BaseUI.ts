@@ -133,6 +133,8 @@ module game {
         public loadData = null;
         public loadUI = null;
 
+        public hideVisible = false;
+
         private panelEvents: any = {};
 
         public constructor(isWindow?:boolean) {

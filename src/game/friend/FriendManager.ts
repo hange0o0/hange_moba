@@ -668,7 +668,7 @@ class FriendManager{
         }
         var self = this;
         if(self.errorOpenID[otherid]){
-            Alert(stopAlert || '该用户不存在')
+            Alert(stopAlert || '没有找到该用户')
             return;
         }
         var oo:any = {};
@@ -679,7 +679,7 @@ class FriendManager{
             if(msg.fail == 1)
             {
                 self.errorOpenID[otherid] = true;
-                Alert(stopAlert || '该用户不存在')
+                Alert(stopAlert || '没有找到该用户')
                 return;
             }
             var info = msg.info;
@@ -711,7 +711,7 @@ class FriendManager{
             var msg = data.msg;
             if(msg.fail == 1)
             {
-                Alert('该用户不存在')
+                Alert('没有找到该用户')
                 return;
             }
             var info = msg.info;

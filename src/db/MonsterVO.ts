@@ -44,6 +44,7 @@ class MonsterVO {
 
             addResources('m_thumb_' + vo.id,vo._thumb)
             addResources('m_thumbr_' + vo.id,vo._thumbRound)
+            addResources('m_thumbg_' + vo.id,vo._thumbGray)
             addResources('m_url_' + vo.id,vo._url)
         }
         RES.parseConfig(rdata, '');
@@ -246,6 +247,9 @@ class MonsterVO {
     public get thumbRound(){
         return 'm_thumbr_' + this.id
     }
+    public get thumbGray(){
+        return 'm_thumbg_' + this.id
+    }
 
     public get url(){
         return 'm_url_' + this.id
@@ -256,6 +260,9 @@ class MonsterVO {
     }
     public get _thumbRound(){
         return Config.localResRoot + 'head/mr_head'+this.id+'.png';
+    }
+    public get _thumbGray(){
+        return Config.localResRoot + 'head/mg_head'+this.id+'.jpg';
     }
 
     public get _url(){

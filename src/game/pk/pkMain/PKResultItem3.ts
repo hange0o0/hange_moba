@@ -29,7 +29,7 @@ class PKResultItem3 extends game.BaseItem {
         //mid:mid,
         //    level:team1Base.mb[mid].lv,
         //    win: PKM.winCount[i+team1ID]
-        this.headMC.source = MonsterVO.getObject(this.data.id).thumb;
+
         if(this.data.level)
         {
             this.levelText.text = 'Lv' + this.data.level
@@ -49,7 +49,12 @@ class PKResultItem3 extends game.BaseItem {
         //    this.dieText.visible = this.data.die;
         if(this.data.die)
         {
-            MyTool.changeGray(this.headMC);
+            //MyTool.changeGray(this.headMC);
+            this.headMC.source = MonsterVO.getObject(this.data.id).thumbGray;
+        }
+        else
+        {
+            this.headMC.source = MonsterVO.getObject(this.data.id).thumb;
         }
 
 

@@ -6,7 +6,7 @@
 	<e:EditableText id="editText" text="标签" textColor="0xCCB48E" size="26" wordWrap="true" multiline="true" top="100" bottom="130" left="60" right="60" lineSpacing="5"/>
 	<e:Group horizontalCenter="0" bottom="36">
 		<e:Button id="cancelBtn" label="取消" x="0" y="5" skinName="Btn_b2Skin"/>
-		<e:Button id="sendBtn" y="0" label="发送" x="181" skinName="Btn_r2Skin"/>
+		<e:Button id="sendBtn" y="0" label="确定" x="181" skinName="Btn_r2Skin"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>

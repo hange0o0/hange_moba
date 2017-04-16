@@ -396,7 +396,7 @@ class VideoUI extends game.BaseUI {
 
     public hide(){
         super.hide();
-        PKResultUI.getInstance().tempShow();
+        //PKResultUI.getInstance().tempShow();
     }
 
     public onShow(){
@@ -422,7 +422,7 @@ class VideoUI extends game.BaseUI {
 
         this.tipsGroup.visible = false;
 
-        PKResultUI.getInstance().tempHide();
+        //PKResultUI.getInstance().tempHide();
 
     }
 

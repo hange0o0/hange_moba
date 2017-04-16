@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="FriendSearchUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="0" y="0" width="520" height="300" source="card_bg_png" scale9Grid="52,33,122,125"/>
+	<e:Image x="0" y="0" width="520" height="340" source="card_bg_png" scale9Grid="52,33,122,125"/>
 	<e:Rect y="14" strokeWeight="1" width="490" fillAlpha="1" height="60" x="15" fillColor="0x262119"/>
 
-	<e:TextInput skinName="MyTextInputSkin" y="108" height="50" id="nameText" width="320" horizontalCenter="0" prompt="请输入对方昵称"/>
+	<e:TextInput skinName="MyTextInputSkin" y="120" height="50" id="nameText" width="320" horizontalCenter="0"/>
 
 
 
 
-	<e:Group y="207" horizontalCenter="0">
+	<e:Group horizontalCenter="0" bottom="35">
 		<e:Button id="backBtn" label="返回" y="0" x="0" skinName="Btn_b2Skin"/>
 		<e:Button id="okBtn" skinName="Btn_r2Skin" label="查找" y="0" x="0"/>
 		<e:layout>
@@ -17,4 +17,8 @@
 	</e:Group>
 	
 	<e:Label text="查找玩家" y="32" size="24" horizontalCenter="0" stroke="2" textColor="0xE3D1B6"/>
+	<e:Group y="185" horizontalCenter="0">
+		<e:RadioButton id="r0" label="查找昵称" x="0" y="0" skinName="MyCheckBoxSkin"/>
+		<e:RadioButton id="r1" y="0" label="查找ID" skinName="MyCheckBoxSkin" x="180"/>
+	</e:Group>
 </e:Skin>

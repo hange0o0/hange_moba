@@ -31,9 +31,9 @@ class PKResultItem4 extends game.BaseItem {
         var vo = MonsterVO.getObject(this.data.id);
         this.costText.text = vo.cost
         this.headMC.source = vo.thumb;
-        var hpText = player.hp
-        var atkText = player.atk;
-        var speedText = player.speed;
+        var hpText = player.hp  + ''
+        var atkText = player.atk  + '';
+        var speedText = player.speed  + '';
         this.hpBar.width = 140 * (player.hp/this.data.totalData.hp)
         this.atkBar.width = 140 * (player.atk/this.data.totalData.atk)
         this.speedBar.width = 140 * ((player.speed - this.data.totalData.speed2*4/5)/(this.data.totalData.speed-this.data.totalData.speed2*4/5))

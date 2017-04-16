@@ -3,6 +3,7 @@
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<e:Rect id="titleBG" width="100%" y="0" height="50" x="0" fillColor="0x300000"/>
 	<e:Rect x="0" width="100%" height="1" bottom="0" fillColor="0x444444"/>
+	<e:Rect width="100%" height="1" fillColor="0x444444" x="0" y="280"/>
 	<e:List id="teamInfo1" y="58" x="15" width="300" itemRendererSkinName="PKResultItem4_Skin" height="210">
 		<e:layout>
 			<e:TileLayout horizontalGap="0" requestedColumnCount="3"/>
@@ -15,9 +16,7 @@
 	</e:List>
 	<e:Label id="titleText" text="第1回合" y="11" size="28" x="15" stroke="2" textColor="0xFFFFFF"/>
 	<e:Label id="timeText" y="15" text="第1回合" size="24" right="15" textColor="0xCCCCCC" stroke="2"/>
-	<e:Group x="15" bottom="20">
-		<e:Image id="resultIcon" x="0" y="0" source="lose_icon_png"/>
-		<e:Label id="resultText" text="标签" x="55" y="10" size="24" textColor="0xCCCCCC"/>
-	</e:Group>
-	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" bottom="15" right="15"/>
+	<e:Image id="resultIcon" y="3" source="lose_icon_png" horizontalCenter="0"/>
+	<e:Label id="resultText" text="标签" x="15" size="24" textColor="0xCCCCCC" y="305"/>
+	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" x="465" y="289"/>
 </e:Skin>

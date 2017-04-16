@@ -61,6 +61,8 @@ class PopUpManager {
             display.x = (ww - display.width) / 2;
             display.y = (hh - display.height) / 2;
         }
+
+        this.testVisible();
     }
 
     private static onTap(){
@@ -77,6 +79,7 @@ class PopUpManager {
             //GameManager.container.removeChildAt(index - 1);
             display.parent.removeChild(display);
             this.testShape();
+            this.testVisible();
         }
     }
 
@@ -95,6 +98,26 @@ class PopUpManager {
                 }
             }
 
+        }
+    }
+
+    public static testVisible(){
+        var setVisible = false;
+        for(var i=GameManager.container.numChildren-1 ;i>=0;i--)
+        {
+            var ui = GameManager.container.getChildAt(i);
+            if(ui instanceof game.BaseUI)
+            {
+                if(!setVisible)
+                {
+                    ui.visible = true;
+                    setVisible = true;
+                }
+                else if(ui.hideVisible)
+                    ui.visible = true;
+                else
+                    ui.visible = false;
+            }
         }
     }
 }

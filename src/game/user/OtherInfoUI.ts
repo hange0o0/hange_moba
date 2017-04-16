@@ -182,7 +182,7 @@ class OtherInfoUI extends game.BaseUI {
             this.talkBtn.visible = false;
             this.pkBtn.visible = false;
             this.deleteBtn.visible = false;
-            this.friendBtn.visible = true;
+            this.friendBtn.visible =  this.dataIn.level >= Config.friendLevel;
         }
 
 

@@ -439,6 +439,10 @@ class MainPageUI extends game.BaseUI {
         this.renewHonorRed();
 
         egret.setTimeout(function() {
+            this.currentPage = 0;
+            this.scrollToCurrentPage(true);
+            MainPageUI.getInstance().renewPage();
+            GuideManager.getInstance().guideStep = 0;
             GuideManager.getInstance().showGuide(MainPageUI.getInstance())
         },this,300);
 
@@ -573,7 +577,12 @@ class MainPageUI extends game.BaseUI {
                 this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
                 targetX = -(this.currentPage+des) * pageSize;
                 tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/pageSize)).call(function(){
-                    this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
+                    //this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
+                    //重新排序，保证一至
+                    this.scrollGroup.addChild(this.mainGame)
+                    this.scrollGroup.addChild(this.dayGame)
+                    this.scrollGroup.addChild(this.serverGame)
+                    this.scrollGroup.addChild(this.serverGameEqual)
                     this.scrollToCurrentPage(true);
                 },this);
             }

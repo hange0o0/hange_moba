@@ -737,8 +737,14 @@ class PKManager {
         }
 
         var videoData = {
-            team1:this.team1Base,
-            team2:this.team2Base,
+            team1:{
+                list:this.team1Base.list,
+                fight:this.team1Base.f || 0
+            },
+            team2:{
+                list:this.team2Base.list,
+                fight:this.team2Base.f || 0
+            },
             isequal:this.pkResult.isequal,
             pk_version:Config.pk_version
         }

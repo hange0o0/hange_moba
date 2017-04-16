@@ -50,7 +50,7 @@ class PKResultUI extends game.BaseUI {
 
     private onScroll(){
         var scrollV = this.scroller.viewport.scrollV;
-        if(scrollV > 80)
+        if(scrollV > 150)
             this.topBtn.visible = true;
         else
             this.topBtn.visible = false;
@@ -60,6 +60,7 @@ class PKResultUI extends game.BaseUI {
         this.scroller.stopAnimation();
         var tw = egret.Tween.get(this.scroller.viewport);
         tw.to({scrollV:0},300);
+        this.topBtn.visible = false;
     }
 
 
@@ -116,14 +117,14 @@ class PKResultUI extends game.BaseUI {
 
     }
 
-    public tempHide(){
-        MyTool.removeMC(PKMainUI.getInstance())
-        MyTool.removeMC(this)
-    }
-    public tempShow(){
-        GameManager.container.addChild(PKMainUI.getInstance());
-        GameManager.container.addChild(this);
-    }
+    //public tempHide(){
+    //    MyTool.removeMC(PKMainUI.getInstance())
+    //    MyTool.removeMC(this)
+    //}
+    //public tempShow(){
+    //    GameManager.container.addChild(PKMainUI.getInstance());
+    //    GameManager.container.addChild(this);
+    //}
 
     public hide(){
         super.hide();
@@ -227,7 +228,7 @@ class PKResultUI extends game.BaseUI {
         else if(team1Base.f < team2Base.f)
             this.enemyText.textColor = 0xffff00
 
-        this.rateText.text = Math.max(1,Math.min(100,Math.round(PKM.winnerRate*100))) + '';
+        this.rateText.text = Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100))) + '';
         if(PKM.isWin)
             this.rateText.textColor = 0xFFFF00
         else

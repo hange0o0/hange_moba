@@ -182,7 +182,8 @@ class MyInfoUI extends game.BaseUI {
         else
             this.setHtml(this.desText,this.createHtml('　　点击此处编辑宣言',0xAAAAAA))
 
-        this.nameText.text = UM.nick;
+        this.setText(this.nameText,'['+UM.nick+'] ' + this.createHtml('　(ID:' + UM.gameid + ')',undefined,24));
+
         this.setText(this.levelText,'[等级：]LV.' + UM.level);
         this.setText(this.expText,'[经验：]' + UM.exp + '/' + UM.next_exp);
 

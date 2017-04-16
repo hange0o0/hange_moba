@@ -8,6 +8,7 @@ class PKMainUI extends game.BaseUI {
     public constructor() {
         super();
         this.skinName = "PKMainUISkin";
+        this.hideVisible = true;
     }
 
 
@@ -104,6 +105,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onJump(){
+        this.jumpBtn.visible = false;
         this.showResult();
     }
 

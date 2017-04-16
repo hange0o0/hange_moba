@@ -27,10 +27,12 @@ class PKDressChooseUI extends game.BaseContainer {
     private resetBtn: eui.Group;
     private sortBtn: eui.Group;
     private sortText: eui.Label;
+    private cb: eui.CheckBox;
     private desText: eui.Label;
     private deleteBtn: eui.Button;
     private removeGroup: eui.Group;
     private removeText: eui.Label;
+
 
 
 
@@ -67,13 +69,13 @@ class PKDressChooseUI extends game.BaseContainer {
         if(v != -1)
         {
             monsterData = this.mcArray[v].data;
-            egret.callLater(function(){
-                this.once(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this,false,-9999);
-            },this)
+            //egret.callLater(function(){
+            //    this.once(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this,false,-9999);
+            //},this)
         }
         else
         {
-            this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this);
+            //this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onClickStage,this);
         }
         this.dispatchEventWith('chooseItem',false,monsterData)
     }
@@ -158,11 +160,27 @@ class PKDressChooseUI extends game.BaseContainer {
         this.dragTarget = new PKDressChooseItem();
         this.dragTarget.alpha = 0.5
 
+        this.cb.addEventListener(eui.UIEvent.CHANGE,this.onCBChange,this);
+        this.cb.selected = true;
+
         if(!GuideManager.getInstance().isGuiding)
+        {
             this.sortIndex = SharedObjectManager.instance.getMyValue('monster_sort') || 0;
+            var cbSelect =  SharedObjectManager.instance.getMyValue('monster_cb')
+            if(cbSelect == undefined)
+                cbSelect = true;
+            this.cb.selected =  cbSelect;
+        }
         this.sortText.text = this.sortArr[this.sortIndex].w;
         this.sortText.textColor = this.sortArr[this.sortIndex].c;
+
+
         //console.log(this.posArray);
+    }
+
+    private onCBChange(){
+        SharedObjectManager.instance.setMyValue('monster_cb',this.cb.selected)
+        this.renewSplice();
     }
 
     private onSort(){
@@ -324,9 +342,12 @@ class PKDressChooseUI extends game.BaseContainer {
     }
 
 
-    private onClickStage(){
+    private onClickStage(e){
         if(this.selectIndex != -1)
-            this.onCancel();
+        {
+            if(e.target != this.cb)
+                this.onCancel();
+        }
     }
 
     private onCancel(){
@@ -404,7 +425,7 @@ class PKDressChooseUI extends game.BaseContainer {
                  mc.visible = false;
                  continue;
              }
-             mc.visible = true;
+             mc.visible = this.cb.selected || this.dragTarget.parent;
              mc.scaleX = 1
              mc.scaleY = 1 * mc.bsy;
          }
@@ -452,10 +473,20 @@ class PKDressChooseUI extends game.BaseContainer {
         }
         else //交换
         {
-            this.changeState('normal')
             var selectItem = this.mcArray[this.selectIndex];
             selectItem.data.selected = false;
             selectItem.dataChanged();
+
+            if(!this.cb.selected)
+            {
+                this.selectIndex = index;
+                item.data.selected = true;
+                item.dataChanged();
+                return;
+            }
+
+
+            this.changeState('normal')
             if(item.data) //交换
             {
                 this.swap(index,this.selectIndex);

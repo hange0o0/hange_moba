@@ -48,7 +48,7 @@ class DayLogItem extends game.BaseItem {
         }
         this.timeText.text =  DateUtil.getStringBySeconds(TM.now() - this.data.time,false,2) + '前';
         this.titleText.text = '第 '+this.data.sp.round+' 关'
-        this.titleBG.fillColor = this.data.isWin?0x3B1F00:0x0F243A
+        this.titleBG.fillColor = this.data.isWin?0x4F2900:0x0F243A
         this.resultIcon.source = this.data.isWin?'win_icon_png':'lose_icon_png'
 
         if(this.data.videoData.pk_version == Config.pk_version)

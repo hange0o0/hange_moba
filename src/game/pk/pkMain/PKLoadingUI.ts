@@ -21,6 +21,7 @@ class PKLoadingUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
+        this.hideVisible = true;
     }
 
 
@@ -47,6 +48,7 @@ class PKLoadingUI extends game.BaseUI {
 
 
     public onShow(){
+        this.lastRate = 0;
         MyTool.setHtml(this.desText,HelpManager.getInstance().getInfoText());
         if(this.desText.numLines > 1)
             this.desText.textAlign = 'left'
@@ -62,12 +64,17 @@ class PKLoadingUI extends game.BaseUI {
     }
 
     private onE(){
-         this.setProgress(1,1);
+        var loadPass = egret.getTimer() - this.dateIn.start
+        var rate = loadPass/this.dateIn.min;
+        this.renewRate(Math.min(rate,this.lastRate))
     }
 
     public setProgress(current, total):void {
-        var loadPass = egret.getTimer() - this.dateIn.start
-        var rate = Math.min(current / total,loadPass/this.dateIn.min)
+        this.lastRate = current / total;
+        this.onE();
+    }
+
+    public renewRate(rate){
         this.barMC.width =  rate*640
         this.rateText.text = Math.floor(rate*100) + '%';
     }

@@ -62,7 +62,7 @@ class HonorItem extends game.BaseItem {
         var awardLevel = this.data.level;
         this.setText(this.useText ,'[使用：]' + this.data.t);
         this.setText(this.winText, '[胜利：]' + this.data.w);
-        this.setText(this.winRateText, '[胜率：]' + MyTool.toFixed(this.data.w/(this.data.t || 0)*100,1) + '%');
+        this.setText(this.winRateText, '[胜率：]' + MyTool.toFixed(this.data.w/(this.data.t || 1)*100,1) + '%');
 
         if(awardLevel == 5)
         {
