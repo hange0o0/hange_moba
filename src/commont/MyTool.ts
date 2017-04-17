@@ -188,6 +188,21 @@ class MyTool {
         ];
         return str.replace(new RegExp(ranges.join('|'), 'g'), '');
     }
+
+    public static getBtnPath(btn){
+        var arr = [];
+        if(btn.id)
+            arr.push(btn.id)
+        while(btn.parent)
+        {
+            if(btn.parent.id)
+                arr.unshift(btn.parent.id)
+            else if(btn.parent.skinName)
+                arr.unshift(btn.parent.skinName)
+            btn = btn.parent;
+        }
+        return arr.join('.')
+    }
 }
 
 

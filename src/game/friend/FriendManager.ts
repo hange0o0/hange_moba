@@ -34,6 +34,10 @@ class FriendManager{
     private pkOpenTime
 
     public constructor() {
+
+    }
+
+    public initFriend(){
         var oo = SharedObjectManager.instance.getMyValue('friendData');
         if(oo)
         {
@@ -64,6 +68,7 @@ class FriendManager{
             this.logOpenTime = 0;
             this.pkOpenTime = 0;
         }
+        this.talkSave = {};//最近的记录历史聊天到本地
     }
 
     public friendRed(){
@@ -519,7 +524,6 @@ class FriendManager{
         });
     }
     public getLog(fun?,force=null){
-
         if(!force && this.logList && TM.now() - this.lastGetLog < 30)//30S CD             10
         {
             if(fun)
@@ -551,10 +555,10 @@ class FriendManager{
                         msg.list[i].content.nick = Base64.decode(msg.list[i].content.nick);
                     if(msg.list[i].content.talk)
                         msg.list[i].content.talk = Base64.decode(msg.list[i].content.talk);
-                    if(msg.list[i].content.from_nick)
-                        msg.list[i].content.from_nick = Base64.decode(msg.list[i].content.from_nick);
-                    if(msg.list[i].content.to_nick)
-                        msg.list[i].content.to_nick = Base64.decode(msg.list[i].content.to_nick);
+                    if(msg.list[i].content.fromnick)
+                        msg.list[i].content.fromnick = Base64.decode(msg.list[i].content.fromnick);
+                    if(msg.list[i].content.tonick)
+                        msg.list[i].content.tonick = Base64.decode(msg.list[i].content.tonick);
                 }
                 if(msg.list[i].type != 2)
                 {

@@ -125,7 +125,7 @@ module game {
         private _arguments: Array<any>;
         private sizeList: Array<any> = [];
 
-        private isWindow: boolean = false;
+        public isWindow: boolean = false;
         public isHideFlag:boolean = true;
         public canBGClose:boolean = false;
 

@@ -425,6 +425,9 @@ class MainPageUI extends game.BaseUI {
 
     public onShow(){
         GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
+        FriendManager.getInstance().initFriend();
+        MonsterManager.getInstance().initData();
+        DayGameManager.getInstance().initData();
 
         this.renewTop();
 

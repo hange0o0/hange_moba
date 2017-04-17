@@ -9,13 +9,17 @@ class MonsterManager{
     public talkData = {};
     public commentData = {};
     public constructor() {
+
+    }
+
+    public initData(){
         this.commentData = SharedObjectManager.instance.getMyValue('monster_talk_comment') || {};
         var deleteKey = [];
         for(var s in this.commentData){
-             if(TM.now() - this.commentData[s] > 7*24*3600)
-             {
-                 deleteKey.push(s);
-             }
+            if(TM.now() - this.commentData[s] > 7*24*3600)
+            {
+                deleteKey.push(s);
+            }
         }
         if(deleteKey.length)
         {

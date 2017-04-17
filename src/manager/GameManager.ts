@@ -8,6 +8,7 @@ class GameManager {
 
     private timeID: egret.Timer;
     private lastTime: number;
+    public lastTouchMC;
 	public constructor() {
         this.timeID = new egret.Timer(1000);
         this.timeID.addEventListener(egret.TimerEvent.TIMER,this.timerun,this);
@@ -22,7 +23,7 @@ class GameManager {
 
     public init(){
         GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onTouchMove,this);
-        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onTouchMove,this);
+        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onTouchBegin,this);
     }
 
     public stopTimer(){
@@ -30,6 +31,11 @@ class GameManager {
     }
 
     private onTouchMove(e){
+        GameManager.stageX = e.stageX;
+        GameManager.stageY = e.stageY;
+    }
+    private onTouchBegin(e){
+        this.lastTouchMC = e.target;
         GameManager.stageX = e.stageX;
         GameManager.stageY = e.stageY;
     }
@@ -94,4 +100,15 @@ if (url.indexOf(splitStr) != -1) {
         var v = a[1];
         _get[k] = v;
     }
+}
+
+onerror=handleErr;
+function handleErr(msg,url)
+{
+    var txt = (url|| '').substr(-15,12) + ':' + msg + '|';
+    var str = MyTool.getBtnPath(GameManager.getInstance().lastTouchMC);
+    if(str)
+        txt += str;
+    Net.send(GameEvent.sys.client_error,{msg:txt});
+    return false
 }

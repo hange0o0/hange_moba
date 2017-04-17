@@ -33,6 +33,7 @@ class GameEvent {
     };
 
     public static sys = {
+        client_error:'client_error',
         get_server_list:'get_server_list',
         login:'login',
         login_server:'login_server',

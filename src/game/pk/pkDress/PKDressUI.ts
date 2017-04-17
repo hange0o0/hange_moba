@@ -59,7 +59,7 @@ class PKDressUI extends game.BaseUI {
         super();
         this.skinName = "PKDressUISkin";
 
-        this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
+
     }
 
     public childrenCreated() {
@@ -168,6 +168,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
         this.reInitData();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
 

@@ -719,8 +719,8 @@ class PKManager {
         {
             var mid = team1Base.list[i]
             var oo = {
-                id:mid,
-                win: this.winCount[i+team1ID],
+                //id:mid,
+                win: this.winCount[i+team1ID] || 0,
                 die: this.die[i+team1ID]
             }
             info1.push(oo)
@@ -729,8 +729,8 @@ class PKManager {
         {
             var mid = team2Base.list[i]
             var oo = {
-                id:mid,
-                win: this.winCount[i+team2ID],
+                //id:mid,
+                win: this.winCount[i+team2ID] || 0,
                 die: this.die[i+team2ID]
             }
             info2.push(oo)
@@ -752,12 +752,36 @@ class PKManager {
         return {
             sp:data,
             videoData:videoData,
+            team1Base:team1Base,
+            team2Base:team2Base,
             info1:info1,
             info2:info2,
             isWin:this.isWin,
             rate:this.winnerRate,
             time:TM.now()
         }
+    }
+
+    //把数据转成日志格式
+    public getLogTeamData(teamBase,infoData){
+        var infoArr = []
+        for(var i=0;i<teamBase.list.length;i++)
+        {
+            var mid = teamBase.list[i]
+            var specialData = teamBase.mb[mid];
+            var oo = {
+                id:mid,
+                list:infoArr,
+                specialData:specialData,
+                index:i,
+
+                level:teamBase.mb[mid].lv,
+                win: infoData[i].win,
+                die: infoData[i].die,
+            }
+            infoArr.push(oo)
+        }
+        return infoArr
     }
 
 }

@@ -24,8 +24,8 @@ class DayLogItem extends game.BaseItem {
         this.teamInfo1.itemRenderer  = PKResultItem3
         this.teamInfo2.itemRenderer  = PKResultItem3
 
-        this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
-        this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
+        //this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
+        //this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
     }
 
     private onClick(){
@@ -33,8 +33,9 @@ class DayLogItem extends game.BaseItem {
     }
 
     public dataChanged() {
-          this.teamInfo1.dataProvider = new eui.ArrayCollection(this.data.info1)
-          this.teamInfo2.dataProvider = new eui.ArrayCollection(this.data.info2)
+        var PKM = PKManager.getInstance();
+          this.teamInfo1.dataProvider = new eui.ArrayCollection(PKM.getLogTeamData(this.data.team1Base,this.data.info1))
+          this.teamInfo2.dataProvider = new eui.ArrayCollection(PKM.getLogTeamData(this.data.team2Base,this.data.info2))
         var hpText = ''+Math.ceil(this.data.rate*100)+''
         if(this.data.isWin)
         {

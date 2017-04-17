@@ -7,6 +7,10 @@ class DayGameManager{
     }
 
     public constructor() {
+
+    }
+
+    public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_day_log') || [];
     }
 

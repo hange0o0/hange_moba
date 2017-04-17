@@ -47,7 +47,7 @@ class CollectUI extends game.BaseUI {
         this.addBtnEvent(this.coinGroup,this.onCoin);
         this.addBtnEvent(this.cardGroup,this.onCard);
 
-        this.sortList.selectedIndex = SharedObjectManager.instance.getMyValue('collect_list_sort') || 0;
+        this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
         this.sortGroup.visible = false;
     }
@@ -59,7 +59,7 @@ class CollectUI extends game.BaseUI {
         ShopUI.getInstance().show('coin')
     }
     private onSelect(){
-        SharedObjectManager.instance.setMyValue('collect_list_sort',this.sortList.selectedIndex);
+        SharedObjectManager.instance.setValue('collect_list_sort',this.sortList.selectedIndex);
         this.resort()
     }
 

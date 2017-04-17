@@ -13,6 +13,8 @@ class PopUpManager {
         //MyTool.upMC(oldWindow)
         //MyTool.upMC(newWindow)
         newWindow.x = rota*640;
+        oldWindow.visible = true
+        newWindow.visible = true;
         egret.Tween.removeTweens(oldWindow);
         egret.Tween.removeTweens(newWindow);
         var tw:egret.Tween = egret.Tween.get(oldWindow);
@@ -111,7 +113,8 @@ class PopUpManager {
                 if(!setVisible)
                 {
                     ui.visible = true;
-                    setVisible = true;
+                    if(!ui.isWindow)
+                        setVisible = true;
                 }
                 else if(ui.hideVisible)
                     ui.visible = true;

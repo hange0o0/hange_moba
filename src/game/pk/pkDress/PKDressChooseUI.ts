@@ -165,8 +165,8 @@ class PKDressChooseUI extends game.BaseContainer {
 
         if(!GuideManager.getInstance().isGuiding)
         {
-            this.sortIndex = SharedObjectManager.instance.getMyValue('monster_sort') || 0;
-            var cbSelect =  SharedObjectManager.instance.getMyValue('monster_cb')
+            this.sortIndex = SharedObjectManager.instance.getValue('monster_sort') || 0;
+            var cbSelect =  SharedObjectManager.instance.getValue('monster_cb')
             if(cbSelect == undefined)
                 cbSelect = true;
             this.cb.selected =  cbSelect;
@@ -179,7 +179,7 @@ class PKDressChooseUI extends game.BaseContainer {
     }
 
     private onCBChange(){
-        SharedObjectManager.instance.setMyValue('monster_cb',this.cb.selected)
+        SharedObjectManager.instance.setValue('monster_cb',this.cb.selected)
         this.renewSplice();
     }
 
@@ -189,11 +189,12 @@ class PKDressChooseUI extends game.BaseContainer {
             this.sortIndex = 0;
         this.sortText.text = this.sortArr[this.sortIndex].w;
         this.sortText.textColor = this.sortArr[this.sortIndex].c;
-        SharedObjectManager.instance.setMyValue('monster_sort',this.sortIndex)
+        SharedObjectManager.instance.setValue('monster_sort',this.sortIndex)
         this.dispatchEventWith('sort');
     }
 
     public onRandom(){
+        console.log(MyTool.getBtnPath(this.randomBtn))
         this.dispatchEventWith('random');
     }
     public onReset(){
