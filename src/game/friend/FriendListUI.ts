@@ -152,7 +152,7 @@ class FriendListUI extends game.BaseUI {
         this.infoType = 0
         this.renew();
         this.renewRed();
-
+        //EM.dispatchEventWith(GameEvent.client.friend_red_change)
         //this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.friend_log_change,this.renewLogE)
         this.addPanelOpenEvent(GameEvent.client.friend_pk_change,this.renewPKE)

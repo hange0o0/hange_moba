@@ -52,6 +52,13 @@ class GameManager {
             EM.dispatch(GameEvent.client.pass_day);
         }
         EM.dispatch(GameEvent.client.timer);
+
+        if(UM.friendtime == 0){  //拿过日志了
+            if(now%30 == 0) //5分钟请求一次
+            {
+                FriendManager.getInstance().getLog(null,null,false);
+            }
+        }
     }
 
     //取现在到晚上12点还差的时间

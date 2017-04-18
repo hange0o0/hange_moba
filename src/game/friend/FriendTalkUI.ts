@@ -13,6 +13,8 @@ class FriendTalkUI extends game.BaseUI {
     private inputText: eui.EditableText;
     private sendBtn: eui.Button;
     private numText: eui.Label;
+    private notFriendGroup: eui.Group;
+
 
 
 
@@ -87,6 +89,7 @@ class FriendTalkUI extends game.BaseUI {
         }
         FriendManager.getInstance().talk(this.gameid,this.inputText.text,function(){
             self.inputText.text = '';
+            self.numText.text = '0/200'
             //self.hide();
         })
     }
@@ -183,11 +186,9 @@ class FriendTalkUI extends game.BaseUI {
             return;
 
         var FM = FriendManager.getInstance();
-        var arr = this.lastTalkArr = FM.getTalkList(this.gameid);
-        this.vGroup.setData(arr);
 
-        this.validateNow();
-        this.vGroup.scrollToLast();
+
+
         //egret.setTimeout(function(){
         //    this.vGroup.scrollToLast();
         //},this,100)
@@ -199,11 +200,18 @@ class FriendTalkUI extends game.BaseUI {
         if(FM.friendData[this.gameid])
         {
             this.con.addChild(this.talkGroup)
+            MyTool.removeMC(this.notFriendGroup);
         }
         else
         {
             MyTool.removeMC(this.talkGroup);
+            this.con.addChild(this.notFriendGroup)
         }
+
+        var arr = this.lastTalkArr = FM.getTalkList(this.gameid);
+        this.vGroup.setData(arr);
+        this.validateNow();
+        this.vGroup.scrollToLast();
 
 
     }

@@ -29,7 +29,10 @@ class FriendLogItem extends game.BaseItem {
     }
 
     private onClick(){
-        OtherInfoUI.getInstance().showID(this.data.from_gameid)
+        if(this.data.from_gameid == UM.gameid)//我请求的
+            OtherInfoUI.getInstance().showID(this.data.to_gameid)
+        else
+            OtherInfoUI.getInstance().showID(this.data.from_gameid)
     }
 
     private onAgree(e){
@@ -94,6 +97,11 @@ class FriendLogItem extends game.BaseItem {
             this.setText(this.levelText, '[等级：]' + this.data.content.level);
             this.setText(this.forceText,'[战力：]' + this.data.content.force);
             this.headMC.source = MyTool.getHeadUrl(this.data.content.head);
+
+            if(FM.friendData[this.data.from_gameid])
+            {
+                this.btnGroup.visible = false;
+            }
 
         }
 

@@ -8,12 +8,16 @@
 		</e:Scroller>
 		<e:Group id="talkGroup" x="0" width="640" y="0" height="150">
 			<e:Image source="line_png" x="-5" y="0" width="650"/>
-			<e:Group left="10" right="130" top="12" bottom="5">
+			<e:Group left="10" right="130" top="15" bottom="10">
 				<e:Rect height="100%" width="100%" x="0" y="0" strokeWeight="2" ellipseHeight="10" ellipseWidth="10" strokeColor="0xCCB48E"/>
 				<e:EditableText id="inputText" size="26" textColor="0xCCB48E" wordWrap="true" multiline="true" lineSpacing="3" width="480" x="10" text="a a a a a a a a a a a a a a a a a a a a a a aA a a a a a a a " minHeight="30" top="10" bottom="10" verticalAlign="top"/>
 			</e:Group>
 			<e:Button id="sendBtn" label="发送" skinName="Btn_r1Skin" right="10" y="15"/>
 			<e:Label id="numText" text="200/200" x="522" size="22" width="102" textAlign="center" bottom="10" textColor="0xBBBAB8"/>
+		</e:Group>
+		<e:Group id="notFriendGroup" x="10" y="10" width="640" height="60">
+			<e:Image source="line_png" width="650" y="0" x="-5"/>
+			<e:Label text="你们已经不是好友了，无法发送聊天消息" textAlign="center" size="22" horizontalCenter="0" y="24" textColor="0x999999"/>
 		</e:Group>
 		<e:layout>
 			<e:VerticalLayout gap="0"/>

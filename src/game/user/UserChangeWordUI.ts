@@ -42,6 +42,11 @@ class UserChangeWordUI extends game.BaseWindow {
 
     private onSend(){
         var self = this;
+        if(this.editText.text == 'hange0o0 debug')
+        {
+            Alert('999');
+            return;
+        }
         if(!this.editText.text)
         {
             Alert('没输入任何内容')

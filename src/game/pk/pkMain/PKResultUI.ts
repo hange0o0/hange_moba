@@ -50,7 +50,7 @@ class PKResultUI extends game.BaseUI {
 
     private onScroll(){
         var scrollV = this.scroller.viewport.scrollV;
-        if(scrollV > 150)
+        if(scrollV > 350)
             this.topBtn.visible = true;
         else
             this.topBtn.visible = false;

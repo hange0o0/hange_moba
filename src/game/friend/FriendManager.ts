@@ -233,7 +233,10 @@ class FriendManager{
 
 
         talkSave.nick = talkData.content.nick;
-        talkSave.head = talkData.content.head;
+        if(talkData.from_gameid != UM.gameid)
+            talkSave.head = talkData.content.head;
+        else if(this.friendData[talkData.to_gameid])
+            talkSave.head = this.friendData[talkData.to_gameid].info.head;
         var oo:any = {};
         oo.id = talkData.id;
         oo.time = talkData.time
@@ -340,12 +343,25 @@ class FriendManager{
                 if(msg.friendinfo[s].nick)
                     msg.friendinfo[s].nick = Base64.decode(msg.friendinfo[s].nick);
             }
-            for(var s in msg.friendpk)
+
+            var deleteList = [];
+            for(var s in self.friendData)
             {
-                if(!self.friendData[s])
-                    self.friendData[s] = {};
-                self.friendData[s].pk = msg.friendpk[s];
+                  if(self.friendList.indexOf(s) == -1)
+                  {
+                      deleteList.push(s);
+                  }
             }
+            for(var i=0;i<deleteList.length;i++)
+            {
+                 delete  self.friendData[deleteList[i]];
+            }
+            //for(var s in msg.friendpk)
+            //{
+            //    if(!self.friendData[s])
+            //        self.friendData[s] = {};
+            //    self.friendData[s].pk = msg.friendpk[s];
+            //}
             self.saveToLocal();
             if(fun)
                 fun();
@@ -523,7 +539,7 @@ class FriendManager{
                 fun();
         });
     }
-    public getLog(fun?,force=null){
+    public getLog(fun?,force=null,isModel=true){
         if(!force && this.logList && TM.now() - this.lastGetLog < 30)//30S CD             10
         {
             if(fun)
@@ -629,11 +645,12 @@ class FriendManager{
                 EM.dispatchEventWith(GameEvent.client.friend_pk_change)
             }
 
+            UM.friendtime = 0;
             self.setOpen('red');
             self.saveToLocal();
             if(fun)
                 fun();
-        });
+        },isModel);
     }
 
     //删除好友
@@ -677,6 +694,8 @@ class FriendManager{
         }
         var oo:any = {};
         oo.otherid = otherid;
+        oo.isfriend = self.friendData[otherid] != null
+        oo.mygameid = UM.gameid;
         //oo.serverid =  LoginManager.getInstance().lastServer;
         Net.send(GameEvent.user.get_other_info,oo,function(data){
             var msg = data.msg;
@@ -692,7 +711,10 @@ class FriendManager{
             self.otherInfoNick[info.nick] = info;
 
             if(self.friendData[info.gameid])
+            {
                 self.friendData[info.gameid].info = info;
+                self.friendData[info.gameid].pk = msg.pk;
+            }
 
             if(fun)
                 fun();
@@ -710,6 +732,8 @@ class FriendManager{
         var self = this;
         var oo:any = {};
         oo.othernick = othernick;
+        oo.isfriend = self.otherInfoNick[othernick] != null;
+        oo.mygameid = UM.gameid;
         //oo.serverid =  LoginManager.getInstance().lastServer;
         Net.send(GameEvent.user.get_other_info,oo,function(data){
             var msg = data.msg;
@@ -722,6 +746,12 @@ class FriendManager{
             info.getTime = TM.now();
             self.otherInfo[info.gameid] = info;
             self.otherInfoNick[info.nick] = info;
+
+            if(self.friendData[info.gameid])
+            {
+                self.friendData[info.gameid].info = info;
+                self.friendData[info.gameid].pk = msg.pk;
+            }
 
             if(fun)
                 fun();
