@@ -7,7 +7,9 @@ class SettingUI extends game.BaseWindow {
 
 
     private musicCB: eui.CheckBox;
+    private friendCB: eui.CheckBox;
     private soundCB: eui.CheckBox;
+    private PKCB: eui.CheckBox;
     private loginBtn: eui.Button;
     private closeBtn: eui.Button;
     private idText: eui.Label;
@@ -29,6 +31,8 @@ class SettingUI extends game.BaseWindow {
         super.childrenCreated();
         this.addBtnEvent(this.musicCB,this.onMusic);
         this.addBtnEvent(this.soundCB,this.onSound);
+        this.addBtnEvent(this.friendCB,this.onFriend);
+        this.addBtnEvent(this.PKCB,this.onPK);
         this.addBtnEvent(this.closeBtn,this.hide);
         this.addBtnEvent(this.loginBtn,this.onLoginOut);
         //this.addBtnEvent(this.qqBtn,this.onQQ);
@@ -50,6 +54,15 @@ class SettingUI extends game.BaseWindow {
         SoundManager.getInstance().soundPlaying = this.soundCB.selected
     }
 
+    private onFriend(){
+        FriendManager.getInstance().stop(this.friendCB.selected);
+    }
+
+    private onPK(){
+        PKManager.getInstance().pkJump = !PKManager.getInstance().pkJump;
+        SharedObjectManager.instance.setValue("pkJump",PKManager.getInstance().pkJump)
+    }
+
     private onQQ(){
         //如遇到BUG或有好的建议，可发送邮件至：1624431545@qq.com
         //游戏官方QQ群：1624431545
@@ -58,6 +71,8 @@ class SettingUI extends game.BaseWindow {
     public onShow(){
         this.musicCB.selected = SoundManager.getInstance().bgPlaying
         this.soundCB.selected = SoundManager.getInstance().soundPlaying
+        this.friendCB.selected = UM.friends.stop;
+        this.PKCB.selected = PKManager.getInstance().pkJump;
         this.idText.textFlow = <Array<egret.ITextElement>>[
             {text: UM.gameid + "", style: {"underline": true}}
         ];

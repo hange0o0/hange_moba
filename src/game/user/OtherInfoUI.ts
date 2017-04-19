@@ -92,6 +92,11 @@ class OtherInfoUI extends game.BaseUI {
             Alert('努力升到'+Config.friendLevel+'级，就可以加Ta为好友哦~')
             return;
         }
+        if(this.dataIn.friends.stop)
+        {
+            Alert('对方设置了拒绝添加好友')
+            return;
+        }
         var self = this;
         FriendManager.getInstance().apply(this.dataIn.gameid,function(){
             self.friendBtn.visible = false;
@@ -114,8 +119,8 @@ class OtherInfoUI extends game.BaseUI {
     public showNick(nick){
         var FM = FriendManager.getInstance();
         var self = this;
-        FM.getOtherInfoByNick(nick,function(){
             self.show(FM.otherInfoNick[nick]);
+        FM.getOtherInfoByNick(nick,function(){
         })
 
     }

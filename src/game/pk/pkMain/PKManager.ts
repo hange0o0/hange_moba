@@ -21,6 +21,7 @@ class PKManager {
 
     public constructor() {
         //this.onPK('test',null);
+        this.pkJump = SharedObjectManager.instance.getValue('pkJump') || false
 
     }
 
@@ -49,6 +50,8 @@ class PKManager {
     public isWin//胜利
 
     public teamChange = false//队伍ID发生过转换
+
+    public pkJump;
 
     ////不同位置的加成值和比例
     //public indexAdd(index)

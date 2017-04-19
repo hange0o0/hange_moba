@@ -73,7 +73,7 @@ class RankManager{
 
             if(fun)
                 fun();
-        });
+        },!isFromMain);
     }
 
     //生成排行榜

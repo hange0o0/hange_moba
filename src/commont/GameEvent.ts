@@ -55,6 +55,7 @@ class GameEvent {
         friend_pk_ask:'friend_pk_ask',
         friend_pk_get_card:'friend_pk_get_card',
         friend_miss:'friend_miss',
+        friend_stop:'friend_stop',
         friend_refuse:'friend_refuse'
     }
 

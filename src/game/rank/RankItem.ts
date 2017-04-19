@@ -53,7 +53,7 @@ class RankItem extends game.BaseItem {
             this.iconMC.visible = true
             this.iconMC.source =  this.data.index + 'th_png'
         }
-        else if(this.data.index < 10)
+        else if(this.data.index < 10 && !_get['app'])
         {
             this.numText2.text = this.data.index + '';
         }

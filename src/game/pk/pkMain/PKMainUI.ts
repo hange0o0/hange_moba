@@ -110,25 +110,34 @@ class PKMainUI extends game.BaseUI {
     }
 
     public show(){
+        var isPKJump = PKManager.getInstance().pkJump;
         this.loadGroup2 = [];
         this.initSeed();
-        var group = VideoManager.getInstance().getVideoAniGroup();
+        var group = []
+        if(!isPKJump)
+        {
+            group = VideoManager.getInstance().getVideoAniGroup();
+            var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
+            var mObj = {};
+            for(var i=0;i<arr.length;i++)
+            {
+                mObj[arr[i]] = true;
+            }
+            for(var s in mObj)
+            {
+                if(!RES.getRes('m_thumbr_' + s))
+                    group.push('m_thumbr_' + s);
+                this.loadGroup2.push('m_thumb_' + s);
+            }
+        }
+
+
         this.scene =  PKManager.getInstance().getPKBG(PKManager.getInstance().pkType,this.random());
         if(!RES.getRes(this.scene))
             group.push(this.scene);
 
-        var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
-        var mObj = {};
-        for(var i=0;i<arr.length;i++)
-        {
-            mObj[arr[i]] = true;
-        }
-        for(var s in mObj)
-        {
-            if(!RES.getRes('m_thumbr_' + s))
-                group.push('m_thumbr_' + s);
-            this.loadGroup2.push('m_thumb_' + s);
-        }
+
+
 
         //console.log(this.scene)
         //if(group.length == 0)
@@ -168,6 +177,10 @@ class PKMainUI extends game.BaseUI {
     }
 
     public onShow() {
+        if(this.loadUI == null)
+        {
+            MainPageUI.getInstance().visible = true;
+        }
         this.bgBlack.visible = false;
         this.removeAllTweens()
         egret.clearTimeout(this.timer);
@@ -176,7 +189,9 @@ class PKMainUI extends game.BaseUI {
         this.addSceneMovie();
         this.isStop = false;
 
-        SoundManager.getInstance().playSound(SoundConfig.bg_pk);
+        var isPKJump = PKManager.getInstance().pkJump;
+        if(!isPKJump)
+            SoundManager.getInstance().playSound(SoundConfig.bg_pk);
     }
 
     private removeAllTweens(){
@@ -306,6 +321,13 @@ class PKMainUI extends game.BaseUI {
 
     //加所有单位
     private addItemMovie(){
+        MainPageUI.getInstance().visible = false;
+        var isPKJump = PKManager.getInstance().pkJump;
+        if(isPKJump)
+        {
+            this.showResult()
+            return;
+        }
 
         var myTeam = PKManager.getInstance().team1Base.list
         var enemyTeam = PKManager.getInstance().team2Base.list

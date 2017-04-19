@@ -407,6 +407,11 @@ class FriendManager{
                Alert('对方好友数量已达最大值');
                 return;
             }
+            if(msg.fail == 6)
+            {
+               Alert('对方设置了拒绝添加好友');
+                return;
+            }
             ShowTips('请求已发送')
             if(fun)
                 fun();
@@ -653,6 +658,19 @@ class FriendManager{
         },isModel);
     }
 
+    //允许添加好友
+    public stop(stop,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.stop = stop;
+        Net.addUser(oo);
+        Net.send(GameEvent.friend.friend_stop,oo,function(data){
+            var msg = data.msg;
+            UM.friends.stop = stop;
+            if(fun)
+                fun();
+        });
+    }
     //删除好友
     public delete(otherid,fun?){
         var self = this;

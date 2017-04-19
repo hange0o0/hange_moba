@@ -280,7 +280,7 @@ class UserManager {
     public testDiamond(v){
         if(UM.getDiamond() < v)
         {
-            Confirm('钻石不足！\n需要：' +v+'当前：'+UM.getDiamond() + '\n是否前往购买钻石？',function(v){
+            Confirm('钻石不足！\n需要：' +v+'\n当前：'+UM.getDiamond() + '\n是否前往购买钻石？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('diamond');
@@ -293,7 +293,7 @@ class UserManager {
     public testCoin(v){
         if(UM.coin < v)
         {
-            Confirm('金币不足！\n需要：' +v+'当前：'+UM.coin + '\n是否前往购买金币？',function(v){
+            Confirm('金币不足！\n需要：' +v+'\n当前：'+UM.coin + '\n是否前往购买金币？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('coin');
@@ -307,7 +307,7 @@ class UserManager {
     public testEnergy(v){
         if(UM.getEnergy() < v)
         {
-            Confirm('体力不足！\n需要：' +v+'当前：'+UM.getEnergy() + '\n是否前往购买体力？',function(v){
+            Confirm('体力不足！\n需要：' +v+'\n当前：'+UM.getEnergy() + '\n是否前往购买体力？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('energy');
