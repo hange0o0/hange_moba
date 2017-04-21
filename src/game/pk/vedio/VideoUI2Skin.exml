@@ -99,7 +99,7 @@
 				</e:layout>
 			</e:List>
 		</e:Group>
-		<e:Rect height="140" width="5" y="0" fillColor="0x272422" x="318"/>
+		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
 	<e:Image id="guideBtn" source="menu_icon_4_png" y="864" x="534"/>

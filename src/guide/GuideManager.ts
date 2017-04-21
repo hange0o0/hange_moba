@@ -20,6 +20,10 @@ class GuideManager {
         return this._instance;
     }
 
+    public enableScrollV(scroller){
+        scroller.scrollPolicyV = this.isGuiding? eui.ScrollPolicy.OFF:eui.ScrollPolicy.AUTO
+    }
+
     public showGuide(ui?){
         if(!this.isGuiding)
             return;

@@ -70,6 +70,11 @@ class ServerGameManager{
                 Alert('体力不足');
                 return;
             }
+            if(msg.fail)
+            {
+                Alert('获取卡牌失败',LoginManager.getInstance().relogin);
+                return;
+            }
 
             UM.server_game.pk = 0;
             UM.server_game.choose = msg.choose;
@@ -92,7 +97,7 @@ class ServerGameManager{
                 return;
             if(msg.fail)
             {
-                Alert('PK出错');
+                Alert('PK出错',LoginManager.getInstance().relogin);
                 return;
             }
 

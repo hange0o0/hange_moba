@@ -188,6 +188,7 @@ class CollectUI extends game.BaseUI {
     }
 
     public onShow(){
+        GuideManager.getInstance().enableScrollV(this.scroller);
         this.renew();
         this.addPanelOpenEvent(GameEvent.client.collect_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renew);

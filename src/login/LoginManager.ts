@@ -19,12 +19,25 @@ class LoginManager{
     public quickPassword; //上次的登录的密码//（只有在游客模式下有）
     public lastServer; //最近登陆的服务器
 
+    public logText;
+
     public constructor() {
         var oo =  SharedObjectManager.instance.getValue('user') || {};
         this.lastUser = oo.user;
         this.quickPassword = oo.password;
-        this.lastServer = oo.lastServer;
+        //this.lastServer = oo.lastServer;
         this.myServer = oo.myServer;
+
+        if(this.lastUser)
+        {
+            this.lastServer = SharedObjectManager.instance.getValue('user_server_' + this.lastUser);
+        }
+
+        this.logText = SharedObjectManager.instance.getValue('logText') || {}
+    }
+
+    public saveLogText(){
+        SharedObjectManager.instance.setValue('logText',this.logText)
     }
 
     //测试名字是否合法
@@ -67,9 +80,10 @@ class LoginManager{
 
     private writeDB(){
         var oo:any = {user:this.lastUser,password:this.quickPassword}
-        oo.lastServer = this.lastServer;
+        //oo.lastServer = this.lastServer;
         oo.myServer = this.myServer;
         SharedObjectManager.instance.setValue('user',oo)
+        SharedObjectManager.instance.setValue('user_server_' + this.lastUser,this.lastServer);
     }
 
     //----------------------------------以下是没有接入平台时的，要自己管理用户----------------------------------
@@ -119,6 +133,7 @@ class LoginManager{
 
             self.lastUser = name;
             self.quickPassword = msg.quick_password;
+            self.lastServer = SharedObjectManager.instance.getValue('user_server_' + self.lastUser);
             self.writeDB();
 
             self.onUserLogin();
@@ -153,6 +168,7 @@ class LoginManager{
 
             self.lastUser = name;
             self.quickPassword = msg.quick_password
+            self.lastServer = SharedObjectManager.instance.getValue('user_server_' + self.lastUser);
             self.writeDB();
 
             self.onUserLogin();
@@ -310,6 +326,7 @@ class LoginManager{
         //oo.serverid = serverid;
         oo.id = this.gameid;
         oo.cdkey = this.openKey;
+        oo.logtime = this.logText.time || 0;
         Net.getInstance().serverID = serverid;
         Net.getInstance().serverHost = this.serverList[serverid].host;
         Net.send(GameEvent.sys.login_server,oo,function(data){
@@ -339,6 +356,11 @@ class LoginManager{
 
             self.lastServer = serverid;
             self.writeDB();
+            if(msg.logtext)
+            {
+                self.logText = msg.logtext;
+                self.saveLogText();
+            }
 
 
             MainPageUI.getInstance().show();
@@ -346,6 +368,41 @@ class LoginManager{
             //LoginServerUI.getInstance().hide();
             if(fun)
                 fun();
+        });
+    }
+
+    public relogin(){
+        var self = LoginManager.getInstance();;
+        var oo:any = {};
+        //oo.serverid = serverid;
+        oo.id = self.gameid;
+        oo.cdkey = self.openKey;
+        oo.logtime = this.logText.time || 0;
+        var serverid = self.lastServer;
+        Net.getInstance().serverID = serverid;
+        Net.getInstance().serverHost = self.serverList[serverid].host;
+        Net.send(GameEvent.sys.login_server,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('用户状态已过期!',MyTool.refresh);
+                return;
+            }
+
+            if(msg.fail == 2)
+            {
+                return;
+            }
+
+
+            if(msg.logtext)
+            {
+                self.logText = msg.logtext;
+                self.saveLogText();
+            }
+
+            UM.fill(msg.data);
+            PopUpManager.showToMain()
         });
     }
 

@@ -39,10 +39,7 @@ class PKItem extends game.BaseItem {
         this.team = this.data.team
         this.index = this.data.index
         this.id = this.team * 100 + this.index;
-        if(this.team == 1)
-            this.lightMC.source = 'head_border_light1_png'
-        else
-            this.lightMC.source = 'head_border_light3_png'
+
         //if(this.data.isEnemy)
         //{
         //    this.headMC.scaleY = -1;

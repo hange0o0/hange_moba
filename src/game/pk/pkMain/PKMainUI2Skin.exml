@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKMainUI2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Rect id="bgBlack" height="100%" width="100%" x="0" y="0"/>
+	<e:Group id="bgGroup" x="0" y="0" width="100%" height="100%" locked="true">
+		<e:Image id="bg1" source="bg_jpg" x="0" anchorOffsetY="480" width="640" height="960" y="0"/>
+		<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="0" anchorOffsetY="480"/>
+	</e:Group>
+	<e:Group id="downBG" y="840">
+		<e:Rect fillAlpha="0.5" width="640" height="115" x="0" y="0"/>
+		<e:Rect height="2" width="100%" x="0" y="0" fillColor="0x444444"/>
+	</e:Group>
+	<e:Group id="upBG" x="0" y="0">
+		<e:Rect height="115" width="640" x="0" y="0" fillAlpha="0.5"/>
+		<e:Rect width="100%" fillColor="0x444444" height="2" x="0"/>
+	</e:Group>
+	
+	<e:Group id="selfGroup" x="0" y="0" locked="true" width="100%"/>
+	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
+	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
+	<e:Image id="jumpBtn" source="jump_btn_png" x="566" y="886"/>
+</e:Skin>

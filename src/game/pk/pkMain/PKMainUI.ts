@@ -1,7 +1,7 @@
 class PKMainUI extends game.BaseUI {
-    private static instance:PKMainUI;
+    private static instance:PKMainUI2;
     public static getInstance() {
-        if (!this.instance) this.instance = new PKMainUI();
+        if (!this.instance) this.instance = new PKMainUI2();
         return this.instance;
     }
 

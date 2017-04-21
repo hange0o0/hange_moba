@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="GameLogUISkin" width="580" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="580"/>
+	<e:Label id="titleText" y="29" textColor="0xD0C7AD" horizontalCenter="0" text="更新日志" x="10"/>
+	<e:Rect left="30" right="30" top="680" bottom="25" fillAlpha="1" fillColor="0x160D06"/>
+	<e:Button bottom="40" label="确定" skinName="Btn_r2Skin" id="okBtn" y="10" right="50"/>
+	<e:Scroller id="scroller" width="480" top="75" bottom="124" horizontalCenter="0" bounces="false">
+		<e:Group>
+			<e:List id="list" x="0" y="0" itemRendererSkinName="HelpItemSkin">
+				<e:ArrayCollection>
+					<e:Array>
+						<e:Object text="1" label="数据3"/>
+						<e:Object text="2" label="数据2"/>
+						<e:Object text="3" label="数据1"/>
+					</e:Array>
+				</e:ArrayCollection>
+				<e:layout>
+					<e:VerticalLayout paddingTop="10"/>
+				</e:layout>				
+			</e:List>
+			
+		</e:Group>
+	</e:Scroller>
+	<e:CheckBox id="cb" label="本条日志不再弹出" x="49" skinName="MyCheckBoxSkin" bottom="55"/>
+</e:Skin>

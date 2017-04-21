@@ -13,8 +13,12 @@ class SettingUI extends game.BaseWindow {
     private loginBtn: eui.Button;
     private closeBtn: eui.Button;
     private idText: eui.Label;
+    private versionText: eui.Label;
+    private logBtn: eui.Label;
     private qqText: eui.Label;
     private emailText: eui.Label;
+
+
 
 
 
@@ -35,9 +39,14 @@ class SettingUI extends game.BaseWindow {
         this.addBtnEvent(this.PKCB,this.onPK);
         this.addBtnEvent(this.closeBtn,this.hide);
         this.addBtnEvent(this.loginBtn,this.onLoginOut);
+        this.addBtnEvent(this.logBtn,this.onLog);
         //this.addBtnEvent(this.qqBtn,this.onQQ);
 
         //this.addBtnEvent(this.okBtn, this.onChoose);
+    }
+
+    private onLog(){
+        GameLogUI.getInstance().show();
     }
 
     private onLoginOut(){
@@ -82,7 +91,11 @@ class SettingUI extends game.BaseWindow {
         this.emailText.textFlow = <Array<egret.ITextElement>>[
             {text: "1624431545@qq.com", style: {"underline": true}}
         ];
-        //this.idText.text = UM.gameid;
+        this.versionText.textFlow = <Array<egret.ITextElement>>[
+            {text: 'V' + Config.version + '.' + Config.m_version, style: {"underline": true}}
+        ];
+
+        this.logBtn.visible = LoginManager.getInstance().logText.text;
     }
 
 

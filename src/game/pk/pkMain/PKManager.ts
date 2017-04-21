@@ -254,17 +254,17 @@ class PKManager {
         }
         if(oo.fail == 105)//木头不对
         {
-            Alert('5选择的单位非法（木不对）');
+            Alert('5选择的单位非法');
             return true;
         }
         if(oo.fail == 106)//没这个宠物
         {
-            Alert('6选择的单位非法（没这个宠物）');
+            Alert('6选择的单位非法');
             return true;
         }
         if(oo.fail == 110)
         {
-            Alert('没找到卡组数据');
+            Alert('没找到卡组数据',LoginManager.getInstance().relogin);
             return true;
         }
         if(oo.fail == 111)
@@ -576,21 +576,25 @@ class PKManager {
                 currentVideo.push({type:'atk',value:movePlayer.team});
             }
             //
+            currentVideo.push({type:'hp',value:{
+                player1:{rate1:player1.before/player1.beforeMax,rate2:player1.after/player1.afterMax,hp:player1.after-player1.before},
+                player2:{rate1:player2.before/player2.beforeMax,rate2:player2.after/player2.afterMax,hp:player2.after-player2.before},
+            }});
 
             if(!player1.isWin && !player2.isWin)
             {
-                currentVideo.push({type:'die',value:1});
-                currentVideo.push({type:'die',value:2});
+                currentVideo.push({type:'die',value:1,star:player1.winCount});
+                currentVideo.push({type:'die',value:2,star:player2.winCount});
             }
             else if(player1.isWin)
             {
                 currentVideo.push({type:'lastAtk',value:1})
-                currentVideo.push({type:'die',value:2});
+                currentVideo.push({type:'die',value:2,star:player2.winCount});
             }
             else
             {
                 currentVideo.push({type:'lastAtk',value:2})
-                currentVideo.push({type:'die',value:1});
+                currentVideo.push({type:'die',value:1,star:player1.winCount});
             }
 
 

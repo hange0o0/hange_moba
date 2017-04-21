@@ -26,6 +26,7 @@ class AniManager {
     };
 
     public mvSoundConfig = {}
+    public aniList = []
 
 
 
@@ -59,6 +60,13 @@ class AniManager {
                     console.log('same' + s + '--' + skillID + '--' + this.mvSoundConfig[skillID])
                 this.mvSoundConfig[skillID] = s;
             }
+        }
+
+        for(var i=1;i<180;i++)
+        {
+            if(!RES.hasRes('skill' + i + '_json'))
+                continue;
+            this.aniList.push('skill' + i);
         }
     }
 

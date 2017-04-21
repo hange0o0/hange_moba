@@ -9,7 +9,7 @@
 			"name":"build"
 		},
 		{
-			"keys":"skill10_png,skill15_json,skill15_png,skill21_json,skill21_png,skill22_json,skill22_png,skill27_json,skill27_png,skill28_json,skill28_png,skill30_json,skill30_png,skill6_json,skill6_png,skill10_json,skill176_png,skill158_png,skill108_png,skill157_png,skill175_png,skill113_png,skill116_png,skill149_png,skill105_png,skill120_png,skill112_png,skill119_png,skill177_png,skill134_png,skill111_png,skill126_png,skill136_png,skill102_png,skill176_json,skill175_json,skill158_json,skill108_json,skill134_json,skill119_json,skill113_json,skill116_json,skill157_json,skill149_json,skill126_json,skill120_json,skill112_json,skill105_json,skill111_json,skill136_json,skill177_json,skill102_json,skill14_png,skill14_json,skill109_json,skill109_png,skill161_json,skill161_png,skill16_json,skill16_png",
+			"keys":"skill28_json,skill28_png,skill6_json,skill6_png,skill108_png,skill113_png,skill116_png,skill149_png,skill120_png,skill112_png,skill111_png,skill126_png,skill108_json,skill113_json,skill116_json,skill149_json,skill126_json,skill120_json,skill112_json,skill111_json,skill16_json,skill16_png,skill122_json,skill122_png,skill123_json,skill123_png,skill127_json,skill127_png,skill128_json,skill128_png,skill133_json,skill133_png,skill140_json,skill140_png,skill153_json,skill153_png,skill24_json,skill24_png,skill29_json,skill29_png,skill34_json,skill34_png,skill106_json,skill106_png,skill107_json,skill107_png,skill114_json,skill114_png,skill115_json,skill115_png,skill117_json,skill117_png,skill118_json,skill118_png",
 			"name":"ani"
 		},
 		{
@@ -97,51 +97,6 @@
 			"url":"game_assets/build/main3.png"
 		},
 		{
-			"name":"skill10_png",
-			"type":"image",
-			"url":"ani/skill10.png"
-		},
-		{
-			"name":"skill15_json",
-			"type":"json",
-			"url":"ani/skill15.json"
-		},
-		{
-			"name":"skill15_png",
-			"type":"image",
-			"url":"ani/skill15.png"
-		},
-		{
-			"name":"skill21_json",
-			"type":"json",
-			"url":"ani/skill21.json"
-		},
-		{
-			"name":"skill21_png",
-			"type":"image",
-			"url":"ani/skill21.png"
-		},
-		{
-			"name":"skill22_json",
-			"type":"json",
-			"url":"ani/skill22.json"
-		},
-		{
-			"name":"skill22_png",
-			"type":"image",
-			"url":"ani/skill22.png"
-		},
-		{
-			"name":"skill27_json",
-			"type":"json",
-			"url":"ani/skill27.json"
-		},
-		{
-			"name":"skill27_png",
-			"type":"image",
-			"url":"ani/skill27.png"
-		},
-		{
 			"name":"skill28_json",
 			"type":"json",
 			"url":"ani/skill28.json"
@@ -150,16 +105,6 @@
 			"name":"skill28_png",
 			"type":"image",
 			"url":"ani/skill28.png"
-		},
-		{
-			"name":"skill30_json",
-			"type":"json",
-			"url":"ani/skill30.json"
-		},
-		{
-			"name":"skill30_png",
-			"type":"image",
-			"url":"ani/skill30.png"
 		},
 		{
 			"name":"skill6_json",
@@ -172,34 +117,9 @@
 			"url":"ani/skill6.png"
 		},
 		{
-			"name":"skill10_json",
-			"type":"json",
-			"url":"ani/skill10.json"
-		},
-		{
-			"name":"skill176_png",
-			"type":"image",
-			"url":"ani/skill176.png"
-		},
-		{
-			"name":"skill158_png",
-			"type":"image",
-			"url":"ani/skill158.png"
-		},
-		{
 			"name":"skill108_png",
 			"type":"image",
 			"url":"ani/skill108.png"
-		},
-		{
-			"name":"skill157_png",
-			"type":"image",
-			"url":"ani/skill157.png"
-		},
-		{
-			"name":"skill175_png",
-			"type":"image",
-			"url":"ani/skill175.png"
 		},
 		{
 			"name":"skill113_png",
@@ -217,11 +137,6 @@
 			"url":"ani/skill149.png"
 		},
 		{
-			"name":"skill105_png",
-			"type":"image",
-			"url":"ani/skill105.png"
-		},
-		{
 			"name":"skill120_png",
 			"type":"image",
 			"url":"ani/skill120.png"
@@ -230,21 +145,6 @@
 			"name":"skill112_png",
 			"type":"image",
 			"url":"ani/skill112.png"
-		},
-		{
-			"name":"skill119_png",
-			"type":"image",
-			"url":"ani/skill119.png"
-		},
-		{
-			"name":"skill177_png",
-			"type":"image",
-			"url":"ani/skill177.png"
-		},
-		{
-			"name":"skill134_png",
-			"type":"image",
-			"url":"ani/skill134.png"
 		},
 		{
 			"name":"skill111_png",
@@ -257,44 +157,9 @@
 			"url":"ani/skill126.png"
 		},
 		{
-			"name":"skill136_png",
-			"type":"image",
-			"url":"ani/skill136.png"
-		},
-		{
-			"name":"skill102_png",
-			"type":"image",
-			"url":"ani/skill102.png"
-		},
-		{
-			"name":"skill176_json",
-			"type":"json",
-			"url":"ani/skill176.json"
-		},
-		{
-			"name":"skill175_json",
-			"type":"json",
-			"url":"ani/skill175.json"
-		},
-		{
-			"name":"skill158_json",
-			"type":"json",
-			"url":"ani/skill158.json"
-		},
-		{
 			"name":"skill108_json",
 			"type":"json",
 			"url":"ani/skill108.json"
-		},
-		{
-			"name":"skill134_json",
-			"type":"json",
-			"url":"ani/skill134.json"
-		},
-		{
-			"name":"skill119_json",
-			"type":"json",
-			"url":"ani/skill119.json"
 		},
 		{
 			"name":"skill113_json",
@@ -305,11 +170,6 @@
 			"name":"skill116_json",
 			"type":"json",
 			"url":"ani/skill116.json"
-		},
-		{
-			"name":"skill157_json",
-			"type":"json",
-			"url":"ani/skill157.json"
 		},
 		{
 			"name":"skill149_json",
@@ -332,29 +192,9 @@
 			"url":"ani/skill112.json"
 		},
 		{
-			"name":"skill105_json",
-			"type":"json",
-			"url":"ani/skill105.json"
-		},
-		{
 			"name":"skill111_json",
 			"type":"json",
 			"url":"ani/skill111.json"
-		},
-		{
-			"name":"skill136_json",
-			"type":"json",
-			"url":"ani/skill136.json"
-		},
-		{
-			"name":"skill177_json",
-			"type":"json",
-			"url":"ani/skill177.json"
-		},
-		{
-			"name":"skill102_json",
-			"type":"json",
-			"url":"ani/skill102.json"
 		},
 		{
 			"name":"buff_1_png",
@@ -1222,36 +1062,6 @@
 			"url":"game_assets/preload2_jpg/prop_score.jpg"
 		},
 		{
-			"name":"skill14_png",
-			"type":"image",
-			"url":"ani/skill14.png"
-		},
-		{
-			"name":"skill14_json",
-			"type":"json",
-			"url":"ani/skill14.json"
-		},
-		{
-			"name":"skill109_json",
-			"type":"json",
-			"url":"ani/skill109.json"
-		},
-		{
-			"name":"skill109_png",
-			"type":"image",
-			"url":"ani/skill109.png"
-		},
-		{
-			"name":"skill161_json",
-			"type":"json",
-			"url":"ani/skill161.json"
-		},
-		{
-			"name":"skill161_png",
-			"type":"image",
-			"url":"ani/skill161.png"
-		},
-		{
 			"name":"skill16_json",
 			"type":"json",
 			"url":"ani/skill16.json"
@@ -1295,6 +1105,166 @@
 			"name":"shop_card_png",
 			"type":"image",
 			"url":"game_assets/preload_png/shop_card.png"
+		},
+		{
+			"name":"skill122_json",
+			"type":"json",
+			"url":"ani/skill122.json"
+		},
+		{
+			"name":"skill122_png",
+			"type":"image",
+			"url":"ani/skill122.png"
+		},
+		{
+			"name":"skill123_json",
+			"type":"json",
+			"url":"ani/skill123.json"
+		},
+		{
+			"name":"skill123_png",
+			"type":"image",
+			"url":"ani/skill123.png"
+		},
+		{
+			"name":"skill127_json",
+			"type":"json",
+			"url":"ani/skill127.json"
+		},
+		{
+			"name":"skill127_png",
+			"type":"image",
+			"url":"ani/skill127.png"
+		},
+		{
+			"name":"skill128_json",
+			"type":"json",
+			"url":"ani/skill128.json"
+		},
+		{
+			"name":"skill128_png",
+			"type":"image",
+			"url":"ani/skill128.png"
+		},
+		{
+			"name":"skill133_json",
+			"type":"json",
+			"url":"ani/skill133.json"
+		},
+		{
+			"name":"skill133_png",
+			"type":"image",
+			"url":"ani/skill133.png"
+		},
+		{
+			"name":"skill140_json",
+			"type":"json",
+			"url":"ani/skill140.json"
+		},
+		{
+			"name":"skill140_png",
+			"type":"image",
+			"url":"ani/skill140.png"
+		},
+		{
+			"name":"skill153_json",
+			"type":"json",
+			"url":"ani/skill153.json"
+		},
+		{
+			"name":"skill153_png",
+			"type":"image",
+			"url":"ani/skill153.png"
+		},
+		{
+			"name":"skill24_json",
+			"type":"json",
+			"url":"ani/skill24.json"
+		},
+		{
+			"name":"skill24_png",
+			"type":"image",
+			"url":"ani/skill24.png"
+		},
+		{
+			"name":"skill29_json",
+			"type":"json",
+			"url":"ani/skill29.json"
+		},
+		{
+			"name":"skill29_png",
+			"type":"image",
+			"url":"ani/skill29.png"
+		},
+		{
+			"name":"skill34_json",
+			"type":"json",
+			"url":"ani/skill34.json"
+		},
+		{
+			"name":"skill34_png",
+			"type":"image",
+			"url":"ani/skill34.png"
+		},
+		{
+			"name":"skill106_json",
+			"type":"json",
+			"url":"ani/skill106.json"
+		},
+		{
+			"name":"skill106_png",
+			"type":"image",
+			"url":"ani/skill106.png"
+		},
+		{
+			"name":"skill107_json",
+			"type":"json",
+			"url":"ani/skill107.json"
+		},
+		{
+			"name":"skill107_png",
+			"type":"image",
+			"url":"ani/skill107.png"
+		},
+		{
+			"name":"skill114_json",
+			"type":"json",
+			"url":"ani/skill114.json"
+		},
+		{
+			"name":"skill114_png",
+			"type":"image",
+			"url":"ani/skill114.png"
+		},
+		{
+			"name":"skill115_json",
+			"type":"json",
+			"url":"ani/skill115.json"
+		},
+		{
+			"name":"skill115_png",
+			"type":"image",
+			"url":"ani/skill115.png"
+		},
+		{
+			"name":"skill117_json",
+			"type":"json",
+			"url":"ani/skill117.json"
+		},
+		{
+			"name":"skill117_png",
+			"type":"image",
+			"url":"ani/skill117.png"
+		},
+		{
+			"name":"skill118_json",
+			"type":"json",
+			"url":"ani/skill118.json"
+		},
+		{
+			"name":"skill118_png",
+			"type":"image",
+			"url":"ani/skill118.png"
 		}
 	]
 }

@@ -72,7 +72,12 @@ class ServerGameEqualManager{
             var msg = data.msg;
             if(msg.fail == 1)
             {
-                Alert('道具不足');
+                Alert('修正币不足');
+                return;
+            }
+            if(msg.fail)
+            {
+                Alert('获取卡牌失败',LoginManager.getInstance().relogin);
                 return;
             }
 
@@ -97,7 +102,7 @@ class ServerGameEqualManager{
                 return;
             if(msg.fail)
             {
-                Alert('PK出错');
+                Alert('PK出错',LoginManager.getInstance().relogin);
                 return;
             }
 

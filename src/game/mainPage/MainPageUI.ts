@@ -299,6 +299,8 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onBegin(e:egret.TouchEvent){
+        if(GuideManager.getInstance().isGuiding)
+            return;
         if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
         {
             return;
@@ -447,6 +449,10 @@ class MainPageUI extends game.BaseUI {
             MainPageUI.getInstance().renewPage();
             GuideManager.getInstance().guideStep = 0;
             GuideManager.getInstance().showGuide(MainPageUI.getInstance())
+            if(!GuideManager.getInstance().isGuiding){
+                if(!LoginManager.getInstance().logText.cb && LoginManager.getInstance().logText.text)
+                    GameLogUI.getInstance().show();
+            }
         },this,300);
 
         //GuideManager.getInstance().guideStep = 13;

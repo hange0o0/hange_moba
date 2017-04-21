@@ -294,7 +294,7 @@ class MonsterList extends game.BaseUI {
     //}
 
     public onShow(){
-
+        GuideManager.getInstance().enableScrollV(this.scroller);
         var w = 93
         var h = 86
         var toY = this.stage.stageHeight - h - 10;

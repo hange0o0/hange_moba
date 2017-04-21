@@ -1,5 +1,5 @@
 {
-	"close":true,
+	"close":false,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -566,38 +566,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill10_png",
-					"name":"skill10_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill14_png",
-					"name":"skill14_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill15_png",
-					"name":"skill15_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill16_png",
 					"name":"skill16_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill21_png",
-					"name":"skill21_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill22_png",
-					"name":"skill22_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill27_png",
-					"name":"skill27_png"
 				},
 				{
 					"isFolder":false,
@@ -606,33 +576,13 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill30_png",
-					"name":"skill30_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill6_png",
 					"name":"skill6_png"
 				},
 				{
 					"isFolder":false,
-					"key":"skill102_png",
-					"name":"skill102_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill105_png",
-					"name":"skill105_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill108_png",
 					"name":"skill108_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill109_png",
-					"name":"skill109_png"
 				},
 				{
 					"isFolder":false,
@@ -656,11 +606,6 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill119_png",
-					"name":"skill119_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill120_png",
 					"name":"skill120_png"
 				},
@@ -671,48 +616,8 @@
 				},
 				{
 					"isFolder":false,
-					"key":"skill134_png",
-					"name":"skill134_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill136_png",
-					"name":"skill136_png"
-				},
-				{
-					"isFolder":false,
 					"key":"skill149_png",
 					"name":"skill149_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill157_png",
-					"name":"skill157_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill158_png",
-					"name":"skill158_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill161_png",
-					"name":"skill161_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill175_png",
-					"name":"skill175_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill176_png",
-					"name":"skill176_png"
-				},
-				{
-					"isFolder":false,
-					"key":"skill177_png",
-					"name":"skill177_png"
 				},
 				{
 					"isFolder":false,
@@ -1068,6 +973,86 @@
 					"isFolder":false,
 					"key":"arrow7_png",
 					"name":"arrow7_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill106_png",
+					"name":"skill106_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill107_png",
+					"name":"skill107_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill114_png",
+					"name":"skill114_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill115_png",
+					"name":"skill115_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill117_png",
+					"name":"skill117_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill118_png",
+					"name":"skill118_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill122_png",
+					"name":"skill122_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill123_png",
+					"name":"skill123_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill127_png",
+					"name":"skill127_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill128_png",
+					"name":"skill128_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill133_png",
+					"name":"skill133_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill140_png",
+					"name":"skill140_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill153_png",
+					"name":"skill153_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill24_png",
+					"name":"skill24_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill29_png",
+					"name":"skill29_png"
+				},
+				{
+					"isFolder":false,
+					"key":"skill34_png",
+					"name":"skill34_png"
 				}
 			]
 		}

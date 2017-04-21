@@ -102,7 +102,10 @@ class Net extends egret.EventDispatcher{
                 switch (data.error)
                 {
                     case 1:
-                        Alert('游戏已更新，请登陆重进',refresh,'重新登陆');
+                        if(_get['app'])
+                            Alert('游戏已更新，请重新下载');
+                        else
+                            Alert('游戏已更新，请登陆重进',refresh,'重新登陆');
                         GameManager.getInstance().stopTimer();
                         break;
                     case 2:
@@ -114,6 +117,14 @@ class Net extends egret.EventDispatcher{
                         break;
                     case 4:
                         Alert('用户数据写入失败',refresh,'重新登陆');
+                        GameManager.getInstance().stopTimer();
+                        break;
+                    case 5:
+                        Alert('服务器正在维护中，请稍后再试',refresh);
+                        GameManager.getInstance().stopTimer();
+                        break;
+                    case 99:
+                        Alert(data.error_str,refresh);
                         GameManager.getInstance().stopTimer();
                         break;
                 }

@@ -25,7 +25,8 @@ class DragManager {
 
     private onBegin(e:egret.TouchEvent){
 
-
+         if(GuideManager.getInstance().isGuiding)
+            return;
         if(e.currentTarget.stopDrag || this.isDraging)
             return;
 

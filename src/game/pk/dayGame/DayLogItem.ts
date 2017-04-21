@@ -36,7 +36,7 @@ class DayLogItem extends game.BaseItem {
         var PKM = PKManager.getInstance();
           this.teamInfo1.dataProvider = new eui.ArrayCollection(PKM.getLogTeamData(this.data.team1Base,this.data.info1))
           this.teamInfo2.dataProvider = new eui.ArrayCollection(PKM.getLogTeamData(this.data.team2Base,this.data.info2))
-        var hpText = ''+Math.ceil(this.data.rate*100)+''
+        var hpText = Math.max(1,Math.min(100,Math.ceil(this.data.rate*100))) + '';
         if(this.data.isWin)
         {
             this.resultText.text = '我方剩余血量：' + hpText + '%';

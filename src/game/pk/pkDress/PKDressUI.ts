@@ -168,6 +168,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public onShow(){
+        GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
         this.reInitData();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)

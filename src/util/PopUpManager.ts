@@ -123,4 +123,24 @@ class PopUpManager {
             }
         }
     }
+
+    public static showToMain(){
+        while(true)
+        {
+            for(var i=GameManager.container.numChildren-1 ;i>=0;i--)
+            {
+                var ui = GameManager.container.getChildAt(i);
+                if(ui instanceof game.BaseUI)
+                {
+                    if(ui == MainPageUI.getInstance())
+                    {
+                        return;
+                    }
+                    ui.hide();
+                    break;
+                }
+            }
+        }
+
+    }
 }

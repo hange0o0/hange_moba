@@ -43,18 +43,18 @@ class DebugSkillList extends game.BaseUI {
 
         var arr = [];
         //var noArr = [1,2,155,156,169,101,171,165]
-        //for(var i=1;i<180;i++)
-        //{
-        //    if(!RES.hasRes('skill' + i + '_json'))
-        //        continue;
-        //
-        //    if(noArr.indexOf(i) == -1)
-        //        arr.push('skill' + i);
-        //}
-        for(var i=0;i<list.length;i++)
+        for(var i=1;i<180;i++)
         {
-            arr.push('skill' + list[i]);
+            if(!RES.hasRes('skill' + i + '_json'))
+                continue;
+
+            //if(noArr.indexOf(i) == -1)
+                arr.push('skill' + i);
         }
+        //for(var i=0;i<list.length;i++)
+        //{
+        //    arr.push('skill' + list[i]);
+        //}
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 }

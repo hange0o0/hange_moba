@@ -71,6 +71,7 @@ class GameManager {
 
         return Math.floor(d.getTime()/1000) - TM.now();
     }
+
 }
 
 

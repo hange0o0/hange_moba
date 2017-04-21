@@ -131,39 +131,22 @@ class MonsterVO {
 
 
         this.mvList = [];
-        this.mvType1 = [];
-        this.mvType2 = [];
+        //this.mvType1 = [];
+        //this.mvType2 = [];
         if(data.mv1)
-            this.addMV(data.mv1,this.mvType1)
-        if(data.mv2)
-            this.addMV(data.mv2,this.mvType2)
+            this.addMV(data.mv1)
+        //if(data.mv2)
+        //    this.addMV(data.mv2)
 
     }
 
-    private addMV(mv,dataArr){
+    private addMV(mv){
         //mv = '0|6'
         var arr = mv.split(',');
         for(var i=0;i<arr.length;i++)
         {
-            var temp = arr[i].split('|');
-            var oo = {type:temp[0],id:temp[1]}
-            dataArr.push(oo)
-            this.pushLoadKey(oo.id);
-            if(oo.type == 2)
-            {
-                oo['id2'] = temp[2]
-                this.pushLoadKey(oo['id2']);
-                if(!oo['id2'])
-                {
-                    throw new Error('monster' + this.id)
-                }
-            }
-
-            if(oo.type > 10)
-            {
-                oo['isLast'] = true;
-                oo.type -= 10;
-            }
+            this.mv1.push(arr[i]);
+            this.pushLoadKey(arr[i]);
         }
     }
 

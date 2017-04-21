@@ -636,12 +636,12 @@ class DebugManager {
 
     public getMVDetail(){
         var useObj = {};
-        var noArr = [1,2,155,156,169,101,171,165    ]
+        //var noArr = [1,2,155,156,169,101,171,165    ]
         for(var i=1;i<180;i++)
         {
             if(!RES.hasRes('skill' + i + '_json'))
                 continue;
-            if(noArr.indexOf(i) == -1)
+            //if(noArr.indexOf(i) == -1)
                 useObj[i] = [];
         }
 
@@ -649,38 +649,10 @@ class DebugManager {
         for(var s in data)
         {
             var vo:MonsterVO = data[s];
-            for(var i=0;i<vo.mvType1.length;i++)
+            for(var i=0;i<vo.mv1.length;i++)
             {
-                var oo = vo.mvType1[i];
-                //if(oo.type > 3)
-                //    throw new Error('mvType1_' + vo.id)
-                if(noArr.indexOf(oo.id) != -1)
-                    throw new Error('mvType1_' + vo.id)
-                if(oo.id2 && noArr.indexOf(oo.id2) != -1)
-                    throw new Error('mvType2_' + vo.id)
-
-                useObj[oo.id].push(vo.id);
-                if(oo.id2){
-                    useObj[oo.id2].push(vo.id);
-                }
-
-            }
-            for(var i=0;i<vo.mvType2.length;i++)
-            {
-                var oo = vo.mvType2[i];
-                //if(oo.type > 3)
-                //    throw new Error('mvType2' + vo.id)
-                if(noArr.indexOf(oo.id) != -1)
-                    throw new Error('mvType1_' + vo.id)
-                if(oo.id2 && noArr.indexOf(oo.id2) != -1)
-                    throw new Error('mvType2_' + vo.id)
-
-                useObj[oo.id].push(vo.id);
-                if(oo.id2)
-                {
-                    useObj[oo.id2].push(vo.id);
-                }
-
+                var id = vo.mv1[i];
+                useObj[id].push(vo.id);
             }
         }
 

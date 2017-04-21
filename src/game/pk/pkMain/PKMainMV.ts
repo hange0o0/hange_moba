@@ -36,22 +36,22 @@ class PKMainMV {
             tw.call(fun1,thisObj)
     }
 
-    public jumpToXY(a,b,fun1?,thisObj?,wait?){       //,frontWait?
+    public jumpToXY(a,b,fun1?,thisObj?,wait?,speedRate=1){       //,frontWait?
 
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
         a.jumping = true;
-        var dis = Math.max(400,MyTool.getDis(a,b));
+        var dis = Math.max(400*speedRate,MyTool.getDis(a,b));
         //if(frontWait)
         //    tw.wait(frontWait);
         //SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
-        tw.to({x:b.x,y:b.y}, dis).call(function(){
+        tw.to({x:b.x,y:b.y}, dis*speedRate).call(function(){
             a.jumping = false;
             //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         });
         var tw:egret.Tween = egret.Tween.get(a);
-        tw.to({scaleX:1.3,scaleY:1.3}, dis/2,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/2,egret.Ease.sineIn);
+        tw.to({scaleX:1.3,scaleY:1.3}, dis*2/3*speedRate,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/3*speedRate,egret.Ease.sineIn);
         if(fun1)
         {
 

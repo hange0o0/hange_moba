@@ -78,6 +78,7 @@ class PKResultUI extends game.BaseUI {
     }
 
     public onShow() {
+        GuideManager.getInstance().enableScrollV(this.scroller);
         PKResultUI.getInstance().initMore()
         PopUpManager.removeShape();
         this.scroller.visible = false;

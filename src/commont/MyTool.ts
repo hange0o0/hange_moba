@@ -33,7 +33,12 @@ class MyTool {
         return Math.pow(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2),0.5)
     }
 
-    public static changeGray(mc){
+    public static changeGray(mc,b=true){
+        if(!b)
+        {
+            mc.filters = null;
+            return;
+        }
         var colorMatrix = [
             0.3,0.6,0,0,0,
             0.3,0.6,0,0,0,
@@ -202,6 +207,10 @@ class MyTool {
             btn = btn.parent;
         }
         return arr.join('.')
+    }
+
+    public static refresh(){
+        location.reload();
     }
 }
 
