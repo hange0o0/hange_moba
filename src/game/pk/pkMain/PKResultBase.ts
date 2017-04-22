@@ -85,6 +85,12 @@ class PKResultBase extends game.BaseContainer {
             this._desText.text += '\n战力提升到：' + UM.getForce()
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }
+        else if(award.getNewCard)//卡级
+        {
+            award.getNewCard = false;
+            this._desText.text += '\n卡组次数已用完，获得了新卡组';
+            this.timer = egret.setTimeout(this.stepOne,this,300);
+        }
         //else if(award.newTask)//新增任务了
         //{
         //    award.newTask = false;

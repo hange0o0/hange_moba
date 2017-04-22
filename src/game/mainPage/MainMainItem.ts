@@ -32,6 +32,7 @@ class MainMainItem extends game.BaseItem {
 
     }
     private onStart(){
+
         MainGameManager.getInstance().openPKView();
     }
 
@@ -51,19 +52,22 @@ class MainMainItem extends game.BaseItem {
             this.btnGroup.addChildAt(this.awardBtn,0);
         }
 
-        if(UM.main_game.choose)
-        {
-            this.startBtn.label = '开始挑战'
-            this.desText.text = '卡组已获得，点击开始挑战'
-        }
+        //if(UM.main_game.choose)
+        //{
+        this.startBtn.label = '开始挑战'
+        if(UM.getEnergy() >= 1)
+            this.setHtml(this.desText,'每次挑战需要消耗 ' + this.createHtml('1',0xFFFF00) + ' 点体力');
         else
-        {
-            this.startBtn.label = '抽取卡牌'
-            if(UM.getEnergy() >= 1)
-                this.setHtml(this.desText,'抽取卡牌需消耗体力：' + this.createHtml('1',0xFFFF00));
-            else
-                this.setHtml(this.desText,'抽取卡牌需消耗体力：' + this.createHtml('1',0xFF0000));
-        }
+            this.setHtml(this.desText,'每次挑战需要消耗 ' + this.createHtml('1',0xFF0000) + ' 点体力');
+        //}
+        //else
+        //{
+        //    this.startBtn.label = '抽取卡牌'
+        //    if(UM.getEnergy() >= 1)
+        //        this.setHtml(this.desText,'抽取卡牌需消耗体力：' + this.createHtml('1',0xFFFF00));
+        //    else
+        //        this.setHtml(this.desText,'抽取卡牌需消耗体力：' + this.createHtml('1',0xFF0000));
+        //}
 
         if(level >= MainGameManager.getInstance().maxLevel)
         {

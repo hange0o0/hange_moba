@@ -55,6 +55,8 @@ class ShopItem extends game.BaseItem {
             this.setHtml(this.text1,this.data.word + ' <font size="22">(金币X' + NumberUtil.addNumSeparator(PayManager.getInstance().getCoin(this.data.id)) + ')</font>');
         else  if(this.data.shopType == 'card')
             this.setHtml(this.text1,this.data.word + ' <font size="22">(卡片X' + NumberUtil.addNumSeparator(PayManager.getInstance().getCard(this.data.id)) + ')</font>');
+        else  if(this.data.shopType == 'ticket')
+            this.setHtml(this.text1,this.data.word + ' <font size="22">(当前拥有：' + UM.getPropNum(21) + ')</font>');
         else
             this.text1.text = this.data.word;
 

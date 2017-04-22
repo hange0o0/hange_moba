@@ -19,11 +19,12 @@ class ServerGameEqualUI extends game.BaseUI {
     private enemyList: eui.List;
     private myGroup: eui.Group;
     private myList: eui.List;
-    private chooseMC: eui.Rect;
-    private card1Btn: eui.Button;
-    private card2Btn: eui.Button;
+    private cardText: eui.Label;
+    private resetBtn: eui.Button;
     private chooseBtn: eui.Button;
-    private cardTitle: eui.Label;
+    private logBtn: eui.Button
+
+
 
 
 
@@ -32,7 +33,6 @@ class ServerGameEqualUI extends game.BaseUI {
 
 
     private enemyArray
-    private chooseInex
 
     public constructor() {
         super();
@@ -52,14 +52,22 @@ class ServerGameEqualUI extends game.BaseUI {
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList.itemRenderer =  MyHeadItem;
 
-        this.addBtnEvent(this.card1Btn, this.onCard1);
-        this.addBtnEvent(this.card2Btn, this.onCard2);
 
         this.scroller.bounces = false;
 
         //this.enemyList.add
 
         this.addBtnEvent(this.helpBtn,this.onHelp);
+        this.addBtnEvent(this.resetBtn, this.onReset);
+        this.addBtnEvent(this.logBtn, this.onLog);
+    }
+
+    private onLog(){
+        DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正挑战日志');
+    }
+
+    private onReset(){
+        PKManager.getInstance().reChooseMyCard()
     }
 
     private onHelp(){
@@ -70,14 +78,6 @@ class ServerGameEqualUI extends game.BaseUI {
         this.clearList([this.myList,this.enemyList])
     }
 
-    private onCard1(){
-        this.chooseInex = 0;
-        this.renewChoose();
-    }
-    private onCard2(){
-        this.chooseInex = 1;
-        this.renewChoose();
-    }
 
     private onOtherInfo(){
         var gameid = UM.server_game_equal.enemy.userinfo.gameid;
@@ -89,8 +89,6 @@ class ServerGameEqualUI extends game.BaseUI {
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         var data = UM.server_game_equal;
 
-        this.chooseInex = 0;
-        this.chooseMC.x = -3;
 
         //更新敌人
         var enemyList = this.enemyArray = [];
@@ -158,20 +156,18 @@ class ServerGameEqualUI extends game.BaseUI {
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 
         this.renewChoose();
+        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewChoose);
     }
 
     private renewChoose(){
-        var data = UM.server_game_equal;
-        if(!data.choose || !data.choose[0])
-            return;
-
+        var myCard = UM.getMyCard();
         var specialData = {isEqual:true};
         //更新卡组1
         var chooseList1 = [];
-        PKManager.getInstance().sortMonster(data.choose[this.chooseInex].list);
-        for(var i=0;i<data.choose[this.chooseInex].list.length;i++)
+        PKManager.getInstance().sortMonster(myCard.list);
+        for(var i=0;i<myCard.list.length;i++)
         {
-            var id = data.choose[this.chooseInex].list[i]
+            var id = myCard.list[i]
             chooseList1.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
@@ -184,27 +180,12 @@ class ServerGameEqualUI extends game.BaseUI {
             });
         }
         this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
-        var tw:egret.Tween = egret.Tween.get(this.chooseMC);
-
-        if(this.chooseInex == 0)
-        {
-            this.cardTitle.text = 'PK卡组1'
-            this.card1Btn.skinName = 'Btn_b2Skin'
-            this.card2Btn.skinName = 'Btn_d2Skin'
-            tw.to({x:this.card1Btn.x-3},100)
-        }
-        else
-        {
-            this.cardTitle.text = 'PK卡组2'
-            this.card2Btn.skinName = 'Btn_b2Skin'
-            this.card1Btn.skinName = 'Btn_d2Skin'
-            tw.to({x:this.card2Btn.x-3},100)
-        }
+        this.cardText.text = '剩余次数：'+myCard.num+'/10'
     }
 
     private onChoose(){
-        this.hide();
-        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.server_game_equal.choose,enemy:this.enemyArray,index:this.chooseInex,isEqual:true})
+        //this.hide();
+        PKDressUI.getInstance().show({pktype:'server_game_equal',data:UM.pk_common.my_card,enemy:this.enemyArray,isEqual:true})
     }
 
 }

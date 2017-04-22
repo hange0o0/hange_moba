@@ -57,23 +57,18 @@ class MainServerItem extends game.BaseItem {
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'
-                if(UM.getEnergy() >= 2)
-                    this.setHtml(this.desText,'匹配或重试需消耗体力：' + this.createHtml('2',0xFFFF00));
-                else
-                    this.setHtml(this.desText,'匹配或重试需消耗体力：' + this.createHtml('2',0xFF0000));
             }
             else if(serverData.choose)//已有卡版数据
             {
                 this.startBtn.label = '开始挑战';
-                this.desText.text = '卡组已获得，点击开始挑战'
+                if(UM.getEnergy() >= 1)
+                    this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFFFF00));
+                else
+                    this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFF0000));
             }
             else
             {
                 this.startBtn.label = '开始匹配'
-                if(UM.getEnergy() >= 2)
-                    this.setHtml(this.desText,'匹配需消耗体力：' + this.createHtml('2',0xFFFF00));
-                else
-                    this.setHtml(this.desText,'匹配需消耗体力：' + this.createHtml('2',0xFF0000));
             }
         }
 

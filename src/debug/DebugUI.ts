@@ -136,9 +136,9 @@ class DebugUI extends game.BaseUI {
 
 
 
-				MainGameManager.getInstance().getCard(function(){
-					//console.log(JSON.stringify(FriendManager.getInstance()))
-				})
+				//MainGameManager.getInstance().getCard(function(){
+				//	//console.log(JSON.stringify(FriendManager.getInstance()))
+				//})
 				//FriendManager.getInstance().getList(function(){
 				//	console.log(JSON.stringify(FriendManager.getInstance()))
 				//})

@@ -429,7 +429,10 @@ class MainPageUI extends game.BaseUI {
         GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
         FriendManager.getInstance().initFriend();
         MonsterManager.getInstance().initData();
+        MainGameManager.getInstance().initData();
         DayGameManager.getInstance().initData();
+        ServerGameManager.getInstance().initData();
+        ServerGameEqualManager.getInstance().initData();
 
         this.renewTop();
 

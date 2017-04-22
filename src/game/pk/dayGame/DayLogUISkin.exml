@@ -11,5 +11,5 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:Label id="emptyText" text="你今天还没进行过挑战" y="342" textColor="0xFAAD4A" horizontalCenter="0"/>
+	<e:Label id="emptyText" text="暂无挑战日志" y="342" textColor="0xFAAD4A" horizontalCenter="0"/>
 	</e:Skin>

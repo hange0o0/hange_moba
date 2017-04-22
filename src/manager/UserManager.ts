@@ -277,6 +277,10 @@ class UserManager {
         return array;
     }
 
+    public getMyCard(){
+        return this.pk_common.my_card[0]
+    }
+
     public testDiamond(v){
         if(UM.getDiamond() < v)
         {

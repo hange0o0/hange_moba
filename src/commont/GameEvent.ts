@@ -25,6 +25,7 @@ class GameEvent {
         monster_level_change:'monster_level_change',
 
         friend_red_change:'friend_red_change',
+        my_card_change:'my_card_change',
 
 
 
@@ -62,6 +63,7 @@ class GameEvent {
     public static pkCore = {
         pk_result:'pk_result',
         pk_result_type:'pk_result_type',
+        get_my_card:'get_my_card',
         pk_vedio:'pk_vedio'
     }
 

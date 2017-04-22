@@ -52,6 +52,7 @@ class PKManager {
     public teamChange = false//队伍ID发生过转换
 
     public pkJump;
+    public pkLog = {};
 
     ////不同位置的加成值和比例
     //public indexAdd(index)
@@ -65,6 +66,21 @@ class PKManager {
     //        return {type:'speed',value:5};
     //    return null;
     //}
+
+    public reChooseMyCard(){
+        var self = this;
+        var cost = UM.getMyCard().num;
+        Confirm('当前卡组剩余使用次数：'+cost+'\n确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石选择新的卡组吗？',function(v){
+            if(v == 1)
+            {
+                if(!UM.testDiamond(cost))
+                {
+                    return;
+                }
+                self.getMyCard()
+            }
+        })
+    }
 
     //num :第1个时，num = 0;
     public getCostByNum(id,num){
@@ -351,6 +367,15 @@ class PKManager {
     }
 
     public getReplayByData(type,oo,fun?){
+        var key = md5.incode(JSON.stringify(oo));
+        if(this.pkLog[key])
+        {
+            this.onPK(PKManager.PKType.REPLAY,this.pkLog[key]);
+            PKMainUI.getInstance().show();
+            if(fun)
+                fun();
+            return
+        }
         if(Math.floor(oo.pk_version) < Config.pk_version){
             Alert('录像已过期');
             return;
@@ -369,6 +394,24 @@ class PKManager {
             msg.info.type = type;
             self.onPK(PKManager.PKType.REPLAY,msg);
             PKMainUI.getInstance().show();
+            self.pkLog[key] = msg;
+            if(fun)
+                fun();
+        });
+    }
+
+    public getMyCard(fun?){
+        var self = this;
+        var oo:any = {};
+        oo.force = true;
+        Net.addUser(oo);
+        Net.send(GameEvent.pkCore.get_my_card,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 201)
+            {
+                Alert('钻石不足');
+                return;
+            }
             if(fun)
                 fun();
         });
@@ -451,6 +494,7 @@ class PKManager {
             newTask:false,
             finishTask:false,
             forceUp:false,
+            getNewCard:false,
             prop:[]
         }
 
@@ -498,6 +542,8 @@ class PKManager {
                 this.pkAward.gLevelUp = data.g_level_up;
             if(data.day_award)
                 this.pkAward.dayAward = true;
+            if(data.get_new_card)
+                this.pkAward.getNewCard = true;
         }
 
 

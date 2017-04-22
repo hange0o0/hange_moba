@@ -5,13 +5,17 @@ class DayLogItem extends game.BaseItem {
     }
 
     private titleBG: eui.Rect;
-    private teamInfo2: eui.List;
     private teamInfo1: eui.List;
+    private teamInfo2: eui.List;
     private titleText: eui.Label;
     private timeText: eui.Label;
     private resultIcon: eui.Image;
     private resultText: eui.Label;
     private videoBtn: eui.Button;
+    private nickGroup: eui.Group;
+    private headMC0: eui.Image;
+    private nickText: eui.Label;
+
 
 
 
@@ -48,7 +52,6 @@ class DayLogItem extends game.BaseItem {
             this.resultText.textColor = 0x75BCFF
         }
         this.timeText.text =  DateUtil.getStringBySeconds(TM.now() - this.data.time,false,2) + '前';
-        this.titleText.text = '第 '+this.data.sp.round+' 关'
         this.titleBG.fillColor = this.data.isWin?0x4F2900:0x0F243A
         this.resultIcon.source = this.data.isWin?'win_icon_png':'lose_icon_png'
 
@@ -64,5 +67,19 @@ class DayLogItem extends game.BaseItem {
             this.videoBtn.skinName = 'Btn_d2Skin';
             this.videoBtn.label = '已失效'
         }
+
+        if(this.data.sp.round)
+        {
+            this.titleText.text = '第 '+this.data.sp.round+' 关';
+            this.nickGroup.visible = false;
+        }
+        else
+        {
+            this.titleText.text = '';
+            this.nickGroup.visible = true;
+            this.nickText.text = this.data.sp.nick;
+            this.headMC0.source = MyTool.getHeadUrl(this.data.sp.head);
+        }
+
     }
 }

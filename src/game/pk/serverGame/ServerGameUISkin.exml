@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ServerGameUISkin" width="640" height="1100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="ServerGameUISkin" width="640" height="1050" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
@@ -7,8 +7,8 @@
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
 				<e:Group x="0" y="-80">
 					<e:Group x="0" y="80">
-						<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="440" x="640"/>
-						<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="440" x="0"/>
+						<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="420" x="640"/>
+						<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="420" x="0"/>
 					</e:Group>
 					<e:Rect height="110" width="620" x="10" y="80" fillAlpha="0.4"/>
 					<e:Label id="winText" y="136" textColor="0xCCB48E" text="40.3%" x="164"/>
@@ -34,7 +34,7 @@
 					<e:Image source="head_bg2_jpg" x="4" y="4" width="72" height="72"/>
 					<e:Image id="headMC" source="icon_power_png" x="4" y="4" width="72" height="72"/>
 				</e:Group>
-				<e:List id="enemyList" height="259" y="130" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+				<e:List id="enemyList" height="259" y="128" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="20" verticalGap="20" horizontalAlign="center"/>
 					</e:layout>
@@ -52,12 +52,12 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group y="375.83333333333337" height="100%" minHeight="510" x="0">
+			<e:Group y="350.00000000000006" height="100%" minHeight="540" x="0">
 				<e:layout>
-					<e:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
+					<e:VerticalLayout/>
 				</e:layout>
-				<e:Group id="myGroup" x="36.66666666666667" y="0" height="430">
-					<e:List y="50" horizontalCenter="0" itemRendererSkinName="MyHeadItemSkin" id="myList">
+				<e:Group id="myGroup" x="0" width="640" y="0">
+					<e:List id="myList" y="60" horizontalCenter="0" itemRendererSkinName="MyHeadItemSkin">
 						<e:layout>
 							<e:TileLayout requestedColumnCount="4" verticalGap="10" horizontalGap="15"/>
 						</e:layout>
@@ -74,24 +74,27 @@
 							</e:Array>
 						</e:ArrayCollection>
 					</e:List>
-					<e:Group horizontalCenter="0" y="0" x="30">
+					<e:Group horizontalCenter="0" y="10" x="20">
 						<e:Image source="main_mc_png" y="509" x="10"/>
-						<e:Label id="cardTitle" y="14" textColor="0xD9B67B" text="PK卡组" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-						<e:Image source="main_mc_png" y="519" scaleX="-1" x="20"/>
+						<e:Label y="14" textColor="0xD9B67B" text="我的卡组" textAlign="center" width="140" horizontalCenter="0" size="26"/>
+						<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
 						<e:layout>
 							<e:HorizontalLayout verticalAlign="bottom"/>
 						</e:layout>
 					</e:Group>
 				</e:Group>
-				<e:Group y="0" horizontalCenter="0" height="100%">
-					<e:Group x="-3" verticalCenter="0">
-						<e:Rect id="chooseMC" fillAlpha="0" y="0" strokeWeight="3" ellipseWidth="10" strokeColor="0xF7B900" width="166" x="0" fillColor="0xF7B900" height="62" ellipseHeight="10"/>
-						<e:Button id="card1Btn" skinName="Btn_b2Skin" y="3" label="卡组1" x="3"/>
-						<e:Button id="card2Btn" label="卡组2" y="3" skinName="Btn_b2Skin" x="173"/>
-						<e:Button id="chooseBtn" label="使用出战" y="1" skinName="Btn_r3Skin" x="373"/>
+				<e:Group y="556" width="640" horizontalCenter="0" height="100%">
+					<e:layout>
+						<e:HorizontalLayout horizontalAlign="center" paddingLeft="10" gap="20" verticalAlign="middle" paddingTop="25"/>
+					</e:layout>
+					<e:Group width="160" y="76.96969696969688" height="56" x="55.98484848484849">
+						<e:Label id="cardText" y="-25" horizontalCenter="0" size="20" text="剩余次数：10/10" textColor="0xFCD45E"/>
+						<e:Button id="resetBtn" label="重新选牌" y="0" skinName="Btn_b2Skin" x="0"/>
 					</e:Group>
+					<e:Button x="405" y="40" label="挑战日志" skinName="Btn_b2Skin" id="logBtn"/>
+					<e:Button id="chooseBtn" label="开始挑战" y="0" skinName="Btn_r3Skin" x="365"/>
 				</e:Group>
-			</e:Group>
+			</e:Group>
 
 
 			<e:layout>

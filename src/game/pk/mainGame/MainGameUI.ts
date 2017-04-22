@@ -15,8 +15,12 @@ class MainGameUI extends game.BaseUI {
     private helpBtn: eui.Group;
     private myGroup0: eui.Group;
     private myList0: eui.List;
+    private cardText: eui.Label;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
+    private logBtn: eui.Button;
+
+
 
 
 
@@ -36,7 +40,7 @@ class MainGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         this.addBtnEvent(this.coinGroup, this.onCoin);
-        this.addBtnEvent(this.resetBtn, this.onReset);
+
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
@@ -45,28 +49,24 @@ class MainGameUI extends game.BaseUI {
 
         //this.enemyList.add
         this.addBtnEvent(this.helpBtn,this.onHelp);
+        this.addBtnEvent(this.resetBtn, this.onReset);
+        this.addBtnEvent(this.logBtn, this.onLog);
     }
+
+    private onLog(){
+        DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'试练挑战日志');
+    }
+    private onReset(){
+        PKManager.getInstance().reChooseMyCard()
+    }
+
 
     public scrollToEnd(){
       if(this.scroller.viewport.height < this.scroller.viewport.contentHeight)
             this.scroller.viewport.scrollV =  this.scroller.viewport.contentHeight -  this.scroller.viewport.height;
     }
 
-    private onReset(){
-        var self = this;
-         Confirm('确定消耗1点体力选择新的卡组吗？',function(v){
-             if(v == 1)
-             {
-                 if(!UM.testEnergy(1))
-                 {
-                     return;
-                 }
-                 MainGameManager.getInstance().getCard(function(){
-                     self.renewSelf();
-                 },true)
-             }
-         })
-    }
+
 
     private onHelp(){
         HelpManager.getInstance().mainHelp();
@@ -98,6 +98,7 @@ class MainGameUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewSelf);
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewSelf);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewSelf);
+        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
     }
 
     public renewPrice(){
@@ -186,16 +187,14 @@ class MainGameUI extends game.BaseUI {
     }
 
     private renewSelf(){
-        var data = UM.main_game;
-        if(!data.choose || !data.choose[0])
-            return;
+        var myCard = UM.getMyCard();
         var specialData = {};
         //更新卡组1
         var chooseList1 = [];
-        PKManager.getInstance().sortMonster(data.choose[0].list);
-        for(var i=0;i<data.choose[0].list.length;i++)
+        PKManager.getInstance().sortMonster(myCard.list);
+        for(var i=0;i<myCard.list.length;i++)
         {
-            var id = data.choose[0].list[i]
+            var id = myCard.list[i]
             chooseList1.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
@@ -208,11 +207,12 @@ class MainGameUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
+        this.cardText.text = '剩余次数：'+myCard.num+'/10'
     }
 
     private onChoose1(){
-        this.hide();
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.main_game.choose,enemy: this.enemyArray})
+        //this.hide();
+        PKDressUI.getInstance().show({pktype:'main_game',data:UM.pk_common.my_card,enemy: this.enemyArray})
     }
 
 }

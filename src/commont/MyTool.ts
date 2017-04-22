@@ -212,6 +212,21 @@ class MyTool {
     public static refresh(){
         location.reload();
     }
+    public static createHtml(str:string | number, color?:number, size?:number):string{
+        var str2 = "";
+        if(color != undefined) str2 += 'color="' + color + '"';
+        if(size != undefined) str2 += ' size="' + size + '"';
+        return '<font ' + str2 + '>'+ str + '</font>';
+    }
+
+    //一定时间内不能点击屏幕
+    public static stopClick(cd){
+        GameManager.container.touchChildren = GameManager.container.touchEnabled = false;
+        setTimeout(function(){
+            GameManager.container.touchChildren = GameManager.container.touchEnabled = Net.getInstance().modeNum <= 0;
+        },cd)
+
+    }
 }
 
 

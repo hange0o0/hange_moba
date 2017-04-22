@@ -17,7 +17,7 @@ class Net extends egret.EventDispatcher{
 
 
 
-    private modeNum = 0;
+    public modeNum = 0;
     public serverID = 1;
     public serverHost = ''
     public outPut = true;
@@ -74,7 +74,8 @@ class Net extends egret.EventDispatcher{
 
 
         function onComplete(e){
-            this.modeNum --;
+            if(isMode)
+                this.modeNum --;
             if(this.modeNum <= 0)
             {
                 GameManager.container.touchChildren = GameManager.container.touchEnabled = true;

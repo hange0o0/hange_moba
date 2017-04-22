@@ -10,17 +10,28 @@ class ServerGameEqualManager{
     }
 
     public lastPKData;
+    public logList
+    public initData(){
+        this.logList = SharedObjectManager.instance.getMyValue('pk_serverEqual_log') || [];
+    }
+    public addLogList(data){
+        var list = this.logList;
+        list.unshift(data);
+        if(list.length > 20)
+            list.length = 0;
+        SharedObjectManager.instance.setMyValue('pk_serverEqual_log',list);
+    }
 
     //打开PK对战内容的表现
     public openPKView(isAgain?,fun?){
         var serverData = UM.server_game_equal;
-        if(isAgain)//已PK过
-        {
-            this.getCard(true,onGetCard);
-        }
-        else if(!serverData.pk && serverData.choose)//已有卡版数据
+        if(!serverData.pk && serverData.choose)//已选定对手
         {
             onGetCard();
+        }
+        else if(isAgain)//已PK过
+        {
+            this.getCard(true,onGetCard);
         }
         else
         {
@@ -28,6 +39,11 @@ class ServerGameEqualManager{
         }
 
         function onGetCard(){
+            if(UM.getEnergy()<1)
+            {
+                Alert('体力不足1点，无法进行挑战');
+                return;
+            }
             ServerGameEqualUI.getInstance().show();
             if(fun)
                 fun();
@@ -43,7 +59,8 @@ class ServerGameEqualManager{
     }
 
     public getCard(isagain,fun?){
-        if(UM.server_game_equal.choose && UM.server_game_equal.pk==0)
+        var serverData = UM.server_game_equal;
+        if(serverData.choose && serverData.pk==0)
         {
             if(fun)
                 fun();
@@ -51,9 +68,9 @@ class ServerGameEqualManager{
         }
         var self = this;
         var oo:any = {};
-        if(UM.getPropNum(21) < 1)
+        if(!serverData.open && UM.getPropNum(21) < 1)
         {
-            Confirm('修正币数量不足！\n在竞技场、每日任务中，都有机会获得入场券\n是否先购买几张玩玩？',function(v){
+            Confirm('修正币数量不足！\n在竞技场、每日任务中，都有机会获得入场券\n是否需要进行购买？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('ticket');
@@ -84,6 +101,7 @@ class ServerGameEqualManager{
             UM.server_game_equal.pk = 0;
             UM.server_game_equal.choose = msg.choose;
             UM.server_game_equal.enemy = msg.enemy;
+            UM.server_game_equal.open = true;
             EM.dispatch(GameEvent.client.get_card)
             if(fun)
                 fun();
@@ -111,6 +129,18 @@ class ServerGameEqualManager{
             msg.info.type = PKManager.PKType.SERVER_EQUAL;
             PKManager.getInstance().onPK(PKManager.PKType.SERVER_EQUAL,msg);
             UM.server_game_equal.pkdata = Config.pk_version;
+
+            var nick = '神秘人'
+            var head = 0
+            var gameid = 0
+            var info = UM.server_game_equal.enemy.userinfo;
+            if(info && info.gameid != UM.gameid)
+            {
+                nick = Base64.decode(info.nick);
+                head = info.head;
+                gameid = info.gameid
+            }
+            self.addLogList(PKManager.getInstance().getLogData({nick:nick,head:head,gameid:gameid,type:PKManager.PKType.SERVER_EQUAL}));
 
             if(fun)
                 fun();

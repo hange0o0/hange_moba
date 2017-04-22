@@ -55,7 +55,7 @@ class DayGameUI extends game.BaseUI {
     }
 
     private onLog(){
-        DayLogUI.getInstance().show();
+        DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'每日挑战日志');
     }
     
     private onRing2(){

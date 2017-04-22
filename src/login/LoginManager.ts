@@ -372,12 +372,12 @@ class LoginManager{
     }
 
     public relogin(){
-        var self = LoginManager.getInstance();;
+        var self = LoginManager.getInstance();
         var oo:any = {};
         //oo.serverid = serverid;
         oo.id = self.gameid;
         oo.cdkey = self.openKey;
-        oo.logtime = this.logText.time || 0;
+        oo.logtime = self.logText.time || 0;
         var serverid = self.lastServer;
         Net.getInstance().serverID = serverid;
         Net.getInstance().serverHost = self.serverList[serverid].host;

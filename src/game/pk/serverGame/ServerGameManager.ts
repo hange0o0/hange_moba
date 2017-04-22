@@ -10,17 +10,28 @@ class ServerGameManager{
     }
 
     public lastPKData;
+    public logList
+    public initData(){
+        this.logList = SharedObjectManager.instance.getMyValue('pk_server_log') || [];
+    }
+    public addLogList(data){
+        var list = this.logList;
+        list.unshift(data);
+        if(list.length > 20)
+            list.length = 0;
+        SharedObjectManager.instance.setMyValue('pk_server_log',list);
+    }
 
     //打开PK对战内容的表现
     public openPKView(isAgain?,fun?){
         var serverData = UM.server_game;
-        if(isAgain)//已PK过，再打会变贵
-        {
-            this.getCard(true,onGetCard);
-        }
-        else if(!serverData.pk && serverData.choose)//已有卡版数据
+        if(!serverData.pk && serverData.choose)//已选定对手
         {
             onGetCard();
+        }
+        else if(isAgain)//已PK过，再打会变贵
+        {
+            this.getCard(true,onGetCard);
         }
         else
         {
@@ -28,9 +39,13 @@ class ServerGameManager{
         }
 
         function onGetCard(){
+            if(UM.getEnergy()<1)
+            {
+                Alert('体力不足1点，无法进行挑战');
+                return;
+            }
             ServerGameUI.getInstance().show();
-            if(fun)
-                fun();
+            fun && fun();
         }
     }
 
@@ -49,16 +64,16 @@ class ServerGameManager{
                 fun();
             return
         }
-        if(UM.getEnergy()<2)
-        {
-            Alert('体力不足2点，无法挑战');
-            return;
-        }
-        if(isagain && UM.getEnergy()<2)
-        {
-            Alert('体力不足2点，无法再次挑战');
-            return;
-        }
+        //if(UM.getEnergy()<2)
+        //{
+        //    Alert('体力不足2点，无法挑战');
+        //    return;
+        //}
+        //if(isagain && UM.getEnergy()<2)
+        //{
+        //    Alert('体力不足2点，无法再次挑战');
+        //    return;
+        //}
         var self = this;
         var oo:any = {};
         oo.isagain = isagain
@@ -89,6 +104,10 @@ class ServerGameManager{
     public pk(choose,fun?){
         var self = this;
         var oo:any = {};
+        if(!UM.testEnergy(1))
+        {
+            return;
+        }
         oo.choose = choose;
         Net.addUser(oo);
         Net.send(GameEvent.serverGame.pk_server,oo,function(data){
@@ -107,6 +126,20 @@ class ServerGameManager{
             msg.info.type = PKManager.PKType.SERVER;
             PKManager.getInstance().onPK(PKManager.PKType.SERVER,msg);
             UM.server_game.pkdata = Config.pk_version;
+
+
+
+            var nick = '神秘人'
+            var head = 0
+            var gameid = 0
+            var info = UM.server_game.enemy.userinfo;
+            if(info && info.gameid != UM.gameid)
+            {
+                nick = Base64.decode(info.nick);
+                head = info.head;
+                gameid = info.gameid
+            }
+            self.addLogList(PKManager.getInstance().getLogData({nick:nick,head:head,gameid:gameid,type:PKManager.PKType.SERVER}));
 
             if(fun)
                 fun();

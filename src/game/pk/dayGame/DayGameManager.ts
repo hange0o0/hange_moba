@@ -9,7 +9,7 @@ class DayGameManager{
     public constructor() {
 
     }
-
+    public logList
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_day_log') || [];
     }
@@ -18,7 +18,7 @@ class DayGameManager{
     public dataTime = 0;
     public lastPKData;
 
-    public logList
+
 
     public getHeadByLevel(level){
         return level%50 + 1;
@@ -35,21 +35,23 @@ class DayGameManager{
         }
     }
 
-    public getLogList(){
-         for(var i=0;i<this.logList.length;i++)
-         {
-             if(!DateUtil.isSameDay(this.logList[i].time))
-             {
-                 this.logList.length = i;
-                 break;
-             }
-         }
-        return this.logList;
-    }
+    //public getLogList(){
+    //     //for(var i=0;i<this.logList.length;i++)
+    //     //{
+    //     //    if(!DateUtil.isSameDay(this.logList[i].time))
+    //     //    {
+    //     //        this.logList.length = i;
+    //     //        break;
+    //     //    }
+    //     //}
+    //    return this.logList;
+    //}
 
     public addLogList(data){
-         var list = this.getLogList();
+         var list = this.logList;
         list.unshift(data);
+        if(list.length > 20)
+            list.length = 0;
         SharedObjectManager.instance.setMyValue('pk_day_log',list);
     }
 

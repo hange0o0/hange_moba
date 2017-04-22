@@ -44,7 +44,6 @@ class PKDressUI extends game.BaseUI {
     public dataIn;
     public orginData; //卡组的原始数据
     public pkType; //PK类型
-    public key;//记录上一次选择的TAB
     public index = 0;
 
     public chooseMonster;
@@ -55,6 +54,7 @@ class PKDressUI extends game.BaseUI {
     private renewListTimer = 0;
 
 
+    private isRemoveHistory = false
     public constructor() {
         super();
         this.skinName = "PKDressUISkin";
@@ -170,6 +170,7 @@ class PKDressUI extends game.BaseUI {
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
+        this.removeOldHistory();
         this.reInitData();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
 
@@ -370,8 +371,23 @@ class PKDressUI extends game.BaseUI {
         return count;
     }
     private saveHistory(){
-        this.history[this.historyKey] = {key:this.key,list:this.chooseList,time:TM.now()};
+        this.history[this.historyKey] = {key:this.historyKey,list:this.chooseList,time:TM.now()};
         SharedObjectManager.instance.setMyValue('dress_history',this.history);
+    }
+
+    private removeOldHistory(){
+        if(this.isRemoveHistory)
+            return
+        this.isRemoveHistory = true;
+         var arr = ObjectUtil.objToArray(this.history)
+        if(arr.length > 50)
+        {
+            ArrayUtil.sortByField(arr,['time'],[1]);
+            for(var i=30;i<arr.length;i++)
+            {
+                 delete this.history[arr[i].key]
+            }
+        }
     }
 
 
@@ -397,11 +413,12 @@ class PKDressUI extends game.BaseUI {
         this.monsterList = this.orginData.list;
 
 
-        this.key = this.orginData.list.join(',');
-        this.historyKey = this.pkType + '_' + this.index;
+        var temp =  this.orginData.list.concat();
+        temp.sort();
+        this.historyKey = temp.join(',');
 
-        if(!this.history[this.historyKey] || this.history[this.historyKey].key != this.key)
-            this.history[this.historyKey] = {key:this.key,list:[],time:TM.now()};
+        if(!this.history[this.historyKey])
+            this.history[this.historyKey] = {list:[],time:TM.now()};
         var data = this.history[this.historyKey];
         this.chooseList = data.list;
         if(GuideManager.getInstance().isGuiding)

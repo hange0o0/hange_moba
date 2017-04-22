@@ -11,6 +11,10 @@ class DayLogUI extends game.BaseUI {
     private list: eui.List;
     private emptyText: eui.Label;
 
+
+    private data;
+    private title;
+
     public constructor() {
         super();
         this.skinName = "DayLogUISkin";
@@ -34,16 +38,20 @@ class DayLogUI extends game.BaseUI {
     }
 
 
-    public show(){
-
+    public show(v?,title?){
+        this.data = v;
+        this.title = title;
         super.show();
     }
 
     public onShow(){
-        var DM = DayGameManager.getInstance();
-        var list = DM.getLogList();
+        //var DM = DayGameManager.getInstance();
+        var list = this.data;//DM.getLogList();
         this.list.dataProvider = new eui.ArrayCollection(list);
         this.emptyText.visible = list.length == 0;
+
+
+        this.topUI.setTitle(this.title || '挑战日志')
     }
 
 

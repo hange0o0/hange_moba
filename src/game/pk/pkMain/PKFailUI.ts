@@ -38,21 +38,24 @@ class PKFailUI extends PKResultBase {
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.SERVER)
         {
-            Confirm('再次挑战需要耗费2点体力，是否继续？',function(type){
-                if(type == 1)
-                {
-                    ServerGameManager.getInstance().openPKView(true,onOpenPKView);
-                }
-            });
+            //Confirm('再次挑战需要耗费2点体力，是否继续？',function(type){
+            //    if(type == 1)
+            //    {
+            //        ServerGameManager.getInstance().openPKView(true,onOpenPKView);
+            //    }
+            //});
+            ServerGameManager.getInstance().openPKView(true,onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.SERVER_EQUAL)
         {
-            Confirm('再次挑战需要耗费1个修正币，是否继续？',function(type){
+            var num = UM.getPropNum(21);
+            Confirm('当前拥有修正币数量：' + num + '\n再次挑战需要花费1个修正币，是否继续？',function(type){
                 if(type == 1)
                 {
                     ServerGameEqualManager.getInstance().openPKView(true,onOpenPKView);
                 }
             });
+
         }
         else if(PKM.pkType == PKManager.PKType.MAIN){
             MainGameManager.getInstance().openPKView(onOpenPKView);

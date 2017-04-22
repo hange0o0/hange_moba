@@ -12,6 +12,18 @@ class MainGameManager{
     public lastPKData;
     public maxLevel = 600;
 
+    public logList
+    public initData(){
+        this.logList = SharedObjectManager.instance.getMyValue('pk_main_log') || [];
+    }
+    public addLogList(data){
+        var list = this.logList;
+        list.unshift(data);
+        if(list.length > 20)
+            list.length = 0;
+        SharedObjectManager.instance.setMyValue('pk_main_log',list);
+    }
+
     public loadCache(level,fun){
         var id = Math.ceil(level/100);
         CM.loadCache('main_game'+id+'_json',function(){
@@ -42,66 +54,61 @@ class MainGameManager{
         return UM.main_game.kill.indexOf(index) != -1;
     }
 
-    //打开PK对战内容的表现
+    ////打开PK对战内容的表现
     public openPKView(fun?){
-        var mainData = UM.main_game;
-        if(!mainData.choose)//无卡牌数据
-        {
-            this.getCard(onGetCard);
-        }
-        else//已有卡版数据
-        {
-            onGetCard();
-        }
-
-
-        function onGetCard(){
-            MainGameUI.getInstance().show();
-            if(fun)
-                fun();
-        }
-    }
-
-    public getCard(fun?,force?){
-        if(!force && UM.main_game.choose)
-        {
-            if(fun)
-                fun();
-            return
-        }
         if(UM.getEnergy()<1)
         {
-            Alert('体力不足1点，无法获取卡组');
+            Alert('体力不足1点，无法进行挑战');
             return;
         }
-        var self = this;
-        var oo:any = {force:force};
-        Net.addUser(oo);
-        Net.send(GameEvent.mainGame.get_main_card,oo,function(data){
-            var msg = data.msg;
-            if(msg.fail == 4)
-            {
-                Alert('体力不足');
-                return;
-            }
-            if(msg.fail == 3)
-            {
-                Alert('获取卡组失败');
-                return;
-            }
-
-            UM.main_game.choose = msg.choose;
-            EM.dispatch(GameEvent.client.get_card)
-
-            if(fun)
-                fun();
-        });
+        MainGameUI.getInstance().show();
+        fun && fun();
     }
+
+    //public getCard(fun?,force?){
+    //    if(!force && UM.main_game.choose)
+    //    {
+    //        if(fun)
+    //            fun();
+    //        return
+    //    }
+    //    if(UM.getEnergy()<1)
+    //    {
+    //        Alert('体力不足1点，无法获取卡组');
+    //        return;
+    //    }
+    //    var self = this;
+    //    var oo:any = {force:force};
+    //    Net.addUser(oo);
+    //    Net.send(GameEvent.mainGame.get_main_card,oo,function(data){
+    //        var msg = data.msg;
+    //        if(msg.fail == 4)
+    //        {
+    //            Alert('体力不足');
+    //            return;
+    //        }
+    //        if(msg.fail == 3)
+    //        {
+    //            Alert('获取卡组失败');
+    //            return;
+    //        }
+    //
+    //        UM.main_game.choose = msg.choose;
+    //        EM.dispatch(GameEvent.client.get_card)
+    //
+    //        if(fun)
+    //            fun();
+    //    });
+    //}
 
     //choose :{list[],ring}   choose_index
     public pk(choose,fun?){
         var self = this;
         var oo:any = {};
+        if(!UM.testEnergy(1))
+        {
+            return;
+        }
         oo.choose = choose;
         Net.addUser(oo);
         Net.send(GameEvent.mainGame.pk_main,oo,function(data){
@@ -122,7 +129,7 @@ class MainGameManager{
 
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
             UM.main_game.pkdata = Config.pk_version;
-
+            self.addLogList(PKManager.getInstance().getLogData({round:UM.main_game.level,type:PKManager.PKType.MAIN}));
             if(fun)
                 fun();
         });

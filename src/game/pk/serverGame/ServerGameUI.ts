@@ -19,11 +19,11 @@ class ServerGameUI extends game.BaseUI {
     private enemyList: eui.List;
     private myGroup: eui.Group;
     private myList: eui.List;
-    private cardTitle: eui.Label;
-    private chooseMC: eui.Rect;
-    private card1Btn: eui.Button;
-    private card2Btn: eui.Button;
+    private cardText: eui.Label;
+    private resetBtn: eui.Button;
     private chooseBtn: eui.Button;
+    private logBtn: eui.Button
+
 
 
 
@@ -34,7 +34,6 @@ class ServerGameUI extends game.BaseUI {
 
 
     private enemyArray
-    private chooseInex
 
     public constructor() {
         super();
@@ -50,8 +49,6 @@ class ServerGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn, this.onChoose);
         this.addBtnEvent(this.headMC, this.onOtherInfo);
-        this.addBtnEvent(this.card1Btn, this.onCard1);
-        this.addBtnEvent(this.card2Btn, this.onCard2);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList.itemRenderer =  MyHeadItem;
@@ -60,6 +57,15 @@ class ServerGameUI extends game.BaseUI {
         this.scroller.bounces = false;
         //this.enemyList.add
         this.addBtnEvent(this.helpBtn,this.onHelp);
+        this.addBtnEvent(this.resetBtn, this.onReset);
+        this.addBtnEvent(this.logBtn, this.onLog);
+    }
+
+    private onLog(){
+        DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技挑战日志');
+    }
+    private onReset(){
+        PKManager.getInstance().reChooseMyCard()
     }
 
     private onHelp(){
@@ -77,20 +83,10 @@ class ServerGameUI extends game.BaseUI {
             OtherInfoUI.getInstance().showID(gameid);
     }
 
-    private onCard1(){
-        this.chooseInex = 0;
-        this.renewChoose();
-    }
-    private onCard2(){
-        this.chooseInex = 1;
-        this.renewChoose();
-    }
 
     public onShow(){
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         var data = UM.server_game;
-        this.chooseInex = 0;
-        this.chooseMC.x = -3;
 
         //更新敌人
         var enemyList = this.enemyArray = [];
@@ -184,19 +180,18 @@ class ServerGameUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewChoose);
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewChoose);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewChoose);
+        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewChoose);
     }
 
     private renewChoose(){
-        var data = UM.server_game;
-        if(!data.choose || !data.choose[0])
-            return;
+        var myCard = UM.getMyCard();
         var specialData = {};
         //更新卡组1
         var chooseList1 = [];
-        PKManager.getInstance().sortMonster(data.choose[this.chooseInex].list);
-        for(var i=0;i<data.choose[this.chooseInex].list.length;i++)
+        PKManager.getInstance().sortMonster(myCard.list);
+        for(var i=0;i<myCard.list.length;i++)
         {
-            var id = data.choose[this.chooseInex].list[i]
+            var id = myCard.list[i]
             chooseList1.push({
                 vo: MonsterVO.getObject(id),
                 type:1,
@@ -209,26 +204,11 @@ class ServerGameUI extends game.BaseUI {
             });
         }
         this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
-        var tw:egret.Tween = egret.Tween.get(this.chooseMC);
-
-        if(this.chooseInex == 0)
-        {
-            this.cardTitle.text = 'PK卡组1'
-            this.card1Btn.skinName = 'Btn_b2Skin'
-            this.card2Btn.skinName = 'Btn_d2Skin'
-            tw.to({x:this.card1Btn.x-3},100)
-        }
-        else
-        {
-            this.cardTitle.text = 'PK卡组2'
-            this.card2Btn.skinName = 'Btn_b2Skin'
-            this.card1Btn.skinName = 'Btn_d2Skin'
-            tw.to({x:this.card2Btn.x-3},100)
-        }
+        this.cardText.text = '剩余次数：'+myCard.num+'/10'
     }
 
     private onChoose(){
-        this.hide();
-        PKDressUI.getInstance().show({pktype:'server_game',data:UM.server_game.choose,enemy:this.enemyArray,index:this.chooseInex})
+        //this.hide();
+        PKDressUI.getInstance().show({pktype:'server_game',data:UM.pk_common.my_card,enemy:this.enemyArray})
     }
 }

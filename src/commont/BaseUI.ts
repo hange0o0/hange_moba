@@ -76,10 +76,7 @@ module game {
         }
 
         public createHtml(str:string | number, color?:number, size?:number):string{
-            var str2 = "";
-            if(color != undefined) str2 += 'color="' + color + '"';
-            if(size != undefined) str2 += ' size="' + size + '"';
-            return '<font ' + str2 + '>'+ str + '</font>';
+            return MyTool.createHtml(str,color,size);
         }
 
         /*
@@ -392,10 +389,7 @@ module game {
         }
 
         public createHtml(str:string | number, color?:number, size?:number):string{
-            var str2 = "";
-            if(color != undefined) str2 += 'color="' + color + '"';
-            if(size != undefined) str2 += ' size="' + size + '"';
-            return '<font ' + str2 + '>'+ str + '</font>';
+            return MyTool.createHtml(str,color,size);
         }
         /*
         * 给按钮移除事件

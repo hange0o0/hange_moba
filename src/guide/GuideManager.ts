@@ -29,6 +29,7 @@ class GuideManager {
             return;
         if(ui)
             ui.validateNow();
+        MyTool.stopClick(500);
         egret.callLater(this.guideFun,this,ui);
     }
 

@@ -122,12 +122,12 @@ class SyncManager{
                         data.g_level_up = nowLevel;
                     break;
                 case 'sync_server_game_equal':
-                    var lastLevel = ServerGameManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
+                    var lastLevel = ServerGameEqualManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
                     for(ss in value)
                     {
                         UM.server_game_equal[ss] = value[ss];
                     }
-                    var nowLevel = ServerGameManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
+                    var nowLevel = ServerGameEqualManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
                     if(nowLevel > lastLevel)
                         data.g_level_up = nowLevel;
                     break;
@@ -141,6 +141,13 @@ class SyncManager{
                     for(ss in value)
                     {
                         UM.day_game[ss] = value[ss];
+                    }
+                    break;
+                case 'sync_my_card':
+                    if(UM.pk_common)
+                    {
+                        UM.pk_common.my_card = value;
+                        EM.dispatch(GameEvent.client.my_card_change);
                     }
                     break;
             }
