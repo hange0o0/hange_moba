@@ -114,6 +114,19 @@ class ServerGameEqualManager{
         var oo:any = {};
         oo.choose = choose;
         Net.addUser(oo);
+
+        //要先记录，PK后可能就没数据了
+        var nick = '神秘人'
+        var head = 0
+        var gameid = 0
+        var info = UM.server_game_equal.enemy.userinfo;
+        if(info && info.gameid != UM.gameid)
+        {
+            nick = Base64.decode(info.nick);
+            head = info.head;
+            gameid = info.gameid
+        }
+
         Net.send(GameEvent.serverGameEqual.pk_server_equal,oo,function(data){
             var msg = data.msg;
             if(PKManager.getInstance().pkError(msg))
@@ -130,16 +143,7 @@ class ServerGameEqualManager{
             PKManager.getInstance().onPK(PKManager.PKType.SERVER_EQUAL,msg);
             UM.server_game_equal.pkdata = Config.pk_version;
 
-            var nick = '神秘人'
-            var head = 0
-            var gameid = 0
-            var info = UM.server_game_equal.enemy.userinfo;
-            if(info && info.gameid != UM.gameid)
-            {
-                nick = Base64.decode(info.nick);
-                head = info.head;
-                gameid = info.gameid
-            }
+
             self.addLogList(PKManager.getInstance().getLogData({nick:nick,head:head,gameid:gameid,type:PKManager.PKType.SERVER_EQUAL}));
 
             if(fun)

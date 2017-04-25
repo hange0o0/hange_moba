@@ -110,6 +110,20 @@ class ServerGameManager{
         }
         oo.choose = choose;
         Net.addUser(oo);
+
+       //要先记录，PK后可能就没数据了
+        var nick = '神秘人'
+        var head = 0
+        var gameid = 0
+        var info = UM.server_game.enemy.userinfo;
+        if(info && info.gameid != UM.gameid)
+        {
+            nick = Base64.decode(info.nick);
+            head = info.head;
+            gameid = info.gameid
+        }
+
+
         Net.send(GameEvent.serverGame.pk_server,oo,function(data){
             var msg = data.msg;
             if(PKManager.getInstance().pkError(msg))
@@ -129,16 +143,7 @@ class ServerGameManager{
 
 
 
-            var nick = '神秘人'
-            var head = 0
-            var gameid = 0
-            var info = UM.server_game.enemy.userinfo;
-            if(info && info.gameid != UM.gameid)
-            {
-                nick = Base64.decode(info.nick);
-                head = info.head;
-                gameid = info.gameid
-            }
+
             self.addLogList(PKManager.getInstance().getLogData({nick:nick,head:head,gameid:gameid,type:PKManager.PKType.SERVER}));
 
             if(fun)

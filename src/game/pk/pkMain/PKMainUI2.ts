@@ -1,7 +1,7 @@
-class PKMainUI2 extends game.BaseUI {
-    private static instance:PKMainUI2;
+class PKMainUI extends game.BaseUI {
+    private static instance:PKMainUI;
     public static getInstance() {
-        if (!this.instance) this.instance = new PKMainUI2();
+        if (!this.instance) this.instance = new PKMainUI();
         return this.instance;
     }
 
@@ -41,6 +41,8 @@ class PKMainUI2 extends game.BaseUI {
     private itemCollect = [];
     private itemEnemy = [];
     private itemSelf = [];
+    private talkList = [];
+    private emoList = [];
 
     private pkList = [];
     private currentStep;
@@ -111,6 +113,18 @@ class PKMainUI2 extends game.BaseUI {
     }
     public rand(from,to){
        return from + Math.floor((to - from + 1)*this.random())
+    }
+    private randomSort(arr){
+        var self = this;
+        var fun = function(a,b){
+            if(self.random()>0.5)
+                return 1;
+            return -1;
+        }
+        arr.sort(fun);
+    }
+    private randomOne(arr){
+        return arr[Math.floor(this.random()*arr.length)];
     }
 
     private onJump(){
@@ -217,6 +231,8 @@ class PKMainUI2 extends game.BaseUI {
         }
     }
 
+
+
     private getItem():PKItem2{
         var item:PKItem2 = this.itemCollect.pop();
         if(!item)
@@ -231,7 +247,11 @@ class PKMainUI2 extends game.BaseUI {
         item.scaleY = 1;
         item.out = false
         item.action = false
+        item.talking = false
         item.isPKing = false
+        item.moving = false
+        item.die = false
+        item.win3 = false
         return item;
     }
 
@@ -279,6 +299,19 @@ class PKMainUI2 extends game.BaseUI {
 
         //this.enemyGroup.y = stageHeight/2 - (400+40);
         this.selfGroup.y = (stageHeight - this.fightHeight)/2// + 40
+
+        for(var i=0;i<this.talkList.length;i++)
+        {
+            var item = this.talkList[i]
+            MyTool.removeMC(item)
+            item.active = false;
+        }
+        for(var i=0;i<this.emoList.length;i++)
+        {
+            var item = this.emoList[i]
+            MyTool.removeMC(item)
+            item.active = false;
+        }
 
     }
 
@@ -377,15 +410,7 @@ class PKMainUI2 extends game.BaseUI {
     }
 
 
-    private randomSort(arr){
-        var self = this;
-        var fun = function(a,b){
-            if(self.random()>0.5)
-                return 1;
-            return -1;
-        }
-        arr.sort(fun);
-    }
+
 
     //加一个单位到舞台上
     private addOneItem(data,team,index){
@@ -546,12 +571,16 @@ class PKMainUI2 extends game.BaseUI {
             VM.jumpToXY(this.player2,this.middlePos2,fun,this,300)
             count ++;
         }
+
+        if(this.random() < 0.3)
+            this.showPKWord();
     }
 
     private stepOne(){
         if(this.isStop)
             return;
-         var oo = this.currentStep.list.shift();
+
+        var oo = this.currentStep.list.shift();
         var player
         //if(oo)
         //{
@@ -584,12 +613,18 @@ class PKMainUI2 extends game.BaseUI {
                 to({x:this.middlePos2.x - des + des1.x,y:this.middlePos2.y + des1.y},cd).call(this.playAni,this).to({x:this.middlePos2.x + this.rand(-10,40),y:this.middlePos2.y + this.getYAdd(b)},cd).wait(100).
                 to({x:this.middlePos2.x - des + des2.x,y:this.middlePos2.y+ des2.y},cd).call(this.playAni,this).to({x:this.middlePos2.x,y:this.middlePos2.y},cd).call(this.stepOne,this)
             this.lightFuZhu();
+            if(this.random() < 0.3)
+                this.showPKWord();
+            if(this.random() < 0.3)
+                this.showPKWord();
         }
         else if(oo.type == 'hp')
         {
             this.player1.showHpChange(oo.value.player1)
             this.player2.showHpChange(oo.value.player2)
             this.timer = egret.setTimeout(this.stepOne,this,1200);
+            if(this.random() < 0.3)
+                this.showPKWord();
         }
         else if(oo.type == 'die')
         {
@@ -598,6 +633,8 @@ class PKMainUI2 extends game.BaseUI {
             else
                 player = (this.player2)
             this.playDie(player,oo.star);
+            if(this.random() < 0.3)
+                this.showPKWord(player);
             this.stepOne();
         }
         else if(oo.type == 'win3')
@@ -607,6 +644,8 @@ class PKMainUI2 extends game.BaseUI {
             else
                 player = (this.player2)
             this.playWinRemove(player);
+            if(this.random() < 0.3)
+                this.showPKWord(player);
             this.timer = egret.setTimeout(this.stepOne,this,200);
         }
         else
@@ -617,12 +656,14 @@ class PKMainUI2 extends game.BaseUI {
 
     private playAni(){
         var arr = this.player1.data.vo.mv1.concat(this.player2.data.vo.mv1)
-        var id = arr[Math.floor(arr.length*this.random())]
+        var id = this.randomOne(arr);
         var VM = PKMainMV.getInstance();
         var xy = this.getMiddleXY(this.player1,this.player2)
         VM.playOnItem(id,this.player1,null,null,xy);
     }
     private getYAdd(b){
+        if(this.random() < 0.1)
+            this.showPKWord();
          if(b)
             return -80 + this.rand(-50,10)
         return 80+ this.rand(-10,50)
@@ -673,6 +714,8 @@ class PKMainUI2 extends game.BaseUI {
     }
     //死的动画
     public playDie(item,star){
+        item.die = true;
+        item.moving = true;
         var x = item.x;
         var v = 2
         var pos = this.getDiePos(item);
@@ -687,14 +730,18 @@ class PKMainUI2 extends game.BaseUI {
             egret.Tween.removeTweens(item);
             var tw:egret.Tween = egret.Tween.get(item);
             tw.to({alpha:1}, 300).call(function(){
+                item.moving = false;
                 item.showStar(star)
-            })
+                if(this.random() > 0.5)
+                    this.itemTalk(item);
+            },this)
         },this)//.to({alpha:1}, 300) //,x:pos.x
     }
 
     //3胜后移除
     public playWinRemove(item){
-
+        item.win3 = true;
+        item.moving = true;
         if(item.parent)
             item.parent.addChild(item);
 
@@ -706,6 +753,8 @@ class PKMainUI2 extends game.BaseUI {
         tw.to({scaleX:1.3,scaleY:1.3}, 300,egret.Ease.sineOut).to({scaleX:1.2,scaleY:1.2}, 200).to({scaleX:1.3,scaleY:1.3}, 200).call(this.testItemBG,this,[item]).
             to({x:pos.x,y:pos.y,scaleX:0.9,scaleY:0.9}, dis/2).call(function(){
                 item.showStar(3)
+                item.moving = false;
+                this.itemTalk(item);
             },this);
     }
 
@@ -746,14 +795,162 @@ class PKMainUI2 extends game.BaseUI {
 
     private showResult()
     {
-        //this.hide();
         PKLoadingUI.getInstance().realHide();
         this.stopAll();
         PKResultUI.getInstance().show();
-        //if(PKManager.getInstance().pkResult.result)
-        //    console.log('win');
-        //else
-        //    console.log('loss');
+    }
+
+    private getTalkItem():PKTalkItem{
+        for(var i=0;i<this.talkList.length;i++)
+        {
+            if(!this.talkList[i].active)
+            {
+                 return this.talkList[i];
+            }
+        }
+        var item:PKTalkItem = new PKTalkItem();
+        this.talkList.push(item);
+        return item;
+    }
+
+    private getEmoItem():PKEmoItem{
+        for(var i=0;i<this.emoList.length;i++)
+        {
+            if(!this.emoList[i].active)
+            {
+                 return this.emoList[i];
+            }
+        }
+        var item:PKEmoItem = new PKEmoItem();
+        this.emoList.push(item);
+        return item;
+    }
+
+    //显示PK对话    actionItem:触发这个行为的item
+    private showPKWord(actionItem?){
+        var arr = this.itemSelf.concat(this.itemEnemy);
+        var list = [];
+        for(var i=0;i<arr.length;i++)
+        {
+            var item = arr[i];
+            if(!item.talking && !item.isPKing && !item.moving)
+            {
+                if(item.die)
+                {
+                    if(this.random() < 0.5) //死了就不要多说话了
+                        list.push(item);
+                }
+                else
+                    list.push(item);
+            }
+
+        }
+        if(list.length > 0)
+        {
+            item = this.randomOne(list);
+            if(this.random() < 0.3)
+            {
+                var b = item.team == 2 && (item.die || item.win3)
+                if(!b)
+                {
+                    this.showPKEMO(item,actionItem)
+                    return;
+                }
+            }
+            var talkItem = this.getTalkItem();
+            this.addChild(talkItem);
+            talkItem.setData({item:item,txt:this.getTalkStr(item,actionItem)});
+
+            if(this.random() < 0.2)
+            {
+                this.timer = egret.setTimeout(function(){
+                    this.showPKWord(actionItem);
+                },this,300);
+            }
+
+        }
+    }
+
+    //要求这个item发话
+    private itemTalk(item){
+        if(this.random() < 0.3)
+        {
+            var b = item.team == 2 && (item.die || item.win3)
+            if(!b) {
+                this.showPKEMO(item)
+                return;
+            }
+        }
+        var talkItem = this.getTalkItem();
+        this.addChild(talkItem);
+        talkItem.setData({item:item,txt:this.getTalkStr(item)});
+    }
+
+    //item发话,actionItem的行为进行评价
+    private getTalkStr(item,actionItem?){
+        var talkBase = PKManager.getInstance().pkWord
+        return this.getTalkData(item,talkBase,actionItem);
+    }
+
+
+    //显示PK表情
+    private showPKEMO(item,actionItem?){
+        var talkBase = PKManager.getInstance().pkEmo
+        var id = this.getTalkData(item,talkBase,actionItem);
+        if(id)
+        {
+            var emoItem = this.getEmoItem();
+            this.addChild(emoItem);
+            emoItem.setData({item:item,id:id});
+        }
+    }
+
+    public showItemEmo(item,id)
+    {
+        var emoItem = this.getEmoItem();
+        this.addChild(emoItem);
+        emoItem.setData({item:item,id:id,disActive:true});
+    }
+
+
+    private getTalkData(item,talkBase,actionItem?){
+        var str;
+        if(actionItem)
+        {
+            if(actionItem.die)
+            {
+                if(actionItem.team == item.team){
+                    if(actionItem == item)
+                        str = this.randomOne(talkBase.loss)
+                    else
+                        str = this.randomOne(talkBase.loss_view)
+                }
+                else
+                {
+                    if(actionItem == item)
+                        str = this.randomOne(talkBase.win)
+                    else
+                        str = this.randomOne(talkBase.win_view)
+                }
+            }
+            else if(actionItem.win3)
+            {
+                if(actionItem == item)
+                    str = this.randomOne(talkBase.win3)
+            }
+        }
+        if(!str)
+        {
+            if(item.win3)
+                str = this.randomOne(talkBase.win3)
+            else if(item.die)
+                str = this.randomOne(talkBase.loss)
+            else if(item.isPKing)
+                str = this.randomOne(talkBase.pking)
+            else
+                str = this.randomOne(talkBase.view)
+        }
+        return str;
     }
 
 

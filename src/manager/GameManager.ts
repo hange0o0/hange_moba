@@ -113,6 +113,8 @@ if (url.indexOf(splitStr) != -1) {
 onerror=handleErr;
 function handleErr(msg,url)
 {
+    if(!Net.getInstance().serverHost)
+        return;
     var txt = (url|| '').substr(-15,12) + ':' + msg + '|';
     var str = MyTool.getBtnPath(GameManager.getInstance().lastTouchMC);
     if(str)

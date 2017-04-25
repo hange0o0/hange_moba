@@ -195,6 +195,8 @@ class MyTool {
     }
 
     public static getBtnPath(btn){
+        if(!btn)
+            return ''
         var arr = [];
         if(btn.id)
             arr.push(btn.id)

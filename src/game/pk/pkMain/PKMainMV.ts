@@ -42,12 +42,14 @@ class PKMainMV {
         var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
         a.jumping = true;
+        a.moving = true;
         var dis = Math.max(400*speedRate,MyTool.getDis(a,b));
         //if(frontWait)
         //    tw.wait(frontWait);
         //SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
         tw.to({x:b.x,y:b.y}, dis*speedRate).call(function(){
             a.jumping = false;
+            a.moving = false;
             //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         });
         var tw:egret.Tween = egret.Tween.get(a);

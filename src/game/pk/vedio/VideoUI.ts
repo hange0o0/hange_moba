@@ -397,6 +397,7 @@ class VideoUI extends game.BaseUI {
     public hide(){
         super.hide();
         //PKResultUI.getInstance().tempShow();
+        GuideManager.getInstance().showGuide(PKWinUI.getInstance())
     }
 
     public onShow(){
@@ -423,6 +424,9 @@ class VideoUI extends game.BaseUI {
         this.tipsGroup.visible = false;
 
         //PKResultUI.getInstance().tempHide();
+
+        if(GuideManager.getInstance().isGuiding)
+            PKResultUI.getInstance()['scroller'].viewport.scrollV = 0;
 
     }
 

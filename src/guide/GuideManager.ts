@@ -117,13 +117,22 @@ class GuideManager {
             ui:"PKResultUI.getInstance()",
             mc:"new egret.Rectangle(0,600+(GameManager.stage.stageHeight - 960)/2,640,360)",
             text:'是不是很简单？如果想了解更详尽的PK过程，可以点击下方的对战信息查看更多的信息',
-            fun:function(){self.showGuide(PKWinUI.getInstance())}
+            fun:function(){
+                PKResultUI.getInstance().guideScroll();
+                //self.showGuide(PKWinUI.getInstance())
+            }
+        })
+
+        this.addGuideObj({
+            ui:"PKResultUI.getInstance()",
+            mc:"PKResultUI.getInstance().list.getChildAt(0)",
+            text:'让我们看一下这一局PK的具体过程',
         })
 
         this.addGuideObj({
             ui:"PKWinUI.getInstance()",
             mc:"PKWinUI.getInstance()['backBtn']",
-            text:'复盘的工作还是先放一放，反正首页那里还有回放按钮，现在还是先退回首页了解一下其它功能吧',
+            text:'复盘的工作还是先停一停，反正首页那里还有回放按钮，现在还是先退回首页了解一下其它功能吧',
         })
 
         this.addGuideObj({

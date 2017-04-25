@@ -194,7 +194,6 @@ class PKDressChooseUI extends game.BaseContainer {
     }
 
     public onRandom(){
-        console.log(MyTool.getBtnPath(this.randomBtn))
         this.dispatchEventWith('random');
     }
     public onReset(){

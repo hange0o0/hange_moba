@@ -102,9 +102,12 @@
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
-	<e:Image id="guideBtn" source="menu_icon_4_png" y="864" x="534"/>
+	<e:Group id="guideBtn" y="307" x="40">
+		<e:Image source="menu_icon_4_png" y="0" x="0"/>
+		<e:Label bottom="0" horizontalCenter="0" stroke="2" text="概况" size="26" strokeColor="0x333333"/>
+	</e:Group>
 	<ns1:VideoGuide id="guideMC" x="0" skinName="VideoGuideSkin" top="260" bottom="0" visible="false"/>
-	<e:Group id="resultMC" y="300" width="600" x="20">
+	<e:Group id="resultMC" y="300" width="600" x="20" locked="true">
 		<e:Group y="10" horizontalCenter="0">
 			<e:Image id="rbg1" y="0" x="0" source="pk_fail_png"/>
 			<e:Image id="rbg2" y="0" scaleX="-1" x="490" source="pk_win_png"/>
@@ -141,7 +144,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="tipsGroup" y="150" horizontalCenter="0">
+	<e:Group id="tipsGroup" y="150" horizontalCenter="0" locked="true">
 		<e:Rect height="40" width="220" x="0" y="0" fillAlpha="0.8" ellipseHeight="20" ellipseWidth="20" strokeWeight="1" strokeColor="0xFCE1B8"/>
 		<e:Label text="点击此处查看更多" horizontalCenter="0" size="22" verticalCenter="0" textColor="0xFCE1B8"/>
 	</e:Group>

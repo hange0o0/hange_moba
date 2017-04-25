@@ -25,6 +25,25 @@ class PKManager {
 
     }
 
+    public pkWord = {
+        win:['win'],
+        win3:['win3'],
+        loss:['loss'],
+        pking:['pking'],
+        win_view:['win_view'],
+        loss_view:['loss_view'],
+        view:['view1','view2']
+    }
+    public pkEmo = {
+        win:[4,7,9,12,14],
+        win3:[4,12,14],
+        loss:[1,2,5,6,15,16,19,20],
+        pking:[4,17,7],
+        win_view:[8,9,10,4,14],
+        loss_view:[3,5,11,19,18,16],
+        view:[1,3,7,13,17,18,19]
+    }
+
     public pkResult;
     public pkAward;
     public pkType;

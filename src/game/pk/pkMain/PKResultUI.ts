@@ -10,15 +10,20 @@ class PKResultUI extends game.BaseUI {
     private scrollGroup: eui.Group;
     private moreGroup: eui.Group;
     private titleBG: eui.Group;
+    private rateBG: eui.Image;
     private rateText: eui.Label;
     private selfList: eui.List;
     private selfText: eui.Label;
+    private selfText0: eui.Label;
     private enemyList: eui.List;
     private enemyText: eui.Label;
+    private enemyText0: eui.Label;
     private teamInfo1: eui.List;
     private teamInfo2: eui.List;
     private list: eui.List;
     private topBtn: eui.Group;
+
+
 
 
 
@@ -61,6 +66,14 @@ class PKResultUI extends game.BaseUI {
         var tw = egret.Tween.get(this.scroller.viewport);
         tw.to({scrollV:0},300);
         this.topBtn.visible = false;
+    }
+
+    public guideScroll(){      //13
+        this.scroller.stopAnimation();
+        var tw = egret.Tween.get(this.scroller.viewport);
+        tw.to({scrollV:800},300).call(function(){
+            GuideManager.getInstance().showGuide(PKResultUI.getInstance())
+        },this);
     }
 
 
@@ -229,11 +242,12 @@ class PKResultUI extends game.BaseUI {
         else if(team1Base.f < team2Base.f)
             this.enemyText.textColor = 0xffff00
 
+
         this.rateText.text = Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100))) + '';
         if(PKM.isWin)
-            this.rateText.textColor = 0xFFFF00
+            this.rateBG.source = 'bar_pvp_2_png'
         else
-            this.rateText.textColor = 0xFF0000
+            this.rateBG.source = 'bar_pvp_1_png'
 
 
         totalData.hp = hp;
@@ -258,13 +272,13 @@ class PKResultUI extends game.BaseUI {
         GuideManager.getInstance().showGuide(this);
         //this.moreGroup.alpha = 0;
 
-        this.titleBG.y = 5;
+        this.titleBG.scaleY = 0;
         this.rateText.visible = false;
         this.rateText.alpha = 0;
         //var tw:egret.Tween = egret.Tween.get(this.moreGroup);
         //tw.to({alpha:1},300).call(function(){
             var tw:egret.Tween = egret.Tween.get(this.titleBG);
-            tw.wait(300).to({y:55},200)
+            tw.wait(300).to({scaleY:1},200)
             var tw:egret.Tween = egret.Tween.get(this.rateText);
             tw.wait(450).call(function(){
                 this.rateText.visible = true;

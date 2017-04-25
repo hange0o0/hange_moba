@@ -28,6 +28,10 @@ class PKItem2 extends game.BaseItem {
     public timer
     public line//所处的行
     public action//行动过
+    public talking//正在发表情
+    public die
+    public win3
+    public moving
 
     public enemy //对方出战单位
     public self  //已方出战单位
@@ -46,6 +50,22 @@ class PKItem2 extends game.BaseItem {
 
     public childrenCreated() {
         this.headMC.mask = null;
+        this.addBtnEvent(this,this.onClick)
+    }
+
+    private onClick(){
+        var talkBase = PKManager.getInstance().pkEmo
+        var str;
+        if(this.win3)
+            str = ArrayUtil.randomOne(talkBase.win3)
+        else if(this.die)
+            str = ArrayUtil.randomOne(talkBase.loss)
+        else if(this.isPKing)
+            str = ArrayUtil.randomOne(talkBase.pking)
+        else
+            str = ArrayUtil.randomOne(talkBase.view)
+
+        PKMainUI.getInstance().showItemEmo(this,str);
     }
 
 
@@ -101,6 +121,7 @@ class PKItem2 extends game.BaseItem {
     }
     public hideLight(){
         this.lightMC.visible = false
+        egret.Tween.removeTweens(this.lightMC)
     }
 
     public showHpChange(data){
