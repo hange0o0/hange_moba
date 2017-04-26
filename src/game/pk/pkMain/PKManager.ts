@@ -2,6 +2,7 @@ class PKManager {
     private static _instance:PKManager;
     public static PKType = {
         MAIN:'main_game',
+        MAP:'map_game',
         SERVER:'server_game',
         SERVER_EQUAL:'server_game_equal',
         DAY:'day_game',

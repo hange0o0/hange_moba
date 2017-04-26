@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MapShopBuyUISkin" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="480" x="0" y="10"/>
+	<e:Label horizontalCenter="0" y="30" textColor="0xD0C7AD" text="兑换确认" x="20" stroke="2"/>
+	<e:Group horizontalCenter="0" bottom="45" id="btnGroup" x="10" y="10">
+		<e:Button id="cencelBtn" y="0" skinName="Btn_b2Skin" scaleX="0.9" label="取消" scaleY="0.9" x="0"/>
+		<e:Button id="okBtn" y="0" skinName="Btn_r2Skin" scaleX="0.9" label="兑换" scaleY="0.9" x="0"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>		
+	<e:Label id="scoreText" text="你当前拥有积分:123456，确定要兑换以下道具吗？" y="94" textColor="0xFEBF61" size="24" width="400" x="40"/>
+	<ns1:MapShopItem id="item" y="180" skinName="MapShopItemSkin" horizontalCenter="0"/>
+</e:Skin>

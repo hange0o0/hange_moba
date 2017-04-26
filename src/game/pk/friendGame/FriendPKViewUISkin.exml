@@ -19,13 +19,9 @@
 					<e:Image scale9Grid="40,44,240,266" source="book_bg1_jpg" y="0" height="100%" x="0"/>
 					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 				</e:Group>
-				<e:Group horizontalCenter="0" y="20" x="40">
-					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-					<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
+				<e:Group id="titleBGGroup0" horizontalCenter="0" y="10" x="50">
+					<e:Rect id="titleBG0" y="0" strokeColor="0x000000" width="620" fillColor="0x330000" height="50" x="0" strokeWeight="1"/>
+					<e:Label textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26" verticalCenter="0"/>
 				</e:Group>
 				<e:List y="70" itemRendererSkinName="MyHeadItemSkin" id="myList0" horizontalCenter="0">
 					<e:layout>
@@ -42,7 +38,7 @@
 					</e:ArrayCollection>
 				</e:List>
 			</e:Group>
-			<e:Group id="myChooseGroup" x="20" y="411" height="350">
+			<e:Group id="myChooseGroup" x="20" y="411" height="360">
 				<e:Image source="book_bg2_jpg" y="-1" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 				<e:Image source="book_bg2_jpg" scale9Grid="40,44,240,266" y="-1" height="100%" x="0"/>
 				<e:Group y="9.999999999999943" horizontalCenter="0">
@@ -53,7 +49,7 @@
 						<e:HorizontalLayout verticalAlign="middle" gap="15"/>
 					</e:layout>
 				</e:Group>
-				<e:List id="myList2" horizontalCenter="0" verticalCenter="20" itemRendererSkinName="EnemyHeadItemSkin">
+				<e:List id="myList2" horizontalCenter="0" verticalCenter="15" itemRendererSkinName="EnemyHeadItemSkin">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="3" verticalAlign="middle" verticalGap="10" horizontalGap="50"/>
 					</e:layout>
@@ -73,13 +69,9 @@
 					<e:Image scale9Grid="40,44,240,266" source="book_bg1_jpg" y="0" height="100%" x="0"/>
 					<e:Image source="book_bg1_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 				</e:Group>
-				<e:Group horizontalCenter="0" y="20" x="50">
-					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组2" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-					<e:Image source="main_mc_png" y="519" scaleX="-1" x="20"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
+				<e:Group id="titleBGGroup1" horizontalCenter="0" y="0" x="30">
+					<e:Rect id="titleBG1" y="0" strokeColor="0x000000" width="640" fillColor="0x330000" height="60" x="0" strokeWeight="1"/>
+					<e:Label textColor="0xD9B67B" text="PK卡组2" textAlign="center" width="140" horizontalCenter="0" size="26" verticalCenter="0"/>
 				</e:Group>
 				<e:List itemRendererSkinName="MyHeadItemSkin" y="70" id="myList1" horizontalCenter="0">
 					<e:layout>

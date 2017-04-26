@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainGameUISkin" width="640" height="1200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="MapGameUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
@@ -11,12 +11,7 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
 				<e:Group y="20" horizontalCenter="0">
-					<e:Group x="120" y="0" id="coinGroup">
-						<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="100%" height="40" x="0"/>
-						<e:Image source="icon_money_png" y="-1" x="0"/>
-						<e:Label id="moneyText" y="8" textColor="0xCCCCCC" text="12345/129999" size="24" left="44" right="20"/>
-					</e:Group>
-					<e:Label y="5" textColor="0xCCB48E" text="秒杀价格：" x="0" size="26"/>
+					<e:Label id="desText" y="5" textColor="0xCCB48E" text="敌方战力：123456" x="0" size="26"/>
 				</e:Group>
 				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
 					<e:layout>
@@ -55,9 +50,9 @@
 							</e:Array>
 						</e:ArrayCollection>
 					</e:List>
-					<e:Group horizontalCenter="0" y="0" x="50">
-						<e:Rect y="0" strokeColor="0x000000" width="640" fillColor="0x330000" height="60" x="0"/>
-						<e:Label textColor="0xD9B67B" text="PK卡组" textAlign="center" width="140" horizontalCenter="0" size="26" verticalCenter="0"/>
+					<e:Group horizontalCenter="0" y="0">
+						<e:Rect height="60" width="640" x="0" y="0" fillColor="0x330000" strokeColor="0x000000"/>
+						<e:Label textColor="0xD9B67B" text="我的卡组" textAlign="center" width="140" horizontalCenter="0" size="26" verticalCenter="0"/>
 					</e:Group>
 				</e:Group>
 				<e:Group width="640" horizontalCenter="0" y="556" height="100%">

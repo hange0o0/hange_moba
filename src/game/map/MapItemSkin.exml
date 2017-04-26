@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MapItemSkin" width="640" height="150" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,info" >
+	<e:Label id="desText" text="每次挑战需消耗 1 点体力。每次扫荡消耗10钻石，获得10倍积分分" includeIn="info" x="12" y="90" textColor="0xCCB48E" size="22" width="500" lineSpacing="5"/>
+	<e:Image id="bg" source="item_bg_jpg" x="0" y="0" width="100%" height="100%" includeIn="normal"/>
+	<e:Label id="nameText" text="标签标签标签" y="20" x="30" stroke="2" includeIn="normal"/>
+	<e:Label id="rateText" y="32" text="通关进度：9/10" right="30" size="24" textColor="0xCCB48E" stroke="2" includeIn="normal"/>
+	<e:Label id="forceText" y="66" text="野怪战力：123456 - 123456" x="50" size="24" textColor="0xCCB48E" stroke="2" includeIn="normal"/>
+	<e:Label id="awardText" y="100" textColor="0xCCB48E" size="24" text="获胜积分：123" x="50" stroke="2" includeIn="normal"/>
+	<e:Button id="pkBtn" label="挑战" y="65" skinName="Btn_r1Skin" x="506" includeIn="normal"/>
+	<e:Button id="sweepBtn" y="65" label="扫荡" skinName="Btn_r1Skin" x="380" includeIn="normal"/>
+</e:Skin>

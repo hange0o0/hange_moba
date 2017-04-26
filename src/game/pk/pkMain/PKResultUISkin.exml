@@ -21,9 +21,11 @@
 								<e:TileLayout paddingLeft="5" requestedColumnCount="3" horizontalGap="0"/>
 							</e:layout>
 						</e:List>
-						<e:Label id="selfText" text="战力：1234" y="-9" size="24" stroke="1" x="60"/>
-						<e:Label y="32" size="24" text="战30，战30，战30" id="selfText0" stroke="1" x="20"/>
-						<e:Image source="icon_atk_png" x="11" y="-22"/>
+						<e:Label y="-10" size="24" id="selfText0" stroke="1" x="20"/>
+						<e:Group id="selfForceGroup" x="11" y="15">
+							<e:Label id="selfText" text="战力：1234" y="13" size="24" stroke="1" x="49"/>
+							<e:Image source="icon_atk_png" x="0" y="0"/>
+						</e:Group>
 					</e:Group>
 					<e:Group x="10" y="10">
 						<e:List id="enemyList" x="0" width="310" top="65" bottom="10">
@@ -31,9 +33,11 @@
 								<e:TileLayout requestedColumnCount="3" paddingLeft="5" horizontalGap="0"/>
 							</e:layout>
 						</e:List>
-						<e:Label id="enemyText" y="-9" size="24" text="我方战力：1234" stroke="1" right="60"/>
-						<e:Label y="32" size="24" text="我方战力：1234" right="20" stroke="1" id="enemyText0" x="10"/>
-						<e:Image source="icon_atk_png" y="-22" right="11"/>
+						<e:Label y="-10" size="24" right="20" stroke="1" id="enemyText0" x="10"/>
+						<e:Group id="enemyForceGroup" x="78" y="15">
+							<e:Label id="enemyText" y="13" size="24" text="我方战力：1234" stroke="1" right="49"/>
+							<e:Image source="icon_atk_png" y="0" x="173"/>
+						</e:Group>
 					</e:Group>
 					<e:layout>
 						<e:HorizontalLayout gap="0"/>

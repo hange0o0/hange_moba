@@ -11,15 +11,20 @@ class FriendPKViewUI extends game.BaseUI {
     private enemyGroup0: eui.Group;
     private pkTypeText: eui.Label;
     private timeText: eui.Label;
+    private helpBtn: eui.Group;
     private myGroup0: eui.Group;
     private bg0: eui.Group;
+    private titleBGGroup0: eui.Group;
+    private titleBG0: eui.Rect;
     private myList0: eui.List;
     private myChooseGroup: eui.Group;
     private myList2: eui.List;
     private myGroup1: eui.Group;
     private bg1: eui.Group;
+    private titleBGGroup1: eui.Group;
+    private titleBG1: eui.Rect;
     private myList1: eui.List;
-    private helpBtn: eui.Group;
+
 
 
 
@@ -146,12 +151,28 @@ class FriendPKViewUI extends game.BaseUI {
         if(index == 0)
         {
             this.bg0.visible = true;
+            this.titleBGGroup0.y = 10
+            this.titleBG0.height = 50
+            this.titleBG0.width = 620
+
+            this.titleBGGroup1.y = 0
+            this.titleBG1.height = 60
+            this.titleBG1.width = 640
             //if(myChoose.ring.id == data[0].ring[1])
             //    ringIndex = 1
         }
         else
         {
             this.bg1.visible = true;
+
+            this.titleBGGroup1.y = 10
+            this.titleBG1.height = 50
+            this.titleBG1.width = 620
+
+
+            this.titleBGGroup0.y = 0
+            this.titleBG0.height = 60
+            this.titleBG0.width = 640
             //if(myChoose.ring.id == data[1].ring[1])
             //    ringIndex = 1
         }

@@ -29,8 +29,8 @@ class MainPageUI extends game.BaseUI {
     private cardGroup: eui.Group;
     private feeText: eui.Label;
     private addFreeBtn: eui.Group;
-    private scroller: eui.Scroller;
-    private scrollGroupCon: eui.Group;
+    //private scroller: eui.Scroller;
+    //private scrollGroupCon: eui.Group;
     private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
     private dayGame: MainDayItem;
@@ -47,16 +47,17 @@ class MainPageUI extends game.BaseUI {
     private taskText: eui.Label;
     private helpBtn: eui.Group;
     private videoBtn: eui.Group;
-    private setBtn: eui.Group;
     private honorBtn: eui.Group;
     private honorRed: eui.Image;
     private rankBtn: eui.Group;
+    private mapBtn: eui.Group;
     private collectBtn: eui.Group;
     private collectRed: eui.Image;
     private friendBtn: eui.Group;
     private friendRed: eui.Image;
     private friendLockMC: eui.Image;
     private bagBtn: eui.Group;
+
 
 
 
@@ -94,7 +95,7 @@ class MainPageUI extends game.BaseUI {
         //this.addBtnEvent(this.bagBtn, this.onBag);
         this.addBtnEvent(this.honorBtn, this.onHonor);
         this.addBtnEvent(this.rankBtn, this.onRank);
-        this.addBtnEvent(this.setBtn, this.onSetting);
+        this.addBtnEvent(this.mapBtn, this.onMap);
 
 
         //this.addBtnEvent(this.img, this.onMain);
@@ -301,10 +302,10 @@ class MainPageUI extends game.BaseUI {
     private onBegin(e:egret.TouchEvent){
         if(GuideManager.getInstance().isGuiding)
             return;
-        if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
-        {
-            return;
-        }
+        //if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
+        //{
+        //    return;
+        //}
 
         this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
         this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
@@ -386,8 +387,8 @@ class MainPageUI extends game.BaseUI {
     //    BagUI.getInstance().show();
     //
     //}
-    private onSetting(){
-        SettingUI.getInstance().show();
+    private onMap(){
+        MapUI.getInstance().show();
     }
 
     private onHonor(){
@@ -479,11 +480,11 @@ class MainPageUI extends game.BaseUI {
     }
 
     public onGuide0(){
-        if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
-        {
-            this.scroller.viewport.scrollV = this.scroller.viewport.contentHeight - this.scroller.viewport.height;
-            this.scroller.validateNow();
-        }
+        //if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
+        //{
+        //    this.scroller.viewport.scrollV = this.scroller.viewport.contentHeight - this.scroller.viewport.height;
+        //    this.scroller.validateNow();
+        //}
     }
 
     public renewMiddle(){
@@ -573,7 +574,7 @@ class MainPageUI extends game.BaseUI {
         egret.Tween.removeTweens(this.scrollGroup)
         var pageSize = 640
         var targetX = -this.currentPage * pageSize;
-        this.scroller.viewport.scrollV = 0;
+        //this.scroller.viewport.scrollV = 0;
         if(nomovie)
         {
             this.scrollGroup.x = targetX;

@@ -52,21 +52,15 @@
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
-				<e:Group horizontalCenter="0" y="10" x="20">
-					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-					<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
+				<e:Group horizontalCenter="0" y="0" x="20">
+					<e:Rect y="0" fillColor="0x330000" width="640" strokeColor="0x000000" height="60" x="0"/>
+					<e:Label textColor="0xD9B67B" text="PK卡组1" textAlign="center" width="140" horizontalCenter="0" size="26" verticalCenter="0"/>
 				</e:Group>
 				<e:Group width="640" horizontalCenter="0" bottom="0">
 					<e:layout>
-						<e:HorizontalLayout gap="10" verticalAlign="bottom"/>
+						<e:HorizontalLayout gap="10" verticalAlign="bottom" horizontalAlign="center"/>
 					</e:layout>
-					<e:Image source="line_png" y="499" x="0"/>
 					<e:Button id="chooseBtn0" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
-					<e:Image source="line_png" y="509" x="10"/>
 				</e:Group>
 			</e:Group>
 			<e:Group id="myGroup1" y="491" height="520" x="100">
@@ -87,13 +81,9 @@
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
-				<e:Group horizontalCenter="0" y="10" x="20">
-					<e:Image source="main_mc_png" y="509" x="10"/>
-					<e:Label y="14" textColor="0xD9B67B" text="PK卡组2" textAlign="center" width="140" horizontalCenter="0" size="26"/>
-					<e:Image source="main_mc_png" y="519" x="20" scaleX="-1"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="bottom"/>
-					</e:layout>
+				<e:Group horizontalCenter="0" y="10" x="30">
+					<e:Rect y="0" fillColor="0x330000" width="640" strokeColor="0x000000" height="60" x="0"/>
+					<e:Label horizontalCenter="0" textColor="0xD9B67B" text="PK卡组2" textAlign="center" width="140" verticalCenter="0" size="26"/>
 				</e:Group>
 				<e:Group width="640" horizontalCenter="0" bottom="0">
 					<e:layout>
@@ -105,7 +95,7 @@
 
 			
 			<e:layout>
-				<e:VerticalLayout/>
+				<e:VerticalLayout gap="0"/>
 			</e:layout>
 		</e:Group>
 	</e:Scroller>

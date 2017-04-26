@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MapShopItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="120" height="180">
+	
+	<e:Group id="group" y="2" width="120" horizontalCenter="0">
+		<e:Image source="border2_png" y="0" x="5" width="110" height="140" scale9Grid="11,11,68,68"/>
+		<e:Image id="mc" source="head_png" y="5" x="10" width="100" height="100"/>
+		<e:Group id="infoGroup" y="105" horizontalCenter="0">
+			<e:Rect height="30" width="100" x="0" y="0" fillAlpha="1"/>
+			<e:Label id="infoText" text="12345" horizontalCenter="0" size="20" verticalCenter="0" stroke="1" textColor="0xFFFFFF"/>
+		</e:Group>
+	</e:Group>
+	<e:Group y="145" horizontalCenter="0">
+		<e:Rect height="30" width="110" x="5" y="0" ellipseHeight="32" ellipseWidth="32" strokeWeight="1" strokeColor="0xFBB85B" fillAlpha="0.8"/>
+		<e:Label id="costText" y="4" size="22" text="12345" textColor="0xFBB85B" x="31" width="71" textAlign="center"/>
+		<e:Image source="icon_rank_png" y="0" x="0" scaleY="0.75" scaleX="0.75"/>
+	</e:Group>
+</e:Skin>

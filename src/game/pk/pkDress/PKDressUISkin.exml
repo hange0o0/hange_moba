@@ -2,15 +2,15 @@
 <e:Skin class="PKDressUISkin" width="640" height="1024" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  states="normal,open" >
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Group x="15" y="22">
-		<e:Image source="fu2_png" y="6" x="0"/>
-		<e:Label y="13" textColor="0xCCB48E" text="X100" x="40" size="26" id="coinText" stroke="2"/>
-	</e:Group>
 	<e:Group x="0" y="77" y.open="377">
-		<e:Label id="forceText" y="21" textColor="0xCCB48E" text="标+50%，标+15%，标+15%" x="20" size="22"/>
-		<e:Group id="upBtnGroup" y="1" right="70">
-			<e:Button id="changeBtn" y="0" label="切卡1" x="0" skinName="Btn_b1Skin"/>
-			<e:Button id="viewBtn" y="0" label="对手" label.normal="对手信息" label.open="关闭信息" x="140" skinName="Btn_b1Skin"/>
+		<e:Group x="15" y="8">
+			<e:Image source="fu2_png" y="6" x="0"/>
+			<e:Label y="10" textColor="0xCCB48E" text="X100" x="40" size="26" id="coinText" stroke="2"/>
+		</e:Group>
+		<e:Label id="forceText" y="21" textColor="0xCCB48E" x="20" size="22"/>
+		<e:Group id="upBtnGroup" y="4" right="70">
+			<e:Button id="changeBtn" y="0" label="切卡1" x="0" skinName="Btn_b2Skin"/>
+			<e:Button id="viewBtn" y="0" label="对手" label.normal="对手信息" label.open="关闭信息" x="140" skinName="Btn_b2Skin"/>
 			<e:layout>
 				<e:HorizontalLayout/>
 			</e:layout>
@@ -44,7 +44,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="topGroup" x="0" y="145" y.open="440" height="80" x.open="-3">
+	<e:Group id="topGroup" x="0" y="145" y.open="440" height="80" x.open="-3" visible="false">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="1" fillColor="0x150B05"/>
 		<e:List id="simpleList" width="470" itemRendererSkinName="PKDressSimpleItemSkin" x="25" verticalCenter="0">
 			<e:layout>

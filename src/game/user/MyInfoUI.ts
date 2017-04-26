@@ -10,7 +10,6 @@ class MyInfoUI extends game.BaseUI {
     private headMC: eui.Image;
     private nameText: eui.Label;
     private desText: eui.Label;
-    private setBtn: eui.Button;
     private levelText: eui.Label;
     private expText: eui.Label;
     private forceText: eui.Label;
@@ -29,6 +28,8 @@ class MyInfoUI extends game.BaseUI {
     private addCardBtn: eui.Group;
     private thisLoginText: eui.Label;
     private lastLoginText: eui.Label;
+    private editWordBtn: eui.Button;
+    private setBtn: eui.Button;
     private mainLevelText: eui.Label;
     private mainAward1: eui.Label;
     private mainAward2: eui.Label;
@@ -48,6 +49,7 @@ class MyInfoUI extends game.BaseUI {
     private serverEqualText6: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -78,7 +80,7 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.addDiamondBtn, this.onAddDiamon);
         this.addBtnEvent(this.addEnergyBtn, this.onAddEnergy);
         this.addBtnEvent(this.addCardBtn, this.onAddCard);
-        this.addBtnEvent(this.desText, this.onChangeWord);
+        this.addBtnEvent(this.editWordBtn, this.onChangeWord);
 
         this.addBtnEvent(this.headGroup, this.onHead);
 
@@ -119,7 +121,7 @@ class MyInfoUI extends game.BaseUI {
         });
     }
     private onSet(){
-
+         SettingUI.getInstance().show();
     }
     private onAddForce(){
         CollectUI.getInstance().show();
@@ -178,9 +180,10 @@ class MyInfoUI extends game.BaseUI {
         this.headMC.source = MyTool.getHeadUrl(UM.head);
 
         if(UM.word)
-            this.setHtml(this.desText,'　　' + UM.word  + this.createHtml(' 【点击修改】',0xAAAAAA,20));
+            this.desText.text =  '　　' + UM.word;
+            //this.setHtml(this.desText,'　　' + UM.word  + this.createHtml(' 【点击修改】',0xAAAAAA,20));
         else
-            this.setHtml(this.desText,this.createHtml('　　点击此处编辑宣言',0xAAAAAA))
+            this.setHtml(this.desText,this.createHtml('　　你还没编辑过宣言呢~',0xAAAAAA))
 
         this.setText(this.nameText,'['+UM.nick+'] ' + this.createHtml('　(ID：' + UM.gameid + ')',undefined,24));
 

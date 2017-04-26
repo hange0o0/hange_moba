@@ -98,6 +98,13 @@ class GameEvent {
         pk_main:'pk_main'
     }
 
+    public static mapGame = {
+        get_map_enemy:'get_map_enemy',
+        shop_buy:'map_shop_buy',
+        shop_list:'map_shop_list',
+        pk_map:'pk_map'
+    }
+
     public static serverGame = {
         get_server_card:'get_server_card',
         pk_server:'pk_server'

@@ -141,6 +141,7 @@ class RankManager{
     private startTween(bgCon,headMC){
         this.initHeadMC(bgCon,headMC)
         headMC.visible = true
+        headMC.hideLight()
         egret.Tween.removeTweens(this);
         var tw:egret.Tween = egret.Tween.get(bgCon);
         var showCD = 10000
@@ -153,8 +154,10 @@ class RankManager{
             bgCon.parent.addChildAt(bgCon,0);
         },this).to({x:320},300).call(function(){
             bgCon.visible = false;
+            headMC.showLight()
         },this).wait(showCD).call(function(){
                 bgCon.visible = true;
+                headMC.hideLight()
             },this).
             to({x:160},300).call(function(){
                 bgCon.parent.addChildAt(bgCon,0);

@@ -13,15 +13,19 @@ class PKResultUI extends game.BaseUI {
     private rateBG: eui.Image;
     private rateText: eui.Label;
     private selfList: eui.List;
-    private selfText: eui.Label;
     private selfText0: eui.Label;
+    private selfForceGroup: eui.Group;
+    private selfText: eui.Label;
     private enemyList: eui.List;
-    private enemyText: eui.Label;
     private enemyText0: eui.Label;
+    private enemyForceGroup: eui.Group;
+    private enemyText: eui.Label;
     private teamInfo1: eui.List;
     private teamInfo2: eui.List;
     private list: eui.List;
     private topBtn: eui.Group;
+
+
 
 
 
@@ -248,6 +252,13 @@ class PKResultUI extends game.BaseUI {
             this.rateBG.source = 'bar_pvp_2_png'
         else
             this.rateBG.source = 'bar_pvp_1_png'
+
+        this.selfText0.text = ''
+        this.enemyText0.text = ''
+        //this.selfForceGroup.y = 15
+        //this.enemyForceGroup.y = 15
+        this.selfForceGroup.y = -5
+        this.enemyForceGroup.y = -5
 
 
         totalData.hp = hp;

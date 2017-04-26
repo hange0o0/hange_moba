@@ -28,7 +28,6 @@
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
 						<e:Label id="desText" x="124" y="48" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88" textColor="0xD19844"/>
-						<e:Button id="setBtn" skinName="Btn_r1Skin" y="40" label="设置" x="300" visible="false"/>
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">
 						<e:Label id="levelText" y="8" text="等级：LV.32" x="60" textColor="0xCCB48E" size="30"/>
@@ -115,10 +114,19 @@
 						<e:Label id="lastLoginText" y="7" textColor="0xCCB48E" text="最近一次登陆：13-04-01 20:20:20" x="60"/>
 						<e:Image source="icon_server_png" y="0" x="0"/>
 					</e:Group>
+					<e:Group horizontalCenter="0.5" y="175" x="10" width="100%">
+						<e:Button id="editWordBtn" y="0" label="编辑宣言" skinName="Btn_r2Skin" x="113.03030303030306"/>
+						<e:Button id="setBtn" y="0" label="设置" skinName="Btn_r2Skin" x="0"/>
+						<e:layout>
+							<e:HorizontalLayout gap="30" horizontalAlign="center" paddingTop="10"/>
+						</e:layout>
+					</e:Group>
 					<e:layout>
 						<e:VerticalLayout gap="15"/>
 					</e:layout>
 				</e:Group>
+				<e:Image source="main_mc_png" scaleY="-0.6" scaleX="0.6" bottom="-22" right="5"/>
+				<e:Image source="main_mc_png" bottom="-22" scaleX="-0.6" y="10" left="5" scaleY="-0.6"/>
 			</e:Group>
 			<e:Group x="107" y="914" height="250">
 				<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="600" height="190" horizontalCenter="0"/>

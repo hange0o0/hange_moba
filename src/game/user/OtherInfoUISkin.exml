@@ -48,6 +48,8 @@
 						</e:Group>
 					</e:Group>
 				</e:Group>
+				<e:Image source="main_mc_png" bottom="-22" scaleY="-0.6" right="5" scaleX="0.6" x="10" y="10"/>
+				<e:Image source="main_mc_png" y="20" scaleX="-0.6" bottom="-22" left="5" scaleY="-0.6" x="10"/>
 
 			</e:Group>
 			<e:Group id="friendGroup" x="0" y="130.00000000000003">
