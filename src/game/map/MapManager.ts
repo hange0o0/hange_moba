@@ -13,6 +13,10 @@ class MapManager{
     public maxLevel = 600;
 
     public logList
+
+
+
+
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_map_log') || [];
     }
@@ -22,6 +26,13 @@ class MapManager{
         if(list.length > 20)
             list.length = 0;
         SharedObjectManager.instance.setMyValue('pk_map_log',list);
+    }
+
+    public getExCoin(v){
+        return Math.floor(v*10);
+    }
+    public getExCard(v){
+        return Math.floor(v/10);
     }
 
     ////打开PK对战内容的表现

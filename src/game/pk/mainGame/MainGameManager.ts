@@ -31,6 +31,25 @@ class MainGameManager{
         })
     }
 
+    public stepName = ['学徒'];
+    public getMainStepLevel(lv?){
+        var level = lv || UM.main_game.level;
+        if(level < 90)
+        {
+            return Math.floor((level+5)/10)
+        }
+        return  Math.floor(level/10)
+    }
+
+    public getStepName(lv?){
+        var level = this.getMainStepLevel(lv);
+        var index = Math.floor(level/10);
+        var step = level%10
+        if(step==0)
+            return this.stepName[index];
+        return this.stepName[index] + StringUtil.numToStr(step) + '阶';
+    }
+
     public getHeadByLevel(level){
          return level%50 + 1;
     }
@@ -110,6 +129,11 @@ class MainGameManager{
             return;
         }
         oo.choose = choose;
+
+        if(UM.main_game.level > 1 && UM.main_game.level < 50)
+        {
+            oo.data_key = md5.incode(JSON.stringify(choose)).substr(-16);
+        }
         Net.addUser(oo);
         Net.send(GameEvent.mainGame.pk_main,oo,function(data){
             var msg = data.msg;

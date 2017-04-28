@@ -11,9 +11,17 @@ class ServerGameEqualManager{
 
     public lastPKData;
     public logList
+
+    public stepName = ['学徒'];
+    public getStepName(exp){
+        var level = this.getPKTableLevel(exp)
+        return this.stepName[level];
+    }
+
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_serverEqual_log') || [];
     }
+
     public addLogList(data){
         var list = this.logList;
         list.unshift(data);

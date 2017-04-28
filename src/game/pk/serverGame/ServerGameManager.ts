@@ -11,6 +11,14 @@ class ServerGameManager{
 
     public lastPKData;
     public logList
+
+    public stepName = ['学徒'];
+    public getStepName(exp){
+        var level = this.getPKTableLevel(exp)
+        return this.stepName[level];
+    }
+
+
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_server_log') || [];
     }
