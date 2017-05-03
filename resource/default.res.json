@@ -21,7 +21,7 @@
 			"name":"login_load"
 		},
 		{
-			"keys":"window2_png,menu_icon_2_png,guide2_png,menu_icon_3_png,menu_icon_5_png,btn_r3__png,btn_r3_png,menu_icon_6_png,head_png,random_btn_png,btn_close2__png,btn_b1__png,card_bg_png,btn_b1_png,btn_close2_png,menu_icon_4_png,btn_r1__png,btn_r1_png,btn_d2_png,point2_png,btn_d1_png,menu_icon_1_png,btn_close1__png,icon_new_png,icon_pvp_3_png,icon_power_png,btn_close1_png,icon_lv_png,icon_money_png,icon_rank_png,icon_pvp_ticket_png,icon_token_png,icon_pve_png,icon_empty_png,point1_png,lock_icon_png,left_btn_png,border_head_png,red_point_png,font_num5_fnt,replay_mc_png,border1_png,line_png,guide1_png,main_border_png,choose_icon_png,king_icon_png,shop_card_png,menu_icon_7_png,main_light_png",
+			"keys":"window2_png,menu_icon_2_png,guide2_png,menu_icon_3_png,menu_icon_5_png,btn_r3__png,btn_r3_png,menu_icon_6_png,head_png,random_btn_png,btn_close2__png,btn_b1__png,card_bg_png,btn_b1_png,btn_close2_png,menu_icon_4_png,btn_r1__png,btn_r1_png,btn_d2_png,point2_png,btn_d1_png,menu_icon_1_png,btn_close1__png,icon_new_png,icon_pvp_3_png,icon_power_png,btn_close1_png,icon_lv_png,icon_money_png,icon_rank_png,icon_pvp_ticket_png,icon_token_png,icon_pve_png,icon_empty_png,point1_png,lock_icon_png,left_btn_png,border_head_png,red_point_png,font_num5_fnt,replay_mc_png,border1_png,line_png,guide1_png,main_border_png,choose_icon_png,king_icon_png,shop_card_png,menu_icon_7_png,main_light_png,menu_icon_9_png,menu_icon_8_png",
 			"name":"preload_png"
 		},
 		{
@@ -43,6 +43,10 @@
 		{
 			"keys":"video_atk4_png,bar_bg_png,bar1_png,bar2_png,bar3_png,bar4_png,fight_fail_1_png,fight_win_png,pk_fail_png,pk_result_line_png,pk_win_png,video_atk1_png,video_atk2_png,video_atk3_png,card_battle_png,talk_bg_png,bar_pvp_1_png,bar_pvp_2_png,pk_e_11_png,pk_e_12_png,pk_e_13_png,pk_e_14_png,pk_e_15_png,pk_e_16_png,pk_e_17_png,pk_e_2_png,pk_e_3_png,pk_e_4_png,pk_e_5_png,pk_e_6_png,pk_e_7_png,pk_e_8_png,pk_e_1_png,pk_e_18_png,pk_e_19_png,pk_e_20_png,pk_e_9_png,pk_e_10_png",
 			"name":"pk"
+		},
+		{
+			"keys":"map_item2_png,m0_jpg,m1_jpg,m2_jpg,m3_jpg,m4_jpg,m5_jpg,m6_jpg,map_item1_png,map_item3_png",
+			"name":"map"
 		}
 	],
 	"resources":[
@@ -1390,6 +1394,66 @@
 			"name":"main_light_png",
 			"type":"image",
 			"url":"game_assets/preload_png/main_light.png"
+		},
+		{
+			"name":"map_item2_png",
+			"type":"image",
+			"url":"game_assets/map/map_item2.png"
+		},
+		{
+			"name":"m0_jpg",
+			"type":"image",
+			"url":"game_assets/map/m0.jpg"
+		},
+		{
+			"name":"m1_jpg",
+			"type":"image",
+			"url":"game_assets/map/m1.jpg"
+		},
+		{
+			"name":"m2_jpg",
+			"type":"image",
+			"url":"game_assets/map/m2.jpg"
+		},
+		{
+			"name":"m3_jpg",
+			"type":"image",
+			"url":"game_assets/map/m3.jpg"
+		},
+		{
+			"name":"m4_jpg",
+			"type":"image",
+			"url":"game_assets/map/m4.jpg"
+		},
+		{
+			"name":"m5_jpg",
+			"type":"image",
+			"url":"game_assets/map/m5.jpg"
+		},
+		{
+			"name":"m6_jpg",
+			"type":"image",
+			"url":"game_assets/map/m6.jpg"
+		},
+		{
+			"name":"map_item1_png",
+			"type":"image",
+			"url":"game_assets/map/map_item1.png"
+		},
+		{
+			"name":"menu_icon_9_png",
+			"type":"image",
+			"url":"game_assets/preload_png/menu_icon_9.png"
+		},
+		{
+			"name":"menu_icon_8_png",
+			"type":"image",
+			"url":"game_assets/preload_png/menu_icon_8.png"
+		},
+		{
+			"name":"map_item3_png",
+			"type":"image",
+			"url":"game_assets/map/map_item3.png"
 		}
 	]
 }

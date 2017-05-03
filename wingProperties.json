@@ -1,5 +1,5 @@
 {
-	"close":false,
+	"close":true,
 	"natures":["egretProject"],
 	"resourcePlugin":{
 		"configs":[{
@@ -1178,6 +1178,66 @@
 					"isFolder":false,
 					"key":"main_light_png",
 					"name":"main_light_png"
+				},
+				{
+					"isFolder":false,
+					"key":"m0_jpg",
+					"name":"m0_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"m1_jpg",
+					"name":"m1_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"m2_jpg",
+					"name":"m2_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"m3_jpg",
+					"name":"m3_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"m4_jpg",
+					"name":"m4_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"m5_jpg",
+					"name":"m5_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"m6_jpg",
+					"name":"m6_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"map_item1_png",
+					"name":"map_item1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"map_item2_png",
+					"name":"map_item2_png"
+				},
+				{
+					"isFolder":false,
+					"key":"menu_icon_8_png",
+					"name":"menu_icon_8_png"
+				},
+				{
+					"isFolder":false,
+					"key":"menu_icon_9_png",
+					"name":"menu_icon_9_png"
+				},
+				{
+					"isFolder":false,
+					"key":"map_item3_png",
+					"name":"map_item3_png"
 				}
 			]
 		}

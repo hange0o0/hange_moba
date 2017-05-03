@@ -67,7 +67,7 @@
 			</e:Group>
 		</e:Group>
 	</e:Group>
-	<e:Group x="0" top="180" bottom="130">
+	<e:Group x="0" top="180" bottom="140">
 		<e:Group horizontalCenter="0" width="640" height="100%" verticalCenter="0" maxHeight="580">
 			<e:Group id="scrollGroup" x="0" bottom="40">
 				<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
@@ -122,13 +122,13 @@
 			<e:Group id="rankBtn" x="0" y="13.750000000000114" width="100">
 				<e:Group y="0" horizontalCenter="0">
 					<e:Image source="menu_icon_1_png" x="18" y="0"/>
-					<e:Image source="menu_icon_1_png" y="13" x="0"/>
+					<e:Image y="13" x="0" source="menu_icon_1_png"/>
 				</e:Group>
 				<e:Label text="排行" y="79" textColor="0xCCB48E" horizontalCenter="0"/>
 			</e:Group>
 			<e:Group id="mapBtn" y="11.666666666666742" x="10.000000000000007" width="110">
-				<e:Image y="-30" source="menu_icon_6_png" horizontalCenter="0" scaleX="1.3" scaleY="1.3"/>
-				<e:Label y="92" textColor="0xCCB48E" text="野外" horizontalCenter="0"/>
+				<e:Image y="-35" horizontalCenter="0" source="menu_icon_8_png"/>
+				<e:Label y="92" textColor="0xCCB48E" text="清剿" horizontalCenter="0"/>
 			</e:Group>
 			<e:Group id="collectBtn" x="135.83333333333334" y="0" width="100">
 				<e:Image source="menu_icon_2_png" y="0" horizontalCenter="0"/>

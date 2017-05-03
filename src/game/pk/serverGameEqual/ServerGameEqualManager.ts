@@ -100,6 +100,11 @@ class ServerGameEqualManager{
                 Alert('修正币不足');
                 return;
             }
+            if(msg.fail == 21)
+            {
+                Alert('无法匹配到合适的对手');
+                return
+            }
             if(msg.fail)
             {
                 Alert('获取卡牌失败',LoginManager.getInstance().relogin);
@@ -121,6 +126,7 @@ class ServerGameEqualManager{
         var self = this;
         var oo:any = {};
         oo.choose = choose;
+        oo.data_key = md5.incode(JSON.stringify(choose)).substr(-16);
         Net.addUser(oo);
 
         //要先记录，PK后可能就没数据了

@@ -70,7 +70,10 @@ class DayLogItem extends game.BaseItem {
 
         if(this.data.sp.round)
         {
-            this.titleText.text = '第 '+this.data.sp.round+' 关';
+            if(this.data.sp.type == PKManager.PKType.MAP)
+                this.titleText.text = '据点 '+this.data.sp.round;
+            else
+                this.titleText.text = '第 '+this.data.sp.round+' 关';
             this.nickGroup.visible = false;
         }
         else

@@ -16,8 +16,9 @@ class MapGameUI extends game.BaseUI {
     private myList0: eui.List;
     private cardText: eui.Label;
     private resetBtn: eui.Button;
-    private logBtn: eui.Button;
+    private enemyBtn: eui.Button;
     private chooseBtn0: eui.Button;
+
 
 
 
@@ -35,8 +36,8 @@ class MapGameUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('试练场PK');
-        this.topUI.addEventListener('hide',this.hide,this);
+        //this.topUI.setTitle('试练场PK');
+        this.topUI.addEventListener('hide',this.onClose,this);
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         //this.addBtnEvent(this.coinGroup, this.onCoin);
@@ -50,21 +51,36 @@ class MapGameUI extends game.BaseUI {
         //this.enemyList.add
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
-        this.addBtnEvent(this.logBtn, this.onLog);
+        this.addBtnEvent(this.enemyBtn, this.onEnemy);
     }
 
-    private onLog(){
-        DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'试练挑战日志');
+    private onClose(){
+        var self = this;
+        Confirm('确定放弃本次挑战吗？',function(type){
+            if(type == 1)
+            {
+                self.hide();
+            }
+        });
+    }
+
+    private onEnemy(){
+        var self = this;
+        Confirm('重新搜索敌人需花费1点体力，是否继续？',function(type){
+            if(type == 1)
+            {
+                var MM = MapManager.getInstance();
+                MM.getEnemy(MM.pkLevel,function(){
+                    self.renewEnemy();
+                })
+            }
+        });
+
     }
     private onReset(){
         PKManager.getInstance().reChooseMyCard()
     }
 
-
-    public scrollToEnd(){
-        if(this.scroller.viewport.height < this.scroller.viewport.contentHeight)
-            this.scroller.viewport.scrollV =  this.scroller.viewport.contentHeight -  this.scroller.viewport.height;
-    }
 
 
 
@@ -82,9 +98,9 @@ class MapGameUI extends game.BaseUI {
 
     public show(){
         var self = this
-        MainGameManager.getInstance().loadCache(UM.main_game.level,function(){
+        //MainGameManager.getInstance().loadCache(UM.main_game.level,function(){
             self.superShow();
-        })
+        //})
     }
 
     private superShow(){
@@ -110,42 +126,32 @@ class MapGameUI extends game.BaseUI {
     //}
 
     public renewEnemy(){
-        var MM = MainGameManager.getInstance();
+        var MM = MapManager.getInstance();
+        this.topUI.setTitle('据点-'+MM.pkLevel + '　('+MM.getRate(MM.pkLevel)+'/10)');
         //更新敌人
         var specialData:any = {
-            isNPC:true
+            isNPC:true,
+            fight:MM.enemy.force
         };
         var enemyList = this.enemyArray = [];
-        var arr = MainGameVO.getObject(UM.main_game.level).list;
-        var killNum = 0;
+        var arr = MM.enemy.list
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
-            if(MM.isKill(i))
-            {
-                killNum ++;
-                continue;
-            }
             enemyList.push({
                 vo: MonsterVO.getObject(id),
-                isMain:true,
                 isTeam:true,
 
                 id: id,
                 specialData: specialData,
 
-                index: i-killNum,
+                index: i,
 
                 list:enemyList
             });
         }
-        //if(enemyList.length == 1) {
-        //    enemyList[0].noKill = true;
-        //    this.moneyText.text = '该单位不能被秒杀'
-        //}
-        //else
-        //    this.renewPrice();
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
+        this.setHtml(this.desText,this.createHtml('敌方战力：',0xE0A44A) + MM.enemy.force);
 
 
         if(enemyList.length <4)
@@ -167,23 +173,8 @@ class MapGameUI extends game.BaseUI {
     }
 
     public onShow(){
-
-        SoundManager.getInstance().playEffect(SoundConfig.effect_button);
-        this.topUI.setTitle('试练场PK-第'+(UM.main_game.level)+'关');
-
         this.renewEnemy();
         this.renewSelf();
-
-        //if(GuideManager.getInstance().isGuiding)
-        //{
-        //    egret.callLater(function(){
-        //        this.validateNow();
-        //        this.once(egret.Event.ENTER_FRAME)
-        GuideManager.getInstance().showGuide(this)
-        //    },this)
-        //
-        //}
-
     }
 
     private renewSelf(){
@@ -212,7 +203,7 @@ class MapGameUI extends game.BaseUI {
 
     private onChoose1(){
         //this.hide();
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.pk_common.my_card,enemy: this.enemyArray})
+        PKDressUI.getInstance().show({pktype:'map_game',data:UM.pk_common.my_card,enemy: this.enemyArray})
     }
 
 }

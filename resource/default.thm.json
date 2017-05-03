@@ -55,6 +55,7 @@
     "src/game/mainPage/MainPageUISkin.exml",
     "src/game/map/MapExchangeUISkin.exml",
     "src/game/map/MapGameUISkin.exml",
+    "src/game/map/MapInfoUISkin.exml",
     "src/game/map/MapItemSkin.exml",
     "src/game/map/MapShopItemSkin.exml",
     "src/game/map/MapShopBuyUISkin.exml",

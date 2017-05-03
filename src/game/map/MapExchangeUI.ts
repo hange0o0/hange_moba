@@ -40,11 +40,23 @@ class MapExchangeUI extends game.BaseWindow {
     }
 
     public onCoin(){
-
+        if(!this.h1.value)
+            return;
+        var MM = MapManager.getInstance();
+        var self = this;
+        MM.exchange(1,this.h1.value,function(){
+            self.renew();
+        })
     }
 
     public onCard(){
-
+        if(!this.h2.value)
+            return;
+        var MM = MapManager.getInstance();
+        var self = this;
+        MM.exchange(2,MM.getExCardNeed(this.h2.value),function(){
+            self.renew();
+        })
     }
 
     private superShow(){
@@ -52,15 +64,6 @@ class MapExchangeUI extends game.BaseWindow {
     }
 
     public onShow(){
-        var v = 100
-        this.h1.minimum = 0
-        this.h1.maximum = v
-        this.h1.value = v/2
-
-        this.h2.minimum = 0
-        this.h2.maximum = v
-        this.h2.value = v/2
-
         this.renew();
     }
 
@@ -70,11 +73,23 @@ class MapExchangeUI extends game.BaseWindow {
     }
 
     private renewCard(){
-        this.setText(this.leaveText2,'[剩余积分：]'+ (this.h2.maximum - this.h2.value))
-        this.setText(this.cardText,'[兑换碎片：]'+ MapManager.getInstance().getExCard(this.h2.value))
+        var MM = MapManager.getInstance();
+        this.setText(this.leaveText2,'[剩余积分：]'+ (MM.value - MapManager.getInstance().getExCardNeed(this.h2.value)))
+        this.setText(this.cardText,'[兑换碎片：]'+ this.h2.value)
     }
 
     public renew(){
+        var MM = MapManager.getInstance();
+        var v = MM.value
+        this.h1.minimum = 0
+        this.h1.maximum = v
+        this.h1.value = Math.floor(v/2)
+
+        v = MM.getExCard(v);
+        this.h2.minimum = 0
+        this.h2.maximum = v
+        this.h2.value = Math.floor(v/2)
+
         this.renewCoin();
         this.renewCard();
     }

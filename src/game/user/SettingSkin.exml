@@ -8,7 +8,7 @@
 	<e:CheckBox id="PKCB" x="300" y="180" label="跳过PK动画" skinName="MyCheckBoxSkin"/>
 	<e:Group horizontalCenter="0" bottom="70">
 		<e:Button id="loginBtn" label="登出" x="0" y="0" skinName="Btn_b2Skin"/>
-		<e:Button id="closeBtn" label="返回" skinName="Btn_r2Skin" x="0" y="0"/>
+		<e:Button id="closeBtn" label="确定" skinName="Btn_r2Skin" x="0" y="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="50"/>
 		</e:layout>

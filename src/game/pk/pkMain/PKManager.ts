@@ -338,6 +338,9 @@ class PKManager {
             case PKManager.PKType.FRIEND_ANSWER:
                 FriendPKManager.getInstance().answer(choose,fun);
                 break
+            case PKManager.PKType.MAP:
+                MapManager.getInstance().pk(choose,fun);
+                break
         }
 
 
@@ -515,6 +518,7 @@ class PKManager {
             finishTask:false,
             forceUp:false,
             getNewCard:false,
+            passMap:false,
             prop:[]
         }
 
@@ -564,6 +568,8 @@ class PKManager {
                 this.pkAward.dayAward = true;
             if(data.get_new_card)
                 this.pkAward.getNewCard = true;
+            if(data.passMap)
+                this.pkAward.passMap = true;
         }
 
 

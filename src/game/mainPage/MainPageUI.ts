@@ -434,6 +434,7 @@ class MainPageUI extends game.BaseUI {
         DayGameManager.getInstance().initData();
         ServerGameManager.getInstance().initData();
         ServerGameEqualManager.getInstance().initData();
+        MapManager.getInstance().initData();
 
         this.renewTop();
 

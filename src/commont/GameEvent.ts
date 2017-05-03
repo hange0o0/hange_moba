@@ -26,6 +26,8 @@ class GameEvent {
 
         friend_red_change:'friend_red_change',
         my_card_change:'my_card_change',
+        map_value_change:'map_value_change',
+        map_change:'map_change',
 
 
 
@@ -100,9 +102,10 @@ class GameEvent {
 
     public static mapGame = {
         get_map_enemy:'get_map_enemy',
-        shop_buy:'map_shop_buy',
-        shop_list:'map_shop_list',
-        pk_map:'pk_map'
+        sweep:'map_sweep',
+        exchange:'map_exchange',
+        pk_map:'pk_map',
+        pk_map_again:'pk_map_again'
     }
 
     public static serverGame = {

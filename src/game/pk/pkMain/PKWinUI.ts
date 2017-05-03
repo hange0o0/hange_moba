@@ -60,6 +60,13 @@ class PKWinUI extends PKResultBase {
             DayGameUI.getInstance().show();
             PKResultUI.getInstance().hide();
         }
+        else if(PKM.pkType == PKManager.PKType.MAP){
+            var MM = MapManager.getInstance();
+            MM.getEnemy(MM.pkLevel,function(){
+                onOpenPKView();
+                MapGameUI.getInstance().show();
+            })
+        }
 
 
         function onOpenPKView(){
@@ -81,8 +88,25 @@ class PKWinUI extends PKResultBase {
         else
         {
             this.btnGroup.addChild(this.okBtn);
+            this.okBtn.label = '继续挑战';
         }
-
+        if(PKM.pkType == PKManager.PKType.MAP ){
+            var MM = MapManager.getInstance();
+            if(MM.level == MM.pkLevel)
+            {
+                if(MM.step < 10)
+                    this.okBtn.label = '继续清剿';
+                else
+                    MyTool.removeMC(this.okBtn)
+            }
+            else
+            {
+                if(MM.getSweepNum(MM.pkLevel) < 10)
+                    this.okBtn.label = '继续扫荡';
+                else
+                    MyTool.removeMC(this.okBtn)
+            }
+        }
 
         this.step = 0;
         this.stepOne();

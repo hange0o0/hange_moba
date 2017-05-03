@@ -188,7 +188,7 @@ class MyInfoUI extends game.BaseUI {
         this.setText(this.nameText,'['+UM.nick+'] ' + this.createHtml('　(ID：' + UM.gameid + ')',undefined,24));
 
         this.setText(this.levelText,'[等级：]LV.' + UM.level);
-        this.setText(this.expText,'[经验：]' + UM.exp + '/' + UM.next_exp);
+        this.setText(this.expText,'[经验：]' + UM.exp + ' / ' + UM.next_exp);
 
         this.setText(this.forceText,'[战力：]' + (UM.award_force + UM.tec_force))
         this.setText(this.forceText1,'[科技战力：]' + UM.getTecForce());

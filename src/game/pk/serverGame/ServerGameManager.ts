@@ -59,10 +59,10 @@ class ServerGameManager{
 
     //根据经验，返回所在等级
     public  getPKTableLevel(exp){
-        return PKTool.getPKTableLevel(exp,30);
+        return PKTool.getPKTableLevel(exp,100);
     }
     public  getPKTableExp(lv){
-        return PKTool.getPKTableExp(lv,30);
+        return PKTool.getPKTableExp(lv,100);
     }
 
     public getCard(isagain,fun?){
@@ -93,9 +93,14 @@ class ServerGameManager{
                 Alert('体力不足');
                 return;
             }
+            if(msg.fail == 21)
+            {
+                Alert('无法匹配到合适的对手');
+                return
+            }
             if(msg.fail)
             {
-                Alert('获取卡牌失败',LoginManager.getInstance().relogin);
+                Alert('匹配对手失败',LoginManager.getInstance().relogin);
                 return;
             }
 
@@ -117,6 +122,7 @@ class ServerGameManager{
             return;
         }
         oo.choose = choose;
+        oo.data_key = md5.incode(JSON.stringify(choose)).substr(-16);
         Net.addUser(oo);
 
        //要先记录，PK后可能就没数据了
