@@ -44,6 +44,7 @@ class DayLogUI extends game.BaseUI {
         super.show();
     }
 
+
     public onShow(){
         //var DM = DayGameManager.getInstance();
         var list = this.data;//DM.getLogList();

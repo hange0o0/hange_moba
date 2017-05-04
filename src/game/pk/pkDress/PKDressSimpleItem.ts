@@ -24,7 +24,7 @@ class PKDressSimpleItem extends game.BaseItem {
     }
 
     public setChoose(data){
-        this.chooseMC.visible = (data == this.data);
+        this.chooseMC.visible = (data && data == this.data);
     }
 
     public dataChanged() {

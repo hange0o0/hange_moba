@@ -20,8 +20,8 @@
 
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
-		<e:Label id="scoreText" width="335" y="31" textColor="0xCCB48E" text="积分：12345(LV.5)" textAlign="center" lineSpacing="8" horizontalCenter="0.5" height="36"/>
-		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="匹配需消耗入场券：1" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
+		<e:Label id="scoreText" width="335" y="31" textColor="0xCCB48E" text="积分：12345(LV.5)" textAlign="center" lineSpacing="8" horizontalCenter="0" height="36"/>
+		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="匹配需消耗入场券：1" textAlign="center" horizontalCenter="0" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect fillColor="0x494747" width="400" y="79" height="1" x="48"/>
 		<e:Image id="lockMC" source="lock_icon_png" y="25" horizontalCenter="0"/>
 	</e:Group>

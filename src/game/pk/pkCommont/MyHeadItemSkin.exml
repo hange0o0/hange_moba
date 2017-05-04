@@ -10,7 +10,7 @@
 		<e:Rect height="35" width="100%" fillAlpha="0.75" x="0" y="0"/>
 		<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="7" textColor="0xEED1A7" left="5" right="8"/>
 	</e:Group>
-	<e:Image id="redMC" source="red_point_png" x="108" y="0"/>
+	<e:Image id="redMC" x="111" source="arrow5_png" bottom="10"/>
 
 
 </e:Skin>

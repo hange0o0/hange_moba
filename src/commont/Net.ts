@@ -93,7 +93,10 @@ class Net extends egret.EventDispatcher{
             try {
                 var data = JSON.parse(e.target.data)
             }catch(e){
-                Alert('JSON数据错误');
+                if(Config.isDebug)
+                    Alert('通信数据异常');
+                else
+                    Alert('通信数据异常',refresh,'重新登陆');
                 return;
             }
             if(data.error)

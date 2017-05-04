@@ -22,7 +22,6 @@ class LoginUI extends game.BaseUI {
 
 
 
-
     public constructor() {
         super();
         this.skinName = "LoginUISkin";
@@ -47,7 +46,28 @@ class LoginUI extends game.BaseUI {
         this.nameText.text = ''
     }
 
+    public show(){
+        var LM = LoginManager.getInstance();
+        if(LM.lastUser && LM.quickPassword) {
+            if(LoginManager.getInstance().isAuto)
+            {
+                LM.login(LM.lastUser,null);
+                return;
+            }
+            else
+                LoginManager.getInstance().isAuto = false
+        }
+        super.show();
+    }
+
+
     public onChangeUser(){
+        var LM = LoginManager.getInstance();
+        if(!this.stage)
+        {
+            this.show();
+            return;
+        }
         LoginManager.getInstance().quickPassword = null;
         this.reloginGroup.visible = false
         this.logGroup.visible = true

@@ -165,29 +165,77 @@ class ServerGameEqualManager{
         });
     }
 
-
     public playBack(fun?){
         if(this.lastPKData)
         {
-            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
-            PKMainUI.getInstance().show();
+            //PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            //PKMainUI.getInstance().show();
             if(fun)
                 fun();
             return;
         }
+
         if(UM.server_game_equal.pkdata)
         {
-            if(UM.server_game_equal.pkdata != Config.pk_version)
+            if(UM.server_game_equal.pkdata.version != Config.pk_version)
             {
-                Alert('录像已过期');
+                this.lastPKData = true;
+                if(fun)
+                    fun();
                 return;
             }
-
+            var logData = this.logList[0]
+            if(logData && (logData.time - (UM.server_game_equal.pkdata.time || 0) > -5)) //5S内都算已有
+            {
+                this.lastPKData = true;
+                if(fun)
+                    fun();
+                return;
+            }
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.SERVER_EQUAL,function(data){
                 self.lastPKData = data;
-                self.playBack(fun);
+                PKManager.getInstance().onPK(PKManager.PKType.REPLAY,self.lastPKData);
+
+                var nick = '神秘人'
+                var head = 0
+                var gameid = 0
+                var info = data.info;
+                if(info && info.gameid != UM.gameid)
+                {
+                    nick = Base64.decode(info.nick);
+                    head = info.head;
+                    gameid = info.gameid
+                }
+                self.addLogList(PKManager.getInstance().getLogData({nick:nick,head:head,gameid:gameid,type:PKManager.PKType.SERVER_EQUAL},UM.server_game_equal.pkdata.time));
+                if(fun)
+                    fun();
             })
         }
     }
+
+    //public playBack(fun?){
+    //    if(this.lastPKData)
+    //    {
+    //        PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+    //        PKMainUI.getInstance().show();
+    //        if(fun)
+    //            fun();
+    //        return;
+    //    }
+    //    if(UM.server_game_equal.pkdata)
+    //    {
+    //        if(UM.server_game_equal.pkdata != Config.pk_version)
+    //        {
+    //            Alert('录像已过期');
+    //            return;
+    //        }
+    //
+    //        var self = this;
+    //        PKManager.getInstance().getReplayByType(PKManager.PKType.SERVER_EQUAL,function(data){
+    //            self.lastPKData = data;
+    //            self.playBack(fun);
+    //        })
+    //    }
+    //}
 }

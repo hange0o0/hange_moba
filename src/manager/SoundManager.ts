@@ -33,16 +33,16 @@ class SoundManager {
     // private tween:egret.Tween
     
     private init(){
-        if(!App.isMobile){//pc上默认开音乐
+        //if(!App.isMobile){//pc上默认开音乐
+        //    this._soundPlaying = true;
+        //    this._bgPlaying = true;
+        //}
+        //
+        //if(Config.isDebug)
+        //{
             this._soundPlaying = true;
             this._bgPlaying = true;
-        }
-
-        if(Config.isDebug)
-        {
-            this._soundPlaying = true;
-            this._bgPlaying = true;
-        }
+        //}
 
         var som = SharedObjectManager.instance;
         if(som.getValue("sound") != undefined)

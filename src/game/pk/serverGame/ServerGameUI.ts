@@ -22,7 +22,7 @@ class ServerGameUI extends game.BaseUI {
     private cardText: eui.Label;
     private resetBtn: eui.Button;
     private chooseBtn: eui.Button;
-    private logBtn: eui.Button
+    //private logBtn: eui.Button
 
 
 
@@ -58,7 +58,7 @@ class ServerGameUI extends game.BaseUI {
         //this.enemyList.add
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
-        this.addBtnEvent(this.logBtn, this.onLog);
+        //this.addBtnEvent(this.logBtn, this.onLog);
     }
 
     private onLog(){

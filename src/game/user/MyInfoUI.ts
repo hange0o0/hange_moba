@@ -29,7 +29,7 @@ class MyInfoUI extends game.BaseUI {
     private thisLoginText: eui.Label;
     private lastLoginText: eui.Label;
     private editWordBtn: eui.Button;
-    private setBtn: eui.Button;
+    //private setBtn: eui.Button;
     private mainLevelText: eui.Label;
     private mainAward1: eui.Label;
     private mainAward2: eui.Label;
@@ -74,7 +74,6 @@ class MyInfoUI extends game.BaseUI {
 
 
 
-        this.addBtnEvent(this.setBtn, this.onSet);
         this.addBtnEvent(this.addForceBtn, this.onAddForce);
         this.addBtnEvent(this.addCoinBtn, this.onAddCoin);
         this.addBtnEvent(this.addDiamondBtn, this.onAddDiamon);
@@ -120,9 +119,7 @@ class MyInfoUI extends game.BaseUI {
                 ChangeHeadUI.getInstance().hide();
         });
     }
-    private onSet(){
-         SettingUI.getInstance().show();
-    }
+
     private onAddForce(){
         CollectUI.getInstance().show();
     }

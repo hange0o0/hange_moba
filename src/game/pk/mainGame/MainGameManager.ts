@@ -130,6 +130,7 @@ class MainGameManager{
         }
         oo.choose = choose;
 
+        var nowLevel =  UM.main_game.level;
         if(UM.main_game.level > 1 && UM.main_game.level < 50)
         {
             oo.data_key = md5.incode(JSON.stringify(choose)).substr(-16);
@@ -153,7 +154,7 @@ class MainGameManager{
 
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
             UM.main_game.pkdata = Config.pk_version;
-            self.addLogList(PKManager.getInstance().getLogData({round:UM.main_game.level,type:PKManager.PKType.MAIN}));
+            self.addLogList(PKManager.getInstance().getLogData({round:nowLevel,type:PKManager.PKType.MAIN}));
             if(fun)
                 fun();
         });
@@ -210,23 +211,38 @@ class MainGameManager{
     public playBack(fun?){
         if(this.lastPKData)
         {
-            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
-            PKMainUI.getInstance().show();
+            //PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            //PKMainUI.getInstance().show();
             if(fun)
                 fun();
             return;
         }
+
         if(UM.main_game.pkdata)
         {
-            if(UM.main_game.pkdata != Config.pk_version)
+            if(UM.main_game.pkdata.version != Config.pk_version)
             {
-                Alert('录像已过期');
+                this.lastPKData = true;
+                if(fun)
+                    fun();
+                return;;
+            }
+            var logData = this.logList[0]
+            if(logData && (logData.time - (UM.main_game.pkdata.time || 0) > -5)) //5S内都算已有
+            {
+                this.lastPKData = true;
+                if(fun)
+                    fun();
                 return;
             }
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.MAIN,function(data){
                 self.lastPKData = data;
-                self.playBack(fun);
+                PKManager.getInstance().onPK(PKManager.PKType.REPLAY,self.lastPKData);
+                var level = data.info.level;
+                self.addLogList(PKManager.getInstance().getLogData({round:level || "??",type:PKManager.PKType.MAIN},UM.main_game.pkdata.time));
+                if(fun)
+                    fun();
             })
         }
     }

@@ -52,6 +52,12 @@ class MapUI extends game.BaseUI {
         this.addBtnEvent(this.diamondGroup, this.onDiamond);
         this.addBtnEvent(this.logBtn, this.onLog);
 
+        this.addChild(MapInfoUI.getInstance())
+        MapInfoUI.getInstance().hide();
+
+        this.addChild(MapExchangeUI.getInstance())
+        MapExchangeUI.getInstance().hide();
+
         //for(var i=0;i<this.itemPos.length;i++){
         //
         //}

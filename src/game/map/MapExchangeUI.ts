@@ -1,4 +1,4 @@
-class MapExchangeUI extends game.BaseWindow {
+class MapExchangeUI extends game.BaseContainer {
     private static instance:MapExchangeUI;
     public static getInstance() {
         if (!this.instance) this.instance = new MapExchangeUI();
@@ -10,15 +10,14 @@ class MapExchangeUI extends game.BaseWindow {
         this.skinName = "MapExchangeUISkin";
     }
 
-    private leaveText1: eui.Label;
     private coinText: eui.Label;
     private h1: eui.HSlider;
     private btn1: eui.Button;
-    private leaveText2: eui.Label;
     private cardText: eui.Label;
     private h2: eui.HSlider;
     private btn2: eui.Button;
     private closeBtn: eui.Button;
+
 
 
 
@@ -37,6 +36,11 @@ class MapExchangeUI extends game.BaseWindow {
         this.h1.addEventListener(egret.Event.CHANGE,this.renewCoin,this)
         this.h2.addEventListener(egret.Event.CHANGE,this.renewCard,this)
 
+        this.bottom = 0;
+    }
+
+    public hide(){
+        this.visible = false
     }
 
     public onCoin(){
@@ -59,8 +63,9 @@ class MapExchangeUI extends game.BaseWindow {
         })
     }
 
-    private superShow(){
-        super.show();
+    public show(){
+        this.visible = true;
+        this.onShow();
     }
 
     public onShow(){
@@ -68,14 +73,12 @@ class MapExchangeUI extends game.BaseWindow {
     }
 
     private renewCoin(){
-        this.setText(this.leaveText1,'[剩余积分：]'+ (this.h1.maximum - this.h1.value))
-        this.setText(this.coinText,'[兑换金币：]'+ MapManager.getInstance().getExCoin(this.h1.value))
+        this.coinText.text = '×' + MapManager.getInstance().getExCoin(this.h1.value) + ''
     }
 
     private renewCard(){
         var MM = MapManager.getInstance();
-        this.setText(this.leaveText2,'[剩余积分：]'+ (MM.value - MapManager.getInstance().getExCardNeed(this.h2.value)))
-        this.setText(this.cardText,'[兑换碎片：]'+ this.h2.value)
+        this.cardText.text = '×' + this.h2.value + '';
     }
 
     public renew(){
@@ -83,12 +86,12 @@ class MapExchangeUI extends game.BaseWindow {
         var v = MM.value
         this.h1.minimum = 0
         this.h1.maximum = v
-        this.h1.value = Math.floor(v/2)
+        this.h1.value = Math.floor(v)
 
         v = MM.getExCard(v);
         this.h2.minimum = 0
         this.h2.maximum = v
-        this.h2.value = Math.floor(v/2)
+        this.h2.value = Math.floor(v)
 
         this.renewCoin();
         this.renewCard();

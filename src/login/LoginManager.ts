@@ -21,6 +21,8 @@ class LoginManager{
 
     public logText;
 
+    public isAuto = false
+
     public constructor() {
         var oo =  SharedObjectManager.instance.getValue('user') || {};
         this.lastUser = oo.user;
@@ -110,9 +112,12 @@ class LoginManager{
                 }
                 else
                 {
-                    Alert('用户登录状态已失效');
-                    LoginUI.getInstance().onChangeUser();
+                    if(!self.isAuto)
+                        Alert('用户登录状态已失效');
                     self.quickPassword = null;
+                    self.isAuto = false;
+                    LoginUI.getInstance().onChangeUser();
+
                     self.writeDB();
                 }
                 return;
@@ -121,6 +126,11 @@ class LoginManager{
             if(msg.fail == 2)
             {
                 Alert('登陆失败');
+                if(self.isAuto)
+                {
+                    self.isAuto = false;
+                    LoginUI.getInstance().show();
+                }
                 return;
             }
 
@@ -266,10 +276,13 @@ class LoginManager{
         }
     }
     private onUserLogin(){
+        var self = this;
+        var isAuto = self.isAuto;
         this.getServerList(function(){
             RegisterUI.getInstance().hide();
             LoginServerUI.getInstance().show();
-            PopUpManager.movieChange(LoginUI.getInstance(),LoginServerUI.getInstance(),1)
+            if(!isAuto)
+                PopUpManager.movieChange(LoginUI.getInstance(),LoginServerUI.getInstance(),1)
         })
     }
 
@@ -363,8 +376,11 @@ class LoginManager{
             }
 
 
+
             MainPageUI.getInstance().show();
-            PopUpManager.movieChange(LoginServerUI.getInstance(),MainPageUI.getInstance(),1)
+            if(!self.isAuto)
+                PopUpManager.movieChange(LoginServerUI.getInstance(),MainPageUI.getInstance(),1)
+            self.isAuto = false;
             //LoginServerUI.getInstance().hide();
             if(fun)
                 fun();

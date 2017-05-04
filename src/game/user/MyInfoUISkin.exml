@@ -116,7 +116,6 @@
 					</e:Group>
 					<e:Group horizontalCenter="0.5" y="175" x="10" width="100%">
 						<e:Button id="editWordBtn" y="0" label="编辑宣言" skinName="Btn_r2Skin" x="113.03030303030306"/>
-						<e:Button id="setBtn" y="0" label="设置" skinName="Btn_r2Skin" x="0"/>
 						<e:layout>
 							<e:HorizontalLayout gap="30" horizontalAlign="center" paddingTop="10"/>
 						</e:layout>

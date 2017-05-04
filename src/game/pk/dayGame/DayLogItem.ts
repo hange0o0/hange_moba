@@ -25,11 +25,18 @@ class DayLogItem extends game.BaseItem {
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this.videoBtn,this.onClick);
+        this.addBtnEvent(this.nickGroup,this.onNickClick);
         this.teamInfo1.itemRenderer  = PKResultItem3
         this.teamInfo2.itemRenderer  = PKResultItem3
 
         //this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
         //this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
+    }
+
+    private onNickClick(e){
+         e.stopImmediatePropagation();
+        if(this.data.sp.gameid && this.data.sp.gameid != UM.gameid)
+            OtherInfoUI.getInstance().showID(this.data.sp.gameid);
     }
 
     private onClick(){

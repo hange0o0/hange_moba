@@ -23,11 +23,32 @@ class MapManager{
     public getLevelMap(level){
         var mUI = MapUI.getInstance();
         var yy = mUI.itemPos[level-1].y;
-        for(var i=0;i<7;i++)
+        for(var i=6;i>=0;i--)
         {
-            mUI['bgGroup'].getChildAt(i).y
+            var y = mUI['bgGroup'].getChildAt(i).y
+            if(yy > y)   //在这个地图上
+            {
+                switch(i)
+                {
+                    case 0:
+                        return 'pk_bg9_jpg';
+                    case 1:
+                        return 'pk_bg3_jpg';
+                    case 2:
+                        return 'pk_bg4_jpg';
+                    case 3:
+                        return 'pk_bg10_jpg';
+                    case 4:
+                        return 'pk_bg8_jpg';
+                    case 5:
+                        return 'pk_bg16_jpg';
+                    case 6:
+                        return 'pk_bg12_jpg';
+                }
+                break;
+            }
         }
-
+         //9,3,4,10,8,16,12
     }
 
      public passDay(){
@@ -193,6 +214,27 @@ class MapManager{
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.sweep, oo, function (data) {
             var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('还没通关，无法进行扫荡');
+                self.level = msg.level;
+                MapInfoUI.getInstance().hide();
+                EM.dispatchEventWith(GameEvent.client.map_change)
+                return;
+            }
+            if(msg.fail == 2)
+            {
+                Alert('扫荡已完成');
+                self.sweepData[level] =10
+                MapInfoUI.getInstance().hide();
+                EM.dispatchEventWith(GameEvent.client.map_change)
+                return;
+            }
+            if(msg.fail == 3)
+            {
+                Alert('钻石不足');
+                return;
+            }
             self.addValue(msg.value);
             AwardUI.getInstance().show({g_exp:msg.value});
             self.sweepData[level] = 10;

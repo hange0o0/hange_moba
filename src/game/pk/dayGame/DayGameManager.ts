@@ -158,28 +158,66 @@ class DayGameManager{
         });
     }
 
-
     public playBack(fun?){
         if(this.lastPKData)
         {
-            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
-            PKMainUI.getInstance().show();
+            //PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+            //PKMainUI.getInstance().show();
             if(fun)
                 fun();
             return;
         }
+
         if(UM.day_game.pkdata)
         {
-            if(UM.day_game.pkdata != Config.pk_version)
+            if(UM.day_game.pkdata.version != Config.pk_version)
             {
-                Alert('录像已过期');
+                this.lastPKData = true;
+                if(fun)
+                    fun();
+                return;;
+            }
+            var logData = this.logList[0]
+            if(logData && (logData.time - (UM.day_game.pkdata.time || 0) > -5)) //5S内都算已有
+            {
+                this.lastPKData = true;
+                if(fun)
+                    fun();
                 return;
             }
             var self = this;
             PKManager.getInstance().getReplayByType(PKManager.PKType.DAY,function(data){
                 self.lastPKData = data;
-                self.playBack(fun);
+                PKManager.getInstance().onPK(PKManager.PKType.REPLAY,self.lastPKData);
+                var level = data.info.level;
+                self.addLogList(PKManager.getInstance().getLogData({round:level || '??',type:PKManager.PKType.DAY},UM.day_game.pkdata.time));
+                if(fun)
+                    fun();
             })
         }
     }
+
+    //public playBack(fun?){
+    //    if(this.lastPKData)
+    //    {
+    //        PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.lastPKData);
+    //        PKMainUI.getInstance().show();
+    //        if(fun)
+    //            fun();
+    //        return;
+    //    }
+    //    if(UM.day_game.pkdata)
+    //    {
+    //        if(UM.day_game.pkdata != Config.pk_version)
+    //        {
+    //            Alert('录像已过期');
+    //            return;
+    //        }
+    //        var self = this;
+    //        PKManager.getInstance().getReplayByType(PKManager.PKType.DAY,function(data){
+    //            self.lastPKData = data;
+    //            self.playBack(fun);
+    //        })
+    //    }
+    //}
 }

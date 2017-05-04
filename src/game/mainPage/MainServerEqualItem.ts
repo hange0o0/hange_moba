@@ -72,9 +72,9 @@ class MainServerEqualItem extends game.BaseItem {
             {
                 this.startBtn.label = '开始挑战';
                 if(UM.getEnergy() >= 1)
-                    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n当前连胜次数：' + this.createHtml(serverData.last,0xFFFF00));
+                    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
                 else
-                    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n当前连胜次数：' + this.createHtml(serverData.last,0xFFFF00));
+                    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
             }
             else
             {
@@ -87,7 +87,13 @@ class MainServerEqualItem extends game.BaseItem {
                     this.startBtn.label = '进入'
                 }
                 else
+                {
+                    if(UM.getEnergy() >= 1)
+                        this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+                    else
+                        this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
                     this.startBtn.label = '开始匹配'
+                }
             }
         }
 

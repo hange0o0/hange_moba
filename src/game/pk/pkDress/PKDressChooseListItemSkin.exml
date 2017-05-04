@@ -2,7 +2,7 @@
 	<e:Group x="0" y="-2" right.right="0">
 		<e:Image source="card_bg_png" y="1" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
 		<e:Image source="head_png" y="9" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>
-		<e:Image id="redMC" source="red_point_png" x="126" y="0"/>
+		<e:Image id="redMC" source="arrow5_png" x="121" bottom="10"/>
 	</e:Group>
 	<e:Group x="151" y="0" x.right="-5">
 		<e:Button id="useBtn" label="使用" x="3" scaleX="0.88" scaleY="0.88" skinName="Btn_d2Skin" y="145"/>

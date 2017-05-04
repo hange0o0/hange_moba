@@ -14,7 +14,7 @@ class DayGameUI extends game.BaseUI {
     private enemyList: eui.List;
     private myGroup0: eui.Group;
     private myList0: eui.List;
-    private todayBtn: eui.Button;
+    //private todayBtn: eui.Button;
     private chooseBtn0: eui.Button;
 
 
@@ -36,7 +36,7 @@ class DayGameUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
-        this.addBtnEvent(this.todayBtn, this.onLog);
+        //this.addBtnEvent(this.todayBtn, this.onLog);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;

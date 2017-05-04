@@ -93,22 +93,48 @@ class Main extends eui.UILayer {
      */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
         if (event.groupName == "login_load") {
-            this.loadingView.setFinish();
-            RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
-            RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
-            RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
-            RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
+
             this.isResourceLoadEnd = true;
 
             CM.initData(RES.getRes("data_json"));
             CM.initFinish();
 
+            var LM = LoginManager.getInstance();
+            if(LM.lastUser && LM.quickPassword) {
+                LM.isAuto = true;
+                if(LM.lastServer)
+                {
+                    RES.loadGroup("preload_png"); //预加载第一阶段
+                    return;
+                }
+            }
+
+            this.removeLoadEvent();
+            this.createScene();
+        }
+        else if (event.groupName == "preload_png") {
+            RES.loadGroup("preload_jpg");//预加载第一阶段
+        }
+        else if (event.groupName == "preload_jpg") {
+            this.removeLoadEvent();
             this.createScene();
         }
     }
+
+    private removeLoadEvent(){
+        this.loadingView.setFinish();
+        RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
+        RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
+        RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+        RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
+    }
     private createScene(){
         if(this.isThemeLoadEnd && this.isResourceLoadEnd){
+
             this.startCreateScene();
+
+
+
             MyTool.removeMC(this.loadingView);
         }
     }
@@ -144,13 +170,18 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
-
-        //if(_get['debug'] == 2)
-        //{
+        Config.isDebug =  _get['debug'];
+        var LM = LoginManager.getInstance();
+        if(!(LM.lastUser && LM.quickPassword && LM.lastServer)) {
             egret.setTimeout(function(){
                 RES.loadGroup("preload_png");//预加载第一阶段
                 RES.loadGroup("preload_jpg");//预加载第一阶段
             },this,200)
+        }
+
+        //if(_get['debug'] == 2)
+        //{
+
         //}
 
         //var button = new eui.Button();
@@ -180,11 +211,11 @@ class Main extends eui.UILayer {
             Config.host = '172.17.196.195:90';
         }
 
-        if(_get['debug'] == 3)
-        {
+        //if(_get['debug'] == 3)
+        //{
             //EgretManager.getInstance().startup()
-            return;
-        }
+        //    return;
+        //}
 
         if(_get['openid'])
         {
@@ -192,11 +223,11 @@ class Main extends eui.UILayer {
             return;
         }
 
-        if(!_get['debug'])
-        {
+        //if(!_get['debug'])
+        //{
             LoginUI.getInstance().show();
             return;
-        }
+        //}
 
         //DebugUI.getInstance().show();
         //var dataIn = {

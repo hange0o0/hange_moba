@@ -1,4 +1,4 @@
-class MapInfoUI extends game.BaseWindow {
+class MapInfoUI extends game.BaseContainer {
     private static instance:MapInfoUI;
     public static getInstance() {
         if (!this.instance) this.instance = new MapInfoUI();
@@ -39,12 +39,18 @@ class MapInfoUI extends game.BaseWindow {
         this.addBtnEvent(this.sweepBtn,this.onSweep)
 
         this.awardList.itemRenderer = AwardItem;
+        this.bottom = 0;
 
+    }
+
+    public hide(){
+        this.visible = false;
     }
 
     public show(v?){
         this.level = v;
-        super.show();
+        this.visible = true
+        this.onShow();
     }
 
     private onPK(){
@@ -108,7 +114,7 @@ class MapInfoUI extends game.BaseWindow {
                 this.btnGroup.addChildAt(this.sweepBtn,0)
                 times = 10 -times;
                 this.sweepBtn.label = '扫荡 '+times+' 次';
-                this.desText.text = '每次挑战需消耗 1 点体力\n扫荡'+times+'次消耗 '+times+' 钻石，并获得对应积分奖励'
+                this.desText.text = '每次挑战需消耗 1 点体力，扫荡'+times+'次消耗 '+times+' 钻石'
             }
         }
 

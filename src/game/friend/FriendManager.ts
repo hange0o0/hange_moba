@@ -65,8 +65,8 @@ class FriendManager{
         }
         else
         {
-            this.logOpenTime = 0;
-            this.pkOpenTime = 0;
+            this.logOpenTime = 2;
+            this.pkOpenTime = 2;
         }
         this.talkSave = {};//最近的记录历史聊天到本地
     }

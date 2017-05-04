@@ -9,7 +9,6 @@ class VideoUI extends game.BaseUI {
 
     private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
-    private list: eui.List;
     private upGroup: eui.Group;
     private playerGroup1: eui.Group;
     private hpBar0: eui.Rect;
@@ -272,9 +271,9 @@ class VideoUI extends game.BaseUI {
         if(valueAdd.def)
         {
             if(valueAdd.def > 0)
-                this.setHtml(this.defendText0,'防:' + this.createHtml('+' + valueAdd.def,0x00FF00));
+                this.setHtml(this.defendText0,'防：' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
             else
-                this.setHtml(this.defendText0,'防:' + this.createHtml('' + valueAdd.def,0xFF0000));
+                this.setHtml(this.defendText0,'防：' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
         }
         else
         {
@@ -318,9 +317,9 @@ class VideoUI extends game.BaseUI {
         if(valueAdd.def)
         {
             if(valueAdd.def > 0)
-                this.setHtml(this.defendText1,'防' + this.createHtml('+' + valueAdd.def,0x00FF00) + '%');
+                this.setHtml(this.defendText1,'防：' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
             else
-                this.setHtml(this.defendText1,'防' + this.createHtml('' + valueAdd.def,0xFF0000)+'%');
+                this.setHtml(this.defendText1,'防：' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
         }
         else
         {

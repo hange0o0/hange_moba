@@ -102,14 +102,14 @@
 		<e:Rect id="taskMask" height="55" width="560" x="0" y="-1" fillAlpha="1"/>
 		<e:Label id="taskText" text="任务：在10场无科技PK中取得6场胜利（12/99）" y="17" size="22" x="50" textColor="0xFCCC8E"/>
 	</e:Group>
-	<e:Group id="helpBtn" x="581" y="125">
+	<e:Group id="setBtn" x="581" y="125">
 		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
-		<e:Label text="?" y="10" textColor="0xF8D05A" horizontalCenter="0"/>
+		<e:Image source="menu_icon_6_png" horizontalCenter="0" verticalCenter="0" scaleX="0.4" scaleY="0.4"/>
 
 	</e:Group>
 	<e:Group id="videoBtn" y="190" x="581">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
-		<e:Image source="replay_mc_png" y="6" x="11"/>
+		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
 	<e:Group x="0" bottom="0">
 		<e:Image source="main_button_bottom_jpg" x="0" y="40.000000000000114"/>

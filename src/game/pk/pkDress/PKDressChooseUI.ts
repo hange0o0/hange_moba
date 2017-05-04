@@ -455,7 +455,10 @@ class PKDressChooseUI extends game.BaseContainer {
         if(this.selectIndex == -1) //选中
         {
             if(!item.data)
+            {
+                ShowTips('请点击下方卡牌选择上阵单位')
                 return
+            }
             this.selectIndex = index;
             item.data.selected = true;
             item.dataChanged();

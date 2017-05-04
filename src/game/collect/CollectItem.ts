@@ -44,20 +44,21 @@ class CollectItem extends game.BaseItem {
         }
         else
         {
-            if(now >= need)
+            var cost = TecManager.getInstance().needCoin(level + 1)
+            if(now >= need && cost <= UM.coin)
             {
                 this.arrowMC.visible = true;
-                var cost = TecManager.getInstance().needCoin(level + 1)
-                if(cost <= UM.coin)
-                {
-                    this.arrowMC.source = 'arrow5_png'
-                    this.arrowMC.scaleY = 1;
-                }
-                else
-                {
-                    this.arrowMC.source = 'arrow4_png'
-                    this.arrowMC.scaleY = -1;
-                }
+
+                //if(cost <= UM.coin)
+                //{
+                //    this.arrowMC.source = 'arrow5_png'
+                //    this.arrowMC.scaleY = 1;
+                //}
+                //else
+                //{
+                //    this.arrowMC.source = 'arrow4_png'
+                //    this.arrowMC.scaleY = -1;
+                //}
             }
 
             this.levelText.text = 'LV.' + level;

@@ -220,6 +220,7 @@ module game {
                         
                         		
         public show():any{
+
             if(this.LoadFiles && this.LoadFiles.length > 0){
                 if(this.isStartLoad) return;
                 this.isStartLoad = true;

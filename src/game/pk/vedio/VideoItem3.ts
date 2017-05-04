@@ -118,6 +118,10 @@ class VideoItem3 extends game.BaseItem {
             this.roundText.text = '战斗结束'
             this.con.removeChildren();
             this.con.addChild(VideoUI.getInstance()['resultMC'])
+            if(data.isWin)
+                this.currentState = 'team2';
+            else
+                this.currentState = 'team1';
             //var group = this.addGroup();
             //if(data.isWin)
             //    group.addChild(this.getWordText('战斗结束,获得胜利',0x00FF00))
@@ -162,7 +166,7 @@ class VideoItem3 extends game.BaseItem {
         this.hpGroup.visible = true;
         var decColor = 0xFF0000
         var addColor = 0x00FF00
-        var barWidth = 319;
+        var barWidth = 317;
         var chooseData = this.data;
         var item = chooseData[chooseData.length - 1];
         var data = item.result.player1;
@@ -270,7 +274,7 @@ class VideoItem3 extends game.BaseItem {
         var effect = data.defender[0].list[0];
 
         this.addAtk(data,group,svo);
-        if(data.defender.length == 1 && data.defender[0].list.length<=2)
+        if(data.defender.length == 1 && data.defender[0].list.length<2)
             this.addEffectList(data,group);
         else
         {
@@ -504,6 +508,8 @@ class VideoItem3 extends game.BaseItem {
 
         group.addChild(this.getPKIcon(atker,type))
 
+        this.getMonster(defender[defIndex].defender,group)
+
         if(type && svo.name != '助攻')
         {
             var nameText = this.getWordText('【'+svo.name + '】',svo.type == 2?0x00DEFF:0x6fda13,26)
@@ -511,7 +517,7 @@ class VideoItem3 extends game.BaseItem {
             this.addItemClick(nameText,VideoCode.getInstance().getPlayerByID(atker))
         }
 
-        this.getMonster(defender[defIndex].defender,group)
+
     }
 
     private addEffectList(data,group?,begin=0){

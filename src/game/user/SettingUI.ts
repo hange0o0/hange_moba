@@ -50,7 +50,7 @@ class SettingUI extends game.BaseWindow {
     }
 
     private onLoginOut(){
-        PopUpManager.showToMain();
+        //PopUpManager.showToMain();
         LoginServerUI.getInstance().show();
         PopUpManager.movieChange(MainPageUI.getInstance(),LoginServerUI.getInstance(),-1)
     }

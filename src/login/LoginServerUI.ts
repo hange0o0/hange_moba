@@ -42,6 +42,17 @@ class LoginServerUI extends game.BaseUI {
 
     public show(){
         var LM = LoginManager.getInstance();
+        if(LM.isAuto)
+        {
+            var serverid = LM.lastServer
+            if(serverid && LM.myServer[serverid])
+            {
+                this.autoServer(serverid);
+                return;
+            }
+
+        }
+        LM.isAuto = false;
         var self = this;
         //LM.getServerList(function(){
             self.superShow();
@@ -57,8 +68,8 @@ class LoginServerUI extends game.BaseUI {
         super.show();
     }
 
-    private autoServer(){
-        var serverid = _get['serverid']
+    private autoServer(serverid?){
+        serverid = serverid || _get['serverid']
         var LM = LoginManager.getInstance();
 
         if(LM.myServer[serverid]) //这个服上有号

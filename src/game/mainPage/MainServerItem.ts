@@ -61,15 +61,15 @@ class MainServerItem extends game.BaseItem {
             else if(serverData.choose)//已有卡版数据
             {
                 this.startBtn.label = '开始挑战';
-                if(UM.getEnergy() >= 1)
-                    this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFFFF00));
-                else
-                    this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFF0000));
             }
             else
             {
                 this.startBtn.label = '开始匹配'
             }
+            if(UM.getEnergy() >= 1)
+                this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFFFF00));
+            else
+                this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFF0000));
         }
 
 

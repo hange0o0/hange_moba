@@ -7,11 +7,6 @@
 
 	<e:Scroller id="scroller" width="640" top="260" bottom="0" horizontalCenter="0">
 		<e:Group id="scrollGroup">
-			<e:List id="list" height="200" width="200" x="68" y="64" visible="false">
-				<e:layout>
-					<e:VerticalLayout gap="15" horizontalAlign="center"/>
-				</e:layout>
-			</e:List>
 		</e:Group>
 	</e:Scroller>
 	<e:Group id="upGroup" x="0" y="70" width="640">
@@ -88,7 +83,7 @@
 					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
 					<e:Label y="0" textColor="0xCBC08A" text="123" id="speedText1" size="24" x="35"/>
 				</e:Group>
-				<e:Group width="100" y="0" x="0">
+				<e:Group y="0" x="0">
 					<e:Image source="card_icon_1_png" y="0" scaleY="0.65" x="0" scaleX="0.65"/>
 					<e:Label y="1.6500000000000004" textColor="0xCBC08A" text="1234" x="35" size="24" id="atkText1"/>
 				</e:Group>
@@ -102,9 +97,9 @@
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin" locked="true"/>
-	<e:Group id="guideBtn" y="307" x="40">
+	<e:Group id="guideBtn" y="307" x="500">
 		<e:Image source="menu_icon_4_png" y="0" x="0"/>
-		<e:Label bottom="0" horizontalCenter="0" stroke="2" text="概况" size="26" strokeColor="0x333333"/>
+		<e:Label bottom="5" horizontalCenter="0" stroke="3" text="概况" size="26" strokeColor="0x333333"/>
 	</e:Group>
 	<ns1:VideoGuide id="guideMC" x="0" skinName="VideoGuideSkin" top="260" bottom="0" visible="false"/>
 	<e:Group id="resultMC" y="300" width="600" x="20" locked="true">

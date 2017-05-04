@@ -435,8 +435,9 @@ class PKDressUI extends game.BaseUI {
 
         this.renewList();
         this.renew();
-        this.renewSimpleList();
         this.pkDressChooseUI.renew(this.chooseList);
+        this.renewSimpleList();
+
 
         this.upBtnGroup.removeChildren()
 

@@ -10,7 +10,7 @@
 					<e:Image source="book_bg2_jpg" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="100%" x="640"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
-				<e:Group y="20" horizontalCenter="0">
+				<e:Group y="15" horizontalCenter="0">
 					<e:Label id="desText" y="5" textColor="0xCCB48E" text="敌方战力：123456" x="0" size="26"/>
 				</e:Group>
 				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
@@ -51,7 +51,7 @@
 						</e:ArrayCollection>
 					</e:List>
 					<e:Group horizontalCenter="0" y="0">
-						<e:Rect height="60" width="640" x="0" y="0" fillColor="0x330000" strokeColor="0x000000"/>
+						<e:Rect height="60" width="640" x="0" y="0" strokeColor="0x000000" fillColor="0x200000"/>
 						<e:Label textColor="0xD9B67B" text="我的卡组" textAlign="center" width="140" horizontalCenter="0" size="26" verticalCenter="0"/>
 					</e:Group>
 				</e:Group>

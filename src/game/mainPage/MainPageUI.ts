@@ -29,13 +29,13 @@ class MainPageUI extends game.BaseUI {
     private cardGroup: eui.Group;
     private feeText: eui.Label;
     private addFreeBtn: eui.Group;
-    //private scroller: eui.Scroller;
-    //private scrollGroupCon: eui.Group;
     private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
     private dayGame: MainDayItem;
     private serverGame: MainServerItem;
     private serverGameEqual: MainServerEqualItem;
+    private scroller: eui.Scroller;
+    private scrollGroupCon: eui.Group;
     private p0: MainPageItem;
     private p1: MainPageItem;
     private p2: MainPageItem;
@@ -45,7 +45,7 @@ class MainPageUI extends game.BaseUI {
     private taskGroup: eui.Group;
     private taskMask: eui.Rect;
     private taskText: eui.Label;
-    private helpBtn: eui.Group;
+    private setBtn: eui.Group;
     private videoBtn: eui.Group;
     private honorBtn: eui.Group;
     private honorRed: eui.Image;
@@ -57,6 +57,7 @@ class MainPageUI extends game.BaseUI {
     private friendRed: eui.Image;
     private friendLockMC: eui.Image;
     private bagBtn: eui.Group;
+
 
 
 
@@ -87,7 +88,7 @@ class MainPageUI extends game.BaseUI {
 
 
         this.addBtnEvent(this.videoBtn,this.onVideo);
-        this.addBtnEvent(this.helpBtn,this.onHelp);
+        this.addBtnEvent(this.setBtn,this.onSet);
 
 
         this.addBtnEvent(this.friendBtn, this.onFriend);
@@ -230,41 +231,56 @@ class MainPageUI extends game.BaseUI {
         switch(this.currentPage)
         {
             case 0:
-                PM.playBack(PKManager.PKType.MAIN);
+                PM.playBack(PKManager.PKType.MAIN,function(){
+                    DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'试练挑战日志');
+                });
+
                 break;
             case 1:
-                PM.playBack(PKManager.PKType.DAY);
+
+                PM.playBack(PKManager.PKType.DAY,function(){
+                    DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'每日挑战日志');
+                });
                 break;
             case 2:
-                PM.playBack(PKManager.PKType.SERVER);
+
+                PM.playBack(PKManager.PKType.SERVER,function(){
+                    DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技挑战日志');
+                });
                 break;
             case 3:
-                PM.playBack(PKManager.PKType.SERVER_EQUAL);
+
+                PM.playBack(PKManager.PKType.SERVER_EQUAL,function(){
+                    DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正挑战日志');
+                });
                 break;
         }
     }
 
-    private onHelp(){
-        //GuideUI.getInstance().show(null,'friend')
-        //return;
-        var HM = HelpManager.getInstance()
-        switch(this.currentPage)
-        {
-            case 0:
-                HM.mainHelp();
-                break;
-            case 1:
-                HM.dayHelp();
-                break;
-            case 2:
-                HM.serverHelp();
-                break;
-            case 3:
-                HM.serverEqualHelp();
-                break;
-        }
-    }
+    //private onHelp(){
+    //    //GuideUI.getInstance().show(null,'friend')
+    //    //return;
+    //    var HM = HelpManager.getInstance()
+    //    switch(this.currentPage)
+    //    {
+    //        case 0:
+    //            HM.mainHelp();
+    //            break;
+    //        case 1:
+    //            HM.dayHelp();
+    //            break;
+    //        case 2:
+    //            HM.serverHelp();
+    //            break;
+    //        case 3:
+    //            HM.serverEqualHelp();
+    //            break;
+    //    }
+    //}
 
+    private onSet(){
+        SettingUI.getInstance().show();
+    }
     private onAddCoin(){
         ShopUI.getInstance().show('coin');
     }
@@ -609,19 +625,19 @@ class MainPageUI extends game.BaseUI {
         {
             case 0:
                 currentView = this.mainGame;
-                this.videoBtn.visible = UM.main_game.pkdata;
+                this.videoBtn.visible = MainGameManager.getInstance().logList.length > 0 || (UM.main_game.pkdata && UM.main_game.pkdata.version == Config.pk_version);
                 break;
             case 1:
                 currentView = this.dayGame;
-                this.videoBtn.visible = UM.day_game.pkdata;
+                this.videoBtn.visible = DayGameManager.getInstance().logList.length > 0 || (UM.day_game.pkdata && UM.day_game.pkdata.version == Config.pk_version);
                 break;
             case 2:
                 currentView = this.serverGame;
-                this.videoBtn.visible = UM.server_game.pkdata;
+                this.videoBtn.visible = ServerGameManager.getInstance().logList.length > 0 || (UM.server_game.pkdata && UM.server_game.pkdata.version == Config.pk_version);
                 break;
             case 3:
                 currentView = this.serverGameEqual;
-                this.videoBtn.visible = UM.server_game_equal.pkdata;
+                this.videoBtn.visible = ServerGameEqualManager.getInstance().logList.length > 0 || (UM.server_game_equal.pkdata && UM.server_game_equal.pkdata.version == Config.pk_version);
                 break;
 
         }
