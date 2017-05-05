@@ -31,7 +31,7 @@ class MainGameManager{
         })
     }
 
-    public stepName = ['学徒'];
+    public stepName = ['卡士','卡使','卡将','卡帅','卡师','卡神','卡圣','卡皇','卡帝','卡君','卡尊','卡主','卡宗'];
     public getMainStepLevel(lv?){
         var level = lv || UM.main_game.level;
         if(level < 90)

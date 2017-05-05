@@ -46,7 +46,7 @@ class RankItem extends game.BaseItem {
         this.iconMC.visible = false
         this.numText2.text = '';
         this.numText.text = ''
-        var typeName = ['','战力：','等级：LV.','关卡：','关卡：','积分：','积分：',]
+        var typeName = ['','战力：','等级：LV.','积分：','关卡：','积分：','评分：',]
         this.scoreText.text = typeName[this.data.type] +  NumberUtil.addNumSeparator(this.data.value);
         if(this.data.index < 4)
         {
@@ -62,17 +62,27 @@ class RankItem extends game.BaseItem {
             this.numText.text = '' + this.data.index;
         }
 
+        var nick
         if(this.data.gameid == UM.gameid)
         {
             this.currentState = 'self';
             this.headMC.source = MyTool.getHeadUrl(UM.head);
             this.nameText.text = UM.nick
+            nick = UM.nick;
         }
         else
         {
             this.headMC.source = MyTool.getHeadUrl(this.data.head);
             this.nameText.text = this.data.nick
             this.currentState = 'up';
+            nick = this.data.nick;
         }
+
+        if(this.data.type == 3)
+            this.setHtml(this.nameText,nick + this.createHtml('  ['+MainGameManager.getInstance().getStepName(this.data.value)+']',0xE0A44A,22))
+        else if(this.data.type == 5)
+            this.setHtml(this.nameText,nick + this.createHtml('  ['+ServerGameManager.getInstance().getStepName(this.data.value)+']',0xE0A44A,22))
+        else if(this.data.type == 6)
+            this.setHtml(this.nameText,nick + this.createHtml('  ['+ServerGameEqualManager.getInstance().getStepName(this.data.value)+']',0xE0A44A,22))
     }
 }

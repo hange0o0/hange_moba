@@ -31,6 +31,7 @@ class MyInfoUI extends game.BaseUI {
     private editWordBtn: eui.Button;
     //private setBtn: eui.Button;
     private mainLevelText: eui.Label;
+    private mainLevelText2: eui.Label;
     private mainAward1: eui.Label;
     private mainAward2: eui.Label;
     private mainAward3: eui.Label;
@@ -207,7 +208,8 @@ class MyInfoUI extends game.BaseUI {
 
         var mainData = UM.main_game;
         var level:any = mainData.level;
-        this.setText(this.mainLevelText,'[当前等级：]' + level)
+        this.setText(this.mainLevelText,'[当前称号：]' + MainGameManager.getInstance().getStepName(level))
+        this.setText(this.mainLevelText2,'  [评分：]' + level)
         var award = MainGameManager.getInstance().getLocalAward(level);
         this.mainAward1.text = '' + award.coin;
         this.mainAward2.text = '' + award.card;
@@ -219,20 +221,20 @@ class MyInfoUI extends game.BaseUI {
         var myData = UM.day_game;
         this.setText(this.dailyText1,'[当前进度：]' + myData.level + '/10')
         this.setText(this.dailyText2,'[累计通关次数：]' +  myData.times)
-        this.setText(this.dailyText3,'[获得任务积分：]' +  myData.score)
+        this.setText(this.dailyText3,'[获得研究积分：]' +  myData.score)
 
         var serverData = UM.server_game;
         level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
         this.setText(this.serverText1,'[积分：]' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
-        this.setText(this.serverText2,'[当前等级：]'+level+'（[下一级积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
+        this.setText(this.serverText2,'[当前段位：]'+ServerGameManager.getInstance().getStepName(serverData.exp)+'（[下一段积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
         this.setText(this.serverText3,'[胜利次数：]' + serverData.win)
         this.setText(this.serverText4,'[失败次数：]' + (serverData.total - serverData.win));
 
 
         var serverData = UM.server_game_equal;
         level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
-        this.setText(this.serverEqualText1, '[积分]：' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
-        this.setText(this.serverEqualText2,'[当前等级：]'+level+'（[下一级积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
+        this.setText(this.serverEqualText1, '[评分]：' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
+        this.setText(this.serverEqualText2,'[天赋等级：]'+ServerGameEqualManager.getInstance().getStepName(serverData.exp)+'（[下一级评分：]'+ServerGameEqualManager.getInstance().getPKTableExp(level + 1)+'）')
         this.setText(this.serverEqualText3, '[胜利次数：]' + serverData.win)
         this.setText(this.serverEqualText4,'[失败次数：]' + (serverData.total - serverData.win));
         this.setText(this.serverEqualText5,'[当前连胜：]' + serverData.last)

@@ -40,7 +40,7 @@ class MainMainItem extends game.BaseItem {
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         var mainData = UM.main_game;
         var level = mainData.level;
-        this.scoreText.text = '当前等级：' + level;
+        this.setHtml(this.scoreText,'称号：' + MainGameManager.getInstance().getStepName(level) + this.createHtml('  [评分：'+level+']',0xE0A44A,22));
 
         MyTool.removeMC(this.awardBtn);
         if(mainData.awardtime && DateUtil.isSameDay(mainData.awardtime))//已领过奖
@@ -72,7 +72,7 @@ class MainMainItem extends game.BaseItem {
         if(level >= MainGameManager.getInstance().maxLevel)
         {
             MyTool.removeMC(this.startBtn)
-            this.desText.text = '更高层的试练场即将开放！'
+            this.desText.text = '更高阶的职业评定即将开放！'
         }
 
 

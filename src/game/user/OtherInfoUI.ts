@@ -23,6 +23,7 @@ class OtherInfoUI extends game.BaseUI {
     private friendWin: eui.Label;
     private friendFail: eui.Label;
     private mainLevelText: eui.Label;
+    private mainLevelText2: eui.Label;
     private dailyText2: eui.Label;
     private dailyText3: eui.Label;
     private serverText1: eui.Label;
@@ -198,20 +199,21 @@ class OtherInfoUI extends game.BaseUI {
         this.setText(this.forceText, '[战力：]$$',UM.getForce(),dataIn.force);
 
 
-        this.setText(this.mainLevelText,'[当前等级：]$$',UM.main_game.level ,dataIn.main_game.level);
+        this.setText(this.mainLevelText,'[当前称号：]$$',UM.main_game.level ,dataIn.main_game.level,MainGameManager.getInstance().getStepName(level));
+        this.setText(this.mainLevelText2,'  [评分：]$$',UM.main_game.level ,dataIn.main_game.level)
 
 
         var myData = dataIn.day_game;
         var myData2 = UM.day_game;
         this.setText(this.dailyText2, '[累计通关次数：]$$',myData2.times,myData.times);
-        this.setText(this.dailyText3, '[获得任务积分：]$$',myData2.score, myData.score);
+        this.setText(this.dailyText3, '[获得研究积分：]$$',myData2.score, myData.score);
 
         var serverData = dataIn.server_game;
         var serverData2 = UM.server_game;
         var level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
         var level2 = ServerGameManager.getInstance().getPKTableLevel(serverData2.exp)
         this.setHtml(this.serverText1,this.changeValue('[积分：]$$',serverData2.exp,serverData.exp) + this.changeValue('（[历史最高]：$$）',serverData2.top,serverData.top));
-        this.setText(this.serverText2, '[当前等级：]$$',level2,level);
+        this.setText(this.serverText2, '[当前段位：]$$',level2,level,ServerGameManager.getInstance().getStepName(serverData.exp));
         this.setText(this.serverText3, '[胜利次数：]$$',serverData2.win,serverData.win);
         this.setText(this.serverText4, '[胜率：]$$', MyTool.toFixed(serverData2.win/(serverData2.total||1)*100,1) + '%', MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%');
 
@@ -221,8 +223,8 @@ class OtherInfoUI extends game.BaseUI {
         level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
         level2 = ServerGameEqualManager.getInstance().getPKTableLevel(serverData2.exp)
 
-        this.setHtml(this.serverEqualText1,this.changeValue('[积分：]$$',serverData2.exp,serverData.exp) + this.changeValue('（[历史最高]：$$）',serverData2.top,serverData.top));
-        this.setText(this.serverEqualText2, '[当前等级：]$$',level2,level);
+        this.setHtml(this.serverEqualText1,this.changeValue('[评分：]$$',serverData2.exp,serverData.exp) + this.changeValue('（[历史最高]：$$）',serverData2.top,serverData.top));
+        this.setText(this.serverEqualText2, '[天赋等级：]$$',level2,level,ServerGameEqualManager.getInstance().getStepName(serverData.exp));
         this.setText(this.serverEqualText3,  '[胜利次数：]$$',serverData2.win,serverData.win);
         this.setText(this.serverEqualText4, '[胜率：]$$',MyTool.toFixed(serverData2.win/(serverData2.total||1)*100,1) + '%',MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%');
         this.setText(this.serverEqualText5, '[最高连胜：]$$',serverData2.max,serverData.max);
@@ -269,24 +271,24 @@ class OtherInfoUI extends game.BaseUI {
 
     }
 
-    private setText(text,str,myValue,otherValue){
+    private setText(text,str,myValue,otherValue,w?){
 
-        str = this.changeValue(str,myValue,otherValue);
+        str = this.changeValue(str,myValue,otherValue,w);
         this.setHtml(text,str);
     }
 
-    private changeValue(str,myValue,otherValue){
+    private changeValue(str,myValue,otherValue,w?){
         if(myValue > otherValue)
         {
-            str = str.replace('$$','<font color="#FFFF00">'+otherValue+'</font>')
+            str = str.replace('$$','<font color="#FFFF00">'+(w || otherValue)+'</font>')
         }
         else if(myValue < otherValue)
         {
-            str = str.replace('$$','<font color="#ff0000">'+otherValue+'</font>')
+            str = str.replace('$$','<font color="#ff0000">'+(w || otherValue)+'</font>')
         }
         else
         {
-            str = str.replace('$$',otherValue)
+            str = str.replace('$$',(w || otherValue))
         }
 
         str = str.replace(/\[/g,'<font color="#E0A44A">')

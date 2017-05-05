@@ -45,6 +45,7 @@ class MainPageUI extends game.BaseUI {
     private taskGroup: eui.Group;
     private taskMask: eui.Rect;
     private taskText: eui.Label;
+    private helpBtn: eui.Group;
     private setBtn: eui.Group;
     private videoBtn: eui.Group;
     private honorBtn: eui.Group;
@@ -89,6 +90,7 @@ class MainPageUI extends game.BaseUI {
 
         this.addBtnEvent(this.videoBtn,this.onVideo);
         this.addBtnEvent(this.setBtn,this.onSet);
+        this.addBtnEvent(this.helpBtn,this.onHelp);
 
 
         this.addBtnEvent(this.friendBtn, this.onFriend);
@@ -232,51 +234,51 @@ class MainPageUI extends game.BaseUI {
         {
             case 0:
                 PM.playBack(PKManager.PKType.MAIN,function(){
-                    DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'试练挑战日志');
+                    DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'公会挑战日志');
                 });
 
                 break;
             case 1:
 
                 PM.playBack(PKManager.PKType.DAY,function(){
-                    DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'每日挑战日志');
+                    DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'研究院挑战日志');
                 });
                 break;
             case 2:
 
                 PM.playBack(PKManager.PKType.SERVER,function(){
-                    DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技挑战日志');
+                    DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技场挑战日志');
                 });
                 break;
             case 3:
 
                 PM.playBack(PKManager.PKType.SERVER_EQUAL,function(){
-                    DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正挑战日志');
+                    DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正场挑战日志');
                 });
                 break;
         }
     }
 
-    //private onHelp(){
-    //    //GuideUI.getInstance().show(null,'friend')
-    //    //return;
-    //    var HM = HelpManager.getInstance()
-    //    switch(this.currentPage)
-    //    {
-    //        case 0:
-    //            HM.mainHelp();
-    //            break;
-    //        case 1:
-    //            HM.dayHelp();
-    //            break;
-    //        case 2:
-    //            HM.serverHelp();
-    //            break;
-    //        case 3:
-    //            HM.serverEqualHelp();
-    //            break;
-    //    }
-    //}
+    private onHelp(){
+        //GuideUI.getInstance().show(null,'friend')
+        //return;
+        var HM = HelpManager.getInstance()
+        switch(this.currentPage)
+        {
+            case 0:
+                HM.mainHelp();
+                break;
+            case 1:
+                HM.dayHelp();
+                break;
+            case 2:
+                HM.serverHelp();
+                break;
+            case 3:
+                HM.serverEqualHelp();
+                break;
+        }
+    }
 
     private onSet(){
         SettingUI.getInstance().show();

@@ -2,7 +2,8 @@
 <e:Skin class="MainDayItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Group id="bgGroup" x="320" y="200" width="640" height="400" anchorOffsetX="320" anchorOffsetY="200">
 		<e:Image x="75" y="-213" id="bg" source="main2_png"/>
-	</e:Group>
+	</e:Group>
+
 
 
 
@@ -11,8 +12,9 @@
 
 	<e:Group y="265" width="480" horizontalCenter="0">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
-		<e:Label text="今日挑战" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
-		<e:Image source="main_mc_png" y="0" x="0"/>
+		<e:Label text="究极研究院" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
+		<e:Image source="main_mc_png" y="0" x="0"/>
+
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>

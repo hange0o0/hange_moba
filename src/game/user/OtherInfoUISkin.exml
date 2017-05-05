@@ -46,7 +46,9 @@
 							<e:Label id="forceText" y="9" text="战力：12345" x="50" textColor="0xCCB48E"/>
 							<e:Image source="icon_power_png" y="0" x="0"/>
 						</e:Group>
-					</e:Group>
+					</e:Group>
+
+
 				</e:Group>
 				<e:Image source="main_mc_png" bottom="-22" scaleY="-0.6" right="5" scaleX="0.6" x="10" y="10"/>
 				<e:Image source="main_mc_png" y="20" scaleX="-0.6" bottom="-22" left="5" scaleY="-0.6" x="10"/>
@@ -71,13 +73,14 @@
 				<e:Image source="card_bg_png" y="40" width="600" height="120" scale9Grid="73,55,104,130" horizontalCenter="0"/>
 				<e:Group y="11" horizontalCenter="0">
 					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
-					<e:Label y="5" text="试练场数据" x="205" textColor="0xC4A87C"/>
+					<e:Label y="5" text="职业数据" x="205" textColor="0xC4A87C"/>
 					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
 					<e:layout>
 						<e:HorizontalLayout verticalAlign="middle"/>
 					</e:layout>
 				</e:Group>
-				<e:Label id="mainLevelText" y="83" textColor="0xCCB48E" size="24" text="当前等级：12" horizontalCenter="0"/>
+				<e:Label y="82" textColor="0xCCB48E" text="累计通关次数：0" id="mainLevelText" size="24" x="50"/>
+                <e:Label y="82" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText2" size="24" x="330"/>
 
 
 			</e:Group>
@@ -85,7 +88,7 @@
 				<e:Image source="card_bg_png" y="35" width="600" height="120" scale9Grid="69,57,108,126" horizontalCenter="0"/>
 				<e:Group y="7" horizontalCenter="0">
 					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
-					<e:Label y="5" text="每日任务数据" x="205" textColor="0xC4A87C"/>
+					<e:Label y="5" text="研究院数据" x="205" textColor="0xC4A87C"/>
 					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
 					<e:layout>
 						<e:HorizontalLayout verticalAlign="middle"/>

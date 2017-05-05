@@ -12,10 +12,12 @@ class ServerGameManager{
     public lastPKData;
     public logList
 
-    public stepName = ['学徒'];
+    public stepName = ['青铜','生铁','黑铁','白银','黄金','白金','紫金','赤金','钻石'];
     public getStepName(exp){
         var level = this.getPKTableLevel(exp)
-        return this.stepName[level];
+        var step = level%3 || 3
+        level = Math.floor((level - 1)/3)
+        return this.stepName[level] + StringUtil.numToStr(step)+'段';
     }
 
 

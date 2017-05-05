@@ -41,8 +41,8 @@ class MainServerEqualItem extends game.BaseItem {
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game_equal;
         //this.totalText.text = '局数：' + serverData.total;
-        this.titleText.text = '修正场 [' + ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)+'阶]';
-        this.scoreText.text = '积分：' + serverData.exp;
+        this.titleText.text = '虚空修正场';
+        this.setHtml(this.scoreText,'评分：' + serverData.exp + this.createHtml('  ['+ServerGameEqualManager.getInstance().getStepName(serverData.exp)+']',0xE0A44A,22));
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
         //this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);
@@ -51,7 +51,7 @@ class MainServerEqualItem extends game.BaseItem {
         if(this.lockMC.visible)
         {
 
-            this.desText.text = '试练场达' + Config.serverEqualLevel + '级后开放'
+            this.desText.text = '公会评分达' + Config.serverEqualLevel + '后开放'
             this.btnGroup.visible = false;
         }
         else

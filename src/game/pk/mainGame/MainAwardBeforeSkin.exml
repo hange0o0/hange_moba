@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainAwardBeforeSkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="580" x="1" y="10"/>
-	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="每日领奖" x="20"/>
+	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="领取补助" x="20"/>
 	<e:Group y="493.93939393939394" horizontalCenter="0" locked="true">
 		<e:Button id="closeBtn" label="返回" x="0" y="0" skinName="Btn_b2Skin"/>
 		<e:Button id="okBtn" label="领取" skinName="Btn_r2Skin" x="0" y="0"/>
@@ -9,8 +9,8 @@
 			<e:HorizontalLayout gap="50"/>
 		</e:layout>
 	</e:Group>
-	<e:Label y="110" size="24" text="根据你当前试练场，可获得以下奖励" x="60" textColor="0xE0A44A"/>
-	<e:Label y="228" size="24" text="当你在试练场再赢一局，奖励将增加至：" x="69" textColor="0xE0A44A"/>
+	<e:Label y="110" size="24" text="根据你当前公会等级，可获得以下奖励" x="60" textColor="0xE0A44A"/>
+	<e:Label y="228" size="24" text="当你在卡士公会再晋一级，奖励将增加至：" x="69" textColor="0xE0A44A"/>
 	<e:Label id="timeText" y="380" size="24" text="现在离本轮领奖结束还差：00:00:00" x="60" textColor="0xE0A44A" verticalAlign="bottom" lineSpacing="15"/>
 	<e:Rect width="500" y="340" height="1" horizontalCenter="0" fillColor="0x95612D"/>
 	<e:Group y="160" horizontalCenter="-20">

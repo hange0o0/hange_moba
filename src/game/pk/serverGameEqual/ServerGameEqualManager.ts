@@ -11,11 +11,12 @@ class ServerGameEqualManager{
 
     public lastPKData;
     public logList
-
-    public stepName = ['学徒'];
+    public stepName = ['黄','玄','地','天','武','圣','尊','神'];
     public getStepName(exp){
         var level = this.getPKTableLevel(exp)
-        return this.stepName[level];
+        var step = level%3 || 3
+        level = Math.floor((level - 1)/3)
+        return this.stepName[level] + '级' + ['','上','中','下'][step]+'品';
     }
 
     public initData(){
@@ -78,7 +79,7 @@ class ServerGameEqualManager{
         var oo:any = {};
         if(!serverData.open && UM.getPropNum(21) < 1)
         {
-            Confirm('修正币数量不足！\n在竞技场、每日任务中，都有机会获得入场券\n是否需要进行购买？',function(v){
+            Confirm('修正币数量不足！\n在天梯竞技场、究极研究院中取得胜利，都有机会获得修正币\n你也可以通过使用钻石进行购买，是否前往？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('ticket');

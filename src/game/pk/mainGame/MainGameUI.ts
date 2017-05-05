@@ -35,7 +35,7 @@ class MainGameUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('试练场PK');
+        this.topUI.setTitle('公会评定');
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
@@ -53,9 +53,7 @@ class MainGameUI extends game.BaseUI {
         //this.addBtnEvent(this.logBtn, this.onLog);
     }
 
-    private onLog(){
-        DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'试练挑战日志');
-    }
+
     private onReset(){
         PKManager.getInstance().reChooseMyCard()
     }
@@ -169,7 +167,7 @@ class MainGameUI extends game.BaseUI {
     public onShow(){
 
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
-        this.topUI.setTitle('试练场PK-第'+(UM.main_game.level)+'关');
+        this.topUI.setTitle('公会评定-第'+(UM.main_game.level)+'关');
 
         this.renewEnemy();
         this.renewSelf();

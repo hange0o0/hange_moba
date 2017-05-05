@@ -69,7 +69,7 @@ class PKResultBase extends game.BaseContainer {
             award.dayAward = false;
             if(this._desText.text)
                 this._desText.text += '\n';
-            this._desText.text += '日常任务积分达到10的倍数';
+            this._desText.text += '研究院积分凑满10分';
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }
         //else if(award.finishTask)//完成任务了

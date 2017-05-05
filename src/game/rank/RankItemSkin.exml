@@ -1,14 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RankItemSkin" width="640" height="80" currentState="up" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="up,self,info" >
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="640" height="80" x="0" includeIn="up,self"/>
-	<e:Rect height="100%" width="100%" x="0" y="0" visible.up="false" fillAlpha="0.3" fillColor="0x2A0800" includeIn="up,self"/>
+	<e:Rect height="100%" width="100%" x="0" y="0" visible.up="false" fillAlpha="0.3" fillColor="0x2A0800" includeIn="up,self"/>
+
+
 	<e:Group x="94" y="9" includeIn="up,self">
 		<e:Image source="border2_png" y="0" width="60" height="60" x="0" visible.info="false"/>
 		<e:Rect y="5" width="50" height="50" x="6" visible.info="false"/>
 		<e:Image source="head_png" y="5" id="headMC" width="50" height="50" x="6" visible.info="false"/>
 	</e:Group>
 	<e:Label id="nameText" text="标签" x="165" y="25" textColor="0xCCB48E" textColor.self="0xEB9501" size="28" size.self="30" y.self="24" includeIn="up,self"/>
-	<e:Label id="scoreText" text="标签" y="28" textColor="0xCCB48E" textColor.self="0xEB9501" size="24" x="430" size.self="26" y.self="27" includeIn="up,self"/>
+	<e:Label id="scoreText" text="标签" y="28" textColor="0xCCB48E" textColor.self="0xEB9501" size="24" x="450" size.self="26" y.self="27" includeIn="up,self"/>
 	<e:BitmapLabel id="numText2"  y="20" text="5" horizontalCenter="-269.8" font="font_num5_fnt" scaleX="0.8" scaleY="0.8" includeIn="up,self"/>
 	<e:Label id="numText" text="标签" y="23" horizontalCenter="-271" textColor="0xCCB48E" textColor.self="0xEB9501" includeIn="up,self"/>
 

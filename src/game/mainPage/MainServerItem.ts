@@ -36,8 +36,8 @@ class MainServerItem extends game.BaseItem {
         this.bg.source = 'main3_png'
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game;
-        this.titleText.text = '竞技场 [' + ServerGameManager.getInstance().getPKTableLevel(serverData.exp) + '阶]'
-        this.scoreText.text = '积分：' + serverData.exp;
+        this.titleText.text = '天梯竞技场'
+        this.setHtml(this.scoreText,'评分：' + serverData.exp + this.createHtml('  ['+ServerGameManager.getInstance().getStepName(serverData.exp)+']',0xE0A44A,22));
         //this.totalText.text = '局数：' + serverData.total;
         //this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;
@@ -46,7 +46,7 @@ class MainServerItem extends game.BaseItem {
         if(this.lockMC.visible)
         {
 
-            this.desText.text = '试练场达' + Config.serverLevel + '级后开放'
+            this.desText.text = '公会评分达' + Config.serverLevel + '后开放'
             this.btnGroup.visible = false;
         }
         else
