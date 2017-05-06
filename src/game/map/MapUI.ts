@@ -21,15 +21,19 @@ class MapUI extends game.BaseUI {
     private mapGroup: eui.Group;
     private bgGroup: eui.Group;
     private itemGroup: eui.Group;
+    private bottomGroup: eui.Group;
+    private closeBtn: eui.Group;
+    private logBtn: eui.Button;
+    private shopBtn: eui.Button;
+    private titleText: eui.Label;
+    private helpBtn: eui.Group;
     private energyGroup: eui.Group;
     private energyText: eui.Label;
     private diamondGroup: eui.Group;
     private diamondText: eui.Label;
     private valueText: eui.Label;
-    private bottomGroup: eui.Group;
-    private closeBtn: eui.Button;
-    private logBtn: eui.Button;
-    private shopBtn: eui.Button;
+
+
 
 
 
@@ -41,6 +45,8 @@ class MapUI extends game.BaseUI {
     private itemArray = [];
 
 
+    private cloudTimer = 0;
+    private cloudArr = [];
     public childrenCreated() {
         super.childrenCreated();
 
@@ -51,6 +57,7 @@ class MapUI extends game.BaseUI {
         this.addBtnEvent(this.energyGroup, this.onEnergy);
         this.addBtnEvent(this.diamondGroup, this.onDiamond);
         this.addBtnEvent(this.logBtn, this.onLog);
+        this.addBtnEvent(this.helpBtn, this.onHelp);
 
         this.addChild(MapInfoUI.getInstance())
         MapInfoUI.getInstance().hide();
@@ -67,6 +74,9 @@ class MapUI extends game.BaseUI {
 
     private onLog(){
         DayLogUI.getInstance().show(MapManager.getInstance().logList,'挑战日志');
+    }
+    private onHelp(){
+        HelpManager.getInstance().mapHelp();
     }
 
     //private getItem(){
@@ -123,13 +133,19 @@ class MapUI extends game.BaseUI {
         self.superShow();
     }
 
+
+
     private superShow(){
         super.show();
         this.addPanelOpenEvent(GameEvent.client.energy_change,this.onEnergyChange)
         this.addPanelOpenEvent(GameEvent.client.diamond_change,this.onDiamondChange)
         this.addPanelOpenEvent(GameEvent.client.map_value_change,this.onValueChange)
         this.addPanelOpenEvent(GameEvent.client.map_change,this.renewList)
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+
     }
+
+
 
     private onEnergyChange(){
         this.energyText.text = UM.getEnergy()
@@ -142,6 +158,16 @@ class MapUI extends game.BaseUI {
         this.valueText.text = '积分：' + MapManager.getInstance().value;
     }
 
+    public hide(){
+        super.hide();
+        while(this.cloudArr.length > 0)
+        {
+            var mc = this.cloudArr.pop();
+            MyTool.removeMC(mc);
+            egret.Tween.removeTweens(mc);
+        }
+    }
+
     public onShow(){
         this.onEnergyChange();
         this.onDiamondChange();
@@ -149,7 +175,27 @@ class MapUI extends game.BaseUI {
         this.renewList();
         this.renewScrollRect();
         PKLoadingUI.getInstance().realHide();
+        this.showCound(true)
+        this.showCound(true)
+    }
 
+    private onTimer(){
+        if(this.visible && egret.getTimer() - this.cloudTimer > 1000*10)
+            this.showCound();
+    }
+
+    private showCound(b?){
+        var rect = {
+            x:0,
+            y:-this.mapGroup.y + this.scroller.viewport.scrollV,
+            width:640,
+            height:GameManager.stage.stageHeight - 160
+        }
+        var mc = AniManager.getInstance().showCloud(this.mapGroup,rect,b)
+
+
+        this.cloudArr.push(mc)
+        this.cloudTimer  = egret.getTimer();
     }
 
     private renewScrollRect(){
@@ -161,6 +207,7 @@ class MapUI extends game.BaseUI {
 
     public renewList(){
         var currentLevel = MapManager.getInstance().level;
+        this.titleText.text = '据点 ' + currentLevel;
         var createLength = this.itemArray.length;
         for(var i=createLength;i<currentLevel;i++)
         {

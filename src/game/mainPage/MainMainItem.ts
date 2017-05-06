@@ -40,7 +40,7 @@ class MainMainItem extends game.BaseItem {
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         var mainData = UM.main_game;
         var level = mainData.level;
-        this.setHtml(this.scoreText,'称号：' + MainGameManager.getInstance().getStepName(level) + this.createHtml('  [评分：'+level+']',0xE0A44A,22));
+        this.setHtml(this.scoreText,this.createHtml('称号：',0xE0A44A) + MainGameManager.getInstance().getStepName(level) + this.createHtml('  [评分：'+level+']',0xE0A44A,22));
 
         MyTool.removeMC(this.awardBtn);
         if(mainData.awardtime && DateUtil.isSameDay(mainData.awardtime))//已领过奖

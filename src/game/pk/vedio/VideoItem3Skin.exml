@@ -4,7 +4,7 @@
 	<e:Rect strokeColor="0x673D1F" width="640" x="0" y="0" height="2" fillColor="0x000000"/>
 	<e:Rect y="38" strokeColor="0x673D1F" width="640" fillColor="0x000000" height="2" x="0"/>
 
-	<e:Rect id="bg" fillAlpha="1" width="636" x="2" fillColor="0x360000" strokeColor="0x673D1F" top="40" bottom="0" fillColor.team2="0x160000" fillColor.team1="0x000016"/>
+	<e:Rect id="bg" fillAlpha="1" width="636" x="2" fillColor="0x360000" strokeColor="0x673D1F" top="40" bottom="0" fillColor.team2="0x200000" fillColor.team1="0x000020"/>
 	<e:Group id="hpGroup" x="0" y="40">
 		<e:Rect width="100%" y="0" height="15" x="0" fillColor="0x090909"/>
 		<e:Rect width="2" y="0" height="15" horizontalCenter="0" fillColor="0x999999"/>

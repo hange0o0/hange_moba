@@ -6,9 +6,9 @@
 	<e:Label stroke="2" y="26" textColor="0xD0C7AD" text="积分兑换" horizontalCenter="0" x="30"/>
 	<e:Group y="100" horizontalCenter="0">
 		<e:Group y="0" x="0">
-			<e:Rect height="320" width="250" x="0" y="0" fillAlpha="0.5" ellipseHeight="10" ellipseWidth="10" strokeWeight="2" strokeColor="0x613428"/>
+			<e:Rect height="320" width="280" x="0" y="0" fillAlpha="0.5" ellipseHeight="10" ellipseWidth="10" strokeWeight="2" strokeColor="0x613428"/>
 			<e:Label id="coinText" stroke="2" y="150" textColor="0xCCB48E" text="12345" size="24" horizontalCenter="0.5"/>
-			<e:HSlider id="h1" y="190" skinName="MyHSliderSkin" width="200" horizontalCenter="0"/>
+			<e:HSlider id="h1" y="190" skinName="MyHSliderSkin" width="220" horizontalCenter="0"/>
 			<e:Button id="btn1" label="兑换金币" skinName="Btn_r2Skin" horizontalCenter="0.5" bottom="20"/>
 			<e:Group y="25" horizontalCenter="0">
 				<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="110" height="110" x="0"/>
@@ -16,9 +16,9 @@
 			</e:Group>
 		</e:Group>
 		<e:Group y="10" x="0">
-			<e:Rect fillAlpha="0.5" ellipseHeight="10" y="0" strokeWeight="2" width="250" x="0" height="320" ellipseWidth="10" strokeColor="0x613428"/>
+			<e:Rect fillAlpha="0.5" ellipseHeight="10" y="0" strokeWeight="2" width="280" x="0" height="320" ellipseWidth="10" strokeColor="0x613428"/>
 			<e:Label id="cardText" y="150" textColor="0xCCB48E" text="12345" stroke="2" horizontalCenter="0.5" size="24"/>
-			<e:HSlider id="h2" width="200" skinName="MyHSliderSkin" y="190" horizontalCenter="0"/>
+			<e:HSlider id="h2" width="220" skinName="MyHSliderSkin" y="190" horizontalCenter="0"/>
 			<e:Button id="btn2" bottom="20" skinName="Btn_r2Skin" label="兑换碎片" horizontalCenter="0.5"/>
 			<e:Group y="25" horizontalCenter="0">
 				<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="110" height="110" x="0"/>
@@ -26,7 +26,7 @@
 			</e:Group>
 		</e:Group>
 		<e:layout>
-			<e:HorizontalLayout gap="40"/>
+			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
 	<e:Button id="closeBtn" skinName="Btn_close1Skin" y="6" right="10"/>

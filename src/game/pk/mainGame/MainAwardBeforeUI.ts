@@ -54,6 +54,6 @@ class MainAwardBeforeUI extends game.BaseWindow {
     }
     public onTimer(){
         var cd = DateUtil.getNextDateTimeByHours(0) - TM.now()
-        this.setHtml(this.timeText,'现在离本轮领奖结束还差：' + this.createHtml(DateUtil.getStringBySecond(cd),0xCCB48E,30) + '\n你确定现在就领取吗？')
+        this.setHtml(this.timeText,'现在离本轮补助发放结束还有：' + this.createHtml(DateUtil.getStringBySecond(cd),0xCCB48E,30) + '\n你确定现在就领取吗？')
     }
 }

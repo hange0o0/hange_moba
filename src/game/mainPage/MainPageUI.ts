@@ -234,7 +234,7 @@ class MainPageUI extends game.BaseUI {
         {
             case 0:
                 PM.playBack(PKManager.PKType.MAIN,function(){
-                    DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'公会挑战日志');
+                    DayLogUI.getInstance().show(MainGameManager.getInstance().logList,'进阶挑战日志');
                 });
 
                 break;

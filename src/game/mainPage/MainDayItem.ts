@@ -35,7 +35,7 @@ class MainDayItem extends game.BaseItem {
 
         DayGameManager.getInstance().resetDay();
         var myData = UM.day_game;
-        this.scoreText.text =  '当前进度：' + myData.level + '/10'
+        this.setHtml(this.scoreText,  this.createHtml('当前进度：',0xE0A44A) + myData.level + '/10');
 
         this.lockMC.visible = UM.level < Config.dayLevel
         this.scoreText.visible = !this.lockMC.visible

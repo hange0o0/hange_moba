@@ -63,8 +63,8 @@ class PKMainUI extends game.BaseUI {
     private randomSeed
     private fightHeight = 960
 
-    private fightStarY = 320 + 60
-    private fightEndY = 640 - 60
+    //private fightStarY = 320 + 60
+    //private fightEndY = 640 - 60
 
     private isStop = false
 
@@ -77,7 +77,8 @@ class PKMainUI extends game.BaseUI {
     private middlePos1 = {x:220,y:this.fightHeight/2}
     private middlePos2 = {x:420,y:this.fightHeight/2}
 
-
+    private cloudTimer = 0;
+    private cloudArr = [];
     private loadGroup2 = []
     public childrenCreated() {
         super.childrenCreated();
@@ -215,6 +216,7 @@ class PKMainUI extends game.BaseUI {
         var isPKJump = PKManager.getInstance().pkJump;
         if(!isPKJump)
             SoundManager.getInstance().playSound(SoundConfig.bg_pk);
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
     }
 
     private removeAllTweens(){
@@ -339,6 +341,11 @@ class PKMainUI extends game.BaseUI {
         tw.to({scaleX:1,scaleY:1},500).call(function(){
             this.bgBlack.visible = true;
             this.shakeBG();
+            if(!PKManager.getInstance().pkJump)
+            {
+                this.showCound(true)
+                this.showCound(true)
+            }
         },this).wait(600).call(this.addItemMovie,this);    //.wait(100)
         tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
 
@@ -360,6 +367,25 @@ class PKMainUI extends game.BaseUI {
         //}
 
         this.jumpBtn.y = this.stageHeight- des - 70;
+    }
+
+    private onTimer(){
+        if(!this.isStop && egret.getTimer() - this.cloudTimer > 1000*10)
+            this.showCound();
+    }
+
+    private showCound(b?){
+        var rect = {
+            x:0,
+            y:this.selfGroup.y + 125,
+            width:640,
+            height:this.fightHeight - 250
+        }
+        var mc = AniManager.getInstance().showCloud(this,rect,b)
+
+
+        this.cloudArr.push(mc)
+        this.cloudTimer  = egret.getTimer();
     }
 
     private shakeBG(){
@@ -784,6 +810,15 @@ class PKMainUI extends game.BaseUI {
 
         this.upBG.visible = false
         this.downBG.visible = false
+
+        while(this.cloudArr.length > 0)
+        {
+            var mc = this.cloudArr.pop();
+            MyTool.removeMC(mc);
+            egret.Tween.removeTweens(mc);
+        }
+
+
         //var tw:egret.Tween = egret.Tween.get(this.upBG);
         //tw.to({y:this.upBG.y - this.upBG.height},200)
         //var tw:egret.Tween = egret.Tween.get(this.downBG);

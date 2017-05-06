@@ -205,4 +205,46 @@ class AniManager {
             this.showStar1(con,point,scale)
         },this)
     }
+
+
+    //云
+    public showCloud(con,rect,isPlace?){
+        var mc = new eui.Image()
+        var coundID  =  Math.floor(Math.random()*3+1);
+        var cloudWidth = [0,239,193,112][coundID]
+        var cloudHeight = [0,136,138,82][coundID]
+        mc.source = 'cloud'+ coundID +'_png';
+        con.addChild(mc);
+
+
+        var scale = 0.8 + Math.random()*0.6;
+        mc.scaleX = scale
+        mc.scaleY = scale
+        mc.touchEnabled = false;
+        cloudWidth *= scale
+        cloudHeight *= scale
+
+        var rota = Math.random()>0.5?1: -1;
+        var toX =  rota > 0?rect.width:-cloudWidth;
+        mc.y = rect.y + Math.random()*(rect.height-cloudHeight);
+        if(isPlace)
+        {
+            mc.x = Math.random()*(con.width-cloudWidth);
+        }
+        else if(rota > 0)
+        {
+            mc.x = -cloudWidth
+        }
+        else
+        {
+            mc.x = rect.width
+        }
+        var cd = Math.abs(mc.x - toX) * (50 + Math.random()*20)
+
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.to({x:toX},cd).call(function(){
+            MyTool.removeMC(mc);
+        },this)
+        return mc;
+    }
 }

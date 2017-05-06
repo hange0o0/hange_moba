@@ -1,4 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MapItemSkin" width="100" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<e:Image id="mc" source="map_item2_png" horizontalCenter="0" verticalCenter="0"/>
+	<e:Label id="levelText" text="12" y="101" size="26" strokeColor="0xA13821" stroke="1" textColor="0xBE3E21" width="40" textAlign="center" height="30" anchorOffsetY="20" anchorOffsetX="20" x="50" visible="false"/>
+	<e:Group id="headGroup" y="10" x="10">
+		<e:Image id="headMC" height="70" width="70" y="5" x="5"/>
+		<e:Image source="head_border1_png" y="0" x="0" width="80" height="80"/>
+	</e:Group>
 </e:Skin>

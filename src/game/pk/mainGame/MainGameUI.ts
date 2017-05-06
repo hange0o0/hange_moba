@@ -139,7 +139,7 @@ class MainGameUI extends game.BaseUI {
         }
         if(enemyList.length == 1) {
             enemyList[0].noKill = true;
-            this.moneyText.text = '该单位不能被秒杀'
+            this.moneyText.text = '该单位不能被贿赂'
         }
         else
             this.renewPrice();

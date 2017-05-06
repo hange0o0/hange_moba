@@ -9,9 +9,9 @@
 			<e:HorizontalLayout gap="50"/>
 		</e:layout>
 	</e:Group>
-	<e:Label y="110" size="24" text="根据你当前公会等级，可获得以下奖励" x="60" textColor="0xE0A44A"/>
-	<e:Label y="228" size="24" text="当你在卡士公会再晋一级，奖励将增加至：" x="69" textColor="0xE0A44A"/>
-	<e:Label id="timeText" y="380" size="24" text="现在离本轮领奖结束还差：00:00:00" x="60" textColor="0xE0A44A" verticalAlign="bottom" lineSpacing="15"/>
+	<e:Label y="110" size="24" text="根据你当前公会评分，可获得以下补助" x="60" textColor="0xE0A44A"/>
+	<e:Label y="228" size="24" text="如果你的评分增加1分，补助将增加至：" x="69" textColor="0xE0A44A"/>
+	<e:Label id="timeText" y="380" size="24" text="现在离本轮领取补助结束还差：00:00:00" x="60" textColor="0xE0A44A" verticalAlign="bottom" lineSpacing="15"/>
 	<e:Rect width="500" y="340" height="1" horizontalCenter="0" fillColor="0x95612D"/>
 	<e:Group y="160" horizontalCenter="-20">
 		<e:Image source="icon_money_png" y="0" x="0"/>

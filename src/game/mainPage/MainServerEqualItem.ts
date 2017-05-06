@@ -42,7 +42,7 @@ class MainServerEqualItem extends game.BaseItem {
         var serverData = UM.server_game_equal;
         //this.totalText.text = '局数：' + serverData.total;
         this.titleText.text = '虚空修正场';
-        this.setHtml(this.scoreText,'评分：' + serverData.exp + this.createHtml('  ['+ServerGameEqualManager.getInstance().getStepName(serverData.exp)+']',0xE0A44A,22));
+        this.setHtml(this.scoreText,this.createHtml('评分：',0xE0A44A) + serverData.exp + this.createHtml('  ['+ServerGameEqualManager.getInstance().getStepName(serverData.exp)+']',0xE0A44A,22));
         //this.winText.text = '胜利：' + serverData.win;
         //this.maxText.text = '连胜：' + serverData.max;
         //this.propNumText.text = '拥有入场券：' + UM.getPropNum(21);

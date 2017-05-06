@@ -155,7 +155,20 @@ class PKItem2 extends game.BaseItem {
         },this)
 
         if(data.hp == 0)
+        {
+            var talkBase = PKManager.getInstance().pkEmo
+            PKMainUI.getInstance().showItemEmo(this,ArrayUtil.randomOne(talkBase.pking));
+            //this.hpText.y = -60
+            //this.hpText.alpha = 0;
+            //this.hpText.text = '无伤'
+            //this.hpText.textColor = 0xFFFF00
+            //this.hpText.strokeColor = 0x333300
+            //var tw = egret.Tween.get(this.hpText);
+            //tw.to({alpha:1},200).wait(1000).call(function(){
+            //    this.hpText.text = ''
+            //},this)
             return;
+        }
 
         if(data.hp > 0)
         {

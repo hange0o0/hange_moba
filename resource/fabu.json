@@ -240,6 +240,34 @@
 				{
 					"compress":false,
 					"key":"shop_card_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_7_png"
+				},
+				{
+					"compress":false,
+					"key":"main_light_png"
+				},
+				{
+					"compress":false,
+					"key":"map_item2_png"
+				},
+				{
+					"compress":false,
+					"key":"map_item1_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_9_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_8_png"
+				},
+				{
+					"compress":false,
+					"key":"map_item3_png"
 				}
 			],
 			"sort":0
@@ -446,6 +474,18 @@
 				{
 					"compress":false,
 					"key":"arrow7_png"
+				},
+				{
+					"compress":false,
+					"key":"cloud3_png"
+				},
+				{
+					"compress":false,
+					"key":"cloud1_png"
+				},
+				{
+					"compress":false,
+					"key":"cloud2_png"
 				}
 			],
 			"sort":0
@@ -659,6 +699,98 @@
 				{
 					"compress":false,
 					"key":"buff_XX_png"
+				},
+				{
+					"compress":false,
+					"key":"talk_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"bar_pvp_1_png"
+				},
+				{
+					"compress":false,
+					"key":"bar_pvp_2_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_11_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_12_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_13_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_14_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_15_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_16_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_17_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_2_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_3_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_4_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_5_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_6_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_7_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_8_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_1_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_18_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_19_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_20_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_9_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_e_10_png"
 				}
 			],
 			"sort":0
@@ -690,31 +822,7 @@
 		},
 		{
 			"compress":false,
-			"key":"skill10_png"
-		},
-		{
-			"compress":false,
-			"key":"skill14_png"
-		},
-		{
-			"compress":false,
-			"key":"skill15_png"
-		},
-		{
-			"compress":false,
 			"key":"skill16_png"
-		},
-		{
-			"compress":false,
-			"key":"skill21_png"
-		},
-		{
-			"compress":false,
-			"key":"skill22_png"
-		},
-		{
-			"compress":false,
-			"key":"skill27_png"
 		},
 		{
 			"compress":false,
@@ -722,31 +830,11 @@
 		},
 		{
 			"compress":false,
-			"key":"skill30_png"
-		},
-		{
-			"compress":false,
 			"key":"skill6_png"
 		},
 		{
 			"compress":false,
-			"key":"skill176_png"
-		},
-		{
-			"compress":false,
-			"key":"skill158_png"
-		},
-		{
-			"compress":false,
 			"key":"skill108_png"
-		},
-		{
-			"compress":false,
-			"key":"skill157_png"
-		},
-		{
-			"compress":false,
-			"key":"skill175_png"
 		},
 		{
 			"compress":false,
@@ -762,10 +850,6 @@
 		},
 		{
 			"compress":false,
-			"key":"skill105_png"
-		},
-		{
-			"compress":false,
 			"key":"skill120_png"
 		},
 		{
@@ -774,39 +858,11 @@
 		},
 		{
 			"compress":false,
-			"key":"skill119_png"
-		},
-		{
-			"compress":false,
-			"key":"skill161_png"
-		},
-		{
-			"compress":false,
-			"key":"skill177_png"
-		},
-		{
-			"compress":false,
-			"key":"skill134_png"
-		},
-		{
-			"compress":false,
-			"key":"skill109_png"
-		},
-		{
-			"compress":false,
 			"key":"skill111_png"
 		},
 		{
 			"compress":false,
 			"key":"skill126_png"
-		},
-		{
-			"compress":false,
-			"key":"skill136_png"
-		},
-		{
-			"compress":false,
-			"key":"skill102_png"
 		},
 		{
 			"compress":false,
@@ -903,6 +959,98 @@
 		{
 			"compress":false,
 			"key":"loading_ani_png"
+		},
+		{
+			"compress":false,
+			"key":"skill122_png"
+		},
+		{
+			"compress":false,
+			"key":"skill123_png"
+		},
+		{
+			"compress":false,
+			"key":"skill127_png"
+		},
+		{
+			"compress":false,
+			"key":"skill128_png"
+		},
+		{
+			"compress":false,
+			"key":"skill133_png"
+		},
+		{
+			"compress":false,
+			"key":"skill140_png"
+		},
+		{
+			"compress":false,
+			"key":"skill153_png"
+		},
+		{
+			"compress":false,
+			"key":"skill24_png"
+		},
+		{
+			"compress":false,
+			"key":"skill29_png"
+		},
+		{
+			"compress":false,
+			"key":"skill34_png"
+		},
+		{
+			"compress":false,
+			"key":"skill106_png"
+		},
+		{
+			"compress":false,
+			"key":"skill107_png"
+		},
+		{
+			"compress":false,
+			"key":"skill114_png"
+		},
+		{
+			"compress":false,
+			"key":"skill115_png"
+		},
+		{
+			"compress":false,
+			"key":"skill117_png"
+		},
+		{
+			"compress":false,
+			"key":"skill118_png"
+		},
+		{
+			"compress":false,
+			"key":"m0_jpg"
+		},
+		{
+			"compress":false,
+			"key":"m1_jpg"
+		},
+		{
+			"compress":false,
+			"key":"m2_jpg"
+		},
+		{
+			"compress":false,
+			"key":"m3_jpg"
+		},
+		{
+			"compress":false,
+			"key":"m4_jpg"
+		},
+		{
+			"compress":false,
+			"key":"m5_jpg"
+		},
+		{
+			"compress":false,
+			"key":"m6_jpg"
 		}
 	]
 }

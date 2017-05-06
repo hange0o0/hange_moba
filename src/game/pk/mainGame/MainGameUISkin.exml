@@ -16,7 +16,7 @@
 						<e:Image source="icon_money_png" y="-1" x="0"/>
 						<e:Label id="moneyText" y="8" textColor="0xCCCCCC" text="12345/129999" size="24" left="44" right="20"/>
 					</e:Group>
-					<e:Label y="5" textColor="0xCCB48E" text="秒杀价格：" x="0" size="26"/>
+					<e:Label y="5" textColor="0xCCB48E" text="贿赂价格：" x="0" size="26"/>
 				</e:Group>
 				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
 					<e:layout>

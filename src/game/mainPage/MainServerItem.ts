@@ -37,7 +37,7 @@ class MainServerItem extends game.BaseItem {
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game;
         this.titleText.text = '天梯竞技场'
-        this.setHtml(this.scoreText,'评分：' + serverData.exp + this.createHtml('  ['+ServerGameManager.getInstance().getStepName(serverData.exp)+']',0xE0A44A,22));
+        this.setHtml(this.scoreText,this.createHtml('评分：',0xE0A44A) + serverData.exp + this.createHtml('  ['+ServerGameManager.getInstance().getStepName(serverData.exp)+']',0xE0A44A,22));
         //this.totalText.text = '局数：' + serverData.total;
         //this.scoreText.text = '积分：' + serverData.exp;
         //this.winText.text = '胜利：' + serverData.win;

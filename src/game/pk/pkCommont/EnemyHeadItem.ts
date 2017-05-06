@@ -31,7 +31,7 @@ class EnemyHeadItem extends game.BaseItem {
         e.stopImmediatePropagation();
         var self = this;
         var cost = MainGameManager.getInstance().getKillCost();
-        Confirm('确定花费'+ cost +'金币对该单位进行秒杀吗？',function(value){
+        Confirm('确定花费'+ cost +'金币对该单位进行贿赂吗？',function(value){
              if(value == 1)
              {
                  if(!UM.testCoin(cost))
