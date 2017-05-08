@@ -28,6 +28,11 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 class MainLoadingUI extends egret.Sprite {
+    private static instance:MainLoadingUI;
+    public static getInstance() {
+        if (!this.instance) this.instance = new MainLoadingUI();
+        return this.instance;
+    }
 
     public constructor() {
         super();
@@ -78,9 +83,17 @@ class MainLoadingUI extends egret.Sprite {
         this.textField.text = '加载完成，正在初始化....'
     }
 
+    public showLogin(){
+        this.textField.text = '登陆中....'
+    }
+
 
     public setProgress(current, total):void {
         this.textField.text = "Loading..." + current + "/" + total;
+    }
+
+    public hide(){
+        MyTool.removeMC(this);
     }
 
 }

@@ -50,6 +50,18 @@ class MainGameManager{
         return this.stepName[index] + StringUtil.numToStr(step) + '阶';
     }
 
+    //下一阶分数
+    public getNextStep(lv?){
+        var level = lv || UM.main_game.level;
+        if(level < 85)
+        {
+            return (Math.floor(level/10) + 1)*10 - 5
+        }
+        if(level < 100)
+            return 100;
+        return  (Math.floor(level/10) + 1)*10
+    }
+
     public getHeadByLevel(level){
          return level%50 + 1;
     }

@@ -24,8 +24,15 @@ class MainServerEqualItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart,true);
+        this.addBtnEvent(this.scoreText, this.onScore);
         EM.addEvent(GameEvent.client.prop_change,this.renew,this)
         RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
+    }
+
+    private onScore(){
+        var level = ServerGameEqualManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
+        var nextExp = ServerGameEqualManager.getInstance().getPKTableExp(level + 1)
+        Alert('下一称号：' + ServerGameEqualManager.getInstance().getStepName(nextExp)  + '\n需要评分：'+nextExp+'')
     }
 
     private onRetry(){

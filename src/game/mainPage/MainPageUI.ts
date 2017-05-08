@@ -57,6 +57,7 @@ class MainPageUI extends game.BaseUI {
     private friendBtn: eui.Group;
     private friendRed: eui.Image;
     private friendLockMC: eui.Image;
+    private mapLockMC: eui.Image;
     private bagBtn: eui.Group;
 
 
@@ -406,6 +407,11 @@ class MainPageUI extends game.BaseUI {
     //
     //}
     private onMap(){
+        if(UM.main_game.level < Config.mapLevel)
+        {
+            Alert('你现在还实力还不适宜进入野外，赶快把实力提升到' + this.createHtml('卡士一阶',0xE0A44A)+'再来吧~')
+            return;
+        }
         MapUI.getInstance().show();
     }
 
@@ -590,6 +596,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     public scrollToCurrentPage(nomovie=false){
+        this.mapLockMC.visible = UM.main_game.level < Config.mapLevel;
         egret.Tween.removeTweens(this.scrollGroup)
         var pageSize = 640
         var targetX = -this.currentPage * pageSize;

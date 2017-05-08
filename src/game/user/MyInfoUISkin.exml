@@ -27,7 +27,7 @@
 							<e:Label text="更换头像" size="20" y="100" horizontalCenter="0" textColor="0xD19844"/>
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
-						<e:Label id="desText" x="124" y="48" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88" textColor="0xD19844"/>
+						<e:Label id="desText" x="124" y="48" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88" textColor="0xCCB48E"/>
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">
 						<e:Label id="levelText" y="8" text="等级：LV.32" x="60" textColor="0xCCB48E" size="30"/>
@@ -127,8 +127,8 @@
 				<e:Image source="main_mc_png" scaleY="-0.6" scaleX="0.6" bottom="-22" right="5"/>
 				<e:Image source="main_mc_png" bottom="-22" scaleX="-0.6" y="10" left="5" scaleY="-0.6"/>
 			</e:Group>
-			<e:Group x="107" y="914" height="250">
-				<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="600" height="190" horizontalCenter="0"/>
+			<e:Group x="107" y="914" height="290">
+				<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="600" height="240" horizontalCenter="0"/>
 				<e:Group y="11" horizontalCenter="0">
 					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
 					<e:Label y="5" text="职业数据" x="205" textColor="0xC4A87C"/>
@@ -139,15 +139,16 @@
 				</e:Group>
 				<e:Label y="65" textColor="0xCCB48E" text="累计通关次数：0" id="mainLevelText" size="24" x="50"/>
                 <e:Label y="65" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText2" size="24" x="330"/>
-				<e:Group x="50" y="105">
+                <e:Label y="110" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText3" size="24" x="50"/>
+				<e:Group x="50" y="150">
 					<e:Label y="9" size="24" text="每天补助：" x="0" textColor="0xE0A44A"/>
 					<e:Image source="icon_money_png" y="0" x="144"/>
 					<e:Label id="mainAward1" y="5" textColor="0xCCB48E" text="123456" x="193"/>
 					<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>
 					<e:Label id="mainAward2" y="5" textColor="0xCCB48E" text="1234" x="378"/>
 				</e:Group>
-				<e:Group x="50" y="155">
-					<e:Label y="9" size="24" text="下一级补助：" x="0" textColor="0xE0A44A"/>
+				<e:Group x="50" y="200">
+					<e:Label y="9" size="24" text="评分 +1：" x="0" textColor="0xE0A44A"/>
 					<e:Image source="icon_money_png" y="0" x="144"/>
 					<e:Label id="mainAward3" y="5" textColor="0xCCB48E" text="123456" x="193"/>
 					<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>

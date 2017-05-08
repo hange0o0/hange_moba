@@ -57,6 +57,8 @@ class LoginServerUI extends game.BaseUI {
         //LM.getServerList(function(){
             self.superShow();
         //})
+
+        MainLoadingUI.getInstance().hide();
     }
 
     public superShow(){

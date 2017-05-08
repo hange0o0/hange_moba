@@ -15,6 +15,7 @@ var game_file_list = [
 	"bin-debug/commont/MyTool.js",
 	"bin-debug/commont/MyWindow.js",
 	"bin-debug/commont/Net.js",
+	"bin-debug/commont/skin/BookBG.js",
 	"bin-debug/commont/ui/AlertUI.js",
 	"bin-debug/commont/ui/ConfirmUI.js",
 	"bin-debug/commont/ui/ResourceUI.js",

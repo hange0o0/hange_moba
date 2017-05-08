@@ -21,12 +21,10 @@ class MapManager{
     public enemy;
 
     public getLevelMap(level){
-        var mUI = MapUI.getInstance();
-        var yy = mUI.itemPos[level-1].y;
-        for(var i=6;i>=0;i--)
+        var arr = [2, 11, 20, 29, 38, 46, 53, 74]
+        for(var i=0;i<arr.length;i++)
         {
-            var y = mUI['bgGroup'].getChildAt(i).y
-            if(yy > y)   //在这个地图上
+            if(level-1 <= arr[i])   //在这个地图上
             {
                 switch(i)
                 {
@@ -41,14 +39,16 @@ class MapManager{
                     case 4:
                         return 'pk_bg8_jpg';
                     case 5:
-                        return 'pk_bg16_jpg';
+                        return 'pk_bg13_jpg';
                     case 6:
+                        return 'pk_bg16_jpg';
+                    case 7:
                         return 'pk_bg12_jpg';
                 }
                 break;
             }
         }
-         //9,3,4,10,8,16,12
+
     }
 
      public passDay(){

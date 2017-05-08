@@ -16,7 +16,7 @@ class ServerGameEqualManager{
         var level = this.getPKTableLevel(exp)
         var step = level%3 || 3
         level = Math.floor((level - 1)/3)
-        return this.stepName[level] + '级' + ['','上','中','下'][step]+'品';
+        return this.stepName[level] + '级' + ['','下','中','上'][step]+'品';
     }
 
     public initData(){

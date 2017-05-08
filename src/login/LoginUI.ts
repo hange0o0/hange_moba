@@ -57,6 +57,7 @@ class LoginUI extends game.BaseUI {
             else
                 LoginManager.getInstance().isAuto = false
         }
+        MainLoadingUI.getInstance().hide();
         super.show();
     }
 

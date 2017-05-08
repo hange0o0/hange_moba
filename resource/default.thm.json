@@ -10,6 +10,7 @@
     "src/commont/btns/Btn_r1Skin.exml",
     "src/commont/btns/Btn_r2Skin.exml",
     "src/commont/btns/Btn_r3Skin.exml",
+    "src/commont/skin/BookBGSkin.exml",
     "src/commont/skin/MyCheckBoxSkin.exml",
     "src/commont/skin/MyHSliderSkin.exml",
     "src/commont/skin/MyRadioButtonSkin.exml",

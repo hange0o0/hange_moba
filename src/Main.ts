@@ -42,7 +42,7 @@ class Main extends eui.UILayer {
         this.stage.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
         //Config loading process interface
         //设置加载进度界面
-        this.loadingView = new MainLoadingUI();
+        this.loadingView = MainLoadingUI.getInstance();
         this.loadingView.show(this);
         // initialize the Resource loading library
         //初始化Resource资源加载库
@@ -134,8 +134,10 @@ class Main extends eui.UILayer {
             this.startCreateScene();
 
 
-
-            MyTool.removeMC(this.loadingView);
+            if(LoginManager.getInstance().isAuto)
+                this.loadingView.showLogin();
+            else
+                MyTool.removeMC(this.loadingView);
         }
     }
     /**

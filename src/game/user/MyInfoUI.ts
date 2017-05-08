@@ -32,6 +32,7 @@ class MyInfoUI extends game.BaseUI {
     //private setBtn: eui.Button;
     private mainLevelText: eui.Label;
     private mainLevelText2: eui.Label;
+    private mainLevelText3: eui.Label;
     private mainAward1: eui.Label;
     private mainAward2: eui.Label;
     private mainAward3: eui.Label;
@@ -209,7 +210,9 @@ class MyInfoUI extends game.BaseUI {
         var mainData = UM.main_game;
         var level:any = mainData.level;
         this.setText(this.mainLevelText,'[当前称号：]' + MainGameManager.getInstance().getStepName(level))
-        this.setText(this.mainLevelText2,'  [评分：]' + level)
+        this.setText(this.mainLevelText2,'[评分：]' + level)
+        var nextLevel = MainGameManager.getInstance().getNextStep();
+        this.setText(this.mainLevelText3,'[下一称号：]' + MainGameManager.getInstance().getStepName(nextLevel)  + '（[评分：]'+nextLevel+'）')
         var award = MainGameManager.getInstance().getLocalAward(level);
         this.mainAward1.text = '' + award.coin;
         this.mainAward2.text = '' + award.card;

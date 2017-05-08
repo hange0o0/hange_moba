@@ -134,6 +134,7 @@ class VideoDetailUI extends game.BaseUI {
 
     private onTab(){
         this.dataIn.team = this.tab.selectedIndex + 1;
+        delete this.dataIn.index;
         this.onShow()
     }
 
@@ -143,9 +144,41 @@ class VideoDetailUI extends game.BaseUI {
         super.show();
     }
 
+    private scrollToIndex(){
+        if('index' in this.dataIn)
+        {
+            var bg =  this['isAtk' + (this.dataIn.index || 0)]
+            if(!bg.visible)
+            {
+                var tw = egret.Tween.get(bg)
+                bg.visible = true;
+                bg.alpha = 0;
+                tw.to({alpha:1},100).wait(500).to({alpha:0},500)
+            }
+        }
+        if(this.dataIn.index)
+        {
+            var mc = this['g' + this.dataIn.index]
+            if(mc.parent)
+            {
+                this.validateNow();
+                var scrollV = mc.y;
+                if(scrollV > this.scroller.viewport.contentHeight - this.scroller.viewport.height)
+                    scrollV = this.scroller.viewport.contentHeight - this.scroller.viewport.height;
+                this.scroller.viewport.scrollV = Math.max(0,scrollV);
+            }
+        }
+    }
+
     public onShow(){
         this.scroller.viewport.scrollV = 0;
         this.scrollGroup.removeChildren();
+        egret.Tween.removeTweens(this.isAtk0)
+        egret.Tween.removeTweens(this.isAtk1)
+        egret.Tween.removeTweens(this.isAtk2)
+        this.isAtk0.alpha = 1;
+        this.isAtk1.alpha = 1;
+        this.isAtk2.alpha = 1;
 
 
         var VC = VideoCode.getInstance();
@@ -289,6 +322,8 @@ class VideoDetailUI extends game.BaseUI {
             this.rt.textColor = 0x734B41
             this.rightEnable = false;
         }
+
+        this.scrollToIndex();
     }
 
     private renewMonster0(dataIn){
@@ -349,6 +384,7 @@ class VideoDetailUI extends game.BaseUI {
 
         this.buffAddList0.dataProvider = new eui.ArrayCollection(dataIn.buff)
         this.buffDecList0.dataProvider = new eui.ArrayCollection(dataIn.debuff)
+
 
         this.isAtk0.visible = dataIn.isAtker;
     }

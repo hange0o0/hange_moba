@@ -639,10 +639,10 @@ class PKMainUI extends game.BaseUI {
                 to({x:this.middlePos2.x - des + des1.x,y:this.middlePos2.y + des1.y},cd).call(this.playAni,this).to({x:this.middlePos2.x + this.rand(-10,40),y:this.middlePos2.y + this.getYAdd(b)},cd).wait(100).
                 to({x:this.middlePos2.x - des + des2.x,y:this.middlePos2.y+ des2.y},cd).call(this.playAni,this).to({x:this.middlePos2.x,y:this.middlePos2.y},cd).call(this.stepOne,this)
             this.lightFuZhu();
-            if(this.random() < 0.3)
+            if(this.random() < 0.2)
                 this.showPKWord();
-            if(this.random() < 0.3)
-                this.showPKWord();
+            if(this.random() < 0.2)
+                this.timer = egret.setTimeout(this.showPKWord,this,500);
         }
         else if(oo.type == 'hp')
         {
@@ -896,7 +896,7 @@ class PKMainUI extends game.BaseUI {
             this.addChild(talkItem);
             talkItem.setData({item:item,txt:this.getTalkStr(item,actionItem)});
 
-            if(this.random() < 0.2)
+            if(this.random() < 0.1)
             {
                 this.timer = egret.setTimeout(function(){
                     this.showPKWord(actionItem);

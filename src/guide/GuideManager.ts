@@ -41,18 +41,19 @@ class GuideManager {
                 MainPageUI.getInstance().onGuide0()
                 self.showGuide()
             },
-            text:'欢迎来到卡斗士的乐园，在这里你会感受到不一样的卡牌对决的乐趣！现在，就让我们开始这趟神奇之旅吧！',
+            text:'亲爱的'+UM.nick+'，欢迎来到卡士世界！你想成为世界上最强大的卡士吗？你想成为那万众瞩目的唯一吗？那么，现在就让卡卡来带领你，踏上这成为至强王者之路吧！',
         })
+
 
         this.addGuideObj({
             mc:"MainPageUI.getInstance()['mainGame']['startBtn']",
-            text:'试练场是检测玩家实力的地方，玩家实力越强，将会走得越远。我们马上开始进入第一次PK吧',
+            text:'我们先来卡士公会作个实力认证吧。他们是卡士世界最权威的认证机构，他们的认证结果能反映每位卡士的真实能力！',
         })
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"this.getMainGameRect()",
-            text:'现在我们已经得到系统派发的卡组了。通常第一步是要先观察一下对手的卡组，以方便我们制定合适的战术',
+            text:'现在我们已经得到系统发牌员派发的卡组了，感觉还不错。我们也观察一下对手的卡组，方便我们制定合适的战术',
             fun:function(){
                 MainGameUI.getInstance().scrollToEnd();
                 self.showGuide(MainGameUI.getInstance())
@@ -62,25 +63,25 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"MainGameUI.getInstance()['chooseBtn0']",
-            text:'看来对手的实力不怎么样嘛，就让我们去打败它吧！点击[挑战]按钮，进去布阵环节！',
+            text:'看来对手的实力不怎么样嘛，就让我们去打败它吧！点击[挑战]按钮，进入布阵环节！',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'我觉得【人鱼战士】是一张不错的卡牌，我们就选它出战吧',
+            text:'卡卡觉得【人鱼战士】是一张不错的卡牌，我们就选它出战吧',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'虽然重复出战会花费更多的符文，但我觉得这张卡牌值这个价',
+            text:'虽然重复出战会花费更多的符文，但卡卡觉得这张卡牌值这个价',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['sortBtn']",
-            text:'我觉得我们还需要一张张大的肉盾，看看有啥合适的？点击排序按钮，调整为按血量排序',
+            text:'卡卡觉得我们还需要一张张大的肉盾，看看有啥合适的？点击排序按钮，调整为按血量排序',
         })
 
         this.addGuideObj({
@@ -104,7 +105,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(1)['useBtn']",
-            text:'虽然我觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多上一张牌吧',
+            text:'虽然卡卡觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多出战一张牌吧',
         })
 
         this.addGuideObj({
@@ -116,7 +117,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"new egret.Rectangle(0,600+(GameManager.stage.stageHeight - 960)/2,640,360)",
-            text:'是不是很简单？如果想了解更详尽的PK过程，可以点击下方的对战信息查看更多的信息',
+            text:'是不是很简单？如果想了解更多的PK信息，可以多关注一下下方的内容，里面可是包罗万有的哦~',
             fun:function(){
                 PKResultUI.getInstance().guideScroll();
                 //self.showGuide(PKWinUI.getInstance())
@@ -126,49 +127,59 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"PKResultUI.getInstance().list.getChildAt(0)",
-            text:'让我们看一下这一局PK的具体过程',
+            text:'我对第一轮的PK结果不是很满意耶，明明我比对手强那么多！让我们看看在这轮PK过程中，到底发生了什么',
         })
 
         this.addGuideObj({
             ui:"PKWinUI.getInstance()",
             mc:"PKWinUI.getInstance()['backBtn']",
-            text:'复盘的工作还是先停一停，反正首页那里还有回放按钮，现在还是先退回首页了解一下其它功能吧',
+            text:'哦，原来如此，虽然没有想像中的大胜，但我们至少还是赢了，对不对？那么，现在请跟随卡卡回到世界首页，了解一下其它功能吧',
         })
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
+            mc:"MainPageUI.getInstance().videoBtn",
+            text:'刚才我们的对战是可以在这个地方再重温一下的，如果有需要的话你可以再进去看一下。但现在，请让你用最神圣的态度来面对我们将要进行的事情，就是--',
+            fun:function(){
+                self.showGuide(MainPageUI.getInstance())
+            }
+        })
+
+
+        this.addGuideObj({
+            ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance()['collectBtn']",
-            text:'刚才不是在PK中获得了一些卡牌碎片和金币吗，现在你就可以在【收集】中使用它们对你的卡牌进行提升了。',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
+            text:'花钱！！！刚才我们在PK中不是获得了一些卡牌碎片和金币吗，我们可以用它来在【收集】中对卡牌进行升级。卡卡想想都有点小兴奋呢~',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
         })
 
         this.addGuideObj({
             ui:"CollectUI.getInstance()",
             mc:"CollectUI.getInstance()['list'].getChildAt(1)",
-            text:'你是不是觉得【人鱼战士】挺厉害的？我也是这样认为的，那么现在我们就让它更厉害一点吧',
+            text:'卡卡觉得【人鱼战士】真的挺厉害的，我强烈建议我们要把第一次送给了它，让它变得更厉害一点吧',
         })
 
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['info']['levelUpBtn']",
-            text:'升级所有的卡牌的时候，我们的总战力也会同步升高，因此我们的其它卡牌的出战战力也会得到相应提升',
+            text:'卡卡告诉你一个小秘密，升级单张卡牌的时候，我们的总战力也会得到同步提升，这可是会增强所有卡牌的对战实力的哦',
         })
 
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['topUI']['closeBtn']",
-            text:'升完级是不是觉得自己害很多呢，想再去挑战一下其它玩家吧？没问题让我们再看看游戏的其它对战功能吧',
+            text:'升完级是不是觉得自己牛X了很多呢，想再去挑战一下其它卡士吧？没问题让我们再看看其它的对战功能吧',
         })
 
         this.addGuideObj({
             ui:"CollectUI.getInstance()",
             mc:"CollectUI.getInstance()['topUI']['closeBtn']",
-            text:'点击【关闭】回到首页',
+            text:'我们可是要回到世界首页哦',
         })
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'每日任务中，系统会刷出10关让玩家进行挑战，通过积累任务积分将会获得永久的战力加成，每一天所有玩家挑战的关卡是一样的哦！',
+            text:'究极研究院的老怪物们最喜欢挑战高难度的事情了，他们每天都会发布10个题目让全世界玩家共同挑战。经常参与他们的活动，会获得永久的战力奖励哦！',
             hideHand:true,
             toBottom:true,
             fun:function(){
@@ -182,7 +193,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'在竞技场中，系统会为你匹配实力相当对手！你的选择是战力碾压还是智慧征服？',
+            text:'在天梯竞技场中，系统会为你匹配实力相当真实玩家作为对手！你的选择是战力碾压还是智慧征服？卡卡是比较喜欢碾压带来的快感的..',
             hideHand:true,
             toBottom:true,
             fun:function(){
@@ -196,9 +207,18 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'在修正场中的PK将不会受到玩家战力高低的影响，只要你有实力，新手一样能打败老鸟！',
+            text:'虚空修正场要挑选出最有天赋的卡士，在里面的PK将不会受到卡士真实战力的影响，只要有能力，卡士一样能打败卡皇！',
             hideHand:true,
             toBottom:true,
+            fun:function(){
+                self.showGuide(MainPageUI.getInstance())
+            }
+        })
+
+        this.addGuideObj({
+            ui:"MainPageUI.getInstance()",
+            mc:"MainPageUI.getInstance().mapBtn",
+            text:'野外世界布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他消灭掉！卡卡希望你在以后的日子中也能为我们的世界多出点力',
             fun:function(){
                 self.showGuide()
             }
@@ -207,7 +227,7 @@ class GuideManager {
 
 
         this.addGuideObj({
-            text:'好了，游戏的基础功能就介绍到这里，但还有更多有趣玩法需要你在游戏中慢慢去发掘哦，88~',
+            text:'好了，现在你对这个世界已有了一定的了解了吧，但其实还有更多未知的领域需要你在世界中慢慢去探索哦。卡卡我现在还要去引领下一位极有天赋的卡士，就此别过，88~',
             fun:function(){
                 self.isGuiding = false;
                 GuideUI.getInstance().hide();

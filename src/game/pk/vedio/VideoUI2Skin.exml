@@ -34,15 +34,15 @@
 			</e:Group>
 			<e:Image id="team1BG" source="card_battle_png" x="0" y="0"/>
 			<e:Group x="5" y="100">
-				<e:Group x="0" y="0" width="100">
+				<e:Group x="0" y="0" width="90">
 					<e:Image source="card_icon_1_png" y="0" scaleY="0.65" x="0" scaleX="0.65"/>
 					<e:Label id="atkText0" text="1234" x="35" y="1.6500000000000004" textColor="0xCBC08A" size="24"/>
 				</e:Group>
-				<e:Group x="91.06060606060606" y="1.9696969696969688" width="100">
+				<e:Group x="91.06060606060606" y="1.9696969696969688" width="90">
 					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
 					<e:Label id="speedText0" y="0" textColor="0xCBC08A" size="24" text="123" x="35"/>
 				</e:Group>
-				<e:Label id="defendText0" y="1.9696969696969688" size="24" text="防+150%" x="193.03030303030303" width="100" textColor="0xCC9900"/>
+				<e:Label id="defendText0" y="1.9696969696969688" size="24" text="防+150%" x="193.03030303030303" width="120" textColor="0xCC9900"/>
 				<e:layout>
 					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
 				</e:layout>
@@ -78,8 +78,8 @@
 				<e:layout>
 					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
 				</e:layout>
-				<e:Label y="1.9696969696969688" text="防+150%" x="193.03030303030303" width="100" size="24" id="defendText1" textColor="0xCC9900"/>
-				<e:Group width="100" y="1.9696969696969688" x="91.06060606060606">
+				<e:Label y="1.9696969696969688" text="防+150%" x="193.03030303030303" width="120" size="24" id="defendText1" textColor="0xCC9900"/>
+				<e:Group width="90" y="1.9696969696969688" x="91.06060606060606">
 					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
 					<e:Label y="0" textColor="0xCBC08A" text="123" id="speedText1" size="24" x="35"/>
 				</e:Group>

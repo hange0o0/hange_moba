@@ -23,6 +23,7 @@ class MainMainItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.awardBtn, this.onAward);
         this.addBtnEvent(this.startBtn, this.onStart,true);
+        this.addBtnEvent(this.scoreText, this.onScore);
         EM.addEvent(GameEvent.client.pass_day,this.renew,this)
         RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
@@ -32,8 +33,12 @@ class MainMainItem extends game.BaseItem {
 
     }
     private onStart(){
-
         MainGameManager.getInstance().openPKView();
+    }
+
+    private onScore(){
+        var nextLevel = MainGameManager.getInstance().getNextStep();
+        Alert('下一称号：' + MainGameManager.getInstance().getStepName(nextLevel)  + '\n需要评分：'+nextLevel+'')
     }
 
     public renew() {

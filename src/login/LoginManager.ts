@@ -381,6 +381,7 @@ class LoginManager{
             if(!self.isAuto)
                 PopUpManager.movieChange(LoginServerUI.getInstance(),MainPageUI.getInstance(),1)
             self.isAuto = false;
+            MainLoadingUI.getInstance().hide();
             //LoginServerUI.getInstance().hide();
             if(fun)
                 fun();

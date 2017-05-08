@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MapInfoUISkin" width="640" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
+<e:Skin class="MapInfoUISkin" width="640" height="480" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
 	<e:Image y="20" top="0" bottom="0" x="0" source="book_bg1_jpg" scale9Grid="40,44,240,266" locked="true"/>
 	<e:Image source="book_bg1_jpg" y="30" top="0" bottom="0" scale9Grid="40,44,240,266" scaleX="-1" right="0" locked="true"/>
+	<e:Rect fillAlpha="1" fillColor="0x160D06" x="10" width="620" height="110" bottom="0"/>
 	<e:Image source="fire_top_jpg" y="8" width="620" horizontalCenter="0" height="70" scale9Grid="80,1,480,68"/>
 	<e:Label id="titleText" y="26" text="积分商城" stroke="2" horizontalCenter="0" x="30" textColor="0xCCB48E"/>
-	<e:Label id="desText" text="每次挑战需消耗 1 点体力\n每次扫荡消耗" size="20" bottom="87" textColor="0xCCB48E" horizontalCenter="0"/>
 	<e:Label y="101" textColor="0xE0A44A" text="野怪战力：" stroke="2" size="24" x="40"/>
 	<e:Label id="forceText" y="98" textColor="0xCCB48E" text="1-5" stroke="2" size="30" x="160"/>
 	<e:Label y="212" textColor="0xE0A44A" text="获胜奖励：" stroke="2" size="24" x="40"/>
@@ -15,17 +15,24 @@
 	</e:List>
 	<e:Label id="titleText2" y="156" text="清剿进度：" stroke="2" size="24" textColor="0xE0A44A" x="40"/>
 	<e:Group id="btnGroup" bottom="15" horizontalCenter="0">
-		<e:Button y="-7.105427357601002e-15" id="sweepBtn" label="扫荡" x="0" skinName="Btn_r2Skin"/>
-		<e:Button y="-7.105427357601002e-15" id="pkBtn" label="挑战" x="126.06060606060618" skinName="Btn_r2Skin"/>
+		<e:Group id="sweepGroup" x="199.9393939393939" y="9.939393939393995">
+			<e:Button id="sweepBtn" y="25" label="扫荡" skinName="Btn_r2Skin" x="0"/>
+			<e:Label id="sweepText" y="0" textColor="0xCCB48E" text="11" horizontalCenter="0" size="20"/>
+		</e:Group>
+		<e:Group x="189.93939393939394" y="-0.060606060606005485">
+			<e:Button y="25" id="pkBtn" label="挑战" x="0" skinName="Btn_r2Skin"/>
+			<e:Label id="pkText" textColor="0xCCB48E" text="每次消耗1体力" size="20" y="0" horizontalCenter="0"/>
+		</e:Group>
 		<e:layout>
-			<e:HorizontalLayout gap="30"/>
+			<e:HorizontalLayout gap="40"/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="159" x="160">
+	<e:Group y="159" x="160" locked="true">
 		<e:Image source="bar_bg_png" y="0" width="366" height="15" x="0" scale9Grid="9,5,139,2"/>
 		<e:Image source="bar2_png" y="3.030303030303031" id="barMC" width="280" height="10" x="3" scale9Grid="18,3,114,2"/>
 		<e:Label id="rateText" y="-10" textColor="0xCCB48E" text="9/10" stroke="2" size="22" horizontalCenter="0"/>
 	</e:Group>
 	<e:Button right="10" y="6" skinName="Btn_close1Skin" id="closeBtn" x="10"/>
-	<e:Label id="emptyText" text="今日扫荡已完成" size="26" horizontalCenter="1" textColor="0xCCB48E" bottom="58"/>
+	<e:Label id="emptyText" text="今日扫荡已完成" size="26" horizontalCenter="1" textColor="0xCCB48E" bottom="39"/>
+	<e:Image source="line_png" x="9" y="365" width="620"/>
 </e:Skin>

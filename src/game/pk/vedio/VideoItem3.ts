@@ -415,6 +415,19 @@ class VideoItem3 extends game.BaseItem {
         this.addBtnEvent(mc,onDetail);
     }
 
+    private addInfoClick(mc,data){
+        if(this.stopClick )
+            return;
+        var self = this;
+        var onDetail = function(e){
+            if(self.isChoose)
+                e.stopImmediatePropagation();
+            VideoDetailUI.getInstance().show({data:self.data,team:data.teamID,index:data.index});
+        }
+
+        this.addBtnEvent(mc,onDetail);
+    }
+
 
 
     ////特效后使用攻击
@@ -696,7 +709,7 @@ class VideoItem3 extends game.BaseItem {
         else
             playerVO.headVO = null;
         mc.data = playerVO;
-        this.addItemClick(mc,playerVO)
+        this.addInfoClick(mc,playerVO)
         return mc
     }
 }

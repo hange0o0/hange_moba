@@ -205,7 +205,7 @@ class MainGameUI extends game.BaseUI {
             });
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.cardText.text = '剩余次数：'+myCard.num+'/10'
+        this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
     }
 
     private onChoose1(){

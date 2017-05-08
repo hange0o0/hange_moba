@@ -11,17 +11,21 @@ class MapInfoUI extends game.BaseContainer {
     }
 
     private titleText: eui.Label;
-    private desText: eui.Label;
     private forceText: eui.Label;
     private awardList: eui.List;
     private titleText2: eui.Label;
     private btnGroup: eui.Group;
+    private sweepGroup: eui.Group;
     private sweepBtn: eui.Button;
+    private sweepText: eui.Label;
     private pkBtn: eui.Button;
+    private pkText: eui.Label;
     private barMC: eui.Image;
     private rateText: eui.Label;
     private closeBtn: eui.Button;
     private emptyText: eui.Label;
+
+
 
 
 
@@ -91,9 +95,9 @@ class MapInfoUI extends game.BaseContainer {
         {
             this.rateText.text = ''+MM.step+'/10'
             this.barMC.width = barWidth * MM.step / 10;
-            MyTool.removeMC(this.sweepBtn)
+            MyTool.removeMC(this.sweepGroup)
             this.titleText2.text = '清剿进度：'
-            this.desText.text = '每次挑战需消耗 1 点体力'
+            //this.desText.text = '每次挑战需消耗 1 点体力'
         }
         else
         {
@@ -105,16 +109,16 @@ class MapInfoUI extends game.BaseContainer {
                 this.barMC.width = barWidth;
                 this.emptyText.visible = true
                 this.btnGroup.visible = false
-                this.desText.text = ''
+                //this.desText.text = ''
             }
             else
             {
                 this.rateText.text = ''+times+'/10'
                 this.barMC.width = barWidth*times/10;
-                this.btnGroup.addChildAt(this.sweepBtn,0)
+                this.btnGroup.addChildAt(this.sweepGroup,0)
                 times = 10 -times;
                 this.sweepBtn.label = '扫荡 '+times+' 次';
-                this.desText.text = '每次挑战需消耗 1 点体力，扫荡'+times+'次消耗 '+times+' 钻石'
+                this.sweepText.text = '消耗 '+times+' 钻石'
             }
         }
 

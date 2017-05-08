@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="VideoDetailSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="VideoDetailSkin" width="640" height="1200" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0" locked="true"/>
 <ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Group x="0" top="80" bottom="70">
@@ -7,23 +7,24 @@
 			<e:Group id="scrollGroup">
 				<ns1:VideoItem3 id="roundMC" x="0" y="552.8787878787879" skinName="VideoItem3Skin"/>
 				<e:Group id="g0" y="89" x="27">
-					<e:Group x="220" y="0">
+					<ns1:BookBG id="isAtk0" x="0" y="0" skinName="BookBGSkin" height="100%"/>
+					<e:Group x="250" y="32">
 						<e:Group x="7" y="0">
 							<e:Label text="血量：" x="0" size="24" verticalCenter="0" textColor="0xE0A44A"/>
-							<e:Rect x="60" width="280" fillColor="0x240D0D" height="24" y="0"/>
+							<e:Rect x="60" width="280" fillColor="0x20140D" height="24" y="0"/>
 							<e:Rect id="hpBar" x="60" strokeColor="0xFAED05" width="280" fillColor="0x8C0101" height="24" y="0"/>
 							<e:Rect id="hpBar0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101" width="280" height="24" x="60"/>
 							<e:Label id="hpText" text="12300/45600" stroke="2" size="18" x="70" verticalCenter="0" textColor="0xFCE1B8"/>
 						</e:Group>
 						<e:Group x="7" y="37">
 							<e:Label y="0" size="24" text="怒气：" x="0" textColor="0xE0A44A"/>
-							<e:Rect x="60" width="280" fillColor="0x240D0D" height="24" y="0"/>
+							<e:Rect x="60" width="280" fillColor="0x20140D" height="24" y="0"/>
 							<e:Rect id="mpBar" y="0" strokeColor="0xFAED05" width="280" fillColor="0x0E178F" height="24" x="60"/>
 							<e:Label id="mpText" text="12300/45600" stroke="2" size="18" verticalCenter="0" x="70" textColor="0xFCE1B8"/>
 						</e:Group>
 						<e:Group x="7" y="74">
 							<e:Label y="0" size="24" text="必杀：" x="0" textColor="0xE0A44A"/>
-							<e:Rect x="60" width="280" fillColor="0x240D0D" height="24" y="0"/>
+							<e:Rect x="60" width="280" fillColor="0x20140D" height="24" y="0"/>
 							<e:Rect id="apBar" y="0" strokeColor="0xFAED05" width="10" fillColor="0xB4A502" height="24" x="60"/>
 							<e:Label x="70" text="12300/45600" verticalAlign="top" stroke="2" size="18" verticalCenter="0" id="apText" textColor="0xFCE1B8"/>
 						</e:Group>
@@ -47,10 +48,9 @@
 							<e:VerticalLayout gap="15" paddingTop="10" paddingBottom="10"/>
 						</e:layout>
 					</e:Group>
-					<e:Group id="headGroup0" x="0" y="10">
+					<e:Group id="headGroup0" x="30" top="30" bottom="30">
 						<e:Image source="card_bg_png" scale9Grid="72,75,87,71" y="0" height="306" x="0" scaleX="0.8" scaleY="0.8"/>
 						<e:Image id="headMC0" source="head_png" y="8" x="11" width="168" height="224"/>
-						<e:Image id="isAtk0" source="card_battle_png" y="8" x="8"/>
 						<e:Group x="10" y="184">
 							<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
 							<e:Label id="nameText0" y="13" size="24" text="血量压力" horizontalCenter="0" textColor="0xCCB48E"/>
@@ -58,8 +58,9 @@
 					</e:Group>
 				</e:Group>
 				<e:Group id="g1" y="119" x="57">
-					<e:Rect height="1" width="580" y="0" fillColor="0x712B2B" horizontalCenter="0"/>
-					<e:Group x="220" y="30">
+					<ns1:BookBG x="0" skinName="BookBGSkin" y="0" height="100%" id="isAtk1"/>
+					<e:Rect width="100%" y="0" fillColor="0x240D0D" height="1" x="0"/>
+					<e:Group x="250" y="30">
 						<e:layout>
 							<e:VerticalLayout gap="15" paddingBottom="10" paddingTop="10"/>
 						</e:layout>
@@ -80,10 +81,9 @@
 							</e:List>
 						</e:Group>
 					</e:Group>
-					<e:Group id="headGroup1" y="30" x="19" scaleY="0.8" scaleX="0.8">
+					<e:Group id="headGroup1" x="50" scaleY="0.8" scaleX="0.8" top="30" bottom="30">
 						<e:Image source="card_bg_png" y="0" scaleX="0.8" scale9Grid="72,75,87,71" scaleY="0.8" height="306" x="0"/>
 						<e:Image source="head_png" y="8" id="headMC1" width="168" height="224" x="11"/>
-						<e:Image source="card_battle_png" y="8" x="8" id="isAtk1"/>
 						<e:Group x="10" y="184">
 							<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
 							<e:Label y="13" size="24" text="血量压力" id="nameText1" horizontalCenter="0" textColor="0xCCB48E"/>
@@ -91,8 +91,9 @@
 					</e:Group>
 				</e:Group>
 				<e:Group id="g2" y="129" x="67">
-					<e:Rect width="580" y="0" fillColor="0x712B2B" height="1" horizontalCenter="0"/>
-					<e:Group x="220" y="30">
+					<ns1:BookBG id="isAtk2" x="0" skinName="BookBGSkin" y="0" height="100%"/>
+					<e:Rect width="100%" y="0" fillColor="0x240D0D" height="1" x="0"/>
+					<e:Group x="250" y="30">
 						<e:layout>
 							<e:VerticalLayout gap="15" paddingBottom="10" paddingTop="10"/>
 						</e:layout>
@@ -113,10 +114,9 @@
 							</e:List>
 						</e:Group>
 					</e:Group>
-					<e:Group id="headGroup2" y="30" scaleX="0.8" scaleY="0.8" x="19">
+					<e:Group id="headGroup2" scaleX="0.8" scaleY="0.8" x="50" top="30" bottom="30">
 						<e:Image source="card_bg_png" y="0" scaleX="0.8" scale9Grid="72,75,87,71" scaleY="0.8" height="306" x="0"/>
 						<e:Image source="head_png" y="8" id="headMC2" width="168" height="224" x="11"/>
-						<e:Image source="card_battle_png" y="8" id="isAtk2" x="8"/>
 						<e:Group x="10" y="184">
 							<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
 							<e:Label y="13" textColor="0xCCB48E" text="血量压力" horizontalCenter="0" size="24" id="nameText2"/>
@@ -124,7 +124,7 @@
 					</e:Group>
 				</e:Group>
 				<e:layout>
-					<e:VerticalLayout horizontalAlign="center" paddingTop="0" gap="20" paddingBottom="20"/>
+					<e:VerticalLayout horizontalAlign="center" paddingTop="0" gap="0" paddingBottom="0"/>
 				</e:layout>
 			</e:Group>
 		</e:Scroller>

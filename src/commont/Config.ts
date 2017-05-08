@@ -22,6 +22,7 @@ class Config {
     public static gambleLevel = 20;
 
     public static serverLevel = 5;//试练场10级开放
+    public static mapLevel = 5;
     public static serverEqualLevel = 50;  //试练场50级开放
 
 
