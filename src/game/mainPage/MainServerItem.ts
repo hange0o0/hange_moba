@@ -29,7 +29,8 @@ class MainServerItem extends game.BaseItem {
     private onScore(){
         var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
         var nextExp = ServerGameManager.getInstance().getPKTableExp(level + 1)
-        Alert('下一称号：' + ServerGameManager.getInstance().getStepName(nextExp)  + '\n需要评分：'+nextExp+'')
+        Alert(this.createHtml('下一称号：',0xE0A44A) + ServerGameManager.getInstance().getStepName(nextExp)  + this.createHtml('\n需要评分：',0xE0A44A)+nextExp+'',null,'知道了')
+
     }
 
     private onRetry(){
@@ -52,8 +53,8 @@ class MainServerItem extends game.BaseItem {
         this.scoreText.visible = !this.lockMC.visible
         if(this.lockMC.visible)
         {
-
-            this.desText.text = '公会评分达' + Config.serverLevel + '后开放'
+            this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.serverLevel) + '',0xE0A44A)+' 才可进入');
+            //this.desText.text = '公会评分达' + Config.serverLevel + '后开放'
             this.btnGroup.visible = false;
         }
         else

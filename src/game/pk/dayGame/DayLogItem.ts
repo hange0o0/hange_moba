@@ -44,7 +44,10 @@ class DayLogItem extends game.BaseItem {
         {
             MapManager.getInstance().pkLevel = this.data.sp.round;
         }
-        PKManager.getInstance().getReplayByData(this.data.sp.type,this.data.videoData)
+
+        PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.data.videoData);
+        PKMainUI.getInstance().show();
+        //PKManager.getInstance().getReplayByData(this.data.sp.type,this.data.videoData)
     }
 
     public dataChanged() {

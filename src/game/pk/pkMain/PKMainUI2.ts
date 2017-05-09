@@ -659,7 +659,7 @@ class PKMainUI extends game.BaseUI {
             else
                 player = (this.player2)
             this.playDie(player,oo.star);
-            if(this.random() < 0.3)
+            if(this.random() < 0.2)
                 this.showPKWord(player);
             this.stepOne();
         }
@@ -670,7 +670,7 @@ class PKMainUI extends game.BaseUI {
             else
                 player = (this.player2)
             this.playWinRemove(player);
-            if(this.random() < 0.3)
+            if(this.random() < 0.2)
                 this.showPKWord(player);
             this.timer = egret.setTimeout(this.stepOne,this,200);
         }

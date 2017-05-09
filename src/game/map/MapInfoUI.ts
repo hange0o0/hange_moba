@@ -83,8 +83,8 @@ class MapInfoUI extends game.BaseContainer {
 
     private renew(){
         var MM = MapManager.getInstance();
-        var begin = Math.ceil(Math.pow(this.level,2.2));
-        var end = begin + Math.ceil(Math.pow(this.level,1.2));
+        var begin = Math.ceil(Math.pow(this.level,2.5)) + this.level*5;
+        var end = begin + Math.ceil(Math.pow(this.level,1.25)) + this.level;
         this.forceText.text = begin + ' - ' + end;
         this.titleText.text = '据点' + this.level;
 

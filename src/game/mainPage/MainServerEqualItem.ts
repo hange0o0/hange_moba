@@ -32,7 +32,7 @@ class MainServerEqualItem extends game.BaseItem {
     private onScore(){
         var level = ServerGameEqualManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
         var nextExp = ServerGameEqualManager.getInstance().getPKTableExp(level + 1)
-        Alert('下一称号：' + ServerGameEqualManager.getInstance().getStepName(nextExp)  + '\n需要评分：'+nextExp+'')
+        Alert(this.createHtml('下一称号：',0xE0A44A) + ServerGameEqualManager.getInstance().getStepName(nextExp)  + this.createHtml('\n需要评分：',0xE0A44A)+nextExp+'',null,'知道了')
     }
 
     private onRetry(){
@@ -58,7 +58,7 @@ class MainServerEqualItem extends game.BaseItem {
         if(this.lockMC.visible)
         {
 
-            this.desText.text = '公会评分达' + Config.serverEqualLevel + '后开放'
+            this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.serverEqualLevel) + '',0xE0A44A)+' 才可进入');
             this.btnGroup.visible = false;
         }
         else

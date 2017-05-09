@@ -153,7 +153,7 @@ class VideoDetailUI extends game.BaseUI {
                 var tw = egret.Tween.get(bg)
                 bg.visible = true;
                 bg.alpha = 0;
-                tw.to({alpha:1},100).wait(500).to({alpha:0},500)
+                tw.to({alpha:1},100).wait(1000).to({alpha:0},500)
             }
         }
         if(this.dataIn.index)
@@ -257,10 +257,14 @@ class VideoDetailUI extends game.BaseUI {
                         def += oo.value;
                         break;
                 }
-                if((oo.id > 10 && oo.id<30) || oo.id==42) //debuff
+                if(i%2 == 0) //debuff
                     arr2.push(oo)
                 else
                     arr1.push(oo);
+                //if((oo.id > 10 && oo.id<30) || oo.id==42) //debuff
+                //    arr2.push(oo)
+                //else
+                //    arr1.push(oo);
             }
             //console.log('id:',baseData.id,'=======================================')
             //if(j == 0)

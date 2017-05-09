@@ -56,11 +56,11 @@ class PKTalkItem extends game.BaseContainer {
         this.scaleY = 0;
         this.alpha = 1;
         var tw = egret.Tween.get(this);
-        tw.to({scaleX:1.1,scaleY:1.1},200).to({scaleX:1,scaleY:1},200).wait(1500).to({alpha:0},100).call(function(){
+        tw.to({scaleX:1,scaleY:1},200).to({scaleX:0.9,scaleY:0.9},200).wait(2000).to({alpha:0},100).call(function(){
             this.active = false;
             MyTool.removeMC(this);
             item.talking = false;
-        },this)
+        },this);
 
     }
 

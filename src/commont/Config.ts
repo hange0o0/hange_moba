@@ -23,7 +23,7 @@ class Config {
 
     public static serverLevel = 5;//试练场10级开放
     public static mapLevel = 5;
-    public static serverEqualLevel = 50;  //试练场50级开放
+    public static serverEqualLevel = 45;  //试练场50级开放
 
 
     public static platform = '';

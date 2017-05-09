@@ -43,7 +43,12 @@ class Main extends eui.UILayer {
         //Config loading process interface
         //设置加载进度界面
         this.loadingView = MainLoadingUI.getInstance();
-        this.loadingView.show(this);
+        if(_get['debug'] != 100)
+        {
+            this.loadingView.show(this);
+        }
+
+
         // initialize the Resource loading library
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
@@ -67,6 +72,8 @@ class Main extends eui.UILayer {
         //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
         var theme = new eui.Theme("resource/default.thm.json", this.stage);
         theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
+
+
 
 
 
@@ -172,6 +179,21 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
+        if(Config.isDebug && _get['host'] == 'com')
+        {
+            Config.host = '172.17.196.195:90';
+        }
+        GameManager.stage = this.stage;
+        GameManager.container = this;
+        GameManager.getInstance().init();
+        SoundManager.getInstance().preLoad();
+
+
+        if(_get['debug'] == 100)
+        {
+            Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php';
+            return
+        }
         Config.isDebug =  _get['debug'];
         var LM = LoginManager.getInstance();
         if(!(LM.lastUser && LM.quickPassword && LM.lastServer)) {
@@ -196,10 +218,7 @@ class Main extends eui.UILayer {
 
 
 
-        GameManager.stage = this.stage;
-        GameManager.container = this;
-        GameManager.getInstance().init();
-        SoundManager.getInstance().preLoad();
+
 
 
         //UM.gameid = _get['gameid'];
@@ -208,10 +227,7 @@ class Main extends eui.UILayer {
         //else if(UM.gameid == '1_10001')
         //    UM.landid = '1449732148';
 
-        if(Config.isDebug && _get['host'] == 'com')
-        {
-            Config.host = '172.17.196.195:90';
-        }
+
 
         //if(_get['debug'] == 3)
         //{
@@ -225,33 +241,28 @@ class Main extends eui.UILayer {
             return;
         }
 
-        //if(!_get['debug'])
-        //{
-            LoginUI.getInstance().show();
-            return;
-        //}
-
+        LoginUI.getInstance().show();
         //DebugUI.getInstance().show();
         //var dataIn = {
         //    vedio:1,   //从0开始
         //    team1:{"list":[101,102,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}},
         //    team2:{"list":[101,101,101,101,101,101,101,101,101,101],"ring":{"id":1,"level":0}}
         //};
-        Net.getInstance().serverHost = Config.host;
-
-        if(_get['host'] == 'com')
-            Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php'
-        else
-            Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
-
-        var dataIn = RES.getRes("test_data_json");
-        VideoUI.getInstance().debugShow = true;
-        DebugManager.getInstance().debugFromFile(dataIn);
-        setTimeout(function(){
-
-            DebugManager.getInstance().consoleDebug();
-
-        },1000)
+        //Net.getInstance().serverHost = Config.host;
+        //
+        //if(_get['host'] == 'com')
+        //    Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php'
+        //else
+        //    Net.getInstance().serverHost = 'http://hangegame.com/gameindex.php'
+        //
+        //var dataIn = RES.getRes("test_data_json");
+        //VideoUI.getInstance().debugShow = true;
+        //DebugManager.getInstance().debugFromFile(dataIn);
+        //setTimeout(function(){
+        //
+        //    DebugManager.getInstance().consoleDebug();
+        //
+        //},1000)
 
 
     }

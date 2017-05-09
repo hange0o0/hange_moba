@@ -21,7 +21,8 @@ class VideoUI extends game.BaseUI {
     private team1BG: eui.Image;
     private atkText0: eui.Label;
     private speedText0: eui.Label;
-    private defendText0: eui.Label;
+    private defGroup0: eui.Group;
+    private defText0: eui.Label;
     private statList0: eui.List;
     private playerGroup2: eui.Group;
     private hpBar1: eui.Rect;
@@ -32,12 +33,13 @@ class VideoUI extends game.BaseUI {
     private apText1: eui.Label;
     private headMC1: eui.Image;
     private team2BG: eui.Image;
-    private atkText1: eui.Label;
+    private defGroup1: eui.Group;
+    private defText1: eui.Label;
     private speedText1: eui.Label;
-    private defendText1: eui.Label;
+    private atkText1: eui.Label;
     private statList1: eui.List;
     private topUI: TopUI;
-    private guideBtn: eui.Image;
+    private guideBtn: eui.Group;
     private guideMC: VideoGuide;
     private resultMC: eui.Group;
     private rbg1: eui.Image;
@@ -61,6 +63,8 @@ class VideoUI extends game.BaseUI {
     private enemyItem1: VideoItem;
     private enemyItem2: VideoItem;
     private tipsGroup: eui.Group;
+
+
 
 
 
@@ -270,14 +274,15 @@ class VideoUI extends game.BaseUI {
 
         if(valueAdd.def)
         {
+            this.defGroup0.visible = true
             if(valueAdd.def > 0)
-                this.setHtml(this.defendText0,'防：' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
+                this.setHtml(this.defText0,'' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
             else
-                this.setHtml(this.defendText0,'防：' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
+                this.setHtml(this.defText0,'' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
         }
         else
         {
-            this.defendText0.text = '';
+            this.defGroup0.visible = false
         }
 
         this.statList0.dataProvider = new eui.ArrayCollection(getList(buff));
@@ -316,14 +321,15 @@ class VideoUI extends game.BaseUI {
 
         if(valueAdd.def)
         {
+            this.defGroup1.visible = true
             if(valueAdd.def > 0)
-                this.setHtml(this.defendText1,'防：' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
+                this.setHtml(this.defText1,'' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
             else
-                this.setHtml(this.defendText1,'防：' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
+                this.setHtml(this.defText1,'' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
         }
         else
         {
-            this.defendText1.text = '';
+            this.defGroup1.visible = false
         }
 
         this.statList1.dataProvider = new eui.ArrayCollection(getList(buff));

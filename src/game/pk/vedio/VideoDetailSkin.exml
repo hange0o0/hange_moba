@@ -29,7 +29,7 @@
 							<e:Label x="70" text="12300/45600" verticalAlign="top" stroke="2" size="18" verticalCenter="0" id="apText" textColor="0xFCE1B8"/>
 						</e:Group>
 						<e:Label id="valueText0" y="115" size="24" text="血量:280+56" x="7" lineSpacing="8" textColor="0xCCB48E"/>
-						<e:Group x="0" y="161">
+						<e:Group x="0" y="170">
 							<e:List id="buffDecList0" width="180" y="1" x="160">
 								<e:layout>
 									<e:VerticalLayout gap="10"/>
@@ -41,11 +41,11 @@
 								</e:layout>
 							</e:List>
 							<e:layout>
-								<e:HorizontalLayout/>
+								<e:HorizontalLayout paddingTop="10"/>
 							</e:layout>
 						</e:Group>
 						<e:layout>
-							<e:VerticalLayout gap="15" paddingTop="10" paddingBottom="10"/>
+							<e:VerticalLayout gap="15" paddingTop="10" paddingBottom="25"/>
 						</e:layout>
 					</e:Group>
 					<e:Group id="headGroup0" x="30" top="30" bottom="30">
@@ -62,12 +62,12 @@
 					<e:Rect width="100%" y="0" fillColor="0x240D0D" height="1" x="0"/>
 					<e:Group x="250" y="30">
 						<e:layout>
-							<e:VerticalLayout gap="15" paddingBottom="10" paddingTop="10"/>
+							<e:VerticalLayout gap="15" paddingBottom="25" paddingTop="10"/>
 						</e:layout>
 						<e:Label x="7" y="115" size="24" text="血量:280+56" id="valueText1" lineSpacing="8" textColor="0xCCB48E"/>
 						<e:Group x="0" y="161">
 							<e:layout>
-								<e:HorizontalLayout/>
+								<e:HorizontalLayout paddingTop="10"/>
 							</e:layout>
 							<e:List x="160" width="180" y="1" id="buffDecList1">
 								<e:layout>
@@ -95,12 +95,12 @@
 					<e:Rect width="100%" y="0" fillColor="0x240D0D" height="1" x="0"/>
 					<e:Group x="250" y="30">
 						<e:layout>
-							<e:VerticalLayout gap="15" paddingBottom="10" paddingTop="10"/>
+							<e:VerticalLayout gap="15" paddingBottom="25" paddingTop="10"/>
 						</e:layout>
 						<e:Label y="115" textColor="0xCCB48E" lineSpacing="8" text="血量:280+56" id="valueText2" size="24" x="7"/>
 						<e:Group x="0" y="161">
 							<e:layout>
-								<e:HorizontalLayout/>
+								<e:HorizontalLayout paddingTop="10"/>
 							</e:layout>
 							<e:List x="160" width="180" y="1" id="buffDecList2">
 								<e:layout>

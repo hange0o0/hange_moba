@@ -159,7 +159,7 @@ class UserManager {
         //等级影响
         for(var i=1;i<=this.level;i++)
         {
-            tec_force += Math.ceil((i+1)/10);
+            tec_force += i;//Math.ceil((i+1)/10);
         }
         return tec_force;
     }
@@ -172,7 +172,10 @@ class UserManager {
             var count = 0;
             for(var s in data)
             {
-                count += data[s];
+                for(var i=1;i<=data[s];i ++)
+                {
+                    count += i;//ceil(($i + 1)/10);
+                }
             }
             return count;
         }
@@ -208,7 +211,7 @@ class UserManager {
             var count = 0;
             for(var i=1;i<=level;i ++)
             {
-                count += Math.ceil((i + 1)/10);
+                count += i;//Math.ceil((i + 1)/10);
             }
             return count;
         }

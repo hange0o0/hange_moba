@@ -27,13 +27,13 @@ class PKManager {
     }
 
     public pkWord = {
-        win:['求一败','下一个','来个强点的','对面没人了吗','让我战个痛快吧'],
+        win:['求一败','下一个','来个强点的','对面没人了吗','让我战个痛快吧','哈哈哈'],
         win3:['我还想继续呢','就没强一点的吗','我还能再打三个','对面怎么这么弱啊'],
         loss:['就差一点','不开心','不高兴','运气而已','我只是打酱油的','兄弟们为我报仇','赢太多，放放水','我们还有机会的','他其实也快没血了'],
         pking:['杀','看招','别跑','战来痛快','小心你的背后','这招看你怎么躲','我要认真了','再来啊','你就只会这几招吗','我要出大招了','我会赐予你死亡','有破绽'],
         win_view:['太牛B了','好样的','我爱你！','爱死你了','对面太弱了','不错不错','威武','有希望了','好强哦~','想输都难'],
         loss_view:['别高兴太早','等下一挑你们仨','让你们的','高手还在后面了','这样的游戏才好玩','让得也太明显了吧'],
-        view:['加油','干死他','打啊，别光跑','有破绽','小心后面','哎呀','就差一下了','对，就这样干','风筝放死他']
+        view:['加油','干死他','打啊，别光跑','有破绽','小心后面','哎呀','就差一下了','对，就这样干','看来准备赢了']
     }
     public pkEmo = {
         win:[4,7,9,12,14],
@@ -821,22 +821,22 @@ class PKManager {
             info2.push(oo)
         }
 
-        var videoData = {
-            team1:{
-                list:this.team1Base.list,
-                fight:this.team1Base.f || 0
-            },
-            team2:{
-                list:this.team2Base.list,
-                fight:this.team2Base.f || 0
-            },
-            isequal:this.pkResult.isequal,
-            pk_version:Config.pk_version
-        }
+        //var videoData = {
+        //    team1:{
+        //        list:this.team1Base.list,
+        //        fight:this.team1Base.f || 0
+        //    },
+        //    team2:{
+        //        list:this.team2Base.list,
+        //        fight:this.team2Base.f || 0
+        //    },
+        //    isequal:this.pkResult.isequal,
+        //    pk_version:Config.pk_version
+        //}
 
         return {
             sp:data,
-            videoData:videoData,
+            videoData:this.pkResult,
             team1Base:team1Base,
             team2Base:team2Base,
             info1:info1,

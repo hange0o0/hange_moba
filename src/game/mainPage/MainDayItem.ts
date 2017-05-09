@@ -42,7 +42,7 @@ class MainDayItem extends game.BaseItem {
         if(this.lockMC.visible)
         {
 
-            this.desText.text = Config.dayLevel + '级开放'
+            this.desText.text = '玩家 ' + Config.dayLevel + ' 级开放'
             this.btnGroup.visible = false;
         }
         else

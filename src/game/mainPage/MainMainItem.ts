@@ -38,7 +38,7 @@ class MainMainItem extends game.BaseItem {
 
     private onScore(){
         var nextLevel = MainGameManager.getInstance().getNextStep();
-        Alert('下一称号：' + MainGameManager.getInstance().getStepName(nextLevel)  + '\n需要评分：'+nextLevel+'')
+        Alert(this.createHtml('下一称号：',0xE0A44A) + MainGameManager.getInstance().getStepName(nextLevel)  + this.createHtml('\n需要评分：',0xE0A44A)+nextLevel+'',null,'知道了')
     }
 
     public renew() {

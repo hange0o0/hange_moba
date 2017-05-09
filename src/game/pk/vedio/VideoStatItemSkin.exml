@@ -2,10 +2,11 @@
 <e:Skin class="VideoStatItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<e:Group x="0" y="0">
 		<e:Image id="icon" x="0" y="0" source="buff_11_png"/>
-		<e:Label id="valueText" text="+12345" x="49" textColor="0xFF0E0D" size="22" y="5" height="32" textAlign="center" verticalAlign="middle"/>
+		<e:Label id="valueText" text="+12345" x="49" textColor="0xFF0E0D" size="22" stroke="1" y="5" height="32" textAlign="center" verticalAlign="middle"/>
 		<e:Label id="cdText" y="11" size="18" text="/3" x="34" verticalAlign="bottom" textColor="0x60FE30" height="32" textAlign="right"/>
 		<e:layout>
 			<e:HorizontalLayout/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
 </e:Skin>
