@@ -25,14 +25,17 @@ class Net extends egret.EventDispatcher{
         super();
     }
 
-    private getVariables(head,msg)
+    private getVariables(head,msg,serverType)
     {
         var variables = new egret.URLVariables('a=1');
         var oo:any = {};
         oo.head = head;
         oo.msg = JSON.stringify(msg);
         oo.debug_client =  Config.isDebug;
-        oo.version = Config.version;
+        if(serverType == 1)
+            oo.version = Config.version;
+        else
+            oo.version = Config.user_version;
         variables.variables = oo;
         //(<any>variables.variables).msg = JSON.stringify(msg);
         //(<any>variables.variables).debug_client = Config.isDebug;
@@ -56,7 +59,7 @@ class Net extends egret.EventDispatcher{
             var request = new egret.URLRequest('http://'+Config.host+'/userindex.php');
         //var request = new egret.URLRequest('http://qxu1606510485.my3w.com/new_index.php');
         request.method = egret.URLRequestMethod.POST;
-        request.data = this.getVariables(head,msg);
+        request.data = this.getVariables(head,msg,serverType);
         if(Config.isDebug && this.outPut)
         {
             console.log('send===>      '+head)

@@ -88,6 +88,7 @@ class PKResultBase extends game.BaseContainer {
         else if(award.getNewCard)//卡级
         {
             award.getNewCard = false;
+            PKResultUI.getInstance().showCardTask = true;
             this._desText.text += '\n卡组次数已用完，获得了新卡组';
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }
@@ -144,7 +145,7 @@ class PKResultBase extends game.BaseContainer {
         {
             var tw:egret.Tween = egret.Tween.get(this);
             tw.to({y:0}, 300).call(this.onMVFinish,this);
-            PKManager.getInstance().pkAward = null
+
         }
     }
 
@@ -155,5 +156,12 @@ class PKResultBase extends game.BaseContainer {
     private onMVFinish(){
         this.onStepOver();
         PKResultUI.getInstance().showMore(this)
+
+        if(PKManager.getInstance().pkAward.finishTask)
+        {
+            PKManager.getInstance().pkAward.finishTask.title = '完成卡组任务';
+            AwardUI.getInstance().show(PKManager.getInstance().pkAward.finishTask);
+        }
+        PKManager.getInstance().pkAward = null
     }
 }

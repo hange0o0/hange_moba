@@ -235,6 +235,7 @@ class GuideManager {
                 MainPageUI.getInstance()['currentPage'] = 0;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
+                MyCardTaskUI.getInstance().testShow();
             }
         })
 

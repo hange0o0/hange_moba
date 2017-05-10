@@ -17,8 +17,10 @@ class MainGameUI extends game.BaseUI {
     private myList0: eui.List;
     private cardText: eui.Label;
     private resetBtn: eui.Button;
+    private taskText: eui.Label;
     private chooseBtn0: eui.Button;
-    //private logBtn: eui.Button;
+    private taskBtn: eui.Image;
+
 
 
 
@@ -51,6 +53,11 @@ class MainGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
+        this.addBtnEvent(this.taskBtn, this.onTask);
+    }
+
+    private onTask(){
+        MyCardTaskUI.getInstance().show();
     }
 
 
@@ -206,6 +213,11 @@ class MainGameUI extends game.BaseUI {
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
         this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
+        var task = myCard.task
+        if(task)
+            this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
+        else
+            this.taskText.text = '';
     }
 
     private onChoose1(){

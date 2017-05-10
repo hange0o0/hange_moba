@@ -68,7 +68,11 @@
 						<e:Label id="cardText" text="剩余次数：10/10" y="-25" horizontalCenter="0" size="20" textColor="0xFCD45E"/>
 						<e:Button id="resetBtn" label="重新选牌" y="0" x="0" skinName="Btn_b2Skin"/>
 					</e:Group>
-					<e:Button id="chooseBtn0" label="开始挑战" y="0" x="365" skinName="Btn_r3Skin"/>
+					<e:Group y="86.96969696969688" height="56" x="65.9848484848485">
+						<e:Label id="taskText" y="-25" textColor="0xFCD45E" text="剩余次数：10/10" horizontalCenter="0" size="20"/>
+						<e:Button id="chooseBtn0" label="开始挑战" y="-4" x="0" skinName="Btn_r3Skin"/>
+					</e:Group>
+					<e:Image id="taskBtn" source="note_icon_png" x="-515" y="1273"/>
 				</e:Group>
 				<e:layout>
 					<e:VerticalLayout/>

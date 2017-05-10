@@ -14,10 +14,13 @@ class MapGameUI extends game.BaseUI {
     private helpBtn: eui.Group;
     private myGroup0: eui.Group;
     private myList0: eui.List;
+    private enemyBtn: eui.Button;
     private cardText: eui.Label;
     private resetBtn: eui.Button;
-    private enemyBtn: eui.Button;
+    private taskText: eui.Label;
     private chooseBtn0: eui.Button;
+    private taskBtn: eui.Image;
+
 
 
 
@@ -52,6 +55,11 @@ class MapGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
         this.addBtnEvent(this.enemyBtn, this.onEnemy);
+        this.addBtnEvent(this.taskBtn, this.onTask);
+    }
+
+    private onTask(){
+        MyCardTaskUI.getInstance().show();
     }
 
     private onClose(){
@@ -199,6 +207,8 @@ class MapGameUI extends game.BaseUI {
         }
         this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
         this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
+        var task = myCard.task
+        this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
     }
 
     private onChoose1(){

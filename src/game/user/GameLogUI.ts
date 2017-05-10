@@ -31,6 +31,12 @@ class GameLogUI extends game.BaseWindow {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
 
+    public hide(){
+        super.hide();
+        if(this.data)
+            MyCardTaskUI.getInstance().testShow();
+    }
+
     private onCB(){
         LoginManager.getInstance().logText.cb = this.cb.selected;
         LoginManager.getInstance().saveLogText();

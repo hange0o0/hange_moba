@@ -494,6 +494,10 @@
 				{
 					"compress":false,
 					"key":"cloud2_png"
+				},
+				{
+					"compress":false,
+					"key":"card_icon_4_png"
 				}
 			],
 			"sort":0

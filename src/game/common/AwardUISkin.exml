@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="AwardUISkin" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="AwardUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="600" x="0"/>
-	<e:Label y="30" textColor="0xD0C7AD" horizontalCenter="0" text="恭喜获得" x="10"/>
+	<e:Label id="titleText" y="30" textColor="0xD0C7AD" horizontalCenter="0" text="恭喜获得" x="10"/>
 	<e:Button bottom="40" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
 	<e:List top="120" bottom="130" horizontalCenter="0" id="list" x="10" y="10" itemRendererSkinName="AwardItemSkin" maxWidth="510">
 		<e:layout>

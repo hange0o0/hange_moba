@@ -59,12 +59,16 @@
 					<e:layout>
 						<e:HorizontalLayout verticalAlign="middle" horizontalAlign="center" gap="20" paddingLeft="10" paddingTop="25" paddingBottom="10"/>
 					</e:layout>
+					<e:Button id="enemyBtn" label="搜索敌人" y="50" skinName="Btn_b2Skin" x="415"/>
 					<e:Group x="55.98484848484849" y="76.96969696969688" width="160" height="56">
 						<e:Label id="cardText" text="剩余次数：10/10" y="-25" horizontalCenter="0" size="20" textColor="0xFCD45E"/>
 						<e:Button id="resetBtn" label="重新选牌" y="0" x="0" skinName="Btn_b2Skin"/>
 					</e:Group>
-					<e:Button id="enemyBtn" label="搜索敌人" y="50" skinName="Btn_b2Skin" x="415"/>
-					<e:Button id="chooseBtn0" label="开始挑战" y="0" x="365" skinName="Btn_r3Skin"/>
+					<e:Group y="96.96969696969688" height="56" x="75.9848484848485">
+						<e:Label id="taskText" y="-25" textColor="0xFCD45E" text="剩余次数：10/10" horizontalCenter="0" size="20"/>
+						<e:Button id="chooseBtn0" x="0" y="0" label="开始挑战" skinName="Btn_r2Skin"/>
+					</e:Group>
+					<e:Image source="note_icon_png" y="1283" x="-505" id="taskBtn"/>
 				</e:Group>
 				<e:layout>
 					<e:VerticalLayout/>

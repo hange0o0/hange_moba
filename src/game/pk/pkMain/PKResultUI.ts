@@ -35,7 +35,7 @@ class PKResultUI extends game.BaseUI {
 
 
 
-
+    public showCardTask = false
 
     public constructor() {
         super();
@@ -95,6 +95,7 @@ class PKResultUI extends game.BaseUI {
     }
 
     public onShow() {
+        this.showCardTask = false;
         GuideManager.getInstance().enableScrollV(this.scroller);
         PKResultUI.getInstance().initMore()
         PopUpManager.removeShape();
@@ -149,6 +150,8 @@ class PKResultUI extends game.BaseUI {
         MainPageUI.getInstance().renewTask();
         SoundManager.getInstance().playSound(SoundConfig.bg);
         PKMainUI.getInstance().hide();
+        if(this.showCardTask)
+            MyCardTaskUI.getInstance().testShow();
     }
 
     public initMore(){

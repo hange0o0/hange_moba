@@ -480,8 +480,13 @@ class MainPageUI extends game.BaseUI {
             GuideManager.getInstance().showGuide(MainPageUI.getInstance())
             if(!GuideManager.getInstance().isGuiding){
                 if(!LoginManager.getInstance().logText.cb && LoginManager.getInstance().logText.text)
-                    GameLogUI.getInstance().show();
+                    GameLogUI.getInstance().show(true);
+                else
+                {
+                     MyCardTaskUI.getInstance().testShow();
+                }
             }
+
         },this,300);
 
         //GuideManager.getInstance().guideStep = 13;

@@ -10,9 +10,10 @@ class Config {
     public static isDebug: boolean = true;
     public static host: string = 'hangegame.com';
     //public static host: string = '172.17.196.195:90';
-    public static version: number = 1;
+    public static user_version: number = 1;
+    public static version: number = 2;
     public static m_version: number = 0;
-    public static pk_version: number = 1;
+    public static pk_version: number = 2;
     public static cdn: string = "";
     public static localResRoot:string = "resource/";
 
@@ -27,5 +28,5 @@ class Config {
 
 
     public static platform = '';
-    public static equalValue = 300;
+    public static equalValue = 1000;
 }

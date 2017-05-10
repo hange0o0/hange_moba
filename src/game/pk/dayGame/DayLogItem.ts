@@ -79,7 +79,7 @@ class DayLogItem extends game.BaseItem {
         {
             this.videoBtn.touchEnabled = false;
             this.videoBtn.skinName = 'Btn_d2Skin';
-            this.videoBtn.label = '已失效'
+            this.videoBtn.label = '录像已失效'
         }
 
         if(this.data.sp.round)

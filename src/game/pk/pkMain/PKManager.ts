@@ -439,6 +439,7 @@ class PKManager {
                 Alert('钻石不足');
                 return;
             }
+            MyCardTaskUI.getInstance().testShow();
             if(fun)
                 fun();
         });
@@ -565,7 +566,7 @@ class PKManager {
             if(data.sync_tec_force || data.sync_award_force)
                 this.pkAward.forceUp = true;
             if(data.finish_task)
-                this.pkAward.finishTask = true;
+                this.pkAward.finishTask = data.finish_task;
             if(data.new_task)
                 this.pkAward.newTask = true;
             if(data.g_level_up)
