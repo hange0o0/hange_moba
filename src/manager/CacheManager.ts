@@ -56,7 +56,9 @@ class CacheManager{
                 fun();
             return;
         }
+        GameManager.container.touchChildren = GameManager.container.touchEnabled = false;
         RES.getResAsync(url,function(){
+            GameManager.container.touchChildren = GameManager.container.touchEnabled = Net.getInstance().modeNum <= 0;
             this.cacheLoad[url] = true;
             this.initData(RES.getRes(url));
             if(fun)

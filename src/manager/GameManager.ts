@@ -120,5 +120,13 @@ function handleErr(msg,url)
     if(str)
         txt += str;
     Net.send(GameEvent.sys.client_error,{msg:txt});
+    if(LoginManager.getInstance().isAuto)
+    {
+        LoginManager.getInstance().showLoginUI();
+    }
+    else if(GuideManager.getInstance().isGuiding)
+    {
+        Alert('发生未知错误',MyTool.refresh);
+    }
     return false
 }

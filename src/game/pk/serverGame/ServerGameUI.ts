@@ -213,7 +213,10 @@ class ServerGameUI extends game.BaseUI {
         this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
         this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
         var task = myCard.task
-        this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
+        if(task)
+            this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
+        else
+            this.taskText.text = '';
     }
 
     private onChoose(){

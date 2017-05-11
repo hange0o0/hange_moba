@@ -46,7 +46,7 @@ class MapItem extends game.BaseItem {
             //var tw = egret.Tween.get(this.levelText,{loop:true})
             //tw.wait(1000).to({y:49},100).to({rotation:15},100).to({rotation:-15},100).to({rotation:0,y:52},50).wait(8000)
         }
-        else if(MM.getSweepNum(this.data) >= 10)
+        else if(MM.getSweepNum(this.data) >= MM.getMaxPKNum(this.data))
             this.mc.source = 'map_item1_png'
         else
             this.mc.source = 'map_item3_png'

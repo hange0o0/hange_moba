@@ -20,6 +20,10 @@ class MapManager{
     public sweepData;
     public enemy;
 
+    public getMaxPKNum(level){
+        return Math.min(10,level+2);
+    }
+
     public getLevelMap(level){
         var arr = [2, 11, 20, 29, 38, 46, 53, 74]
         for(var i=0;i<arr.length;i++)
@@ -64,6 +68,9 @@ class MapManager{
         this.step = data.step || 0;
         this.lasttime = data.lasttime || 0;
         this.sweepData = data.sweep || {};
+        this.enemy = data.enemy
+        if(this.enemy)
+            this.pkLevel = this.enemy.level;
         if(!DateUtil.isSameDay(this.lasttime ))
         {
             this.sweepData = {};
@@ -125,6 +132,7 @@ class MapManager{
         Net.addUser(oo)
         Net.send(GameEvent.mapGame.pk_map_again,oo,function(data){
             var msg = data.msg;
+            self.enemy.is_pk = false;
             MapGameUI.getInstance().show();
             if(fun)
                 fun();
@@ -160,11 +168,19 @@ class MapManager{
             return;
         }
         oo.choose = choose;
+        var pkNum = this.getMaxPKNum(this.pkLevel);
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.pk_map,oo,function(data){
             var msg = data.msg;
             if(PKManager.getInstance().pkError(msg))
                 return;
+            if(msg.fail == 1)
+            {
+                Alert('找不到敌人数据');
+                PKDressUI.getInstance().hide();
+                MapGameUI.getInstance().hide();
+                return;
+            }
 
             UM.addHistory(choose.list.join(','));
             if(!msg.info)
@@ -180,9 +196,9 @@ class MapManager{
                 if(self.pkLevel == self.level)
                 {
                     self.step ++;
-                    if(self.step >= 10)
+                    if(self.step >= pkNum)
                     {
-                        self.sweepData[self.level] = 10;
+                        self.sweepData[self.level] = pkNum;
                         self.level ++;
                         self.step = 0;
                         PKManager.getInstance().pkAward.passMap = true
@@ -199,7 +215,7 @@ class MapManager{
             }
 
 
-
+            self.enemy.is_pk = true;
             self.lasttime = TM.now();
             if(fun)
                 fun();
@@ -225,7 +241,7 @@ class MapManager{
             if(msg.fail == 2)
             {
                 Alert('扫荡已完成');
-                self.sweepData[level] =10
+                self.sweepData[level] =self.getMaxPKNum(level);
                 MapInfoUI.getInstance().hide();
                 EM.dispatchEventWith(GameEvent.client.map_change)
                 return;
@@ -237,7 +253,7 @@ class MapManager{
             }
             self.addValue(msg.value);
             AwardUI.getInstance().show({g_exp:msg.value});
-            self.sweepData[level] = 10;
+            self.sweepData[level] = self.getMaxPKNum(level);
             EM.dispatchEventWith(GameEvent.client.map_change)
             if (fun)
                 fun();

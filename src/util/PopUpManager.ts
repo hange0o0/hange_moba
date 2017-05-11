@@ -141,6 +141,25 @@ class PopUpManager {
                 }
             }
         }
+    }
 
+
+    public static hideAll(){
+        while(true)
+        {
+            var isHide = false
+            for(var i=GameManager.container.numChildren-1 ;i>=0;i--)
+            {
+                var ui = GameManager.container.getChildAt(i);
+                if(ui instanceof game.BaseUI)
+                {
+                    isHide = true;
+                    ui.hide();
+                    break;
+                }
+            }
+            if(!isHide)
+                return;
+        }
     }
 }

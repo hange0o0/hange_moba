@@ -59,6 +59,13 @@ class MapInfoUI extends game.BaseContainer {
 
     private onPK(){
         var MM = MapManager.getInstance();
+        if(MM.enemy && MM.enemy.level == this.level && !MM.enemy.is_pk)
+        {
+            MM.pkLevel = this.level;
+            MapGameUI.getInstance().show();
+            this.hide()
+             return;
+        }
         var self = this;
         MM.getEnemy(this.level,function(){
             MapGameUI.getInstance().show();
@@ -67,7 +74,7 @@ class MapInfoUI extends game.BaseContainer {
     }
     private onSweep(){
         var MM = MapManager.getInstance();
-        var times = 10 - MM.getSweepNum(this.level);
+        var times = MM.getMaxPKNum(this.level) - MM.getSweepNum(this.level);
         if(!UM.testDiamond(times))
             return;
         var self = this;
@@ -91,10 +98,11 @@ class MapInfoUI extends game.BaseContainer {
         var barWidth = 360
         this.emptyText.visible = false
         this.btnGroup.visible = true
+       var maxNum = MM.getMaxPKNum(this.level)
         if(this.level == MM.level)
         {
-            this.rateText.text = ''+MM.step+'/10'
-            this.barMC.width = barWidth * MM.step / 10;
+            this.rateText.text = ''+MM.step+'/' + maxNum
+            this.barMC.width = barWidth * MM.step / maxNum;
             MyTool.removeMC(this.sweepGroup)
             this.titleText2.text = '清剿进度：'
             //this.desText.text = '每次挑战需消耗 1 点体力'
@@ -103,9 +111,9 @@ class MapInfoUI extends game.BaseContainer {
         {
             this.titleText2.text = '扫荡进度：'
             var times = MM.getSweepNum(this.level);
-            if(times >= 10)
+            if(times >= maxNum)
             {
-                this.rateText.text = ''+10+'/10'
+                this.rateText.text = ''+maxNum+'/' + maxNum
                 this.barMC.width = barWidth;
                 this.emptyText.visible = true
                 this.btnGroup.visible = false
@@ -113,17 +121,17 @@ class MapInfoUI extends game.BaseContainer {
             }
             else
             {
-                this.rateText.text = ''+times+'/10'
-                this.barMC.width = barWidth*times/10;
+                this.rateText.text = ''+times+'/' + maxNum
+                this.barMC.width = barWidth*times/maxNum;
                 this.btnGroup.addChildAt(this.sweepGroup,0)
-                times = 10 -times;
+                times = maxNum -times;
                 this.sweepBtn.label = '扫荡 '+times+' 次';
                 this.sweepText.text = '消耗 '+times+' 钻石'
             }
         }
 
         var arr = [];
-        var exp = Math.ceil(20*(1+this.level/10));
+        var exp = Math.ceil(20*(1+this.level/maxNum));
         var g_exp = this.level * 2;
         arr.push({type:'g_exp',des:'×' + g_exp})
         arr.push({type:'exp',des:'×' + exp})

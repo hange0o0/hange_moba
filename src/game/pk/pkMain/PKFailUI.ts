@@ -8,9 +8,12 @@ class PKFailUI extends PKResultBase {
     private resultGroup: eui.Group;
     private desText: eui.Label;
     private list: eui.List;
+    private noteGroup: eui.Group;
+    private noteText: eui.Label;
     private btnGroup: eui.Group;
     private backBtn: eui.Button;
     private okBtn: eui.Button;
+
 
 
     public timer;
@@ -78,7 +81,9 @@ class PKFailUI extends PKResultBase {
 
         this.desText.text = ''
         this.list.visible = false;
-        this.btnGroup.visible = false;
+        MyTool.removeMC(this.noteGroup);
+        MyTool.removeMC(this.btnGroup);
+
 
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND)
@@ -90,13 +95,53 @@ class PKFailUI extends PKResultBase {
             this.btnGroup.addChild(this.okBtn);
         }
 
+        if(PKM.pkType != PKManager.PKType.REPLAY)
+        {
+            if(PKM.teamChange)
+            {
+                var team1Base = PKM.team2Base
+                var team2Base = PKM.team1Base
+            }
+            else
+            {
+                var team1Base = PKM.team1Base
+                var team2Base = PKM.team2Base
+            }
+            var arr = [];
+            var list = team1Base.list;
+            var cost = PKM.getCost(list);
+            if(cost < 80)
+                arr.push('充分利用所有符文，上阵更多更强卡牌')
+            arr.push('调整卡牌出战顺序，增强卡牌间的配合')
+            arr.push('更换你的出战卡牌，针对对方进行布局')
+            if(!PKM.pkResult.isequal)
+            {
+                arr.push('升级你的低级卡牌，增强综合卡牌能力')
+                if(PKM.pkType == PKManager.PKType.FRIEND)
+                {
+                    if(Math.floor(team1Base.f) < Math.floor(team2Base.f))
+                        arr.push('用修正场规则挑战，依靠智慧战胜好友')
+                }
+            }
+
+            for(var i=0;i<arr.length;i++)
+            {
+                arr[i] = (i+1) + '、' + arr[i] + '；'
+            }
+            this.noteText.text = arr.join('\n')
+        }
+
+
 
         this.step = 0;
         this.stepOne();
     }
 
     protected onStepOver(){
-        this.btnGroup.visible = true;
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType != PKManager.PKType.REPLAY)
+            this.resultGroup.addChild(this.noteGroup);
+        this.resultGroup.addChild(this.btnGroup);
         this.btnGroup.alpha = 0
         var tw:egret.Tween = egret.Tween.get(this.btnGroup);
         tw.wait(500).to({alpha:1}, 200);

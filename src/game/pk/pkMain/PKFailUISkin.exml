@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKFailUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group x="74" y="36">
+	<e:Group x="74" y="36" locked="true">
 		<e:Image source="pk_fail_png" y="0" x="0"/>
 		<e:Image source="pk_fail_png" y="0" scaleX="-1" x="492"/>
 		<e:Image source="fight_fail_1_png" y="119" x="154"/>
@@ -15,6 +15,11 @@
 				<e:TileLayout/>
 			</e:layout>
 		</e:List>
+		<e:Group id="noteGroup" x="84" y="112">
+			<e:Rect width="100%" x="0" strokeWeight="3" fillAlpha="0.2" strokeColor="0x47437A" ellipseHeight="20" ellipseWidth="20" top="15" bottom="0"/>
+			<e:Label text="建 议" y="0" stroke="5" strokeColor="0x47437A" size="26" horizontalCenter="0"/>
+			<e:Label id="noteText" text="1、更换卡组排序" size="22" textColor="0xB0ACFD" top="50" bottom="20" lineSpacing="10" left="20" right="20"/>
+		</e:Group>
 		<e:Group id="btnGroup" x="65" y="175">
 			<e:Button id="backBtn" y="0" label="返回" x="0" skinName="Btn_b2Skin"/>
 			<e:Button id="okBtn" skinName="Btn_r2Skin" y="71" label="再试一次" x="0"/>

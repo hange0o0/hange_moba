@@ -29,7 +29,7 @@ class MyCardTaskUI extends game.BaseWindow {
     public testShow(){
         var myCard = UM.getMyCard();
         var task = myCard.task
-        if(task.current < task.num)
+        if(task && task.current < task.num)
             this.show();
     }
 
@@ -40,6 +40,12 @@ class MyCardTaskUI extends game.BaseWindow {
     public onShow(){
         var myCard = UM.getMyCard();
          var task = myCard.task
+        if(!task)
+        {
+            Alert('暂无PK任务')
+            this.hide();
+            return;
+        }
         this.setText(this.useText,'[使用次数：]'+(10-myCard.num)+'/10');
         this.setText(this.rateText,'[任务进度：]'+Math.min(task.current,task.num)+'/'+task.num);
         switch(task.award_type)

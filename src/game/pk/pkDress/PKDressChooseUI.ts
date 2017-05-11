@@ -354,7 +354,8 @@ class PKDressChooseUI extends game.BaseContainer {
         this.changeState('normal')
         var item = this.mcArray[this.selectIndex];
         this.selectIndex = -1;
-        item.data.selected = false;
+        if(item.data)
+            item.data.selected = false;
         item.dataChanged();
         this.renewSplice();
 
@@ -398,7 +399,8 @@ class PKDressChooseUI extends game.BaseContainer {
             this.mcArray.splice(this.selectIndex,1);
             this.mcArray.splice(index,0,selectItem);
         }
-        selectItem.data.selected = false;
+        if(selectItem.data)
+            selectItem.data.selected = false;
         selectItem.dataChanged();
         this.selectIndex = -1;
         this.renewPos([selectItem]);
@@ -437,12 +439,14 @@ class PKDressChooseUI extends game.BaseContainer {
         if(this.selectIndex != -1)
         {
             var item = this.mcArray[this.selectIndex];
-            item.data.selected = false;
+            if(item.data)
+                item.data.selected = false;
             item.dataChanged();
         }
         var item = this.mcArray[index];
         this.selectIndex = index;
-        item.data.selected = true;
+        if(item.data)
+            item.data.selected = true;
         item.dataChanged();
         this.renewSplice();
         this.changeState('selected')
@@ -460,7 +464,8 @@ class PKDressChooseUI extends game.BaseContainer {
                 return
             }
             this.selectIndex = index;
-            item.data.selected = true;
+            if(item.data)
+                item.data.selected = true;
             item.dataChanged();
             this.renewSplice();
             this.changeState('selected')
@@ -469,7 +474,8 @@ class PKDressChooseUI extends game.BaseContainer {
         else if(this.selectIndex == index)//取消选中
         {
             this.selectIndex = -1;
-            item.data.selected = false;
+            if(item.data)
+                item.data.selected = false;
             item.dataChanged();
             this.renewSplice();
             this.changeState('normal')
@@ -477,13 +483,15 @@ class PKDressChooseUI extends game.BaseContainer {
         else //交换
         {
             var selectItem = this.mcArray[this.selectIndex];
-            selectItem.data.selected = false;
+            if(selectItem.data)
+                selectItem.data.selected = false;
             selectItem.dataChanged();
 
             if(!this.cb.selected)
             {
                 this.selectIndex = index;
-                item.data.selected = true;
+                if(item.data)
+                    item.data.selected = true;
                 item.dataChanged();
                 return;
             }

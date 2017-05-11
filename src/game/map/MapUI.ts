@@ -177,6 +177,12 @@ class MapUI extends game.BaseUI {
         PKLoadingUI.getInstance().realHide();
         this.showCound(true)
         this.showCound(true)
+
+        var enemy =  MapManager.getInstance().enemy
+        if(enemy && !enemy.is_pk)
+        {
+            MapGameUI.getInstance().show();
+        }
     }
 
     private onTimer(){

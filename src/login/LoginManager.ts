@@ -38,6 +38,11 @@ class LoginManager{
         this.logText = SharedObjectManager.instance.getValue('logText') || {}
     }
 
+    public showLoginUI(){
+        PopUpManager.hideAll()
+        LoginUI.getInstance().show();
+    }
+
     public saveLogText(){
         SharedObjectManager.instance.setValue('logText',this.logText)
     }

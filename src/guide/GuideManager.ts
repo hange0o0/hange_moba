@@ -140,6 +140,7 @@ class GuideManager {
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance().videoBtn",
             text:'刚才我们的对战是可以在这个地方再重温一下的，如果有需要的话你可以再进去看一下。但现在，请让你用最神圣的态度来面对我们将要进行的事情，就是--',
+            hideHand:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
             }
@@ -219,6 +220,7 @@ class GuideManager {
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance().mapBtn",
             text:'野外世界布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他消灭掉！卡卡希望你在以后的日子中也能为我们的世界多出点力',
+            hideHand:true,
             fun:function(){
                 self.showGuide()
             }

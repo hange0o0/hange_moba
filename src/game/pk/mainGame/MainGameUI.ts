@@ -94,7 +94,7 @@ class MainGameUI extends game.BaseUI {
 
     private superShow(){
         super.show();
-        GuideManager.getInstance().enableScrollV(this.scroller);
+
 
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.renewEnemy)
         this.addPanelOpenEvent(GameEvent.client.force_change,this.renewSelf)
@@ -172,7 +172,7 @@ class MainGameUI extends game.BaseUI {
     }
 
     public onShow(){
-
+        GuideManager.getInstance().enableScrollV(this.scroller);
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         this.topUI.setTitle('公会评定-第'+(UM.main_game.level)+'关');
 
