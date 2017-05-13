@@ -892,9 +892,8 @@ class PKMainUI extends game.BaseUI {
                     return;
                 }
             }
-            var talkItem = this.getTalkItem();
-            this.addChild(talkItem);
-            talkItem.setData({item:item,txt:this.getTalkStr(item,actionItem)});
+
+            this.displayTalkWord({item:item,txt:this.getTalkStr(item,actionItem)})
 
             if(this.random() < 0.1)
             {
@@ -916,9 +915,25 @@ class PKMainUI extends game.BaseUI {
                 return;
             }
         }
+        this.displayTalkWord({item:item,txt:this.getTalkStr(item)})
+    }
+
+    private displayTalkWord(data){
         var talkItem = this.getTalkItem();
         this.addChild(talkItem);
-        talkItem.setData({item:item,txt:this.getTalkStr(item)});
+        talkItem.setData(data);
+        for(var i=0;i<this.talkList.length;i++)//重叠了
+        {
+            var item = this.talkList[i];
+            if(item.active && item != talkItem)
+            {
+                if(Math.abs(item.y - talkItem.y) < 10 && Math.abs(item.x - talkItem.x) < 130)
+                {
+                    talkItem.remove()
+                    break;
+                }
+            }
+        }
     }
 
     //item发话,actionItem的行为进行评价

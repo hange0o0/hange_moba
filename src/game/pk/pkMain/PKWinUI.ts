@@ -62,6 +62,8 @@ class PKWinUI extends PKResultBase {
         }
         else if(PKM.pkType == PKManager.PKType.MAP){
             var MM = MapManager.getInstance();
+            if(this.okBtn.label == '下一据点')
+                MM.pkLevel = MM.level;
             MM.getEnemy(MM.pkLevel,function(){
                 onOpenPKView();
                 MapGameUI.getInstance().show();
@@ -92,16 +94,20 @@ class PKWinUI extends PKResultBase {
         }
         if(PKM.pkType == PKManager.PKType.MAP ){
             var MM = MapManager.getInstance();
-            if(MM.level == MM.pkLevel)
+            if(PKResultUI.getInstance().openNewLevel)
             {
-                if(MM.step < 10)
+                this.okBtn.label = '下一据点';
+            }
+            else if(MM.level == MM.pkLevel)
+            {
+                if(MM.step < MM.getMaxPKNum(MM.pkLevel))
                     this.okBtn.label = '继续清剿';
                 else
                     MyTool.removeMC(this.okBtn)
             }
             else
             {
-                if(MM.getSweepNum(MM.pkLevel) < 10)
+                if(MM.getSweepNum(MM.pkLevel) < MM.getMaxPKNum(MM.pkLevel))
                     this.okBtn.label = '继续扫荡';
                 else
                     MyTool.removeMC(this.okBtn)

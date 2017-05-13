@@ -150,6 +150,12 @@ class SyncManager{
                         EM.dispatch(GameEvent.client.my_card_change);
                     }
                     break;
+                case 'sync_active':
+                    for(ss in value)
+                    {
+                        UM.active[ss] = value[ss];
+                    }
+                    break;
             }
         }
     }

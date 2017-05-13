@@ -138,6 +138,10 @@ class GameEvent {
         collect_split:'collect_split'
     }
 
+    public static active = {
+        diamond_draw:'diamond_draw'
+    }
+
 
 
 

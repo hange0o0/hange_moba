@@ -10,6 +10,7 @@ class PKTalkItem extends game.BaseContainer {
     public active = false
     private h = 110;
     private w = 161;
+    private relateItem;
     public childrenCreated() {
         super.childrenCreated();
 
@@ -24,6 +25,7 @@ class PKTalkItem extends game.BaseContainer {
         this.text.text = data.txt;
         var item = data.item;
         item.talking = true;
+        this.relateItem = item;
 
 
         var p = item.parent.localToGlobal(item.x,item.y);
@@ -57,11 +59,15 @@ class PKTalkItem extends game.BaseContainer {
         this.alpha = 1;
         var tw = egret.Tween.get(this);
         tw.to({scaleX:1,scaleY:1},200).to({scaleX:0.9,scaleY:0.9},200).wait(2500).to({alpha:0},100).call(function(){
-            this.active = false;
-            MyTool.removeMC(this);
-            item.talking = false;
+             this.remove();
         },this);
+    }
 
+    public remove(){
+        egret.Tween.removeTweens(this);
+        this.active = false;
+        MyTool.removeMC(this);
+        this.relateItem.talking = false;
     }
 
 

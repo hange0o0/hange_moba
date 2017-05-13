@@ -36,6 +36,7 @@ class PKResultUI extends game.BaseUI {
 
 
     public showCardTask = false
+    public openNewLevel = false
 
     public constructor() {
         super();
@@ -96,6 +97,7 @@ class PKResultUI extends game.BaseUI {
 
     public onShow() {
         this.showCardTask = false;
+        this.openNewLevel = false;
         GuideManager.getInstance().enableScrollV(this.scroller);
         PKResultUI.getInstance().initMore()
         PopUpManager.removeShape();

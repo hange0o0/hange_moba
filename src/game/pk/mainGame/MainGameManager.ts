@@ -55,7 +55,7 @@ class MainGameManager{
         var level = lv || UM.main_game.level;
         if(level < 85)
         {
-            return (Math.floor(level/10) + 1)*10 - 5
+            return (Math.floor((level + 5)/10) + 1)*10 - 5
         }
         if(level < 100)
             return 100;

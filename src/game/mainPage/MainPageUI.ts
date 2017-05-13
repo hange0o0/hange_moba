@@ -45,20 +45,23 @@ class MainPageUI extends game.BaseUI {
     private taskGroup: eui.Group;
     private taskMask: eui.Rect;
     private taskText: eui.Label;
-    private helpBtn: eui.Group;
     private setBtn: eui.Group;
+    private helpBtn: eui.Group;
     private videoBtn: eui.Group;
     private honorBtn: eui.Group;
     private honorRed: eui.Image;
     private rankBtn: eui.Group;
     private mapBtn: eui.Group;
+    private mapLockMC: eui.Image;
     private collectBtn: eui.Group;
     private collectRed: eui.Image;
     private friendBtn: eui.Group;
     private friendRed: eui.Image;
     private friendLockMC: eui.Image;
-    private mapLockMC: eui.Image;
     private bagBtn: eui.Group;
+    private diamonDrawBtn: eui.Group;
+    private diamonDrawText: eui.Label;
+
 
 
 
@@ -100,6 +103,7 @@ class MainPageUI extends game.BaseUI {
         this.addBtnEvent(this.honorBtn, this.onHonor);
         this.addBtnEvent(this.rankBtn, this.onRank);
         this.addBtnEvent(this.mapBtn, this.onMap);
+        this.addBtnEvent(this.diamonDrawBtn, this.onDraw);
 
 
         //this.addBtnEvent(this.img, this.onMain);
@@ -150,6 +154,14 @@ class MainPageUI extends game.BaseUI {
     }
 
 
+    private onDraw(){
+        if(UM.getNextDrawCD())
+        {
+            return;
+        }
+        DrawUI.getInstance().show();
+    }
+
     private renewCollectRed(){
         var mdata = CM.table[MonsterVO.dataKey];
         for(var s in mdata)
@@ -191,6 +203,12 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onTimer(){
+        var cd = UM.getNextDrawCD()
+        if(cd)
+            this.diamonDrawText.text = DateUtil.getStringBySecond(cd);
+        else
+            this.diamonDrawText.text = '可翻牌'
+
         this.renewEnergy();
 
         if(this.parent.getChildIndex(this) == this.parent.numChildren - 1)
@@ -507,6 +525,7 @@ class MainPageUI extends game.BaseUI {
         },1000)
 
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
+        this.onTimer();
     }
 
     public onGuide0(){

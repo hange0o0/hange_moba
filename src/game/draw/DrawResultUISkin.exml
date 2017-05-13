@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="DrawResultUISkin" width="640" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.8"/>
+	<e:Group id="diamondGroup" y="197" horizontalCenter="0" width="640">
+		<e:Group y="0" horizontalCenter="0">
+			<e:Label text="恭喜获得:" x="0" y="5" size="26" textColor="0xE0A44A"/>
+			<e:Image source="diamond_icon_png" x="58" y="0"/>
+			<e:Label id="resultText" y="6" size="26" text="x10" x="98" textColor="0xCCB48E"/>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle"/>
+			</e:layout>
+		</e:Group>
+		<e:Button id="okBtn" label="确定" y="50" skinName="Btn_r2Skin" horizontalCenter="5"/>
+	</e:Group>
+</e:Skin>

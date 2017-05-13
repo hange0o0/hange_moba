@@ -17,10 +17,10 @@
 			<e:Array>
 				<e:Object label="战力榜"/>
 				<e:Object label="等级榜"/>
-				<e:Object label="公会榜"/>
-				<e:Object label="挑战榜"/>
+				<e:Object label="职业榜"/>
+				<e:Object label="研究榜"/>
 				<e:Object label="竞技榜"/>
-				<e:Object label="修正榜"/>
+				<e:Object label="天赋榜"/>
 			</e:Array>
 		</e:ArrayCollection>
 	</e:TabBar>

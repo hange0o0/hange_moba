@@ -31,13 +31,13 @@ class MainHeadItem extends game.BaseItem {
         {
             this.headMC.source = MyTool.getHeadUrl(UM.head);
             this.nameText.text = UM.nick
-            this.desText.text = '　　' + (UM.word || '我无话可说..')
+            this.desText.text = (UM.word || '我无话可说..')
         }
         else
         {
             this.headMC.source = MyTool.getHeadUrl(this.data.head);
             this.nameText.text = this.data.nick
-            this.desText.text = '　　' + (this.data.word || '我无话可说..')
+            this.desText.text = (this.data.word || '我无话可说..')
         }
     }
 

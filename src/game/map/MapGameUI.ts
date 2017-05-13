@@ -93,7 +93,7 @@ class MapGameUI extends game.BaseUI {
 
 
     private onHelp(){
-        HelpManager.getInstance().mainHelp();
+        HelpManager.getInstance().mapHelp();
     }
 
     public beforeHide(){
@@ -135,7 +135,7 @@ class MapGameUI extends game.BaseUI {
 
     public renewEnemy(){
         var MM = MapManager.getInstance();
-        this.topUI.setTitle('据点-'+MM.pkLevel + '　('+MM.getRate(MM.pkLevel)+'/10)');
+        this.topUI.setTitle('据点'+MM.pkLevel + '　('+MM.getRate(MM.pkLevel)+'/'+MM.getMaxPKNum(MM.pkLevel)+')');
         //更新敌人
         var specialData:any = {
             isNPC:true,

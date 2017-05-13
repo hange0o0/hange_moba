@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="DrawItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="137" height="179">
+	<e:Group id="resultGroup" x="0" y="0">
+		<e:Image source="card_bg_png" y="0" height="179" x="0" width="137" scale9Grid="72,75,87,71"/>
+		<e:Image source="head_png" y="8" x="8" width="120" height="160" id="headMC"/>
+		<e:Group y="142" right="15">
+			<e:Image source="fu2_png" y="0" scaleY="0.7" x="0" scaleX="0.7"/>
+			<e:Label y="1" textColor="0xCCB48E" text="60" x="27" size="22" stroke="2" id="coinText"/>
+		</e:Group>
+	</e:Group>
+	<e:Image id="bg" source="card_bg_png" y="0" scale9Grid="72,75,87,71" width="137" height="179" x="0" visible="false"/>
+	
+		
+	
+	
+	
+	
+</e:Skin>

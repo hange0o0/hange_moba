@@ -14,17 +14,17 @@
 		</e:layout>
 	</e:List>
 	<e:Label id="titleText2" y="156" text="清剿进度：" stroke="2" size="24" textColor="0xE0A44A" x="40"/>
-	<e:Group id="btnGroup" bottom="15" horizontalCenter="0">
+	<e:Group id="btnGroup" bottom="13" horizontalCenter="0">
 		<e:Group id="sweepGroup" x="199.9393939393939" y="9.939393939393995">
-			<e:Button id="sweepBtn" y="25" label="扫荡" skinName="Btn_r2Skin" x="0"/>
+			<e:Button id="sweepBtn" y="20" label="扫荡" x="0" skinName="Btn_r3Skin"/>
 			<e:Label id="sweepText" y="0" textColor="0xCCB48E" text="11" horizontalCenter="0" size="20"/>
 		</e:Group>
 		<e:Group x="189.93939393939394" y="-0.060606060606005485">
-			<e:Button y="25" id="pkBtn" label="挑战" x="0" skinName="Btn_r2Skin"/>
-			<e:Label id="pkText" textColor="0xCCB48E" text="每次消耗1体力" size="20" y="0" horizontalCenter="0"/>
+			<e:Button y="20" id="pkBtn" label="搜寻敌人" x="0" skinName="Btn_r3Skin"/>
+			<e:Label id="pkText" textColor="0xCCB48E" text="每次消耗1体力" size="20" y="0" horizontalCenter="0.5"/>
 		</e:Group>
 		<e:layout>
-			<e:HorizontalLayout gap="40"/>
+			<e:HorizontalLayout gap="50"/>
 		</e:layout>
 	</e:Group>
 	<e:Group y="159" x="160" locked="true">

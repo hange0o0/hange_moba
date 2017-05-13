@@ -280,6 +280,21 @@ class UserManager {
         return array;
     }
 
+    public getNextDrawCD(){
+        var num = UM.active.draw_num || 0;
+        var time = UM.active.draw_time || 0;
+        if(DateUtil.isSameDay(time))
+            num = 0;
+        var nextTime = 0;
+        if(num == 3)
+            nextTime =  DateUtil.getNextDateTimeByHours(0) - TM.now()
+        if(TM.now() - time < 3600*4)
+        {
+            nextTime = Math.max(nextTime,time + 3600*4 - TM.now())
+        }
+        return nextTime;
+    }
+
     public getMyCard(){
         return this.pk_common.my_card[0]
     }
