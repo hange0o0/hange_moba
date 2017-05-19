@@ -32,7 +32,8 @@ class VideoManager {
 
     public decodeLeaderSkill(str){
         //sm_101_f1 ,sm_101_ds1,sm_507_ds2#123
-        var arr = (str.split('#')[0]).split('_');
+        var arr1 = str.split('&');
+        var arr = (arr1[0].split('#')[0]).split('_');
         var mvo = MonsterVO.getObject(arr[1]);
         var temp = arr[2].split('');
         var id = temp.pop();
@@ -43,6 +44,7 @@ class VideoManager {
         else
             mv = 'l' + temp.pop();
         return {
+            orginOwnerID:arr1[1],
             svo:svo,
             mvo:mvo
             //,
@@ -127,6 +129,12 @@ class VideoManager {
             return
         }
         baseData.pk_version = PKManager.getInstance().pkResult.pk_version;
+        if(PKManager.getInstance().pkResult.detail[index + 1])
+        {
+            self.videoData[type][index] = PKManager.getInstance().pkResult.detail[index + 1];
+            play();
+            return;
+        }
 
 
         Net.send(GameEvent.pkCore.pk_vedio,baseData,function(data){
@@ -168,8 +176,16 @@ class VideoManager {
             self.type = type;
             self.index = index;
             VideoManager.getInstance().initVideo(self.videoData[type][index]);
-            VideoUI.getInstance().show()
+            var VC = VideoCode.getInstance()
+            VC.initData(self.baseData);
+            VC.play(true);
+            self.showVideoPlay();
         }
+    }
+
+    public showVideoPlay(){
+        VideoPlayUI.getInstance().show();
+        //VideoUI.getInstance().show()
     }
 
     public initVideo(data){
@@ -277,6 +293,15 @@ class VideoManager {
             value = {id:MyTool.str2Num(str.charAt(1)) ,cd: MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
         else if(type == 'c')
             value = {id:MyTool.str2Num(str.charAt(1))+100 ,cd: MyTool.str2Num(str.charAt(2)),value: str.substr(3).split('_')};
+        else if(type == 'e') //cdhp
+        {
+            var temp = str.substr(1).split('#');
+            value = Math.floor(temp[0]);
+            oo.isNegative = temp[0].charAt(0) == '-';
+            temp = temp[1].split('_')
+            oo.mid = Math.floor(temp[0]);
+            oo.skillID = Math.floor(temp[1]);
+        }
         else if(type == '3')
             value = {id:MyTool.str2Num(str.charAt(1)) ,cd:  MyTool.str2Num(str.charAt(2)),value: Math.floor(str.substr(3))};
         else

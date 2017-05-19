@@ -276,6 +276,14 @@
 				{
 					"compress":false,
 					"key":"coin_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"get_award_png"
+				},
+				{
+					"compress":false,
+					"key":"card_back_bg_png"
 				}
 			],
 			"sort":0

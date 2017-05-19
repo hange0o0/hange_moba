@@ -163,6 +163,13 @@ class PKDressChooseUI extends game.BaseContainer {
         this.cb.addEventListener(eui.UIEvent.CHANGE,this.onCBChange,this);
         this.cb.selected = true;
 
+
+
+
+        //console.log(this.posArray);
+    }
+
+    public resetSort(){
         if(!GuideManager.getInstance().isGuiding)
         {
             this.sortIndex = SharedObjectManager.instance.getValue('monster_sort') || 0;
@@ -173,9 +180,6 @@ class PKDressChooseUI extends game.BaseContainer {
         }
         this.sortText.text = this.sortArr[this.sortIndex].w;
         this.sortText.textColor = this.sortArr[this.sortIndex].c;
-
-
-        //console.log(this.posArray);
     }
 
     private onCBChange(){

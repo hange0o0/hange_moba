@@ -33,6 +33,7 @@ class DrawResultUI extends game.BaseContainer {
     }
 
     public show(item){
+        SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
         this.width = GameManager.container.width
         this.height = GameManager.container.height
         GameManager.container.addChild(this);

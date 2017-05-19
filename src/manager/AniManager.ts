@@ -14,15 +14,18 @@ class AniManager {
 
     //frameRate:默认是12，要变快就加大，慢变就减小
     public mvConfig = {
-        '6':{frameRate:24},
-        '33':{scale:1.5},
-        '102':{scale:2},
-        '124':{frameRate:24,scale:1.5},
-        '154a':{frameRate:24},
-        '136':{frameRate:24},
-        '137':{frameRate:24},
-        '166':{frameRate:24,scale:1.5},
-        '176':{frameRate:24}
+        '14':{frameRate:24,scale:1.5},
+        '30':{scale:1.5},
+        '116':{frameRate:24}
+        //'6':{frameRate:24},
+        //'33':{scale:1.5},
+        //'102':{scale:2},
+        //'124':{frameRate:24,scale:1.5},
+        //'154a':{frameRate:24},
+        //'136':{frameRate:24},
+        //'137':{frameRate:24},
+        //'166':{frameRate:24,scale:1.5},
+        //'176':{frameRate:24}
     };
 
     public mvSoundConfig = {}
@@ -115,14 +118,18 @@ class AniManager {
         {
             var data:any = RES.getRes(name + "_json"); //qid
             var texture:egret.Texture = RES.getRes(name + "_png");
+            if(data == null)
+                throw new Error('111');
             mcFactory = new egret.MovieClipDataFactory(data, texture);
             //mcFactory.enableCache = true;
             this.mcFactorys[name] = mcFactory
         }
         var mc:any = this.mcPool.pop() || new egret.MovieClip();
         mc.movieClipData = mcFactory.generateMovieClipData(name);
-        mc.frameRate = 24//技能动画变慢
-        mc.scaleX = mc.scaleY = 1.5;
+        if(mc.movieClipData == null)
+            throw new Error('222');
+        mc.frameRate = 12//技能动画变慢
+        mc.scaleX = mc.scaleY = 2;
         return mc;
     }
 

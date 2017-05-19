@@ -172,6 +172,7 @@ class PKDressUI extends game.BaseUI {
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
         this.removeOldHistory();
         this.reInitData();
+        this.pkDressChooseUI.resetSort();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
 
 

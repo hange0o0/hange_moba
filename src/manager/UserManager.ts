@@ -283,7 +283,7 @@ class UserManager {
     public getNextDrawCD(){
         var num = UM.active.draw_num || 0;
         var time = UM.active.draw_time || 0;
-        if(DateUtil.isSameDay(time))
+        if(!DateUtil.isSameDay(time))
             num = 0;
         var nextTime = 0;
         if(num == 3)

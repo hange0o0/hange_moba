@@ -8,7 +8,7 @@
 			<e:Label y="1" textColor="0xCCB48E" text="60" x="27" size="22" stroke="2" id="coinText"/>
 		</e:Group>
 	</e:Group>
-	<e:Image id="bg" source="card_bg_png" y="0" scale9Grid="72,75,87,71" width="137" height="179" x="0" visible="false"/>
+	<e:Image id="bg" y="0" x="-9" source="card_back_bg_png" width="152" height="178"/>
 	
 		
 	

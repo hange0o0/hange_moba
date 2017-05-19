@@ -201,6 +201,9 @@ class PKMainUI extends game.BaseUI {
     }
 
     public onShow() {
+        //VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,0);
+        //this.hide();
+        //return;
         if(this.loadUI == null)
         {
             MainPageUI.getInstance().visible = true;

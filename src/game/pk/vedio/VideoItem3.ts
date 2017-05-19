@@ -306,7 +306,7 @@ class VideoItem3 extends game.BaseItem {
 
 
         this.getMonster(defender[0].defender,group)
-        group.addChild(this.getWordText('血量改变'))
+        group.addChild(this.getWordText('触发效果：'))
         this.addEffectList(data,group);
     }
 
@@ -549,7 +549,13 @@ class VideoItem3 extends game.BaseItem {
                 this.getMonster(arr[i].defender,group)
             for(var j=begin,begin=0;j<list.length;j++)
             {
+                if(group.numChildren >4)
+                {
+                    group = this.addGroup();
+                    this.getMonster(arr[i].defender,group)
+                }
                 this.addEffect(list[j],group);
+
             }
 
         }
@@ -568,6 +574,18 @@ class VideoItem3 extends game.BaseItem {
         var mc:any
         if(effect.key == 'hp')
         {
+            if(effect.value.mid)
+            {
+                var mvo = MonsterVO.getObject(effect.value.mid);
+                var svo = mvo.getSkillByID(effect.value.skillID%10,effect.value.skillID < 10);
+                var nameText = this.getWordText(svo.name,svo.pkColor);
+                group.addChild(nameText)
+                //if(effect.value.isNegative)
+                //    group.addChild(this.getWordText('失血',0xFF0000))
+                //else
+                //    group.addChild(this.getWordText('治疗',0x00ff00))
+            }
+
             mc = new VideoHpItem()
             group.addChild(mc)
             mc.data = effect.value;
@@ -637,6 +655,11 @@ class VideoItem3 extends game.BaseItem {
                 str += this.createHtml('+' + effect.value,0x3EE5FC);
             else
                 str += '' + effect.value;
+            group.addChild(this.getWordText(str,0x0090FF))
+        }
+        else if(effect.key == 'manahp')
+        {
+            var str = '魔盾：+' + effect.value;
             group.addChild(this.getWordText(str,0x0090FF))
         }
     }

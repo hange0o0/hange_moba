@@ -99,13 +99,14 @@ class PKItem2 extends game.BaseItem {
     }
 
     public stopMV(){
+        this.rotation = 0;
         egret.clearTimeout(this.timer)
         egret.Tween.removeTweens(this)
         egret.Tween.removeTweens(this.lightMC)
     }
 
 
-    public showLight(){
+    public showLight(isPKing?){
         if(this.lightMC.visible)
             return;
 
@@ -114,6 +115,11 @@ class PKItem2 extends game.BaseItem {
             this.lightMC.source = 'head_border_light1_png'
         else
             this.lightMC.source = 'head_border_light3_png'
+        if(isPKing)
+        {
+            this.lightMC.scaleX = this.lightMC.scaleY = 0.9;
+            return;
+        }
         this.lightMC.scaleX = this.lightMC.scaleY = 0.7;
         egret.Tween.removeTweens(this.lightMC)
         var tw =  egret.Tween.get(this.lightMC,{loop:true})
@@ -189,6 +195,17 @@ class PKItem2 extends game.BaseItem {
             this.hpText.text = ''
         },this)
 
+    }
+
+    public showWord(str,color){
+        this.hpText.textColor = color;
+        this.hpText.text = str
+        this.hpText.y = -40
+        this.hpText.alpha = 0;
+        var tw = egret.Tween.get(this.hpText);
+        tw.to({y:-60,alpha:1},200).wait(1000).call(function(){
+            this.hpText.text = ''
+        },this)
     }
 
     public showStar(win){

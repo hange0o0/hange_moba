@@ -13,6 +13,23 @@ function ShowTips(msg,cd=1000){
     TipsUI.getInstance().show(msg,cd);
 }
 
+function addBtnTips(mc,str,thisObj){
+    mc.touchEnabled = true;
+    mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,thisObj);
+    function onTouchStart(e){
+        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+        mc.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+        if(typeof str == 'string')
+            TouchTipsUI.getInstance().show(e,str);
+        else
+            TouchTipsUI.getInstance().show(e,str.apply(thisObj));
+    }
+    function onTouchEnd(){
+        TouchTipsUI.getInstance().hide();
+    }
+
+}
+
 //使用钻石相关前的提示  type:1都提示，2：RMB才提示
 function AlertDiamondUse(num,type,fun)
 {

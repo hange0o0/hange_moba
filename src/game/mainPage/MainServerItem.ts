@@ -22,14 +22,14 @@ class MainServerItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart,true);
-        this.addBtnEvent(this.scoreText, this.onScore);
+        addBtnTips(this.scoreText,this.onScore,this);
         RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onScore(){
         var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
         var nextExp = ServerGameManager.getInstance().getPKTableExp(level + 1)
-        Alert(this.createHtml('下一称号：',0xE0A44A) + ServerGameManager.getInstance().getStepName(nextExp)  + this.createHtml('\n需要评分：',0xE0A44A)+nextExp+'',null,'知道了')
+        return this.createHtml('下一称号：',0xE0A44A) + ServerGameManager.getInstance().getStepName(nextExp)  + this.createHtml('\n需要评分：',0xE0A44A)+nextExp+'';
 
     }
 

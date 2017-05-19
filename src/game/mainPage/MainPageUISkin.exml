@@ -160,8 +160,9 @@
 	</e:Group>
 	<e:Image source="red_point_png" x="-728" y="788"/>
 	<e:Group id="diamonDrawBtn" bottom="145" x="10">
-		<e:Image source="shop_card_png" y="0" horizontalCenter="0"/>
-		<e:Label id="diamonDrawText" text="12:33:22" x="0" y="80" size="20" width="80" textAlign="center" textColor="0xCCB48E" stroke="1"/>
+		<e:Image id="diamondDrawLight" source="border_light_png" y="-16" horizontalCenter="0" scale9Grid="38,33,22,28" width="84" height="95"/>
+		<e:Image y="0" horizontalCenter="0" source="card_back_bg_png" scaleX="0.5" scaleY="0.5"/>
+		<e:Label id="diamonDrawText" text="12:33:22" x="0" y="70" size="20" width="80" textAlign="center" textColor="0xCCB48E" stroke="1"/>
 	</e:Group>
 
 </e:Skin>

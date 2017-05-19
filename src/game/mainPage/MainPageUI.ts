@@ -60,7 +60,9 @@ class MainPageUI extends game.BaseUI {
     private friendLockMC: eui.Image;
     private bagBtn: eui.Group;
     private diamonDrawBtn: eui.Group;
+    private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
+
 
 
 
@@ -204,6 +206,7 @@ class MainPageUI extends game.BaseUI {
 
     private onTimer(){
         var cd = UM.getNextDrawCD()
+        this.diamondDrawLight.visible = cd <= 0;
         if(cd)
             this.diamonDrawText.text = DateUtil.getStringBySecond(cd);
         else

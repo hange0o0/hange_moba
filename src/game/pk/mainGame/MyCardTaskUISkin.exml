@@ -7,9 +7,15 @@
 
 	<e:Label id="useText" y="400" textColor="0xCCB48E" text="卡组使用：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="50"/>
 	<e:Label id="rateText" y="400" textColor="0xCCB48E" text="任务进度：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="290"/>
-	<e:Label id="awardText" x="50" y="450" textColor="0xCCB48E" text="任务奖励：钻石+3" verticalAlign="top" textAlign="center" size="26" lineSpacing="5"/>
 	<e:Rect right="30" fillAlpha="1" left="30" fillColor="0x160D06" x="10" height="70" bottom="25"/>
 	<e:Button id="okBtn" label="知道了" skinName="Btn_r2Skin" bottom="30" horizontalCenter="0"/>
 	<e:Label y="31" textColor="0xE3D1B6" text="卡组任务" horizontalCenter="0" size="26" stroke="2" x="10"/>
 	<ns1:AwardItem id="awardItem" y="144" skinName="AwardItemSkin" horizontalCenter="0"/>
+	<e:Group x="50" y="430">
+		<e:Label id="awardText" x="0" y="20" textColor="0xCCB48E" text="任务奖励：钻石+3" verticalAlign="bottom" textAlign="center" size="26" lineSpacing="5" height="40"/>
+		<e:Image id="awardMC" source="get_award_png" x="240" y="0" scaleY="0.8" scaleX="0.8"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle" gap="15"/>
+		</e:layout>
+	</e:Group>
 </e:Skin>

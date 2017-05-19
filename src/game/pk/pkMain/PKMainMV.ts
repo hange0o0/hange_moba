@@ -9,7 +9,7 @@ class PKMainMV {
 
 
     //移向指定玩家
-    public moveToTarget(a,b,fun1?,thisObj?){
+    public moveToTarget(a,b,fun1?,thisObj?,waitCD?){
         a.parent.addChild(a);
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
@@ -18,7 +18,9 @@ class PKMainMV {
         var x = b.x - (b.x - a.x)*rate;
         var y = b.y - (b.y - a.y)*rate;
         var oo = {x:x,y:y};
-        tw.to(oo, Math.pow(dis-100,0.8) * 3);
+        if(waitCD)
+            tw.wait(waitCD)
+        tw.to(oo, Math.pow(dis-100,0.8) * 3,egret.Ease.sineIn);
         if(fun1)
             tw.call(fun1,thisObj)
         return oo;
@@ -31,9 +33,11 @@ class PKMainMV {
         var dis = MyTool.getDis(a,b);
         if(frontWait)
             tw.wait(frontWait);
-        tw.to(b, Math.pow(dis,0.8) * 4);
-        if(fun1)
-            tw.call(fun1,thisObj)
+        a.moving = true;
+        tw.to(b, Math.pow(dis,0.8) * 3.5).call(function(){
+            a.moving = false;
+            fun1 && fun1.apply(thisObj);
+        },thisObj)
     }
 
     public jumpToXY(a,b,fun1?,thisObj?,wait?,speedRate=1){       //,frontWait?
@@ -96,10 +100,11 @@ class PKMainMV {
         a.parent.addChild(a);
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
-        tw.to({scaleX:1.2,scaleY:1.2}, 200);
+        var y = a.y
+        tw.to({scaleX:1.1,scaleY:1.1,y:y - 10}, 200);
         if(fun1)
             tw.call(fun1,thisObj);
-        tw.to({scaleX:1,scaleY:1}, 200);
+        tw.to({rotation:- 10}, 100).to({rotation: 10}, 200).to({rotation:0},100).to({scaleX:1,scaleY:1,y:y}, 200);
     }
 
     //退后再前进
@@ -184,9 +189,32 @@ class PKMainMV {
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
         var tw:egret.Tween = egret.Tween.get(mc);
-        tw.to({y:to.y,x:to.x}, 0.5*dis,egret.Ease.sineIn).call(function(){
+        tw.to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
             //MyTool.removeMC(mc);
             AM.removeMV(mc);
+            if(fun)
+                fun.apply(thisObj);
+        });
+    }
+
+    public playBullet2(id,from,to,fun?,thisObj?,xy?){
+        var mc = new eui.Image('bullet4_png')
+        mc.anchorOffsetX = 25;
+        mc.anchorOffsetY = 40;
+        from.parent.addChild(mc);
+        if(xy)
+        {
+            from = xy;
+        }
+
+        var dis = MyTool.getDis(from,to);
+        mc.x = from.x;
+        mc.y = from.y;
+        mc.rotation = this.getRota(from,to);
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
+            //MyTool.removeMC(mc);
+            MyTool.removeMC(mc);
             if(fun)
                 fun.apply(thisObj);
         });

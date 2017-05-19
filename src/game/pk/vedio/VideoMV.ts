@@ -40,16 +40,9 @@ class VideoMV {
             arr = data[key];
         else if(key == 'mvX' && temp)
             arr =  [temp];
-        else
+        else if(key)
         {
-            var mvArr = key.split('|')
-            mvArr.shift();
-            for(var i=0;i<mvArr.length;i++)
-            {
-                var word = parseInt(mvArr[i]);
-                if(word)
-                    arr.push('skill' + word);
-            }
+            arr.push('skill' + key);
         }
 
 

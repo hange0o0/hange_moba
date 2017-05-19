@@ -78,7 +78,7 @@ class VideoUI extends game.BaseUI {
 
 
     public listArray = [];
-    private currentList = []
+    //private currentList = []
     private barWidth = 220;
     //private upGroupY = 70;
     public lastChooseData;
@@ -408,19 +408,17 @@ class VideoUI extends game.BaseUI {
     public onShow(){
         //return;
         this.upGroup.visible = false;
-        this.listArray = [];
-        this.currentList = [];
+        this.listArray = VideoCode.getInstance().listArray;
+        //this.currentList = [];
         this.lastChooseData = null;
-        this.listArray.push(this.currentList);
+        //this.listArray.push(this.currentList);
         //this.once(egret.Event.ENTER_FRAME,function(){
-            var VM = VideoManager.getInstance();
-            var VC = VideoCode.getInstance()
-            VC.initData(VM.baseData);
-            VC.play(true);
+
             //this.upGroup.visible = false;
             //this.visible = false;
-            this.openGuide();
-            this.onDragEnd();
+        this.onOver()
+        this.openGuide();
+        this.onDragEnd();
         //},this)
 
         if(this.debugShow)
@@ -430,31 +428,32 @@ class VideoUI extends game.BaseUI {
 
         //PKResultUI.getInstance().tempHide();
 
+        ;
         if(GuideManager.getInstance().isGuiding)
             PKResultUI.getInstance()['scroller'].viewport.scrollV = 0;
 
     }
 
     //单个回合结束
-    public roundOver(v?){
-        var VC = VideoCode.getInstance();
-        if(this.currentList.length > 0)
-        {
-            VC.addRoundOverData();
-            this.currentList = [];
-            this.listArray.push(this.currentList);
-        }
-        VC.onMovieOver();
-    }
+    //public roundOver(v?){
+    //    var VC = VideoCode.getInstance();
+    //    if(this.currentList.length > 0)
+    //    {
+    //        VC.addRoundOverData();
+    //        this.currentList = [];
+    //        this.listArray.push(this.currentList);
+    //    }
+    //    VC.onMovieOver();
+    //}
 
     //PK结束
-    public onOver(v?){
-        for(var i=0;i<this.listArray.length;i++)//重新编号
-        {
-            this.listArray[i][0].index = i+1;
-        }
-
-        this.listArray.push({type:'over',isWin:VideoManager.getInstance().baseData.result.w == 1})
+    public onOver(){
+        //for(var i=0;i<this.listArray.length;i++)//重新编号
+        //{
+        //    this.listArray[i][0].index = i+1;
+        //}
+        //
+        //this.listArray.push({type:'over',isWin:VideoManager.getInstance().baseData.result.w == 1})
         this.vGroup.setData(this.listArray);
         this.scroller.viewport.scrollV = 0;
         egret.setTimeout(function(){
@@ -619,11 +618,11 @@ class VideoUI extends game.BaseUI {
     }
 
 
-
-    //加入一个动画
-    public playSkill(v?){
-        this.currentList.push(v);
-        var VC = VideoCode.getInstance();
-        VC.onMovieOver();
-    }
+    //
+    ////加入一个动画
+    //public playSkill(v?){
+    //    this.currentList.push(v);
+    //    var VC = VideoCode.getInstance();
+    //    VC.onMovieOver();
+    //}
 }

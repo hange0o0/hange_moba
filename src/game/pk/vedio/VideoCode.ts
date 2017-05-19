@@ -31,12 +31,23 @@ class VideoCode{
 
     private actionCountSkillData//发生多次回合计数
 
+
+
+    public listArray;
+    private currentList;
+
     public constructor() {
         //this.player1 = new PlayerVO();
         //this.player2 = new PlayerVO();
     }
 
     public initData(roundData){
+
+        this.listArray = [];
+        this.currentList = [];
+        this.listArray.push(this.currentList);
+
+
         var PKM = PKManager.getInstance();
         this.playerObject = {};
         for(var i=0;i<roundData.player1.length;i++)
@@ -172,7 +183,14 @@ class VideoCode{
                 }
                 else
                 {
-                    VideoUI.getInstance().roundOver();
+                    if(this.currentList.length > 0)
+                    {
+                        this.addRoundOverData();
+                        this.currentList = [];
+                        this.listArray.push(this.currentList);
+                    }
+                    this.onMovieOver();
+                    //VideoUI.getInstance().roundOver();
                 }
             }
         }
@@ -189,10 +207,22 @@ class VideoCode{
         this.setOrginHp();
     }
 
+    //加入一个动画
+    public playSkill(v?){
+        this.currentList.push(v);
+        this.onMovieOver();
+    }
+
     private onGameOver(){
          console.log('finish');
         this.addRoundOverData();
-        VideoUI.getInstance().onOver();
+        for(var i=0;i<this.listArray.length;i++)//重新编号
+        {
+            this.listArray[i][0].index = i+1;
+        }
+
+        this.listArray.push({type:'over',isWin:VideoManager.getInstance().baseData.result.w == 1})
+        //VideoUI.getInstance().onOver();
     }
 
     //处理一个行为，完成后回调
@@ -235,7 +265,7 @@ class VideoCode{
                     if(this.atker >= 10)
                     {
                         this.actionCountSkillData = this.skillData;
-                        VideoUI.getInstance().playSkill(this.skillData);
+                        this.playSkill(this.skillData);
                         break;
                     }
 
@@ -278,7 +308,7 @@ class VideoCode{
                 }
                 else
                 {
-                    VideoUI.getInstance().playSkill(this.skillData);
+                    this.playSkill(this.skillData);
                 }
                 break;
             }
@@ -364,6 +394,7 @@ class VideoCode{
         switch(value.sType)
         {
             case '1'://"HP"=>'1',
+            case 'e'://cdhp
             {
                 var atker = this.getPlayerByID(this.atker);
                 var last = player.hp
@@ -372,7 +403,7 @@ class VideoCode{
                     atker.atkerHP(value.value);
                 else if(player.teamID == atker.teamID && value.value > 0)
                     atker.atkerHP(value.value);
-                this.defenderMV('hp',{value:value.value,last:last,max:player.maxHp,current:player.hp,isNegative:value.isNegative})
+                this.defenderMV('hp',{value:value.value,last:last,max:player.maxHp,current:player.hp,isNegative:value.isNegative,mid:value.mid,skillID:value.skillID})
                 //if(value.value < 0 && player.hp <= 0)
                 //{
                 //    this.skillData.diePlayer.push(player.id);
@@ -450,6 +481,11 @@ class VideoCode{
             {
                 this.defenderMV('stat',value.value)
                 this.getPlayerByID(this.defender).addBuff(value.value,this.atker);
+                break;
+            }
+            case 'd':       //stat
+            {
+                this.defenderMV('manahp',value.value)
                 break;
             }
         }

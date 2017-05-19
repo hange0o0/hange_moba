@@ -56,6 +56,14 @@ class ArrayUtil {
         return data;
     }
 
+    public static removeItem(arr:Array<any>,item):boolean{
+        var index = arr.indexOf(item);
+        if(index == -1)
+            return false
+        arr.splice(index,1);
+        return true;
+    }
+
     public static random(arr,deep = 1){
         while(deep--)
         {

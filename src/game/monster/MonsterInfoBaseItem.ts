@@ -13,6 +13,38 @@ class MonsterInfoBaseItem extends game.BaseItem {
 
     public childrenCreated(){
         this.text.wordWrap = true;
+        addBtnTips(this.typeText,this.onTypeText,this)
+        addBtnTips(this.icon,this.onIcon,this)
+    }
+
+    private onTypeText(){
+        switch(this.typeText.text)
+        {
+            case '【绝招】':
+                return '当怒气蓄满后就可以马上释放此技能了';
+            case '【前置】':
+                return '在双方PK开始前会释放一次的技能';
+            case '【血脉】':
+                return '满足一定条件就能自动释放的技能';
+            case '【法球】':
+                return '法球技能会替换掉卡牌的普通攻击';
+            case '【天赋】':
+                return '卡牌所特有的技能，会无条件生效';
+        }
+        return '';
+    }
+
+    private onIcon(){
+        switch(this.data.type)
+        {
+            case 1:
+                return '当怒气蓄满后就可以马上释放此技能了，只有出战单位才有怒气';
+            case 2:
+                return '单位出战时所使用的技能';
+            case 3:
+                return '辅助出战单位时所使用的技能';
+        }
+        return '';
     }
 
     public dataChanged(){

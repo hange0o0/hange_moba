@@ -46,6 +46,12 @@ class GuideUI extends game.BaseContainer{
     }
 
     private onClick(){
+        console.log('click')
+        if(this.textIndex < this.textIn.length)
+        {
+            this.textIndex = this.textIn.length
+             return;
+        }
         if(this.clickFun)
         {
             //this.hide();
@@ -76,7 +82,15 @@ class GuideUI extends game.BaseContainer{
     }
 
     public onText(){
-        this.tipTxt.text = this.textIn.substr(0,this.textIndex);
+        var str =  this.textIn.substr(0,this.textIndex);
+        var lastChar = str.substr(-1);
+        if(lastChar == '[' || lastChar == ']')
+        {
+            this.textIndex ++;
+            str =  this.textIn.substr(0,this.textIndex);
+        }
+        str = str.replace(/\[/g,'<font color="#E0A44A">').replace(/\]/g,'<\/font>')
+        this.setHtml(this.tipTxt,str);
         this.textIndex ++;
         if(this.textIndex > this.textIn.length)
         {

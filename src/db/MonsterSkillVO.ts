@@ -18,11 +18,33 @@ class MonsterSkillVO {
     public type
     public sortIndex
 
+    public hideName;
+
+
+    public mvType = 0
+    public mvID1 = 0
+    public mvID2 = 0
+
 
     public constructor(data?: any) {
         if(data)
             this.fill(data);
 
+    }
+
+    public get pkColor(){
+        if(this.type == 1)
+        {
+            return 0xEB911B;
+        }
+        else if(this.type == 2)
+        {
+            return 0x00DEFF;
+        }
+        else if(this.type == 3)
+        {
+            return 0x6fda13;
+        }
     }
 
     public fill(data){
@@ -36,6 +58,17 @@ class MonsterSkillVO {
         this.index = data.index;
         this.mv = data.mv;
         this.sp = (data.sp || '').split('|');
+
+        if(data.skillmv)
+        {
+            this.hideName = data.skillmv.indexOf('[HN]') != -1;
+            data.skillmv = data.skillmv.replace('[HN]','');
+            var temp = data.skillmv.split('#');
+            this.mvType = temp[0]
+            this.mvID1 = temp[1]
+            this.mvID2 = temp[2]
+        }
+
 
         this.id = this.mid + '_' + this.index;
         if(this.index == 0)

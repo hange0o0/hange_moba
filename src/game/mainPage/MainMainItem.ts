@@ -23,9 +23,11 @@ class MainMainItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.awardBtn, this.onAward);
         this.addBtnEvent(this.startBtn, this.onStart,true);
-        this.addBtnEvent(this.scoreText, this.onScore);
+        //this.addBtnEvent(this.scoreText, this.onScore);
         EM.addEvent(GameEvent.client.pass_day,this.renew,this)
         RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
+
+        addBtnTips(this.scoreText,this.onScore,this);
     }
 
     private onAward(){
@@ -38,7 +40,7 @@ class MainMainItem extends game.BaseItem {
 
     private onScore(){
         var nextLevel = MainGameManager.getInstance().getNextStep();
-        Alert(this.createHtml('下一称号：',0xE0A44A) + MainGameManager.getInstance().getStepName(nextLevel)  + this.createHtml('\n需要评分：',0xE0A44A)+nextLevel+'',null,'知道了')
+        return this.createHtml('下一称号：',0xE0A44A) + MainGameManager.getInstance().getStepName(nextLevel)  + this.createHtml('\n需要评分：',0xE0A44A)+nextLevel+''
     }
 
     public renew() {

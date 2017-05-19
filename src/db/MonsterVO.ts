@@ -62,6 +62,8 @@ class MonsterVO {
     public type//高中低费
     public cost
     public mp
+    public mtype
+    public atktype
     //public collect
     //public kind//arr
     //public effect_kind //arr
@@ -77,7 +79,7 @@ class MonsterVO {
     public sfn4
     public sfn5
 
-    //0，近程，1远程对方，2远程对方子弹,3远程已方，4近攻
+    //1，近程1，2，近程2,  3远程对方，4已方,  5远程对方子弹1, 6远程对方子弹2,  7远程对方,多个技能叠加
     public mvType1:any = [{type:0,id:6},{type:1,id:16},{type:2,id:10,id2:28}]
     public mvType2:any = [{type:3,id:136}]
     //public mvType1 = {type:0,mv:[6,16,136]}
@@ -105,6 +107,8 @@ class MonsterVO {
         this.level = data.level;
         this.mp = data.mp;
         this.cost = data.cost;
+        this.mtype = data.mtype;
+        this.atktype = data.atktype;
 
         if(this.cost < 10)
             this.type = 1;
@@ -133,8 +137,8 @@ class MonsterVO {
         this.mvList = [];
         //this.mvType1 = [];
         //this.mvType2 = [];
-        if(data.mv1)
-            this.addMV(data.mv1)
+        //if(data.mv1)
+        //    this.addMV(data.mv1)
         //if(data.mv2)
         //    this.addMV(data.mv2)
 
@@ -151,6 +155,9 @@ class MonsterVO {
     }
 
     private pushLoadKey(id){
+        if(!id)
+            return;
+        this.mv1.push(id);
         this.mvList.push('skill' + id + '_json');
         this.mvList.push('skill' + id + '_png');
     }
@@ -168,16 +175,30 @@ class MonsterVO {
         this.sfn4 = MonsterSkillVO.getObject(this.id + '_' + 14);
         this.sfn5 = MonsterSkillVO.getObject(this.id + '_' + 15);
 
-        var MV = VideoMV.getInstance();
-        //if(this.sn)
-        //    this.mv1.push(MV.getLoadFormKey(this.sn.mv));
-        //for(var i=1;i<=5;i++)
-        //{
-        //    if(this['sn'+i])
-        //        this.mv1.push(MV.getLoadFormKey(this['sn'+i].mv));
-        //    if(this['sfn'+i])
-        //        this.mv2.push(MV.getLoadFormKey(this['sfn'+i].mv));
-        //}
+        //var MV = VideoMV.getInstance();
+        if(this.atktype)
+            this.mvList.push('bullet' + this.atktype + '_png');
+        if(this.sn)
+        {
+            if(this.sn.mvType != 6)
+                this.pushLoadKey(this.sn.mvID1);
+            this.pushLoadKey(this.sn.mvID2);
+        }
+        for(var i=1;i<=5;i++)
+        {
+            if(this['sn'+i])
+            {
+                if(this['sn'+i].mvType != 6)
+                    this.pushLoadKey(this['sn'+i].mvID1);
+                this.pushLoadKey(this['sn'+i].mvID2);
+            }
+            if(this['sfn'+i])
+            {
+                if(this['sfn'+i].mvType != 6)
+                    this.pushLoadKey(this['sfn'+i].mvID1);
+                this.pushLoadKey(this['sfn'+i].mvID2);
+            }
+        }
 
 
     }
