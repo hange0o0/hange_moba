@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="CollectUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="bg_jpg" x="0" y="0"/>
+	<e:Image x="0" y="0" source="bg_jpg"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Rect height="60" width="640" x="0" y="74" strokeWeight="1"/>
+	<e:Rect height="60" width="640" x="0" y="74" fillAlpha="0.3"/>
 	<e:Group id="coinGroup" x="18" y="86">
 		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
 		<e:Image source="icon_money_png" y="1" x="0"/>

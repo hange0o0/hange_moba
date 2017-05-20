@@ -1604,6 +1604,11 @@
 			"name":"skill14_png",
 			"type":"image",
 			"url":"ani/skill14.png"
+		},
+		{
+			"name":"bg2_jpg",
+			"type":"image",
+			"url":"game_assets/bg2.jpg"
 		}
 	]
 }

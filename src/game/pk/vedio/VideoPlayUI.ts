@@ -254,6 +254,7 @@ class VideoPlayUI extends game.BaseWindow {
         for(var s in this.itemArray){
             if(item == this.itemArray[s])
                 continue;
+
             var dis =MyTool.getDis(item,this.itemArray[s])
             if(dis < len)
             {
@@ -1136,26 +1137,37 @@ class VideoPlayUI extends game.BaseWindow {
                     for(var i=0;i<defender.length;i++)
                     {
                         var defenderItem = this.getMonster(defender[i].defender)
+                        var stopHit = false;
+
+                        var skillID = svo.mvID1;
+                        if(svo.id == '39_11' && atkerItem.team == defenderItem.team)
+                        {
+                            stopHit = true;
+                            skillID = 30;
+                        }
+
                         if(enemyItem)
                         {
                             if(defenderItem.team == enemyItem.team)
                             {
-                                VM.playOnItem(svo.mvID1,defenderItem,null,null);
+                                VM.playOnItem(skillID,defenderItem,null,null);
                                 if(svo.mvType == 7)
-                                    this.playSkill7(defenderItem,svo.mvID1)
+                                    this.playSkill7(defenderItem,skillID)
                             }
                         }
                         else
                         {
-                            VM.playOnItem(svo.mvID1,defenderItem,null,null);
+                            VM.playOnItem(skillID,defenderItem,null,null);
                             if(svo.mvType == 7)
-                                this.playSkill7(defenderItem,svo.mvID1)
+                                this.playSkill7(defenderItem,skillID)
                         }
 
 
                         if(svo.mvType == 7 || svo.mvType == 3)//攻击型技能
                         {
-                            VM.behitMV(defenderItem);
+
+                            if(!stopHit)
+                                VM.behitMV(defenderItem);
                         }
                     }
                 },this)
@@ -1187,64 +1199,6 @@ class VideoPlayUI extends game.BaseWindow {
         })
     }
 
-
-
-    //public actionSkill(data,roundeData,svo){
-    //    if(svo.mv == 'atk')
-    //    {
-    //        roundeData.type = svo.type;
-    //        this.decode_atk(data,roundeData);
-    //    }
-    //    else
-    //    {
-    //
-    //        var atker = data.atker;
-    //        var defender = data.defender;
-    //
-    //        var atkerItem = this.getMonster(atker)
-    //
-    //        var VM2 = PKMainMV.getInstance();
-    //        VM2.skillMV(atkerItem,function(){
-    //            //VM.behitMV(defenderItem);
-    //
-    //            var id = 6;
-    //            var isEnemy = false  //会伤害对方
-    //            for(var i=0;i<defender.length;i++)
-    //            {
-    //                var defenderItem = this.getMonster(defender[i].defender)
-    //                if(defenderItem.team != atkerItem.team)
-    //                {
-    //                    isEnemy = true;
-    //                    break;
-    //                }
-    //            }
-    //            for(var i=0;i<defender.length;i++)
-    //            {
-    //                var defenderItem = this.getMonster(defender[i].defender)
-    //                if(isEnemy && defenderItem.team == atkerItem.team)
-    //                {
-    //                    var list = defender[i].list;
-    //                    for(var j=0;j<list.length;j++)
-    //                    {
-    //                        this.addEffect(defenderItem,list[j],j*200);
-    //                    }
-    //                    if(!roundeData.notEffect)
-    //                        roundeData.notEffect = [];
-    //                    roundeData.notEffect.push(i);
-    //                    continue;
-    //                }
-    //                VM2.playOnItem(id,defenderItem,null,null);
-    //            }
-    //        },this)
-    //
-    //
-    //        this.timer = egret.setTimeout(function(){
-    //            //this.timer = egret.setTimeout(this.nextPK,this,200)
-    //            this.addEffectList(data,roundeData);
-    //        },this,600)
-    //
-    //    }
-    //}
 
     public addEffectList(data,roundeData){
         var arr = data.defender;

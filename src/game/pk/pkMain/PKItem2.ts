@@ -40,6 +40,8 @@ class PKItem2 extends game.BaseItem {
 
     public ox;   //原始的
     public oy;   //原始的
+    public boxX;   //原始的
+    public boxY;   //原始的
     public ar = -1; //攻击方向，-1为向上，1为向下
 
     //public set x(v){
@@ -107,9 +109,7 @@ class PKItem2 extends game.BaseItem {
 
 
     public showLight(isPKing?){
-        if(this.lightMC.visible)
-            return;
-
+        egret.Tween.removeTweens(this.lightMC)
         this.lightMC.visible = true
         if(this.team == 1)
             this.lightMC.source = 'head_border_light1_png'
@@ -121,7 +121,6 @@ class PKItem2 extends game.BaseItem {
             return;
         }
         this.lightMC.scaleX = this.lightMC.scaleY = 0.7;
-        egret.Tween.removeTweens(this.lightMC)
         var tw =  egret.Tween.get(this.lightMC,{loop:true})
         tw.to({scaleX:0.9,scaleY:0.9},1000).to({scaleX:0.7,scaleY:0.7},1000)
     }

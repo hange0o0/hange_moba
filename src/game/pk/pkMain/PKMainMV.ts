@@ -40,8 +40,9 @@ class PKMainMV {
         },thisObj)
     }
 
-    public jumpToXY(a,b,fun1?,thisObj?,wait?,speedRate=1){       //,frontWait?
+    public jumpToXY(a,b,fun1?,thisObj?,wait?,speedRate=1,sp?){       //,frontWait?
 
+        sp = sp || {};
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
@@ -51,12 +52,16 @@ class PKMainMV {
         //if(frontWait)
         //    tw.wait(frontWait);
         //SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
+        if(sp.before)
+            tw.wait(sp.before);
         tw.to({x:b.x,y:b.y}, dis*speedRate).call(function(){
             a.jumping = false;
             a.moving = false;
             //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         });
         var tw:egret.Tween = egret.Tween.get(a);
+        if(sp.before)
+            tw.wait(sp.before);
         tw.to({scaleX:1.3,scaleY:1.3}, dis*2/3*speedRate,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/3*speedRate,egret.Ease.sineIn);
         if(fun1)
         {
@@ -101,6 +106,7 @@ class PKMainMV {
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var y = a.y
+        console.log(a.x,a.y)
         tw.to({scaleX:1.1,scaleY:1.1,y:y - 10}, 200);
         if(fun1)
             tw.call(fun1,thisObj);

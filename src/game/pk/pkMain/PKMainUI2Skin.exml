@@ -1,21 +1,112 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKMainUI2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Rect id="bgBlack" height="100%" width="100%" x="0" y="0"/>
-	<e:Group id="bgGroup" x="0" y="0" width="100%" height="100%" locked="true">
+	<e:Group id="bgGroup" x="0" y="0" width="100%" height="100%">
 		<e:Image id="bg1" source="bg_jpg" x="0" anchorOffsetY="480" width="640" height="960" y="0"/>
 		<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="0" anchorOffsetY="480"/>
 	</e:Group>
-	<e:Group id="downBG" y="840">
-		<e:Rect fillAlpha="0.5" width="640" height="115" x="0" y="0"/>
-		<e:Rect height="2" width="100%" x="0" y="0" fillColor="0x444444"/>
-	</e:Group>
-	<e:Group id="upBG" x="0" y="0">
-		<e:Rect height="115" width="640" x="0" y="0" fillAlpha="0.5"/>
-		<e:Rect width="100%" fillColor="0x444444" height="2" x="0"/>
-	</e:Group>
 	
-	<e:Group id="selfGroup" x="0" y="0" locked="true" width="100%"/>
-	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
+	<e:Group id="con" width="640" height="700" x="0" y="260">
+		<e:Image width="325" y="450" scaleX="-1" scale9Grid="40,44,240,266" right="-5" height="250" x="10" source="book_bg1_jpg"/>
+		<e:Image y="450" scale9Grid="40,44,240,266" width="325" height="250" x="-5" source="book_bg1_jpg"/>
+		<e:Image source="line_png" width="250" rotation="90" horizontalCenter="0" y="455"/>
+		<e:Group id="roleCon" y="0" width="640" height="100%" x="0"/>
+		<e:Group id="effectCon" y="0" width="640" height="100%" x="0"/>
+	</e:Group>
+	<e:Group id="upGroup" x="0" y="0" width="640" locked="true">
+		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>
+		<e:Image source="book_bg2_jpg" y="0" scaleX="-1" width="325" right="-5" height="195" scale9Grid="40,44,240,266"/>
+		<e:Group x="10" width="308" top="10" bottom="10" id="playerGroup1">
+			<e:Group x="87" y="7">
+				<e:Rect x="0" width="220" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
+				<e:Rect id="hpBar0_" height="24" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
+				<e:Rect id="hpBar0" height="24" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
+				<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
+			</e:Group>
+			<e:Group x="87" y="33">
+				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
+				<e:Rect id="mpBar0" y="0" strokeColor="0xFAED05" width="140" height="24" x="0" fillColor="0x0E178F"/>
+				<e:Label id="mpText0" stroke="2" text="12300/45600" x="9" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
+			</e:Group>
+			<e:Group x="87" y="59">
+				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
+				<e:Rect id="apBar0" y="0" strokeColor="0xFAED05" width="10" height="24" x="0" fillColor="0xB4A502"/>
+				<e:Label id="apText0" text="12300/45600" stroke="2" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
+			</e:Group>
+			<e:Group x="0" y="0">
+				<e:Image id="headMC0" y="4" x="5" width="80" height="80" source="head_png"/>
+				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
+			</e:Group>
+			<e:Group x="5" y="100">
+				<e:Group x="0" y="0" width="100">
+					<e:Image source="card_icon_1_png" y="0" scaleY="0.65" x="0" scaleX="0.65"/>
+					<e:Label id="atkText0" text="1234" x="35" y="1.6500000000000004" textColor="0xCBC08A" size="24"/>
+				</e:Group>
+				<e:Group x="91.06060606060606" y="1.9696969696969688" width="85">
+					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
+					<e:Label id="speedText0" y="0" textColor="0xCBC08A" size="24" text="123" x="35"/>
+				</e:Group>
+				<e:Group id="defGroup0" y="11.969696969696969" x="101.06060606060606" width="105">
+					<e:Image y="-2" scaleY="0.7" x="3" scaleX="0.7" source="card_icon_4_png"/>
+					<e:Label id="defText0" y="0" textColor="0xCBC08A" text="+23%" size="24" x="32"/>
+				</e:Group>
+				<e:layout>
+					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
+				</e:layout>
+			</e:Group>
+			<e:List id="statList0" width="300" x="4" top="135" height="40">
+				<e:layout>
+					<e:HorizontalLayout/>
+				</e:layout>
+			</e:List>
+		</e:Group>
+		<e:Group width="308" top="10" bottom="10" id="playerGroup2" x="322">
+			<e:Group x="0" y="7" width="220">
+				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
+				<e:Rect id="hpBar1_" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="24" right="0"/>
+				<e:Rect id="hpBar1" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="24" right="0"/>
+				<e:Label id="hpText1" stroke="2" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
+			</e:Group>
+			<e:Group x="0" y="33" width="220">
+				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
+				<e:Rect id="mpBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0x0E178F" height="24" right="0"/>
+				<e:Label id="mpText1" verticalCenter="0" text="12300/45600" stroke="2" size="18" right="9" textColor="0xFCE1B8"/>
+			</e:Group>
+			<e:Group x="0" y="59" width="220">
+				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
+				<e:Rect id="apBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0xB4A502" height="24" right="0"/>
+				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="2" right="9" textColor="0xFCE1B8"/>
+			</e:Group>
+			<e:Group y="0" right="0">
+				<e:Image id="headMC1" y="4" x="5" width="80" height="80" source="head_png"/>
+				<e:Image source="border_head_png" y="0" scale9Grid="12,12,76,76" width="90" height="90" x="0"/>
+			</e:Group>
+			<e:Group y="100" right="5">
+				<e:layout>
+					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
+				</e:layout>
+				<e:Group id="defGroup1" width="105" y="21.96969696969697" x="111.06060606060606">
+					<e:Image source="card_icon_4_png" y="-2" scaleY="0.7" x="3" scaleX="0.7"/>
+					<e:Label y="0" textColor="0xCBC08A" text="+23%" id="defText1" size="24" x="32"/>
+				</e:Group>
+				<e:Group width="85" y="1.9696969696969688" x="91.06060606060606">
+					<e:Image source="card_icon_3_png" y="1.1500000000000004" scaleY="0.7" x="0" scaleX="0.7"/>
+					<e:Label y="0" textColor="0xCBC08A" text="123" id="speedText1" size="24" x="35"/>
+				</e:Group>
+				<e:Group y="0" x="0">
+					<e:Image source="card_icon_1_png" y="0" scaleY="0.65" x="0" scaleX="0.65"/>
+					<e:Label y="1.6500000000000004" textColor="0xCBC08A" text="1234" x="35" size="24" id="atkText1"/>
+				</e:Group>
+			</e:Group>
+			<e:List id="statList1" top="135" height="40" right="4">
+				<e:layout>
+					<e:HorizontalLayout/>
+				</e:layout>
+			</e:List>
+		</e:Group>
+		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
+	</e:Group>
+	<e:Image id="jumpBtn" source="jump_btn_png" scaleX="0.9" scaleY="0.9" y="710" x="320" anchorOffsetX="36" anchorOffsetY="36"/>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
-	<e:Image id="jumpBtn" source="jump_btn_png" x="566" y="886" scaleX="0.9" scaleY="0.9"/>
-</e:Skin>
+	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
+	</e:Skin>

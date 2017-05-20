@@ -179,7 +179,7 @@ class VideoManager {
             var VC = VideoCode.getInstance()
             VC.initData(self.baseData);
             VC.play(true);
-            self.showVideoPlay();
+            //self.showVideoPlay();
         }
     }
 
