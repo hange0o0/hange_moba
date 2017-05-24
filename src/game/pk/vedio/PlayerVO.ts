@@ -27,6 +27,7 @@ class PlayerVO {
     public healCount = 0
 
 
+    public orginData = {};
     public constructor(oo?,oo2?) {
         if(oo)
         {
@@ -70,6 +71,7 @@ class PlayerVO {
         {
             this.buffList.push({id:2,value:oo.add_atk})
         }
+        this.orginData = this.getSave();
     }
 
     public addBuff(data,atker){
@@ -146,8 +148,9 @@ class PlayerVO {
         oo.atk = this.atk;
         oo.speed = this.speed;
         oo.mp = this.mp;
-        oo.tag = this.tag;
-        oo.actionCount = this.actionCount;
+        oo.maxMp = this.maxMp;
+        oo.ap = this.actionCount;
+        oo.buffList = JSON.stringify(this.buffList);
         return oo;
     }
 

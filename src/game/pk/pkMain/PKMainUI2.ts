@@ -19,6 +19,8 @@ class PKMainUI extends game.BaseUI {
     private con: eui.Group;
     private roleCon: eui.Group;
     private effectCon: eui.Group;
+    private skillGroup: eui.Group;
+    private skillText: eui.Label;
     private upGroup: eui.Group;
     private playerGroup1: eui.Group;
     private hpBar0_: eui.Rect;
@@ -51,6 +53,12 @@ class PKMainUI extends game.BaseUI {
     private jumpBtn: eui.Image;
     private bottomMC: eui.Image;
     private topMC: eui.Image;
+    private roundGroup: eui.Group;
+    private roundMC1: eui.Image;
+    private roundMC2: eui.Image;
+    private roundText: eui.Label;
+
+
 
 
 
@@ -359,6 +367,10 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.topMC);
         egret.Tween.removeTweens(this.bottomMC);
         egret.Tween.removeTweens(this.jumpBtn);
+        egret.Tween.removeTweens(this.roundGroup);
+        egret.Tween.removeTweens(this.skillGroup);
+        egret.Tween.removeTweens(this.upGroup);
+        egret.Tween.removeTweens(this.con);
         var arr = this.itemArray;
         for(var i=0;i<arr.length;i++)
         {
@@ -375,6 +387,8 @@ class PKMainUI extends game.BaseUI {
         this.jumpBtn.visible = false;
         this.upGroup.visible = false;
         this.con.visible = false;
+        this.roundGroup.visible = false;
+        this.skillGroup.visible = false;
         //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
@@ -580,7 +594,7 @@ class PKMainUI extends game.BaseUI {
         this.listArray = VideoCode.getInstance().listArray;
         this.index = 0
         this.outPKer()
-        this.inPKer();
+        var cd = 1000
         if(this.pkStep == 1)
         {
             this.playerGroup1.visible = true
@@ -591,8 +605,53 @@ class PKMainUI extends game.BaseUI {
             tw.to({x:10},300)
             var tw:egret.Tween = egret.Tween.get(this.playerGroup2);
             tw.to({x:322},300)
+            this.inPKer();
+        }
+        else
+        {
+            this.setTimeout(this.inPKer,1000)
+            cd += 1000;
         }
 
+        this.setTimeout(this.showRoundTalk,cd)
+    }
+
+    private showRoundTalk(){
+        if(this.random() > 0.5)
+        {
+            this.itemTalk(this.enemyPKing)
+            this.setTimeout(function(){
+                this.itemTalk(this.selfPKing)
+            },500)
+        }
+        else
+        {
+            this.itemTalk(this.selfPKing)
+            this.setTimeout(function(){
+                this.itemTalk(this.enemyPKing)
+            },500)
+        }
+        this.setTimeout(this.showRoundMovie,2000)
+    }
+
+    private showRoundMovie(){
+        this.roundGroup.visible = true;
+        this.addChild(this.roundGroup);
+        this.roundGroup.y = this.upGroup.y + 350
+        this.roundMC1.x = 0
+        this.roundMC2.x = 360
+        this.roundMC1.scaleX = 1
+        this.roundMC2.scaleX = -1
+        this.roundMC1.scaleY = 1
+        this.roundMC2.scaleY = 1
+        this.roundText.text = 'ROUND ' + this.pkStep;
+        var tw:egret.Tween = egret.Tween.get(this.roundGroup);
+        tw.to({scaleX:3,scaleY:3,alpha:0}).to({scaleX:1,scaleY:1,alpha:1},200).wait(1000).
+            to({alpha:0},200);
+        var tw:egret.Tween = egret.Tween.get(this.roundMC1);
+        tw.wait(1200).to({scaleX:2.5,x:-500,scaleY:0.5},500)
+        var tw:egret.Tween = egret.Tween.get(this.roundMC2);
+        tw.wait(1200).to({scaleX:-2.5,x:360+500,scaleY:0.5},500)
         this.setTimeout(this.pkOne,2000)
     }
 
@@ -644,18 +703,22 @@ class PKMainUI extends game.BaseUI {
                     {
                         x = 150;
                         this.selfPKing = item
+                        this.headMC0.source = data.mvo.thumb;
+                        this.renewTop(data.orginData,data,0)
                     }
                     else
                     {
                         x = 640-150;
                         this.enemyPKing = item;
+                        this.headMC1.source = data.mvo.thumb;
+                        this.renewTop(data.orginData,data,1)
                     }
                     item.isPKing = true;
                     item.showLight(true);
                 }
                 else
                 {
-                    cd = 500;
+                    cd = 200 + 100*(data.index - 1);
                     y = this.fightHeight-80;
                     if(data.teamID == 1)
                         x = 120 + (data.index-1)*130;
@@ -664,16 +727,24 @@ class PKMainUI extends game.BaseUI {
                     item.isPKing = false;
                     item.showLight();
                 }
-                item.ox = x;
-                item.oy = y;
-                item.out = false;
 
                 if(this.isNotEqual(item.x,x) || this.isNotEqual(item.y,y))
                 {
-                    VM.jumpToXY(item,{
-                        x:x,y:y
-                    },null,null,0,1,{before:cd});
+                    if(!item.out || item.isPKing)
+                    {
+                        VM.jumpToXY(item,{
+                            x:x,y:y
+                        },null,null,0,1,{before:cd});
+                    }
+                    else
+                    {
+                         var tw = egret.Tween.get(item);
+                        tw.wait(cd).to({alpha:0,scaleX:0,scaleY:0},300).wait(200).to({x:x,y:y,alpha:1}).to({scaleX:1.2,scaleY:1.2},200).to({scaleX:1,scaleY:1},300)
+                    }
                 }
+                item.ox = x;
+                item.oy = y;
+                item.out = false;
 
             }
         }
@@ -1025,7 +1096,7 @@ class PKMainUI extends game.BaseUI {
             }
             if(step >1000)//找了100次都找不到
             {
-                return startPoint;//原地不动了
+                return null;//原地不动了
             }
         }
         return null
@@ -1056,6 +1127,8 @@ class PKMainUI extends game.BaseUI {
             if(!item.action)
                 startPoint = item.team == 1?{x:160,y:480} :{x:480,y:480}
             var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),item.enemy,200) //,enemy,enemyDis
+            if(!newPos)
+                return false;
             //console.log(newPos)
             var VM = PKMainMV.getInstance();
             VM.jumpToXY(item,newPos,fun,this,100);
@@ -1073,6 +1146,8 @@ class PKMainUI extends game.BaseUI {
             return false;
         var startPoint = atker;
         var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),atker.enemy,enemyDis)
+        if(!newPos)
+            return false;
         var VM = PKMainMV.getInstance();
         VM.jumpToXY(atker,newPos,fun,this,100);
         return true;
@@ -1327,107 +1402,85 @@ class PKMainUI extends game.BaseUI {
         return {x:item.x,y:item.y};//找不到就不动了
     }
 
-    public setChoose(chooseData){
-        var item = chooseData[chooseData.length - 1];
-        if(!item || !item.result)
-            return;
+    private renewHP(data,index){
+        var text = this['hpText'+index];
+        var bf = this['hpBar'+index];
+        var bb = this['hpBar'+index + '_'];
+        egret.Tween.removeTweens(bf)
+        egret.Tween.removeTweens(bb)
 
+        var decColor = 0xFF0000
+        var addColor = 0x00FF00
+        var rate1 = data.last/data.max
+        var rate2 = data.current/data.max
+        if(rate1 > rate2)//-
+        {
+            bb.fillColor = decColor;
+            bb.width = this.barWidth * rate1
+            bf.width = this.barWidth * rate1
+            var tw = egret.Tween.get(bf)
+            tw.to({width:this.barWidth * rate2},100);
+        }
+        else
+        {
+            bb.fillColor = addColor;
+            bf.width = this.barWidth * rate1
+            bb.width = this.barWidth * rate1
 
-        var VC = VideoCode.getInstance();
+            var tw = egret.Tween.get(bb)
+            tw.to({width:this.barWidth * rate2},100);
+        }
+        text.text = (data.current || 0) + '/' + (data.max || 0)
 
-        var base = chooseData[0];
-        var atker = VC.getPlayerByID(base.atker);
+    }
 
-        var data = item.result.player1;
-        this.headMC0.source = VC.player1.mvo.thumb;
-        this.hpText0.text = data.hp  + '/' + data.maxHp;
-        this.mpText0.text = data.mp  + '/' + data.maxMp;
-        this.apText0.text = data.ap  + '/' + PKManager.ApMax;
-        this.hpBar0.width =  Math.min(1,data.hp  / data.maxHp) * this.barWidth;
-        this.mpBar0.width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
-        this.apBar0.width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
+    private renewTop(data,player,index){
+        egret.Tween.removeTweens(this['hpBar'+index])
+        egret.Tween.removeTweens(this['hpBar'+index + '_'])
+        this['hpText'+index].text = (data.hp || 0)  + '/' + (data.maxHp || 0);
+        this['mpText'+index].text = data.mp  + '/' + data.maxMp;
+        this['apText'+index].text = data.ap  + '/' + PKManager.ApMax;
+        this['hpBar'+index].width =  Math.min(1,(data.hp || 0)  / (data.maxHp || 1)) * this.barWidth;
+        this['hpBar'+index + '_'].width =  0;
+        this['mpBar'+index].width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
+        this['apBar'+index].width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
 
         var buff = JSON.parse(data.buffList);
         var valueAdd = this.getValueAdd(buff);
         if(valueAdd.atk)
         {
-            this.setHtml(this.atkText0,this.createHtml(valueAdd.atk + VC.player1.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
+            this.setHtml(this['atkText'+index],this.createHtml(valueAdd.atk + player.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
         }
         else
         {
-            this.atkText0.text = VC.player1.atk;
+            this['atkText'+index].text = player.atk;
         }
 
         if(valueAdd.speed)
         {
-            this.setHtml(this.speedText0,this.createHtml(valueAdd.speed + VC.player1.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
+            this.setHtml(this['speedText'+index],this.createHtml(valueAdd.speed + player.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
         }
         else
         {
-            this.speedText0.text = VC.player1.speed;
+            this['speedText'+index].text = player.speed;
         }
 
         if(valueAdd.def)
         {
-            this.defGroup0.visible = true
+            this['defGroup'+index].visible = true
             if(valueAdd.def > 0)
-                this.setHtml(this.defText0,'' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
+                this.setHtml(this['defText'+index],'' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
             else
-                this.setHtml(this.defText0,'' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
+                this.setHtml(this['defText'+index],'' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
         }
         else
         {
-            this.defGroup0.visible = false
+            this['defGroup'+index].visible = false
         }
 
-        this.statList0.dataProvider = new eui.ArrayCollection(getList(buff));
+        this['statList'+index].dataProvider = new eui.ArrayCollection(getList(buff));
 
 
-
-
-        var data = item.result.player2;
-        this.headMC1.source = VC.player2.mvo.thumb;
-        this.hpText1.text = data.hp  + '/' + data.maxHp;
-        this.mpText1.text = data.mp  + '/' + data.maxMp;
-        this.apText1.text = data.ap  + '/' + PKManager.ApMax;
-        this.hpBar1.width =  Math.min(1,data.hp  / data.maxHp) * this.barWidth;
-        this.mpBar1.width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
-        this.apBar1.width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
-
-        var buff = JSON.parse(data.buffList);
-        var valueAdd = this.getValueAdd(buff);
-        if(valueAdd.atk)
-        {
-            this.setHtml(this.atkText1,this.createHtml(valueAdd.atk + VC.player2.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
-        }
-        else
-        {
-            this.atkText1.text = VC.player2.atk;
-        }
-
-        if(valueAdd.speed)
-        {
-            this.setHtml(this.speedText1,this.createHtml(valueAdd.speed + VC.player2.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
-        }
-        else
-        {
-            this.speedText1.text = VC.player2.speed;
-        }
-
-        if(valueAdd.def)
-        {
-            this.defGroup1.visible = true
-            if(valueAdd.def > 0)
-                this.setHtml(this.defText1,'' + this.createHtml('+' + valueAdd.def + '%',0x00FF00));
-            else
-                this.setHtml(this.defText1,'' + this.createHtml('' + valueAdd.def + '%',0xFF0000));
-        }
-        else
-        {
-            this.defGroup1.visible = false
-        }
-
-        this.statList1.dataProvider = new eui.ArrayCollection(getList(buff));
         function getList(data){
             var arr = [];
             for(var i=0;i<data.length;i++)
@@ -1439,6 +1492,19 @@ class PKMainUI extends game.BaseUI {
             }
             return arr;
         }
+    }
+
+    public setChoose(chooseData){
+        if(!chooseData)
+            return;
+        var item = chooseData[chooseData.length - 1];
+        if(!item || !item.result)
+            return;
+
+        var VC = VideoCode.getInstance();
+        this.renewTop(item.result.player1,VC.player1,0)
+        this.renewTop(item.result.player2,VC.player2,1)
+
     }
 
     private getValueAdd(list){
@@ -1536,10 +1602,12 @@ class PKMainUI extends game.BaseUI {
         var data = this.listArray[this.index];
         if(!data || data.type == 'over')
         {
-            this.setTimeout(this.playOneRound,1000)
+            this.playOneRound()
+
         }
         else
         {
+            this.setChoose(this.listArray[this.index - 1]);
             for(var i=0;i<this.itemArray.length;i++)
             {
                 var item = this.itemArray[i];
@@ -1719,22 +1787,35 @@ class PKMainUI extends game.BaseUI {
     }
 
     //远攻型
-    private bulletAtk(data,roundeData,mvType?,skillID1?,skillID2?){
+    private bulletAtk(data,roundeData,mvType?,skillID1?,skillID2?,fun?){
+        var VM = PKMainMV.getInstance();
+
+
         var atker = data.atker;
         var defender = data.defender;
 
         var atkerItem = this.getMonster(atker)
+        var defenderItem = this.getMonster(defender[0].defender);
 
-
-        var VM = PKMainMV.getInstance();
-
+        if(atkerItem.isPKing && this.getDis(atkerItem,defenderItem) < 200)
+        {
+            var newPos = this.findFightEmpty(atkerItem,this.getCurrentMap(),defenderItem,200) //,enemy,enemyDis
+            if(newPos)
+            {
+                VM.jumpToXY(atkerItem,newPos,function(){
+                    this.bulletAtk(data,roundeData,mvType,skillID1,skillID2,fun);
+                },this,100);
+                return;
+            }
+        }
+        fun && fun.apply(this);
         var oo = this.actionBefore(data);
         var selfList = oo.selfList;  //作用于出招者的效果
         var enemyList = oo.enemyList //作用于被攻击者的效果
         var playList = oo.playList
         var enemyItem = oo.enemyItem;
+        defenderItem = enemyItem || defenderItem;
 
-        var defenderItem = enemyItem || this.getMonster(defender[0].defender);
         var sendXY = VM.getDisPoint(atkerItem,defenderItem,50);
         VM.skillMV2(atkerItem,defenderItem,function(){
             //自己效果
@@ -1798,15 +1879,24 @@ class PKMainUI extends game.BaseUI {
         var arr = data.defender[0].list;
         var defenderItem = this.getMonster(data.defender[0].defender)
         var count = 0;
+        var last = -1;
+        var current = -1;
+        var max = -1;
         for(var i=0;i<arr.length;i++)
         {
             var effect = arr[i];
             if(effect.key == 'hp')
+            {
                 count += effect.value.value;
+                if(last == -1)
+                    last = effect.value.last
+                max = effect.value.max
+                current = effect.value.current
+            }
             else
                 break;
         }
-        var myEffect = {key:'hp',value:{value:count,isCDHP:true,isNegative:count <= 0}};
+        var myEffect = {key:'hp',value:{value:count,isCDHP:true,isNegative:count <= 0,last:last,max:max,current:current}};
         var cd = this.addEffect(defenderItem,myEffect);
         for(var j=1;i<arr.length;i++,j++)
         {
@@ -1874,20 +1964,26 @@ class PKMainUI extends game.BaseUI {
         {
             var defender = data.defender;
             var VM = PKMainMV.getInstance();
-            if(!svo.hideName)
-                this.showSkillName(atkerItem,svo);
+
 
 
             if(svo.mvType == 1 || svo.mvType == 2)//近攻型
             {
+                if(!svo.hideName)
+                    this.showSkillName(atkerItem,svo);
                 this.nearAtk(data,roundeData,svo.mvType,svo.mvID1);
             }
             else if(svo.mvType == 5 || svo.mvType == 6)//字弹型
             {
-                this.bulletAtk(data,roundeData,svo.mvType,svo.mvID1,svo.mvID2);
+                this.bulletAtk(data,roundeData,svo.mvType,svo.mvID1,svo.mvID2,function(){
+                    if(!svo.hideName)
+                        this.showSkillName(atkerItem,svo);
+                });
             }
             else  //远程型
             {
+                if(!svo.hideName)
+                    this.showSkillName(atkerItem,svo);
                 var actionData = this.actionBefore(data);
                 var selfList = actionData.selfList;  //作用于出招者的效果
                 var enemyList = actionData.enemyList //作用于被攻击者的效果
@@ -1954,11 +2050,19 @@ class PKMainUI extends game.BaseUI {
         var tw = egret.Tween.get(defenderItem);
         tw.wait(100).call(function(){
             VM.playOnItem(skillID,defenderItem,null,null,{
-                x:Math.random()*80-40 + defenderItem.x,y:Math.random()*80-40+defenderItem.y
+                x:-Math.random()*40 + defenderItem.x,y:Math.random()*40+defenderItem.y
             });
         }).wait(100).call(function(){
             VM.playOnItem(skillID,defenderItem,null,null,{
-                x:Math.random()*80-40 + defenderItem.x,y:Math.random()*80-40 + defenderItem.y
+                x:Math.random()*40 + defenderItem.x,y:Math.random()*40 + defenderItem.y
+            });
+        }).wait(100).call(function(){
+            VM.playOnItem(skillID,defenderItem,null,null,{
+                x:Math.random()*40 + defenderItem.x,y:-Math.random()*40+defenderItem.y
+            });
+        }).wait(100).call(function(){
+            VM.playOnItem(skillID,defenderItem,null,null,{
+                x:-Math.random()*40 + defenderItem.x,y:-Math.random()*40 + defenderItem.y
             });
         })
     }
@@ -2112,6 +2216,8 @@ class PKMainUI extends game.BaseUI {
             else
                 this.showItemWord(item,{text:str + (data.value || '-0'),textColor:0xff0000});
         }
+
+        this.renewHP(data,item.team - 1);
     }
 
     private showItemWord(item,data,delay=0,wordType='hp'){
@@ -2164,6 +2270,7 @@ class PKMainUI extends game.BaseUI {
         if(skillVO.type == 1)
         {
             color = 0xEB911B;
+            this.showMainSkillName(item,skillVO);
         }
         else if(skillVO.type == 2)
         {
@@ -2178,5 +2285,16 @@ class PKMainUI extends game.BaseUI {
         {
             this.setTimeout(fun,500);
         }
+    }
+
+    private showMainSkillName(item,skillVO){
+        this.skillGroup.visible = true;
+        this.skillText.text = skillVO.name;
+        this.skillGroup.y = this.upGroup.y + 140;
+        egret.Tween.removeTweens(this.skillGroup)
+        var tw = egret.Tween.get(this.skillGroup)
+        tw.to({y:this.upGroup.y + 210},200).wait(800).to({y:this.upGroup.y + 140},100).call(function(){
+            this.skillGroup.visible = false;
+        },this);
     }
 }

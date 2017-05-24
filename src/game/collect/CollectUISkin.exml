@@ -28,9 +28,9 @@
 	<e:Label id="sortText" y="93" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="424"/>
 	<e:Group id="sortGroup" y="124" x="421">
 		<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="210" height="100%" x="0"/>
-		<e:List id="sortList" width="200" itemRendererSkinName="HonorSortItemSkin" x="5" top="6" bottom="6">
+		<e:List id="sortList" width="200" x="5" top="6" bottom="6" itemRendererSkinName="HonorSortItemSkin">
 			<e:layout>
-				<e:VerticalLayout gap="0"/>
+				<e:VerticalLayout gap="0" horizontalAlign="justify"/>
 			</e:layout>
 			<e:ArrayCollection>
 				<e:Array>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TeamDungeonAwardBoxItemSkin"
+        xmlns:e="http://ns.egret.com/eui" width="80" height="110">
+	<e:Rect height="80" width="80" x="0" y="0"/>
+	<e:Label text="标签" y="85" size="22" horizontalCenter="0"/>
+</e:Skin>

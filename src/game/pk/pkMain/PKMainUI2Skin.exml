@@ -1,17 +1,24 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKMainUI2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Rect id="bgBlack" height="100%" width="100%" x="0" y="0"/>
-	<e:Group id="bgGroup" x="0" y="0" width="100%" height="100%">
+	<e:Group id="bgGroup" x="0" y="0" width="100%" height="100%" locked="true">
 		<e:Image id="bg1" source="bg_jpg" x="0" anchorOffsetY="480" width="640" height="960" y="0"/>
 		<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="0" anchorOffsetY="480"/>
 	</e:Group>
 	
-	<e:Group id="con" width="640" height="700" x="0" y="260">
+	<e:Group id="con" width="640" height="700" x="0" y="260" locked="true">
 		<e:Image width="325" y="450" scaleX="-1" scale9Grid="40,44,240,266" right="-5" height="250" x="10" source="book_bg1_jpg"/>
 		<e:Image y="450" scale9Grid="40,44,240,266" width="325" height="250" x="-5" source="book_bg1_jpg"/>
 		<e:Image source="line_png" width="250" rotation="90" horizontalCenter="0" y="455"/>
 		<e:Group id="roleCon" y="0" width="640" height="100%" x="0"/>
 		<e:Group id="effectCon" y="0" width="640" height="100%" x="0"/>
+	</e:Group>
+	<e:Group id="skillGroup" y="214" horizontalCenter="-20">
+		<e:Image source="icon_b1_png" y="0" x="38" scaleX="0.8" scaleY="0.8" />
+		<e:Label id="skillText" text="奇才顶替" y="0" textColor="0xEB911B" size="35" stroke="2" strokeColor="0x000000" x="0"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
 	</e:Group>
 	<e:Group id="upGroup" x="0" y="0" width="640" locked="true">
 		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>
@@ -109,4 +116,9 @@
 	<e:Image id="jumpBtn" source="jump_btn_png" scaleX="0.9" scaleY="0.9" y="710" x="320" anchorOffsetX="36" anchorOffsetY="36"/>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
 	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
+	<e:Group id="roundGroup" horizontalCenter="0" width="360" height="200" y="280" anchorOffsetY="100" locked="true">
+		<e:Image id="roundMC1" source="pk_round_bg_png" x="0" y="100" anchorOffsetY="100"/>
+		<e:Image id="roundMC2" source="pk_round_bg_png" y="100" x="360" scaleX="-1" anchorOffsetY="100"/>
+		<e:Label id="roundText" y="95" textColor="0xEB911B" text="ROUND 11" size="22" horizontalCenter="0.5"/>
+	</e:Group>
 	</e:Skin>

@@ -27,14 +27,14 @@ class MsgingUI extends egret.Sprite {
 
 
 
-        var data:any = RES.getRes("ui_loading" +  "_json"); //qid
-        var texture:egret.Texture = RES.getRes("ui_loading" + "_png");
-        var mcFactory = new egret.MovieClipDataFactory(data, texture);
-        this.loadingMC = new egret.MovieClip();
-        this.loadingMC.scaleX = this.loadingMC.scaleY = 1.5
+
+        this.loadingMC = new eui.Image();
+        //this.loadingMC.scaleX = this.loadingMC.scaleY = 1.5
+        this.loadingMC.source = 'ui_loading_png'
         this.addChild(this.loadingMC);
-        this.loadingMC.movieClipData = mcFactory.generateMovieClipData('ui_loading');
-        this.loadingMC.x = 290;
+        this.loadingMC.x = 320;
+        this.loadingMC.anchorOffsetX = 42
+        this.loadingMC.anchorOffsetY = 38
 
     }
 
@@ -44,8 +44,10 @@ class MsgingUI extends egret.Sprite {
         this.width = 640;
         this.height = GameManager.stage.stageHeight;
         this.shape.height = GameManager.stage.stageHeight;
-        this.loadingMC.gotoAndPlay(1,-1)
         this.loadingMC.y = this.height/2 - 100;
+
+        var tw = egret.Tween.get(this.loadingMC,{loop:true})
+        tw.to({rotation:0}).to({rotation:-360},1000);
 
         this.visible = false;
         egret.clearTimeout(this.timer);
@@ -56,7 +58,7 @@ class MsgingUI extends egret.Sprite {
 
 
     public hide(){
+        egret.Tween.removeTweens(this.loadingMC)
         MyTool.removeMC(this);
-        this.loadingMC.stop();
     }
 }

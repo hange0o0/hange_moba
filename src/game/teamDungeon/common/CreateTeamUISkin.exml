@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CreateTeamUISkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="580"/>
+	<e:Label id="titleText" y="29" textColor="0xD0C7AD" horizontalCenter="0" text="创建队伍" x="10"/>
+	<e:Rect left="30" right="30" bottom="25" fillAlpha="1" fillColor="0x160D06" height="95"/>
+	<e:Label text="难度选择：" x="36" y="170"/>
+	<e:Label id="forceText" y="243" text="战力上限：" x="86"/>
+	<e:Label id="levelText" y="295" text="等级上限：" x="86"/>
+	<e:Label y="108" text="队伍名称：" x="37"/>
+	<e:Group y="100" x="175" locked="true">
+		<e:TextInput id="nameText" width="270" y="2" skinName="MyTextInputSkin" height="50" x="0" maxChars="7" prompt="名字最长为7个中文" text="12345671234567"/>
+		<e:Group id="randomBtn" y="0" right="-50">
+			<e:Image source="main_border_png" x="0" y="0" scaleX="0.4" scaleY="0.4"/>
+			<e:Image source="random_btn_png" x="9" y="10" scaleY="0.4" scaleX="0.4"/>
+		</e:Group>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+	
+	
+	
+	
+	<e:Group horizontalCenter="0" bottom="40" locked="true">
+		<e:Button id="cancleBtn" y="-1.1368683772161603e-13" label="取消" x="0" skinName="Btn_b2Skin"/>
+		<e:Button label="创建" skinName="Btn_r2Skin" id="okBtn" x="0" y="-1.1368683772161603e-13"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="185" y="170" locked="true">
+		<e:Image source="border6_png" y="-1.4210854715202004e-14" scale9Grid="14,6,88,18" width="300" height="41" x="0"/>
+		<e:Image source="icon_add_png" y="4.090909090909079" id="sortBtn" right="10"/>
+		<e:Label id="sortText" y="8" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="3"/>
+		<e:Group id="sortGroup" y="36" x="0" locked="true" visible="false">
+			<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="300" height="100%" x="0"/>
+			<e:List top="6" id="sortList0" bottom="6" width="290" itemRendererSkinName="HonorSortItemSkin" x="5">
+				<e:layout>
+					<e:VerticalLayout gap="0" horizontalAlign="justify"/>
+				</e:layout>
+				<e:ArrayCollection>
+					<e:Array>
+						<e:Object label="默认排序"/>
+						<e:Object label="等级升序"/>
+						<e:Object label="等级降序"/>
+					</e:Array>
+				</e:ArrayCollection>
+			</e:List>
+		</e:Group>
+	</e:Group>
+</e:Skin>

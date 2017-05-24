@@ -19,7 +19,7 @@ class Config {
 
 
     public static dayLevel = 2;
-    public static friendLevel = 5;
+    public static friendLevel = 3;
     public static gambleLevel = 20;
 
     public static serverLevel = 5;//试练场10级开放

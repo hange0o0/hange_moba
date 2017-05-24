@@ -76,7 +76,7 @@ class PKResultItem2 extends game.BaseItem {
 
     private onView() {
         //VideoPlayUI.getInstance().show();
-        VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.data.index - 1);
+        VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.data.index - 1,true);
         //egret.setTimeout(function(){
         //    VideoUI.getInstance().visible = true;
         //},this,300)

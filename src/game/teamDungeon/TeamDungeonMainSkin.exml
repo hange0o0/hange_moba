@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TeamDungeonMainSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="0" y="0" source="bg_jpg"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Rect height="60" width="640" x="0" y="74" fillAlpha="0.3"/>
+	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="70" bounces="false">
+		<e:Group>
+			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
+				
+				<e:layout>
+					<e:TileLayout horizontalGap="8" verticalGap="30" paddingLeft="8" paddingRight="8" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left" requestedColumnCount="4"/>
+				</e:layout>
+			</e:List>
+		</e:Group>
+	</e:Scroller>
+	
+	
+	
+	
+</e:Skin>

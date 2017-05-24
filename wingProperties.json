@@ -1358,6 +1358,26 @@
 					"isFolder":false,
 					"key":"bg2_jpg",
 					"name":"bg2_jpg"
+				},
+				{
+					"isFolder":false,
+					"key":"enemy_title_png",
+					"name":"enemy_title_png"
+				},
+				{
+					"isFolder":false,
+					"key":"pk_round_bg_png",
+					"name":"pk_round_bg_png"
+				},
+				{
+					"isFolder":false,
+					"key":"self_title_png",
+					"name":"self_title_png"
+				},
+				{
+					"isFolder":false,
+					"key":"common_title_bg_png",
+					"name":"common_title_bg_png"
 				}
 			]
 		}

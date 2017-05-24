@@ -48,7 +48,7 @@
 				</e:Array>
 			</e:ArrayCollection>
 			<e:layout>
-				<e:VerticalLayout gap="0"/>
+				<e:VerticalLayout gap="0" horizontalAlign="justify"/>
 			</e:layout>
 		</e:List>
 	</e:Group>

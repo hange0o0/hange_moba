@@ -75,6 +75,7 @@ class PKItem2 extends game.BaseItem {
         this.stopMV();
         var vo = this.data.vo;
         MyTool.changeGray(this.headMC,false)
+        MyTool.changeGray(this.headBG,false)
         this.headMC.source = vo.thumbRound
         this.team = this.data.team
         this.index = this.data.index
@@ -98,6 +99,7 @@ class PKItem2 extends game.BaseItem {
 
     public setGray(){
         MyTool.changeGray(this.headMC)
+        MyTool.changeGray(this.headBG)
     }
 
     public stopMV(){

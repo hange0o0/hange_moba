@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TeamPVEMainItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="100">
+	<e:Group x="50" y="20">
+		<ns1:EnemyHeadItem id="m0" x="0" y="0" skinName="EnemyHeadItemSkin" scaleX="0.5" scaleY="0.5"/>
+		<ns1:EnemyHeadItem x="10" y="10" id="m1" scaleX="0.5" scaleY="0.5" skinName="EnemyHeadItemSkin"/>
+		<ns1:EnemyHeadItem id="m2" y="20" skinName="EnemyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="20"/>
+		<ns1:EnemyHeadItem skinName="EnemyHeadItemSkin" y="30" x="30" scaleX="0.5" scaleY="0.5" id="m3"/>
+		<ns1:EnemyHeadItem x="40" y="40" id="m4" scaleX="0.5" scaleY="0.5" skinName="EnemyHeadItemSkin"/>
+		<ns1:EnemyHeadItem id="m5" y="50" skinName="EnemyHeadItemSkin" scaleX="0.5" scaleY="0.5" x="50"/>
+		<e:layout>
+			<e:HorizontalLayout gap="10"/>
+		</e:layout>
+	</e:Group>
+	<e:Button id="pkBtn" label="挑战" skinName="Btn_r2Skin" right="10" y="22"/>
+	<e:Group id="finishMC" width="160" right="10" verticalCenter="0">
+		<e:Group y="0" horizontalCenter="0">
+			<e:Image source="border2_png" width="40" y="0" height="40" x="0"/>
+			<e:Image id="headMC" source="head_png" y="3" width="34" height="34" x="3"/>
+		</e:Group>
+		<e:Label id="nameText" y="50" textColor="0xCCB48E" text="标签标签标签" size="20" horizontalCenter="0"/>
+	</e:Group>
+	<e:Rect width="40" x="0" fillAlpha="0.1" fillColor="0xFFFFFF" top="0" bottom="1"/>
+	<e:Label id="roundText" text="26" x="0" size="26" width="40" textAlign="center" verticalCenter="0"/>
+	<e:Rect height="1" bottom="0" fillColor="0x7A5603" width="100%" x="0"/>
+</e:Skin>

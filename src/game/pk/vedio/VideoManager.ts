@@ -118,7 +118,7 @@ class VideoManager {
     }
 
     //播放指定位置的动画
-    public playVideo(type,index){
+    public playVideo(type,index,isDetail?){
         var self = this;
         var baseData = PKManager.getInstance().getVedioBase(index);
         if(!this.videoData[type])
@@ -179,6 +179,8 @@ class VideoManager {
             var VC = VideoCode.getInstance()
             VC.initData(self.baseData);
             VC.play(true);
+            if(isDetail)
+                VideoPlayUI.getInstance().show();
             //self.showVideoPlay();
         }
     }
