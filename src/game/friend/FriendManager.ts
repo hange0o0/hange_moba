@@ -566,7 +566,7 @@ class FriendManager{
             var now = TM.now();
             var logChange = 0;
             var pkChange = 0;
-            for(var i=0;i<msg.list.length;i++)          //type 1:news 2pk 3talk
+            for(var i=0;i<msg.list.length;i++)          //type 1:news 2pk 3talk 11pve
             {
                 msg.list[i].id = Math.floor(msg.list[i].id);
                 msg.list[i].time = Math.floor(msg.list[i].time);

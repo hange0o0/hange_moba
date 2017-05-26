@@ -17,7 +17,7 @@
 			"name":"pk_bg"
 		},
 		{
-			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,login_bg_jpg,main_mc_png,title_png,ui_loading_json,ui_loading_png,border5_png,btn_r2_png,btn_r2__png,fire_top_jpg,icon_server_png,coin_mv2_png,coin_mv1_png,arrow1_png,btn_b2_png,btn_b2__png",
+			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,login_bg_jpg,main_mc_png,title_png,ui_loading_png,border5_png,btn_r2_png,btn_r2__png,fire_top_jpg,icon_server_png,coin_mv2_png,coin_mv1_png,arrow1_png,btn_b2_png,btn_b2__png",
 			"name":"login_load"
 		},
 		{
@@ -394,11 +394,6 @@
 			"name":"title_png",
 			"type":"image",
 			"url":"game_assets/login/title.png"
-		},
-		{
-			"name":"ui_loading_json",
-			"type":"json",
-			"url":"game_assets/login/ui_loading.json"
 		},
 		{
 			"name":"ui_loading_png",

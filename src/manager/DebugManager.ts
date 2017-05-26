@@ -677,3 +677,4 @@ class DebugManager {
 
 //DM.testMV('mv2',10,[30,31])
 //javascript:DM.showAllMV();
+//Net.send('clean_server')

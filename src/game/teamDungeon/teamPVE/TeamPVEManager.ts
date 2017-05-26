@@ -29,6 +29,13 @@ class TeamPVEManager {
         return Math.floor(d.getTime()/1000) - TM.now();
     }
 
+    public getAwardCard(hard,index){
+        return Math.ceil(Math.pow(1+hard/2,2+index/2));
+    }
+    public getAwardCoin(hard,index){
+        return Math.ceil(Math.pow(1+hard/2,2+index/2))*50;
+    }
+
     public list(fun?){
         var self = this;
         var oo:any = {};
