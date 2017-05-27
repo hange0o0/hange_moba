@@ -437,8 +437,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onHonor(){
-        HonorUI.getInstance().show();
-
+        TeamDungeonMain.getInstance().show();
     }
     private onRank(){
         RankUI.getInstance().show();

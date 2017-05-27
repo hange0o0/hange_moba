@@ -188,13 +188,24 @@ class MonsterInfoBase extends game.BaseContainer {
             else  //我自己
             {
                 var force = (UM.award_force + UM.tec_force);
-                fightData = UM.getTecMonsterAdd(monsterID);
+                var levelLimit = 999;
+                if(specialData.hard)//带难度的
+                {
+                      var hardData = TeamDungeonManager.getInstance().hardData[specialData.hard - 1];
+                    levelLimit = hardData.level;
+                    force = Math.min(hardData.force,force);
+                }
+                fightData = UM.getTecMonsterAdd(monsterID,levelLimit);
                 fightData.atk += force;
                 fightData.hp += force;
 
                 if(UM.level >= vo.level)
                 {
                     nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
+                    if(specialData.hard)
+                        nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + '/'+levelLimit+')</font>'
+                    else
+                        nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
                     this.renewLevelUp();
                 }
                 //else

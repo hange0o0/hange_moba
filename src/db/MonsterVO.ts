@@ -284,7 +284,14 @@ class MonsterVO {
     }
 
     //可以升级
-    public canLevelUp(){
+    public canLevelUp(hard?){
+        if(hard)
+        {
+            var hardData = TeamDungeonManager.getInstance().hardData[hard - 1];
+            var lv = UM.getMonsterLevel(this.id);
+            if(lv >= hardData.level)
+                return false;
+        }
         return this.level <= UM.level && this.levelUpCard() <= UM.card && this.levelUpCoin() <= UM.coin;
     }
     public levelUpCard(){

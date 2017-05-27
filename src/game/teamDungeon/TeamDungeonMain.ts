@@ -23,17 +23,16 @@ class TeamDungeonMain extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
+        this.topUI.setTitle('战队副本')
+        this.topUI.addEventListener('hide',this.hide,this);
 
-        this.list.itemRenderer = HelpItem;
-        this.list.useVirtualLayout = false;
+        this.list.itemRenderer = TeamDungeonItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
 
     public hide(){
         super.hide();
-        if(this.data)
-            MyCardTaskUI.getInstance().testShow();
     }
 
 
@@ -42,18 +41,28 @@ class TeamDungeonMain extends game.BaseUI {
     }
 
     public show(data?){
-        this.data = data;
+        var self = this;
+        UM.initActive();
+        TeamDungeonManager.getInstance().info(function(){
+            var PVEM = TeamPVEManager.getInstance();
+            if(PVEM.isInOpenTime() && UM.active.team_pve.team)
+            {
+                PVEM.info(function(){
+                    self.superShow();
+                })
+            }
+            else
+                self.superShow();
+        })
+    }
+
+    private superShow(){
         super.show();
     }
 
     public onShow(){
-        var logText = LoginManager.getInstance().logText;
-        var list = logText.text.split('|')
-        var arr = [];
-        for(var i=0;i<list.length;i++)
-        {
-            arr.push({text:list[i]})
-        }
+
+        var arr = ['pve'];
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 }

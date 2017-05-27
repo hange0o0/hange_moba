@@ -37,8 +37,22 @@ class FriendLogItem extends game.BaseItem {
 
     private onAgree(e){
             e.stopImmediatePropagation()
-        var FM = FriendManager.getInstance();
         var self = this;
+        if(this.data.type > 10)  //战队
+        {
+            if(UM.active.team_pve.team)
+            {
+                Alert('你已经拥有一个队伍了');
+                self.btnGroup.visible = false;
+                return;
+            }
+            TeamDungeonManager.getInstance().agreeTeam(this.data.id,function(){
+                self.btnGroup.visible = false;
+            })
+            return
+        }
+        var FM = FriendManager.getInstance();
+
         FM.agree(this.data.id,function(){
              self.btnGroup.visible = false;
         })
@@ -47,7 +61,14 @@ class FriendLogItem extends game.BaseItem {
     private onRefuse(e){
         e.stopImmediatePropagation()
         var FM = FriendManager.getInstance();
-        if(this.data.type == 3)  //聊天
+        var self = this;
+        if(this.data.type > 10)  //战队
+        {
+            TeamDungeonManager.getInstance().refuseTeam(this.data.id,function(){
+                self.btnGroup.visible = false;
+            })
+        }
+        else if(this.data.type == 3)  //聊天
         {
             if(UM.gameid == this.data.from_gameid)
                  FriendTalkUI.getInstance().show(this.data.to_gameid);
@@ -56,7 +77,7 @@ class FriendLogItem extends game.BaseItem {
         }
         else
         {
-            var self = this;
+
             FM.refuse(this.data.id,function(){
                 self.btnGroup.visible = false;
             })
@@ -67,7 +88,11 @@ class FriendLogItem extends game.BaseItem {
         var FM = FriendManager.getInstance();
 
         this.btnGroup.visible = true;
-        if(this.data.type == 3)  //聊天
+        if(this.data.type > 10)  //战队
+        {
+            this.currentState = 'team';
+        }
+        else if(this.data.type == 3)  //聊天
         {
             if(FM.friendData[this.data.from_gameid] || FM.friendData[this.data.to_gameid]) //是好友
                 this.currentState = 'talk';

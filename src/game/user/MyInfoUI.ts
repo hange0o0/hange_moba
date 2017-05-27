@@ -29,7 +29,7 @@ class MyInfoUI extends game.BaseUI {
     private thisLoginText: eui.Label;
     private lastLoginText: eui.Label;
     private editWordBtn: eui.Button;
-    //private setBtn: eui.Button;
+    private honorBtn: eui.Button;
     private mainLevelText: eui.Label;
     private mainLevelText2: eui.Label;
     private mainLevelText3: eui.Label;
@@ -84,6 +84,7 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.editWordBtn, this.onChangeWord);
 
         this.addBtnEvent(this.headGroup, this.onHead);
+        this.addBtnEvent(this.honorBtn, this.onHonor);
 
         this.list.itemRenderer = EnemyHeadItem;
 
@@ -92,6 +93,10 @@ class MyInfoUI extends game.BaseUI {
 
     public beforeHide(){
         this.clearList([this.list])
+    }
+
+    private onHonor(){
+        HonorUI.getInstance().show();
     }
 
     private onChangeWord(){

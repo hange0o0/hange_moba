@@ -176,8 +176,9 @@ class TeamDungeonGameUI extends game.BaseUI {
     }
 
     private renewSelf(){
+        var hard;
         var myCard = UM.getMyCard();
-        var specialData = {};
+        var specialData = {hard:hard};
         //更新卡组1
         var chooseList1 = [];
         PKManager.getInstance().sortMonster(myCard.list);
@@ -206,7 +207,8 @@ class TeamDungeonGameUI extends game.BaseUI {
 
     private onChoose1(){
         //this.hide();
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.pk_common.my_card,enemy: this.enemyArray})
+        var hard;
+        PKDressUI.getInstance().show({pktype:'main_game',data:UM.pk_common.my_card,enemy: this.enemyArray,hard:hard})
     }
 
 }

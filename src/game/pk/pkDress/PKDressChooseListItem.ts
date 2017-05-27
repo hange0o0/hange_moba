@@ -88,7 +88,7 @@ class PKDressChooseListItem extends game.BaseItem {
             var lv = UM.getMonsterLevel(vo.id);
             this.levelGroup.visible = true;
             this.levelText.text = '' + lv
-            this.redMC.visible = vo.canLevelUp()
+            this.redMC.visible = vo.canLevelUp(this.data.specialData.hard)
             //this.infoStr += '(LV.'+lv+')'
 
             //var force = (UM.award_force + UM.tec_force);

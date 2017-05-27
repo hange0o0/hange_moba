@@ -72,6 +72,23 @@ class GameEvent {
     public static tec = {
         levelup_tec:'levelup_tec'
     }
+
+
+    public static team = {
+        team_dungeon_info:'team_dungeon_info',
+
+        team_agree:'team_agree',
+        team_create:'team_create',
+        team_invite:'team_invite',
+        team_refuse:'team_refuse',
+
+        team_pve_add:'team_pve_add',
+        team_pve_award:'team_pve_award',
+        team_pve_info:'team_pve_info',
+        team_pve_list:'team_pve_list',
+        team_pve_pk:'team_pve_pk',
+
+    }
     public static pay = {
         buy_local:'buy_local',
         buy_rmb:'buy_rmb'

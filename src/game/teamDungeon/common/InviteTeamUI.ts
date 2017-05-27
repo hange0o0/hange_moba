@@ -18,21 +18,20 @@ class InviteTeamUI extends game.BaseWindow {
 
 
 
-    private data
+    public data
 
     public childrenCreated() {
         super.childrenCreated();
+        this.topUI.setTitle('邀请好友')
+        this.topUI.addEventListener('hide',this.hide,this);
 
-        this.list.itemRenderer = HelpItem;
-        this.list.useVirtualLayout = false;
+        this.list.itemRenderer = InviteTeamItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
 
     public hide(){
         super.hide();
-        if(this.data)
-            MyCardTaskUI.getInstance().testShow();
     }
 
     public beforeHide(){
@@ -41,17 +40,21 @@ class InviteTeamUI extends game.BaseWindow {
 
     public show(data?){
         this.data = data;
+        var self = this;
+        var FM = FriendManager.getInstance();
+        FM.getList(function(){
+            FM.getLog(function(){
+                self.superShow()
+            })
+        })
+    }
+
+    private superShow(){
         super.show();
     }
 
     public onShow(){
-        var logText = LoginManager.getInstance().logText;
-        var list = logText.text.split('|')
-        var arr = [];
-        for(var i=0;i<list.length;i++)
-        {
-            arr.push({text:list[i]})
-        }
-        this.list.dataProvider = new eui.ArrayCollection(arr);
+        var list = FriendManager.getInstance().friendList;
+        this.list.dataProvider = new eui.ArrayCollection(list);
     }
 }

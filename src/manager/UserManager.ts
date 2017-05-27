@@ -82,6 +82,23 @@ class UserManager {
         Config.pk_version = Math.floor(data.pk_version);
     }
 
+    public initActive(){
+        if(this.active.team_pve)
+        {
+            if(!DateUtil.isSameDay(this.active.team_pve.lasttime))
+            {
+                if(DateUtil.isSameDay(this.active.team_pve.lasttime+3600*24))//昨天
+                {
+                    this.active.team_pve.yteam = this.active.team_pve.team;
+                }
+                this.active.team_pve.team = 0
+                this.active.team_pve.lasttime = TM.now();
+            }
+        }
+        else
+            this.active.team_pve = {award:[]};
+    }
+
     public getDiamond(rmb=false){
         if(rmb)
             return this.diamond.rmb;
@@ -186,7 +203,7 @@ class UserManager {
     }
 
     //得到科技对这个怪物的加成
-    public getTecMonsterAdd(id){
+    public getTecMonsterAdd(id,levelLimit = 999){
         var oo = {
             atk:this.getTecAdd('main',this.tec.main[13]),
             hp:this.getTecAdd('main',this.tec.main[14]),
@@ -194,7 +211,7 @@ class UserManager {
         }
         var vo = MonsterVO.getObject(id);
         var typeAdd = 0//this.getTecAdd('main',this.tec.main[vo.type]);
-        var monsterAdd = this.getTecAdd('monster',this.tec.monster[id]);
+        var monsterAdd = this.getTecAdd('monster',Math.min(this.tec.monster[id],levelLimit));
         oo.atk += typeAdd + monsterAdd;
         oo.hp += typeAdd + monsterAdd;
         //oo.speed += typeAdd + monsterAdd;

@@ -256,7 +256,7 @@ class FriendManager{
     }
 
     //保存到本地
-    private saveToLocal(){
+    public saveToLocal(){
        var oo:any = {};
         oo.lastGetFriend = this.lastGetFriend
         oo.lastGetLog = this.lastGetLog
@@ -269,15 +269,16 @@ class FriendManager{
 
     }
 
-    private removeLog(id){
+    public removeLog(id){
          if(this.logList)
          {
              for(var i=0;i<this.logList.length;i++)
              {
                  if(this.logList[i].id == id)
                  {
+                     var data = this.logList[i];
                      this.logList.splice(i,1);
-                     return;
+                     return data;
                  }
              }
          }

@@ -34,7 +34,7 @@
 		<e:Label id="sortText" y="8" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="3"/>
 		<e:Group id="sortGroup" y="36" x="0" locked="true" visible="false">
 			<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="300" height="100%" x="0"/>
-			<e:List top="6" id="sortList0" bottom="6" width="290" itemRendererSkinName="HonorSortItemSkin" x="5">
+			<e:List top="6" id="sortList" bottom="6" width="290" itemRendererSkinName="HonorSortItemSkin" x="5">
 				<e:layout>
 					<e:VerticalLayout gap="0" horizontalAlign="justify"/>
 				</e:layout>
@@ -47,5 +47,6 @@
 				</e:ArrayCollection>
 			</e:List>
 		</e:Group>
-	</e:Group>
+	</e:Group>
+
 </e:Skin>

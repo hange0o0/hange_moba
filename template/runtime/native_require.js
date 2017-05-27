@@ -153,6 +153,7 @@ var game_file_list = [
 	"bin-debug/game/teamDungeon/common/TeamDungeonGameUI.js",
 	"bin-debug/game/teamDungeon/TeamDungeonItem.js",
 	"bin-debug/game/teamDungeon/TeamDungeonMain.js",
+	"bin-debug/game/teamDungeon/TeamDungeonManager.js",
 	"bin-debug/game/teamDungeon/teamPVE/TeamPVEMain.js",
 	"bin-debug/game/teamDungeon/teamPVE/TeamPVEMainItem.js",
 	"bin-debug/game/teamDungeon/teamPVE/TeamPVEManager.js",

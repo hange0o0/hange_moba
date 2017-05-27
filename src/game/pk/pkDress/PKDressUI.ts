@@ -40,7 +40,7 @@ class PKDressUI extends game.BaseUI {
 
 
     public isEqual = false;
-    public specialData = {isEqual:false};
+    public specialData = {isEqual:false,hard:0};
     public dataIn;
     public orginData; //卡组的原始数据
     public pkType; //PK类型
@@ -160,6 +160,7 @@ class PKDressUI extends game.BaseUI {
         this.index = data.index || 0
         this.isEqual = data.isEqual || false;
         this.specialData.isEqual = this.isEqual;
+        this.specialData.hard = data.hard;
 
 
 
@@ -521,7 +522,14 @@ class PKDressUI extends game.BaseUI {
             else  //我自己
             {
                 var force = (UM.award_force + UM.tec_force);
-                fightData = UM.getTecMonsterAdd(vo.id);
+                var levelLimit = 999;
+                if(this.specialData.hard)//带难度的
+                {
+                    var hardData = TeamDungeonManager.getInstance().hardData[this.specialData.hard - 1];
+                    levelLimit = hardData.level;
+                    force = Math.min(hardData.force,force);
+                }
+                fightData = UM.getTecMonsterAdd(vo.id,levelLimit);
                 fightData.atk += force;
                 fightData.hp += force;
             }
