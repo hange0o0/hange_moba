@@ -50,6 +50,7 @@ class GameManager {
         if(!DateUtil.isSameDay(this.lastTime,now))//跨0点
         {
             EM.dispatch(GameEvent.client.pass_day);
+            TeamPVEManager.getInstance().passDay();
         }
         EM.dispatch(GameEvent.client.timer);
 

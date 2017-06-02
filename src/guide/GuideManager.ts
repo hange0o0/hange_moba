@@ -33,21 +33,32 @@ class GuideManager {
         egret.callLater(this.guideFun,this,ui);
     }
 
+    public reInit(){
+        this.guideArr[0].text = '亲爱的['+UM.nick+']，欢迎来到卡士世界！你想成为世界上最强大的卡士吗？你想成为那万众瞩目的唯一吗？那么，现在就让卡卡来带领你，踏上这成为至强王者之路吧！';
+    }
+
     private init(){
         var self = this;
         //            hideHand:false,
         this.addGuideObj({
             fun:function(){
-                MainPageUI.getInstance().onGuide0()
+                //MainPageUI.getInstance().onGuide0()
                 self.showGuide()
             },
             text:'亲爱的['+UM.nick+']，欢迎来到卡士世界！你想成为世界上最强大的卡士吗？你想成为那万众瞩目的唯一吗？那么，现在就让卡卡来带领你，踏上这成为至强王者之路吧！',
         })
 
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'你知道什么是卡士吗？在卡卡看来，所谓的卡士，可以比作是卡牌中的[司令]，利用手中有限的卡牌进行[排兵布阵]，然后让你的队伍出战来为你取得胜利，最考验运筹帷幄的能力了',
+        })
+
 
         this.addGuideObj({
             mc:"MainPageUI.getInstance()['mainGame']['startBtn']",
-            text:'我们先来[卡士公会]作个实力认证吧。他们是卡士世界最权威的认证机构，他们的认证结果能反映每位卡士的真实能力！',
+            text:'到底你能不能当好这个司令呢？我们先来[卡士公会]作个实力认证吧。他们是卡士世界最权威的认证机构，他们的认证结果能反映每位卡士的真实能力！',
         })
 
         this.addGuideObj({
@@ -127,7 +138,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"PKResultUI.getInstance().list.getChildAt(0)",
-            text:'我对第一轮的PK结果不是很满意耶，明明我比对手强那么多！让我们看看在这轮PK过程中，到底发生了什么',
+            text:'战场的变化果然瞬息万变,卡卡还没看清楚，战斗就结束了！让我们一起看看在首轮PK过程中，到底发生了什么',
         })
 
         this.addGuideObj({
@@ -194,12 +205,26 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'在[天梯竞技场]中，系统会为你匹配实力相当[真实玩家]作为对手！你的选择是战力碾压还是智慧征服？卡卡是比较喜欢碾压带来的快感的..',
+            text:'[野外势力]布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他消灭掉！卡卡希望你在以后的日子中也能为我们的世界多出点力',
             hideHand:true,
             toBottom:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 3;
+                MainPageUI.getInstance().scrollToCurrentPage();
+                MainPageUI.getInstance().renewPage();
+            }
+        })
+
+        this.addGuideObj({
+            ui:"MainPageUI.getInstance()",
+            mc:"this.getMainRect()",
+            text:'在[天梯竞技场]中，系统会为你匹配实力相当[真实玩家]作为对手！你的选择是战力碾压还是智慧征服？卡卡是比较喜欢碾压带来的快感的..',
+            hideHand:true,
+            toBottom:true,
+            fun:function(){
+                self.showGuide(MainPageUI.getInstance())
+                MainPageUI.getInstance()['currentPage'] = 4;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
             }
@@ -217,16 +242,11 @@ class GuideManager {
         })
 
         this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"MainPageUI.getInstance().mapBtn",
-            text:'[野外世界]布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他消灭掉！卡卡希望你在以后的日子中也能为我们的世界多出点力',
-            hideHand:true,
             fun:function(){
                 self.showGuide()
-            }
+            },
+            text:'哦，对了，有一个很多卡士都会犯错我必须和你说一下，就是[不要]专注于升级某几张卡牌，[全面发展]才是卡士世界的主题，卡卡希望你能记住这一点，能让你少走很多弯路哦~',
         })
-
-
 
         this.addGuideObj({
             text:'好了，现在你对这个世界已有了一定的了解了吧，但其实还有更多[未知的领域]需要你在世界中慢慢去探索哦。卡卡我现在还要去引领下一位极有天赋的卡士，就此别过，88~',

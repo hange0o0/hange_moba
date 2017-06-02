@@ -32,5 +32,4 @@
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
-	<ns1:MainHeadItem id="headMC" x="80" y="0" skinName="MainHeadSkin"/>
 </e:Skin>

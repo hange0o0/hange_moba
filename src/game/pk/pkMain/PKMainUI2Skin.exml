@@ -6,10 +6,12 @@
 		<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="0" anchorOffsetY="480"/>
 	</e:Group>
 	
-	<e:Group id="con" width="640" height="700" x="0" y="260" locked="true">
-		<e:Image width="325" y="450" scaleX="-1" scale9Grid="40,44,240,266" right="-5" height="250" x="10" source="book_bg1_jpg"/>
-		<e:Image y="450" scale9Grid="40,44,240,266" width="325" height="250" x="-5" source="book_bg1_jpg"/>
-		<e:Image source="line_png" width="250" rotation="90" horizontalCenter="0" y="455"/>
+	<e:Group id="con" width="640" height="700" x="0" y="260">
+		<e:Group id="downBG" x="-5" y="450">
+			<e:Image width="325" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="250" x="650" source="book_bg1_jpg"/>
+			<e:Image y="0" scale9Grid="40,44,240,266" width="325" height="250" x="0" source="book_bg1_jpg"/>
+			<e:Image source="line_png" width="250" rotation="90" y="5" x="331"/>
+		</e:Group>
 		<e:Group id="roleCon" y="0" width="640" height="100%" x="0"/>
 		<e:Group id="effectCon" y="0" width="640" height="100%" x="0"/>
 	</e:Group>

@@ -16,21 +16,24 @@
 	</e:Scroller>
 	<ns1:BookBG x="0" y="70" skinName="BookBGSkin" height="300"/>
 	<e:Group y="95" x="20">
-		<e:Group x="0" y="0" width="200">
+		<e:Group id="player0" x="0" y="0" width="200">
+			<e:Rect left="20" right="10" top="0" bottom="0" fillAlpha="0.5" ellipseHeight="10" ellipseWidth="10"/>
 			<e:Group y="0" x="0">
 				<e:Image source="border2_png" width="40" y="0" height="40" x="0"/>
 				<e:Image source="head_png" y="3" id="headMC0" width="34" height="34" x="3"/>
 			</e:Group>
-			<e:Label id="nameText0" y="10" textColor="0xCCB48E" text="标签标签标签*66" size="20" x="45"/>
+			<e:Label id="nameText0" y="10" text="标签标签标签*66" size="20" x="45" textColor="0xccb48e"/>
 		</e:Group>
-		<e:Group width="200" y="10" x="10">
+		<e:Group id="player1" width="200" y="10" x="10">
+			<e:Rect left="20" right="10" top="0" bottom="0" fillAlpha="0.5" ellipseHeight="10" ellipseWidth="10"/>
 			<e:Group x="0" y="0">
 				<e:Image source="border2_png" width="40" y="0" height="40" x="0"/>
 				<e:Image source="head_png" y="3" id="headMC1" width="34" height="34" x="3"/>
 			</e:Group>
 			<e:Label y="10" textColor="0xCCB48E" text="标签标签标签*66" id="nameText1" size="20" x="45"/>
 		</e:Group>
-		<e:Group width="200" y="20" x="20">
+		<e:Group id="player2" width="200" y="20" x="20">
+			<e:Rect left="20" right="10" top="0" bottom="0" fillAlpha="0.5" ellipseHeight="10" ellipseWidth="10"/>
 			<e:Group x="0" y="0">
 				<e:Image source="border2_png" width="40" y="0" height="40" x="0"/>
 				<e:Image source="head_png" y="3" id="headMC2" width="34" height="34" x="3"/>
@@ -41,22 +44,26 @@
 			<e:HorizontalLayout gap="0"/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="rateText" text="进度:25/30" x="20" y="159" size="24"/>
+	<e:Label id="rateText" text="进度:25/30" x="20" y="159" size="24" textColor="0xccb48e"/>
 	<e:CheckBox id="cb" x="150" y="151" label="隐藏已挑战" skinName="MyCheckBoxSkin"/>
 	<e:Group y="148" x="350">
 		<e:Rect height="35" width="217" x="0" y="6" fillAlpha="0.2" strokeWeight="1" strokeColor="0xD89E30" ellipseHeight="36" ellipseWidth="36"/>
-		<e:Label id="timesText" size="24" text="挑战次数:10/10" x="10" verticalCenter="0"/>
+		<e:Label id="timesText" size="24" text="挑战次数:10/10" x="10" verticalCenter="2" textColor="0xccb48e"/>
 		<e:Group id="addBtn" y="0" x="175">
 			<e:Image source="icon_empty_png" y="0" x="0"/>
 			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
 		</e:Group>
 	</e:Group>
-	<e:Group y="150" id="helpBtn" right="20" x="20" scaleX="0.8" scaleY="0.8">
+	<e:Group y="10" id="helpBtn" right="80" x="20">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Label y="10" textColor="0xF8D05A" horizontalCenter="0" text="?"/>
 	</e:Group>
+	<e:Group id="logBtn" y="150" right="20" scaleX="0.8" scaleY="0.8">
+		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
+		<e:Image source="replay_mc_png" y="8" x="11"/>
+	</e:Group>
 	<e:Image source="line_png" y="200" width="620" horizontalCenter="0"/>
-	<e:Rect height="10" width="500" y="263" horizontalCenter="0"/>
+	<e:Rect height="10" width="500" y="265" horizontalCenter="0" fillColor="0x110808"/>
 	<e:Group y="226" horizontalCenter="0">
 		<ns1:TeamDungeonAwardBoxItem id="b0" x="0" y="0" skinName="TeamDungeonAwardBoxItemSkin"/>
 		<ns1:TeamDungeonAwardBoxItem id="b1" skinName="TeamDungeonAwardBoxItemSkin" y="10" x="10"/>

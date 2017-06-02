@@ -17,6 +17,7 @@ class PKMainUI extends game.BaseUI {
     private bg1: eui.Image;
     private bg0: eui.Image;
     private con: eui.Group;
+    private downBG: eui.Group;
     private roleCon: eui.Group;
     private effectCon: eui.Group;
     private skillGroup: eui.Group;
@@ -57,6 +58,7 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -127,6 +129,11 @@ class PKMainUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.jumpBtn, this.onJump);
+
+        this.statList0.itemRenderer = VideoTopStatItem;
+        this.statList1.itemRenderer = VideoTopStatItem;
+
+
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
         this.bg1.scrollRect = new egret.Rectangle(315,0,325,1500)
     }
@@ -137,7 +144,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onJump(){
-        this.jumpBtn.visible = false;
+
         this.showResult();
     }
 
@@ -447,6 +454,7 @@ class PKMainUI extends game.BaseUI {
         var tw:egret.Tween = egret.Tween.get(this.bg1);
         var tw2:egret.Tween = egret.Tween.get(this.bg1);
         tw.to({scaleX:1,scaleY:1},500).call(function(){
+            PKLoadingUI.getInstance().realHide();
             this.bgBlack.visible = true;
             this.shakeBG();
             this.showCound(true)
@@ -486,6 +494,7 @@ class PKMainUI extends game.BaseUI {
 
         var tw:egret.Tween = egret.Tween.get(this.con);
         this.con.visible = true;
+        this.downBG.visible = true;
         tw.to({y:this.con.y-400},300)
 
         this.playerGroup1.visible = false
@@ -637,7 +646,7 @@ class PKMainUI extends game.BaseUI {
     private showRoundMovie(){
         this.roundGroup.visible = true;
         this.addChild(this.roundGroup);
-        this.roundGroup.y = this.upGroup.y + 350
+        this.roundGroup.y = this.upGroup.y + 280
         this.roundMC1.x = 0
         this.roundMC2.x = 360
         this.roundMC1.scaleX = 1
@@ -647,11 +656,11 @@ class PKMainUI extends game.BaseUI {
         this.roundText.text = 'ROUND ' + this.pkStep;
         var tw:egret.Tween = egret.Tween.get(this.roundGroup);
         tw.to({scaleX:3,scaleY:3,alpha:0}).to({scaleX:1,scaleY:1,alpha:1},200).wait(1000).
-            to({alpha:0},200);
-        var tw:egret.Tween = egret.Tween.get(this.roundMC1);
-        tw.wait(1200).to({scaleX:2.5,x:-500,scaleY:0.5},500)
-        var tw:egret.Tween = egret.Tween.get(this.roundMC2);
-        tw.wait(1200).to({scaleX:-2.5,x:360+500,scaleY:0.5},500)
+            to({alpha:0,scaleX:2.5,scaleY:0.1},200);
+        //var tw:egret.Tween = egret.Tween.get(this.roundMC1);
+        //tw.wait(1200).to({scaleX:2.5,x:-500,scaleY:0.1},500)
+        //var tw:egret.Tween = egret.Tween.get(this.roundMC2);
+        //tw.wait(1200).to({scaleX:-2.5,x:360+500,scaleY:0.1},500)
         this.setTimeout(this.pkOne,2000)
     }
 
@@ -730,16 +739,26 @@ class PKMainUI extends game.BaseUI {
 
                 if(this.isNotEqual(item.x,x) || this.isNotEqual(item.y,y))
                 {
-                    if(!item.out || item.isPKing)
+                    if(item.out)
+                    {
+                        var tw = egret.Tween.get(item);
+                        if(item.isPKing)
+                        {
+                            if(item.team == 1)
+                                tw.to({x:-100},300).wait(200).to({y:y}).to({x:x + 50},200).to({x:x},200)
+                            else
+                                tw.to({x:640+100},300).wait(200).to({y:y}).to({x:x - 50},200).to({x:x},200)
+                        }
+                        else
+                        {
+                            tw.wait(cd).to({alpha:0,scaleX:0,scaleY:0},300).wait(200).to({x:x,y:y,alpha:1}).to({scaleX:1.2,scaleY:1.2},200).to({scaleX:1,scaleY:1},300)
+                        }
+                    }
+                    else
                     {
                         VM.jumpToXY(item,{
                             x:x,y:y
                         },null,null,0,1,{before:cd});
-                    }
-                    else
-                    {
-                         var tw = egret.Tween.get(item);
-                        tw.wait(cd).to({alpha:0,scaleX:0,scaleY:0},300).wait(200).to({x:x,y:y,alpha:1}).to({scaleX:1.2,scaleY:1.2},200).to({scaleX:1,scaleY:1},300)
                     }
                 }
                 item.ox = x;
@@ -842,13 +861,17 @@ class PKMainUI extends game.BaseUI {
             egret.Tween.removeTweens(mc);
         }
 
+        this.upGroup.visible = false;
+        this.downBG.visible = false;
+
+
         AniManager.getInstance().removeAllMV();
         this.isStop = true;
     }
 
     private showResult()
     {
-        PKLoadingUI.getInstance().realHide();
+        this.jumpBtn.visible = false;
         this.stopAll();
         PKResultUI.getInstance().show();
     }
@@ -1419,7 +1442,7 @@ class PKMainUI extends game.BaseUI {
             bb.width = this.barWidth * rate1
             bf.width = this.barWidth * rate1
             var tw = egret.Tween.get(bf)
-            tw.to({width:this.barWidth * rate2},100);
+            tw.to({width:this.barWidth * rate2},200);
         }
         else
         {
@@ -1428,7 +1451,7 @@ class PKMainUI extends game.BaseUI {
             bb.width = this.barWidth * rate1
 
             var tw = egret.Tween.get(bb)
-            tw.to({width:this.barWidth * rate2},100);
+            tw.to({width:this.barWidth * rate2},200);
         }
         text.text = (data.current || 0) + '/' + (data.max || 0)
 
@@ -1658,7 +1681,12 @@ class PKMainUI extends game.BaseUI {
                 this.decode_atk(data,{arr:arr,index:index,type:0});
                 break;
             case 51://秒杀
-                this.decode_atk(data,{arr:arr,index:index,type:0});
+                var atkerItem = this.getMonster(data.atker);
+                this.showItemWord(atkerItem,{text:'绝杀',textColor:0xFF0000},0,'name');
+                this.setTimeout(function(){
+                    this.decode_atk(data,{arr:arr,index:index,type:0});
+                },500);
+
                 break;
             case 52://回合结束时血量改变
                 this.decode_hpChange(data,{arr:arr,index:index});
@@ -1732,7 +1760,10 @@ class PKMainUI extends game.BaseUI {
     }
 
     //近攻型
-    private nearAtk(data,roundeData,mvType?,skillID?){
+    private nearAtk(data,roundeData,svo?){
+        //var mvType,skill
+        //mvType?,skillID?
+
         var atker = data.atker;
         var defender = data.defender;
 
@@ -1752,6 +1783,8 @@ class PKMainUI extends game.BaseUI {
         var defenderItem = enemyItem || this.getMonster(defender[0].defender);
 
         var xy = VM.moveToTarget(atkerItem,defenderItem,function(){
+            if(atkerItem.isPKing && svo && !svo.hideName)
+                this.showSkillName(atkerItem,svo);
             //被攻击击移后
             var xy = VM.behitMoveBack(atkerItem,defenderItem,function(){
                 roundeData.stopNext = false;
@@ -1776,10 +1809,14 @@ class PKMainUI extends game.BaseUI {
                 this.addEffectList(data,roundeData);
             }
 
-            if(mvType == 1)
-                VM.playOnItem(skillID,defenderItem,null,null);
-            else  if(mvType == 2)
-                VM.playOnItem(skillID,defenderItem,null,null,xy);
+            if(svo)
+            {
+                if(svo.mvType == 1)
+                    VM.playOnItem(svo.mvID1,defenderItem,null,null);
+                else  if(svo.mvType == 2)
+                    VM.playOnItem(svo.mvID1,defenderItem,null,null,xy);
+            }
+
 
         },this,waitCD)
         if(atkerItem.isPKing)
@@ -1862,15 +1899,22 @@ class PKMainUI extends game.BaseUI {
         },this)
     }
 
-    private decode_atk(data,roundeData){
+    private decode_atk(data,roundeData,svo?){
         var VC = VideoCode.getInstance();
         var atkerPlayerVO = VC.getPlayerByID(data.atker);
+        var atkerItem = this.getMonster(data.atker);
         if(atkerPlayerVO.mvo.atktype == 0) //近攻
         {
-            this.nearAtk(data,roundeData)
+            if(svo && !atkerItem.isPKing && !svo.hideName)
+                this.showSkillName(atkerItem,svo);
+            this.nearAtk(data,roundeData,svo)
         }
         else
         {
+            if(svo)
+            {
+                this.showSkillName(atkerItem,svo);
+            }
             this.bulletAtk(data,roundeData,6,atkerPlayerVO.mvo.atktype)
         }
     }
@@ -1925,7 +1969,8 @@ class PKMainUI extends game.BaseUI {
                 var oo = VDOM.leaderSkill2[data.skillID - 2]
             var mvo = oo.mvo;
             var svo = oo.svo;
-            atkerPlayerVO.mid = mvo.id;
+            data.atker = oo.orginOwnerID;
+            atkerItem = this.getMonster(data.atker);
         }
 
 
@@ -1940,9 +1985,9 @@ class PKMainUI extends game.BaseUI {
                     this.decode_atk(data,roundeData);
                 else
                 {
-                    this.showSkillName(atkerItem,svo,function(){
-                        this.decode_atk(data,roundeData);
-                    });
+                    //this.showSkillName(atkerItem,svo,function(){
+                        this.decode_atk(data,roundeData,svo);
+                    //});
                 }
             }
             else
@@ -1969,9 +2014,9 @@ class PKMainUI extends game.BaseUI {
 
             if(svo.mvType == 1 || svo.mvType == 2)//近攻型
             {
-                if(!svo.hideName)
+                if(!atkerItem.isPKing && !svo.hideName)
                     this.showSkillName(atkerItem,svo);
-                this.nearAtk(data,roundeData,svo.mvType,svo.mvID1);
+                this.nearAtk(data,roundeData,svo);
             }
             else if(svo.mvType == 5 || svo.mvType == 6)//字弹型
             {
@@ -1994,6 +2039,7 @@ class PKMainUI extends game.BaseUI {
 
 
                 VM.skillMV(atkerItem,function(){
+
                     //VM.behitMV(defenderItem);
                     for(var i=0;i<defender.length;i++)
                     {
@@ -2119,7 +2165,7 @@ class PKMainUI extends game.BaseUI {
             var v = 2
             var tw:egret.Tween = egret.Tween.get(item);
             tw.wait(100).to({x:x - 30}, 30*v).to({x:x + 20}, 50*v).to({x:x - 10}, 30*v).to({x:x}, 10*v).to({alpha:0}, 300);
-            return 500;
+            return 600;
             //this.showItemWord(item,{text:'死亡',textColor:0xFF0000},delay)
         }
         else if(effect.key == 'stat')

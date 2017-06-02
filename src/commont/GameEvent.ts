@@ -29,6 +29,8 @@ class GameEvent {
         map_value_change:'map_value_change',
         map_change:'map_change',
 
+        PVE_CHANGE:'PVE_CHANGE',
+
 
 
         pass_day:'pass_day',
@@ -81,6 +83,7 @@ class GameEvent {
         team_create:'team_create',
         team_invite:'team_invite',
         team_refuse:'team_refuse',
+        team_info:'team_info',
 
         team_pve_add:'team_pve_add',
         team_pve_award:'team_pve_award',

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendLogItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110" states="talk,log,talk2" >
+<e:Skin class="FriendLogItemSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="110" states="talk,log,talk2,team" >
 	<e:Image source="item_bg_jpg" y="0" scale9Grid="20,12,437,76" width="600" height="110" horizontalCenter="0"/>
 	<e:Group x="38" y="17">
 		<e:Image source="border2_png" y="0" scale9Grid="11,11,68,68" width="76" height="76" x="0"/>
@@ -12,7 +12,7 @@
 			<e:HorizontalLayout verticalAlign="bottom"/>
 		</e:layout>
 	</e:Group>
-	<e:Group id="infoGroup" x="131" y="60" visible.talk="false" visible.talk2="false">
+	<e:Group id="infoGroup" x="131" y="60" visible.talk="false" visible.talk2="false" visible.team="false">
 		<e:Label id="levelText" y="0" text="123" x="0" textColor="0xCCB48E" size="22"/>
 
 
@@ -20,8 +20,8 @@
 
 	</e:Group>
 	<e:Group id="btnGroup" y="35" right="30">
-		<e:Button id="refuseBtn" skinName="Btn_b1Skin" y="10" label="拒绝" x="10" label.talk="聊天" label.talk2="查看" skinName.talk="Btn_r1Skin" skinName.talk2="Btn_r1Skin"/>
-		<e:Button id="agreeBtn" label="同意" x="0" y="0" skinName="Btn_r1Skin" includeIn="log"/>
+		<e:Button id="refuseBtn" skinName="Btn_b1Skin" y="10" label="拒绝" x="10" label.talk="聊天" label.talk2="查看" skinName.talk="Btn_r1Skin" skinName.talk2="Btn_r1Skin" visible.team="false"/>
+		<e:Button id="agreeBtn" label="同意" x="0" y="0" skinName="Btn_r1Skin" includeIn="log,team" label.team="查看"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
 		</e:layout>

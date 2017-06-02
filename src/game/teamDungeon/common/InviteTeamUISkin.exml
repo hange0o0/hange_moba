@@ -6,10 +6,10 @@
 	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="70" bounces="false">
 		<e:Group>
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
-				
 				<e:layout>
-					<e:TileLayout horizontalGap="8" verticalGap="30" paddingLeft="8" paddingRight="8" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left" requestedColumnCount="4"/>
+					<e:VerticalLayout/>
 				</e:layout>
+				
 			</e:List>
 		</e:Group>
 	</e:Scroller>

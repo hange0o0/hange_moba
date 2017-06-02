@@ -206,7 +206,14 @@ class MonsterInfoBase extends game.BaseContainer {
                         nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + '/'+levelLimit+')</font>'
                     else
                         nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
-                    this.renewLevelUp();
+
+                    if(specialData.hard)
+                    {
+                         if(vo.level < levelLimit)
+                             this.renewLevelUp();
+                    }
+                    else
+                        this.renewLevelUp();
                 }
                 //else
                 //{

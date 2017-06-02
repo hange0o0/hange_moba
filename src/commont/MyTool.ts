@@ -14,9 +14,11 @@ class MyTool {
         }
         return  s;
     }
-    public static getHeadUrl(id){
+    public static getHeadUrl(id,isRound?){
         if(id == 0)
             return 'head_png'
+        if(isRound)
+            return MonsterVO.getObject(id).thumbRound
         return MonsterVO.getObject(id).thumb
         //return Config.localResRoot + 'user_head/user_head'+id+'.png';
     }
@@ -136,6 +138,11 @@ class MyTool {
 
     public static setHtml(txt,str){
         txt.textFlow = new egret.HtmlTextParser().parser(str);
+    }
+    public static setColorText(txt,str){
+        str = str.replace(/\[/g,'<font color="#E0A44A">')
+        str = str.replace(/\]/g,'</font>')
+        this.setHtml(txt,str);
     }
 
     public static myHitTest(item,x,y){

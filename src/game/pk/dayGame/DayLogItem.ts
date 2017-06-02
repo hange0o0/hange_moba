@@ -68,7 +68,8 @@ class DayLogItem extends game.BaseItem {
         this.titleBG.fillColor = this.data.isWin?0x4F2900:0x0F243A
         this.resultIcon.source = this.data.isWin?'win_icon_png':'lose_icon_png'
 
-        if(this.data.videoData.pk_version == Config.pk_version)
+        //if(this.data.videoData.pk_version == Config.pk_version)
+        if(this.data.videoData.pk_version >= 3)
         {
             this.videoBtn.touchEnabled = true;
             this.videoBtn.skinName = 'Btn_r2Skin';

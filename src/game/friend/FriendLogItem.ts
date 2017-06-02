@@ -46,13 +46,10 @@ class FriendLogItem extends game.BaseItem {
                 self.btnGroup.visible = false;
                 return;
             }
-            TeamDungeonManager.getInstance().agreeTeam(this.data.id,function(){
-                self.btnGroup.visible = false;
-            })
+           TeamInfoUI.getInstance().show(this.data,this)
             return
         }
         var FM = FriendManager.getInstance();
-
         FM.agree(this.data.id,function(){
              self.btnGroup.visible = false;
         })
@@ -62,13 +59,8 @@ class FriendLogItem extends game.BaseItem {
         e.stopImmediatePropagation()
         var FM = FriendManager.getInstance();
         var self = this;
-        if(this.data.type > 10)  //战队
-        {
-            TeamDungeonManager.getInstance().refuseTeam(this.data.id,function(){
-                self.btnGroup.visible = false;
-            })
-        }
-        else if(this.data.type == 3)  //聊天
+
+        if(this.data.type == 3)  //聊天
         {
             if(UM.gameid == this.data.from_gameid)
                  FriendTalkUI.getInstance().show(this.data.to_gameid);
@@ -91,6 +83,14 @@ class FriendLogItem extends game.BaseItem {
         if(this.data.type > 10)  //战队
         {
             this.currentState = 'team';
+            this.nameText.text = this.data.content.nick;
+            this.setText(this.talkText,  '邀请你加入战队：['+ Base64.decode(this.data.content.team_name)+']');
+            if(!DateUtil.isSameDay(this.data.time))
+            {
+                this.btnGroup.visible = false;
+                this.dateText.text = '已失效';
+                return
+            }
         }
         else if(this.data.type == 3)  //聊天
         {

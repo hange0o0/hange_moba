@@ -70,6 +70,10 @@ class PKFailUI extends PKResultBase {
         else if(PKM.pkType == PKManager.PKType.MAP){
             MapManager.getInstance().pkAgain(onOpenPKView);
         }
+        else if(PKM.pkType == PKManager.PKType.PVE){
+            TeamPVEManager.getInstance().pkAgain();
+            PKResultUI.getInstance().hide();
+        }
 
         function onOpenPKView(){
            self.onBack();
@@ -87,6 +91,10 @@ class PKFailUI extends PKResultBase {
 
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND)
+        {
+            MyTool.removeMC(this.okBtn)
+        }
+        else if(PKM.pkType == PKManager.PKType.PVE && !TeamPVEManager.getInstance().canPK())
         {
             MyTool.removeMC(this.okBtn)
         }

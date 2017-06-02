@@ -1,4 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="VideoTopStatItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="VideoTopStatItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="32" height="32">
 	<e:Image id="mc" x="0" y="0" source="buff_11_png"/>
 </e:Skin>

@@ -24,7 +24,8 @@ class TeamDungeonGameUI extends game.BaseUI {
 
 
 
-
+    public data
+    public type
     public enemyArray;
 
     public constructor() {
@@ -82,18 +83,18 @@ class TeamDungeonGameUI extends game.BaseUI {
         ShopUI.getInstance().show('coin');
     }
 
-    public show(){
+    public show(data?,type?){
+        this.data = data;
+        this.type = type;
         var self = this
-        MainGameManager.getInstance().loadCache(UM.main_game.level,function(){
-            self.superShow();
-        })
+        self.superShow();
     }
 
     private superShow(){
         super.show();
 
 
-        this.addPanelOpenEvent(GameEvent.client.main_kill,this.renewEnemy)
+
         this.addPanelOpenEvent(GameEvent.client.force_change,this.renewSelf)
 
         this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewSelf);
@@ -107,33 +108,31 @@ class TeamDungeonGameUI extends game.BaseUI {
     public renewEnemy(){
         var MM = MainGameManager.getInstance();
         //更新敌人
-        var specialData:any = {
-            isNPC:true
-        };
+        var specialData:any = {};
         var enemyList = this.enemyArray = [];
-        var arr = MainGameVO.getObject(UM.main_game.level).list;
-        var killNum = 0;
-        for(var i=0;i<arr.length;i++)
+        if(this.type == 'pve')
         {
-            var id = arr[i]
-            if(MM.isKill(i))
+            var PVEM = TeamPVEManager.getInstance();
+            specialData = {
+                isNPC:true,
+                fight:TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)
+            };
+
+            for(var i=0;i<this.data.list.length;i++)
             {
-                killNum ++;
-                continue;
+                var id = this.data.list[i];
+                enemyList.push({
+                    vo: MonsterVO.getObject(id),
+                    isTeam:true,
+
+                    id: id,
+                    specialData: specialData,
+                    index: i,
+                    list:enemyList
+                });
             }
-            enemyList.push({
-                vo: MonsterVO.getObject(id),
-                isMain:true,
-                isTeam:true,
-
-                id: id,
-                specialData: specialData,
-
-                index: i-killNum,
-
-                list:enemyList
-            });
         }
+
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
 
 
@@ -156,27 +155,17 @@ class TeamDungeonGameUI extends game.BaseUI {
     }
 
     public onShow(){
-        GuideManager.getInstance().enableScrollV(this.scroller);
+        var name = TeamDungeonManager.DungeonName[this.type] + ' - ' + this.data.index;
+        this.topUI.setTitle(name);
+        var hard = TeamPVEManager.getInstance().data.game_data.hard;
+        this.desText.text = '敌方战力：' + TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
-        this.topUI.setTitle('公会评定-第'+(UM.main_game.level)+'关');
-
         this.renewEnemy();
         this.renewSelf();
-
-        //if(GuideManager.getInstance().isGuiding)
-        //{
-        //    egret.callLater(function(){
-        //        this.validateNow();
-        //        this.once(egret.Event.ENTER_FRAME)
-                GuideManager.getInstance().showGuide(this)
-        //    },this)
-        //
-        //}
-
     }
 
     private renewSelf(){
-        var hard;
+        var hard = TeamPVEManager.getInstance().data.game_data.hard;
         var myCard = UM.getMyCard();
         var specialData = {hard:hard};
         //更新卡组1
@@ -207,8 +196,8 @@ class TeamDungeonGameUI extends game.BaseUI {
 
     private onChoose1(){
         //this.hide();
-        var hard;
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.pk_common.my_card,enemy: this.enemyArray,hard:hard})
+        var hard = TeamPVEManager.getInstance().data.game_data.hard;
+        PKDressUI.getInstance().show({pktype:'pve_game',data:UM.pk_common.my_card,enemy: this.enemyArray,hard:hard})
     }
 
 }

@@ -106,11 +106,14 @@ class PKMainMV {
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var y = a.y
-        console.log(a.x,a.y)
         tw.to({scaleX:1.1,scaleY:1.1,y:y - 10}, 200);
         if(fun1)
             tw.call(fun1,thisObj);
-        tw.to({rotation:- 10}, 100).to({rotation: 10}, 200).to({rotation:0},100).to({scaleX:1,scaleY:1,y:y}, 200);
+        tw.to({rotation:- 10}, 100).to({rotation: 10}, 200).to({rotation:0},100)
+        if(a.out)
+            tw.to({scaleX:0.85,scaleY:0.85,y:y}, 200);
+        else
+            tw.to({scaleX:1,scaleY:1,y:y}, 200);
     }
 
     //退后再前进
@@ -204,9 +207,18 @@ class PKMainMV {
     }
 
     public playBullet2(id,from,to,fun?,thisObj?,xy?){
-        var mc = new eui.Image('bullet4_png')
-        mc.anchorOffsetX = 25;
-        mc.anchorOffsetY = 40;
+        var mc = new eui.Image('bullet' + id + '_png');
+        if(id == 8)
+        {
+            mc.anchorOffsetX = 20;
+            mc.anchorOffsetY = 30;
+        }
+        else
+        {
+            mc.anchorOffsetX = 25;
+            mc.anchorOffsetY = 40;
+        }
+        var baseFrom = from;
         from.parent.addChild(mc);
         if(xy)
         {
@@ -223,6 +235,46 @@ class PKMainMV {
             MyTool.removeMC(mc);
             if(fun)
                 fun.apply(thisObj);
+        });
+
+        this.playBullet2_(id,baseFrom,to,{
+            x:from.x + 30 -15*Math.random(),
+            y:from.y + 30 -15*Math.random(),
+        },100);
+        this.playBullet2_(id,baseFrom,to,{
+            x:from.x + 30 -15*Math.random(),
+            y:from.y + 30 -15*Math.random(),
+        },200);
+    }
+
+     //输助
+    public playBullet2_(id,from,to,xy?,cd?){
+        var mc = new eui.Image('bullet' + id + '_png');
+        if(id == 8)
+        {
+            mc.anchorOffsetX = 20;
+            mc.anchorOffsetY = 30;
+        }
+        else
+        {
+            mc.anchorOffsetX = 25;
+            mc.anchorOffsetY = 40;
+        }
+        var baseFrom = from;
+        if(xy)
+        {
+            from = xy;
+        }
+
+        var dis = MyTool.getDis(from,to);
+        mc.x = from.x;
+        mc.y = from.y;
+        mc.rotation = this.getRota(from,to);
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.wait(cd).call(function(){
+            baseFrom.parent.addChild(mc);
+        }).to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
+            MyTool.removeMC(mc);
         });
     }
 

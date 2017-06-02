@@ -128,6 +128,21 @@ class HelpManager {
                 '由于卡牌的出战战力是由玩家战力和卡牌单兵战力共同构成的，所以每次升级卡牌，其它卡牌的出战战力也会有所提升，只是被升级的那张卡牌能得到双重的提升'
             ]
         }
+
+        var name = TeamDungeonManager.DungeonName.pve + '副本';
+        this.helpObj['pve'] = {
+            title:name + '说明',
+            list:[
+                name + '需要玩家组成一支[3人]队伍后才能参加',
+                '在' + name + '中，玩家可选择不同难度进行挑战，难度越高，获得的奖励越丰厚',
+                '在' + name + '中，不同难度对应的战力和卡牌等级上限是不一样的，如果玩家属性高于难度要求，则会把玩家属性[降至对应值]进行PK',
+                '在' + name + '中，共有25个关卡让玩家进行挑战，每战胜[5个]关卡，队伍中的成员都可领取一次奖励，奖励最多可领取[5次]',
+                '在' + name + '中进行挑战，每个成员使用的是各自的公共手牌，每次挑战都需消耗[1点]体力',
+                '' + name + '会有时间限制，在副本结束后，奖励和副本数据都会被清空，玩家将无法在继续未完成的挑战或领取奖励'
+            ]
+        }
+
+
         this.helpObj['temp'] = {
             list:[
                 '当前服务器的卡牌等级上限是'+TecManager.getInstance().maxLevel+'级，玩家的等级上限是'+UM.maxLevel+'级',
@@ -189,5 +204,8 @@ class HelpManager {
 
     public mapHelp(){
         HelpUI.getInstance().show(this.helpObj['map']);
+    }
+    public pveHelp(){
+        HelpUI.getInstance().show(this.helpObj['pve']);
     }
 }

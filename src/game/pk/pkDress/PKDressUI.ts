@@ -283,6 +283,9 @@ class PKDressUI extends game.BaseUI {
              case PKManager.PKType.MAP:
                  MapGameUI.getInstance().hide();
                  break
+             case PKManager.PKType.PVE:
+                 TeamDungeonGameUI.getInstance().hide();
+                 break
          }
         if(GuideManager.getInstance().isGuiding)
             GuideUI.getInstance().hide();

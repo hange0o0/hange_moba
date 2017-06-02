@@ -3,6 +3,7 @@ class PKManager {
     public static PKType = {
         MAIN:'main_game',
         MAP:'map_game',
+        PVE:'pve_game',
         SERVER:'server_game',
         SERVER_EQUAL:'server_game_equal',
         DAY:'day_game',
@@ -367,6 +368,9 @@ class PKManager {
                 break
             case PKManager.PKType.MAP:
                 MapManager.getInstance().pk(choose,fun);
+                break
+            case PKManager.PKType.PVE:
+                TeamPVEManager.getInstance().pk(choose,fun);
                 break
         }
 

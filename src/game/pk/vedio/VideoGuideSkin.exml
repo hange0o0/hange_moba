@@ -1,17 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoGuideSkin" width="640" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
-	<e:Rect height="60" width="640" x="0" y="0" fillColor="0x2b1b0c"/>
-	<e:Image source="line_png" x="-5" y="52" width="650"/>
-	<e:Scroller id="scroller" width="640" x="0" top="60" bottom="0" bounces="false">
+	<e:Scroller id="scroller" width="640" x="0" top="0" bottom="60" bounces="false" locked="true">
 		<e:Group>
-			<e:List id="list" height="200" width="200" x="18" y="39">
-				<e:layout>
-					<e:TileLayout requestedColumnCount="5" paddingLeft="13" verticalGap="20" paddingTop="10" paddingBottom="10" horizontalGap="10"/>
-				</e:layout>
-			</e:List>
+		<e:List id="list" height="200" width="200" x="18" y="39">
+			<e:layout>
+			<e:TileLayout requestedColumnCount="5" paddingLeft="13" verticalGap="20" paddingTop="10" paddingBottom="10" horizontalGap="10"/>
+			</e:layout>
+		</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:Label text="快捷定位" y="18" horizontalCenter="0" size="22"/>
-	<e:Image id="closeBtn" source="arrow2_png" x="14" y="5"/>
+	<e:Image source="line_png" x="-5" width="650" bottom="54"/>
+	<e:Group x="0" bottom="0">
+		<e:Rect height="60" width="640" x="0" y="0" fillColor="0x2b1b0c"/>
+		<e:Label text="点击上方图标查看具体过程" y="18" size="22" right="20" textColor="0xccb48e"/>
+		<e:Image id="closeBtn" source="arrow2_png" x="14" y="5"/>
+	</e:Group>
 </e:Skin>

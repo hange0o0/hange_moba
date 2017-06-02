@@ -214,7 +214,6 @@ class VideoCode{
     }
 
     private onGameOver(){
-         console.log('finish');
         this.addRoundOverData();
         for(var i=0;i<this.listArray.length;i++)//重新编号
         {

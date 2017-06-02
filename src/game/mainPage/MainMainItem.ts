@@ -9,7 +9,6 @@ class MainMainItem extends game.BaseItem {
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
     private awardBtn: eui.Group;
-    private headMC: MainHeadItem;
     private bgGroup: eui.Group;
 
 
@@ -25,7 +24,6 @@ class MainMainItem extends game.BaseItem {
         this.addBtnEvent(this.startBtn, this.onStart,true);
         //this.addBtnEvent(this.scoreText, this.onScore);
         EM.addEvent(GameEvent.client.pass_day,this.renew,this)
-        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
 
         addBtnTips(this.scoreText,this.onScore,this);
     }

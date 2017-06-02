@@ -83,11 +83,7 @@ class CreateTeamUI extends game.BaseWindow {
         var type = this.data;
         TeamDungeonManager.getInstance().createTeam(name,hard,type,function(){
             self.hide();
-            InviteTeamUI.getInstance().show({
-                name:name,
-                hard:hard,
-                type:type
-            })
+            InviteTeamUI.getInstance().show(type)
         })
     }
 
@@ -108,6 +104,7 @@ class CreateTeamUI extends game.BaseWindow {
 
     public onShow(){
         this.titleText.text = '创建队伍'
+        this.nameText.text = SharedObjectManager.instance.getValue('team_name') || '';
         this.onHideSort();
         this.renewSelect();
     }
@@ -115,7 +112,7 @@ class CreateTeamUI extends game.BaseWindow {
     private renewSelect(){
         var hardData:any = TeamDungeonManager.getInstance().hardData[this.sortList.selectedIndex];
         this.setHtml(this.forceText,this.createHtml('卡士战力上限：',0xE0A44A) + hardData.force);
-        this.setHtml(this.levelText,this.createHtml('卡牌等级上限：',0xE0A44A) + hardData.force);
+        this.setHtml(this.levelText,this.createHtml('卡牌等级上限：',0xE0A44A) + hardData.level + '级');
         this.sortText.text = hardData.label;
     }
 }

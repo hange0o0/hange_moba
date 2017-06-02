@@ -180,7 +180,7 @@ class VideoManager {
             VC.initData(self.baseData);
             VC.play(true);
             if(isDetail)
-                VideoPlayUI.getInstance().show();
+                VideoUI.getInstance().show()
             //self.showVideoPlay();
         }
     }

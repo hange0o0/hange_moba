@@ -116,7 +116,10 @@
 					</e:Group>
 					<e:Group horizontalCenter="0.5" y="175" x="10" width="100%">
 						<e:Button id="editWordBtn" y="0" label="编辑宣言" skinName="Btn_r2Skin" x="113.03030303030306"/>
-						<e:Button id="honorBtn" y="0" label="成就" skinName="Btn_r2Skin" x="113.03030303030306"/>
+						<e:Group x="266" y="10" width="160" height="56">
+							<e:Button id="honorBtn" y="0" label="成就" skinName="Btn_r2Skin" x="0"/>
+							<e:Image id="honorRed" source="red_point_png" y="-6" right="-8"/>
+						</e:Group>
 						<e:layout>
 							<e:HorizontalLayout gap="30" horizontalAlign="center" paddingTop="10"/>
 						</e:layout>

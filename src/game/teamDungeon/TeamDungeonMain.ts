@@ -41,6 +41,11 @@ class TeamDungeonMain extends game.BaseUI {
     }
 
     public show(data?){
+        if(UM.level < Config.friendLevel)
+        {
+            Alert('战队系统'+Config.friendLevel+'级开放')
+            return;
+        }
         var self = this;
         UM.initActive();
         TeamDungeonManager.getInstance().info(function(){
@@ -62,6 +67,18 @@ class TeamDungeonMain extends game.BaseUI {
 
     public onShow(){
 
+
+        this.renew();
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+    }
+
+    private onTimer(){
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            this.list.getChildAt(i)['onTimer']();
+        }
+    }
+    private renew(){
         var arr = ['pve'];
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }

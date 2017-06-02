@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TeamInfoSkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="580"/>
+	<e:Label id="titleText" y="29" textColor="0xD0C7AD" horizontalCenter="0" text="队伍详情" x="10"/>
+	<e:Rect left="30" right="30" bottom="25" fillAlpha="1" fillColor="0x160D06" height="95"/>
+	<e:Label id="hardText" text="难度选择：" x="36" y="304" textColor="0xccb48e"/>
+	<e:Label id="forceText" y="355" text="战力上限：" x="86" textColor="0xccb48e" size="28"/>
+	<e:Label id="levelText" y="407" text="等级上限：" x="86" size="28" textColor="0xccb48e"/>
+	<e:Label text="加入该队伍后将不能加入其它队伍" size="22" textColor="0xfccf6c" horizontalCenter="0" bottom="125"/>
+	<e:Label id="nameText" y="108" text="队伍名称：" x="37" textColor="0xccb48e"/>
+	<e:Label y="155" text="队伍成员：" x="36" textColor="0xE0A44A"/>
+	
+	
+	
+	
+	<e:Group id="btnGroup" horizontalCenter="0" bottom="40">
+		<e:Button id="cancleBtn" y="-1.1368683772161603e-13" label="拒绝" x="0" skinName="Btn_b2Skin"/>
+		<e:Button label="加入" skinName="Btn_r2Skin" id="okBtn" x="0" y="-1.1368683772161603e-13"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>
+	<e:Group x="187" y="155">
+		<e:Group id="player0" y="0" x="0" width="100" height="127">
+			<e:Image id="headMC0" y="5" width="90" height="90" x="5" source="head_png"/>
+			<e:Image source="head_border1_png" y="0" x="0" width="100" height="100"/>
+			<e:Label id="nick0" text="LabelLabel" y="105" size="22" horizontalCenter="0" textColor="0xccb48e"/>
+		</e:Group>
+		<e:Group id="player1" y="0" x="0" width="100" height="127">
+			<e:Image id="headMC1" y="5" width="90" height="90" x="5" source="head_png"/>
+			<e:Image source="head_border1_png" y="0" x="0" width="100" height="100"/>
+			<e:Label text="LabelLabel" y="105" size="22" horizontalCenter="0" id="nick1" textColor="0xccb48e"/>
+		</e:Group>
+		<e:Group id="player2" y="10" x="10" width="100" height="127">
+			<e:Image id="headMC2" y="5" width="90" height="90" x="5" source="head_png"/>
+			<e:Image source="head_border1_png" y="0" x="0" width="100" height="100"/>
+			<e:Label text="LabelLabel" y="105" size="22" horizontalCenter="0" id="nick2" textColor="0xccb48e"/>
+		</e:Group>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Button id="closeBtn" label="" y="15" skinName="Btn_close1Skin" scaleX="0.9" scaleY="0.9" x="508"/>
+
+</e:Skin>

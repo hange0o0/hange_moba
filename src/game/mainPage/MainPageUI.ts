@@ -13,6 +13,7 @@ class MainPageUI extends game.BaseUI {
 
     private starGroup: eui.Group;
     private headMC: eui.Image;
+    private honorRed: eui.Image;
     private expBar: eui.Image;
     private nameText: eui.Label;
     private forceText: eui.Label;
@@ -31,6 +32,7 @@ class MainPageUI extends game.BaseUI {
     private addFreeBtn: eui.Group;
     private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
+    private mapGame: MainMapItem;
     private dayGame: MainDayItem;
     private serverGame: MainServerItem;
     private serverGameEqual: MainServerEqualItem;
@@ -40,6 +42,7 @@ class MainPageUI extends game.BaseUI {
     private p1: MainPageItem;
     private p2: MainPageItem;
     private p3: MainPageItem;
+    private p4: MainPageItem;
     private leftBtn: eui.Image;
     private rightBtn: eui.Image;
     private taskGroup: eui.Group;
@@ -48,11 +51,12 @@ class MainPageUI extends game.BaseUI {
     private setBtn: eui.Group;
     private helpBtn: eui.Group;
     private videoBtn: eui.Group;
-    private honorBtn: eui.Group;
-    private honorRed: eui.Image;
+    private team: eui.Group;
+    private teamLockMC: eui.Image;
+    private leaderBtn: eui.Group;
+    private leaderRed: eui.Image;
+    private leaderLockMC: eui.Image;
     private rankBtn: eui.Group;
-    private mapBtn: eui.Group;
-    private mapLockMC: eui.Image;
     private collectBtn: eui.Group;
     private collectRed: eui.Image;
     private friendBtn: eui.Group;
@@ -62,6 +66,10 @@ class MainPageUI extends game.BaseUI {
     private diamonDrawBtn: eui.Group;
     private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
+    private topPlayerTips: TopPlayerTips;
+
+
+
 
 
 
@@ -102,9 +110,9 @@ class MainPageUI extends game.BaseUI {
         this.addBtnEvent(this.friendBtn, this.onFriend);
         this.addBtnEvent(this.collectBtn, this.onCollect);
         //this.addBtnEvent(this.bagBtn, this.onBag);
-        this.addBtnEvent(this.honorBtn, this.onHonor);
+        this.addBtnEvent(this.leaderBtn, this.onLeader);
         this.addBtnEvent(this.rankBtn, this.onRank);
-        this.addBtnEvent(this.mapBtn, this.onMap);
+        this.addBtnEvent(this.team, this.onTeam);
         this.addBtnEvent(this.diamonDrawBtn, this.onDraw);
 
 
@@ -141,7 +149,7 @@ class MainPageUI extends game.BaseUI {
 
         this.taskText.mask = this.taskMask;
 
-        for(var i=0;i<=3;i++)
+        for(var i=0;i<=4;i++)
         {
             var mc = this['p'+i];
             this.pageArray.push(mc);
@@ -153,6 +161,8 @@ class MainPageUI extends game.BaseUI {
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
         this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
+        this.topPlayerTips.hide();
+        this.leaderRed.visible = false
     }
 
 
@@ -260,19 +270,22 @@ class MainPageUI extends game.BaseUI {
                 });
 
                 break;
+            case 2:
+                DayLogUI.getInstance().show(MapManager.getInstance().logList,'挑战日志');
+                break;
             case 1:
 
                 PM.playBack(PKManager.PKType.DAY,function(){
                     DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'研究院挑战日志');
                 });
                 break;
-            case 2:
+            case 3:
 
                 PM.playBack(PKManager.PKType.SERVER,function(){
                     DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技场挑战日志');
                 });
                 break;
-            case 3:
+            case 4:
 
                 PM.playBack(PKManager.PKType.SERVER_EQUAL,function(){
                     DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正场挑战日志');
@@ -290,13 +303,16 @@ class MainPageUI extends game.BaseUI {
             case 0:
                 HM.mainHelp();
                 break;
+            case 2:
+                HM.mapHelp();
+                break;
             case 1:
                 HM.dayHelp();
                 break;
-            case 2:
+            case 3:
                 HM.serverHelp();
                 break;
-            case 3:
+            case 4:
                 HM.serverEqualHelp();
                 break;
         }
@@ -427,21 +443,24 @@ class MainPageUI extends game.BaseUI {
     //    BagUI.getInstance().show();
     //
     //}
-    private onMap(){
-        if(UM.main_game.level < Config.mapLevel)
-        {
-            Alert('你现在还实力还不适宜进入野外，赶快把实力提升到' + this.createHtml('卡士一阶',0xE0A44A)+'再来吧~')
-            return;
-        }
-        MapUI.getInstance().show();
-    }
+    //private onMap(){
+    //    if(UM.main_game.level < Config.mapLevel)
+    //    {
+    //        Alert('你现在还实力还不适宜进入野外，赶快把实力提升到' + this.createHtml('卡士一阶',0xE0A44A)+'再来吧~')
+    //        return;
+    //    }
+    //    MapUI.getInstance().show();
+    //}
 
-    private onHonor(){
+    private onTeam(){
         TeamDungeonMain.getInstance().show();
     }
     private onRank(){
         RankUI.getInstance().show();
 
+    }
+    private onLeader(){
+        Alert('领队系统尚未开放')
     }
     //private onTec(){
     //    TecUI.getInstance().show();
@@ -471,6 +490,7 @@ class MainPageUI extends game.BaseUI {
     //}
 
     public onShow(){
+        this.currentPage = SharedObjectManager.instance.getMyValue('main_page') || 0;
         GuideManager.getInstance().isGuiding = UM.exp == 0 && UM.level == 1;
         FriendManager.getInstance().initFriend();
         MonsterManager.getInstance().initData();
@@ -479,6 +499,7 @@ class MainPageUI extends game.BaseUI {
         ServerGameManager.getInstance().initData();
         ServerGameEqualManager.getInstance().initData();
         MapManager.getInstance().initData();
+        TeamPVEManager.getInstance().initData();
 
         this.renewTop();
 
@@ -493,10 +514,11 @@ class MainPageUI extends game.BaseUI {
         this.renewHonorRed();
 
         egret.setTimeout(function() {
-            this.currentPage = 0;
+
             this.scrollToCurrentPage(true);
             MainPageUI.getInstance().renewPage();
             GuideManager.getInstance().guideStep = 0;
+            GuideManager.getInstance().reInit();
             GuideManager.getInstance().showGuide(MainPageUI.getInstance())
             if(!GuideManager.getInstance().isGuiding){
                 if(!LoginManager.getInstance().logText.cb && LoginManager.getInstance().logText.text)
@@ -578,6 +600,7 @@ class MainPageUI extends game.BaseUI {
 
     public onLevelChange(){
         this.friendLockMC.visible = UM.level < Config.friendLevel;
+        this.teamLockMC.visible = UM.level < Config.friendLevel;
         this.scrollToCurrentPage();
     }
 
@@ -622,7 +645,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     public scrollToCurrentPage(nomovie=false){
-        this.mapLockMC.visible = UM.main_game.level < Config.mapLevel;
+        SharedObjectManager.instance.setMyValue('main_page',this.currentPage);
         egret.Tween.removeTweens(this.scrollGroup)
         var pageSize = 640
         var targetX = -this.currentPage * pageSize;
@@ -646,6 +669,7 @@ class MainPageUI extends game.BaseUI {
                     //重新排序，保证一至
                     this.scrollGroup.addChild(this.mainGame)
                     this.scrollGroup.addChild(this.dayGame)
+                    this.scrollGroup.addChild(this.mapGame)
                     this.scrollGroup.addChild(this.serverGame)
                     this.scrollGroup.addChild(this.serverGameEqual)
                     this.scrollToCurrentPage(true);
@@ -667,10 +691,15 @@ class MainPageUI extends game.BaseUI {
                 this.videoBtn.visible = DayGameManager.getInstance().logList.length > 0 || (UM.day_game.pkdata && UM.day_game.pkdata.version == Config.pk_version);
                 break;
             case 2:
+                currentView = this.mapGame;
+                this.videoBtn.visible = MapManager.getInstance().logList.length > 0;
+                break;
+
+            case 3:
                 currentView = this.serverGame;
                 this.videoBtn.visible = ServerGameManager.getInstance().logList.length > 0 || (UM.server_game.pkdata && UM.server_game.pkdata.version == Config.pk_version);
                 break;
-            case 3:
+            case 4:
                 currentView = this.serverGameEqual;
                 this.videoBtn.visible = ServerGameEqualManager.getInstance().logList.length > 0 || (UM.server_game_equal.pkdata && UM.server_game_equal.pkdata.version == Config.pk_version);
                 break;
@@ -684,26 +713,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     private playRankHead(){
-        var currentView;
-        switch(this.currentPage)
-        {
-            case 0:
-                currentView = this.mainGame;
-                break;
-            case 1:
-                currentView = this.dayGame;
-                break;
-            case 2:
-                currentView = this.serverGame;
-                break;
-            case 3:
-                currentView = this.serverGameEqual;
-                break;
-        }
-        if(currentView)
-        {
-            RankManager.getInstance().renewPageHead(currentView.bgGroup,currentView.headMC,this.currentPage + 3);
-        }
+        RankManager.getInstance().renewPageHead(this.topPlayerTips);
     }
 
 

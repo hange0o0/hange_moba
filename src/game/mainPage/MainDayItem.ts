@@ -11,7 +11,6 @@ class MainDayItem extends game.BaseItem {
     private desText: eui.Label;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
-    private headMC: MainHeadItem;
 
 
 
@@ -22,7 +21,6 @@ class MainDayItem extends game.BaseItem {
 
     public childrenCreated() {
         this.addBtnEvent(this.startBtn, this.onStart,true);
-        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onStart(){

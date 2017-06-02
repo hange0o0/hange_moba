@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="VideoItem3Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="640"  states="team1,team2" >
+<e:Skin class="VideoItem3Skin" currentState="team2" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="640"  states="team1,team2" >
 	<e:Rect id="bg2" width="640" x="0" top="0" strokeColor="0x673D1F" fillColor="0x130A04" bottom="0"/>
+	<e:Image x="320" y="-6" source="self_title_png" source.team2="enemy_title_png"/>
+	<e:Image x="320" y="-6" scaleX="-1" source="self_title_png" source.team2="enemy_title_png"/>
 	<e:Rect strokeColor="0x673D1F" width="640" x="0" y="0" height="2" fillColor="0x000000"/>
 	<e:Rect y="38" strokeColor="0x673D1F" width="640" fillColor="0x000000" height="2" x="0"/>
 
-	<e:Rect id="bg" fillAlpha="1" width="636" x="2" fillColor="0x360000" strokeColor="0x673D1F" top="40" bottom="0" fillColor.team2="0x200000" fillColor.team1="0x000020"/>
+	<e:Rect id="bg" fillAlpha="1" width="636" x="2" strokeColor="0x673D1F" top="40" bottom="0" fillColor="0x111111"/>
 	<e:Group id="hpGroup" x="0" y="40">
 		<e:Rect width="100%" y="0" height="15" x="0" fillColor="0x090909"/>
 		<e:Rect width="2" y="0" height="15" horizontalCenter="0" fillColor="0x999999"/>

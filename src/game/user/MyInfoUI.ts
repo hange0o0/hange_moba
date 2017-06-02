@@ -30,6 +30,7 @@ class MyInfoUI extends game.BaseUI {
     private lastLoginText: eui.Label;
     private editWordBtn: eui.Button;
     private honorBtn: eui.Button;
+    private honorRed: eui.Image;
     private mainLevelText: eui.Label;
     private mainLevelText2: eui.Label;
     private mainLevelText3: eui.Label;
@@ -51,6 +52,7 @@ class MyInfoUI extends game.BaseUI {
     private serverEqualText6: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -89,6 +91,28 @@ class MyInfoUI extends game.BaseUI {
         this.list.itemRenderer = EnemyHeadItem;
 
 
+    }
+
+    private renewHonorRed(){
+        if(UM.honor.monster)
+        {
+            for(var s in UM.honor.monster)
+            {
+                var oo = UM.honor.monster[s]
+                var awardLevel = oo.a || 0; //已领奖的等级
+                if(awardLevel == 5)
+                    continue;
+                var num = HonorManager.getInstance().awardBase[awardLevel + 1].num
+                if(oo.w >= num)
+                {
+                    this.honorRed.visible =  true;
+                    return
+                }
+            }
+            this.honorRed.visible =  false;
+        }
+        else
+            this.honorRed.visible =  UM.honor.isred;
     }
 
     public beforeHide(){
@@ -172,11 +196,13 @@ class MyInfoUI extends game.BaseUI {
     public onShow(){
         this.renew();
         this.onTimer();
+        this.renewHonorRed();
 
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.energy_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.change_head,this.renew);
         this.addPanelOpenEvent(GameEvent.client.word_change,this.renew);
+        this.addPanelOpenEvent(GameEvent.client.honor_change,this.renewHonorRed);
     }
 
     public renew(){

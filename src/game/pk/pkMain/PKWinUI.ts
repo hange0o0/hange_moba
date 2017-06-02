@@ -60,6 +60,10 @@ class PKWinUI extends PKResultBase {
             DayGameUI.getInstance().show();
             PKResultUI.getInstance().hide();
         }
+        else if(PKM.pkType == PKManager.PKType.PVE){
+            TeamPVEMain.getInstance().show();
+            PKResultUI.getInstance().hide();
+        }
         else if(PKM.pkType == PKManager.PKType.MAP){
             var MM = MapManager.getInstance();
             if(this.okBtn.label == '下一据点')
@@ -84,6 +88,10 @@ class PKWinUI extends PKResultBase {
 
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND)
+        {
+            MyTool.removeMC(this.okBtn)
+        }
+        else if(PKM.pkType == PKManager.PKType.PVE && !TeamPVEManager.getInstance().canPK())
         {
             MyTool.removeMC(this.okBtn)
         }

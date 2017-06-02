@@ -284,6 +284,10 @@
 				{
 					"compress":false,
 					"key":"card_back_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"menu_icon_10_png"
 				}
 			],
 			"sort":0
@@ -510,6 +514,18 @@
 				{
 					"compress":false,
 					"key":"note_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"common_title_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"box_open_png"
+				},
+				{
+					"compress":false,
+					"key":"box_close_png"
 				}
 			],
 			"sort":0
@@ -584,6 +600,10 @@
 				{
 					"compress":false,
 					"key":"head_border_light3_png"
+				},
+				{
+					"compress":false,
+					"key":"black_bg_png"
 				}
 			],
 			"sort":0
@@ -811,6 +831,18 @@
 				{
 					"compress":false,
 					"key":"pk_e_10_png"
+				},
+				{
+					"compress":false,
+					"key":"enemy_title_png"
+				},
+				{
+					"compress":false,
+					"key":"self_title_png"
+				},
+				{
+					"compress":false,
+					"key":"pk_round_bg_png"
 				}
 			],
 			"sort":0
@@ -1071,6 +1103,78 @@
 		{
 			"compress":false,
 			"key":"m6_jpg"
+		},
+		{
+			"compress":false,
+			"key":"skill10_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet3_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet4_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet1_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet2_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet5_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet6_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet7_png"
+		},
+		{
+			"compress":false,
+			"key":"bullet8_png"
+		},
+		{
+			"compress":false,
+			"key":"skill8_png"
+		},
+		{
+			"compress":false,
+			"key":"skill21_png"
+		},
+		{
+			"compress":false,
+			"key":"skill30_png"
+		},
+		{
+			"compress":false,
+			"key":"skill103_png"
+		},
+		{
+			"compress":false,
+			"key":"skill104_png"
+		},
+		{
+			"compress":false,
+			"key":"skill14_png"
+		},
+		{
+			"compress":false,
+			"key":"bg2_jpg"
+		},
+		{
+			"compress":false,
+			"key":"team1_jpg"
+		},
+		{
+			"compress":false,
+			"key":"main5_png"
 		}
 	]
 }

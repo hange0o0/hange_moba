@@ -12,7 +12,6 @@ class MainServerItem extends game.BaseItem {
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
-    private headMC: MainHeadItem;
     private bgGroup: eui.Group;
 
 
@@ -23,7 +22,6 @@ class MainServerItem extends game.BaseItem {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart,true);
         addBtnTips(this.scoreText,this.onScore,this);
-        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onScore(){

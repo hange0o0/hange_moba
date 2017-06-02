@@ -114,6 +114,7 @@ class VScrollerGroup extends eui.Group{
     }
 
     public scrollTo(v){
+        this.scroller.stopAnimation();
         this.scroller.viewport.scrollV = v;
         this.onScroll(v);
         if(this.scroller.viewport.scrollV + this.scroller.height > this.height)

@@ -27,7 +27,7 @@ class HonorManager{
         {
             var vo = mdata[s];
             //var kindVO = MonsterKindVO.getObject(vo.type);
-            if(vo.level<= UM.level)
+            if(vo.level<= UM.level || (UM.honor.monster[s] && UM.honor.monster[s].t))
                 arr.push(this.fillAwardStat({
                     id:vo.id,
                     userLevel:vo.level,

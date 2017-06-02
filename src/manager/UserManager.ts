@@ -74,6 +74,7 @@ class UserManager {
         this.pk_common = data.pk_common; //  '{history:{}}'
 
 
+        this.initActive();
 
         this.friendtime = data.friendtime || 1;
         if(TM.now() - this.friendtime > 3600*24*3)

@@ -12,7 +12,6 @@ class MainServerEqualItem extends game.BaseItem {
     private titleText: eui.Label;
     private lockMC: eui.Image;
     private bg: eui.Image;
-    private headMC: MainHeadItem;
     private bgGroup: eui.Group;
 
 
@@ -26,7 +25,6 @@ class MainServerEqualItem extends game.BaseItem {
         this.addBtnEvent(this.startBtn, this.onStart,true);
         addBtnTips(this.scoreText,this.onScore,this);
         EM.addEvent(GameEvent.client.prop_change,this.renew,this)
-        RankManager.getInstance().initHeadMC(this.bgGroup,this.headMC);
     }
 
     private onScore(){

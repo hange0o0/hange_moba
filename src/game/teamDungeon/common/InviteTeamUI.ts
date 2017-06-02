@@ -43,9 +43,7 @@ class InviteTeamUI extends game.BaseWindow {
         var self = this;
         var FM = FriendManager.getInstance();
         FM.getList(function(){
-            FM.getLog(function(){
-                self.superShow()
-            })
+            self.superShow()
         })
     }
 
