@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainDayItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Group id="bgGroup" x="320" y="200" width="640" height="400" anchorOffsetX="320" anchorOffsetY="200">
+	<e:Group id="bgGroup" x="320" y="200" width="640" height="400" anchorOffsetX="320" anchorOffsetY="200" locked="true">
 		<e:Image x="75" y="-213" id="bg" source="main2_png"/>
+	</e:Group>
+	<e:Group y="263" width="300" horizontalCenter="0">
+		<e:Image source="black_bg_png" y="0" height="60" width="50%" right="0"/>
+		<e:Image source="black_bg_png" y="0" height="60" width="50%" scaleX="-1" left="0"/>
 	</e:Group>
 
 
@@ -10,7 +14,7 @@
 
 
 
-	<e:Group y="265" width="480" horizontalCenter="0">
+	<e:Group y="265" width="480" horizontalCenter="0" locked="true">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:Label text="究极研究院" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
 		<e:Image source="main_mc_png" y="0" x="0"/>
@@ -20,14 +24,14 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Group y="300" horizontalCenter="0">
+	<e:Group y="300" horizontalCenter="0" locked="true">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" x="73" y="30" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8"/>
 		<e:Image source="lock_icon_png" y="25" horizontalCenter="0" id="lockMC" x="30"/>
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
 	</e:Group>
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5" locked="true">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>

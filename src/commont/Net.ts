@@ -36,6 +36,11 @@ class Net extends egret.EventDispatcher{
             oo.version = Config.version;
         else
             oo.version = Config.user_version;
+        if(_get['debug_server'])
+            oo.debug_server = 1;
+        if(_get['new_version'])
+            oo.new_version = 1;
+
         variables.variables = oo;
         //(<any>variables.variables).msg = JSON.stringify(msg);
         //(<any>variables.variables).debug_client = Config.isDebug;

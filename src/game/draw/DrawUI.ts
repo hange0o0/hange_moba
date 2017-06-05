@@ -56,10 +56,30 @@ class DrawUI extends game.BaseWindow {
             this.itemArr[i].reInit();
             this.cardGroup.addChild(this.itemArr[i]);
         }
-        this.touchChildren = this.touchEnabled = true
+        this.cardGroup.touchChildren = this.cardGroup.touchEnabled = true
     }
 
     public showDrawMV(){
-        this.touchChildren = this.touchEnabled = false
+        this.cardGroup.touchChildren = this.cardGroup.touchEnabled = false
+    }
+    public showOtherDraw(mid){
+        var arr = [];
+        var mdata = CM.table[MonsterVO.dataKey];
+        for(var s in mdata)
+        {
+            var vo = mdata[s];
+            if(vo.level<= UM.level && vo.id != mid)
+                arr.push(vo.id);
+        }
+        ArrayUtil.random(arr);
+
+        for(var i=0;i<this.itemArr.length;i++)
+        {
+            var item = this.itemArr[i];
+            if(this.cardGroup.contains(item))
+            {
+                item.showOtherDraw(arr.shift())
+            }
+        }
     }
 }

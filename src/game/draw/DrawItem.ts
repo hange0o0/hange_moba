@@ -44,6 +44,18 @@ class DrawItem extends game.BaseItem {
         this.mid = 0;
     }
 
+    public showOtherDraw(id){
+        var vo = MonsterVO.getObject(id);
+        this.coinText.text = '×' + vo.cost
+        this.headMC.source = vo.url;
+
+        var tw = egret.Tween.get(this);
+        tw.to({scaleX:0},150).call(function(){
+            this.resultGroup.visible = true
+            this.bg.visible = false
+        },this).to({scaleX:1},150)
+    }
+
     private showDraw(id){
         this.mid = id;
         var vo = MonsterVO.getObject(id);

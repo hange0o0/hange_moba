@@ -83,7 +83,7 @@ class MonsterManager{
             }
             if(fun)
                 fun();
-        },false);
+        });
     }
 
     public sendStar(monsterID,star,fun?){
@@ -98,7 +98,7 @@ class MonsterManager{
             self.talkData[monsterID].star['s' + star]  += 1;
             if(fun)
                 fun();
-        },false);
+        });
     }
 
     public sendTalk(monsterID,talk,fun?){
@@ -128,7 +128,7 @@ class MonsterManager{
 
             if(fun)
                 fun();
-        },false);
+        });
     }
 
     public sendComment(monsterID,id,isgood,fun?){
@@ -148,6 +148,6 @@ class MonsterManager{
             self.setComment(self.talkData[monsterID].talk[id],isgood)
             if(fun)
                 fun();
-        },false);
+        });
     }
 }

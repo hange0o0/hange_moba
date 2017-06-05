@@ -61,7 +61,8 @@ class PKWinUI extends PKResultBase {
             PKResultUI.getInstance().hide();
         }
         else if(PKM.pkType == PKManager.PKType.PVE){
-            TeamPVEMain.getInstance().show();
+            if(TeamPVEManager.getInstance().canPK())
+                TeamPVEMain.getInstance().show();
             PKResultUI.getInstance().hide();
         }
         else if(PKM.pkType == PKManager.PKType.MAP){

@@ -3,7 +3,10 @@
 	<e:Group y="200" id="bgGroup" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" x="320">
 		<e:Image id="bg" x="105" y="-114.48" source="main5_png"/>
 	</e:Group>
-
+	<e:Group y="263" width="300" horizontalCenter="0">
+		<e:Image source="black_bg_png" y="0" height="60" width="50%" right="0"/>
+		<e:Image source="black_bg_png" y="0" height="60" width="50%" scaleX="-1" left="0"/>
+	</e:Group>
 
 
 

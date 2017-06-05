@@ -49,8 +49,11 @@ class GameManager {
         }
         if(!DateUtil.isSameDay(this.lastTime,now))//跨0点
         {
-            EM.dispatch(GameEvent.client.pass_day);
+            UM.initActive();
             TeamPVEManager.getInstance().passDay();
+            DayGameManager.getInstance().passDay();
+
+            EM.dispatch(GameEvent.client.pass_day);
         }
         EM.dispatch(GameEvent.client.timer);
 

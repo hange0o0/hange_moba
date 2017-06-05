@@ -537,7 +537,8 @@ class PKMainUI extends game.BaseUI {
         this.jumpBtn.visible = true;
         this.jumpBtn.scaleX = 0;
         this.jumpBtn.scaleY = 0;
-        tw.wait(1000).to({scaleX:1.2,scaleY:1.2},300).to({scaleX:1,scaleY:1},300)
+        this.jumpBtn.rotation = 0;
+        tw.wait(1000).to({scaleX:1.2,scaleY:1.2,rotation:360},300).to({scaleX:1,scaleY:1},300)
     }
 
     //加一个单位到舞台上
@@ -2267,6 +2268,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private showItemWord(item,data,delay=0,wordType='hp'){
+        if(!item)
+            return;
         var label = this.getWordItem();
         label.text = data.text;
         label.textColor = data.textColor;

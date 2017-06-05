@@ -112,7 +112,7 @@ class VideoUI extends game.BaseUI {
         this.vGroup.margin = 0;
         this.vGroup.desTop = 0;
 
-        this.topUI.setTitle('战斗回放');
+
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.statList0.itemRenderer = VideoTopStatItem;
@@ -406,6 +406,7 @@ class VideoUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.topUI.setTitle('战报 - 第'+StringUtil.numToStr(VideoManager.getInstance().index+1)+'轮');
         //return;
         this.upGroup.visible = false;
         this.listArray = VideoCode.getInstance().listArray;
@@ -428,7 +429,6 @@ class VideoUI extends game.BaseUI {
 
         //PKResultUI.getInstance().tempHide();
 
-        ;
         if(GuideManager.getInstance().isGuiding)
             PKResultUI.getInstance()['scroller'].viewport.scrollV = 0;
 

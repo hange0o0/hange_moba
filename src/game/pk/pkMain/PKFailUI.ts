@@ -71,7 +71,8 @@ class PKFailUI extends PKResultBase {
             MapManager.getInstance().pkAgain(onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.PVE){
-            TeamPVEManager.getInstance().pkAgain();
+            if(TeamPVEManager.getInstance().canPK())
+                TeamPVEManager.getInstance().pkAgain();
             PKResultUI.getInstance().hide();
         }
 

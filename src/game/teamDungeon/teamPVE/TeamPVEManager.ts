@@ -19,6 +19,10 @@ class TeamPVEManager {
         if(TeamPVEMain.getInstance().stage)
         {
             TeamPVEMain.getInstance().hide();
+            if(PKDressUI.getInstance().stage && PKDressUI.getInstance().pkType == 'pve_game')
+                PKDressUI.getInstance().hide();
+            if(TeamDungeonGameUI.getInstance().stage)
+                TeamDungeonGameUI.getInstance().hide();
         }
     }
 

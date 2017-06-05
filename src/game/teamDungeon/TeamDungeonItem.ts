@@ -71,6 +71,10 @@ class TeamDungeonItem extends game.BaseItem {
             if(UM.active.team_pve.team)
             {
                  var teamData = TeamPVEManager.getInstance().data;
+                if(!teamData)
+                {
+                    return;
+                }
                 if(!teamData.player3)
                 {
                     TeamPVEManager.getInstance().info();

@@ -2,9 +2,13 @@
 <e:Skin class="Btn_r1Skin" states="up,down,disabled" minHeight="50" minWidth="100" xmlns:e="http://ns.egret.com/eui">
 	<e:Image width="100%" height="100%" alpha.disabled="0.5"
 	        
-	         source="btn_r1__png" source.down="btn_r1_png" scale9Grid="27,19,59,27"/>
-	<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8"
-	         size="20" fontFamily="Tahoma 'Microsoft Yahei'"
-	         verticalAlign="middle" textAlign="center" text="123" textColor="0xCCB48E" left.down="8" right.down="8" top.down="10" bottom.down="6"/>
-	<e:Image id="iconDisplay" horizontalCenter="0" verticalCenter="0"/>
+	         source="btn_r1__png" scale9Grid="25,38,65,7" source.down="btn_r1_png"/>
+	
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:layout>
+			<e:HorizontalLayout gap="0" verticalAlign="middle" horizontalAlign="center"/>
+		</e:layout>
+		<e:Image id="iconDisplay"/>
+		<e:Label id="labelDisplay" size="20" textColor="0xCCB48E" text="123"/>
+	</e:Group>
 </e:Skin>

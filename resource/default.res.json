@@ -1654,6 +1654,11 @@
 			"name":"black_bg_png",
 			"type":"image",
 			"url":"game_assets/preload2_png32/black_bg.png"
+		},
+		{
+			"name":"main_item_title_png",
+			"type":"image",
+			"url":"game_assets/preload_png/main_item_title.png"
 		}
 	]
 }

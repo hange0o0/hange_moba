@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="TopPlayerTipsSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="200">
 	<e:Group x="20" y="4" width="600">
-		<e:Image source="arrow7_png" y="125.78" horizontalCenter="0" scaleX="2" scaleY="2"/>
+		<e:Image source="arrow7_png" y="110" horizontalCenter="0" scaleX="2" scaleY="2"/>
 		<e:Rect height="130" width="600" y="16" strokeWeight="2" ellipseHeight="30" ellipseWidth="30" x="0" fillColor="0x150504" strokeColor="0xf7bc35"/>
 		<e:Label id="nameText" text="标签" y="32.19" size="28" textColor="0xCCB48E" x="125.64"/>
 		<e:Label id="desText" text="标签标签标签标签标签,标签标签标签标签标签,标签标签标签标签标签," y="73.71" size="24" textColor="0xCCB48E" lineSpacing="5" textAlign="left" maxWidth="400" x="155"/>

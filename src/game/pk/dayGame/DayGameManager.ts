@@ -27,6 +27,13 @@ class DayGameManager{
         return '守卫' + level;
     }
 
+    public passDay(){
+        if(DayGameUI.getInstance().stage)
+            DayGameUI.getInstance().hide();
+        if(PKDressUI.getInstance().stage && PKDressUI.getInstance().pkType == 'day_game')
+            PKDressUI.getInstance().hide();
+    }
+
     public resetDay(){
         if(!DateUtil.isSameDay(UM.day_game.lasttime))
         {
