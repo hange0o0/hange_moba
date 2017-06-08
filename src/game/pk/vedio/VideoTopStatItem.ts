@@ -13,6 +13,13 @@ class VideoTopStatItem extends game.BaseItem {
     }
 
     public dataChanged() {
+        if(!this.data)
+        {
+            this.visible = false
+            return;
+        }
+
+        this.visible = true
         if(this.data.id > 100)
             this.mc.source = 'buff_XX_png'
         else

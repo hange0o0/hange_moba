@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainAwardBeforeSkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="580" x="1" y="10"/>
-	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="领取补助" x="20"/>
+	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="领取补助" x="20" stroke="2" bold="true"/>
 	<e:Group y="493.93939393939394" horizontalCenter="0" locked="true">
 		<e:Button id="closeBtn" label="返回" x="0" y="0" skinName="Btn_b2Skin"/>
 		<e:Button id="okBtn" label="领取" skinName="Btn_r2Skin" x="0" y="0"/>

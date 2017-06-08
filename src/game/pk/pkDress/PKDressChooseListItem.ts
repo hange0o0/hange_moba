@@ -17,6 +17,7 @@ class PKDressChooseListItem extends game.BaseItem {
     private atkIndex: eui.Label;
     private speedText: eui.Label;
     private speedIndex: eui.Label;
+    private typeMC: eui.Image;
 
 
 
@@ -73,6 +74,7 @@ class PKDressChooseListItem extends game.BaseItem {
         //this.nickText.text = vo.name
 
         this.infoStr = ''//this.createHtml(vo.name,0xE0A44A,16);
+        this.typeMC.source = vo.typeIcon;
 
 
         //var fightData;

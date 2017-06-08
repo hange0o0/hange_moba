@@ -58,7 +58,7 @@ class GameLogUI extends game.BaseWindow {
         var arr = [];
         for(var i=0;i<list.length;i++)
         {
-            arr.push({text:list[i]})
+            arr.push({text:list[i],index:i})
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }

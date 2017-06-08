@@ -51,9 +51,10 @@
 	</e:Group>
 
 
-	<e:Group x="30" y="30" locked="true">
+	<e:Group x="30" y="30">
 		<e:Image source="card_bg_png" x="0" y="0" height="350" scale9Grid="72,75,87,71" width="270"/>
 		<e:Image id="headMC" source="head_png" x="15" y="13" width="240" height="320"/>
+		<e:Image id="typeMC" x="12.06" y="8.03" scaleX="1.5" scaleY="1.5" source="monster_type1_png"/>
 	</e:Group>
 	<e:Rect width="580" horizontalCenter="0" top="400" bottom="20" ellipseHeight="10" ellipseWidth="10" strokeColor="0xC2A87D" strokeWeight="1" fillColor="0x180802"/>
 	<e:List id="list" x="38" top="410" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="30">

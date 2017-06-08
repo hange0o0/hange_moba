@@ -13,7 +13,7 @@ class MapUI extends game.BaseUI {
         this.loadUI = PKLoadingUI.getInstance();
         this.loadData = {
             min:1000,
-            source:'main1_png'
+            source:'main5_png'
         }
     }
 

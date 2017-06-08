@@ -144,6 +144,10 @@ class MonsterVO {
 
     }
 
+    public get typeIcon(){
+         return 'monster_type'+this.mtype+'_png'
+    }
+
     private addMV(mv){
         //mv = '0|6'
         var arr = mv.split(',');

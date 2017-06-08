@@ -286,6 +286,9 @@ class PKManager {
             case PKManager.PKType.SERVER_EQUAL:
                 sceneID = 4;
                 break;
+            case PKManager.PKType.MAP:
+                sceneID = 5;
+                break;
             default:
                 sceneID = 1 + Math.floor(Math.random()*4);
                 break;

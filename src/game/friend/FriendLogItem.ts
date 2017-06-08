@@ -84,6 +84,7 @@ class FriendLogItem extends game.BaseItem {
         {
             this.currentState = 'team';
             this.nameText.text = this.data.content.nick;
+            this.headMC.source = MyTool.getHeadUrl(this.data.content.head);
             this.setText(this.talkText,  '邀请你加入战队：['+ Base64.decode(this.data.content.team_name)+']');
             if(!DateUtil.isSameDay(this.data.time))
             {

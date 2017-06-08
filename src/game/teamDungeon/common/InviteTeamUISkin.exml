@@ -2,12 +2,11 @@
 <e:Skin class="InviteTeamUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image x="0" y="0" source="bg_jpg"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Rect height="60" width="640" x="0" y="74" fillAlpha="0.3"/>
-	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="70" bounces="false">
+	<e:Scroller id="scroller" width="640" x="0" bottom="0" top="80" bounces="false">
 		<e:Group>
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 				<e:layout>
-					<e:VerticalLayout/>
+					<e:VerticalLayout paddingTop="10"/>
 				</e:layout>
 				
 			</e:List>

@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainPageUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
+	<e:Image id="bottomMV" source="main_bottom_mv_png" x="0" bottom="80" alpha="0.5"/>
 	<e:Group id="starGroup" height="300" width="100%" x="0" y="120"/>
 	<e:Group x="-2" y="0">
 		<e:Image source="fire_top_jpg" x="2" y="0" locked="true"/>
@@ -162,7 +163,6 @@
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
 		</e:Group>
 	</e:Group>
-	<e:Image source="red_point_png" x="-728" y="788"/>
 	<e:Group id="diamonDrawBtn" bottom="145" x="10">
 		<e:Image id="diamondDrawLight" source="border_light_png" y="-16" horizontalCenter="0" scale9Grid="38,33,22,28" width="84" height="95"/>
 		<e:Image y="0" horizontalCenter="0" source="card_back_bg_png" scaleX="0.5" scaleY="0.5"/>

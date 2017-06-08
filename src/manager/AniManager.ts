@@ -213,6 +213,32 @@ class AniManager {
         },this)
     }
 
+    //闪电
+    public showFlash(con,point){
+        var data:any = RES.getRes('flash' + "_json"); //qid
+        var texture:egret.Texture = RES.getRes('flash' + "_png");
+        if(data == null)
+        {
+            return
+        }
+        var mcFactory = new egret.MovieClipDataFactory(data, texture);
+
+        var mc:any = this.mcPool.pop() || new egret.MovieClip();
+        mc.movieClipData = mcFactory.generateMovieClipData('flash' + Math.floor( 1 + Math.random()*5));
+        var scale = 1 + Math.random();
+        mc.x = point.x
+        mc.y = point.y - (scale - 1) *10;
+        mc.scaleX = scale
+        mc.scaleY = scale
+        con.addChild(mc);
+        mc.gotoAndPlay(1, 1);
+        mc.comFun = null;
+        mc.frameRate = 12//技能动画变慢
+        mc.once(egret.Event.COMPLETE, this.onComp, this);
+        this.mvList.push(mc);
+        return mc;
+    }
+
 
     //云
     public showCloud(con,rect,isPlace?){

@@ -361,16 +361,47 @@ class VideoCode{
         }
     }
 
+
+    //private getStatValue(){
+    //
+    //}
+
     public onMovieOver(){
         this.stepOne();
     }
 
-    private defenderMV(key,value){
+    private defenderMV(key,value,changeValue?){
         var oo = {key:key,value:value,defender:this.defender};
+        if(changeValue)
+        {
+            var temp = [];
+            for(var i=0;i<changeValue.length;i++)
+            {
+                var changeData = changeValue[i];
+                if(changeData.player.isPKing)
+                {
+                    var valueData:any = {};
+                    valueData.id = changeData.player.teamID;
+                    valueData.change = {};
+                    for(var j=0;j<changeData.change.length;j++)
+                    {
+                         var tempKey = changeData.change[j];
+                        if(tempKey == 'buffList')
+                            valueData.change[tempKey] = JSON.stringify(changeData.player.buffList)
+                        else
+                            valueData.change[tempKey] =  changeData.player[tempKey];
+                    }
+                    temp.push(valueData);
+                }
+            }
+            if(temp.length > 0)
+                oo['changeValue'] = temp;
+        }
         var id = this.atker + '_' + this.defender;
         var last = this.skillData.defender[ this.skillData.defender.length - 1] || {};
         if(last.key != id)
         {
+            //last.lastStat = this.getStatValue();
             last = {key:id,atker:this.atker,defender:this.defender,list:[]};
             this.skillData.defender.push(last);
         }
@@ -403,6 +434,7 @@ class VideoCode{
                 else if(player.teamID == atker.teamID && value.value > 0)
                     atker.atkerHP(value.value);
                 this.defenderMV('hp',{value:value.value,last:last,max:player.maxHp,current:player.hp,isNegative:value.isNegative,mid:value.mid,skillID:value.skillID})
+                //,[{player:player,change:['hp']}]
                 //if(value.value < 0 && player.hp <= 0)
                 //{
                 //    this.skillData.diePlayer.push(player.id);
@@ -414,11 +446,17 @@ class VideoCode{
             {
                 //this.defenderMV('spd',value.value)
                 player.addMp(value.value);
+                //this.defenderMV('valueChange',null,[
+                //        {player:player,change:['mp','maxMp']}
+                //    ]
+                //)
                 break;
             }
             case '3': //清除效果
                 player.cleanBuff(value.value.id,value.value.cd,value.value.value);
-                this.defenderMV('clean',value.value);
+                this.defenderMV('clean',value.value,[
+                    {player:player,change:['buffList']}
+                ]);
                 break;
             //case '3'://    "ATK"=>'3',
             //{
@@ -434,12 +472,16 @@ class VideoCode{
                     player.buffList.push({id:5,value:value.value})
                 else if(value.value < 0)
                     player.buffList.push({id:15,value:value.value})
+                //this.defenderMV('valueChange',null)
                 break;
             }
             case '5'://    "MP"=>'5',
             {
-                this.defenderMV('mp',value.value)
                 player.addMp(value.value);
+                this.defenderMV('mp',value.value,[
+                    {player:player,change:['mp','maxMp']}
+                ])
+
                 break;
             }
             case '6'://    "MV"=>'6',
@@ -459,14 +501,18 @@ class VideoCode{
             }
             case '9':       //mmp
             {
-                this.defenderMV('mmp',value.value)
                 player.maxMp += (value.value);
+                this.defenderMV('mmp',value.value,[
+                    {player:player,change:['mp','maxMp']}
+                ])
                 break;
             }
             case 'a':       //stat
             {
-                this.defenderMV('stat',value.value)
-                this.getPlayerByID(this.defender).addBuff(value.value,this.atker);
+                player.addBuff(value.value,this.atker);
+                this.defenderMV('stat',value.value,[
+                    {player:player,change:['buffList']}
+                ]);
                 break;
             }
             case 'b'://单位死亡
@@ -478,8 +524,10 @@ class VideoCode{
             }
             case 'c':       //stat
             {
-                this.defenderMV('stat',value.value)
-                this.getPlayerByID(this.defender).addBuff(value.value,this.atker);
+                player.addBuff(value.value,this.atker);
+                this.defenderMV('stat',value.value,[
+                    {player:player,change:['buffList']}
+                ]);
                 break;
             }
             case 'd':       //stat

@@ -132,6 +132,10 @@ class PKMainUI extends game.BaseUI {
 
         this.statList0.itemRenderer = VideoTopStatItem;
         this.statList1.itemRenderer = VideoTopStatItem;
+        this.statList0.dataProvider = new eui.ArrayCollection([0,0,0,0,0,0,0,0]);
+        this.statList1.dataProvider = new eui.ArrayCollection([0,0,0,0,0,0,0,0]);
+        this.statList0.useVirtualLayout = false
+        this.statList1.useVirtualLayout = false
 
 
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
@@ -378,6 +382,8 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.skillGroup);
         egret.Tween.removeTweens(this.upGroup);
         egret.Tween.removeTweens(this.con);
+        egret.Tween.removeTweens(this.mpBar0);
+        egret.Tween.removeTweens(this.mpBar1);
         var arr = this.itemArray;
         for(var i=0;i<arr.length;i++)
         {
@@ -611,6 +617,8 @@ class PKMainUI extends game.BaseUI {
             this.playerGroup2.visible = true
             this.playerGroup1.x = -320
             this.playerGroup2.x = 640
+            this.mpBar0.width = 1;
+            this.mpBar1.width = 1;
             var tw:egret.Tween = egret.Tween.get(this.playerGroup1);
             tw.to({x:10},300)
             var tw:egret.Tween = egret.Tween.get(this.playerGroup2);
@@ -648,16 +656,19 @@ class PKMainUI extends game.BaseUI {
         this.roundGroup.visible = true;
         this.addChild(this.roundGroup);
         this.roundGroup.y = this.upGroup.y + 280
-        this.roundMC1.x = 0
-        this.roundMC2.x = 360
-        this.roundMC1.scaleX = 1
-        this.roundMC2.scaleX = -1
-        this.roundMC1.scaleY = 1
-        this.roundMC2.scaleY = 1
+        this.roundGroup.skewX = 0;
+        //this.roundMC1.x = 0
+        //this.roundMC2.x = 360
+        //this.roundMC1.scaleX = 1
+        //this.roundMC2.scaleX = -1
+        //this.roundMC1.scaleY = 1
+        //this.roundMC2.scaleY = 1
         this.roundText.text = 'ROUND ' + this.pkStep;
         var tw:egret.Tween = egret.Tween.get(this.roundGroup);
-        tw.to({scaleX:3,scaleY:3,alpha:0}).to({scaleX:1,scaleY:1,alpha:1},200).wait(1000).
-            to({alpha:0,scaleX:2.5,scaleY:0.1},200);
+        tw.to({scaleX:3,scaleY:3,alpha:0}).to({scaleX:0.9,scaleY:0.9,alpha:1},200).to({scaleX:1,scaleY:1},200).wait(800).
+            to({alpha:0,scaleX:2.5,skewX:90},200).call(function(){
+                this.roundGroup.visible = false;
+            },this);
         //var tw:egret.Tween = egret.Tween.get(this.roundMC1);
         //tw.wait(1200).to({scaleX:2.5,x:-500,scaleY:0.1},500)
         //var tw:egret.Tween = egret.Tween.get(this.roundMC2);
@@ -746,9 +757,9 @@ class PKMainUI extends game.BaseUI {
                         if(item.isPKing)
                         {
                             if(item.team == 1)
-                                tw.to({x:-100},300).wait(200).to({y:y}).to({x:x + 50},200).to({x:x},200)
+                                tw.to({x:-100},300).wait(200).to({y:y,scaleX:1,scaleY:1}).to({x:x + 50},200).to({x:x},200)
                             else
-                                tw.to({x:640+100},300).wait(200).to({y:y}).to({x:x - 50},200).to({x:x},200)
+                                tw.to({x:640+100},300).wait(200).to({y:y,scaleX:1,scaleY:1}).to({x:x - 50},200).to({x:x},200)
                         }
                         else
                         {
@@ -864,6 +875,7 @@ class PKMainUI extends game.BaseUI {
 
         this.upGroup.visible = false;
         this.downBG.visible = false;
+        this.roundGroup.visible = false;
 
 
         AniManager.getInstance().removeAllMV();
@@ -1462,13 +1474,23 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this['hpBar'+index])
         egret.Tween.removeTweens(this['hpBar'+index + '_'])
         this['hpText'+index].text = (data.hp || 0)  + '/' + (data.maxHp || 0);
-        this['mpText'+index].text = data.mp  + '/' + data.maxMp;
         this['apText'+index].text = data.ap  + '/' + PKManager.ApMax;
         this['hpBar'+index].width =  Math.min(1,(data.hp || 0)  / (data.maxHp || 1)) * this.barWidth;
         this['hpBar'+index + '_'].width =  0;
-        this['mpBar'+index].width =  Math.min(1,data.mp  / data.maxMp) * this.barWidth;
         this['apBar'+index].width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
 
+        this.renewMP(data,player,index);
+        this.renewBuffer(data,player,index);
+    }
+
+    private renewMP(data,player,index){
+        egret.Tween.removeTweens(this['mpBar'+index])
+        this['mpText'+index].text = data.mp  + '/' + data.maxMp;
+        var tw = egret.Tween.get(this['mpBar'+index])
+        tw.to({width:Math.min(1,data.mp  / data.maxMp) * this.barWidth},200)
+    }
+
+    public renewBuffer(data,player,index){
         var buff = JSON.parse(data.buffList);
         var valueAdd = this.getValueAdd(buff);
         if(valueAdd.atk)
@@ -1502,7 +1524,18 @@ class PKMainUI extends game.BaseUI {
             this['defGroup'+index].visible = false
         }
 
-        this['statList'+index].dataProvider = new eui.ArrayCollection(getList(buff));
+        var list = getList(buff);
+        //var len =
+        for(var i=0;i<8;i++)
+        {
+            if(index == 0)
+                var mc:any = this['statList'+index].getChildAt(i);
+            else
+                var mc:any = this['statList'+index].getChildAt(7-i);
+            mc.data = list[i];
+        }
+
+        //this['statList'+index].dataProvider = new eui.ArrayCollection();
 
 
         function getList(data){
@@ -1817,6 +1850,8 @@ class PKMainUI extends game.BaseUI {
                 else  if(svo.mvType == 2)
                     VM.playOnItem(svo.mvID1,defenderItem,null,null,xy);
             }
+            else
+                VM.playSkillSound(16);
 
 
         },this,waitCD)
@@ -1875,6 +1910,8 @@ class PKMainUI extends game.BaseUI {
 
                     if(skillID2)
                         VM.playOnItem(skillID2,defenderItem,null,null,xy);
+                    //else
+                    //    VM.playSkillSound(16);
 
                 },this,sendXY)
             }
@@ -1892,6 +1929,8 @@ class PKMainUI extends game.BaseUI {
 
                     if(mvType && skillID2)
                         VM.playOnItem(skillID2,defenderItem,null,null,xy);
+                    else
+                        VM.playSkillSound(16);
 
                 },this,sendXY)
             }
@@ -2145,6 +2184,19 @@ class PKMainUI extends game.BaseUI {
     //返回下一个动作的CD
     private addEffect(item,effect,delay?)
     {
+        if(effect.changeValue)
+        {
+            console.log(effect.changeValue)
+            var VC = VideoCode.getInstance();
+            for(var i=0;i<effect.changeValue.length;i++)
+            {
+                var temp =  effect.changeValue[i];
+                if(temp.change.buffList)
+                    this.renewBuffer(temp.change,VC['player' + temp.id],temp.id - 1);
+                else if(temp.change.maxMp)
+                    this.renewMP(temp.change,VC['player' + temp.id],temp.id - 1);
+            }
+        }
         var mc:any
         if(effect.key == 'hp')
         {

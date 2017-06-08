@@ -5,7 +5,9 @@ class HelpItem extends game.BaseItem {
     }
 
 
+    private bg: eui.Rect;
     private text: eui.Label;
+
 
 
 
@@ -14,6 +16,7 @@ class HelpItem extends game.BaseItem {
 
     public dataChanged() {
         this.setHtml(this.text,this.data.text.replace(/\[/g,'<font color="#FFFF00">').replace(/\]/g,'<\/font>'))
+        this.bg.visible = this.data.index%2 == 0;
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="SettingSkin" width="580" height="650" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="580" x="1" y="10"/>
-	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="设置" x="20"/>
+	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="设置" x="20" stroke="2" bold="true"/>
 	<e:CheckBox id="musicCB" label="音乐" x="73" y="115" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="friendCB" x="300" label="拒绝好友请求" y="115" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="soundCB" x="73" y="180" label="音效" skinName="MyCheckBoxSkin"/>

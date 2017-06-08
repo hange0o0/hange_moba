@@ -1,4 +1,4 @@
-class InviteTeamUI extends game.BaseWindow {
+class InviteTeamUI extends game.BaseUI {
     private static instance:InviteTeamUI;
     public static getInstance() {
         if (!this.instance) this.instance = new InviteTeamUI();

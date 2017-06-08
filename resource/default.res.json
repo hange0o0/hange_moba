@@ -29,11 +29,11 @@
 			"name":"preload_jpg"
 		},
 		{
-			"keys":"border3_png,border4_png,border6_png,box0_png,box1_png,box2_png,box3_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu2_png,head_border1_png,icon_add_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_dec_png,jump_btn_png,lock_icon2_png,lose_icon_png,pay_energy_png,pk_icon_png,radio_btn1_png,radio_btn2_png,shop_energy_png,shop_money_png,shop_ticket_png,win_icon_png,1th_png,2th_png,3th_png,arrow2_png,arrow3_png,arrow4_png,arrow5_png,arrow8_png,border2_png,button_go_2_png,note_icon_png,arrow7_png,cloud3_png,cloud1_png,cloud2_png,card_icon_4_png,common_title_bg_png,box_open_png,box_close_png",
+			"keys":"border3_png,border4_png,border6_png,box0_png,box1_png,box2_png,box3_png,card_icon_0_png,card_icon_1_png,card_icon_2_png,card_icon_3_png,card_star_png,fu2_png,head_border1_png,icon_add_png,icon_atk_png,icon_b1_png,icon_b2_png,icon_b3_png,icon_dec_png,jump_btn_png,lock_icon2_png,lose_icon_png,pay_energy_png,pk_icon_png,radio_btn1_png,radio_btn2_png,shop_energy_png,shop_money_png,shop_ticket_png,win_icon_png,1th_png,2th_png,3th_png,arrow2_png,arrow3_png,arrow4_png,arrow5_png,arrow8_png,border2_png,button_go_2_png,note_icon_png,arrow7_png,cloud3_png,cloud1_png,cloud2_png,card_icon_4_png,common_title_bg_png,box_open_png,box_close_png,dungeon_bg_png",
 			"name":"preload2_png"
 		},
 		{
-			"keys":"head_border_light1_png,head_border_light3_png,border_light_png,border_light1_png,border_light3_png,black_bg_png",
+			"keys":"head_border_light1_png,head_border_light3_png,border_light_png,border_light1_png,border_light3_png,black_bg_png,main_bottom_mv_png,monster_type1_png,monster_type2_png,monster_type3_png",
 			"name":"preload2_png32"
 		},
 		{
@@ -1656,9 +1656,29 @@
 			"url":"game_assets/preload2_png32/black_bg.png"
 		},
 		{
-			"name":"main_item_title_png",
+			"name":"main_bottom_mv_png",
 			"type":"image",
-			"url":"game_assets/preload_png/main_item_title.png"
+			"url":"game_assets/preload2_png32/main_bottom_mv.png"
+		},
+		{
+			"name":"monster_type1_png",
+			"type":"image",
+			"url":"game_assets/preload2_png32/monster_type1.png"
+		},
+		{
+			"name":"monster_type2_png",
+			"type":"image",
+			"url":"game_assets/preload2_png32/monster_type2.png"
+		},
+		{
+			"name":"monster_type3_png",
+			"type":"image",
+			"url":"game_assets/preload2_png32/monster_type3.png"
+		},
+		{
+			"name":"dungeon_bg_png",
+			"type":"image",
+			"url":"game_assets/preload2_png/dungeon_bg.png"
 		}
 	]
 }

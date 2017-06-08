@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="TeamDungeonItemSkin" width="620" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="border5_png" x="0" y="0" scale9Grid="10,5,60,13" width="100%" height="100%"/>
-	<e:Image id="bg" source="team1_jpg" x="5" y="5"/>
-	<e:Rect width="200" height="290" x="5" y="5" fillAlpha="0.7"/>
-	<e:Image source="black_bg_png" x="205" y="5" width="300" height="290"/>
-	<e:Group y="10" id="helpBtn" right="10" x="20">
+<e:Skin class="TeamDungeonItemSkin" width="620" height="320" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="team1_jpg" x="5" y="15.64"/>
+	<e:Rect width="200" height="290" x="15" y="12.6" fillAlpha="0.7"/>
+	<e:Image source="black_bg_png" x="215" y="14.12" width="300" height="290"/>
+	<e:Image source="black_bg_png" x="25" y="28.68" width="250" height="50"/>
+	<e:Image x="0" y="0" width="100%" height="100%" source="dungeon_bg_png" scale9Grid="33,37,536,109"/>
+	<e:Group y="25.16" id="helpBtn" right="20" x="20">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Label y="10" textColor="0xF8D05A" horizontalCenter="0" text="?"/>
 	</e:Group>
-	<e:Button id="btn" label="按钮" x="446" y="228" skinName="Btn_r2Skin"/>
-	<e:Label id="titleText" text="标签" x="25" y="22" stroke="1" size="35" textColor="0xccb48e" bold="true"/>
-	<e:Label id="desText" x="40" y="70" text="标签" size="24" textColor="0xccb48e" stroke="1"/>
-	<e:Label id="cdText" y="244" text="标签" x="40" size="24" textColor="0xccb48e" stroke="1"/>
+	<e:Button id="btn" label="按钮" x="435.36" y="238.64" skinName="Btn_r2Skin"/>
+	<e:Label id="titleText" text="标签" x="34.12" y="37.15" size="35" bold="true" strokeColor="0x000000" textColor="0xe0a44a"/>
+	<e:Label id="desText" x="49.12" y="95" text="标签" size="24" textColor="0xccb48e" stroke="1"/>
+	<e:Label id="cdText" y="262.24" text="标签" x="40" size="24" textColor="0xccb48e" stroke="1"/>
 </e:Skin>

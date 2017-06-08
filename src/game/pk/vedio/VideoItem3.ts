@@ -563,6 +563,8 @@ class VideoItem3 extends game.BaseItem {
 
     private addEffect(effect,group?:eui.Group)
     {
+        if(effect.key == 'valueChange')
+            return;
         if(!group)
             group = this.addGroup();
         if(this.showCleaning && effect.key != 'clean')

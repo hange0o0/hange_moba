@@ -1,8 +1,27 @@
-<?xml version='1.0' encoding='utf-8'?><e:Skin class="PKDressChooseListItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  width="300" height="200" states="left,right" >
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PKDressChooseListItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  width="300" height="200" states="left,right" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<e:Group x="0" y="-2" right.right="0">
 		<e:Image source="card_bg_png" y="1" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
 		<e:Image source="head_png" y="9" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>
 		<e:Image id="redMC" source="arrow5_png" x="121" bottom="10"/>
+		<e:Image id="typeMC" x="6" y="5" source="monster_type1_png"/>
 	</e:Group>
 	<e:Group x="151" y="0" x.right="-5">
 		<e:Button id="useBtn" label="使用" x="3" scaleX="0.88" scaleY="0.88" skinName="Btn_d2Skin" y="145"/>
@@ -29,4 +48,6 @@
 			<e:Image source="icon_empty_png" y="0" scaleY="0.8" scaleX="0.8" x="0"/>
 			<e:Label id="speedIndex" x="3" y="7" text="2" size="22" stroke="3" width="30" textAlign="center"/>
 		</e:Group>
-	</e:Group></e:Skin>
+	</e:Group>
+
+</e:Skin>

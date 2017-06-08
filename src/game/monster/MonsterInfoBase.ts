@@ -12,6 +12,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private mpText: eui.Label;
     private coinText: eui.Label;
     private headMC: eui.Image;
+    private typeMC: eui.Image;
     private list: eui.List;
     private levelUpCon: eui.Group;
     private levelUpCoinGroup: eui.Group;
@@ -21,6 +22,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private levelUpCardText: eui.Label;
     private lockGroup: eui.Group;
     private levelDes: eui.Label;
+
 
 
 
@@ -133,6 +135,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
         //其本信息
         this.headMC.source = vo.url;
+        this.typeMC.source = vo.typeIcon;
         //this.typeText.text = MonsterKindVO.getObject(vo.type).word
         var nameStr = vo.name;
 
@@ -201,7 +204,6 @@ class MonsterInfoBase extends game.BaseContainer {
 
                 if(UM.level >= vo.level)
                 {
-                    nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
                     if(specialData.hard)
                         nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + '/'+levelLimit+')</font>'
                     else

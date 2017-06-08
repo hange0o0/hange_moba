@@ -40,6 +40,7 @@ class CreateTeamUI extends game.BaseWindow {
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
         this.nameText.restrict = "a-zA-Z0-9_\u0391-\uFFE5";
         this.nameText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
+        this.sortList.itemRenderer = HonorSortItem;
         this.sortList.dataProvider = new eui.ArrayCollection(TeamDungeonManager.getInstance().hardData)
     }
 

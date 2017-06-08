@@ -12,6 +12,19 @@ class MonsterManager{
 
     }
 
+    public getMonsterValue(monsterID){
+        var force = (UM.award_force + UM.tec_force);
+        var fightData = UM.getTecMonsterAdd(monsterID);
+        fightData.atk += force;
+        fightData.hp += force;
+        var vo = MonsterVO.getObject(monsterID);
+        return {
+            atk:Math.round(vo.atk * (1+fightData.atk/100)),
+            hp:Math.round(vo.hp * (1+fightData.hp/100)),
+            speed: Math.round(vo.speed * (1+fightData.speed/100))
+        }
+    }
+
     public initData(){
         this.commentData = SharedObjectManager.instance.getMyValue('monster_talk_comment') || {};
         var deleteKey = [];

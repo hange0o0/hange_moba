@@ -43,7 +43,7 @@ class HelpUI extends game.BaseWindow {
         var arr = [];
         for(var i=0;i<this.data.list.length;i++)
         {
-            arr.push({text:this.data.list[i]})
+            arr.push({text:this.data.list[i],index:i})
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }

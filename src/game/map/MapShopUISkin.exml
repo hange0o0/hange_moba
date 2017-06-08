@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MapShopUISkin" height="660" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="580" x="0" y="10"/>
-	<e:Label horizontalCenter="0" y="30" textColor="0xD0C7AD" text="积分商城" x="20" stroke="2"/>
+	<e:Label horizontalCenter="0" y="30" textColor="0xD0C7AD" text="积分商城" x="20" stroke="2" bold="true"/>
 	<e:Rect horizontalCenter="0" y="76" height="60" fillColor="0x130A05" width="520" fillAlpha="1" x="20"/>
 	<e:Rect horizontalCenter="0" height="90" fillColor="0x130A05" bottom="26" width="520" fillAlpha="1" x="10" y="10"/>
 	<e:Group horizontalCenter="0" bottom="45" id="btnGroup" x="10" y="10">
@@ -9,7 +9,9 @@
 		<e:layout>
 			<e:HorizontalLayout gap="30"/>
 		</e:layout>
-	</e:Group>
+	</e:Group>
+
+
 	<e:Scroller width="520" id="scroller" y="137" bounces="false" height="400" horizontalCenter="0">
 		<e:Group>
 			<e:List id="list" x="0" width="200" height="200" y="0">

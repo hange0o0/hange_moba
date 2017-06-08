@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MyCardTaskUISkin" width="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" height="540">
+<e:Skin class="MyCardTaskUISkin" width="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" height="580">
 	<e:Image source="window2_png" scale9Grid="95,128,25,230" width="500" x="0" top="0" bottom="0"/>
-	<e:Label id="taskText" text="仍然]赢得3场胜利使用[基地枯" verticalAlign="top" textAlign="left" size="26" lineSpacing="8" horizontalCenter="1" maxWidth="440" y="286.73" textColor="0xe0a44a"/>
-	<e:Label y="94" textColor="0xE0A44A" maxWidth="440" text="在对战中使用卡牌" verticalAlign="top" textAlign="left" horizontalCenter="1" size="26" lineSpacing="8" x="10"/>
+	<e:Label id="taskText" text="仍然]赢得3场胜利使用[基地枯" verticalAlign="top" textAlign="left" size="26" lineSpacing="8" horizontalCenter="1" maxWidth="440" y="298.73" textColor="0xe0a44a"/>
+	<e:Label y="98" textColor="0xE0A44A" maxWidth="440" text="使用卡牌" verticalAlign="top" textAlign="left" horizontalCenter="1" size="26" lineSpacing="8" x="10"/>
 
 
-	<e:Label id="useText" y="340" textColor="0xCCB48E" text="卡组使用：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="50"/>
-	<e:Label id="rateText" y="340" textColor="0xCCB48E" text="任务进度：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="270"/>
+	<e:Label id="useText" y="372" textColor="0xCCB48E" text="卡组使用：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="50"/>
+	<e:Label id="rateText" y="372" textColor="0xCCB48E" text="任务进度：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="270"/>
 	<e:Rect right="30" fillAlpha="1" left="30" fillColor="0x160D06" x="10" height="70" bottom="25"/>
 	<e:Button id="okBtn" label="知道了" skinName="Btn_r2Skin" bottom="30" horizontalCenter="0"/>
-	<e:Label y="31" textColor="0xE3D1B6" text="卡组任务" horizontalCenter="0" size="26" stroke="2" x="10"/>
-	<ns1:AwardItem id="awardItem" y="131.94" skinName="AwardItemSkin" horizontalCenter="0"/>
-	<e:Group x="50" y="370">
+	<e:Label y="31" textColor="0xE3D1B6" text="卡组任务" horizontalCenter="0" size="26" stroke="2" x="10" bold="true"/>
+	<ns1:AwardItem id="awardItem" y="139.94" skinName="AwardItemSkin" horizontalCenter="0"/>
+	<e:Group x="50" y="402">
 		<e:Label id="awardText" x="0" y="20" textColor="0xCCB48E" text="任务奖励：钻石+3" verticalAlign="bottom" textAlign="center" size="26" lineSpacing="5" height="40"/>
 		<e:Image id="awardMC" source="get_award_png" x="240" y="0" scaleY="0.8" scaleX="0.8"/>
 		<e:layout>

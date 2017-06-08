@@ -11,6 +11,7 @@ class MainPageUI extends game.BaseUI {
     }
 
 
+    private bottomMV: eui.Image;
     private starGroup: eui.Group;
     private headMC: eui.Image;
     private honorRed: eui.Image;
@@ -32,8 +33,8 @@ class MainPageUI extends game.BaseUI {
     private addFreeBtn: eui.Group;
     private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
-    private mapGame: MainMapItem;
     private dayGame: MainDayItem;
+    private mapGame: MainMapItem;
     private serverGame: MainServerItem;
     private serverGameEqual: MainServerEqualItem;
     private scroller: eui.Scroller;
@@ -67,6 +68,7 @@ class MainPageUI extends game.BaseUI {
     private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
     private topPlayerTips: TopPlayerTips;
+
 
 
 
@@ -229,6 +231,9 @@ class MainPageUI extends game.BaseUI {
             this.addStar();
             egret.setTimeout(this.addStar,this,500);
 
+            if(!this.bottomMV.visible && Math.random() < 0.2 && (egret.getTimer() - this.bottomMV['playTimer']) > 5*1000)
+                this.playerBottomMV();
+
             if(egret.getTimer() > this.playHeadTime){
                 this.playHeadTime = egret.getTimer() + 20*1000
                 this.playRankHead();
@@ -240,14 +245,33 @@ class MainPageUI extends game.BaseUI {
         }
     }
 
+    private playerBottomMV(){
+        this.bottomMV['playTimer'] = egret.getTimer();
+        this.bottomMV.visible = true
+        egret.Tween.removeTweens(this.bottomMV);
+        this.bottomMV.alpha = 0;
+        this.bottomMV.x = Math.random()*640 - 320;
+        var tw = egret.Tween.get(this.bottomMV)
+        tw.to({alpha:Math.random() * 0.3 + 0.2},1000 + Math.random() * 500).to({alpha:0},1000 + Math.random() * 500).call(function(){
+            this.bottomMV.visible = false
+        },this);
+    }
+
     private addStar(){
-        if(Math.random()<0.1) {
+        if(Math.random()<0.2) { //流星
             var p = {
                 x:Math.random()*320 + 20,
                 y:Math.random()*120 + 60
             };
             AniManager.getInstance().showStar2(this.starGroup, p)
         }
+        //else if(Math.random()<0.1) { //闪电
+        //    var p = {
+        //        x:Math.random()*(640) - 60,
+        //        y:0
+        //    };
+        //    AniManager.getInstance().showFlash(this.starGroup, p)
+        //}
         else
         {
             var p = {
@@ -548,6 +572,8 @@ class MainPageUI extends game.BaseUI {
             SoundManager.getInstance().loadEffectSound();
         },1000)
 
+        this.bottomMV.visible = false
+        this.bottomMV['playTimer'] = 0;
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
         this.onTimer();
     }

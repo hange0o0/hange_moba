@@ -31,7 +31,7 @@ class MainMapItem extends game.BaseItem {
 
 
     private onStart(){
-        MapUI.getInstance().show();
+        MapMainUI.getInstance().show();
     }
 
 
