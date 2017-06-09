@@ -69,7 +69,7 @@ var game_file_list = [
 	"bin-debug/game/mainPage/MainServerEqualItem.js",
 	"bin-debug/game/mainPage/MainServerItem.js",
 	"bin-debug/game/mainPage/TopPlayerTips.js",
-	"bin-debug/game/map/MapCode.js",
+	"bin-debug/game/map/MapData.js",
 	"bin-debug/game/map/MapExchangeUI.js",
 	"bin-debug/game/map/MapGameUI.js",
 	"bin-debug/game/map/MapInfoUI.js",

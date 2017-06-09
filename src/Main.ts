@@ -43,7 +43,7 @@ class Main extends eui.UILayer {
         //Config loading process interface
         //设置加载进度界面
         this.loadingView = MainLoadingUI.getInstance();
-        if(_get['debug'] != 100)
+        if(_get['debug'] != 100 && _get['debug'] != 101)
         {
             this.loadingView.show(this);
         }
@@ -193,6 +193,10 @@ class Main extends eui.UILayer {
         {
             Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php';
             return
+        }
+        if(_get['debug'] == 101)
+        {
+            GameManager.container.visible = false;
         }
         Config.isDebug =  _get['debug'];
         var LM = LoginManager.getInstance();

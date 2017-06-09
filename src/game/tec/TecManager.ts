@@ -43,12 +43,12 @@ class TecManager{
     //level是指目标等级
     public needCoin(level){
         //=FLOOR(POWER(A1,2.4)*(10*(A1/5+1)),1)+38*FLOOR(A1,1)
-        return Math.floor(Math.pow(level,2.4)*(10*(level/5 + 1))) +38*level;
+        return Math.floor(Math.pow(level,2.5)*(10*(level/5 + 1))) +38*Math.floor(Math.pow(level,1.5));
     }
     public collectNeed(level){   //升级需要碎片数量
         //=FLOOR(POWER(1.25,A30)*(A30*0.6) + A30,1)
         var targetFun = function(level){
-             return Math.floor(Math.pow(1.25,level)*level*0.6 + level)
+             return Math.floor(Math.pow(1.3,level)*level*0.6 + level)
         }
         return targetFun(level) - targetFun(level - 1);
     }
