@@ -112,6 +112,22 @@ class AniManager {
         MyTool.removeMC(mc);
     }
 
+    public preLoadMV(name){
+        if(this.mcFactorys[name])
+            return true;
+        var data:any = RES.getRes(name + "_json"); //qid
+        var texture:egret.Texture = RES.getRes(name + "_png");
+        if(data && texture)
+            return true;
+        var groupName = 'mv' + name;
+        if(RES.getGroupByName(groupName).length == 0)
+        {
+            RES.createGroup(groupName, [name + "_json",name + "_png"], true);
+            RES.loadGroup(groupName);
+        }
+        return false;
+    }
+
     private getMV(name){
         var mcFactory:egret.MovieClipDataFactory = this.mcFactorys[name];
         if(!mcFactory)

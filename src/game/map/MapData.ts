@@ -6,28 +6,37 @@ class MapData {
         return this._instance;
     }
     public showCD = 5;
+    public maxBossTimes = 10;
 
 
-    public level = 1;
+
 
     public monsterHurts:any = {};//每个怪对BOSS造成的伤害
     public bossCD = 0;
 
     public pkList = []//pk中的队列(打完这个BOSS用的卡牌)
-    public bakList = []//接着出场的队列(不参与打完这个BOSS)
+    //public bakList = []//接着出场的队列(不参与打完这个BOSS)
     public pkPool = []//pk生成的队列
     public pkPoolLevel = 0;//生成PKPool标识
 
 
     public currentBossHp = 0
     public currentBossMaxHp = 0
+    public setDisplayTime = 0;
 
+
+    public level = 1;
+    public maxLevel = 1;
+    public pkBossTimes = 1;  //打最高关BOSS的次数
     public lastPKTime = 0  //上次PK胜利结束时间
     public awardValue = 0
     public pkValue = 0
     public scoreValue = 0
     public lastAwardTime = 0
-    public lastPKData;
+    public lastPKData; //通辑令数据
+
+
+
     public constructor() {
         this.initData(null);
     }
@@ -62,16 +71,16 @@ class MapData {
         }
     }
 
-    private resetBakList(){
-        while(this.bakList.length < 10)
-        {
-            this.bakList.push(this.getOneID());
-        }
-    }
+    //private resetBakList(){
+    //    while(this.bakList.length < 10)
+    //    {
+    //        this.bakList.push(this.getOneID());
+    //    }
+    //}
 
     //取要出战的ID
     private getPKID(){
-        return this.bakList.shift() || this.getOneID()
+        return this.getOneID();//this.bakList.shift() ||
     }
     //生成一个ID
     private getOneID(){
@@ -84,23 +93,24 @@ class MapData {
 
     public getBossVO(){
         var seed = this.lastPKTime;
-        seed = ( seed * 9301 + 49297 ) % 233280;
-        var rd = seed / ( 233280.0 );
+        seed = ( seed * 6075 + 106 ) % 1283;
+        var rd = seed / ( 1283.0 );
         var list = MonsterVO.getListByLevel(this.level);
         return  list[Math.floor(rd*list.length)];
     }
 
+    //当前正在PK的对像已经过的时间
+    public getPKPass(){
+        var passcd = TM.now() - this.lastPKTime;
+        return passcd%this.showCD;
+    }
+
     //计算数据
     public reInit(){
-        //if(!this.lastPKTime)
-        //{
-            this.lastPKTime = TM.now();
-        //}
-
         var cd = this.getCurrentCD();  //打完一个BOSS需要的时间
         var passcd = TM.now() - this.lastPKTime;
         var addNum =  Math.floor(passcd/cd)
-        var leaveTime =  cd - (passcd%cd);
+
         if(addNum) //要结算
         {
             this.pkValue += addNum;
@@ -109,56 +119,96 @@ class MapData {
             var awardMax = this.getAwardMax();
             if(this.awardValue > awardMax)
                 this.awardValue = awardMax
-
-            this.currentBossMaxHp = 0;
         }
+    }
 
-        var pkEndNum = Math.ceil(leaveTime / this.showCD);
-        var needNum = pkEndNum;
-        while(this.pkList.length < needNum)
+    public getNeedNum(){
+        var cd = this.getCurrentCD();  //打完一个BOSS需要的时间
+        return Math.round(cd / this.showCD);
+    }
+
+    public setPKDisplayData(){
+        if(this.setDisplayTime == this.lastPKTime)  //都是同一批次，不用重新计算
+        {
+            this.resetHp();
+            return;
+        }
+        var needNum = this.getNeedNum();
+        var cd = this.getCurrentCD()
+        if(this.setDisplayTime + cd == this.lastPKTime) //相邻的批次
+        {
+            this.pkList.splice(0,needNum-1);
+        }
+        else //相差太远，重置
+        {
+            this.pkList.length = 0;
+        }
+        this.setDisplayTime = this.lastPKTime;
+        var count = needNum + 10
+        while(this.pkList.length < count)
         {
             this.pkList.push(this.getPKID());
         }
+        //this.resetBakList();
 
-        if(this.currentBossMaxHp == 0) //重新计算BOSSHP
+        //计算血量
+        var pkIndex = this.getPKingIndex();
+        this.currentBossHp = 0
+        this.currentBossMaxHp = 0
+        for(var i=0;i<needNum;i++)
         {
-            this.resetBossHp();
-            var rate = needNum/Math.ceil(cd / this.showCD);
-            this.currentBossMaxHp = Math.ceil(this.currentBossHp/rate);
+            var id = this.pkList[i];
+            this.currentBossMaxHp += this.monsterHurts[id];
+            if(i>= pkIndex)
+                this.currentBossHp += this.monsterHurts[id];
         }
-        else //移除用过的 pkList
-        {
-            if(this.pkList.length > needNum)
-            {
-                this.pkList = this.pkList.slice(-needNum);
-                this.resetBossHp();
-            }
-        }
-
-        this.resetBakList();
     }
 
-    //一个卡牌出战完毕
-    public onPKOneFinish(){
-        var id = this.pkList.shift();
-        this.currentBossHp -= this.monsterHurts[id];
+    private resetHp(){
+        var needNum = this.getNeedNum();
+        var pkIndex = this.getPKingIndex();
+        this.currentBossHp = 0
+        this.currentBossMaxHp = 0
+        for(var i=0;i<needNum;i++)
+        {
+            var id = this.pkList[i];
+            this.currentBossMaxHp += this.monsterHurts[id];
+            if(i>= pkIndex)
+                this.currentBossHp += this.monsterHurts[id];
+        }
     }
+
+
+    //当前正在打的坐标
+    public getPKingIndex(){
+        var passCD = (TM.now() - this.lastPKTime);
+        return Math.floor(passCD / this.showCD);
+    }
+
+    ////一个卡牌出战完毕
+    //public onPKOneFinish(){
+    //    var id = this.pkList.shift();
+    //    this.currentBossHp -= this.monsterHurts[id];
+    //}
 
     public onKillBoss(){
         this.reInit();
+        this.setPKDisplayData();
     }
 
 
 
-    //重新计算BOSS血量
-    private resetBossHp(){
-        this.currentBossHp = 0
-        for(var i=0;i<this.pkList.length;i++)
-        {
-            var id = this.pkList[i];
-            this.currentBossHp += this.monsterHurts[id];
-        }
-    }
+    ////重新计算BOSS血量
+    //private resetBossHp(){
+    //    var rate = needNum/Math.ceil(cd / this.showCD);
+    //    this.currentBossMaxHp = 0
+    //    this.currentBossMaxHp = 0
+    //    for(var i=0;i<this.pkList.length;i++)
+    //    {
+    //        var id = this.pkList[i];
+    //        this.currentBossHp += this.monsterHurts[id];
+    //    }
+    //}
 
     public getCurrentCD(){
         var key = UM.getForce() + '_' + this.level;

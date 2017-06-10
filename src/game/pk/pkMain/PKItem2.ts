@@ -200,6 +200,7 @@ class PKItem2 extends game.BaseItem {
 
     public showWord(str,color){
         this.hpText.textColor = color;
+        this.hpText.strokeColor = 0x003300
         this.hpText.text = str
         this.hpText.y = -40
         this.hpText.alpha = 0;

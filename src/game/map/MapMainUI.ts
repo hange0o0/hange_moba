@@ -15,11 +15,9 @@ class MapMainUI extends game.BaseUI {
     private topUI: TopUI;
     private helpBtn: eui.Group;
     private hpGroup: eui.Group;
-    private bottomGroup: eui.Group;
     private bb: eui.Rect;
     private bf: eui.Rect;
-    private tb: eui.Rect;
-    private tf: eui.Rect;
+    private bottomGroup: eui.Group;
     private leftBtn: eui.Group;
     private la: eui.Image;
     private lt: eui.Label;
@@ -37,6 +35,7 @@ class MapMainUI extends game.BaseUI {
 
 
 
+
     private poolArray = [];
     private itemWidth = 114;
     private itemHeight = 110;
@@ -49,6 +48,10 @@ class MapMainUI extends game.BaseUI {
     public bossItem
     public pkItem
     public pkList
+    public pkIndex
+
+    public timeDic
+
 
     public childrenCreated() {
         super.childrenCreated();
@@ -64,6 +67,9 @@ class MapMainUI extends game.BaseUI {
 
         this.bossItem = this.getItem();
         this.con.addChild(this.bossItem);
+
+        this.addChild(MapExchangeUI.getInstance())
+        MapExchangeUI.getInstance().hide();
 
     }
 
@@ -85,22 +91,42 @@ class MapMainUI extends game.BaseUI {
     }
 
     private onLeft(){
-
+         MapManager.getInstance().change_level(MapData.getInstance().level - 1)
     }
+
     private onRight(){
-
+        MapManager.getInstance().change_level(MapData.getInstance().level + 1)
     }
+
     private onHelp(){
-
+        HelpManager.getInstance().mapHelp();
     }
+
     private onExchange(){
-
+        MapExchangeUI.getInstance().show();
     }
-    private onPK(){
 
+    private onPK(){
+        var MD = MapData.getInstance();
+        var MM = MapManager.getInstance();
+        if(MM.enemy && MM.enemy.level == MD.level && !MM.enemy.is_pk)
+        {
+            MM.pkLevel = MD.level;
+            MapGameUI.getInstance().show();
+            this.hide()
+            return;
+        }
+        var self = this;
+        MM.getEnemy(MD.level,function(){
+            MapGameUI.getInstance().show();
+            self.hide()
+        })
     }
     private onGet(){
-
+        var self = this;
+        MapManager.getInstance().get_award(function(){
+            self.renewInfo();
+        })
     }
     private onVideo(){
         DayLogUI.getInstance().show(MapManager.getInstance().logList,'挑战日志');
@@ -155,56 +181,166 @@ class MapMainUI extends game.BaseUI {
 
     public onShow(){
         var MD = MapData.getInstance();
+        if(!MD.lastPKTime)
+            MD.lastPKTime = TM.now();
+
         MD.reInit();
+        MD.setPKDisplayData();
         this.pkHeight = this.stage.stageHeight - 560
+
         this.renew();
+        this.renewInfo();
+
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+        this.onTimer();
+    }
+
+    private onTimer(){
+        var MD = MapData.getInstance();
+        var pkTime = Math.floor((MD.getAwardMax() - MD.awardValue)/MD.getCurrentAward() - 1)*MD.getCurrentCD()
+        pkTime +=  MD.getCurrentCD() - (TM.now() - MD.lastPKTime) + this.timeDic
+        if(pkTime == 0)
+            console.log('能量背包已充满')
+        else
+            console.log('能量背包充满时间：' + DateUtil.getStringBySeconds(pkTime,false,2))
     }
 
     private renew(){
         var MD = MapData.getInstance();
         this.topUI.setTitle('第'+MD.level+'据点')
+        this.bg.source = 'pk_bg'+(MD.level%20 || 20)+'_jpg';
 
         var scale = 0.85;
-        var pkList = this.pkList = MD.pkList.concat(MD.bakList);
+        var pkList = this.pkList = MD.pkList;
+        var index = this.pkIndex = MD.getPKingIndex();
+        var pos = 0;
         while(this.itemArray.length <6)
         {
-            var index = this.itemArray.length;
              var item = this.getItem();
-
             item.data = {vo:MonsterVO.getObject(pkList[index])};
             this.itemArray.push(item);
             this.bottomGroup.addChild(item);
             item.scaleX = item.scaleY = scale
-            item.x = (this.itemWidth * scale + 3) * index + 70;
+            item.x = (this.itemWidth * scale + 3) * pos + 70;
             item.y = 70;
+
+            index ++;
+            pos ++;
         }
 
+        this.renewBossHp()
+        this.bossItem.alpha = 1;
         this.bossItem.data = {vo:MD.getBossVO()};
         this.bossItem.x = 460;
         this.bossItem.y = this.pkHeight / 2;
 
+        this.timeDic = (TM.now() - MD.lastPKTime) - this.pkIndex*MD.showCD
         this.inPker();
+        ////延迟2秒表现
+        //var passCD = MD.getPKPass();
+        //if(passCD >= 2)
+        //    this.inPker();
+        //else
+        //    this.setTimeout(this.inPker,(2-passCD)*1000);
+    }
+
+    private renewInfo(){
+        var MD = MapData.getInstance();
+        if(MD.level<MD.maxLevel || MD.maxBossTimes == MD.pkBossTimes)
+        {
+            this.desText.text = '已通关';
+            this.setBtnEnable('left',MD.level > 1 && MD.maxLevel - MD.level < 3)
+            this.setBtnEnable('right',true)
+        }
+        else
+        {
+            this.desText.text = MD.pkBossTimes + '/' + MD.maxBossTimes;
+            this.setBtnEnable('left',MD.level > 1)
+            this.setBtnEnable('right',false)
+        }
+
+        MyTool.setColorText(this.awardText,'[能量背包：]' + MD.awardValue + '/' + MD.getAwardMax());
+        MyTool.setColorText(this.valueText,'[能量仓库：]' + MD.scoreValue);
+        MyTool.setColorText(this.pkText,'[通缉令：]' + MD.pkValue);
+    }
+
+    private setBtnEnable(key,b){
+        if(key == 'left')
+        {
+            this.leftBtn.touchChildren = this.leftBtn.touchEnabled = b;
+            if(b)
+            {
+                this.la.source = 'arrow1_png'
+                this.lt.textColor = 0xCBB46B
+            }
+            else
+            {
+                this.la.source = 'arrow3_png'
+                this.lt.textColor = 0x734B41
+            }
+        }
+        else
+        {
+            this.rightBtn.touchChildren = this.rightBtn.touchEnabled = b;
+            if(b)
+            {
+                this.ra.source = 'arrow1_png'
+                this.rt.textColor = 0xCBB46B
+            }
+            else
+            {
+                this.ra.source = 'arrow3_png'
+                this.rt.textColor = 0x734B41
+            }
+        }
     }
 
     //进场
-    private inPker(){
-         if(this.pkItem)
-         {
-             this.freeItem(this.pkItem);
-         }
-        this.pkItem = this.itemArray.shift();
-        var tw = egret.Tween.get(this.pkItem);
-        tw.to({x:-100},200).to({y:this.pkHeight / 2}).call(function(){
-            this.con.addChild(this.pkItem);
-            this.pkItem.scaleX = this.pkItem.scaleY = 1;
-            this.otherIn();
-        },this).to({x:200},200).to({x:180},200).wait(500).call(this.onPKAction,this)
+    private inPker(){ //1500ms
+        //BOSS死了
+        var MD = MapData.getInstance();
+        if(MD.currentBossHp == 0){
+            MD.onKillBoss();
+            this.pkList = MD.pkList;
+            this.pkIndex = 0;
+            MD.currentBossHp = MD.currentBossMaxHp;
+            this.bossItem.data = {vo:MD.getBossVO()};
+            this.renewInfo();
+
+            this.bossItem.alpha = 1;
+            this.bossItem.x = 740;
+            var tw = egret.Tween.get(this.bossItem);
+            tw.wait(500).to({x:440},300).to({x:460},200).call(function(){
+                this.renewBossHp(true)
+            },this).wait(500).call(this.onPKAction,this)
+        }
+        else
+        {
+            if(this.pkItem)
+            {
+                this.freeItem(this.pkItem);
+            }
+            this.pkItem = this.itemArray.shift();
+            var mvID = this.pkItem.data.vo.mapMV;
+            AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(mvID))
+            var tw = egret.Tween.get(this.pkItem);
+            tw.to({x:-100},300).to({y:this.pkHeight / 2}).wait(200).call(function(){
+                this.con.addChild(this.pkItem);
+                this.pkItem.scaleX = this.pkItem.scaleY = 1;
+                this.otherIn();
+            },this).to({x:200},300).to({x:180},200).call(function(){
+                this.bb.width = this.bf.width
+                var tw = egret.Tween.get(this.bb);
+                tw.to({width:this.bf.width},200);
+            },this).wait(500).call(this.onPKAction,this)
+        }
+
     }
 
     private otherIn(){
         var item = this.getItem();
         var scale = 0.85;
-        item.data = {vo:MonsterVO.getObject(this.pkList[6])};
+        item.data = {vo:MonsterVO.getObject(this.pkList[this.pkIndex + 6])};
         this.itemArray.push(item);
         this.bottomGroup.addChild(item);
         item.scaleX = item.scaleY = scale
@@ -220,7 +356,7 @@ class MapMainUI extends game.BaseUI {
         }
     }
 
-    private onPKAction(){
+    private onPKAction(){     //1500ms
         var des = 90;
         var cd = 200;
         var b = Math.random() > 0.5
@@ -242,15 +378,17 @@ class MapMainUI extends game.BaseUI {
         var tw:egret.Tween = egret.Tween.get(this.bossItem);
         tw.to({x:middlePos2.x - des},cd).call(this.playAni,this).to({x:middlePos2.x+ this.rand(-10,40),y:middlePos2.y + this.getYAdd(!b)},cd).wait(100).
             to({x:middlePos2.x - des + des1.x,y:middlePos2.y + des1.y},cd).call(this.playAni,this).to({x:middlePos2.x + this.rand(-10,40),y:middlePos2.y + this.getYAdd(b)},cd).wait(100).
-            to({x:middlePos2.x - des + des2.x,y:middlePos2.y+ des2.y},cd).call(this.playAni,this).to({x:middlePos2.x,y:middlePos2.y},cd).call(this.showPKResult,this)
+            to({x:middlePos2.x - des + des2.x,y:middlePos2.y+ des2.y},cd).call(this.playAni,this).to({x:middlePos2.x,y:middlePos2.y},cd).wait(100).call(this.showPKResult,this)
     }
 
     private playAni(){
-        //var arr = this.player1.data.vo.mv1.concat(this.player2.data.vo.mv1)
-        //var id = this.randomOne(arr);
-        //var VM = PKMainMV.getInstance();
-        //var xy = this.getMiddleXY(this.player1,this.player2)
-        //VM.playOnItem(id,this.player1,null,null,xy);
+        var mvID = this.pkItem.data.vo.mapMV
+        if(AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(mvID)))
+        {
+            var VM = PKMainMV.getInstance();
+            var xy = this.getMiddleXY(this.pkItem,this.bossItem)
+            VM.playOnItem(mvID,this.pkItem,null,null,xy);
+        }
     }
 
     private rand(a,b){
@@ -271,19 +409,53 @@ class MapMainUI extends game.BaseUI {
     }
 
 
-    private showPKResult(){
+    private showPKResult(){  //2000ms
+        var MD = MapData.getInstance();
+        var hurt = MD.monsterHurts[this.pkItem.data.vo.id];
 
+        MD.currentBossHp -=  hurt
+        this.bossItem.showWord(-hurt,0xFF0000)
+        this.renewBossHp(true);
+        if(MD.currentBossHp == 0)//BOSS死了
+        {
+            this.showDie(this.bossItem)
+            //this.showPKerWin();
+        }
+        else
+        {
+            this.showDie(this.pkItem)
+            this.pkIndex ++;
+        }
 
-        this.bossItem.showWord(-100,0xFF0000)
+        this.setTimeout(this.inPker,2000);
+    }
 
-        var item = this.pkItem;
+    private showPKerWin(){
+        var tw:egret.Tween = egret.Tween.get(this.pkItem);
+        tw.wait(500).to({x:-100}, 500);
+    }
+    private showDie(item){
+
         item.die = true;
         var x = item.x;
         var v = 2
         var tw:egret.Tween = egret.Tween.get(item);
         tw.wait(500).to({x:x - 30}, 30*v).to({x:x + 20}, 50*v).to({x:x - 10}, 30*v).to({x:x}, 10*v).to({alpha:0}, 300);
+    }
 
-        this.pkList.shift();
-        this.setTimeout(this.inPker,2000);
+    private renewBossHp(mv?){
+        var MD = MapData.getInstance();
+        var rate = MD.currentBossHp/MD.currentBossMaxHp;
+        if(mv)
+        {
+            this.bb.width = this.bf.width
+            var tw = egret.Tween.get(this.bf)
+            tw.to({width:640*rate},200);
+        }
+        else
+        {
+            this.bf.width = 640*rate;
+            this.bb.width = this.bf.width
+        }
     }
 }

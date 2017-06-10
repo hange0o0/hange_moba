@@ -654,7 +654,10 @@ class DebugManager {
                 var id = vo.mv1[i];
                 useObj[id].push(vo.id);
             }
+
+            useObj[vo.mapMV].push(vo.id + '_')
         }
+
 
         var noUse = []
         var count = 0

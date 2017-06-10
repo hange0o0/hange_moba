@@ -159,6 +159,45 @@ class MapManager{
         });
     }
 
+    //开始挂机
+    public start(fun?){
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
+            var msg = data.msg;
+            if(fun)
+                fun();
+        });
+    }
+
+    //转关卡
+    public change_level(level,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.level = level
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
+            var msg = data.msg;
+            if(fun)
+                fun();
+        });
+    }
+
+    //取奖励
+    public get_award(fun?){
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
+            var msg = data.msg;
+            if(fun)
+                fun();
+        });
+    }
+
+
+
     //choose :{list[],ring}   choose_index
     public pk(choose,fun?){
         var self = this;

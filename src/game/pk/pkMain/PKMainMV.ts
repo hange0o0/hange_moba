@@ -151,7 +151,7 @@ class PKMainMV {
 
     //*********************************************************  mv ************************************
 
-    private getMVKey(key){
+    public getMVKey(key){
         return 'skill' + parseInt(key);
     }
     public playOnItem(key,item,fun?,thisObj?,xy?){

@@ -64,6 +64,7 @@ class MonsterVO {
     public mp
     public mtype
     public atktype
+    public mapMV
     //public collect
     //public kind//arr
     //public effect_kind //arr
@@ -109,6 +110,7 @@ class MonsterVO {
         this.cost = data.cost;
         this.mtype = data.mtype;
         this.atktype = data.atktype;
+        this.mapMV = data.mv1;
 
         if(this.cost < 10)
             this.type = 1;
