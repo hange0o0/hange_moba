@@ -12,6 +12,7 @@ class MapData {
 
 
     public monsterHurts:any = {};//每个怪对BOSS造成的伤害
+    public monsterValues:any = {};//每个怪对BOSS造成的伤害
     public bossCD = 0;
 
     public pkList = []//pk中的队列(打完这个BOSS用的卡牌)
@@ -234,6 +235,7 @@ class MapData {
     //取怪物对BOSS的伤害值
     public getMonsterHurts(mid,boss){
         var mValue = MonsterManager.getInstance().getMonsterValue(mid);
+        this.monsterValues[mid] = mValue;
         var bossTime = Math.ceil(mValue.hp / boss.atk); //boss攻击我的次数
         var mTime = Math.floor(bossTime*mValue.speed/boss.speed); //我在死之前的攻击次数
         return mTime * mValue.atk;
@@ -246,8 +248,8 @@ class MapData {
              speed:50,
          }
         var force = Math.ceil(Math.pow(this.level,1.2));
-        base.atk *= force;
-        base.hp *= force*50;
+        base.atk *= force*2;
+        base.hp *= force*30;
 
         return base;
     }

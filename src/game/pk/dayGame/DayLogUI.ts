@@ -14,6 +14,7 @@ class DayLogUI extends game.BaseUI {
 
     private data;
     private title;
+    private type;
 
     public constructor() {
         super();
@@ -33,14 +34,21 @@ class DayLogUI extends game.BaseUI {
 
     }
 
+    public hide(){
+        super.hide();
+        if(this.type == 'map')
+            MapMainUI.getInstance().show();
+    }
+
     public beforeHide(){
         this.clearList([this.list])
     }
 
 
-    public show(v?,title?){
+    public show(v?,title?,type?){
         this.data = v;
         this.title = title;
+        this.type = type;
         super.show();
     }
 

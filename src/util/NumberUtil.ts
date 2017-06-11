@@ -51,7 +51,7 @@ class NumberUtil {
      * 例如 100M 33,445a
      */
     public static formatStrNum(value: number): string {
-        if(value < 1000) {
+        if(value < 10000) {
             return "" + value;
         }
         var numCode: Array<string> = ["K","M","G","T"];
@@ -59,7 +59,7 @@ class NumberUtil {
         for(var i: number = 0;i < numCode.length;i++) {
             newValue = value / (Math.pow(1000,(i + 1)));
             if(newValue < 1000){
-                return Math.floor(newValue*10)/10 + numCode[i];
+                return Math.floor(newValue*100)/100 + numCode[i];
             }
         }
         return "999.9T+";

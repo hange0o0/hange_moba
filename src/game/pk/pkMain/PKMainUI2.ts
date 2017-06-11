@@ -963,11 +963,8 @@ class PKMainUI extends game.BaseUI {
     private itemTalk(item){
         if(this.random() < 0.3)
         {
-            var b = item.team == 2 && (item.die || item.win3)
-            if(!b) {
-                this.showPKEMO(item)
-                return;
-            }
+            this.showPKEMO(item)
+            return;
         }
         this.displayTalkWord({item:item,txt:this.getTalkStr(item)})
     }

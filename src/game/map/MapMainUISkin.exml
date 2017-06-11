@@ -15,8 +15,10 @@
 		<e:Rect id="bf" width="100" y="0" height="100%" x="0" fillColor="0x740714"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="bottomGroup" x="0" bottom="0">
+	<e:Group id="bottomGroup" x="0" bottom="0" width="640" height="440">
 		<ns1:BookBG width="640" x="0" skinName="BookBGSkin" y="0" height="440"/>
+		<e:Image source="main_mc_png" y="-38" right="0"/>
+		<e:Image source="main_mc_png" y="-38" left="0" width="104" scaleX="-1"/>
 		<e:Group y="130" x="0" width="640">
 			<e:Image source="line_png" y="-8.48" width="620" horizontalCenter="0"/>
 			<e:Image source="line_png" y="55" width="620" horizontalCenter="0"/>
@@ -28,39 +30,31 @@
 			</e:Group>
 			<e:Group id="rightBtn" y="6" right="20">
 			<e:Image id="ra" y="0" scaleX="-1" source="arrow3_png" right="0"/>
-			<e:Label id="rt" y="0" text="下一关" height="100%" verticalAlign="middle" textColor="0x734B41" right="50"/>
+			<e:Label id="rt" y="0" text="下一关" height="100%" verticalAlign="middle" right="50" textColor="0x957565"/>
 			</e:Group>
 			<e:Label id="desText" text="10/10" textAlign="center" width="140" size="26" verticalCenter="-0.5" horizontalCenter="0" textColor="0x998171"/>
 		</e:Group>
-		<e:Group x="40" y="210" height="200">
-			<e:Group x="0" y="0">
-			<e:Label id="awardText" text="难度选择：" x="0" y="6" textColor="0xCCB48E"/>
-			<e:Button id="getBtn" label="收获" x="192" y="0" skinName="Btn_r2Skin" width="140"/>
-			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle"/>
-			</e:layout>
+		<e:Group x="40" y="210" height="200" width="560">
+			<e:Group x="0" y="0" width="100%">
+			<e:Label id="awardText" text="难度选择：" x="0" textColor="0xCCB48E" verticalCenter="0"/>
+			<e:Button id="getBtn" label="获　取" skinName="Btn_r2Skin" width="140" right="0" verticalCenter="0"/>
 			</e:Group>
-			<e:Group x="10" y="10">
-			<e:Label id="valueText" text="难度选择：" x="0" y="6" textColor="0xCCB48E"/>
-			<e:Button id="exchangeBtn" label="兑换" x="192" y="0" skinName="Btn_r2Skin" width="140"/>
-			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle"/>
-			</e:layout>
+			<e:Group x="10" y="10" width="100%">
+			<e:Label id="valueText" text="难度选择：" x="0" textColor="0xCCB48E" verticalCenter="0"/>
+			<e:Button id="exchangeBtn" label="兑　换" skinName="Btn_r2Skin" width="140" right="0" verticalCenter="0"/>
 			</e:Group>
-			<e:Group x="20" y="20">
-			<e:Label id="pkText" text="难度选择：" x="0" y="6" textColor="0xCCB48E"/>
-			<e:Button id="pkBtn" label="战斗" x="192" y="0" skinName="Btn_r2Skin" width="140"/>
-			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle"/>
-			</e:layout>
+			<e:Group x="20" y="20" width="100%">
+			<e:Label id="pkText" text="难度选择：" x="0" textColor="0xCCB48E" verticalCenter="0"/>
+			<e:Button id="pkBtn" label="挑　战" skinName="Btn_r2Skin" width="140" right="0" verticalCenter="0"/>
 			</e:Group>
 			<e:layout>
-			<e:VerticalLayout verticalAlign="justify"/>
+			<e:VerticalLayout verticalAlign="justify" horizontalAlign="justify"/>
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="videoBtn" bottom="450" right="10">
+	<e:Group id="videoBtn" right="10" y="120">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
+	<e:Label id="timeText" text="难度选择：" x="10" y="120" size="23" stroke="3" textColor="0xfcf59f"/>
 </e:Skin>

@@ -29,16 +29,22 @@ class MapExchangeUI extends game.BaseContainer {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.addBtnEvent(this.closeBtn,this.hide)
+        this.addBtnEvent(this.closeBtn,this.mvHide)
         this.addBtnEvent(this.btn1,this.onCoin)
         this.addBtnEvent(this.btn2,this.onCard)
 
         this.h1.addEventListener(egret.Event.CHANGE,this.renewCoin,this)
         this.h2.addEventListener(egret.Event.CHANGE,this.renewCard,this)
 
-        this.bottom = 0;
+
     }
 
+    public mvHide(){
+        var tw = egret.Tween.get(this);
+        tw.to({bottom:-440},200).call(function(){
+            this.visible = false
+        },this)
+    }
     public hide(){
         this.visible = false
     }
@@ -65,6 +71,10 @@ class MapExchangeUI extends game.BaseContainer {
 
     public show(){
         this.visible = true;
+        this.bottom = -440;
+        egret.Tween.removeTweens(this);
+        var tw = egret.Tween.get(this);
+        tw.to({bottom:10},200).to({bottom:0},200)
         this.onShow();
     }
 

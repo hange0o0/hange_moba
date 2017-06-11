@@ -41,6 +41,10 @@ class PKWinUI extends PKResultBase {
 
         }
 
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType == PKManager.PKType.MAP)
+            MapMainUI.getInstance().show();
+
     }
     private onContinue(){
         var self = this;

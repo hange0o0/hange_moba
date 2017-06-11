@@ -179,13 +179,13 @@ class PKItem2 extends game.BaseItem {
 
         if(data.hp > 0)
         {
-            this.hpText.text = '+' + data.hp
+            this.hpText.text = '+' + NumberUtil.formatStrNum(data.hp)
             this.hpText.textColor = addColor
             this.hpText.strokeColor = 0x003300
         }
         else
         {
-            this.hpText.text = '' + data.hp
+            this.hpText.text = '-' + NumberUtil.formatStrNum(-data.hp)
             this.hpText.textColor = decColor
             this.hpText.strokeColor = 0x330000
         }

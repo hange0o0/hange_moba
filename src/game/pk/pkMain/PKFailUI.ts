@@ -35,6 +35,10 @@ class PKFailUI extends PKResultBase {
 
     private onBack(){
         PKResultUI.getInstance().hide();
+
+        var PKM = PKManager.getInstance();
+        if(PKM.pkType == PKManager.PKType.MAP)
+            MapMainUI.getInstance().show();
     }
     private onRestart(){
         var self = this;
