@@ -38,8 +38,13 @@ class MainMapItem extends game.BaseItem {
     public renew() {
         this.bg.source = 'main5_png'
 
-        var currentLevel = MapManager.getInstance().level;
-        this.setHtml(this.scoreText,  this.createHtml('当前进度：',0xE0A44A) + '据点 ' + currentLevel);
+        var MD = MapData.getInstance();
+        var currentLevel = MD.level;
+
+        if(MD.lastTime)
+            this.setHtml(this.scoreText, '正在扫荡第 ' +  this.createHtml(currentLevel,0xE0A44A) + ' 据点 ');
+        else
+            this.setHtml(this.scoreText, '扫荡尚未开始');
 
         this.lockMC.visible = UM.main_game.level < Config.serverLevel
         this.scoreText.visible = !this.lockMC.visible
@@ -52,7 +57,12 @@ class MainMapItem extends game.BaseItem {
         else
         {
             this.btnGroup.visible = true;
-            this.setHtml(this.desText,'每次搜索敌人会消耗' + this.createHtml('1',0xFFFF00) + '体力');
+            MD.reInit();
+            var awardMax = MD.getAwardMax();
+            if(MD.bag >= awardMax)
+                this.setHtml(this.desText,'能量背包：' + this.createHtml(awardMax + '/' + awardMax,0xFFFF00));
+            else
+                this.desText.text = '能量背包：' + MD.bag + '/' + awardMax
         }
 
     }

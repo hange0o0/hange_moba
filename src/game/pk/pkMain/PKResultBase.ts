@@ -92,13 +92,13 @@ class PKResultBase extends game.BaseContainer {
             this._desText.text += '\n卡组次数已用完，获得了新卡组';
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }
-        else if(award.passMap)//卡级
-        {
-            award.passMap = false;
-            PKResultUI.getInstance().openNewLevel = true;
-            this._desText.text += '\n成功通过了本据点，开启据点' + MapManager.getInstance().level;
-            this.timer = egret.setTimeout(this.stepOne,this,300);
-        }
+        //else if(award.passMap)//卡级
+        //{
+        //    award.passMap = false;
+        //    PKResultUI.getInstance().openNewLevel = true;
+        //    this._desText.text += '\n成功通过了本据点，开启据点' + MapManager.getInstance().level;
+        //    this.timer = egret.setTimeout(this.stepOne,this,300);
+        //}
         //else if(award.newTask)//新增任务了
         //{
         //    award.newTask = false;

@@ -108,11 +108,17 @@ class MapMainUI extends game.BaseUI {
     }
 
     private onLeft(){
-         MapManager.getInstance().change_level(MapData.getInstance().level - 1)
+        var self = this;
+         MapManager.getInstance().change_level(MapData.getInstance().level - 1,function(){
+            self.onMapChange();
+        })
     }
 
     private onRight(){
-        MapManager.getInstance().change_level(MapData.getInstance().level + 1)
+        var self = this;
+        MapManager.getInstance().change_level(MapData.getInstance().level + 1,function(){
+            self.onMapChange();
+        })
     }
 
     private onHelp(){
@@ -126,15 +132,14 @@ class MapMainUI extends game.BaseUI {
     private onPK(){
         var MD = MapData.getInstance();
         var MM = MapManager.getInstance();
-        if(MM.enemy && MM.enemy.level == MD.level && !MM.enemy.is_pk)
+        if(MD.enemy && MD.enemy.level == MD.level && !MD.enemy.is_pk)
         {
-            MM.pkLevel = MD.level;
             MapGameUI.getInstance().show();
             this.hide()
             return;
         }
         var self = this;
-        MM.getEnemy(MD.level,function(){
+        MM.getEnemy(function(){
             MapGameUI.getInstance().show();
             self.hide()
         })
@@ -190,7 +195,24 @@ class MapMainUI extends game.BaseUI {
 
     public show(data?){
         var self = this;
-        self.superShow()
+        var MD = MapData.getInstance();
+        var MM = MapManager.getInstance();
+        this.isFirst = false;
+        if(MD.lastTime == 0)
+        {
+            this.isFirst = true;
+            MM.start(function(){
+                self.superShow()
+            })
+        }
+        else if(MD.getCurrentCD() != MD.serverBossCD){
+            MM.MapSync(function(){
+                self.superShow()
+            })
+        }
+        else
+            self.superShow()
+
     }
 
     private superShow(){
@@ -198,35 +220,35 @@ class MapMainUI extends game.BaseUI {
     }
 
     public onShow(){
-        var MD = MapData.getInstance();
-        if(!MD.lastPKTime)
-        {
-            this.isFirst = true;
-            MD.lastPKTime = TM.now();
-        }
-        else
-            this.isFirst = false;
-
-        MD.reInit();
-        MD.setPKDisplayData();
+        this.onMapChange();
         this.pkHeight = this.stage.stageHeight - 560
 
-        this.renew();
-        this.renewInfo();
+
 
         this.showCound(true)
         this.showCound(true)
 
-        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
-        this.onTimer();
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
+        this.addPanelOpenEvent(GameEvent.client.map_change,this.onMapChange);
+        this.addPanelOpenEvent(GameEvent.client.map_value_change,this.renewInfo);
+
 
         AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(30)) //+hp
     }
 
+    private onMapChange(){
+        var MD = MapData.getInstance();
+        MD.reInit();
+        MD.setPKDisplayData();
+        this.renew();
+        this.renewInfo();
+        this.onTimer();
+    }
+
     private onTimer(){
         var MD = MapData.getInstance();
-        var pkTime = Math.floor((MD.getAwardMax() - MD.awardValue)/MD.getCurrentAward() - 1)*MD.getCurrentCD()
-        pkTime +=  MD.getCurrentCD() - (TM.now() - MD.lastPKTime) + this.timeDic
+        var pkTime = Math.floor((MD.getAwardMax() - MD.bag)/MD.getCurrentAward() - 1)*MD.getCurrentCD()
+        pkTime +=  MD.getCurrentCD() - (TM.now() - MD.lastTime) + this.timeDic
         if(pkTime > 0)
             MyTool.setColorText(this.timeText,'[功勋背包满载：]' + DateUtil.getStringBySeconds(pkTime,false,2))
         else
@@ -278,7 +300,7 @@ class MapMainUI extends game.BaseUI {
         this.bossItem.x = 460;
         this.bossItem.y = this.pkHeight / 2;
 
-        this.timeDic = (TM.now() - MD.lastPKTime) - this.pkIndex*MD.showCD + 1
+        this.timeDic = (TM.now() - MD.lastTime) - this.pkIndex*MD.showCD + 1
         if(this.isFirst)
         {
             this.setTimeout(this.inPker,1000);
@@ -310,21 +332,21 @@ class MapMainUI extends game.BaseUI {
 
     private renewInfo(){
         var MD = MapData.getInstance();
-        if(MD.level<MD.maxLevel || MD.maxBossTimes == MD.pkBossTimes)
+        if(MD.level<MD.maxLevel || MD.maxBossTimes == MD.step)
         {
             this.desText.text = '已通关';
-            this.setBtnEnable('left',MD.level > 1 && MD.maxLevel - MD.level < 3)
+            this.setBtnEnable('left',MD.level > 1 && MD.maxLevel - MD.level < 2)
             this.setBtnEnable('right',true)
         }
         else
         {
-            this.desText.text = MD.pkBossTimes + '/' + MD.maxBossTimes;
+            this.desText.text = MD.pkValue + '/' + MD.maxBossTimes;
             this.setBtnEnable('left',MD.level > 1)
             this.setBtnEnable('right',false)
         }
 
-        MyTool.setColorText(this.awardText,'[功勋背包：]' + MD.awardValue + '/' + MD.getAwardMax());
-        MyTool.setColorText(this.valueText,'[功勋积累：]' + MD.scoreValue);
+        MyTool.setColorText(this.awardText,'[功勋背包：]' + MD.bag + '/' + MD.getAwardMax());
+        MyTool.setColorText(this.valueText,'[功勋积累：]' + MD.value);
         MyTool.setColorText(this.pkText,'[通缉令：]' + MD.pkValue);
     }
 

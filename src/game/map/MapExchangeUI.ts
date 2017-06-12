@@ -64,7 +64,7 @@ class MapExchangeUI extends game.BaseContainer {
             return;
         var MM = MapManager.getInstance();
         var self = this;
-        MM.exchange(2,MM.getExCardNeed(this.h2.value),function(){
+        MM.exchange(2,MapData.getInstance().getExCardNeed(this.h2.value),function(){
             self.renew();
         })
     }
@@ -83,7 +83,7 @@ class MapExchangeUI extends game.BaseContainer {
     }
 
     private renewCoin(){
-        this.coinText.text = '×' + MapManager.getInstance().getExCoin(this.h1.value) + ''
+        this.coinText.text = '×' + MapData.getInstance().getExCoin(this.h1.value) + ''
     }
 
     private renewCard(){
@@ -92,13 +92,13 @@ class MapExchangeUI extends game.BaseContainer {
     }
 
     public renew(){
-        var MM = MapManager.getInstance();
-        var v = MM.value
+        var MD = MapData.getInstance();
+        var v = MD.value
         this.h1.minimum = 0
         this.h1.maximum = v
         this.h1.value = Math.floor(v)
 
-        v = MM.getExCard(v);
+        v = MD.getExCard(v);
         this.h2.minimum = 0
         this.h2.maximum = v
         this.h2.value = Math.floor(v)

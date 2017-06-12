@@ -7,18 +7,18 @@ class MapManager{
     }
 
     public constructor() {
-        EM.addEventListener(GameEvent.client.pass_day,this.passDay,this);
+        //EM.addEventListener(GameEvent.client.pass_day,this.passDay,this);
     }
 
 
     public logList
-    public value;
-    public lasttime;
-    public level;  //正在进行的关卡
-    public step;  //完成关卡进度
-    public pkLevel;
-    public sweepData;
-    public enemy;
+    //public value;
+    //public lasttime;
+    //public level;  //正在进行的关卡
+    //public step;  //完成关卡进度
+    //public pkLevel;
+    //public sweepData;
+    //public enemy;
 
     public getMaxPKNum(level){
         return Math.min(10,level+2);
@@ -55,44 +55,45 @@ class MapManager{
 
     }
 
-     public passDay(){
-         this.sweepData = {};
-     }
+     //public passDay(){
+     //    this.sweepData = {};
+     //}
 
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_map_log') || [];
+        MapData.getInstance().initData()
 
-        var data = UM.pk_common.map || {};
-        this.value = data.value || 0;
-        this.level = data.level || 1;
-        this.step = data.step || 0;
-        this.lasttime = data.lasttime || 0;
-        this.sweepData = data.sweep || {};
-        this.enemy = data.enemy
-        if(this.enemy)
-            this.pkLevel = this.enemy.level;
-        if(!DateUtil.isSameDay(this.lasttime ))
-        {
-            this.sweepData = {};
-        }
-
-    }
-
-    public getRate(level){
-        if(this.level == level)
-        {
-            return this.step;
-        }
-        else
-        {
-            return this.getSweepNum(level)
-        }
-    }
-
-    public getSweepNum(id){
-        return this.sweepData[id] || 0
+        //var data = UM.pk_common.map || {};
+        //this.value = data.value || 0;
+        //this.level = data.level || 1;
+        //this.step = data.step || 0;
+        //this.lasttime = data.lasttime || 0;
+        //this.sweepData = data.sweep || {};
+        //this.enemy = data.enemy
+        //if(this.enemy)
+        //    this.pkLevel = this.enemy.level;
+        //if(!DateUtil.isSameDay(this.lasttime ))
+        //{
+        //    this.sweepData = {};
+        //}
 
     }
+
+    //public getRate(level){
+    //    if(this.level == level)
+    //    {
+    //        return this.step;
+    //    }
+    //    else
+    //    {
+    //        return this.getSweepNum(level)
+    //    }
+    //}
+    //
+    //public getSweepNum(id){
+    //    return this.sweepData[id] || 0
+    //
+    //}
     public addLogList(data){
         var list = this.logList;
         list.unshift(data);
@@ -101,24 +102,24 @@ class MapManager{
         SharedObjectManager.instance.setMyValue('pk_map_log',list);
     }
 
-    public addValue(v){
-        if(!v)
-            return;
-        this.value += v;
-        EM.dispatchEventWith(GameEvent.client.map_value_change)
-    }
-
-    public getExCoin(v){
-        return Math.floor(v*10);
-    }
-
-    public getExCard(v){
-        return Math.floor(v/10);
-    }
-
-    public getExCardNeed(v){
-        return Math.floor(v*10);
-    }
+    //public addValue(v){
+    //    if(!v)
+    //        return;
+    //    this.value += v;
+    //    EM.dispatchEventWith(GameEvent.client.map_value_change)
+    //}
+    //
+    //public getExCoin(v){
+    //    return Math.floor(v*10);
+    //}
+    //
+    //public getExCard(v){
+    //    return Math.floor(v/10);
+    //}
+    //
+    //public getExCardNeed(v){
+    //    return Math.floor(v*10);
+    //}
 
     ////打开PK对战内容的表现
     public pkAgain(fun?){
@@ -126,13 +127,14 @@ class MapManager{
         {
             return;
         }
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
-        oo.level = this.pkLevel;
+        oo.level =MD.level;
         Net.addUser(oo)
         Net.send(GameEvent.mapGame.pk_map_again,oo,function(data){
             var msg = data.msg;
-            self.enemy.is_pk = false;
+            MD.enemy.is_pk = false;
             MapGameUI.getInstance().show();
             if(fun)
                 fun();
@@ -142,18 +144,20 @@ class MapManager{
 
 
     public getEnemy(level,fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
-        if(!UM.testEnergy(1))
+        if(!MD.pkValue)
         {
+            Alert('没有通辑令了')
             return;
         }
         oo.level = level;
+
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
             var msg = data.msg;
-            self.pkLevel = level;
-            self.enemy = msg.data;
+            MD.enemy = msg.data;
             if(fun)
                 fun();
         });
@@ -161,11 +165,13 @@ class MapManager{
 
     //开始挂机
     public start(fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         Net.addUser(oo);
-        Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
+        Net.send(GameEvent.mapGame.map_start,oo,function(data){
             var msg = data.msg;
+             MD.fillData(msg.data);
             if(fun)
                 fun();
         });
@@ -173,12 +179,14 @@ class MapManager{
 
     //转关卡
     public change_level(level,fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         oo.level = level
         Net.addUser(oo);
-        Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
+        Net.send(GameEvent.mapGame.map_change_level,oo,function(data){
             var msg = data.msg;
+            MD.fillData(msg.data);
             if(fun)
                 fun();
         });
@@ -186,11 +194,27 @@ class MapManager{
 
     //取奖励
     public get_award(fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         Net.addUser(oo);
-        Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
+        Net.send(GameEvent.mapGame.map_award,oo,function(data){
             var msg = data.msg;
+            MD.fillData(msg.data);
+            if(fun)
+                fun();
+        });
+    }
+
+    //请求同步数据
+    public MapSync(fun?){
+        var MD = MapData.getInstance();
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.map_sync,oo,function(data){
+            var msg = data.msg;
+            MD.fillData(msg.data);
             if(fun)
                 fun();
         });
@@ -200,6 +224,7 @@ class MapManager{
 
     //choose :{list[],ring}   choose_index
     public pk(choose,fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         if(!UM.testEnergy(1))
@@ -207,14 +232,18 @@ class MapManager{
             return;
         }
         oo.choose = choose;
-        var pkNum = this.getMaxPKNum(this.pkLevel);
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.pk_map,oo,function(data){
             var msg = data.msg;
             if(PKManager.getInstance().pkError(msg))
                 return;
-            if(msg.fail == 1)
+            if(msg.fail == 2)
             {
+                Alert('体力不足');
+            }
+            if(msg.fail == 1 || msg.fail == 3)
+            {
+                MD.enemy = null;
                 Alert('找不到敌人数据');
                 PKDressUI.getInstance().hide();
                 MapGameUI.getInstance().hide();
@@ -225,37 +254,19 @@ class MapManager{
             if(!msg.info)
                 msg.info = {};
             msg.info.type = PKManager.PKType.MAP;
-            self.addValue(msg.award.g_exp)
+            MD.addValue(msg.award.g_exp)
 
             PKManager.getInstance().onPK(PKManager.PKType.MAP,msg);
-            self.addLogList(PKManager.getInstance().getLogData({round:self.pkLevel,type:PKManager.PKType.MAP}));
+            self.addLogList(PKManager.getInstance().getLogData({round:MD.level,type:PKManager.PKType.MAP}));
 
             if(PKManager.getInstance().isWin)
             {
-                if(self.pkLevel == self.level)
-                {
-                    self.step ++;
-                    if(self.step >= pkNum)
-                    {
-                        self.sweepData[self.level] = pkNum;
-                        self.level ++;
-                        self.step = 0;
-                        PKManager.getInstance().pkAward.passMap = true
-                    }
-                }
-                else
-                {
-                    if(!self.sweepData[self.pkLevel])
-                        self.sweepData[self.pkLevel] = 1;
-                    else
-                        self.sweepData[self.pkLevel] ++;
-                }
-                EM.dispatchEventWith(GameEvent.client.map_change)
+                if(MD.step < MD.maxBossTimes)
+                    MD.step ++;
             }
 
-
-            self.enemy.is_pk = true;
-            self.lasttime = TM.now();
+            MD.addValue(msg.award.g_exp)
+            MD.enemy.is_pk = true;
             if(fun)
                 fun();
         });
@@ -263,44 +274,45 @@ class MapManager{
 
     //扫荡
     public sweep(level,fun?) {
-        var self = this;
-        var oo:any = {};
-        oo.level = level;
-        Net.addUser(oo);
-        Net.send(GameEvent.mapGame.sweep, oo, function (data) {
-            var msg = data.msg;
-            if(msg.fail == 1)
-            {
-                Alert('还没通关，无法进行扫荡');
-                self.level = msg.level;
-                MapInfoUI.getInstance().hide();
-                EM.dispatchEventWith(GameEvent.client.map_change)
-                return;
-            }
-            if(msg.fail == 2)
-            {
-                Alert('扫荡已完成');
-                self.sweepData[level] =self.getMaxPKNum(level);
-                MapInfoUI.getInstance().hide();
-                EM.dispatchEventWith(GameEvent.client.map_change)
-                return;
-            }
-            if(msg.fail == 3)
-            {
-                Alert('钻石不足');
-                return;
-            }
-            self.addValue(msg.value);
-            AwardUI.getInstance().show({g_exp:msg.value});
-            self.sweepData[level] = self.getMaxPKNum(level);
-            EM.dispatchEventWith(GameEvent.client.map_change)
-            if (fun)
-                fun();
-        });
+        //var self = this;
+        //var oo:any = {};
+        //oo.level = level;
+        //Net.addUser(oo);
+        //Net.send(GameEvent.mapGame.sweep, oo, function (data) {
+        //    var msg = data.msg;
+        //    if(msg.fail == 1)
+        //    {
+        //        Alert('还没通关，无法进行扫荡');
+        //        self.level = msg.level;
+        //        MapInfoUI.getInstance().hide();
+        //        EM.dispatchEventWith(GameEvent.client.map_change)
+        //        return;
+        //    }
+        //    if(msg.fail == 2)
+        //    {
+        //        Alert('扫荡已完成');
+        //        self.sweepData[level] =self.getMaxPKNum(level);
+        //        MapInfoUI.getInstance().hide();
+        //        EM.dispatchEventWith(GameEvent.client.map_change)
+        //        return;
+        //    }
+        //    if(msg.fail == 3)
+        //    {
+        //        Alert('钻石不足');
+        //        return;
+        //    }
+        //    self.addValue(msg.value);
+        //    AwardUI.getInstance().show({g_exp:msg.value});
+        //    self.sweepData[level] = self.getMaxPKNum(level);
+        //    EM.dispatchEventWith(GameEvent.client.map_change)
+        //    if (fun)
+        //        fun();
+        //});
     }
 
     //兑换
     public exchange(type,value,fun?) {
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         oo.type = type;
@@ -313,12 +325,12 @@ class MapManager{
                 Alert('兑换失败')
                 if(msg.fail == 1)
                 {
-                    self.value = msg.value;
+                    MD.value = msg.value;
                     EM.dispatchEventWith(GameEvent.client.map_value_change)
                 }
                 return;
             }
-            self.addValue(-value);
+            MD.addValue(-value);
             AwardUI.getInstance().show({coin:msg.coin,card:msg.card});
             if (fun)
                 fun();

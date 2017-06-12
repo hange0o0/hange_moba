@@ -125,6 +125,10 @@ class GameEvent {
         sweep:'map_sweep',
         exchange:'map_exchange',
         pk_map:'pk_map',
+        map_start:'map_start',
+        map_sync:'map_sync',
+        map_award:'map_award',
+        map_change_level:'map_change_level',
         pk_map_again:'pk_map_again'
     }
 

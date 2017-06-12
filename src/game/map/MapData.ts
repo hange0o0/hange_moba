@@ -9,6 +9,8 @@ class MapData {
     public maxBossTimes = 10;
 
 
+    public serverBossCD = 0;
+
 
 
     public monsterHurts:any = {};//每个怪对BOSS造成的伤害
@@ -28,22 +30,44 @@ class MapData {
 
     public level = 1;
     public maxLevel = 1;
-    public pkBossTimes = 1;  //打最高关BOSS的次数
-    public lastPKTime = 0  //上次PK胜利结束时间
-    public awardValue = 0
+    public step = 1;  //打最高关BOSS的次数
+    public lastTime = 0  //上次PK胜利结束时间
+    public bag = 0
     public pkValue = 0
-    public scoreValue = 0
-    public lastAwardTime = 0
-    public lastPKData; //通辑令数据
+    public value = 0
+    //public lastAwardTime = 0
+    public enemy; //通辑令数据
 
 
 
     public constructor() {
-        this.initData(null);
+        //this.initData(null);
     }
 
-    public initData(data){
+    public initData(){
+        this.fillData(UM.pk_common.map || {});
         this.resetPKPool();
+    }
+
+    public addValue(v){
+        if(!v)
+            return;
+        this.value += v;
+        EM.dispatchEventWith(GameEvent.client.map_value_change)
+    }
+
+    public fillData(map){
+        this.level = map.level || 1;
+        this.value = map.value || 0;
+        this.maxLevel = map.max_level || 0;
+        this.bag = map.bag || 0;
+        this.pkValue = map.pk_value || 0;
+        this.step = map.step || 0;
+        this.lastTime = map.lasttime || 0;
+
+        this.enemy = map.enemy;
+
+        this.serverBossCD = map.serverBossCD || 0;
     }
 
     //重置怪物池
@@ -93,7 +117,7 @@ class MapData {
     }
 
     public getBossVO(){
-        var seed = this.lastPKTime;
+        var seed = this.lastTime;
         seed = ( seed * 6075 + 106 ) % 1283;
         var rd = seed / ( 1283.0 );
         var list = MonsterVO.getListByLevel(this.level);
@@ -102,24 +126,24 @@ class MapData {
 
     //当前正在PK的对像已经过的时间
     public getPKPass(){
-        var passcd = TM.now() - this.lastPKTime;
+        var passcd = TM.now() - this.lastTime;
         return passcd%this.showCD;
     }
 
     //计算数据
     public reInit(){
         var cd = this.getCurrentCD();  //打完一个BOSS需要的时间
-        var passcd = TM.now() - this.lastPKTime;
+        var passcd = TM.now() - this.lastTime;
         var addNum =  Math.floor(passcd/cd)
 
         if(addNum) //要结算
         {
             this.pkValue += addNum;
-            this.awardValue += this.getCurrentAward()*addNum;
-            this.lastPKTime += cd * addNum;
+            this.bag += this.getCurrentAward()*addNum;
+            this.lastTime += cd * addNum;
             var awardMax = this.getAwardMax();
-            if(this.awardValue > awardMax)
-                this.awardValue = awardMax
+            if(this.bag > awardMax)
+                this.bag = awardMax
         }
     }
 
@@ -129,14 +153,14 @@ class MapData {
     }
 
     public setPKDisplayData(){
-        if(this.setDisplayTime == this.lastPKTime)  //都是同一批次，不用重新计算
+        if(this.setDisplayTime == this.lastTime)  //都是同一批次，不用重新计算
         {
             this.resetHp();
             return;
         }
         var needNum = this.getNeedNum();
         var cd = this.getCurrentCD()
-        if(this.setDisplayTime + cd == this.lastPKTime) //相邻的批次
+        if(this.setDisplayTime + cd == this.lastTime) //相邻的批次
         {
             this.pkList.splice(0,needNum-1);
         }
@@ -144,7 +168,7 @@ class MapData {
         {
             this.pkList.length = 0;
         }
-        this.setDisplayTime = this.lastPKTime;
+        this.setDisplayTime = this.lastTime;
         var count = needNum + 10
         while(this.pkList.length < count)
         {
@@ -182,7 +206,7 @@ class MapData {
 
     //当前正在打的坐标
     public getPKingIndex(){
-        var passCD = (TM.now() - this.lastPKTime);
+        var passCD = (TM.now() - this.lastTime);
         return Math.floor(passCD / this.showCD);
     }
 
@@ -212,7 +236,7 @@ class MapData {
     //}
 
     public getCurrentCD(){
-        var key = UM.getForce() + '_' + this.level;
+        var key = UM.getForce()// + '_' + this.level;
         if(key == this.monsterHurts.key)
             return this.bossCD;
         var bossData = this.getBoss();

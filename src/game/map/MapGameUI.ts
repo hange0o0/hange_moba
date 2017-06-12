@@ -79,7 +79,7 @@ class MapGameUI extends game.BaseUI {
             if(type == 1)
             {
                 var MM = MapManager.getInstance();
-                MM.getEnemy(MM.pkLevel,function(){
+                MM.getEnemy(function(){
                     self.renewEnemy();
                 })
             }
@@ -135,15 +135,15 @@ class MapGameUI extends game.BaseUI {
     //}
 
     public renewEnemy(){
-        var MM = MapManager.getInstance();
-        this.topUI.setTitle('据点'+MM.pkLevel + '　('+MM.getRate(MM.pkLevel)+'/'+MM.getMaxPKNum(MM.pkLevel)+')');
+        var MD = MapData.getInstance();
+        this.topUI.setTitle('据点 '+MD.level + ' 通辑令');
         //更新敌人
         var specialData:any = {
             isNPC:true,
-            fight:MM.enemy.force
+            fight:MD.enemy.force
         };
         var enemyList = this.enemyArray = [];
-        var arr = MM.enemy.list
+        var arr = MD.enemy.list
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
@@ -160,7 +160,7 @@ class MapGameUI extends game.BaseUI {
             });
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
-        this.setHtml(this.desText,this.createHtml('敌方战力：',0xE0A44A) + MM.enemy.force);
+        this.setHtml(this.desText,this.createHtml('敌方战力：',0xE0A44A) + MD.enemy.force);
 
 
         if(enemyList.length <4)
