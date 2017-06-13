@@ -57,12 +57,19 @@ class MainMapItem extends game.BaseItem {
         else
         {
             this.btnGroup.visible = true;
-            MD.reInit();
-            var awardMax = MD.getAwardMax();
-            if(MD.bag >= awardMax)
-                this.setHtml(this.desText,'能量背包：' + this.createHtml(awardMax + '/' + awardMax,0xFFFF00));
+            if(MD.lastTime)
+            {
+                MD.reInit();
+                var awardMax = MD.getAwardMax();
+                if(MD.bag >= awardMax)
+                    this.setHtml(this.desText,'能量背包：' + this.createHtml(awardMax + '/' + awardMax,0xFFFF00));
+                else
+                    this.desText.text = '能量背包：' + MD.bag + '/' + awardMax
+            }
             else
-                this.desText.text = '能量背包：' + MD.bag + '/' + awardMax
+            {
+                this.desText.text = '点击下方按钮开始扫荡吧！'
+            }
         }
 
     }

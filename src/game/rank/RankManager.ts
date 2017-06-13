@@ -87,7 +87,8 @@ class RankManager{
             {
                 for(var s in self.rankData)
                 {
-                    self.rankData[s].getTime = 0;
+                    if(self.rankData[s])
+                        self.rankData[s].getTime = 0;
                 }
                 if(RankUI.getInstance().stage)
                     RankUI.getInstance().typeBarClick();

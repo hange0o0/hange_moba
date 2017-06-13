@@ -62,7 +62,7 @@
 					<e:layout>
 						<e:HorizontalLayout verticalAlign="middle" horizontalAlign="center" gap="20" paddingLeft="10" paddingTop="25" paddingBottom="10"/>
 					</e:layout>
-					<e:Button id="enemyBtn" label="搜索敌人" y="50" skinName="Btn_b2Skin" x="415"/>
+					<e:Button id="enemyBtn" label="重新搜寻" y="50" skinName="Btn_b2Skin" x="415"/>
 					<e:Group x="55.98484848484849" y="76.96969696969688" width="160" height="56">
 						<e:Label id="cardText" text="剩余次数：10/10" y="-25" horizontalCenter="0" size="20" textColor="0xFCD45E"/>
 						<e:Button id="resetBtn" label="重新选牌" y="0" x="0" skinName="Btn_b2Skin"/>

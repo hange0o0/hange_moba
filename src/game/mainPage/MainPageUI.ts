@@ -218,7 +218,19 @@ class MainPageUI extends game.BaseUI {
 
     private onTimer(){
         var cd = UM.getNextDrawCD()
-        this.diamondDrawLight.visible = cd <= 0;
+        var b = cd <= 0;
+        if(b != this.diamondDrawLight.visible)
+        {
+            this.diamondDrawLight.visible = b;
+            egret.Tween.removeTweens(this.diamondDrawLight)
+            if(b)
+            {
+                var tw = egret.Tween.get(this.diamondDrawLight,{loop:true})
+                this.diamondDrawLight.alpha = 0;
+                tw.to({alpha:0.6},1000).to({alpha:0},1000).wait(1000);
+            }
+
+        }
         if(cd)
             this.diamonDrawText.text = DateUtil.getStringBySecond(cd);
         else
@@ -524,6 +536,7 @@ class MainPageUI extends game.BaseUI {
         ServerGameEqualManager.getInstance().initData();
         MapManager.getInstance().initData();
         TeamPVEManager.getInstance().initData();
+        this.diamondDrawLight.visible = false;
 
         this.renewTop();
 
@@ -538,8 +551,6 @@ class MainPageUI extends game.BaseUI {
         this.renewHonorRed();
 
         egret.setTimeout(function() {
-
-            this.scrollToCurrentPage(true);
             MainPageUI.getInstance().renewPage();
             GuideManager.getInstance().guideStep = 0;
             GuideManager.getInstance().reInit();
@@ -627,7 +638,7 @@ class MainPageUI extends game.BaseUI {
     public onLevelChange(){
         this.friendLockMC.visible = UM.level < Config.friendLevel;
         this.teamLockMC.visible = UM.level < Config.friendLevel;
-        this.scrollToCurrentPage();
+        this.scrollToCurrentPage(true);
     }
 
     public renewEnergy(){

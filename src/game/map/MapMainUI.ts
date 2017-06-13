@@ -8,6 +8,7 @@ class MapMainUI extends game.BaseUI {
     public constructor() {
         super();
         this.skinName = "MapMainUISkin";
+        //this.LoadFiles = ['pk'];
     }
 
     private bg: eui.Image;
@@ -59,6 +60,7 @@ class MapMainUI extends game.BaseUI {
     private cloudArr = [];
 
     private isFirst
+    private openTime
 
 
     public childrenCreated() {
@@ -108,15 +110,32 @@ class MapMainUI extends game.BaseUI {
     }
 
     private onLeft(){
-        var self = this;
-         MapManager.getInstance().change_level(MapData.getInstance().level - 1,function(){
-            self.onMapChange();
-        })
+        this.changeLevel(MapData.getInstance().level - 1)
     }
 
     private onRight(){
+        this.changeLevel(MapData.getInstance().level + 1)
+    }
+
+    private changeLevel(level){
+        var MD = MapData.getInstance();
         var self = this;
-        MapManager.getInstance().change_level(MapData.getInstance().level + 1,function(){
+        if(MD.pkValue > 0)
+        {
+            Confirm('切换关卡时，将丢弃本关所有的通辑令，是否继续？',function(type){
+                if(type == 1)
+                {
+                    MapManager.getInstance().change_level(level,function(){
+                        self.isFirst = true;
+                        self.onMapChange();
+                    })
+                }
+            });
+            return
+        }
+
+        MapManager.getInstance().change_level(level,function(){
+            self.isFirst = true;
             self.onMapChange();
         })
     }
@@ -190,6 +209,7 @@ class MapMainUI extends game.BaseUI {
 
     public hide(){
         this.stopAll();
+        MainPageUI.getInstance()['mapGame'].renew();
         super.hide();
     }
 
@@ -220,13 +240,14 @@ class MapMainUI extends game.BaseUI {
     }
 
     public onShow(){
-        this.onMapChange();
+        this.openTime = egret.getTimer();
         this.pkHeight = this.stage.stageHeight - 560
+        this.onMapChange();
 
 
 
-        this.showCound(true)
-        this.showCound(true)
+
+
 
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
         this.addPanelOpenEvent(GameEvent.client.map_change,this.onMapChange);
@@ -240,9 +261,13 @@ class MapMainUI extends game.BaseUI {
         var MD = MapData.getInstance();
         MD.reInit();
         MD.setPKDisplayData();
+        this.stopAll();
         this.renew();
         this.renewInfo();
         this.onTimer();
+
+        this.showCound(true)
+        this.showCound(true)
     }
 
     private onTimer(){
@@ -255,6 +280,8 @@ class MapMainUI extends game.BaseUI {
             this.timeText.text = ('功勋背包已满载')
         if(egret.getTimer() - this.cloudTimer > 1000*10)
             this.showCound();
+
+        //console.log('map running')
     }
 
     private showCound(b?){
@@ -340,7 +367,7 @@ class MapMainUI extends game.BaseUI {
         }
         else
         {
-            this.desText.text = MD.pkValue + '/' + MD.maxBossTimes;
+            this.desText.text = MD.step + '/' + MD.maxBossTimes;
             this.setBtnEnable('left',MD.level > 1)
             this.setBtnEnable('right',false)
         }
@@ -348,6 +375,17 @@ class MapMainUI extends game.BaseUI {
         MyTool.setColorText(this.awardText,'[功勋背包：]' + MD.bag + '/' + MD.getAwardMax());
         MyTool.setColorText(this.valueText,'[功勋积累：]' + MD.value);
         MyTool.setColorText(this.pkText,'[通缉令：]' + MD.pkValue);
+
+        if(MD.enemy && MD.enemy.level == MD.level && !MD.enemy.is_pk)
+        {
+            this.pkBtn.label = '挑　战'
+            this.pkBtn.skinName = 'Btn_b2Skin'
+        }
+        else
+        {
+            this.pkBtn.label = '搜　寻'
+            this.pkBtn.skinName = 'Btn_r2Skin'
+        }
     }
 
     private setBtnEnable(key,b){
@@ -397,13 +435,16 @@ class MapMainUI extends game.BaseUI {
             this.bossItem.x = 740;
             var tw = egret.Tween.get(this.bossItem);
             tw.call(function(){
-                this.pkItem.showHpChange({
-                    rate1:this.pkItem.tempObj.rate,
-                    rate2:1,
-                    hp:this.pkItem.tempObj.hp
-                })
-                var VM = PKMainMV.getInstance();
-                VM.playOnItem(30,this.pkItem);
+                if(this.pkItem.tempObj)
+                {
+                    this.pkItem.showHpChange({
+                        rate1:this.pkItem.tempObj.rate,
+                        rate2:1,
+                        hp:this.pkItem.tempObj.hp
+                    })
+                    var VM = PKMainMV.getInstance();
+                    VM.playOnItem(30,this.pkItem);
+                }
             },this).wait(500).to({x:440},300).to({x:460},200).call(function(){
                 this.renewBossHp(true)
             },this).wait(500).call(this.onPKAction,this)
@@ -710,6 +751,9 @@ class MapMainUI extends game.BaseUI {
     private showItemTalk(){
         if(MapExchangeUI.getInstance().visible)
             return;
+        if(this.openTime && egret.getTimer() - this.openTime < 1000)
+            return;
+        this.openTime = 0;
         this.itemTalk(ArrayUtil.randomOne(this.itemArray))
         if(Math.random() < 0.3)
         {

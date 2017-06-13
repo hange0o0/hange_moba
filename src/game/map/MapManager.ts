@@ -143,7 +143,7 @@ class MapManager{
 
 
 
-    public getEnemy(level,fun?){
+    public getEnemy(fun?){
         var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
@@ -152,12 +152,11 @@ class MapManager{
             Alert('没有通辑令了')
             return;
         }
-        oo.level = level;
-
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
             var msg = data.msg;
             MD.enemy = msg.data;
+            MD.pkValue --;
             if(fun)
                 fun();
         });
@@ -186,6 +185,11 @@ class MapManager{
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.map_change_level,oo,function(data){
             var msg = data.msg;
+            if(msg.fail)
+            {
+                Alert('无法切换关卡');
+                return
+            }
             MD.fillData(msg.data);
             if(fun)
                 fun();

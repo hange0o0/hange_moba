@@ -64,18 +64,18 @@ class MapGameUI extends game.BaseUI {
 
     private onClose(){
         var self = this;
-        Confirm('确定放弃本次挑战吗？',function(type){
-            if(type == 1)
-            {
+        //Confirm('确定放弃本次挑战吗？',function(type){
+        //    if(type == 1)
+        //    {
                 self.hide();
                 MapMainUI.getInstance().show();
-            }
-        });
+        //    }
+        //});
     }
 
     private onEnemy(){
         var self = this;
-        Confirm('重新搜索敌人需花费1点体力，是否继续？',function(type){
+        Confirm('重新搜寻敌人需花费1个通辑令，是否继续？',function(type){
             if(type == 1)
             {
                 var MM = MapManager.getInstance();

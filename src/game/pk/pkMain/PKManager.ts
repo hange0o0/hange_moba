@@ -245,7 +245,7 @@ class PKManager {
         {
             case PKManager.PKType.MAP:
                 var MD = MapData.getInstance();
-                return (MD.level %20) || 20;
+                sceneID =  (MD.level %20) || 20;
                 break;
             case PKManager.PKType.MAIN:
                 sceneID = (1 + Math.floor(rd*size)) + size * 0;

@@ -67,7 +67,7 @@ class MapData {
 
         this.enemy = map.enemy;
 
-        this.serverBossCD = map.serverBossCD || 0;
+        this.serverBossCD = map.cd || 0;
     }
 
     //重置怪物池
@@ -177,16 +177,7 @@ class MapData {
         //this.resetBakList();
 
         //计算血量
-        var pkIndex = this.getPKingIndex();
-        this.currentBossHp = 0
-        this.currentBossMaxHp = 0
-        for(var i=0;i<needNum;i++)
-        {
-            var id = this.pkList[i];
-            this.currentBossMaxHp += this.monsterHurts[id];
-            if(i>= pkIndex)
-                this.currentBossHp += this.monsterHurts[id];
-        }
+        this.resetHp();
     }
 
     private resetHp(){
@@ -236,7 +227,7 @@ class MapData {
     //}
 
     public getCurrentCD(){
-        var key = UM.getForce()// + '_' + this.level;
+        var key = UM.getForce() + '_' + this.level;
         if(key == this.monsterHurts.key)
             return this.bossCD;
         var bossData = this.getBoss();
@@ -262,7 +253,7 @@ class MapData {
         this.monsterValues[mid] = mValue;
         var bossTime = Math.ceil(mValue.hp / boss.atk); //boss攻击我的次数
         var mTime = Math.floor(bossTime*mValue.speed/boss.speed); //我在死之前的攻击次数
-        return mTime * mValue.atk;
+        return Math.max(1,mTime) * mValue.atk;
     }
 
     public getBoss(){
@@ -271,33 +262,33 @@ class MapData {
              hp:1000,
              speed:50,
          }
-        var force = Math.ceil(Math.pow(this.level,1.2));
-        base.atk *= force*2;
-        base.hp *= force*30;
+        var force =Math.pow(1+this.level/2,1.3);
+        base.atk = Math.floor(force*base.atk);
+        base.hp = Math.floor(force*20*base.hp);
 
         return base;
     }
 
     //每胜一场奖励积分
     public getCurrentAward(){
-       return Math.ceil(Math.pow(this.level,1.2));
+       return Math.ceil(Math.pow(this.level,1.3));
     }
 
     //奖励上限
     public getAwardMax(){
-        return 100 * this.getCurrentAward();
+        return (140 +this.level *10) * this.getCurrentAward();
     }
 
     public getExCoin(v){
-        return Math.floor(v*5);
+        return Math.floor(v*2);
     }
 
     public getExCard(v){
-        return Math.floor(v/20);
+        return Math.floor(v/50);
     }
 
     public getExCardNeed(v){
-        return Math.floor(v*20);
+        return Math.floor(v*50);
     }
 
 
