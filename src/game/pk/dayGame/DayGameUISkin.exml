@@ -17,7 +17,7 @@
 				<e:Rect height="65" width="620" x="10" y="0" fillAlpha="0.4"/>
 				<e:Rect height="1" width="620" x="10" y="65" fillColor="0x5e4a3f"/>
 				<e:Label id="desText" text="敌方卡组" y="15" textColor="0xCCB48E" horizontalCenter="0"/>
-				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
+				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="30">
 					<e:layout>
 						<e:TileLayout horizontalGap="40" verticalGap="40"/>
 					</e:layout>

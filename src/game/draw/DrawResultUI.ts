@@ -19,7 +19,7 @@ class DrawResultUI extends game.BaseContainer {
 
 
 
-    private mid;
+    private item;
 
     public childrenCreated() {
         super.childrenCreated();
@@ -28,8 +28,11 @@ class DrawResultUI extends game.BaseContainer {
 
 
     public hide(){
+        DrawUI.getInstance().showOtherDraw(this.item.mid);
+        this.item.backPos();
         MyTool.removeMC(this);
-        DrawUI.getInstance().showOtherDraw(this.mid);
+
+
     }
 
     public show(item){
@@ -40,7 +43,7 @@ class DrawResultUI extends game.BaseContainer {
         this.addChild(item);
         this.diamondGroup.y = item.y + 150;
 
-        this.mid = item.mid;
+        this.item = item;
         var vo = MonsterVO.getObject(item.mid);
         this.resultText.text = '×' + vo.cost
         this.okBtn.visible = false;

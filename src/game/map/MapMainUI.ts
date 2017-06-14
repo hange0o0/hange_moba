@@ -122,7 +122,7 @@ class MapMainUI extends game.BaseUI {
         var self = this;
         if(MD.pkValue > 0)
         {
-            Confirm('切换关卡时，将丢弃本关所有的通辑令，是否继续？',function(type){
+            Confirm('切换据点时，将丢弃当前据点所有的通辑令，是否继续？',function(type){
                 if(type == 1)
                 {
                     MapManager.getInstance().change_level(level,function(){
@@ -164,13 +164,21 @@ class MapMainUI extends game.BaseUI {
         })
     }
     private onGet(){
+        var MD = MapData.getInstance();
         var self = this;
+        var beforeValue = MD.value
+        if(MD.bag <= 0)
+            return;
         MapManager.getInstance().get_award(function(){
+            if(MD.value > beforeValue)
+            {
+                ShowTips('获得功勋×' + (MD.value - beforeValue))
+            }
             self.renewInfo();
         })
     }
     private onVideo(){
-        DayLogUI.getInstance().show(MapManager.getInstance().logList,'挑战日志','map');
+        DayLogUI.getInstance().show(MapManager.getInstance().logList,'据点挑战日志','map');
         this.hide();
     }
 
@@ -210,6 +218,7 @@ class MapMainUI extends game.BaseUI {
     public hide(){
         this.stopAll();
         MainPageUI.getInstance()['mapGame'].renew();
+        this.stage.removeEventListener(egret.Event.ACTIVATE,this.onActive,this);
         super.hide();
     }
 
@@ -240,7 +249,7 @@ class MapMainUI extends game.BaseUI {
     }
 
     public onShow(){
-        this.openTime = egret.getTimer();
+
         this.pkHeight = this.stage.stageHeight - 560
         this.onMapChange();
 
@@ -254,10 +263,20 @@ class MapMainUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.map_value_change,this.renewInfo);
 
 
+        this.stage.addEventListener(egret.Event.ACTIVATE,this.onActive,this);
+
         AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(30)) //+hp
     }
 
+    //激活后重新表现
+    private onActive(){
+        if(this.openTime && egret.getTimer() - this.openTime < 1000)
+            return;
+        this.onMapChange();
+    }
+
     private onMapChange(){
+        this.openTime = egret.getTimer();
         var MD = MapData.getInstance();
         MD.reInit();
         MD.setPKDisplayData();
@@ -280,6 +299,7 @@ class MapMainUI extends game.BaseUI {
             this.timeText.text = ('功勋背包已满载')
         if(egret.getTimer() - this.cloudTimer > 1000*10)
             this.showCound();
+
 
         //console.log('map running')
     }
@@ -386,6 +406,8 @@ class MapMainUI extends game.BaseUI {
             this.pkBtn.label = '搜　寻'
             this.pkBtn.skinName = 'Btn_r2Skin'
         }
+
+        this.videoBtn.visible = MapManager.getInstance().logList.length > 0;
     }
 
     private setBtnEnable(key,b){

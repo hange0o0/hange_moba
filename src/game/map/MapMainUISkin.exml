@@ -3,7 +3,7 @@
 	<e:Image id="bg" x="0" y="0" source="pk_bg10_jpg" locked="true"/>
 	<e:Group id="con" width="640" x="0" top="120" bottom="440"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Group right="75" top="10" id="helpBtn" x="10" y="10" locked="true">
+	<e:Group right="10" id="helpBtn" x="10" y="120">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Label horizontalCenter="0" textColor="0xF8D05A" y="10" text="?"/>
 	</e:Group>
@@ -52,7 +52,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="videoBtn" right="10" y="120">
+	<e:Group id="videoBtn" right="10" y="180">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>

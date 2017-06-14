@@ -24,7 +24,17 @@ class EnemyHeadItem extends game.BaseItem {
           this.addBtnEvent(this.closeBtn,this.onKill);
           this.addBtnEvent(this,this.onClick);
 
+        addBtnTips(this,this.onTips,this);
+
         //MyTool.addTestBlock(this);
+    }
+
+    private onTips(){
+        if(this.data.vo)
+        {
+            return this.data.vo.getTipsWord()
+        }
+        return null;
     }
 
     private onKill(e:egret.TouchEvent){
@@ -48,6 +58,8 @@ class EnemyHeadItem extends game.BaseItem {
 
     }
     private onClick(){
+        if(this['stopClickTimer'] &&  egret.getTimer() - this['stopClickTimer'] < 200)
+            return
         MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 

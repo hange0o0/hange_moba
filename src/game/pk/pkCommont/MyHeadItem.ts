@@ -16,9 +16,21 @@ class MyHeadItem extends game.BaseItem {
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this,this.onClick);
+        addBtnTips(this,this.onTips,this);
+    }
+
+    private onTips(){
+        if(this.data.vo)
+        {
+            return this.data.vo.getTipsWord();
+        }
+        return null;
     }
 
     private onClick(){
+        if(this['stopClickTimer'] &&  egret.getTimer() - this['stopClickTimer'] < 200)
+            return
+
         if(this.data && this.data.list)
             MonsterList.getInstance().show(this.data.list,this.data.index)
     }

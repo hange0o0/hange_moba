@@ -9,10 +9,16 @@
 		</e:Group>
 	</e:Group>
 	<e:Image id="bg" y="0" x="-9" source="card_back_bg_png" width="152" height="178"/>
-	
-		
+	<e:Image id="getAwardMC" source="get_award_png" horizontalCenter="0" verticalCenter="0" scaleX="0.8" scaleY="0.8"/>
 	
-	
+
+
+	
+	
+	
+	
+
+
 	
 	
 </e:Skin>

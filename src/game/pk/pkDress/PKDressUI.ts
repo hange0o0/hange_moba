@@ -65,7 +65,7 @@ class PKDressUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('调整位置');
+        this.topUI.setTitle('布阵');
         this.topUI.addEventListener('hide', this.hide, this);
 
 

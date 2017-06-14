@@ -43,6 +43,16 @@ class MonsterInfoBase extends game.BaseContainer {
         this.addBtnEvent(this.levelUpBtn, this.onLevelUp);
         this.addBtnEvent(this.levelUpCoinGroup, this.onAddCoin);
         this.addBtnEvent(this.levelUpCardGroup, this.onAddCard);
+
+        addBtnTips(this.headMC,this.onTips,this);
+    }
+
+    private onTips(){
+        if(this.vo)
+        {
+            return this.vo.getTipsWord();
+        }
+        return null;
     }
 
     private onAddCoin(e){

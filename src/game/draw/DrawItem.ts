@@ -9,6 +9,8 @@ class DrawItem extends game.BaseItem {
     private headMC: eui.Image;
     private coinText: eui.Label;
     private bg: eui.Image;
+    private getAwardMC: eui.Image;
+
 
 
 
@@ -26,6 +28,7 @@ class DrawItem extends game.BaseItem {
             MonsterList.getInstance().show([{id:this.mid}]);
             return
         }
+
         var self = this
        PayManager.getInstance().diamondDraw(function(id){
            self.showDraw(id)
@@ -42,6 +45,7 @@ class DrawItem extends game.BaseItem {
         this.resultGroup.visible = false
         this.bg.visible = true
         this.mid = 0;
+        this.getAwardMC.visible = false;
     }
 
     public showOtherDraw(id){
@@ -76,6 +80,26 @@ class DrawItem extends game.BaseItem {
         },this).to({scaleX:1.45},150).to({scaleX:1.4},100).call(function(){
             DrawResultUI.getInstance().show(this);
         })
+    }
+
+    //回到自己的位置
+    private backPos(){
+
+        var x = (this.index%3)*160 + this.anchorOffsetX;
+        var y = Math.floor(this.index/3)*200 + this.anchorOffsetY;
+
+        var p = this.localToGlobal(this.anchorOffsetX,this.anchorOffsetY);
+        var con = DrawUI.getInstance()['cardGroup']
+        p = con.globalToLocal(p.x,p.y,p);
+        this.x = p.x;
+        this.y = p.x;
+        con.addChild(this);
+
+        egret.Tween.removeTweens(this);
+        var tw = egret.Tween.get(this);
+        tw.to({scaleX:1,scaleY:1,x:x,y:y},200).call(function(){
+            this.getAwardMC.visible = true;
+        },this)
     }
 
 

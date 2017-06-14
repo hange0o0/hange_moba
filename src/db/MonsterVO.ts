@@ -146,6 +146,10 @@ class MonsterVO {
 
     }
 
+    public getTipsWord(){
+        return MyTool.createHtml(this.name + '：',0xE0A44A) + '\n' + this.des;
+    }
+
     public get typeIcon(){
          return 'monster_type'+this.mtype+'_png'
     }

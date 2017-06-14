@@ -459,6 +459,9 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private onMCClick(e){
         var item = e.currentTarget;
+        if(item['stopClickTimer'] &&  egret.getTimer() - item['stopClickTimer'] < 200)
+            return
+
         var index = this.mcArray.indexOf(item);
         if(this.selectIndex == -1) //选中
         {

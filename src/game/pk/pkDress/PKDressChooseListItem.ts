@@ -39,7 +39,15 @@ class PKDressChooseListItem extends game.BaseItem {
         this.addBtnEvent(this.headMC,this.onInfo);
         //MyTool.addLongTouch(this,this.onLongTouch,this)
 
+        addBtnTips(this,this.onTips,this);
+    }
 
+    private onTips(){
+        if(this.data.vo)
+        {
+            return this.data.vo.getTipsWord()
+        }
+        return null;
     }
 
     private onClick(e:egret.TouchEvent){
@@ -50,6 +58,9 @@ class PKDressChooseListItem extends game.BaseItem {
     }
 
     private onInfo(){ //显示详情
+        if(this['stopClickTimer'] &&  egret.getTimer() - this['stopClickTimer'] < 200)
+            return
+
         if(this.data && this.data.list)
             MonsterList.getInstance().show(this.data.list,this.data.index)
     }
