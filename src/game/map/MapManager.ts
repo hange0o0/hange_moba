@@ -155,6 +155,11 @@ class MapManager{
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.get_map_enemy,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('没有通辑令了')
+                return;
+            }
             MD.enemy = msg.data;
             MD.pkValue --;
             if(fun)

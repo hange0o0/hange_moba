@@ -52,7 +52,7 @@ class GuideManager {
             fun:function(){
                 self.showGuide()
             },
-            text:'你知道什么是卡士吗？在卡卡看来，所谓的卡士，可以比作是卡牌中的[司令]，利用手中有限的卡牌进行[排兵布阵]，然后让你的队伍出战来为你取得胜利，最考验运筹帷幄的能力了',
+            text:'你知道什么是卡士吗？在卡卡看来，所谓的卡士，可以比作是卡兵中的[司令]，利用手中有限的卡兵进行[排兵布阵]，然后让你的队伍出战来为你取得胜利，最考验运筹帷幄的能力了',
         })
 
 
@@ -64,7 +64,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"this.getMainGameRect()",
-            text:'现在我们已经得到系统发牌员派发的卡组了，感觉还不错。我们也观察一下对手的卡组，方便我们制定合适的战术',
+            text:'在上方区域呈现的是对手的卡组，我们需观察一下，以方便我们制定合适的战术',
             fun:function(){
                 MainGameUI.getInstance().scrollToEnd();
                 self.showGuide(MainGameUI.getInstance())
@@ -80,19 +80,19 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'卡卡觉得[【人鱼战士】]是一张不错的卡牌，我们就选它出战吧',
+            text:'卡卡觉得[【人鱼战士】]是一个不错的卡兵，我们就选它出战吧',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'虽然[重复出战]会花费[更多]的符文，但卡卡觉得这张卡牌值这个价',
+            text:'虽然[重复出战]会花费[更多]的符文，但卡卡觉得这卡兵值这个价',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['sortBtn']",
-            text:'卡卡觉得我们还需要一张张大的肉盾，看看有啥合适的？点击[排序按钮]，调整为[按血量排序]',
+            text:'卡卡觉得我们还需要一位强大的肉盾，看看有啥合适的？点击[排序按钮]，调整为[按血量排序]',
         })
 
         this.addGuideObj({
@@ -116,7 +116,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(1)['useBtn']",
-            text:'虽然卡卡觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多出战一张牌吧',
+            text:'虽然卡卡觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多出召唤一位卡兵吧',
         })
 
         this.addGuideObj({
@@ -138,7 +138,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"PKResultUI.getInstance().list.getChildAt(0)",
-            text:'战场的变化果然瞬息万变,卡卡还没看清楚，战斗就结束了！让我们一起看看在首轮PK过程中，到底发生了什么',
+            text:'战场的变化果然瞬息万变,卡卡刚刚还没看清楚，战斗就结束了！让我们一起看看在首轮PK过程中，到底发生了什么',
         })
 
         this.addGuideObj({
@@ -161,7 +161,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance()['collectBtn']",
-            text:'花钱！！！刚才我们在PK中不是获得了一些[卡牌碎片]和[金币]吗，我们可以用它来在[【收集】]中对卡牌进行[升级]。卡卡想想都有点小兴奋呢~',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
+            text:'花钱！！！刚才我们在PK中不是获得了一些[卡兵碎片]和[金币]吗，我们可以用它来在[【卡兵】]中对卡兵进行[升级]。卡卡想想都有点小兴奋呢~',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
         })
 
         this.addGuideObj({
@@ -173,7 +173,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['info']['levelUpBtn']",
-            text:'卡卡告诉你一个小秘密，升级单张卡牌的时候，我们的[总战力]也会得到同步提升，这可是会增强[所有卡牌]的对战实力的哦',
+            text:'卡卡告诉你一个小秘密，升级单个卡兵的时候，我们的[总战力]也会得到同步提升，这可是会增强[所有卡兵]的对战实力的哦',
         })
 
         this.addGuideObj({
@@ -205,7 +205,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'[野外势力]布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他消灭掉！卡卡希望你在以后的日子中也能为我们的世界多出点力',
+            text:'[野外势力]布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他清理干净！',
             hideHand:true,
             toBottom:true,
             fun:function(){
@@ -245,7 +245,7 @@ class GuideManager {
             fun:function(){
                 self.showGuide()
             },
-            text:'哦，对了，有一个很多卡士都会犯错我必须和你说一下，就是[不要]专注于升级某几张卡牌，[全面发展]才是卡士世界的主题，卡卡希望你能记住这一点，能让你少走很多弯路哦~',
+            text:'哦，对了，有一个很多卡士都会犯错我必须和你说一下，就是[不要]专注于升级某几个卡兵，[全面发展]才是卡士世界的主题，卡卡希望你能记住这一点，能让你少走很多弯路哦~',
         })
 
         this.addGuideObj({

@@ -467,7 +467,7 @@ class PKDressChooseUI extends game.BaseContainer {
         {
             if(!item.data)
             {
-                ShowTips('请点击下方卡牌选择上阵单位')
+                ShowTips('请点击下方卡兵选择上阵单位')
                 return
             }
             this.selectIndex = index;

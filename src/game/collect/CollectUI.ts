@@ -31,7 +31,7 @@ class CollectUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('收集列表')
+        this.topUI.setTitle('卡兵列表')
         this.topUI.addEventListener('hide',this.hide,this);
 
 

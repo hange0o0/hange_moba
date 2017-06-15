@@ -124,12 +124,12 @@ class PKFailUI extends PKResultBase {
             var list = team1Base.list;
             var cost = PKM.getCost(list);
             if(cost < 80)
-                arr.push('充分利用所有符文，上阵更多更强卡牌')
-            arr.push('调整卡牌出战顺序，增强卡牌间的配合')
-            arr.push('更换你的出战卡牌，针对对方进行布局')
+                arr.push('充分利用所有符文，上阵更多更强卡兵')
+            arr.push('调整卡兵出战顺序，增强卡兵间的配合')
+            arr.push('更换你的出战卡兵，针对对方进行布局')
             if(!PKM.pkResult.isequal)
             {
-                arr.push('升级你的低级卡牌，增强综合卡牌能力')
+                arr.push('升级你的低级卡兵，增强综合卡兵能力')
                 if(PKM.pkType == PKManager.PKType.FRIEND)
                 {
                     if(Math.floor(team1Base.f) < Math.floor(team2Base.f))

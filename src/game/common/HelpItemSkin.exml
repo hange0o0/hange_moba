@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="HelpItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Rect id="bg" height="100%" width="100%" x="0" fillColor="0xCCB48E" fillAlpha="0.1"/>
-	<e:Label textColor="0xCCB48E" text="123" id="text" size="26" textAlign="left" top="10" bottom="10" lineSpacing="5" left="50" right="20"/>
-	<e:Image x="20" source="point2_png" scaleX="0.3" scaleY="0.3" y="14"/>
+	<e:Rect id="bg" height="100%" width="100%" x="0" fillAlpha="0.1" fillColor="0x5e492a"/>
+	<e:Label textColor="0xCCB48E" text="123" id="text" size="24" textAlign="left" top="15" bottom="15" lineSpacing="5" left="50" right="20"/>
+	<e:Image x="20" source="point2_png" scaleX="0.3" scaleY="0.3" y="17"/>
 
 </e:Skin>

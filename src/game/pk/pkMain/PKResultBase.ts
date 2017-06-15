@@ -92,6 +92,14 @@ class PKResultBase extends game.BaseContainer {
             this._desText.text += '\n卡组次数已用完，获得了新卡组';
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }
+        else if(award.desArr && award.desArr.length)//其它描述
+        {
+            var str = award.desArr.shift();
+            this._desText.text += '\n' + str;
+            this.timer = egret.setTimeout(this.stepOne,this,300);
+            if(award.desArr.length == 0)
+                award.desArr = null
+        }
         //else if(award.passMap)//卡级
         //{
         //    award.passMap = false;

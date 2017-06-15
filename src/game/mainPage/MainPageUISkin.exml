@@ -3,72 +3,6 @@
 	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
 	<e:Image id="bottomMV" source="main_bottom_mv_png" x="0" bottom="80" alpha="0.5"/>
 	<e:Group id="starGroup" height="300" width="100%" x="0" y="120"/>
-	<e:Group x="-2" y="0">
-		<e:Image source="fire_top_jpg" x="2" y="0" locked="true"/>
-		<e:Image source="border_head_png" x="10" y="6"/>
-		<e:Image source="head_bg2_jpg"  y="11" x="15" width="90" height="90"/>
-		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
-		<e:Image id="honorRed" source="red_point_png" y="6" x="85.18"/>
-		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
-		<e:Image source="icon_empty_png" x="0" y="76"/>
-
-
-
-
-
-
-
-
-		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24"/>
-		<e:Group x="124" y="63">
-			<e:Label y="10" text="战力:" x="10" size="26" textColor="0xF9D988"/>
-			<e:Label id="forceText" y="0" size="36" text="12345" x="0" textColor="0xF8B602" italic="true"/>
-			<e:layout>
-				<e:HorizontalLayout verticalAlign="middle"/>
-			</e:layout>
-		</e:Group>
-
-
-
-
-		<e:Label id="levelText" text="99" y="87" size="22" textColor="0xCCCCCC" horizontalCenter="-298"/>
-		<e:Group id="coinGroup" x="297" y="10">
-			<e:Image source="border1_png" y="5" scale9Grid="21,15,70,9" width="150" height="40" x="22.878787878787875"/>
-			<e:Image source="icon_money_png" x="0" y="2.878787878787879"/>
-			<e:Label id="coinText" text="123456789" x="41.969696969697" y="11.969696969696969" size="24" textColor="0xCCCCCC"/>
-			<e:Group id="addCoinBtn" y="0" x="138.93939393939388">
-				<e:Image source="icon_empty_png" y="0" x="0"/>
-				<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
-			</e:Group>
-		</e:Group>
-		<e:Group id="energyGroup" x="483" y="59">
-			<e:Image source="border1_png" y="3.9393939393939377" scale9Grid="21,15,70,9" width="120" height="40" x="22.878787878787875"/>
-			<e:Image source="icon_pve_png" x="0" y="1.0606060606060623"/>
-			<e:Label id="energyText" y="11.969696969696969" textColor="0xCCCCCC" size="24" text="123456789" x="41.969696969697"/>
-			<e:Group id="addEnergyBtn" y="0" x="115">
-				<e:Image source="icon_empty_png" y="0" x="0"/>
-				<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
-			</e:Group>
-		</e:Group>
-		<e:Group id="diamondGroup" x="483" y="10">
-			<e:Image source="border1_png" y="3.9393939393939377" scale9Grid="21,15,70,9" width="120" height="40" x="25"/>
-			<e:Image source="icon_token_png" x="0" y="1.0606060606060623"/>
-			<e:Label id="diamondText" y="11.969696969696969" textColor="0xCCCCCC" size="24" text="1234567" x="44.09090909090912"/>
-			<e:Group id="addDiamondBtn" y="0" x="110">
-				<e:Image source="icon_empty_png" y="0" x="5"/>
-				<e:Image source="icon_add_png" y="6" x="13"/>
-			</e:Group>
-		</e:Group>
-		<e:Group id="cardGroup" x="297" y="59">
-			<e:Image source="border1_png" x="25" y="5" scale9Grid="21,15,70,9" height="40" width="150"/>
-			<e:Image source="icon_pvp_ticket_png" x="0" y="3.9393939393939377"/>
-			<e:Label id="feeText" y="11.969696969696969" textColor="0xCCCCCC" size="24" text="1234567" x="44.09090909090912"/>
-			<e:Group id="addFreeBtn" y="0" x="139">
-				<e:Image source="icon_empty_png" y="0" x="0"/>
-				<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
-			</e:Group>
-		</e:Group>
-	</e:Group>
 	<e:Group x="0" top="180" bottom="140">
 		<e:Group horizontalCenter="0" width="640" height="100%" verticalCenter="0" maxHeight="580">
 			<e:Group id="scrollGroup" x="0" bottom="40">
@@ -145,7 +79,7 @@
 			<e:Group id="collectBtn" x="135.83333333333334" y="0" width="100">
 				<e:Image source="menu_icon_2_png" y="0" horizontalCenter="0"/>
 				<e:Image id="collectRed" source="red_point_png" y="5" x="65"/>
-				<e:Label y="93" text="收集" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:Label y="93" text="卡兵" textColor="0xCCB48E" horizontalCenter="0"/>
 			</e:Group>
 			<e:Group id="friendBtn" y="5.000000000000114" x="435" width="100">
 				<e:Image y="-9" horizontalCenter="0" source="menu_icon_7_png"/>
@@ -161,6 +95,60 @@
 		<e:Group id="bagBtn" x="395" y="19" visible="false">
 			<e:Image source="menu_icon_5_png" x="0" y="0"/>
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
+		</e:Group>
+	</e:Group>
+	<e:Group x="-2" y="0">
+		<e:Image source="fire_top_jpg" x="2" y="0" locked="true"/>
+		<e:Image source="border_head_png" x="10" y="6"/>
+		<e:Image source="head_bg2_jpg" y="11" x="15" width="90" height="90"/>
+		<e:Image id="headMC" y="11" x="15" source="icon_power_png" width="90" height="90"/>
+		<e:Image id="honorRed" source="red_point_png" y="6" x="85.18"/>
+		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
+		<e:Image source="icon_empty_png" x="0" y="76"/>
+		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24"/>
+		<e:Group x="124" y="63">
+		<e:Label y="10" text="战力:" x="10" size="26" textColor="0xF9D988"/>
+		<e:Label id="forceText" y="0" size="36" text="12345" x="0" textColor="0xF8B602" italic="true"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+		</e:Group>
+		<e:Label id="levelText" text="99" y="87" size="22" textColor="0xCCCCCC" horizontalCenter="-298"/>
+		<e:Group id="coinGroup" x="297" y="10">
+		<e:Image source="border1_png" y="5" scale9Grid="21,15,70,9" width="150" height="40" x="22.878787878787875"/>
+		<e:Image source="icon_money_png" x="0" y="2.878787878787879"/>
+		<e:Label id="coinText" text="123456789" x="41.969696969697" y="11.969696969696969" size="24" textColor="0xCCCCCC"/>
+		<e:Group id="addCoinBtn" y="0" x="138.93939393939388">
+			<e:Image source="icon_empty_png" y="0" x="0"/>
+			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
+		</e:Group>
+		</e:Group>
+		<e:Group id="energyGroup" x="483" y="59">
+		<e:Image source="border1_png" y="3.9393939393939377" scale9Grid="21,15,70,9" width="120" height="40" x="22.878787878787875"/>
+		<e:Image source="icon_pve_png" x="0" y="1.0606060606060623"/>
+		<e:Label id="energyText" y="11.969696969696969" textColor="0xCCCCCC" size="24" text="123456789" x="41.969696969697"/>
+		<e:Group id="addEnergyBtn" y="0" x="115">
+			<e:Image source="icon_empty_png" y="0" x="0"/>
+			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
+		</e:Group>
+		</e:Group>
+		<e:Group id="diamondGroup" x="483" y="10">
+		<e:Image source="border1_png" y="3.9393939393939377" scale9Grid="21,15,70,9" width="120" height="40" x="25"/>
+		<e:Image source="icon_token_png" x="0" y="1.0606060606060623"/>
+		<e:Label id="diamondText" y="11.969696969696969" textColor="0xCCCCCC" size="24" text="1234567" x="44.09090909090912"/>
+		<e:Group id="addDiamondBtn" y="0" x="110">
+			<e:Image source="icon_empty_png" y="0" x="5"/>
+			<e:Image source="icon_add_png" y="6" x="13"/>
+		</e:Group>
+		</e:Group>
+		<e:Group id="cardGroup" x="297" y="59">
+		<e:Image source="border1_png" x="25" y="5" scale9Grid="21,15,70,9" height="40" width="150"/>
+		<e:Image source="icon_pvp_ticket_png" x="0" y="3.9393939393939377"/>
+		<e:Label id="feeText" y="11.969696969696969" textColor="0xCCCCCC" size="24" text="1234567" x="44.09090909090912"/>
+		<e:Group id="addFreeBtn" y="0" x="139">
+			<e:Image source="icon_empty_png" y="0" x="0"/>
+			<e:Image source="icon_add_png" y="5.899999999999977" x="8"/>
+		</e:Group>
 		</e:Group>
 	</e:Group>
 	<e:Group id="diamonDrawBtn" bottom="145" x="10">

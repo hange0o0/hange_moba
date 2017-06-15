@@ -338,7 +338,7 @@ class PKManager {
         }
         if(oo.fail == 111)
         {
-            Alert('没有选择任何卡牌');
+            Alert('没有选择任何卡兵');
             return true;
         }
         return false;
@@ -558,6 +558,7 @@ class PKManager {
             forceUp:false,
             getNewCard:false,
             passMap:false,
+            desArr:[],
             prop:[]
         }
 
@@ -609,6 +610,15 @@ class PKManager {
                 this.pkAward.getNewCard = true;
             if(data.passMap)
                 this.pkAward.passMap = true;
+
+            if(this.pkType == PKManager.PKType.MAP && data.result)
+            {
+                var MD = MapData.getInstance();
+                if(MD.level == MD.maxLevel && MD.step < MD.maxBossTimes)
+                {
+                    this.pkAward.desArr.push('据点进度：' + (MD.step + 1) + '/' + MD.maxBossTimes)
+                }
+            }
         }
 
 

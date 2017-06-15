@@ -58,7 +58,7 @@
 					</e:layout>
 					<e:Group x="55.98484848484849" y="76.96969696969688" width="160" height="56">
 						<e:Label id="cardText" text="剩余次数：10/10" y="-25" horizontalCenter="0" size="20" textColor="0xFCD45E"/>
-						<e:Button id="resetBtn" label="重新选牌" y="0" x="0" skinName="Btn_b2Skin"/>
+						<e:Button id="resetBtn" label="重新选卡" y="0" x="0" skinName="Btn_b2Skin"/>
 					</e:Group>
 					<e:Group y="86.96969696969688" height="56" x="65.9848484848485">
 						<e:Label id="taskText" y="-25" textColor="0xFCD45E" text="剩余次数：10/10" horizontalCenter="0" size="20"/>

@@ -58,7 +58,7 @@ class MonsterList extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('卡牌详情')
+        this.topUI.setTitle('卡兵详情')
         this.topUI.addEventListener('hide',this.hide,this);
 
 

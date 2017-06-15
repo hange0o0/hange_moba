@@ -206,7 +206,7 @@
 				<e:Label id="serverEqualText4" y="135" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
 			</e:Group>
 			<e:Group y="788" x="60">
-				<e:Label y="0" text="最近常用卡牌：" horizontalCenter="0" textColor="0xC4A87C"/>
+				<e:Label y="0" text="最近常用卡兵：" horizontalCenter="0" textColor="0xC4A87C"/>
 				<e:List id="list" y="40" height="280" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="25" verticalGap="20"/>

@@ -182,7 +182,7 @@ class MainGameManager{
             var msg = data.msg;
             if(msg.fail == 1)
             {
-                Alert('没有对应卡牌数据');
+                Alert('没有对应卡兵数据');
                 return;
             }
             if(msg.fail == 2)

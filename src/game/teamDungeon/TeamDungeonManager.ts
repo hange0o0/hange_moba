@@ -11,11 +11,11 @@ class TeamDungeonManager {
 
     public hardData = [
         {lv:1,force:100,level:3,enemyForce:100,label:''},
-        {lv:2,force:1000,level:6,enemyForce:1200,label:''},
-        {lv:3,force:2000,level:10,enemyForce:2500,label:''},
-        {lv:4,force:4000,level:15,enemyForce:5000,label:''},
-        {lv:5,force:7000,level:20,enemyForce:8500,label:''},
-        {lv:6,force:10000,level:25,enemyForce:13000,label:''},
+        {lv:2,force:1000,level:6,enemyForce:1200,label:''}
+        //{lv:3,force:2000,level:10,enemyForce:2500,label:''},
+        //{lv:4,force:4000,level:15,enemyForce:5000,label:''},
+        //{lv:5,force:7000,level:20,enemyForce:8500,label:''},
+        //{lv:6,force:10000,level:25,enemyForce:13000,label:''},
     ];
 
 

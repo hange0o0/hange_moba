@@ -51,7 +51,7 @@ class MonsterTalkUI extends game.BaseUI {
     public childrenCreated() {
         super.childrenCreated();
 
-        this.topUI.setTitle('卡牌交流')
+        this.topUI.setTitle('卡兵交流')
         this.topUI.addEventListener('hide',this.hide,this);
 
         //this.list.itemRenderer = MonsterTalkItem;

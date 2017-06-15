@@ -27,9 +27,9 @@ class MonsterInfoBaseItem extends game.BaseItem {
             case '【血脉】':
                 return '满足一定条件就能自动释放的技能';
             case '【法球】':
-                return '法球技能会替换掉卡牌的普通攻击';
+                return '法球技能会替换掉卡兵的普通攻击';
             case '【天赋】':
-                return '卡牌所特有的技能，会无条件生效';
+                return '卡兵所特有的技能，会无条件生效';
         }
         return '';
     }

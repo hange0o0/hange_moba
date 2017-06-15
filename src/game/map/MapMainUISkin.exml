@@ -26,11 +26,11 @@
 			<e:Image source="common_title_bg_png" y="0" x="630" scaleX="-1" scale9Grid="40,7,69,48" width="360"/>
 			<e:Group id="leftBtn" y="7.97" x="20">
 			<e:Image id="la" source="arrow1_png" x="0" y="0"/>
-			<e:Label id="lt" text="上一关" x="50" y="0" textColor="0xCBB46B" height="100%" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="lt" text="上一据点" x="50" y="0" textColor="0xCBB46B" height="100%" textAlign="center" verticalAlign="middle" size="24"/>
 			</e:Group>
 			<e:Group id="rightBtn" y="6" right="20">
 			<e:Image id="ra" y="0" scaleX="-1" source="arrow3_png" right="0"/>
-			<e:Label id="rt" y="0" text="下一关" height="100%" verticalAlign="middle" right="50" textColor="0x957565"/>
+			<e:Label id="rt" y="0" text="下一据点" height="100%" verticalAlign="middle" right="50" textColor="0x957565" size="24"/>
 			</e:Group>
 			<e:Label id="desText" text="10/10" textAlign="center" width="140" size="26" verticalCenter="-0.5" horizontalCenter="0" textColor="0x998171"/>
 		</e:Group>

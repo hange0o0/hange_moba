@@ -113,7 +113,7 @@ class CreateTeamUI extends game.BaseWindow {
     private renewSelect(){
         var hardData:any = TeamDungeonManager.getInstance().hardData[this.sortList.selectedIndex];
         this.setHtml(this.forceText,this.createHtml('卡士战力上限：',0xE0A44A) + hardData.force);
-        this.setHtml(this.levelText,this.createHtml('卡牌等级上限：',0xE0A44A) + hardData.level + '级');
+        this.setHtml(this.levelText,this.createHtml('卡兵等级上限：',0xE0A44A) + hardData.level + '级');
         this.sortText.text = hardData.label;
     }
 }

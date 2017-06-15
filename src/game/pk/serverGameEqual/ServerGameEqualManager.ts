@@ -108,7 +108,7 @@ class ServerGameEqualManager{
             }
             if(msg.fail)
             {
-                Alert('获取卡牌失败',LoginManager.getInstance().relogin);
+                Alert('获取卡兵失败',LoginManager.getInstance().relogin);
                 return;
             }
 

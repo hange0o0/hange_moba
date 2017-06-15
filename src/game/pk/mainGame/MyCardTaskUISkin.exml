@@ -2,7 +2,7 @@
 <e:Skin class="MyCardTaskUISkin" width="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" height="580">
 	<e:Image source="window2_png" scale9Grid="95,128,25,230" width="500" x="0" top="0" bottom="0"/>
 	<e:Label id="taskText" text="仍然]赢得3场胜利使用[基地枯" verticalAlign="top" textAlign="left" size="26" lineSpacing="8" horizontalCenter="1" maxWidth="440" y="298.73" textColor="0xe0a44a"/>
-	<e:Label y="98" textColor="0xE0A44A" maxWidth="440" text="使用卡牌" verticalAlign="top" textAlign="left" horizontalCenter="1" size="26" lineSpacing="8" x="10"/>
+	<e:Label y="98" textColor="0xE0A44A" maxWidth="440" text="使用卡兵" verticalAlign="top" textAlign="left" horizontalCenter="1" size="26" lineSpacing="8" x="10"/>
 
 
 	<e:Label id="useText" y="372" textColor="0xCCB48E" text="卡组使用：1/10" verticalAlign="top" textAlign="center" size="26" lineSpacing="5" x="50"/>

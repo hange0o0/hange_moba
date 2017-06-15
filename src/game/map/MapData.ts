@@ -17,7 +17,7 @@ class MapData {
     public monsterValues:any = {};//每个怪对BOSS造成的伤害
     public bossCD = 0;
 
-    public pkList = []//pk中的队列(打完这个BOSS用的卡牌)
+    public pkList = []//pk中的队列(打完这个BOSS用的卡兵)
     //public bakList = []//接着出场的队列(不参与打完这个BOSS)
     public pkPool = []//pk生成的队列
     public pkPoolLevel = 0;//生成PKPool标识
@@ -201,7 +201,7 @@ class MapData {
         return Math.floor(passCD / this.showCD);
     }
 
-    ////一个卡牌出战完毕
+    ////一个卡兵出战完毕
     //public onPKOneFinish(){
     //    var id = this.pkList.shift();
     //    this.currentBossHp -= this.monsterHurts[id];

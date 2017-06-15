@@ -22,6 +22,8 @@ class MonsterInfoBase extends game.BaseContainer {
     private levelUpCardText: eui.Label;
     private lockGroup: eui.Group;
     private levelDes: eui.Label;
+    private talkText: eui.Label;
+
 
 
 
@@ -44,16 +46,16 @@ class MonsterInfoBase extends game.BaseContainer {
         this.addBtnEvent(this.levelUpCoinGroup, this.onAddCoin);
         this.addBtnEvent(this.levelUpCardGroup, this.onAddCard);
 
-        addBtnTips(this.headMC,this.onTips,this);
+        //addBtnTips(this.headMC,this.onTips,this);
     }
 
-    private onTips(){
-        if(this.vo)
-        {
-            return this.vo.getTipsWord();
-        }
-        return null;
-    }
+    //private onTips(){
+    //    if(this.vo)
+    //    {
+    //        return this.vo.getTipsWord();
+    //    }
+    //    return null;
+    //}
 
     private onAddCoin(e){
         ShopUI.getInstance().show('coin');
@@ -299,6 +301,8 @@ class MonsterInfoBase extends game.BaseContainer {
 
         ArrayUtil.sortByField(arr,['sortIndex'],[0]);
         this.list.dataProvider = new eui.ArrayCollection(arr);
+
+        this.talkText.text = '　' + this.vo.des
     }
 
     private changeTitle(str){

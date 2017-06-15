@@ -4,7 +4,7 @@
 	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="0" text="钻石翻翻乐" x="10" stroke="2" bold="true"/>
 	<e:Rect left="30" right="30" fillAlpha="1" fillColor="0x160D06" height="80" bottom="25"/>
 	<e:Button label="返回" skinName="Btn_r2Skin" id="okBtn" y="797" x="360"/>
-	<e:Label text="　　下面是我从你卡组中选出的9张牌，随便翻一张吧！我将给予你等于同卡该牌召唤费用的钻石" y="92" size="24" textColor="0xD0C7AD" width="500" horizontalCenter="0" lineSpacing="8"/>
+	<e:Label text="　　下面是我从你卡组中选出的9张牌，随便翻一张吧！我将给予你等于同卡该卡兵召唤费用的钻石" y="92" size="24" textColor="0xD0C7AD" width="500" horizontalCenter="0" lineSpacing="8"/>
 	<e:Group id="cardGroup" y="190" horizontalCenter="0.5" width="457" height="580">
 		<ns1:DrawItem id="c0" x="0" y="0" skinName="DrawItemSkin"/>
 		<ns1:DrawItem x="160.5" y="0" skinName="DrawItemSkin" id="c1"/>

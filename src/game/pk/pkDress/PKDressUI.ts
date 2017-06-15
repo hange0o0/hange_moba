@@ -233,7 +233,7 @@ class PKDressUI extends game.BaseUI {
                 var arr = this.chooseList.concat(this.monsterList[i])
                 if(PKManager.getInstance().getCost(arr) <= PKManager.PKCost)
                 {
-                    Confirm('还能继续上阵卡牌,确定就这样出战？',function(type){
+                    Confirm('还能继续上阵卡兵,确定就这样出战？',function(type){
                         if(type == 1)
                         {
                             self.onPKStart(true);
@@ -313,7 +313,7 @@ class PKDressUI extends game.BaseUI {
     public addMonster(mid){
         if(this.chooseList.length >= 6)
         {
-            Alert('每次战斗最多可出6张卡');
+            Alert('每次战斗最多可出战6位卡兵');
             return;
         }
         this.pkDressChooseUI.addItem(mid);

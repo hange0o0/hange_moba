@@ -104,7 +104,7 @@ class HonorUI extends game.BaseUI {
 
     //private typeBarClick(){
     //    if(this.tab.selectedIndex == 0)
-    //        this.infoText.text = '使用指定卡牌获得指定场数胜利，即可获得点券奖励';
+    //        this.infoText.text = '使用指定卡兵获得指定场数胜利，即可获得点券奖励';
     //    else
     //        this.infoText.text = '使用指定技能获得指定场数胜利，即可获得点券奖励';
     //    this.renew();
