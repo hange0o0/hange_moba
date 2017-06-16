@@ -5,9 +5,11 @@ class MyHeadItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
+    private levelGroup: eui.Group;
     private levelText: eui.Label;
     private redMC: eui.Image;
-    private levelGroup: eui.Group;
+    private nameText: eui.Label;
+
 
 
 
@@ -39,7 +41,7 @@ class MyHeadItem extends game.BaseItem {
         if(!this.data.vo)
             this.data.vo = MonsterVO.getObject(this.data.id);
         var vo:MonsterVO = this.data.vo;
-
+        this.nameText.text = vo.name
         this.headMC.source = vo.url;
         if(this.data.specialData.isEqual)
         {

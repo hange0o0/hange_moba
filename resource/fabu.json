@@ -526,6 +526,10 @@
 				{
 					"compress":false,
 					"key":"box_close_png"
+				},
+				{
+					"compress":false,
+					"key":"dungeon_bg_png"
 				}
 			],
 			"sort":0
@@ -604,6 +608,18 @@
 				{
 					"compress":false,
 					"key":"black_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"monster_type1_png"
+				},
+				{
+					"compress":false,
+					"key":"monster_type2_png"
+				},
+				{
+					"compress":false,
+					"key":"monster_type3_png"
 				}
 			],
 			"sort":0
@@ -1175,6 +1191,10 @@
 		{
 			"compress":false,
 			"key":"main5_png"
+		},
+		{
+			"compress":false,
+			"key":"main_bottom_mv_png"
 		}
 	]
 }

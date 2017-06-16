@@ -35,7 +35,7 @@ function addBtnTips(mc,str,thisObj){
                 TouchTipsUI.getInstance().show(e,str);
             else
                 TouchTipsUI.getInstance().show(e,str.apply(thisObj));
-        },this,500)
+        },this,300)
 
     }
     function onTouchEnd(){

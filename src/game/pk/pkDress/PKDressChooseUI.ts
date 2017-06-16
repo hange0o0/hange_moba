@@ -537,6 +537,7 @@ class PKDressChooseUI extends game.BaseContainer {
             {
                 mc.data = null;
             }
+            mc.renewIndex(i)
             this.mcArray.push(mc);
         }
         
@@ -565,6 +566,7 @@ class PKDressChooseUI extends game.BaseContainer {
         for(var i=0;i<this.mcArray.length;i++)
         {
             var mc = this.mcArray[i];
+            mc.renewIndex(i+1)
             var posMC = this.posArray[i];
             if(!posMC)
             {

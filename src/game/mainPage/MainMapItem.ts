@@ -46,11 +46,11 @@ class MainMapItem extends game.BaseItem {
         else
             this.setHtml(this.scoreText, '扫荡尚未开始');
 
-        this.lockMC.visible = UM.main_game.level < Config.serverLevel
+        this.lockMC.visible = UM.main_game.level < Config.mapLevel
         this.scoreText.visible = !this.lockMC.visible
         if(this.lockMC.visible)
         {
-            this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.serverLevel) + '',0xE0A44A)+' 才可进入');
+            this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.mapLevel) + '',0xE0A44A)+' 才可进入');
             //this.desText.text = '公会评分达' + Config.serverLevel + '后开放'
             this.btnGroup.visible = false;
         }

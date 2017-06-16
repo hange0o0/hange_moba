@@ -54,6 +54,6 @@
 	</e:Group>
 	<e:Group id="removeGroup" width="620" x="10" height="90" visible.normal="false" visible.selected="false" bottom="10">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.5"/>
-		<e:Label id="removeText" text="拖到此处移除" verticalCenter="0" horizontalCenter="0" strokeColor="0xFFFF00" verticalAlign="middle" textAlign="center" width="640" height="80"/>
+		<e:Label id="removeText" text="拖到此处移除" verticalCenter="0" horizontalCenter="0" strokeColor="0xFFFF00" verticalAlign="middle" textAlign="center" width="640" height="80" textColor="0xeed1a7"/>
 	</e:Group>
 </e:Skin>

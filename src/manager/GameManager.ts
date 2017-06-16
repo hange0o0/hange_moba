@@ -63,6 +63,7 @@ class GameManager {
                 FriendManager.getInstance().getLog(null,null,false);
             }
         }
+        this.lastTime = now
     }
 
     //取现在到晚上12点还差的时间

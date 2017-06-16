@@ -6,12 +6,14 @@ class EnemyHeadItem extends game.BaseItem {
 
     private chooseGroup: eui.Group;
     private headMC: eui.Image;
+    //private nameText: eui.Label;
     private teamGroup: eui.Group;
     private headMC2: eui.Image;
     private headBG: eui.Image;
     private lvText: eui.Label;
     private indexText: eui.Label;
     private closeBtn: eui.Group;
+
 
 
 
@@ -70,6 +72,8 @@ class EnemyHeadItem extends game.BaseItem {
             this.data.vo = MonsterVO.getObject(this.data.id);
         if(!this.data.vo)
             return;
+
+        //this.nameText.text = this.data.vo.name
         if(this.data.isTeam)
         {
             MyTool.removeMC(this.chooseGroup);

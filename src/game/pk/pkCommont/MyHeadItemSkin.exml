@@ -2,15 +2,19 @@
 <e:Skin class="MyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="137" height="179">
 
 	<e:Image source="card_bg_png" y="0" height="179" x="0" width="137" scale9Grid="72,75,87,71"/>
-	<e:Image source="head_png" y="8" x="8" width="120" height="160" id="headMC"/>
-
+	<e:Image y="8" x="8" width="120" height="160" id="headMC" source=""/>
+	<e:Rect height="35" fillAlpha="0.5" bottom="9" left="7" right="7"/>
 
 
-	<e:Group id="levelGroup" x="8" y="133">
-		<e:Rect height="35" width="100%" fillAlpha="0.75" x="0" y="0"/>
-		<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="7" textColor="0xEED1A7" left="5" right="8"/>
+
+
+	<e:Group id="levelGroup" x="8" y="8">
+
+		<e:Label id="levelText" text="LV.60" size="22" stroke="3" y="7" textColor="0xEED1A7" left="5" right="8"/>
 	</e:Group>
-	<e:Image id="redMC" x="111" source="arrow5_png" bottom="10"/>
+	<e:Image id="redMC" x="109" source="arrow5_png" y="10"/>
+
+	<e:Label id="nameText" text="Label" size="20" horizontalCenter="0.5" stroke="3" textColor="0xFADEA2" bottom="17"/>
 
 
 </e:Skin>

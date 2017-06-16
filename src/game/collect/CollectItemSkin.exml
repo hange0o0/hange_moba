@@ -3,16 +3,16 @@
 	
 	
 	<e:Image source="card_bg_png" y="0" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
-	<e:Image source="head_png" y="8" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>
+	<e:Image y="8" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9" source=""/>
+	<e:Rect height="35" fillAlpha="0.5" bottom="11" left="7" right="7"/>
 	
 
 	
 	
-	<e:Image id="arrowMC" anchorOffsetY="16" source="arrow5_png" scaleY="1" x="120" y="170"/>
-	<e:Group x="9" y="149">
-		<e:Rect height="40" width="100%" fillAlpha="0.75" x="0" y="0"/>
-		<e:Label id="levelText" text="LV.60" size="22" stroke="1" y="9" textColor="0xEED1A7" left="5" right="8"/>
-	</e:Group>
+	<e:Image id="arrowMC" anchorOffsetY="16" source="arrow5_png" scaleY="1" x="120" y="26"/>
+	<e:Label id="levelText" text="LV.60" size="22" stroke="3" y="12" textColor="0xEED1A7" left="13"/>
+
+	<e:Label id="nameText" text="Label" size="20" horizontalCenter="0.5" stroke="3" textColor="0xFADEA2" bottom="17"/>
 	
 	
 </e:Skin>

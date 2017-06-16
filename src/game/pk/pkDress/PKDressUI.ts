@@ -18,6 +18,9 @@ class PKDressUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private pkDressChooseUI: PKDressChooseUI;
+    private taskGroup: eui.Group;
+    private taskText: eui.Label;
+    private taskRateText: eui.Label;
     private list: eui.List;
     private monsterInfo: MonsterInfoBase;
     private topGroup: eui.Group;
@@ -25,6 +28,8 @@ class PKDressUI extends game.BaseUI {
     private topBtn: eui.Button;
     private enemyGroup: eui.Group;
     private enemyList: eui.List;
+
+
 
 
 
@@ -73,6 +78,9 @@ class PKDressUI extends game.BaseUI {
         //this.addBtnEvent(this.forceText, this.onForceText);
         this.addBtnEvent(this.topBtn, this.scrollToTop);
         this.addBtnEvent(this.changeBtn, this.changeCardIndex);
+        this.addBtnEvent(this.taskGroup, this.onTask);
+
+        this.taskGroup.touchChildren = false
 
 
         this.list.itemRenderer = PKDressChooseListItem;
@@ -97,6 +105,10 @@ class PKDressUI extends game.BaseUI {
         this.addEventListener('after_drag',this.onDragAfter,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onTask(){
+        MyCardTaskUI.getInstance().show();
     }
 
     private onRandom(){
@@ -176,6 +188,8 @@ class PKDressUI extends game.BaseUI {
         this.pkDressChooseUI.resetSort();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
 
+        this.renewTask();
+
 
         this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.onMonsterLevel);
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewListEvent);
@@ -184,6 +198,58 @@ class PKDressUI extends game.BaseUI {
 
 
         GuideManager.getInstance().showGuide(this);
+    }
+
+    private renewTask(){
+        if(this.pkType == 'day_game')
+        {
+            MyTool.removeMC(this.taskGroup)
+            return
+        }
+        var myCard = UM.getMyCard();
+        var task = myCard.task
+        if(!task || task.current >= task.num)
+        {
+            MyTool.removeMC(this.taskGroup)
+            return;
+        }
+        this.scrollerGroup.addChild(this.taskGroup)
+        //if(myCard.num < task.num - task.current) //不可能完成了
+        //{
+        //    this.taskRateText.textColor = 0xFF0000;
+        //}
+        //else
+        //{
+        //    this.taskRateText.textColor = 0xCCB48E;
+        //}
+        this.taskRateText.text = Math.min(task.current,task.num)+'/'+task.num;
+
+
+       
+        var numStr = '['+task.num+']';
+        var str = '[卡组任务：]使用['+MonsterVO.getObject(task.mid).name+']'
+        switch(task.type)
+        {
+            case 1:
+                str += ('取得我方的' +numStr +'次首杀');
+                break;
+            case 2:
+                str += ('取得' +numStr +'次双杀');
+                break;
+            case 3:
+                str += ('取得' +numStr +'次三杀');
+                break;
+            case 4:
+                str += ('胜利终结比赛' +numStr +'次');
+                break;
+            case 5:
+                str += ('消灭' +numStr +'个敌人');
+                break;
+            case 6:
+                str += ( '赢得' +numStr +'次胜利');
+                break;
+        }
+        MyTool.setColorText(this.taskText,str);
     }
 
     private renewListEvent(){
@@ -353,6 +419,10 @@ class PKDressUI extends game.BaseUI {
             MyTool.removeMC(this.monsterInfo);
             this.scrollerGroup.addChild(this.list)
         }
+
+        if(this.taskGroup.parent)
+            this.taskGroup.parent.addChild(this.taskGroup)
+
         for(var i=0;i<this.simpleList.numChildren;i++)
         {
             (<any>this.simpleList.getChildAt(i)).setChoose(e.data);
@@ -465,6 +535,8 @@ class PKDressUI extends game.BaseUI {
 
         MyTool.removeMC(this.monsterInfo);
         this.scrollerGroup.addChild(this.list)
+        if(this.taskGroup.parent)
+            this.taskGroup.parent.addChild(this.taskGroup)
     }
 
     private renewEnemy(){

@@ -6,16 +6,13 @@ class PKDressChooseItem extends game.BaseItem {
 
     private stateMC: eui.Image;
     private monsterGroup: eui.Group;
-    private addMC: eui.Image;
+    private addMC: eui.Label;
     private headMC: eui.Image;
     private headBG: eui.Image;
-    private pGroup: eui.Group;
-    private p1: eui.Rect;
-    private p2: eui.Rect;
-    private p3: eui.Rect;
     private lvText: eui.Label;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
+
 
     //private noteIcon: eui.Image;
 
@@ -33,6 +30,10 @@ class PKDressChooseItem extends game.BaseItem {
         DragManager.getInstance().setDrag(this,true);
         addBtnTips(this,this.onTips,this);
         //this.addBtnEvent(this.noteIcon,this.onNote)
+    }
+
+    public renewIndex(v){
+        this.addMC.text = v;
     }
 
     private onTips(){

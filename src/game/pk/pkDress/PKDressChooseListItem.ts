@@ -5,19 +5,19 @@ class PKDressChooseListItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
+    private redMC: eui.Image;
+    private typeMC: eui.Image;
+    private nameText: eui.Label;
     private useBtn: eui.Button;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
     private coinText: eui.Label;
-    //private infoGroup: eui.Group;
-    private redMC: eui.Image;
     private hpText: eui.Label;
     private hpIndex: eui.Label;
     private atkText: eui.Label;
     private atkIndex: eui.Label;
     private speedText: eui.Label;
     private speedIndex: eui.Label;
-    private typeMC: eui.Image;
 
 
 
@@ -75,6 +75,7 @@ class PKDressChooseListItem extends game.BaseItem {
     public dataChanged(){
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.url
+        this.nameText.text = vo.name
         if(this.data.index%2 == 0)
             this.currentState = 'left'
         else

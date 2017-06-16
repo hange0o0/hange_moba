@@ -5,7 +5,7 @@ class MonsterSkillVO {
         return CM.table[this.dataKey][id];
     }
 
-
+    public atk
 
     public id
     public mid
@@ -47,13 +47,42 @@ class MonsterSkillVO {
         }
     }
 
+    public getDes(){
+        var atk = this.atk;
+        var str = this.des;
+        var patt = new RegExp("\\[r\\d+\\%\\]伤害","g")
+        var patt2 = new RegExp("\\d+","g")
+        var patt3 = new RegExp("\\[g\\d+\\%攻击力\\]","g")
+        var result;
+        var returnStr = str;
+        while ((result = patt.exec(str)) != null)  {     //伤血的具体值
+            var str2 = result[0];
+            patt2.lastIndex = 0
+            var result2 =patt2.exec(str2);
+            var hp = Math.floor(parseInt(result2[0])*atk/100);
+            var newStr = str2.replace('伤害','('+hp+')伤害')
+            returnStr = returnStr.replace(str2,newStr);
+        }
+
+        while ((result = patt3.exec(str)) != null)  {    //回血的具体值
+            var str2 = result[0];
+            patt2.lastIndex = 0
+            var result2 =patt2.exec(str2);
+            var hp = Math.floor(parseInt(result2[0])*atk/100);
+            var newStr = str2.replace('攻击力]','攻击力]('+hp+')')
+            returnStr = returnStr.replace(str2,newStr);
+        }
+
+        return returnStr.replace(/\[r/g,'<font color="#FF0000">').
+            replace(/\[g/g,'<font color="#00FF00">').
+            replace(/\[/g,'<font color="#FFFF00">').
+            replace(/\]/g,'</font>')
+    }
+
     public fill(data){
 
         this.name = data.name;
-        this.des = data.des.replace(/\[r/g,'<font color="#FF0000">').
-            replace(/\[g/g,'<font color="#00FF00">').
-            replace(/\[/g,'<font color="#FFFF00">').
-            replace(/\]/g,'</font>')//.replace(/$$/g,'\n');
+        this.des = data.des
         this.mid = data.mid;
         this.index = data.index;
         this.mv = data.mv;

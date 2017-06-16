@@ -1684,7 +1684,7 @@ class PKMainUI extends game.BaseUI {
             }
 
             var atker = data[0].atker;
-            var atkerItem = this.getMonster(atker)
+            //var atkerItem = this.getMonster(atker)
             //if(this.randomJump(atkerItem,this.pkOne))
             //    return;
 

@@ -199,7 +199,7 @@ class OtherInfoUI extends game.BaseUI {
         this.setText(this.forceText, '[战力：]$$',UM.getForce(),dataIn.force);
 
 
-        this.setText(this.mainLevelText,'[当前称号：]$$',UM.main_game.level ,dataIn.main_game.level,MainGameManager.getInstance().getStepName(level));
+        this.setText(this.mainLevelText,'[当前称号：]$$',UM.main_game.level ,dataIn.main_game.level,MainGameManager.getInstance().getStepName(dataIn.main_game.level));
         this.setText(this.mainLevelText2,'  [评分：]$$',UM.main_game.level ,dataIn.main_game.level)
 
 

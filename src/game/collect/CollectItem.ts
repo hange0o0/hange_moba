@@ -7,6 +7,8 @@ class CollectItem extends game.BaseItem {
     private headMC: eui.Image;
     private arrowMC: eui.Image;
     private levelText: eui.Label;
+    private nameText: eui.Label;
+
 
 
     //public index;
@@ -28,6 +30,7 @@ class CollectItem extends game.BaseItem {
         //this.headBG.source = 'head_border' + (UM.getMonsterCollect(vo.id) + 1) + '_png';
         var mvo = MonsterVO.getObject(this.data.id);
         this.headMC.source = mvo.url
+        this.nameText.text = mvo.name
 
 
 
