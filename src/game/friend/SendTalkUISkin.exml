@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="SendTalkUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520" height="520">
 	<e:Image source="window2_png" x="0" y="0" width="520" scale9Grid="124,185,11,120" height="100%"/>
-	<e:Label id="titleText" text="标签" y="28" horizontalCenter="0" textColor="0xCCB48E" stroke="2" bold="true"/>
+	<e:Label id="titleText" text="标签" y="31" horizontalCenter="0" textColor="0xCCB48E" stroke="2" bold="true" size="24"/>
 	<e:Rect left="40" right="40" top="87" bottom="100" fillColor="0x0C0602" ellipseHeight="20" ellipseWidth="20"/>
 	<e:EditableText id="editText" text="标签" textColor="0xCCB48E" size="26" wordWrap="true" multiline="true" maxChars="200" top="100" bottom="120" left="60" right="60" lineSpacing="5"/>
 	<e:Group horizontalCenter="0" bottom="36">

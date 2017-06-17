@@ -24,6 +24,7 @@ class SettingUI extends game.BaseWindow {
 
 
 
+
     public constructor() {
         super();
         this.skinName = "SettingSkin";
@@ -33,6 +34,7 @@ class SettingUI extends game.BaseWindow {
 
     public childrenCreated() {
         super.childrenCreated();
+        this.setTitle('设置')
         this.addBtnEvent(this.musicCB,this.onMusic);
         this.addBtnEvent(this.soundCB,this.onSound);
         this.addBtnEvent(this.friendCB,this.onFriend);

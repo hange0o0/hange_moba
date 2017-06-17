@@ -15,7 +15,7 @@
 				<e:Group y="15" horizontalCenter="0">
 					<e:Label id="desText" y="5" textColor="0xCCB48E" text="敌方战力：123456" x="0" size="26"/>
 				</e:Group>
-				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
+				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="30">
 					<e:layout>
 						<e:TileLayout horizontalGap="40" verticalGap="40"/>
 					</e:layout>

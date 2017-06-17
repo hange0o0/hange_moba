@@ -18,10 +18,12 @@ class GameLogUI extends game.BaseWindow {
 
 
 
+
     private data
 
     public childrenCreated() {
         super.childrenCreated();
+        this.setTitle('更新详情');
         this.addBtnEvent(this.okBtn, this.hide);
         this.addBtnEvent(this.cb, this.onCB);
 

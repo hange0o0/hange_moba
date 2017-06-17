@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FriendAddUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="window2_png" y="0" scale9Grid="95,128,25,230" width="620" x="0" height="800"/>
-	<e:Label y="28" textColor="0xD0C7AD" text="添加好友" id="titleText" horizontalCenter="0" x="20" size="30" stroke="2" bold="true"/>
+<e:Skin class="FriendAddUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" width="620" height="800">
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 	<e:Group horizontalCenter="0" bottom="40">
 		<e:Button id="refreshBtn" y="-1.1368683772161603e-13" label="刷新" x="0" skinName="Btn_r2Skin"/>
 		<e:Button id="closeBtn" y="-1.1368683772161603e-13" label="关闭" x="0" skinName="Btn_r2Skin"/>

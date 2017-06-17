@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKMainUI2Skin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Rect id="bgBlack" height="100%" width="100%" x="0" y="0"/>
+	<e:Rect id="bgBlack" height="100%" width="100%" x="0" y="0" ellipseWidth="12" ellipseHeight="12"/>
 	<e:Group id="bgGroup" x="0" y="0" width="100%" height="100%" locked="true">
 		<e:Image id="bg1" source="bg_jpg" x="0" anchorOffsetY="480" width="640" height="960" y="0"/>
 		<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="0" anchorOffsetY="480"/>
@@ -15,14 +15,16 @@
 		<e:Group id="roleCon" y="0" width="640" height="100%" x="0"/>
 		<e:Group id="effectCon" y="0" width="640" height="100%" x="0"/>
 	</e:Group>
-	<e:Group id="skillGroup" y="214" horizontalCenter="-20">
-		<e:Image source="icon_b1_png" y="0" x="38" scaleX="0.8" scaleY="0.8" />
-		<e:Label id="skillText" text="奇才顶替" y="0" textColor="0xEB911B" size="35" stroke="2" strokeColor="0x000000" x="0"/>
+	<ns1:PKMainHp id="hpGroup0" y="200" skinName="PKMainHpSkin" currentState="left" x="96"/>
+	<ns1:PKMainHp y="200" skinName="PKMainHpSkin" id="hpGroup1" currentState="right" x="416"/>
+	<e:Group id="skillGroup" y="230" horizontalCenter="0">
+		<e:Image source="icon_b1_png" y="0" x="0" scaleX="0.8" scaleY="0.8" />
+		<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="35" stroke="2" strokeColor="0x000000" x="60" verticalCenter="0"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Group id="upGroup" x="0" y="0" width="640" locked="true">
+	<e:Group id="upGroup" x="0" y="0" width="640">
 		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>
 		<e:Image source="book_bg2_jpg" y="0" scaleX="-1" width="325" right="-5" height="195" scale9Grid="40,44,240,266"/>
 		<e:Group x="10" width="308" top="10" bottom="10" id="playerGroup1">
@@ -118,7 +120,7 @@
 	<e:Image id="jumpBtn" source="jump_btn_png" scaleX="0.9" scaleY="0.9" y="710" x="320" anchorOffsetX="36" anchorOffsetY="36"/>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
 	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
-	<e:Group id="roundGroup" horizontalCenter="0" width="360" height="200" y="280" anchorOffsetY="100" locked="true">
+	<e:Group id="roundGroup" horizontalCenter="0" width="360" height="200" y="280" anchorOffsetY="100" locked="true" visible="false">
 		<e:Image id="roundMC1" source="pk_round_bg_png" x="0" y="100" anchorOffsetY="100"/>
 		<e:Image id="roundMC2" source="pk_round_bg_png" y="100" x="360" scaleX="-1" anchorOffsetY="100"/>
 		<e:Label id="roundText" y="95" textColor="0xEB911B" text="ROUND 11" size="22" horizontalCenter="0.5"/>

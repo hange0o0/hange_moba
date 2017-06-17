@@ -9,7 +9,7 @@
 			"name":"build"
 		},
 		{
-			"keys":"skill28_json,skill28_png,skill6_json,skill6_png,skill108_png,skill113_png,skill116_png,skill149_png,skill120_png,skill112_png,skill111_png,skill126_png,skill108_json,skill113_json,skill116_json,skill149_json,skill126_json,skill120_json,skill112_json,skill111_json,skill16_json,skill16_png,skill122_json,skill122_png,skill123_json,skill123_png,skill127_json,skill127_png,skill128_json,skill128_png,skill133_json,skill133_png,skill140_json,skill140_png,skill153_json,skill153_png,skill24_json,skill24_png,skill29_json,skill29_png,skill34_json,skill34_png,skill106_json,skill106_png,skill107_json,skill107_png,skill114_json,skill114_png,skill115_json,skill115_png,skill117_json,skill117_png,skill118_json,skill118_png,skill10_png,skill10_json,bullet3_png,bullet4_png,bullet1_png,bullet2_png,bullet5_png,bullet6_png,bullet7_png,bullet8_png,skill8_png,skill8_json,skill21_png,skill21_json,skill30_json,skill30_png,skill103_json,skill103_png,skill104_json,skill104_png,skill14_json,skill14_png",
+			"keys":"skill28_json,skill28_png,skill6_json,skill6_png,skill108_png,skill113_png,skill116_png,skill149_png,skill120_png,skill112_png,skill111_png,skill126_png,skill108_json,skill113_json,skill116_json,skill149_json,skill126_json,skill120_json,skill112_json,skill111_json,skill16_json,skill16_png,skill122_json,skill122_png,skill123_json,skill123_png,skill127_json,skill127_png,skill128_json,skill128_png,skill133_json,skill133_png,skill140_json,skill140_png,skill153_json,skill153_png,skill24_json,skill24_png,skill29_json,skill29_png,skill34_json,skill34_png,skill106_json,skill106_png,skill107_json,skill107_png,skill114_json,skill114_png,skill115_json,skill115_png,skill117_json,skill117_png,skill118_json,skill118_png,skill10_png,skill10_json,bullet3_png,bullet4_png,bullet1_png,bullet2_png,bullet5_png,bullet6_png,bullet7_png,bullet8_png,skill8_png,skill8_json,skill21_png,skill21_json,skill30_json,skill30_png,skill103_json,skill103_png,skill104_json,skill104_png,skill14_json,skill14_png,skill39_json,skill39_png",
 			"name":"ani"
 		},
 		{
@@ -1679,6 +1679,16 @@
 			"name":"dungeon_bg_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/dungeon_bg.png"
+		},
+		{
+			"name":"skill39_json",
+			"type":"json",
+			"url":"ani/skill39.json"
+		},
+		{
+			"name":"skill39_png",
+			"type":"image",
+			"url":"ani/skill39.png"
 		}
 	]
 }

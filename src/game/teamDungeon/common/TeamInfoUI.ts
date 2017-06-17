@@ -10,7 +10,6 @@ class TeamInfoUI extends game.BaseWindow {
         this.skinName = "TeamInfoSkin";
     }
 
-    private titleText: eui.Label;
     private hardText: eui.Label;
     private forceText: eui.Label;
     private levelText: eui.Label;
@@ -31,12 +30,14 @@ class TeamInfoUI extends game.BaseWindow {
 
 
 
+
     private data
     private teamData
     private relateItem
 
     public childrenCreated() {
         super.childrenCreated();
+        this.setTitle('队伍详情')
         this.addBtnEvent(this.closeBtn, this.hide);
         this.addBtnEvent(this.cancleBtn, this.onRefuse);
         this.addBtnEvent(this.okBtn, this.onOK);

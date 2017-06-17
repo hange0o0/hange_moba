@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ChangeHeadUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" states="choose,change"  height="860">
-	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="600" x="0"/>
-	<e:Label id="titleText" y="30" textColor="0xD0C7AD" horizontalCenter="0" text="请选择头像" x="10" stroke="2" bold="true"/>
+<e:Skin class="ChangeHeadUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" states="choose,change"  height="860" width="600">
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 	<e:Scroller id="scroller" top="74" bottom="116" horizontalCenter="0" top.change="293">
 		<e:Group>
 			<e:List id="list" x="0" y="0" itemRendererSkinName="HeadItemSkin">
@@ -12,7 +11,6 @@
 			</e:List>
 		</e:Group>
 	</e:Scroller>
-	<e:Rect height="90" width="540" bottom="26" fillColor="0x130A05" fillAlpha="1" horizontalCenter="0"/>
 	<e:Image source="line_png" width="540" includeIn="change" bottom="105" horizontalCenter="0"/>
 	<e:Group id="btnGroup" horizontalCenter="0" bottom="45">
 		<e:Button id="cencelBtn" scaleY="0.9" scaleX="0.9" label="关闭" x="0" y="0" skinName="Btn_b2Skin"/>

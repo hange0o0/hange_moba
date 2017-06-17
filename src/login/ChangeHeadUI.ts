@@ -12,7 +12,6 @@ class ChangeHeadUI extends game.BaseWindow {
 
     }
 
-    private titleText: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
     private btnGroup: eui.Group;
@@ -21,6 +20,7 @@ class ChangeHeadUI extends game.BaseWindow {
     private head1: HeadItem;
     private head2: HeadItem;
     private changeGroup: eui.Group;
+
 
 
 
@@ -35,7 +35,7 @@ class ChangeHeadUI extends game.BaseWindow {
         this.addBtnEvent(this.okBtn, this.onChoose);
         this.addBtnEvent(this.cencelBtn, this.hide);
 
-        this.titleText.text = '请选择头像'
+        this.setTitle('请选择头像');
 
         this.list.itemRenderer = HeadItem
         this.scroller.viewport = this.list;

@@ -27,10 +27,12 @@ class DrawUI extends game.BaseWindow {
 
 
 
+
     private itemArr = [];
 
     public childrenCreated() {
         super.childrenCreated();
+        this.setTitle('钻石翻翻乐')
         this.addBtnEvent(this.okBtn, this.hide);
         for(var i=0;i<9;i++)
         {

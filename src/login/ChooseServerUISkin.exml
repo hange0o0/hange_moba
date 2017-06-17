@@ -2,7 +2,11 @@
 <e:Skin class="ChooseServerUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="0.7"/>
 	<e:Image source="window2_png" bottom="50" top="50" scale9Grid="95,128,25,230" y="10" left="15" right="15"/>
-	<e:Label y="80" textColor="0xD0C7AD" horizontalCenter="0" text="请选择服务器" x="10" stroke="2" bold="true"/>
+	<e:Group id="bottomGroup" left="43" right="43" bottom="77" height="100">
+		<e:Rect fillAlpha="1" fillColor="0x160D06" height="100%" x="0" y="0" width="100%"/>
+		<e:Rect y="0" height="1" x="0" width="100%" fillColor="0x3D3D3D"/>
+	</e:Group>
+	<e:Label y="84" textColor="0xD0C7AD" horizontalCenter="0" text="请选择服务器" x="10" stroke="2" bold="true" size="24"/>
 	<e:Button bottom="100" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
 	<e:Scroller left="45" right="45" top="140" bottom="180">
 		<e:Group id="scrollerGroup">

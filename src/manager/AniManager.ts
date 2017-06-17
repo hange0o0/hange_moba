@@ -16,6 +16,7 @@ class AniManager {
     public mvConfig = {
         '14':{frameRate:24,scale:1.5},
         '30':{scale:1.5},
+        '39':{scale:1.5},
         '116':{frameRate:24}
         //'6':{frameRate:24},
         //'33':{scale:1.5},
@@ -35,8 +36,8 @@ class AniManager {
 
     public constructor() {
         var sound = {
-           1:[5,6,16],
-           2:[136,137,162,166,167,15],
+           1:[], //5,6,16
+           2:[5,6,16,136,137,162,166,167,15],
            3:[30,109,119,138,139,128,36,134],
            4:[7,107,108,117,125,145,151,157,158,177],
            5:[12,32,148,168,135],
@@ -146,6 +147,7 @@ class AniManager {
             throw new Error('222');
         mc.frameRate = 12//技能动画变慢
         mc.scaleX = mc.scaleY = 2;
+        mc.rotation = 0;
         return mc;
     }
 

@@ -340,6 +340,13 @@ module game {
             super(true);
             //this.canBGClose = true;
         }
+
+        public setTitle(title,h?){
+            var bg:any = this.getChildAt(0)
+            bg.setTitle(title);
+            if(h)
+                bg.setBottomHeight(h);
+        }
     }
     
     export class BaseItem extends eui.ItemRenderer {

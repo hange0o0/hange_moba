@@ -10,7 +10,6 @@ class FriendAddUI extends game.BaseWindow {
         this.skinName = "FriendAddUISkin";
     }
 
-    private titleText: eui.Label;
     private refreshBtn: eui.Button;
     private closeBtn: eui.Button;
     private list: eui.List;
@@ -18,10 +17,12 @@ class FriendAddUI extends game.BaseWindow {
 
 
 
+
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.closeBtn, this.hide);
         this.addBtnEvent(this.refreshBtn, this.onSearch);
+        this.setTitle('添加好友')
 
         this.list.itemRenderer = FriendAddItem;
     }

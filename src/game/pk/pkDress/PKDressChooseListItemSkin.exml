@@ -17,13 +17,19 @@
 
 
 
-	<e:Group x="0" y="-2" right.right="0" locked="true">
+	<e:Group x="0" y="-2" right.right="0">
 		<e:Image source="card_bg_png" y="1" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
 		<e:Image source="head_png" y="9" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>
 		<e:Rect height="35" fillAlpha="0.75" bottom="10" left="7" right="7"/>
 		<e:Image id="redMC" source="arrow5_png" x="121" y="10"/>
 		<e:Image id="typeMC" x="6" y="5" source="monster_type1_png"/>
-		<e:Label id="nameText" text="Label" size="20" horizontalCenter="0.5" stroke="3" textColor="0xFADEA2" bottom="17"/>
+		<e:Group id="nameGroup" y="159" height="30" horizontalCenter="0">
+			<e:Image id="noteIcon" source="note_icon_png" x="0" y="0" scaleX="0.5" scaleY="0.5"/>
+			<e:Label id="nameText" text="Label" size="20" stroke="3" textColor="0xFADEA2" x="34" y="10" height="22" verticalAlign="bottom"/>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle"/>
+			</e:layout>
+		</e:Group>
 	</e:Group>
 	<e:Group x="151" y="0" x.right="-5">
 		<e:Button id="useBtn" label="使用" x="3" scaleX="0.88" scaleY="0.88" skinName="Btn_d2Skin" y="145"/>

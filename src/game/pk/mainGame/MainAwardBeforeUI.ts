@@ -21,6 +21,8 @@ class MainAwardBeforeUI extends game.BaseWindow {
 
     public childrenCreated() {
         super.childrenCreated();
+
+        this.setTitle('领取补助',220)
         this.addBtnEvent(this.closeBtn, this.hide);
         this.addBtnEvent(this.okBtn, this.onAward);
 

@@ -266,6 +266,7 @@ class MapMainUI extends game.BaseUI {
         this.stage.addEventListener(egret.Event.ACTIVATE,this.onActive,this);
 
         AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(30)) //+hp
+        AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(39)) //add
     }
 
     //激活后重新表现
@@ -608,7 +609,12 @@ class MapMainUI extends game.BaseUI {
 
         if(MD.currentBossHp == 0)//BOSS死了
         {
-            this.showDie(this.bossItem)
+            this.showDie(this.bossItem,function(){
+                var VM = PKMainMV.getInstance();
+                var p = this.awardText.localToGlobal(180,10);
+                p = this.globalToLocal(p.x,p.y,p);
+                VM.playOnItem(39,this,null,null,p).rotation = -30;
+            })
             if(Math.random() > 0.5)
                 this.showPKEMO(this.pkItem)
 
@@ -623,6 +629,8 @@ class MapMainUI extends game.BaseUI {
                 rate2:rate2,
                 hp:-this.pkItem.tempObj.hp
             })
+
+
         }
         else
         {
@@ -645,13 +653,15 @@ class MapMainUI extends game.BaseUI {
             this.showItemTalk();
     }
 
-    private showDie(item){
+    private showDie(item,fun?){
 
         item.die = true;
         var x = item.x;
         var v = 2
         var tw:egret.Tween = egret.Tween.get(item);
         tw.wait(1000).to({x:x - 30}, 30*v).to({x:x + 20}, 50*v).to({x:x - 10}, 30*v).to({x:x}, 10*v).to({alpha:0}, 300);
+        if(fun)
+            tw.call(fun,this);
     }
 
     private renewBossHp(mv?){

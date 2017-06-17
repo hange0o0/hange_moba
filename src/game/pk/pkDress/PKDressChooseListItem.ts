@@ -7,6 +7,8 @@ class PKDressChooseListItem extends game.BaseItem {
     private headMC: eui.Image;
     private redMC: eui.Image;
     private typeMC: eui.Image;
+    private nameGroup: eui.Group;
+    private noteIcon: eui.Image;
     private nameText: eui.Label;
     private useBtn: eui.Button;
     private levelGroup: eui.Group;
@@ -27,7 +29,8 @@ class PKDressChooseListItem extends game.BaseItem {
 
 
 
-     private infoStr;
+
+    private infoStr;
 
     public childrenCreated(){
         super.childrenCreated();
@@ -76,6 +79,16 @@ class PKDressChooseListItem extends game.BaseItem {
          var vo:MonsterVO = this.data.vo;
         this.headMC.source = vo.url
         this.nameText.text = vo.name
+        if(PKDressUI.getInstance().taskMid == vo.id)
+        {
+            this.nameText.textColor = 0xFDC04F
+            this.nameGroup.addChildAt(this.noteIcon,0)
+        }
+        else
+        {
+            this.nameText.textColor = 0xFADEA2
+            MyTool.removeMC(this.noteIcon)
+        }
         if(this.data.index%2 == 0)
             this.currentState = 'left'
         else

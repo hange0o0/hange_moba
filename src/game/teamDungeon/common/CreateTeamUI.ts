@@ -10,7 +10,6 @@ class CreateTeamUI extends game.BaseWindow {
         this.skinName = "CreateTeamUISkin";
     }
 
-    private titleText: eui.Label;
     private forceText: eui.Label;
     private levelText: eui.Label;
     private nameText: eui.TextInput;
@@ -26,10 +25,12 @@ class CreateTeamUI extends game.BaseWindow {
 
 
 
+
     private data
 
     public childrenCreated() {
         super.childrenCreated();
+        this.setTitle('创建队伍')
         this.addBtnEvent(this.cancleBtn, this.hide);
         this.addBtnEvent(this.okBtn, this.onOK);
         this.addBtnEvent(this.randomBtn, this.onRandom);
@@ -104,7 +105,6 @@ class CreateTeamUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.titleText.text = '创建队伍'
         this.nameText.text = SharedObjectManager.instance.getValue('team_name') || '';
         this.onHideSort();
         this.renewSelect();

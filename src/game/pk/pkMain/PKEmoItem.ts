@@ -52,7 +52,7 @@ class PKEmoItem extends game.BaseContainer {
             fx = to.x - 5
         }
         this.y = p.y;
-        to.y = this.y + 30 - Math.random()*60;
+        to.y = this.y  - Math.random()*30;
 
 
 

@@ -20,6 +20,8 @@ class PKMainUI extends game.BaseUI {
     private downBG: eui.Group;
     private roleCon: eui.Group;
     private effectCon: eui.Group;
+    private hpGroup0: PKMainHp;
+    private hpGroup1: PKMainHp;
     private skillGroup: eui.Group;
     private skillText: eui.Label;
     private upGroup: eui.Group;
@@ -58,6 +60,9 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
+
+
 
 
 
@@ -384,6 +389,8 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.con);
         egret.Tween.removeTweens(this.mpBar0);
         egret.Tween.removeTweens(this.mpBar1);
+        egret.Tween.removeTweens(this.hpGroup0);
+        egret.Tween.removeTweens(this.hpGroup1);
         var arr = this.itemArray;
         for(var i=0;i<arr.length;i++)
         {
@@ -402,6 +409,8 @@ class PKMainUI extends game.BaseUI {
         this.con.visible = false;
         this.roundGroup.visible = false;
         this.skillGroup.visible = false;
+        this.hpGroup0.visible = false;
+        this.hpGroup1.visible = false;
         //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
@@ -656,7 +665,7 @@ class PKMainUI extends game.BaseUI {
         this.roundGroup.visible = true;
         this.addChild(this.roundGroup);
         this.roundGroup.y = this.upGroup.y + 280
-        this.roundGroup.skewX = 0;
+        //this.roundGroup.skewX = 0;
         //this.roundMC1.x = 0
         //this.roundMC2.x = 360
         //this.roundMC1.scaleX = 1
@@ -666,7 +675,7 @@ class PKMainUI extends game.BaseUI {
         this.roundText.text = 'ROUND ' + this.pkStep;
         var tw:egret.Tween = egret.Tween.get(this.roundGroup);
         tw.to({scaleX:3,scaleY:3,alpha:0}).to({scaleX:0.9,scaleY:0.9,alpha:1},200).to({scaleX:1,scaleY:1},200).wait(800).
-            to({alpha:0,scaleX:2.5,skewX:90},200).call(function(){
+            to({alpha:0,scaleX:2.5,scaleY:0},200).call(function(){
                 this.roundGroup.visible = false;
             },this);
         //var tw:egret.Tween = egret.Tween.get(this.roundMC1);
@@ -876,6 +885,8 @@ class PKMainUI extends game.BaseUI {
         this.upGroup.visible = false;
         this.downBG.visible = false;
         this.roundGroup.visible = false;
+        this.hpGroup0.visible = false;
+        this.hpGroup1.visible = false;
 
 
         AniManager.getInstance().removeAllMV();
@@ -1465,7 +1476,10 @@ class PKMainUI extends game.BaseUI {
         }
         text.text = (data.current || 0) + '/' + (data.max || 0)
 
+
     }
+
+
 
     private renewTop(data,player,index){
         egret.Tween.removeTweens(this['hpBar'+index])
@@ -2183,7 +2197,6 @@ class PKMainUI extends game.BaseUI {
     {
         if(effect.changeValue)
         {
-            console.log(effect.changeValue)
             var VC = VideoCode.getInstance();
             for(var i=0;i<effect.changeValue.length;i++)
             {
@@ -2285,6 +2298,19 @@ class PKMainUI extends game.BaseUI {
 
     private showItemHp(item,data){
         //console.log(data.hp);
+        //if(data.value)
+        //{
+        //    if(item.team == 1)
+        //        var hpGroup = this.hpGroup0
+        //    else
+        //        var hpGroup = this.hpGroup1
+        //
+        //    hpGroup.x = item.x
+        //    hpGroup.y = item.y + 50
+        //    this.effectCon.addChild(hpGroup);
+        //
+        //    hpGroup.data = data;
+        //}
         var str = ''
         if(data.isCDHP)
         {
@@ -2312,6 +2338,8 @@ class PKMainUI extends game.BaseUI {
             else
                 this.showItemWord(item,{text:str + (data.value || '-0'),textColor:0xff0000});
         }
+
+
 
         this.renewHP(data,item.team - 1);
     }
@@ -2350,7 +2378,7 @@ class PKMainUI extends game.BaseUI {
         }
         else if(wordType == 'stat')
         {
-            tw.wait(delay).to({y:label.y - 50,alpha:1},200).wait(400).to({y:label.y - 100,alpha:0},200)
+            tw.wait(delay).to({y:label.y - 60,alpha:1},200).wait(400).to({y:label.y - 100,alpha:0},200)
         }
         else
         {
@@ -2391,7 +2419,7 @@ class PKMainUI extends game.BaseUI {
         this.skillGroup.y = this.upGroup.y + 140;
         egret.Tween.removeTweens(this.skillGroup)
         var tw = egret.Tween.get(this.skillGroup)
-        tw.to({y:this.upGroup.y + 210},200).wait(800).to({y:this.upGroup.y + 140},100).call(function(){
+        tw.to({y:this.upGroup.y + 240},200).wait(800).to({y:this.upGroup.y + 140},100).call(function(){
             this.skillGroup.visible = false;
         },this);
     }

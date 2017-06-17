@@ -13,7 +13,7 @@
 				<e:Rect height="65" width="620" x="10" y="0" fillAlpha="0.4"/>
 				<e:Rect height="1" width="620" x="10" y="65" fillColor="0x5E4A3F"/>
 				<e:Label id="desText" y="20" textColor="0xCCB48E" text="贿赂价格：" size="26" horizontalCenter="0"/>
-				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="20">
+				<e:List id="enemyList" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0" verticalCenter="30">
 					<e:layout>
 						<e:TileLayout horizontalGap="40" verticalGap="40"/>
 					</e:layout>

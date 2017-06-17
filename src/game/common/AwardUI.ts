@@ -12,7 +12,7 @@ class AwardUI extends game.BaseWindow {
 
     private okBtn: eui.Button;
     private list: eui.List;
-    private titleText: eui.Label;
+
 
 
     private data
@@ -36,7 +36,7 @@ class AwardUI extends game.BaseWindow {
 
     public onShow(){
         SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
-        this.titleText.text = this.data.title || '恭喜获得';
+        this.setTitle(this.data.title || '恭喜获得');
         var arr = [];
         if(this.data.coin)
         {

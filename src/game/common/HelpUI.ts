@@ -10,10 +10,10 @@ class HelpUI extends game.BaseWindow {
         this.skinName = "HelpUISkin";
     }
 
-    private titleText: eui.Label;
     private okBtn: eui.Button;
     private scroller: eui.Scroller;
     private list: eui.List;
+
 
 
 
@@ -39,7 +39,7 @@ class HelpUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.titleText.text = this.data.title;
+        this.setTitle(this.data.title);
         var arr = [];
         for(var i=0;i<this.data.list.length;i++)
         {

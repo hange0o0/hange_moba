@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="SettingSkin" width="580" height="650" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" width="580" x="1" y="10"/>
-	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="-9" text="设置" x="20" stroke="2" bold="true"/>
+<e:Skin class="SettingSkin" width="580" height="650" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 	<e:CheckBox id="musicCB" label="音乐" x="73" y="115" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="friendCB" x="300" label="拒绝好友请求" y="115" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="soundCB" x="73" y="180" label="音效" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="PKCB" x="300" y="180" label="跳过PK动画" skinName="MyCheckBoxSkin"/>
-	<e:Group horizontalCenter="0" bottom="70">
+	<e:Group horizontalCenter="0" bottom="40">
 		<e:Button id="loginBtn" label="登出" x="0" y="0" skinName="Btn_b2Skin"/>
 		<e:Button id="closeBtn" label="确定" skinName="Btn_r2Skin" x="0" y="0"/>
 		<e:layout>

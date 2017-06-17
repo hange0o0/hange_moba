@@ -13,10 +13,11 @@ class MyCardTaskUI extends game.BaseWindow {
     private taskText: eui.Label;
     private useText: eui.Label;
     private rateText: eui.Label;
-    private awardText: eui.Label;
     private okBtn: eui.Button;
     private awardItem: AwardItem;
+    private awardText: eui.Label;
     private awardMC: eui.Image;
+
 
 
 
@@ -25,7 +26,7 @@ class MyCardTaskUI extends game.BaseWindow {
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.okBtn, this.hide);
-
+        this.setTitle('卡组任务')
     }
 
     public testShow(){

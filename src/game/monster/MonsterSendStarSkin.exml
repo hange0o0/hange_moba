@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MonsterSendStarSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520" height="350">
 	<e:Image source="window2_png" x="0" width="100%" scale9Grid="124,113,11,242" top="0" bottom="0"/>
-	<e:Label id="titleText" text="请输入你对********的评论" y="31" horizontalCenter="0" textColor="0xCCB48E" size="24" stroke="2" bold="true"/>
+	<e:Label id="titleText" text="请输入你对********的评论" y="32" horizontalCenter="0" textColor="0xCCB48E" size="24" stroke="2" bold="true"/>
 	<e:Rect left="40" right="40" top="87" bottom="110" fillColor="0x0C0602" ellipseHeight="20" ellipseWidth="20"/>
 	<e:Group y="105" horizontalCenter="0" scaleX="1.5" scaleY="1.5" locked="true">
 		<e:Image id="s0" source="card_star_png" y="20" fillMode="clip" x="20"/>

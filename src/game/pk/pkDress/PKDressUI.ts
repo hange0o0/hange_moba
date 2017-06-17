@@ -57,6 +57,7 @@ class PKDressUI extends game.BaseUI {
     public atkData:any = {};
 
     private renewListTimer = 0;
+    public taskMid = 0;
 
 
     private isRemoveHistory = false
@@ -183,12 +184,13 @@ class PKDressUI extends game.BaseUI {
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
+        this.renewTask();
         this.removeOldHistory();
         this.reInitData();
         this.pkDressChooseUI.resetSort();
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
 
-        this.renewTask();
+
 
 
         this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.onMonsterLevel);
@@ -201,6 +203,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private renewTask(){
+        this.taskMid = null
         if(this.pkType == 'day_game')
         {
             MyTool.removeMC(this.taskGroup)
@@ -225,7 +228,7 @@ class PKDressUI extends game.BaseUI {
         this.taskRateText.text = Math.min(task.current,task.num)+'/'+task.num;
 
 
-       
+        this.taskMid = task.mid;
         var numStr = '['+task.num+']';
         var str = '[卡组任务：]使用['+MonsterVO.getObject(task.mid).name+']'
         switch(task.type)

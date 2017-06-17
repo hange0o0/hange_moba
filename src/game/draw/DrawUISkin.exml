@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="DrawUISkin" width="580" height="890" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="580"/>
-	<e:Label y="29" textColor="0xD0C7AD" horizontalCenter="0" text="钻石翻翻乐" x="10" stroke="2" bold="true"/>
-	<e:Rect left="30" right="30" fillAlpha="1" fillColor="0x160D06" height="80" bottom="25"/>
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 	<e:Button label="返回" skinName="Btn_r2Skin" id="okBtn" y="797" x="360"/>
 	<e:Label text="　　下面是我从你卡组中选出的9张牌，随便翻一张吧！我将给予你等于同卡该卡兵召唤费用的钻石" y="92" size="24" textColor="0xD0C7AD" width="500" horizontalCenter="0" lineSpacing="8"/>
 	<e:Group id="cardGroup" y="190" horizontalCenter="0.5" width="457" height="580">

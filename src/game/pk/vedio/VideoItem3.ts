@@ -85,12 +85,14 @@ class VideoItem3 extends game.BaseItem {
             //}
             //else
             //{
-                this.roundText.textColor = 0xFFFF00;
+            this.roundText.textColor = 0xFFFF00;
+            //this.bg2.fillColor = 0x000000
                 //this.roundText.size = 22;
             //}
         }
         else
         {
+            //this.bg2.fillColor = 0x130A04
             this.roundText.textColor = 0xFFFFFF;
             this.bg.strokeColor = 0x673D1F
             this.bg2.strokeColor = 0x673D1F

@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="CreateTeamUISkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="window2_png" bottom="0" top="0" scale9Grid="95,128,25,230" x="0" y="10" width="580"/>
-	<e:Label id="titleText" y="29" textColor="0xD0C7AD" horizontalCenter="0" text="创建队伍" x="10" stroke="2" bold="true"/>
-	<e:Rect left="30" right="30" bottom="25" fillAlpha="1" fillColor="0x160D06" height="95"/>
+<e:Skin class="CreateTeamUISkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 	<e:Label text="难度选择：" x="36" y="170" textColor="0xe0a44a"/>
 	<e:Label id="forceText" y="243" text="战力上限：" x="86" textColor="0xccb48e" size="28"/>
 	<e:Label id="levelText" y="295" text="等级上限：" x="86" textColor="0xccb48e" size="28"/>
