@@ -13,13 +13,12 @@ class MainGameUI extends game.BaseUI {
     private moneyText: eui.Label;
     private enemyList: eui.List;
     private helpBtn: eui.Group;
-    private myGroup0: eui.Group;
-    private myList0: eui.List;
-    private cardText: eui.Label;
+    private myCardGroup: MyCardGroupUI;
+    private historyList: eui.List;
     private resetBtn: eui.Button;
-    private taskText: eui.Label;
     private chooseBtn0: eui.Button;
-    private taskBtn: eui.Image;
+
+
 
 
 
@@ -45,7 +44,7 @@ class MainGameUI extends game.BaseUI {
 
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
-        this.myList0.itemRenderer =  MyHeadItem;
+        this.historyList.itemRenderer =  DayLogItem;
         this.scroller.bounces = false;
 
 
@@ -53,11 +52,6 @@ class MainGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
-        this.addBtnEvent(this.taskBtn, this.onTask);
-    }
-
-    private onTask(){
-        MyCardTaskUI.getInstance().show();
     }
 
 
@@ -78,7 +72,7 @@ class MainGameUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        this.clearList([this.myList0,this.enemyList])
+        this.clearList([this.enemyList])
     }
 
     private onCoin(){
@@ -178,6 +172,9 @@ class MainGameUI extends game.BaseUI {
 
         this.renewEnemy();
         this.renewSelf();
+        this.renewHistory();
+
+        this.scroller.viewport.scrollV = 0;
 
         //if(GuideManager.getInstance().isGuiding)
         //{
@@ -192,32 +189,18 @@ class MainGameUI extends game.BaseUI {
     }
 
     private renewSelf(){
-        var myCard = UM.getMyCard();
-        var specialData = {};
-        //更新卡组1
-        var chooseList1 = [];
-        PKManager.getInstance().sortMonster(myCard.list);
-        for(var i=0;i<myCard.list.length;i++)
+        this.myCardGroup.renew();
+    }
+    private renewHistory(){
+        var arr = MainGameManager.getInstance().logList;
+        var list = [];
+        for(var i=0;i<arr.length;i++)
         {
-            var id = myCard.list[i]
-            chooseList1.push({
-                vo: MonsterVO.getObject(id),
-                type:1,
-
-                id: id,
-                specialData: specialData,
-
-                index: i,
-                list:chooseList1
-            });
+            var data = arr[i];
+             if(data.sp.round == UM.main_game.level)
+                list.push(data)
         }
-        this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
-        var task = myCard.task
-        if(task)
-            this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
-        else
-            this.taskText.text = '';
+        this.historyList.dataProvider = new eui.ArrayCollection(list);
     }
 
     private onChoose1(){

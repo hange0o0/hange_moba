@@ -8,7 +8,6 @@ class PKDressChooseListItem extends game.BaseItem {
     private redMC: eui.Image;
     private typeMC: eui.Image;
     private nameGroup: eui.Group;
-    private noteIcon: eui.Image;
     private nameText: eui.Label;
     private useBtn: eui.Button;
     private levelGroup: eui.Group;
@@ -20,6 +19,7 @@ class PKDressChooseListItem extends game.BaseItem {
     private atkIndex: eui.Label;
     private speedText: eui.Label;
     private speedIndex: eui.Label;
+
 
 
 
@@ -82,12 +82,12 @@ class PKDressChooseListItem extends game.BaseItem {
         if(PKDressUI.getInstance().taskMid == vo.id)
         {
             this.nameText.textColor = 0xFDC04F
-            this.nameGroup.addChildAt(this.noteIcon,0)
+            //this.noteIcon.visible = true;
         }
         else
         {
             this.nameText.textColor = 0xFADEA2
-            MyTool.removeMC(this.noteIcon)
+            //this.noteIcon.visible = false;
         }
         if(this.data.index%2 == 0)
             this.currentState = 'left'

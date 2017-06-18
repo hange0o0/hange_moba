@@ -56,6 +56,40 @@ class PKResultUI extends game.BaseUI {
         this.teamInfo2.itemRenderer = PKResultItem4
 
         this.scroller.addEventListener(egret.Event.CHANGE,this.onScroll,this)
+        this.addEventListener(PKResultItem3.VIEW_EVENT,this.onMonsterClick,this)
+    }
+
+    private onMonsterClick(e){
+        var data = e.data;
+        if(data.teamID == 1)
+        {
+            var myList = this.selfList
+            var enemyList = this.enemyList
+        }
+        else
+        {
+            var myList = this.enemyList
+            var enemyList = this.selfList
+        }
+        for(var i=0;i<myList.numChildren;i++)
+        {
+            var item:any = myList.getChildAt(i);
+            if(item.data == data)
+                item.setChoose(1);
+            else
+                item.setChoose(0);
+        }
+        for(var i=0;i<enemyList.numChildren;i++)
+        {
+            var item:any = enemyList.getChildAt(i);
+            if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
+                item.setChoose(2);
+            else if(data.die && data.die == i+1)
+                item.setChoose(3);
+            else
+                item.setChoose(0);
+        }
+        //console.log(e.data);
     }
 
     private onScroll(){
@@ -205,6 +239,7 @@ class PKResultUI extends game.BaseUI {
                 level:team1Base.mb[mid].lv,
                 win: PKM.winCount[i+team1ID],
                 die: PKM.die[i+team1ID],
+                kill: PKM.kill[i+team1ID],
                 action: PKM.action[i+team1ID]
             }
             info1.push(oo)
@@ -214,7 +249,7 @@ class PKResultUI extends game.BaseUI {
             speed = Math.max(specialData.speed,speed)
             speed2 = Math.min(specialData.speed,speed2)
         }
-        this.selfList.dataProvider = new eui.ArrayCollection(info1)
+
 
         this.enemyText.text = '战力:' +  (Math.floor(team2Base.f) + commonAdd);;
         for(var i=0;i<team2Base.list.length;i++)
@@ -233,6 +268,7 @@ class PKResultUI extends game.BaseUI {
                 level:team2Base.mb[mid].lv,
                 win: PKM.winCount[i+team2ID],
                 die: PKM.die[i+team2ID],
+                kill: PKM.kill[i+team2ID],
                 action: PKM.action[i+team2ID]
             }
             info2.push(oo)
@@ -242,6 +278,9 @@ class PKResultUI extends game.BaseUI {
             speed = Math.max(specialData.speed,speed)
             speed2 = Math.min(specialData.speed,speed2)
         }
+
+        //PKM.resetInfoData(info1,info2);
+        this.selfList.dataProvider = new eui.ArrayCollection(info1)
         this.enemyList.dataProvider = new eui.ArrayCollection(info2)
 
         this.selfText.textColor = 0xFFFFFF

@@ -465,6 +465,8 @@ class MapMainUI extends game.BaseUI {
                         rate2:1,
                         hp:this.pkItem.tempObj.hp
                     })
+                    if(!AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(30)))
+                        return;
                     var VM = PKMainMV.getInstance();
                     VM.playOnItem(30,this.pkItem);
                 }
@@ -610,6 +612,8 @@ class MapMainUI extends game.BaseUI {
         if(MD.currentBossHp == 0)//BOSS死了
         {
             this.showDie(this.bossItem,function(){
+                if(!AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(39)))
+                    return;
                 var VM = PKMainMV.getInstance();
                 var p = this.awardText.localToGlobal(180,10);
                 p = this.globalToLocal(p.x,p.y,p);

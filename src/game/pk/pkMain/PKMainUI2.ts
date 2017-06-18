@@ -247,6 +247,7 @@ class PKMainUI extends game.BaseUI {
         item.alpha = 1;
         item.scaleX = 1;
         item.scaleY = 1;
+        item['addTime'] = egret.getTimer();
         this.textArray.push(item);
         this.effectCon.addChild(item);
         return item;
@@ -2372,17 +2373,40 @@ class PKMainUI extends game.BaseUI {
         //}
         label.alpha = 0;
         var tw = egret.Tween.get(label);
-        if(wordType == 'name')
+        if(wordType == 'name')  //技能
         {
-            tw.wait(delay).to({scaleX:1.1,scaleY:1.1,alpha:1,y:label.y - 30},200).to({scaleX:1,scaleY:1},200).wait(800);
-        }
-        else if(wordType == 'stat')
-        {
-            tw.wait(delay).to({y:label.y - 60,alpha:1},200).wait(400).to({y:label.y - 100,alpha:0},200)
+            label['targetY'] = label.y - 30;
         }
         else
         {
-            tw.wait(delay).to({y:label.y - 20,alpha:1},200).wait(600);
+            label['targetY'] = label.y - 20;
+        }
+
+        var len = this.effectCon.numChildren;
+        for(var i=0;i<len;i++)
+        {
+            var temp = this.effectCon.getChildAt(i);
+            if(temp != label && egret.getTimer() - temp['addTime'] < 800)//1秒内产生的
+            {
+                while(Math.abs(label.x - temp.x) < 10 && Math.abs(label['targetY'] - temp['targetY']) < 30)
+                {
+                    label['targetY'] -= 10;
+                    i = -1;
+                }
+            }
+        }
+
+        if(wordType == 'name')  //技能
+        {
+            tw.wait(delay).to({scaleX:1.1,scaleY:1.1,alpha:1,y:label['targetY']},200).to({scaleX:1,scaleY:1},200).wait(500);
+        }
+        else if(wordType == 'stat')
+        {
+            tw.wait(delay).to({y:label['targetY'],alpha:1},200).wait(500).to({y:label['targetY'] - 30,alpha:0},100)
+        }
+        else //血
+        {
+            tw.wait(delay).to({y:label['targetY'],alpha:1},200).wait(600);
         }
 
 

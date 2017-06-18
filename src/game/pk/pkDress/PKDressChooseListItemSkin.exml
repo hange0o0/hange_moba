@@ -19,12 +19,11 @@
 
 	<e:Group x="0" y="-2" right.right="0">
 		<e:Image source="card_bg_png" y="1" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
-		<e:Image source="head_png" y="9" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9"/>
+		<e:Image y="9" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9" source=""/>
 		<e:Rect height="35" fillAlpha="0.75" bottom="10" left="7" right="7"/>
 		<e:Image id="redMC" source="arrow5_png" x="121" y="10"/>
 		<e:Image id="typeMC" x="6" y="5" source="monster_type1_png"/>
 		<e:Group id="nameGroup" y="159" height="30" horizontalCenter="0">
-			<e:Image id="noteIcon" source="note_icon_png" x="0" y="0" scaleX="0.5" scaleY="0.5"/>
 			<e:Label id="nameText" text="Label" size="20" stroke="3" textColor="0xFADEA2" x="34" y="10" height="22" verticalAlign="bottom"/>
 			<e:layout>
 				<e:HorizontalLayout verticalAlign="middle"/>

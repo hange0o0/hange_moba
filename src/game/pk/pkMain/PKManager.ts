@@ -91,6 +91,7 @@ class PKManager {
 
     public winCount//胜利的次数
     public action//是否有出战
+    public kill//杀对方的ID列表
     public die//是否失败
     public winnerRate//胜利者剩余血量百分比
     public isWin//胜利
@@ -629,6 +630,7 @@ class PKManager {
         //表现动画，结果的数据
         var winCount = this.winCount = {};
         var action = this.action = {};
+        this.kill = {};
         var die = this.die = {};
         this.pkList.length = 0;
         for(var i=0;i<data.pkdata.length;i++)
@@ -733,6 +735,8 @@ class PKManager {
 
         function getPlayer(team,index,displayTeam){
             var p = data.pkdata[index]['player' + team][0];
+            var enemy = data.pkdata[index]['player' + (team == 1?2:1)][0];
+            var enemyIndex = enemy.id%10 + 1;
             var base = data['team'+team+'base'].mb[p.mid];
             var nextP;
             if(data.pkdata[index+1])
@@ -742,6 +746,9 @@ class PKManager {
             oo.team = displayTeam;
             if(self.teamChange)
                 oo.team = team == 1?2:1;
+
+            if(!self.kill[p.id])
+                self.kill[p.id] = [];
 
             oo.id = p.id
             oo.speed = base.speed;
@@ -754,11 +761,12 @@ class PKManager {
                 oo.after = result.hp;
                 winCount[p.id] = (winCount[p.id] || 0) + 1
                 oo.isWin = true;
+                self.kill[p.id].push(enemyIndex)
             }
             else
             {
                 oo.after = 0;
-                die[p.id] = true;
+                die[p.id] = enemyIndex;
             }
 
             oo.afterMax = oo.beforeMax;
@@ -849,7 +857,8 @@ class PKManager {
             var oo = {
                 //id:mid,
                 win: this.winCount[i+team1ID] || 0,
-                die: this.die[i+team1ID]
+                die: this.die[i+team1ID],
+                kill:this.kill[i+team1ID]
             }
             info1.push(oo)
         }
@@ -859,10 +868,13 @@ class PKManager {
             var oo = {
                 //id:mid,
                 win: this.winCount[i+team2ID] || 0,
-                die: this.die[i+team2ID]
+                die: this.die[i+team2ID],
+                kill:this.kill[i+team2ID]
             }
             info2.push(oo)
         }
+        team1Base.team = 1;
+        team2Base.team = 2;
 
         //var videoData = {
         //    team1:{
@@ -902,14 +914,46 @@ class PKManager {
                 list:infoArr,
                 specialData:specialData,
                 index:i,
+                teamID:teamBase.team,
 
                 level:teamBase.mb[mid].lv,
                 win: infoData[i].win,
                 die: infoData[i].die,
+                kill: infoData[i].kill,
             }
             infoArr.push(oo)
         }
         return infoArr
     }
+
+    ////重置数据
+    //public resetInfoData(team1,team2){
+    //    var rArr1 = []
+    //    var rArr2 = []
+    //    for(var i=0;i<team1.length;i++)
+    //    {
+    //        var oo = team1[i];
+    //        var win = oo.win;
+    //        while(win)
+    //        {
+    //            rArr2.push(i)
+    //            win --;
+    //        }
+    //    }
+    //
+    //    for(var i=0;i<team2.length;i++)
+    //    {
+    //        var oo = team2[i];
+    //        var win = oo.win;
+    //        while(win)
+    //        {
+    //            rArr1.push(i)
+    //            win --;
+    //        }
+    //    }
+    //
+    //    oo.kill = [];
+    //    oo.beKill = 0;
+    //}
 
 }

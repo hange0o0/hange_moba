@@ -99,6 +99,7 @@ var game_file_list = [
 	"bin-debug/game/pk/mainGame/MainAwardBeforeUI.js",
 	"bin-debug/game/pk/mainGame/MainGameManager.js",
 	"bin-debug/game/pk/mainGame/MainGameUI.js",
+	"bin-debug/game/pk/mainGame/MyCardGroupUI.js",
 	"bin-debug/game/pk/mainGame/MyCardTaskUI.js",
 	"bin-debug/game/pk/pkCommont/EnemyHeadItem.js",
 	"bin-debug/game/pk/pkCommont/MyHeadItem.js",

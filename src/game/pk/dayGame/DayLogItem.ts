@@ -31,6 +31,40 @@ class DayLogItem extends game.BaseItem {
 
         //this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
         //this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
+        this.addEventListener(PKResultItem3.VIEW_EVENT,this.onMonsterClick,this)
+    }
+
+    private onMonsterClick(e){
+        var data = e.data;
+        if(data.teamID == 1)
+        {
+            var myList = this.teamInfo1
+            var enemyList = this.teamInfo2
+        }
+        else
+        {
+            var myList = this.teamInfo2
+            var enemyList = this.teamInfo1
+        }
+        for(var i=0;i<myList.numChildren;i++)
+        {
+            var item:any = myList.getChildAt(i);
+            if(item.data == data)
+                item.setChoose(1);
+            else
+                item.setChoose(0);
+        }
+        for(var i=0;i<enemyList.numChildren;i++)
+        {
+            var item:any = enemyList.getChildAt(i);
+            if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
+                item.setChoose(2);
+            else if(data.die && data.die == i+1)
+                item.setChoose(3);
+            else
+                item.setChoose(0);
+        }
+        //console.log(e.data);
     }
 
     private onNickClick(e){
@@ -51,8 +85,11 @@ class DayLogItem extends game.BaseItem {
 
     public dataChanged() {
         var PKM = PKManager.getInstance();
-          this.teamInfo1.dataProvider = new eui.ArrayCollection(PKM.getLogTeamData(this.data.team1Base,this.data.info1))
-          this.teamInfo2.dataProvider = new eui.ArrayCollection(PKM.getLogTeamData(this.data.team2Base,this.data.info2))
+        var team1 =PKM.getLogTeamData(this.data.team1Base,this.data.info1);
+        var team2 =PKM.getLogTeamData(this.data.team2Base,this.data.info2);
+        //PKM.resetInfoData(team1,team2);
+        this.teamInfo1.dataProvider = new eui.ArrayCollection(team1)
+        this.teamInfo2.dataProvider = new eui.ArrayCollection(team2)
         var hpText = Math.max(1,Math.min(100,Math.ceil(this.data.rate*100))) + '';
         if(this.data.isWin)
         {
