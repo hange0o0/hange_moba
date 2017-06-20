@@ -27,9 +27,9 @@ class MyCardGroupUI extends game.BaseItem {
         MyCardTaskUI.getInstance().show();
     }
 
-    public renew(){
+    public renew(specialData?){
         var myCard = UM.getMyCard();
-        var specialData = {};
+        var specialData = specialData || {};
         //更新卡组1
         var chooseList1 = [];
         PKManager.getInstance().sortMonster(myCard.list);

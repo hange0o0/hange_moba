@@ -6,18 +6,16 @@ class TeamDungeonGameUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private resetBtn: eui.Button;
+    private chooseBtn: eui.Button;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
     private desText: eui.Label;
     private enemyList: eui.List;
-    private myGroup0: eui.Group;
-    private myList0: eui.List;
-    private cardText: eui.Label;
-    private resetBtn: eui.Button;
-    private taskText: eui.Label;
-    private chooseBtn0: eui.Button;
-    private taskBtn: eui.Image;
+    private historyList: eui.List;
+    private myCardGroup: MyCardGroupUI;
+
 
 
 
@@ -40,23 +38,19 @@ class TeamDungeonGameUI extends game.BaseUI {
         this.topUI.setTitle('公会评定');
         this.topUI.addEventListener('hide',this.hide,this);
 
-        this.addBtnEvent(this.chooseBtn0, this.onChoose1);
+        this.addBtnEvent(this.chooseBtn, this.onChoose1);
 
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
-        this.myList0.itemRenderer =  MyHeadItem;
+        this.historyList.itemRenderer =  DayLogItem;
         this.scroller.bounces = false;
 
 
         //this.enemyList.add
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
-        this.addBtnEvent(this.taskBtn, this.onTask);
     }
 
-    private onTask(){
-        MyCardTaskUI.getInstance().show();
-    }
 
 
     private onReset(){
@@ -76,7 +70,7 @@ class TeamDungeonGameUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        this.clearList([this.myList0,this.enemyList])
+        this.clearList([this.enemyList])
     }
 
     private onCoin(){
@@ -162,36 +156,26 @@ class TeamDungeonGameUI extends game.BaseUI {
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         this.renewEnemy();
         this.renewSelf();
+        this.renewHistory();
+        this.scroller.viewport.scrollV = 0;
     }
 
     private renewSelf(){
         var hard = TeamPVEManager.getInstance().data.game_data.hard;
-        var myCard = UM.getMyCard();
-        var specialData = {hard:hard};
-        //更新卡组1
-        var chooseList1 = [];
-        PKManager.getInstance().sortMonster(myCard.list);
-        for(var i=0;i<myCard.list.length;i++)
+        this.myCardGroup.renew({hard:hard});
+    }
+    private renewHistory(){
+        var arr = TeamPVEManager.getInstance().logList;
+        var list = [];
+        for(var i=0;i<arr.length;i++)
         {
-            var id = myCard.list[i]
-            chooseList1.push({
-                vo: MonsterVO.getObject(id),
-                type:1,
-
-                id: id,
-                specialData: specialData,
-
-                index: i,
-                list:chooseList1
-            });
+            var data = arr[i];
+            if(data.sp.round == this.data.index && DateUtil.formatDate('yyyy-MM-dd', DateUtil.timeToChineseDate(data.time)) == DateUtil.formatDate('yyyy-MM-dd', TM.chineseDate()))
+                list.push(data)
         }
-        this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
-        var task = myCard.task
-        if(task)
-            this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
-        else
-            this.taskText.text = '';
+        if(list.length > 5)
+            list.length = 5;
+        this.historyList.dataProvider = new eui.ArrayCollection(list);
     }
 
     private onChoose1(){

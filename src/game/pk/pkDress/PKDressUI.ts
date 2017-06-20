@@ -524,13 +524,13 @@ class PKDressUI extends game.BaseUI {
             var nextIndex = this.index+1;
             if(nextIndex >= this.dataIn.data.length)
                 nextIndex = 0;
-            this.topUI.setTitle('调整位置-卡组' + (this.index + 1) + '');
+            this.topUI.setTitle('布阵-卡组' + (this.index + 1) + '');
             this.upBtnGroup.addChild(this.changeBtn);
             this.changeBtn.label = '切换卡组' + (nextIndex + 1);
         }
         else
         {
-            this.topUI.setTitle('调整位置');
+            this.topUI.setTitle('布阵');
         }
         if(this.dataIn.enemy)
             this.upBtnGroup.addChild(this.viewBtn);

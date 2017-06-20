@@ -176,10 +176,12 @@ class PKResultUI extends game.BaseUI {
     //    MyTool.removeMC(PKMainUI.getInstance())
     //    MyTool.removeMC(this)
     //}
-    //public tempShow(){
-    //    GameManager.container.addChild(PKMainUI.getInstance());
-    //    GameManager.container.addChild(this);
-    //}
+    public reShow(){
+        var index = GameManager.container.getChildIndex(this)
+        GameManager.container.addChildAt(PKMainUI.getInstance(),index);
+        //this.visible = true;
+        //GameManager.container.addChild(this);
+    }
 
     public hide(){
         super.hide();

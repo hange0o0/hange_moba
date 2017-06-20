@@ -32,13 +32,8 @@ class CollectItem extends game.BaseItem {
         this.headMC.source = mvo.url
         this.nameText.text = mvo.name
 
-
-
-        var arr = TecManager.getInstance().collectRate(this.data.id);
-        var need = arr[1];
-        var now = arr[0];
         this.arrowMC.visible = false;
-        if(need == 0){  //已满级了
+        if(level >=  TecManager.getInstance().maxLevel){  //已满级了
             this.levelText.text = 'MAX';
         }
         else if(mvo.level > UM.level)
@@ -47,8 +42,7 @@ class CollectItem extends game.BaseItem {
         }
         else
         {
-            var cost = TecManager.getInstance().needCoin(level + 1)
-            if(now >= need && cost <= UM.coin)
+            if(mvo.getLevelUpCard() <= UM.card && mvo.getLevelUpCoin() <= UM.coin)
             {
                 this.arrowMC.visible = true;
 

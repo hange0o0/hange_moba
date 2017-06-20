@@ -6,6 +6,8 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private resetBtn: eui.Button;
+    private chooseBtn: eui.Button;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
@@ -17,13 +19,9 @@ class ServerGameEqualUI extends game.BaseUI {
     private headMC: eui.Image;
     private helpBtn: eui.Group;
     private enemyList: eui.List;
-    private myGroup: eui.Group;
-    private myList: eui.List;
-    private cardText: eui.Label;
-    private resetBtn: eui.Button;
-    private taskText: eui.Label;
-    private chooseBtn: eui.Button;
-    private taskBtn: eui.Image;
+    private historyList: eui.List;
+    private myCardGroup: MyCardGroupUI;
+
 
 
 
@@ -50,9 +48,9 @@ class ServerGameEqualUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn, this.onChoose);
         this.addBtnEvent(this.headMC, this.onOtherInfo);
+        this.historyList.itemRenderer =  DayLogItem;
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
-        this.myList.itemRenderer =  MyHeadItem;
 
 
         this.scroller.bounces = false;
@@ -62,12 +60,8 @@ class ServerGameEqualUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
-        this.addBtnEvent(this.taskBtn, this.onTask);
     }
 
-    private onTask(){
-        MyCardTaskUI.getInstance().show();
-    }
 
     private onLog(){
         DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正挑战日志');
@@ -82,7 +76,7 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        this.clearList([this.myList,this.enemyList])
+        this.clearList([this.enemyList])
     }
 
 
@@ -93,6 +87,7 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.scroller.viewport.scrollV = 0;
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         var data = UM.server_game_equal;
 
@@ -148,51 +143,53 @@ class ServerGameEqualUI extends game.BaseUI {
         var uf = data.enemy.userinfo;
         this.nameText.text = Base64.decode(uf.nick);
         //this.levelText.text = uf.level;
+        var winStr;
         if(uf.win == '???')
-            this.winText.text = '??';
+            winStr = '??';
         else
         {
             if(uf.win == 0)
-                this.winText.text = '0%';
+                winStr = '0%';
             else
-                this.winText.text = MyTool.toFixed(uf.win/uf.total*100,1) + '%';
+                winStr = MyTool.toFixed(uf.win/uf.total*100,1) + '%';
         }
-        this.rankText.text = uf.exp;
-        this.forceText.text = uf.force;
+
         this.maxText.text = '(LV.'+uf.level+')';// + uf.max;
+
+        MyTool.setColorText(this.winText,'[胜率：]'+ winStr);
+        MyTool.setColorText(this.rankText,'[积分：]'+ uf.exp);
+        MyTool.setColorText(this.forceText,'[战力：]'+ uf.force);
+
+
         this.headMC.source = MyTool.getHeadUrl(uf.head);
 
-        this.renewChoose();
-        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewChoose);
+        this.renewSelf();
+        this.renewHistory();
+        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
     }
 
-    private renewChoose(){
-        var myCard = UM.getMyCard();
-        var specialData = {isEqual:true};
-        //更新卡组1
-        var chooseList1 = [];
-        PKManager.getInstance().sortMonster(myCard.list);
-        for(var i=0;i<myCard.list.length;i++)
+
+
+    private renewSelf(){
+        this.myCardGroup.renew({isEqual:true});
+    }
+    private renewHistory(){
+        var arr = ServerGameEqualManager.getInstance().logList;
+        var list = [];
+
+        var enemy = UM.server_game_equal.enemy;
+        if(enemy.pkdata)
         {
-            var id = myCard.list[i]
-            chooseList1.push({
-                vo: MonsterVO.getObject(id),
-                type:1,
-
-                id: id,
-                specialData: specialData,
-
-                index: i,
-                list:chooseList1
-            });
+            for(var i=0;i<arr.length;i++)
+            {
+                var data = arr[i];
+                if(data.sp.gameid == enemy.userinfo.gameid && enemy.pkdata.list.join(',') == data.team2Base.list.join(','))
+                    list.push(data)
+            }
         }
-        this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.cardText.text =  this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
-        var task = myCard.task
-        if(task)
-            this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
-        else
-            this.taskText.text = '';
+        if(list.length > 5)
+            list.length = 5;
+        this.historyList.dataProvider = new eui.ArrayCollection(list);
     }
 
     private onChoose(){

@@ -302,19 +302,19 @@ class MonsterVO {
             if(lv >= hardData.level)
                 return false;
         }
-        return this.level <= UM.level && this.levelUpCard() <= UM.card && this.levelUpCoin() <= UM.coin;
+        return this.level <= UM.level && this.getLevelUpCard() <= UM.card && this.getLevelUpCoin() <= UM.coin;
     }
-    public levelUpCard(){
+    public getLevelUpCard(){
         var lv = UM.getMonsterLevel(this.id);
         if(lv == TecManager.getInstance().maxLevel)
             return Number.MAX_VALUE;
-        return TecManager.getInstance().collectNeed(lv + 1);
+        return TecManager.getInstance().collectNeed(this.id,lv + 1);
     }
-    public levelUpCoin(){
+    public getLevelUpCoin(){
         var lv = UM.getMonsterLevel(this.id);
         if(lv == TecManager.getInstance().maxLevel)
             return Number.MAX_VALUE;
-        return TecManager.getInstance().needCoin(lv + 1);
+        return TecManager.getInstance().needCoin(this.id,lv + 1);
     }
 
 

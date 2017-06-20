@@ -117,6 +117,21 @@
 		</e:Group>
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>
+	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="510">
+		<e:Rect id="resultBG" width="100%" height="100%" x="0" y="0" fillAlpha="0.5"/>
+		<e:Group id="resultMC" horizontalCenter="0" verticalCenter="-72.5">
+		<e:Image id="rbg0" y="0" x="0" source="pk_fail_png"/>
+		<e:Image id="rbg1" y="0" scaleX="-1" x="490" source="pk_win_png"/>
+		<e:Image id="rbg2" y="118" x="156" source="fight_win_png"/>
+		</e:Group>
+		<e:Group id="resultBtnGroup" y="360" horizontalCenter="0">
+		<e:Button id="backBtn" label="返回" x="0" y="0" skinName="Btn_b2Skin"/>
+		<e:Button id="nextBtn" label="下一轮" x="10.000000000000028" y="10" skinName="Btn_r2Skin"/>
+		<e:layout>
+			<e:HorizontalLayout gap="50"/>
+		</e:layout>
+		</e:Group>
+	</e:Group>
 	<e:Image id="jumpBtn" source="jump_btn_png" scaleX="0.9" scaleY="0.9" y="710" x="320" anchorOffsetX="36" anchorOffsetY="36"/>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
 	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>

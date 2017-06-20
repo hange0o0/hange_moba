@@ -25,7 +25,7 @@ class TouchTipsUI extends game.BaseContainer{
         //var p1 = mc.localToGlobal(rect.x,rect.y);
         //var p2 = mc.localToGlobal(rect.x + rect.width,rect.y + rect.height);
 
-        this.y =  e.stageY - this.height - 50;
+        this.y =  e.stageY - this.height - 100;
         if(this.y < 0)
         {
             this.y = 0;

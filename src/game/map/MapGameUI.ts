@@ -6,20 +6,18 @@ class MapGameUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private enemyBtn: eui.Button;
+    private resetBtn: eui.Button;
+    private chooseBtn: eui.Button;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
     private desText: eui.Label;
     private enemyList: eui.List;
     private helpBtn: eui.Group;
-    private myGroup0: eui.Group;
-    private myList0: eui.List;
-    private enemyBtn: eui.Button;
-    private cardText: eui.Label;
-    private resetBtn: eui.Button;
-    private taskText: eui.Label;
-    private chooseBtn0: eui.Button;
-    private taskBtn: eui.Image;
+    private historyList: eui.List;
+    private myCardGroup: MyCardGroupUI;
+
 
 
 
@@ -42,12 +40,12 @@ class MapGameUI extends game.BaseUI {
         //this.topUI.setTitle('试练场PK');
         this.topUI.addEventListener('hide',this.onClose,this);
 
-        this.addBtnEvent(this.chooseBtn0, this.onChoose1);
+        this.addBtnEvent(this.chooseBtn, this.onChoose1);
         //this.addBtnEvent(this.coinGroup, this.onCoin);
 
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
-        this.myList0.itemRenderer =  MyHeadItem;
+        this.historyList.itemRenderer =  DayLogItem;
         this.scroller.bounces = false;
 
 
@@ -55,12 +53,8 @@ class MapGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
         this.addBtnEvent(this.enemyBtn, this.onEnemy);
-        this.addBtnEvent(this.taskBtn, this.onTask);
-    }
+}
 
-    private onTask(){
-        MyCardTaskUI.getInstance().show();
-    }
 
     private onClose(){
         var self = this;
@@ -98,7 +92,7 @@ class MapGameUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        this.clearList([this.myList0,this.enemyList])
+        this.clearList([this.enemyList])
     }
 
     private onCoin(){
@@ -184,35 +178,26 @@ class MapGameUI extends game.BaseUI {
     public onShow(){
         this.renewEnemy();
         this.renewSelf();
+        this.renewHistory();
+        this.scroller.viewport.scrollV = 0;
     }
 
     private renewSelf(){
-        var myCard = UM.getMyCard();
-        var specialData = {};
-        //更新卡组1
-        var chooseList1 = [];
-        PKManager.getInstance().sortMonster(myCard.list);
-        for(var i=0;i<myCard.list.length;i++)
+        this.myCardGroup.renew();
+    }
+    private renewHistory(){
+        var MD =  MapData.getInstance();
+        var arr = MapManager.getInstance().logList;
+        var list = [];
+        for(var i=0;i<arr.length;i++)
         {
-            var id = myCard.list[i]
-            chooseList1.push({
-                vo: MonsterVO.getObject(id),
-                type:1,
-
-                id: id,
-                specialData: specialData,
-
-                index: i,
-                list:chooseList1
-            });
+            var data = arr[i];
+            if(data.sp.round == MD.level && MD.enemy.list.join(',') == data.team2Base.list.join(','))
+                list.push(data)
         }
-        this.myList0.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.cardText.text = '使用次数：'+(10-myCard.num)+'/10'
-        var task = myCard.task
-        if(task)
-            this.taskText.text = '任务进度：'+Math.min(task.current,task.num)+'/'+task.num
-        else
-            this.taskText.text = '';
+        if(list.length > 5)
+            list.length = 5;
+        this.historyList.dataProvider = new eui.ArrayCollection(list);
     }
 
     private onChoose1(){

@@ -41,33 +41,34 @@ class TecManager{
     }
 
     //level是指目标等级
-    public needCoin(level){
+    public needCoin(mid,level){
+        var cost = MonsterVO.getObject(mid).cost;
         //=FLOOR(POWER(A1,2.4)*(10*(A1/5+1)),1)+38*FLOOR(A1,1)
-        return Math.floor(Math.pow(level,2.5)*(10*(level/5 + 1))) +38*Math.floor(Math.pow(level,1.5));
+        return Math.floor((Math.pow(level,2.5)*(10*(level/5 + 1))) +38*Math.floor(Math.pow(level,1.5)) * (1+cost/100));  //
     }
-    public collectNeed(level){   //升级需要碎片数量
+    public collectNeed(mid,level){   //升级需要碎片数量
         //=FLOOR(POWER(1.25,A30)*(A30*0.6) + A30,1)
         var targetFun = function(level){
-             return Math.floor(Math.pow(1.3,level)*level*0.6 + level)
+             return (Math.pow(1.3,level)*level*0.6 + level)
         }
-        return targetFun(level) - targetFun(level - 1);
+        var cost = MonsterVO.getObject(mid).cost;
+        return Math.floor((targetFun(level) - targetFun(level - 1)) * (1+cost/100)); // * (1+cost/100)
     }
 
-    //得到指定怪物的升级时显示的碎片信息
-    public collectRate(id){
-        var lv = UM.getMonsterLevel(id);
-        var now = UM.card;
-        var need = this.collectNeed(lv + 1);
-        if(lv == 0)
-
-        {
-            return [now,need]
-        }
-        //var last = this.collectNeed(lv)
-        if(lv == this.maxLevel)
-            return [now,0];
-        return [now,need];
-    }
+    ////得到指定怪物的升级时显示的碎片信息
+    //public collectRate(id){
+    //    var lv = UM.getMonsterLevel(id);
+    //    var now = UM.card;
+    //    var need = this.collectNeed(lv + 1);
+    //    if(lv == 0)
+    //    {
+    //        return [now,need]
+    //    }
+    //    //var last = this.collectNeed(lv)
+    //    if(lv == this.maxLevel)
+    //        return [now,0];
+    //    return [now,need];
+    //}
 
 
 

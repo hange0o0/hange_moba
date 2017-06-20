@@ -84,13 +84,13 @@ class MonsterInfoBase extends game.BaseContainer {
         this.levelUpCon.visible = true;
         var oo =  this.vo;
         var TEC = TecManager.getInstance();
-        var cost = TEC.needCoin(UM.getMonsterLevel(oo.id) + 1)
+        var level = UM.getMonsterLevel(oo.id);
+        var cost = oo.getLevelUpCoin()
 
         var levelUpAble = true;
-        var arr = TecManager.getInstance().collectRate(oo.id);
-        var collectNeed = arr[1];
-        var collectNum = arr[0];
-        if(collectNeed == 0)
+        var collectNeed = oo.getLevelUpCard();
+        var collectNum = UM.card;
+        if(level >= TecManager.getInstance().maxLevel)
         {
             this.levelUpBtn.label = '满级'
             levelUpAble = false

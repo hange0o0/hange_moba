@@ -53,6 +53,15 @@ class PKMainUI extends game.BaseUI {
     private speedText1: eui.Label;
     private atkText1: eui.Label;
     private statList1: eui.List;
+    private resultGroup: eui.Group;
+    private resultBG: eui.Rect;
+    private resultMC: eui.Group;
+    private rbg0: eui.Image;
+    private rbg1: eui.Image;
+    private rbg2: eui.Image;
+    private resultBtnGroup: eui.Group;
+    private backBtn: eui.Button;
+    private nextBtn: eui.Button;
     private jumpBtn: eui.Image;
     private bottomMC: eui.Image;
     private topMC: eui.Image;
@@ -60,6 +69,8 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
+
 
 
 
@@ -131,9 +142,14 @@ class PKMainUI extends game.BaseUI {
     private cloudTimer = 0;
     private cloudArr = [];
     private loadGroup2 = []
+
+
+    public playVideoIndex = 0;
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.jumpBtn, this.onJump);
+        this.addBtnEvent(this.backBtn, this.onJump);
+        this.addBtnEvent(this.nextBtn, this.onNext);
 
         this.statList0.itemRenderer = VideoTopStatItem;
         this.statList1.itemRenderer = VideoTopStatItem;
@@ -152,6 +168,10 @@ class PKMainUI extends game.BaseUI {
         tw.wait(cd).call(fun,this,data)
     }
 
+    private onNext(){
+        this.resultGroup.visible = false;
+        this.playOneRound()
+    }
     private onJump(){
 
         this.showResult();
@@ -213,8 +233,9 @@ class PKMainUI extends game.BaseUI {
     }
 
     private mvFreeItem(item){
-        if(item.out)
-            return;
+        //if(item.out)
+        //    return;
+        item.stopMV();
         var tw:egret.Tween = egret.Tween.get(item);
         tw.to({alpha:0}, 1000).call(function(){
             this.freeItem(item);
@@ -222,10 +243,11 @@ class PKMainUI extends game.BaseUI {
     }
 
     private freeItem(item){
-        if(item.out)
-            return;
-        item.out = true;
-        this.poolArray.push(item);
+        //if(item.out)
+        //    return;
+        //item.out = true;
+        if(this.poolArray.indexOf(item) == -1)
+            this.poolArray.push(item);
         MyTool.removeMC(item);
         item.stopMV();
     }
@@ -287,7 +309,8 @@ class PKMainUI extends game.BaseUI {
 
 
 
-    public show(){
+    public show(v?){
+        this.playVideoIndex = v;
         var isPKJump = PKManager.getInstance().pkJump;
         this.loadGroup2 = [];
         this.initSeed();
@@ -366,7 +389,10 @@ class PKMainUI extends game.BaseUI {
         egret.clearTimeout(this.timer);
         PopUpManager.removeShape();
         this.initView();
-        this.addSceneMovie();
+        if(this.playVideoIndex)
+            this.initIndex();
+        else
+            this.addSceneMovie();
         this.isStop = false;
 
         var isPKJump = PKManager.getInstance().pkJump;
@@ -412,6 +438,13 @@ class PKMainUI extends game.BaseUI {
         this.skillGroup.visible = false;
         this.hpGroup0.visible = false;
         this.hpGroup1.visible = false;
+        this.resultGroup.visible = false;
+
+        var itemHeight = 123;
+        var des = (this.stageHeight - this.conHeight)/2;
+        this.topMC.y = -itemHeight+des
+        this.bottomMC.y = this.stageHeight-des
+        this.jumpBtn.y =  des + 720;
         //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);
@@ -448,6 +481,63 @@ class PKMainUI extends game.BaseUI {
 
     }
 
+    private initIndex(){
+        var Y =this.stageHeight/2;
+
+        this.bg0.scaleX = this.bg0.scaleY = 1;
+        this.bg1.scaleX = this.bg1.scaleY = 1;
+        this.bg0.x = 0;
+        this.bg0.y = Y;
+        this.bg1.x = 315;
+        this.bg1.y = Y;
+
+
+        MainPageUI.getInstance().visible = false;
+        PKLoadingUI.getInstance().realHide();
+        this.bgBlack.visible = true;
+        this.showCound(true)
+        this.showCound(true)
+
+        this.con.visible = true;
+        this.downBG.visible = true;
+        this.con.y = this.con.y-400;
+        this.playerGroup1.visible = true
+        this.playerGroup2.visible = true
+        this.upGroup.visible = true;
+        this.upGroup.y = this.upGroup.y+400;
+        this.initTeamItem();
+
+
+        this.jumpBtn.visible = true
+        this.jumpBtn.scaleX = this.jumpBtn.scaleY = 1;
+        this.jumpBtn.rotation = 0;
+
+
+        this.pkStep = this.playVideoIndex - 1;
+        this.playOneRound();
+
+        //处理已阵亡单位
+        for(var i=0;i<this.itemArray.length;i++)
+        {
+            var item = this.itemArray[i];
+            if((item.team == 1 && item.index < this.selfPKing.index) || (item.team == 2 && item.index < this.enemyPKing.index))
+            {
+                var winCount = PKManager.getInstance().winCount[item.id]
+                if(winCount == 3)
+                {
+                    item.win3 = true;
+                }
+                else
+                {
+                    item.die = true;
+                    item.setGray();
+                }
+                item.showStar(winCount)
+            }
+        }
+
+    }
+
     private addSceneMovie(){
         var Y =this.stageHeight/2;
         var desY =  this.random()*200-100
@@ -478,10 +568,7 @@ class PKMainUI extends game.BaseUI {
         },this).wait(600).call(this.addItemMovie,this);    //.wait(100)
         tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
 
-        var itemHeight = 123;
-        var des = (this.stageHeight - this.conHeight)/2;
-        this.topMC.y = -itemHeight+des
-        this.bottomMC.y = this.stageHeight-des
+
 
         //if(des > 0)
         //{
@@ -493,7 +580,7 @@ class PKMainUI extends game.BaseUI {
         //    tw.to({alpha:1},100)
         //}
 
-        this.jumpBtn.y =  des + 720;
+
     }
 
 
@@ -519,6 +606,23 @@ class PKMainUI extends game.BaseUI {
         this.upGroup.visible = true;
         tw.to({y:this.upGroup.y+400},300)
 
+      
+        this.initTeamItem();
+
+
+        this.pkStep = 0;
+        this.setTimeout(this.playOneRound,1500);
+        SoundManager.getInstance().loadPKSound();
+
+        var tw:egret.Tween = egret.Tween.get(this.jumpBtn);
+        this.jumpBtn.visible = true;
+        this.jumpBtn.scaleX = 0;
+        this.jumpBtn.scaleY = 0;
+        this.jumpBtn.rotation = 0;
+        tw.wait(1000).to({scaleX:1.2,scaleY:1.2,rotation:360},300).to({scaleX:1,scaleY:1},300)
+    }
+    
+    private initTeamItem(){
         var myTeam = PKManager.getInstance().team1Base.list
         var enemyTeam = PKManager.getInstance().team2Base.list
         if(PKManager.getInstance().teamChange)
@@ -542,19 +646,6 @@ class PKMainUI extends game.BaseUI {
             enemyItems.push(this.addOneItem(enemyTeam[i],2,i));
         }
         this.resetXY(enemyItems,2);
-
-
-
-        this.pkStep = 0;
-        this.setTimeout(this.playOneRound,1500);
-        SoundManager.getInstance().loadPKSound();
-
-        var tw:egret.Tween = egret.Tween.get(this.jumpBtn);
-        this.jumpBtn.visible = true;
-        this.jumpBtn.scaleX = 0;
-        this.jumpBtn.scaleY = 0;
-        this.jumpBtn.rotation = 0;
-        tw.wait(1000).to({scaleX:1.2,scaleY:1.2,rotation:360},300).to({scaleX:1,scaleY:1},300)
     }
 
     //加一个单位到舞台上
@@ -588,10 +679,20 @@ class PKMainUI extends game.BaseUI {
             item.oy = item.y
             item.boxX = item.x
             item.boxY = item.y
-            if(team == 1)
-                this.setTimeout(this.showItemMV,(i%3) * 200+500,[item])
+            if(this.playVideoIndex)
+            {
+                item.visible = true;
+                item.scaleX = 0.85;
+                item.scaleY = 0.85;
+            }
             else
-                this.setTimeout(this.showItemMV,(2-i%3) * 200+500,[item])
+            {
+                if(team == 1)
+                    this.setTimeout(this.showItemMV,(i%3) * 200+500,[item])
+                else
+                    this.setTimeout(this.showItemMV,(2-i%3) * 200+500,[item])
+            }
+
         }
     }
 
@@ -616,12 +717,23 @@ class PKMainUI extends game.BaseUI {
             this.showResult();
             return;
         }
+        this.initSeed();
         VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.pkStep - 1);
         this.listArray = VideoCode.getInstance().listArray;
         this.index = 0
         this.outPKer()
         var cd = 1000
-        if(this.pkStep == 1)
+        if(this.playVideoIndex && this.pkStep == this.playVideoIndex)
+        {
+            this.playerGroup1.visible = true
+            this.playerGroup2.visible = true
+            this.mpBar0.width = 1;
+            this.mpBar1.width = 1;
+            this.playerGroup1.x = 10
+            this.playerGroup2.x = 322
+            this.inPKer();
+        }
+        else if(this.pkStep == 1)
         {
             this.playerGroup1.visible = true
             this.playerGroup2.visible = true
@@ -898,7 +1010,13 @@ class PKMainUI extends game.BaseUI {
     {
         this.jumpBtn.visible = false;
         this.stopAll();
-        PKResultUI.getInstance().show();
+        if(this.playVideoIndex)
+        {
+            PKResultUI.getInstance().reShow();
+            VideoUI.getInstance().visible = true;
+        }
+        else
+            PKResultUI.getInstance().show();
     }
 
     private getTalkItem():PKTalkItem{
@@ -1671,6 +1789,39 @@ class PKMainUI extends game.BaseUI {
         var data = this.listArray[this.index];
         if(!data || data.type == 'over')
         {
+            if(this.playVideoIndex)
+            {
+                this.resultGroup.visible = true;
+                if(VideoManager.getInstance().baseData.result.w == 1)
+                {
+                    this.rbg0.source = 'pk_win_png'
+                    this.rbg1.source = 'pk_win_png'
+                    this.rbg2.source = 'fight_win_png'
+                }
+                else
+                {
+                    this.rbg0.source = 'pk_fail_png'
+                    this.rbg1.source = 'pk_fail_png'
+                    this.rbg2.source = 'fight_fail_1_png'
+                }
+                if(PKManager.getInstance().getVedioBase(this.pkStep))
+                    this.resultBtnGroup.addChild(this.nextBtn)
+                else
+                    MyTool.removeMC(this.nextBtn)
+
+                this.resultMC.scaleX = this.resultMC.scaleY = 0;
+                var tw = egret.Tween.get(this.resultMC);
+                tw.to({scaleX:1.1,scaleY:1.1},200).to({scaleX:1,scaleY:1},200)
+
+                this.resultBtnGroup.visible = false
+                this.resultBG.alpha = 0;
+                var tw = egret.Tween.get(this.resultBG);
+                tw.wait(500).to({alpha:0.7},300).call(function(){
+                    this.resultBtnGroup.visible = true
+                },this)
+                //console.log('PK结束，卡一下')
+                return;
+            }
             this.playOneRound()
 
         }
@@ -1710,6 +1861,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private addOneSkill(arr,index) {
+        if(this.isStop)
+            return;
         var data = arr[index];
         if(!data)
         {
@@ -1747,6 +1900,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private actionBefore(data){
+        if(this.isStop)
+            return;
         var atker = data.atker;
         var defender = data.defender;
         var atkerItem = this.getMonster(atker)
@@ -2386,7 +2541,7 @@ class PKMainUI extends game.BaseUI {
         for(var i=0;i<len;i++)
         {
             var temp = this.effectCon.getChildAt(i);
-            if(temp != label && egret.getTimer() - temp['addTime'] < 800)//1秒内产生的
+            if(temp != label && egret.getTimer() - temp['addTime'] < 500)//0.5秒内产生的
             {
                 while(Math.abs(label.x - temp.x) < 10 && Math.abs(label['targetY'] - temp['targetY']) < 30)
                 {

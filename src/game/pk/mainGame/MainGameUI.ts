@@ -200,6 +200,8 @@ class MainGameUI extends game.BaseUI {
              if(data.sp.round == UM.main_game.level)
                 list.push(data)
         }
+        if(list.length > 5)
+            list.length = 5;
         this.historyList.dataProvider = new eui.ArrayCollection(list);
     }
 

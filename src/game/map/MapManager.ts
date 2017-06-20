@@ -135,6 +135,7 @@ class MapManager{
         Net.send(GameEvent.mapGame.pk_map_again,oo,function(data){
             var msg = data.msg;
             MD.enemy.is_pk = false;
+            PKResultUI.getInstance().hide();
             MapGameUI.getInstance().show();
             if(fun)
                 fun();

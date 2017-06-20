@@ -249,7 +249,8 @@ class MapMainUI extends game.BaseUI {
     }
 
     public onShow(){
-
+        if(this.isFirst)
+            this.onHelp();
         this.pkHeight = this.stage.stageHeight - 560
         this.onMapChange();
 

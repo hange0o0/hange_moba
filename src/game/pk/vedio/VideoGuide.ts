@@ -6,7 +6,9 @@ class VideoGuide extends game.BaseContainer {
 
     private scroller: eui.Scroller;
     private list: eui.List;
-    private closeBtn: eui.Button;
+    private closeBtn: eui.Image;
+    private videoBtn: eui.Button;
+
 
 
 
@@ -17,8 +19,12 @@ class VideoGuide extends game.BaseContainer {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
         this.addBtnEvent(this.closeBtn,this.onClose)
+        this.addBtnEvent(this.videoBtn,this.onVideo)
     }
 
+    private onVideo(){
+        PKMainUI.getInstance().show(VideoManager.getInstance().index+1);
+    }
     private onClose(){
         this.visible = false;
         this.clearList([this.list])

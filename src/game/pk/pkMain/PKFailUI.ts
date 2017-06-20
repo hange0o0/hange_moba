@@ -68,11 +68,11 @@ class PKFailUI extends PKResultBase {
             MainGameManager.getInstance().openPKView(onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.DAY){
-            DayGameUI.getInstance().show(true);
+            DayGameUI.getInstance().show();
             PKResultUI.getInstance().hide();
         }
         else if(PKM.pkType == PKManager.PKType.MAP){
-            MapManager.getInstance().pkAgain(onOpenPKView);
+            MapManager.getInstance().pkAgain();
         }
         else if(PKM.pkType == PKManager.PKType.PVE){
             if(TeamPVEManager.getInstance().canPK())

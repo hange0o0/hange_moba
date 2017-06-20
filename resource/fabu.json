@@ -1195,6 +1195,14 @@
 		{
 			"compress":false,
 			"key":"main_bottom_mv_png"
+		},
+		{
+			"compress":false,
+			"key":"skill39_png"
+		},
+		{
+			"compress":false,
+			"key":"window_bg_icon_jpg"
 		}
 	]
 }

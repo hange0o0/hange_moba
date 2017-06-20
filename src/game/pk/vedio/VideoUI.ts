@@ -165,6 +165,7 @@ class VideoUI extends game.BaseUI {
     }
 
 
+
     private playerClick1(){
         this.showPlayer(1)
     }

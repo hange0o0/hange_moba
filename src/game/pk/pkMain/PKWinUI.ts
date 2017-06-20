@@ -72,8 +72,8 @@ class PKWinUI extends PKResultBase {
         else if(PKM.pkType == PKManager.PKType.MAP){
             var MM = MapManager.getInstance();
             MM.getEnemy(function(){
-                PKResultUI.getInstance().hide();
                 MapGameUI.getInstance().show();
+                PKResultUI.getInstance().hide();
             })
         }
 

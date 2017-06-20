@@ -9,13 +9,14 @@ class DayGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
-    private helpBtn: eui.Group;
     private desText: eui.Label;
     private enemyList: eui.List;
+    private helpBtn: eui.Group;
     private myGroup0: eui.Group;
     private myList0: eui.List;
-    //private todayBtn: eui.Button;
+    private historyList: eui.List;
     private chooseBtn0: eui.Button;
+
 
 
 
@@ -40,6 +41,7 @@ class DayGameUI extends game.BaseUI {
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.myList0.itemRenderer =  MyHeadItem;
+        this.historyList.itemRenderer =  DayLogItem;
 
         this.scroller.bounces = false;
         //this.enemyList.add
@@ -75,6 +77,7 @@ class DayGameUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.scroller.viewport.scrollV = 0;
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         var DM = DayGameManager.getInstance();
         var myData = UM.day_game;
@@ -143,6 +146,21 @@ class DayGameUI extends game.BaseUI {
             this.hide();
         }
 
+        this.renewHistory();
+    }
+
+    private renewHistory(){
+        var arr = DayGameManager.getInstance().logList;
+        var list = [];
+        for(var i=0;i<arr.length;i++)
+        {
+            var data = arr[i];
+            if(data.sp.round == (UM.day_game.level + 1) && DateUtil.formatDate('yyyy-MM-dd', DateUtil.timeToChineseDate(data.time)) == DateUtil.formatDate('yyyy-MM-dd', TM.chineseDate()))
+                list.push(data)
+        }
+        if(list.length > 5)
+            list.length = 5;
+        this.historyList.dataProvider = new eui.ArrayCollection(list);
     }
 
     private onChoose1(){
