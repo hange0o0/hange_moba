@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="DayLogMoreSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+<e:Image source="bg_jpg" x="0" y="0"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0">
+		<e:Group>
+			<ns1:PKResultGroup id="pkResultGroup" x="101" y="509" skinName="PKResultGroupSkin"/>
+			<e:layout>
+				<e:VerticalLayout paddingBottom="20"/>
+			</e:layout>
+			
+		</e:Group>
+	</e:Scroller>
+	</e:Skin>

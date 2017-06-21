@@ -12,9 +12,11 @@ class DayLogItem extends game.BaseItem {
     private resultIcon: eui.Image;
     private resultText: eui.Label;
     private videoBtn: eui.Button;
+    private infoBtn: eui.Button;
     private nickGroup: eui.Group;
     private headMC0: eui.Image;
     private nickText: eui.Label;
+
 
 
 
@@ -25,6 +27,7 @@ class DayLogItem extends game.BaseItem {
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this.videoBtn,this.onClick);
+        this.addBtnEvent(this.infoBtn,this.onInfo);
         this.addBtnEvent(this.nickGroup,this.onNickClick);
         this.teamInfo1.itemRenderer  = PKResultItem3
         this.teamInfo2.itemRenderer  = PKResultItem3
@@ -73,6 +76,11 @@ class DayLogItem extends game.BaseItem {
             OtherInfoUI.getInstance().showID(this.data.sp.gameid);
     }
 
+    private onInfo(){
+        PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.data.videoData);
+        DayLogMoreUI.getInstance().show();
+    }
+
     private onClick(){
         if(this.data.sp.typ = PKManager.PKType.MAP)
         {
@@ -111,12 +119,14 @@ class DayLogItem extends game.BaseItem {
             this.videoBtn.touchEnabled = true;
             this.videoBtn.skinName = 'Btn_r2Skin';
             this.videoBtn.label = '录像回放'
+            this.infoBtn.visible = true;
         }
         else
         {
             this.videoBtn.touchEnabled = false;
             this.videoBtn.skinName = 'Btn_d2Skin';
             this.videoBtn.label = '录像已失效'
+            this.infoBtn.visible = false;
         }
 
         if(this.data.sp.round)

@@ -65,11 +65,11 @@
 					<e:HorizontalLayout gap="0" verticalAlign="middle"/>
 				</e:layout>
 			</e:Group>
-			<e:List id="statList0" width="300" x="4" top="135" height="40">
+			<e:Group id="statList0" width="300" height="40" x="4" y="135">
 				<e:layout>
 					<e:HorizontalLayout/>
 				</e:layout>
-			</e:List>
+			</e:Group>
 		</e:Group>
 		<e:Group width="308" top="10" bottom="10" id="playerGroup2" x="322">
 			<e:Group x="0" y="7" width="220">
@@ -109,11 +109,11 @@
 					<e:Label y="1.6500000000000004" textColor="0xCBC08A" text="1234" x="35" size="24" id="atkText1"/>
 				</e:Group>
 			</e:Group>
-			<e:List id="statList1" top="135" height="40" right="4">
+			<e:Group id="statList1" width="300" height="40" x="4" y="135">
 				<e:layout>
 					<e:HorizontalLayout/>
 				</e:layout>
-			</e:List>
+			</e:Group>
 		</e:Group>
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>

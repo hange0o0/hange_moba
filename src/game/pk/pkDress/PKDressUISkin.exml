@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKDressUISkin" width="640" height="1024" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing"  states="normal,open" >
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
-	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Group x="0" y="77" y.open="377" locked="true">
 		<e:Group x="15" y="8">
 			<e:Image source="fu2_png" y="6" x="0"/>
@@ -74,12 +73,22 @@
 		<e:Image source="line_png" width="650" top="0" x="-5" height="8"/>
 	</e:Group>
 	<e:Group x="0" y="80" height="290" width="640" id="enemyGroup" visible.normal="false">
-		<e:List itemRendererSkinName="EnemyHeadItemSkin" id="enemyList"  horizontalCenter="0" verticalCenter="0" scaleX="0.9" scaleY="0.9">
+		<ns1:BookBG width="100%" height="100%" x="0" y="0" skinName="BookBGSkin"/>
+		<e:List itemRendererSkinName="EnemyHeadItemSkin" id="enemyList"  horizontalCenter="0" verticalCenter="0" scaleX="0.85" scaleY="0.85">
 			<e:layout>
-				<e:TileLayout requestedColumnCount="4" horizontalGap="40" verticalGap="30"/>
+				<e:TileLayout requestedColumnCount="4" horizontalGap="50" verticalGap="30"/>
 			</e:layout>
 		</e:List>
 	</e:Group>
+	<e:Group id="enemyScrollerGroup" x="0" width="640" top="370" bottom="0">
+		<e:Scroller id="monsterScroller" width="640" x="0" top="0" bottom="0" bounces="false">
+		<e:Group>
+			<ns1:MonsterInfoBase id="enemyMonsterInfo" x="0" y="0" skinName="MonsterInfoBaseSkin" scaleX="1" scaleY="1"/>
+		</e:Group>
+		</e:Scroller>
+		<e:Image source="line_png" y="-10" horizontalCenter="0" width="650"/>
+	</e:Group>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 
 
 </e:Skin>

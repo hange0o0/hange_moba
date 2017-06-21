@@ -28,7 +28,7 @@ class TouchTipsUI extends game.BaseContainer{
         this.y =  e.stageY - this.height - 100;
         if(this.y < 0)
         {
-            this.y = 0;
+            this.y = e.stageY + 120;
         }
 
         this.x = e.stageX - this.width/2;

@@ -25,15 +25,15 @@ class PKResultItem3 extends game.BaseItem {
     }
 
     private onClose() {
-        if(this.chooseType == 1)
-        {
+        //if(this.chooseType == 1)
+        //{
             MonsterList.getInstance().show(this.data.list,this.data.index)
-            this.chooseMC.visible = false;
-            this.chooseType = 0;
-            this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,{});
-        }
-        else
-            this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,this.data);
+        //    this.chooseMC.visible = false;
+        //    this.chooseType = 0;
+        //    this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,{});
+        //}
+        //else
+        //    this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,this.data);
     }
 
     public dataChanged() {

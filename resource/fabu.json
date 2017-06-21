@@ -288,6 +288,18 @@
 				{
 					"compress":false,
 					"key":"menu_icon_10_png"
+				},
+				{
+					"compress":false,
+					"key":"energy_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"ticket_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"card_icon_png"
 				}
 			],
 			"sort":0

@@ -48,7 +48,7 @@ class MyCardGroupUI extends game.BaseItem {
             });
         }
         this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
-        this.titleText.text = '我的卡组（'+myCard.num+'/10）'
+        this.titleText.text = '我的卡组（'+(10-myCard.num)+'/10）'
 
 
         var myCard = UM.getMyCard();

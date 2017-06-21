@@ -15,10 +15,14 @@
 	<e:Button id="okBtn" label="知道了" skinName="Btn_r2Skin" bottom="40" horizontalCenter="0"/>
 	<ns1:AwardItem id="awardItem" y="139.94" skinName="AwardItemSkin" horizontalCenter="0"/>
 	<e:Group x="50" y="394">
-		<e:Label id="awardText" x="0" y="20" textColor="0xCCB48E" text="任务奖励：钻石+3" verticalAlign="bottom" textAlign="center" size="26" lineSpacing="5" height="40" stroke="2"/>
+		<e:Label x="10" y="30" text="任务奖励：" verticalAlign="bottom" textAlign="center" size="26" lineSpacing="5" height="40" stroke="2" textColor="0xe0a44a"/>
+		<e:Group x="145" y="14" width="20" height="40">
+			<e:Image id="awardIcon" source="diamond_icon_png" horizontalCenter="-8" bottom="0"/>
+		</e:Group>
+		<e:Label id="awardText" x="0" y="20" textColor="0xCCB48E" text="钻石+3" verticalAlign="bottom" textAlign="center" size="26" lineSpacing="5" height="40" stroke="2"/>
 		<e:Image id="awardMC" source="get_award_png" x="240" y="0" scaleY="0.8" scaleX="0.8"/>
 		<e:layout>
-			<e:HorizontalLayout verticalAlign="middle" gap="15"/>
+			<e:HorizontalLayout verticalAlign="middle" gap="5"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

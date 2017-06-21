@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PKResultGroupSkin" width="640" xmlns:e="http://ns.egret.com/eui">
+<e:Group id="moreGroup" x="0" y="0">
+				<e:Group x="0" y="0" height="82" width="640">
+					<e:Image source="book_bg1_jpg" x="0" y="35" scale9Grid="40,44,240,266" height="850"/>
+					<e:Image source="book_bg1_jpg" y="35" right="0" scaleX="-1" scale9Grid="40,44,240,266" height="850"/>
+					<e:Group id="titleBG" y="54.99999999999999" horizontalCenter="0">
+						<e:Image id="rateBG" y="1" x="0" source="bar_pvp_1_png"/>
+						<e:Label id="rateText" text="99" y="30" stroke="2" horizontalCenter="0" size="26"/>
+					</e:Group>
+					<e:Image source="pk_result_line_png" y="0" horizontalCenter="0"/>
+				</e:Group>
+				<e:Group x="10" y="88">
+					<e:Group x="0" y="0">
+						<e:List id="selfList" width="310" top="65" bottom="10">
+							<e:layout>
+								<e:TileLayout paddingLeft="5" requestedColumnCount="3" horizontalGap="0"/>
+							</e:layout>
+						</e:List>
+						<e:Label y="-10" size="24" id="selfText0" stroke="1" x="20"/>
+						<e:Group id="selfForceGroup" x="11" y="15">
+							<e:Label id="selfText" text="战力：1234" y="13" size="24" stroke="1" x="49"/>
+							<e:Image source="icon_atk_png" x="0" y="0"/>
+						</e:Group>
+					</e:Group>
+					<e:Group x="10" y="10">
+						<e:List id="enemyList" x="0" width="310" top="65" bottom="10">
+							<e:layout>
+								<e:TileLayout requestedColumnCount="3" paddingLeft="5" horizontalGap="0"/>
+							</e:layout>
+						</e:List>
+						<e:Label y="-10" size="24" right="20" stroke="1" id="enemyText0" x="10"/>
+						<e:Group id="enemyForceGroup" x="78" y="15">
+							<e:Label id="enemyText" y="13" size="24" text="我方战力：1234" stroke="1" right="49"/>
+							<e:Image source="icon_atk_png" y="0" x="173"/>
+						</e:Group>
+					</e:Group>
+					<e:layout>
+						<e:HorizontalLayout gap="0"/>
+					</e:layout>
+				</e:Group>
+				<e:Group y="98" x="20">
+					<e:List id="teamInfo1" top="30" x="0" bottom="10" width="300" itemRendererSkinName="PKResultItem4Skin">
+						<e:layout>
+							<e:VerticalLayout/>
+						</e:layout>
+					</e:List>
+					<e:List id="teamInfo2" bottom="10" width="300" top="30" x="10" y="10" itemRendererSkinName="PKResultItem4_Skin">
+						<e:layout>
+							<e:VerticalLayout/>
+						</e:layout>
+					</e:List>
+					<e:layout>
+						<e:HorizontalLayout/>
+					</e:layout>
+				</e:Group>
+				<e:List id="list" width="640" x="0" y="134" itemRendererSkinName="PKResultItem2Skin">
+					<e:layout>
+						<e:VerticalLayout gap="0"/>
+					</e:layout>
+				</e:List>
+				<e:layout>
+					<e:VerticalLayout horizontalAlign="center"/>
+				</e:layout>
+			</e:Group>
+
+
+</e:Skin>

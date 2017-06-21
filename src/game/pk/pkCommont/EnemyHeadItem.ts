@@ -5,9 +5,10 @@ class EnemyHeadItem extends game.BaseItem {
     }
 
     private chooseGroup: eui.Group;
+    private chooseGroupBG: eui.Image;
     private headMC: eui.Image;
-    //private nameText: eui.Label;
     private teamGroup: eui.Group;
+    private teamGroupBG: eui.Image;
     private headMC2: eui.Image;
     private headBG: eui.Image;
     private lvText: eui.Label;
@@ -20,11 +21,15 @@ class EnemyHeadItem extends game.BaseItem {
 
 
 
+
     public index;
 
     public childrenCreated() {
           this.addBtnEvent(this.closeBtn,this.onKill);
           this.addBtnEvent(this,this.onClick);
+
+        this.teamGroupBG.visible = false;
+        this.chooseGroupBG.visible = false;
 
         addBtnTips(this,this.onTips,this);
 
@@ -59,7 +64,7 @@ class EnemyHeadItem extends game.BaseItem {
         })
 
     }
-    private onClick(){
+    protected onClick(){
         if(this['stopClickTimer'] &&  egret.getTimer() - this['stopClickTimer'] < 200)
             return
         MonsterList.getInstance().show(this.data.list,this.data.index)

@@ -18,7 +18,8 @@
 	<e:Label id="timeText" y="20" text="第1回合" size="24" right="15" textColor="0xCCCCCC" stroke="2"/>
 	<e:Image id="resultIcon" y="7" source="lose_icon_png" horizontalCenter="0"/>
 	<e:Label id="resultText" text="标签" x="20" size="24" textColor="0xCCCCCC" y="312.32"/>
-	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" x="465" y="296.32"/>
+	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="296" width="140" right="15"/>
+	<e:Button id="infoBtn" label="详情" y="296" width="140" right="170" skinName="Btn_b2Skin"/>
 	<e:Group id="nickGroup" y="2" x="5">
 		<e:Image source="border2_png" width="56" y="0" height="56" x="0"/>
 		<e:Image source="head_png" y="3" id="headMC0" width="50" height="50" x="3"/>

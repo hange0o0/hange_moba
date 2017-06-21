@@ -28,6 +28,12 @@ class PKDressUI extends game.BaseUI {
     private topBtn: eui.Button;
     private enemyGroup: eui.Group;
     private enemyList: eui.List;
+    private enemyScrollerGroup: eui.Group;
+    private monsterScroller: eui.Scroller;
+    private enemyMonsterInfo: MonsterInfoBase;
+
+
+
 
 
 
@@ -88,7 +94,7 @@ class PKDressUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
 
-        this.enemyList.itemRenderer = EnemyHeadItem;
+        this.enemyList.itemRenderer = PKDressEnemyItem;
         this.simpleList.itemRenderer = PKDressSimpleItem;
 
         this.pkDressChooseUI.addEventListener('change', this.onChooseChange, this)
@@ -106,6 +112,26 @@ class PKDressUI extends game.BaseUI {
         this.addEventListener('after_drag',this.onDragAfter,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    public showEnemyInfo(list,index){
+        if(list)
+        {
+            this.enemyScrollerGroup.visible = true;
+            var data = list[index];
+             this.enemyMonsterInfo.renew(data.id,data.specialData);
+            this.monsterScroller.stopAnimation();
+            this.monsterScroller.viewport.scrollV = 0
+            for(var i=0;i<this.enemyList.numChildren;i++)
+            {
+                var item:any = this.enemyList.getChildAt(i)
+                item.setChoose(index == i);
+            }
+        }
+        else
+        {
+            this.enemyScrollerGroup.visible = false;
+        }
     }
 
     private onTask(){
@@ -543,6 +569,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private renewEnemy(){
+        this.enemyScrollerGroup.visible = false;
         if(this.dataIn.enemy)
         {
             this.enemyList.dataProvider = new eui.ArrayCollection(this.dataIn.enemy);

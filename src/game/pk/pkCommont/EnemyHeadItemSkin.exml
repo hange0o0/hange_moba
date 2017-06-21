@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="EnemyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width="120" height="120">
 
-	<e:Group id="chooseGroup" x="0" y="0">
-		<e:Image source="border2_png" x="2" y="2" scale9Grid="11,11,68,68" width="116" height="116"/>
-		<e:Image id="headMC" x="7" y="7" width="106" height="106" source=""/>
+	<e:Group id="chooseGroup" width="116" height="116" y="2" x="2">
+		<e:Image id="chooseGroupBG" source="border_light1_png" horizontalCenter="0" verticalCenter="0" scaleX="1.5" scaleY="1.5"/>
+		<e:Image source="border2_png" x="0" y="0" scale9Grid="11,11,68,68" width="116" height="116"/>
+		<e:Image id="headMC" x="5" y="5" width="106" height="106" source=""/>
 	</e:Group>
-	<e:Group id="teamGroup" horizontalCenter="0" verticalCenter="0">
+	<e:Group id="teamGroup" horizontalCenter="0" verticalCenter="0" width="140" height="140">
+		<e:Image id="teamGroupBG" source="head_border_light1_png" horizontalCenter="0" verticalCenter="0" scaleX="1.1" scaleY="1.1"/>
 		<e:Image id="headMC2" y="8" width="124" height="124" x="9" source="head_png"/>
 		<e:Image source="head_border1_png" y="0" x="0" id="headBG" width="140" height="140"/>
 		<e:Label y="110" textColor="0xCCB48E" stroke="2" text="LV.60" textAlign="center" right="5" size="22" id="lvText" x="10"/>

@@ -38,7 +38,7 @@ class PKMainUI extends game.BaseUI {
     private speedText0: eui.Label;
     private defGroup0: eui.Group;
     private defText0: eui.Label;
-    private statList0: eui.List;
+    private statList0: eui.Group;
     private playerGroup2: eui.Group;
     private hpBar1_: eui.Rect;
     private hpBar1: eui.Rect;
@@ -52,7 +52,7 @@ class PKMainUI extends game.BaseUI {
     private defText1: eui.Label;
     private speedText1: eui.Label;
     private atkText1: eui.Label;
-    private statList1: eui.List;
+    private statList1: eui.Group;
     private resultGroup: eui.Group;
     private resultBG: eui.Rect;
     private resultMC: eui.Group;
@@ -69,6 +69,7 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -136,6 +137,7 @@ class PKMainUI extends game.BaseUI {
 
 
     private scene;
+    private pkJump;
 
 
 
@@ -151,12 +153,12 @@ class PKMainUI extends game.BaseUI {
         this.addBtnEvent(this.backBtn, this.onJump);
         this.addBtnEvent(this.nextBtn, this.onNext);
 
-        this.statList0.itemRenderer = VideoTopStatItem;
-        this.statList1.itemRenderer = VideoTopStatItem;
-        this.statList0.dataProvider = new eui.ArrayCollection([0,0,0,0,0,0,0,0]);
-        this.statList1.dataProvider = new eui.ArrayCollection([0,0,0,0,0,0,0,0]);
-        this.statList0.useVirtualLayout = false
-        this.statList1.useVirtualLayout = false
+        for(var i=0;i<8;i++)
+        {
+            this.statList0.addChild(new VideoTopStatItem());
+            this.statList1.addChild(new VideoTopStatItem());
+        }
+
 
 
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
@@ -185,6 +187,7 @@ class PKMainUI extends game.BaseUI {
             this.randomSeed += Math.pow(arr[i],2)*(i+1) + arr[i]*100;
         }
         this.randomSeed /= PKManager.getInstance().team1Base.list.length;
+        this.randomSeed += this.pkStep*1024
     }
 
     public random(){
@@ -311,11 +314,12 @@ class PKMainUI extends game.BaseUI {
 
     public show(v?){
         this.playVideoIndex = v;
-        var isPKJump = PKManager.getInstance().pkJump;
+        this.pkJump = PKManager.getInstance().pkJump && !v;
         this.loadGroup2 = [];
+        this.pkStep = 0;
         this.initSeed();
         var group = []
-        if(!isPKJump)
+        if(!this.pkJump)
         {
             group = VideoManager.getInstance().getVideoAniGroup();
             var arr = PKManager.getInstance().team1Base.list.concat(PKManager.getInstance().team2Base.list);
@@ -395,8 +399,7 @@ class PKMainUI extends game.BaseUI {
             this.addSceneMovie();
         this.isStop = false;
 
-        var isPKJump = PKManager.getInstance().pkJump;
-        if(!isPKJump)
+        if(!this.pkJump)
             SoundManager.getInstance().playSound(SoundConfig.bg_pk);
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
     }
@@ -588,8 +591,7 @@ class PKMainUI extends game.BaseUI {
     //加所有单位
     private addItemMovie(){
         MainPageUI.getInstance().visible = false;
-        var isPKJump = PKManager.getInstance().pkJump;
-        if(isPKJump)
+        if(this.pkJump)
         {
             this.showResult()
             return;
@@ -717,7 +719,7 @@ class PKMainUI extends game.BaseUI {
             this.showResult();
             return;
         }
-        this.initSeed();
+
         VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.pkStep - 1);
         this.listArray = VideoCode.getInstance().listArray;
         this.index = 0
@@ -757,6 +759,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private showRoundTalk(){
+        this.initSeed();
         if(this.random() > 0.5)
         {
             this.itemTalk(this.enemyPKing)
@@ -777,7 +780,7 @@ class PKMainUI extends game.BaseUI {
     private showRoundMovie(){
         this.roundGroup.visible = true;
         this.addChild(this.roundGroup);
-        this.roundGroup.y = this.upGroup.y + 280
+        this.roundGroup.y = this.upGroup.y + 230
         //this.roundGroup.skewX = 0;
         //this.roundMC1.x = 0
         //this.roundMC2.x = 360
@@ -1012,8 +1015,13 @@ class PKMainUI extends game.BaseUI {
         this.stopAll();
         if(this.playVideoIndex)
         {
-            PKResultUI.getInstance().reShow();
-            VideoUI.getInstance().visible = true;
+            if(PKResultUI.getInstance().stage)
+            {
+                PKResultUI.getInstance().reShow();
+                VideoUI.getInstance().visible = true;
+            }
+            else if(DayLogMoreUI.getInstance().stage)
+                this.hide();
         }
         else
             PKResultUI.getInstance().show();
@@ -1662,6 +1670,9 @@ class PKMainUI extends game.BaseUI {
                 var mc:any = this['statList'+index].getChildAt(i);
             else
                 var mc:any = this['statList'+index].getChildAt(7-i);
+
+
+
             mc.data = list[i];
         }
 
@@ -1791,6 +1802,7 @@ class PKMainUI extends game.BaseUI {
         {
             if(this.playVideoIndex)
             {
+                this.resultGroup.y = this.upGroup.y + 195
                 this.resultGroup.visible = true;
                 if(VideoManager.getInstance().baseData.result.w == 1)
                 {
@@ -1816,7 +1828,7 @@ class PKMainUI extends game.BaseUI {
                 this.resultBtnGroup.visible = false
                 this.resultBG.alpha = 0;
                 var tw = egret.Tween.get(this.resultBG);
-                tw.wait(500).to({alpha:0.7},300).call(function(){
+                tw.wait(500).to({alpha:0.8},300).call(function(){
                     this.resultBtnGroup.visible = true
                 },this)
                 //console.log('PK结束，卡一下')
@@ -2541,7 +2553,7 @@ class PKMainUI extends game.BaseUI {
         for(var i=0;i<len;i++)
         {
             var temp = this.effectCon.getChildAt(i);
-            if(temp != label && egret.getTimer() - temp['addTime'] < 500)//0.5秒内产生的
+            if(temp != label && egret.getTimer() - temp['addTime'] < 700)//0.5秒内产生的
             {
                 while(Math.abs(label.x - temp.x) < 10 && Math.abs(label['targetY'] - temp['targetY']) < 30)
                 {

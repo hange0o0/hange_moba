@@ -15,8 +15,10 @@ class MyCardTaskUI extends game.BaseWindow {
     private rateText: eui.Label;
     private okBtn: eui.Button;
     private awardItem: AwardItem;
+    private awardIcon: eui.Image;
     private awardText: eui.Label;
     private awardMC: eui.Image;
+
 
 
 
@@ -55,19 +57,24 @@ class MyCardTaskUI extends game.BaseWindow {
         switch(task.award_type)
         {
             case 'diamond':
-                this.setText(this.awardText,'[任务奖励：]钻石 +'+task.award_value);
+                this.awardIcon.source = 'diamond_icon_png'
+                this.setText(this.awardText,'钻石 +'+task.award_value);
                 break;
             case 'coin':
-                this.setText(this.awardText,'[任务奖励：]金币 +'+task.award_value);
+                this.awardIcon.source = 'coin_icon_png'
+                this.setText(this.awardText,'金币 +'+task.award_value);
                 break;
             case 'card':
-                this.setText(this.awardText,'[任务奖励：]碎片 +'+task.award_value);
+                this.awardIcon.source = 'card_icon_png'
+                this.setText(this.awardText,'碎片 +'+task.award_value);
                 break;
             case 'energy':
-                this.setText(this.awardText,'[任务奖励：]体力 +'+task.award_value);
+                this.awardIcon.source = 'energy_icon_png'
+                this.setText(this.awardText,'体力 +'+task.award_value);
                 break;
             case 'ticket':
-                this.setText(this.awardText,'[任务奖励：]修正币 +'+task.award_value);
+                this.awardIcon.source = 'ticket_icon_png'
+                this.setText(this.awardText,'修正币 +'+task.award_value);
                 break;
         }
 
