@@ -6,10 +6,12 @@ class MyInfoUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private scroller: eui.Scroller;
     private headGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
     private desText: eui.Label;
+    private editWordBtn: eui.Label;
     private levelText: eui.Label;
     private expText: eui.Label;
     private forceText: eui.Label;
@@ -28,9 +30,10 @@ class MyInfoUI extends game.BaseUI {
     private addCardBtn: eui.Group;
     private thisLoginText: eui.Label;
     private lastLoginText: eui.Label;
-    private editWordBtn: eui.Button;
-    private honorBtn: eui.Button;
-    private honorRed: eui.Image;
+    private tabGroup: eui.Group;
+    private tab: eui.TabBar;
+    private honorUI: HonorUI;
+    private fightGroup: eui.Group;
     private mainLevelText: eui.Label;
     private mainLevelText2: eui.Label;
     private mainLevelText3: eui.Label;
@@ -52,6 +55,7 @@ class MyInfoUI extends game.BaseUI {
     private serverEqualText6: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+    private honorRed: eui.Image;
 
 
 
@@ -59,6 +63,8 @@ class MyInfoUI extends game.BaseUI {
 
 
 
+
+    private dataIn;
 
 
 
@@ -86,11 +92,30 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.editWordBtn, this.onChangeWord);
 
         this.addBtnEvent(this.headGroup, this.onHead);
-        this.addBtnEvent(this.honorBtn, this.onHonor);
+
 
         this.list.itemRenderer = EnemyHeadItem;
 
 
+        this.tab.addEventListener(eui.ItemTapEvent.CHANGE, this.typeBarClick, this);
+        //this.addBtnEvent(this, this.onClick);
+    }
+
+
+    public typeBarClick(){
+        if(this.tab.selectedIndex == 1)
+        {
+            MyTool.removeMC(this.fightGroup)
+            this.tabGroup.addChild(this.honorUI)
+            this.renewHonor()
+
+        }
+        else
+        {
+            MyTool.removeMC(this.honorUI)
+            this.tabGroup.addChild(this.fightGroup)
+            this.renewFight();
+        }
     }
 
     private renewHonorRed(){
@@ -117,10 +142,74 @@ class MyInfoUI extends game.BaseUI {
 
     public beforeHide(){
         this.clearList([this.list])
+        this.honorUI.beforeHide();
     }
 
-    private onHonor(){
-        HonorUI.getInstance().show();
+
+
+    private renewHonor(){
+        this.renewHonorRed();
+        var self = this;
+        HonorManager.getInstance().getHonorMore(function(){
+            self.honorUI.renew();
+        })
+
+    }
+    private renewFight(){
+        var mainData = UM.main_game;
+        var level:any = mainData.level;
+        this.setText(this.mainLevelText,'[当前称号：]' + MainGameManager.getInstance().getStepName(level))
+        this.setText(this.mainLevelText2,'[评分：]' + level)
+        var nextLevel = MainGameManager.getInstance().getNextStep();
+        this.setText(this.mainLevelText3,'[下一称号：]' + MainGameManager.getInstance().getStepName(nextLevel)  + '（[评分：]'+nextLevel+'）')
+        var award = MainGameManager.getInstance().getLocalAward(level);
+        this.mainAward1.text = '' + award.coin;
+        this.mainAward2.text = '' + award.card;
+        var award = MainGameManager.getInstance().getLocalAward(level + 1);
+        this.mainAward3.text = '' + award.coin;
+        this.mainAward4.text = '' +  award.card;
+
+
+        var myData = UM.day_game;
+        this.setText(this.dailyText1,'[当前进度：]' + myData.level + '/10')
+        this.setText(this.dailyText2,'[累计通关次数：]' +  myData.times)
+        this.setText(this.dailyText3,'[获得研究积分：]' +  myData.score)
+
+        var serverData = UM.server_game;
+        level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
+        this.setText(this.serverText1,'[积分：]' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
+        this.setText(this.serverText2,'[当前段位：]'+ServerGameManager.getInstance().getStepName(serverData.exp)+'（[下一段积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
+        this.setText(this.serverText3,'[胜利次数：]' + serverData.win)
+        this.setText(this.serverText4,'[失败次数：]' + (serverData.total - serverData.win));
+
+
+        var serverData = UM.server_game_equal;
+        level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
+        this.setText(this.serverEqualText1, '[评分]：' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
+        this.setText(this.serverEqualText2,'[天赋等级：]'+ServerGameEqualManager.getInstance().getStepName(serverData.exp)+'（[下一级评分：]'+ServerGameEqualManager.getInstance().getPKTableExp(level + 1)+'）')
+        this.setText(this.serverEqualText3, '[胜利次数：]' + serverData.win)
+        this.setText(this.serverEqualText4,'[失败次数：]' + (serverData.total - serverData.win));
+        this.setText(this.serverEqualText5,'[当前连胜：]' + serverData.last)
+        this.setText(this.serverEqualText6,'[最高连胜：]' + serverData.max)
+
+
+        var specialData = {
+
+        };
+        var arr =  UM.getCommonUse(UM.pk_common.history);
+        for(var i=0;i<arr.length;i++){
+            arr[i] = {
+                vo: MonsterVO.getObject(arr[i].id),
+                type: 1,
+
+                id: arr[i].id,
+                specialData: specialData,
+
+                index: i,
+                list:arr
+            }
+        }
+        this.list.dataProvider = new eui.ArrayCollection(arr)
     }
 
     private onChangeWord(){
@@ -192,17 +281,27 @@ class MyInfoUI extends game.BaseUI {
     public hide(){
         super.hide();
     }
+    public show(v?){
+        this.dataIn = v
+        super.show();
+    }
 
     public onShow(){
+        if(this.dataIn)
+        {
+            this.tab.selectedIndex = this.dataIn;
+            this.scroller.viewport.scrollV = 750
+        }
         this.renew();
         this.onTimer();
         this.renewHonorRed();
+        this.typeBarClick();
 
         this.addPanelOpenEvent(egret.TimerEvent.TIMER,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.energy_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.change_head,this.renew);
         this.addPanelOpenEvent(GameEvent.client.word_change,this.renew);
-        this.addPanelOpenEvent(GameEvent.client.honor_change,this.renewHonorRed);
+        this.addPanelOpenEvent(GameEvent.client.honor_change,this.renewHonor);
     }
 
     public renew(){
@@ -238,60 +337,7 @@ class MyInfoUI extends game.BaseUI {
         this.setText(this.lastLoginText,'[最近一次登陆：]' + DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land)));
 
 
-        var mainData = UM.main_game;
-        var level:any = mainData.level;
-        this.setText(this.mainLevelText,'[当前称号：]' + MainGameManager.getInstance().getStepName(level))
-        this.setText(this.mainLevelText2,'[评分：]' + level)
-        var nextLevel = MainGameManager.getInstance().getNextStep();
-        this.setText(this.mainLevelText3,'[下一称号：]' + MainGameManager.getInstance().getStepName(nextLevel)  + '（[评分：]'+nextLevel+'）')
-        var award = MainGameManager.getInstance().getLocalAward(level);
-        this.mainAward1.text = '' + award.coin;
-        this.mainAward2.text = '' + award.card;
-        var award = MainGameManager.getInstance().getLocalAward(level + 1);
-        this.mainAward3.text = '' + award.coin;
-        this.mainAward4.text = '' +  award.card;
 
-
-        var myData = UM.day_game;
-        this.setText(this.dailyText1,'[当前进度：]' + myData.level + '/10')
-        this.setText(this.dailyText2,'[累计通关次数：]' +  myData.times)
-        this.setText(this.dailyText3,'[获得研究积分：]' +  myData.score)
-
-        var serverData = UM.server_game;
-        level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
-        this.setText(this.serverText1,'[积分：]' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
-        this.setText(this.serverText2,'[当前段位：]'+ServerGameManager.getInstance().getStepName(serverData.exp)+'（[下一段积分：]'+ServerGameManager.getInstance().getPKTableExp(level + 1)+'）')
-        this.setText(this.serverText3,'[胜利次数：]' + serverData.win)
-        this.setText(this.serverText4,'[失败次数：]' + (serverData.total - serverData.win));
-
-
-        var serverData = UM.server_game_equal;
-        level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
-        this.setText(this.serverEqualText1, '[评分]：' + serverData.exp + '（[历史最高：]' + serverData.top + '）')
-        this.setText(this.serverEqualText2,'[天赋等级：]'+ServerGameEqualManager.getInstance().getStepName(serverData.exp)+'（[下一级评分：]'+ServerGameEqualManager.getInstance().getPKTableExp(level + 1)+'）')
-        this.setText(this.serverEqualText3, '[胜利次数：]' + serverData.win)
-        this.setText(this.serverEqualText4,'[失败次数：]' + (serverData.total - serverData.win));
-        this.setText(this.serverEqualText5,'[当前连胜：]' + serverData.last)
-        this.setText(this.serverEqualText6,'[最高连胜：]' + serverData.max)
-
-
-        var specialData = {
-
-        };
-        var arr =  UM.getCommonUse(UM.pk_common.history);
-        for(var i=0;i<arr.length;i++){
-            arr[i] = {
-                vo: MonsterVO.getObject(arr[i].id),
-                type: 1,
-
-                id: arr[i].id,
-                specialData: specialData,
-
-                index: i,
-                list:arr
-            }
-        }
-        this.list.dataProvider = new eui.ArrayCollection(arr)
 
     }
 

@@ -78,7 +78,7 @@ class PKDressUI extends game.BaseUI {
         super.childrenCreated();
 
         this.topUI.setTitle('布阵');
-        this.topUI.addEventListener('hide', this.hide, this);
+        this.topUI.addEventListener('hide', this.onClose, this);
 
 
         this.addBtnEvent(this.viewBtn, this.onView);
@@ -112,6 +112,13 @@ class PKDressUI extends game.BaseUI {
         this.addEventListener('after_drag',this.onDragAfter,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp);
+    }
+
+    private onClose(){
+        if(this.enemyScrollerGroup.visible)
+            this.enemyScrollerGroup.visible = false;
+        else
+            this.hide()
     }
 
     public showEnemyInfo(list,index){

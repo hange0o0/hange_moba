@@ -53,6 +53,12 @@ class PKMainUI extends game.BaseUI {
     private speedText1: eui.Label;
     private atkText1: eui.Label;
     private statList1: eui.Group;
+    private ms0: eui.Image;
+    private ms1: eui.Image;
+    private ms2: eui.Image;
+    private es2: eui.Image;
+    private es1: eui.Image;
+    private es0: eui.Image;
     private resultGroup: eui.Group;
     private resultBG: eui.Rect;
     private resultMC: eui.Group;
@@ -69,6 +75,7 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -482,6 +489,7 @@ class PKMainUI extends game.BaseUI {
             item.active = false;
         }
 
+        this.renewStar();
     }
 
     private initIndex(){
@@ -747,7 +755,7 @@ class PKMainUI extends game.BaseUI {
             tw.to({x:10},300)
             var tw:egret.Tween = egret.Tween.get(this.playerGroup2);
             tw.to({x:322},300)
-            this.inPKer();
+
         }
         else
         {
@@ -756,6 +764,26 @@ class PKMainUI extends game.BaseUI {
         }
 
         this.setTimeout(this.showRoundTalk,cd)
+    }
+
+    private renewStar(){
+        if(!this.selfPKing || !this.enemyPKing)//不显示星星
+        {
+            for(var i=0;i<3;i++)
+            {
+                this['ms' + i].visible = false
+                this['es' + i].visible = false
+            }
+            return;
+        }
+        var kill1 = PKManager.getInstance().kill[this.selfPKing.id] || []
+        var kill2 = PKManager.getInstance().kill[this.enemyPKing.id] || []
+        for(var i=0;i<3;i++)
+        {
+            this['ms' + i].visible = kill1[i] < this.enemyPKing.index;
+            this['es' + i].visible = kill2[i] < this.selfPKing.index;
+        }
+        //if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
     }
 
     private showRoundTalk(){
@@ -906,6 +934,7 @@ class PKMainUI extends game.BaseUI {
         }
         this.selfPKing.enemy = this.enemyPKing
         this.enemyPKing.enemy = this.selfPKing
+        this.renewStar();
     }
 
 
@@ -1005,6 +1034,8 @@ class PKMainUI extends game.BaseUI {
         this.hpGroup1.visible = false;
 
 
+        this.selfPKing = null
+        this.enemyPKing = null
         AniManager.getInstance().removeAllMV();
         this.isStop = true;
     }

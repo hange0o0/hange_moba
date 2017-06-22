@@ -1,23 +1,16 @@
-class HonorUI extends game.BaseUI {
-    private static instance:HonorUI;
-    public static getInstance() {
-        if (!this.instance) this.instance = new HonorUI();
-        return this.instance;
-    }
+class HonorUI extends game.BaseContainer {
+    //private static instance:HonorUI;
+    //public static getInstance() {
+    //    if (!this.instance) this.instance = new HonorUI();
+    //    return this.instance;
+    //}
 
-    private topUI: TopUI;
-    private scroller: eui.Scroller;
-    private list: eui.List;
-    private tab: eui.TabBar;
-    private upBtn: eui.Group;
-    private upText: eui.Label;
-    private downBtn: eui.Group;
-    private downText: eui.Label;
     private infoText: eui.Label;
     private sortBtn: eui.Image;
     private sortText: eui.Label;
     private sortGroup: eui.Group;
     private sortList: eui.List;
+    private list: eui.List;
 
 
 
@@ -38,25 +31,27 @@ class HonorUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.topUI.setTitle('成就')
-        this.topUI.addEventListener('hide',this.hide,this);
+        //this.topUI.setTitle('成就')
+        //this.topUI.addEventListener('hide',this.hide,this);
 
         this.list.itemRenderer = HonorItem;
-        this.scroller.viewport = this.list;
-        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
-        this.scroller.addEventListener(eui.UIEvent.CHANGE,this.onScrollChange,this)
-        this.scroller.bounces = false;
+        //this.scroller.viewport = this.list;
+        //this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        //this.scroller.addEventListener(eui.UIEvent.CHANGE,this.onScrollChange,this)
+        //this.scroller.bounces = false;
 
         //this.tab.selectedIndex = 0;
         //this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
 
-        this.addBtnEvent(this.upBtn,this.onUp);
-        this.addBtnEvent(this.downBtn,this.onDown);
+        //this.addBtnEvent(this.upBtn,this.onUp);
+        //this.addBtnEvent(this.downBtn,this.onDown);
         this.addBtnEvent(this.sortBtn,this.onSort);
         this.addBtnEvent(this.sortText,this.onSort);
 
         this.sortList.selectedIndex = SharedObjectManager.instance.getValue('honor_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
+
+        this.onHideSort();
     }
 
     public beforeHide(){
@@ -77,30 +72,30 @@ class HonorUI extends game.BaseUI {
         this.sortGroup.visible = false;
     }
 
-    private onUp(){
-        this.scroller.stopAnimation();
-        var oo = this.upArray.pop();
-        var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
-        var sv = Math.max(0,oo.index*this.itemHeight);
-        tw.to({scrollV:sv},Math.min(Math.abs(sv - this.scroller.viewport.scrollV)/2,300)).call(this.renewBtn,this)
-        //this.scroller.viewport.scrollV = oo.index*this.itemHeight;
-    }
+    //private onUp(){
+    //    this.scroller.stopAnimation();
+    //    var oo = this.upArray.pop();
+    //    var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
+    //    var sv = Math.max(0,oo.index*this.itemHeight);
+    //    tw.to({scrollV:sv},Math.min(Math.abs(sv - this.scroller.viewport.scrollV)/2,300)).call(this.renewBtn,this)
+    //    //this.scroller.viewport.scrollV = oo.index*this.itemHeight;
+    //}
+    //
+    //private onDown(){
+    //    this.scroller.stopAnimation();
+    //    var oo = this.downArray.shift();
+    //    var sv = oo.index*this.itemHeight - this.scroller.height + this.itemHeight + 20;
+    //    if(sv > this.scroller.viewport.contentHeight - this.scroller.height)//到底了
+    //        sv = this.scroller.viewport.contentHeight - this.scroller.height;
+    //
+    //    var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
+    //    tw.to({scrollV:sv},Math.min(Math.abs(sv - this.scroller.viewport.scrollV)/2,300)).call(this.renewBtn,this)
+    //}
 
-    private onDown(){
-        this.scroller.stopAnimation();
-        var oo = this.downArray.shift();
-        var sv = oo.index*this.itemHeight - this.scroller.height + this.itemHeight + 20;
-        if(sv > this.scroller.viewport.contentHeight - this.scroller.height)//到底了
-            sv = this.scroller.viewport.contentHeight - this.scroller.height;
-
-        var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);
-        tw.to({scrollV:sv},Math.min(Math.abs(sv - this.scroller.viewport.scrollV)/2,300)).call(this.renewBtn,this)
-    }
-
-    private onScrollChange(){
-        egret.clearTimeout(this.timer);
-        this.timer = egret.setTimeout(this.renewBtn,this,100)
-    }
+    //private onScrollChange(){
+    //    egret.clearTimeout(this.timer);
+    //    this.timer = egret.setTimeout(this.renewBtn,this,100)
+    //}
 
     //private typeBarClick(){
     //    if(this.tab.selectedIndex == 0)
@@ -110,26 +105,20 @@ class HonorUI extends game.BaseUI {
     //    this.renew();
     //}
 
-    public show(){
-        var self = this;
-        HonorManager.getInstance().getHonorMore(function(){
-            self.superShow();
-        })
-    }
+    //public show(){
+    //    var self = this;
+    //    HonorManager.getInstance().getHonorMore(function(){
+    //        self.superShow();
+    //    })
+    //}
 
-    private superShow(){
-        super.show();
-    }
+    //private superShow(){
+    //    super.show();
+    //}
 
-    public onShow(){
+
+    public renew(){
         this.onHideSort();
-        this.renew();
-        this.scroller.viewport.scrollV = 0;
-        this.addPanelOpenEvent(GameEvent.client.honor_change,this.renew)
-    }
-
-
-    private renew(){
         var arr;
         var HM = HonorManager.getInstance();
         //if(this.tab.selectedIndex == 0)
@@ -137,7 +126,7 @@ class HonorUI extends game.BaseUI {
         //else
         //    arr = this.listArray = HM.getList2();
 
-        var lastV = this.scroller.viewport.scrollV;
+        //var lastV = this.scroller.viewport.scrollV;
 
         var count = 0;
         for(var i=0;i<arr.length;i++)
@@ -149,8 +138,8 @@ class HonorUI extends game.BaseUI {
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.list.validateNow();
         //egret.callLater(function(){
-            this.scroller.viewport.scrollV = lastV;
-            this.renewBtn();
+        //    this.scroller.viewport.scrollV = lastV;
+        //    this.renewBtn();
         //},this)
 
 
@@ -159,8 +148,8 @@ class HonorUI extends game.BaseUI {
     public resort(){
         this.sortListFun(this.listArray);
         this.list.dataProvider = new eui.ArrayCollection(this.listArray);
-        this.scroller.viewport.scrollV = 0;
-        this.renewBtn();
+        //this.scroller.viewport.scrollV = 0;
+        //this.renewBtn();
     }
 
     private sortListFun(arr)
@@ -252,37 +241,37 @@ class HonorUI extends game.BaseUI {
         return 1;
     }
 
-    public renewBtn(){
-        var v = this.scroller.viewport.scrollV;
-        var start = Math.ceil(v/this.itemHeight);
-        var end = Math.floor((v+this.scroller.height)/this.itemHeight)-1;
-        this.upArray = [];
-        this.downArray = [];
-        for(var i=0;i<this.listArray.length;i++)
-        {
-            var oo = this.listArray[i];
-            if(oo.award) //可领
-            {
-                if(i<start)
-                    this.upArray.push(oo);
-                else if(i>end)
-                    this.downArray.push(oo);
-            }
-        }
-        if(this.upArray.length > 0)
-        {
-            this.upBtn.visible = true;
-            this.upText.text = '' + this.upArray.length;
-        }
-        else
-            this.upBtn.visible = false;
-
-        if(this.downArray.length > 0)
-        {
-            this.downBtn.visible = true;
-            this.downText.text = '' + this.downArray.length;
-        }
-        else
-            this.downBtn.visible = false;
-    }
+    //public renewBtn(){
+    //    var v = this.scroller.viewport.scrollV;
+    //    var start = Math.ceil(v/this.itemHeight);
+    //    var end = Math.floor((v+this.scroller.height)/this.itemHeight)-1;
+    //    this.upArray = [];
+    //    this.downArray = [];
+    //    for(var i=0;i<this.listArray.length;i++)
+    //    {
+    //        var oo = this.listArray[i];
+    //        if(oo.award) //可领
+    //        {
+    //            if(i<start)
+    //                this.upArray.push(oo);
+    //            else if(i>end)
+    //                this.downArray.push(oo);
+    //        }
+    //    }
+    //    if(this.upArray.length > 0)
+    //    {
+    //        this.upBtn.visible = true;
+    //        this.upText.text = '' + this.upArray.length;
+    //    }
+    //    else
+    //        this.upBtn.visible = false;
+    //
+    //    if(this.downArray.length > 0)
+    //    {
+    //        this.downBtn.visible = true;
+    //        this.downText.text = '' + this.downArray.length;
+    //    }
+    //    else
+    //        this.downBtn.visible = false;
+    //}
 }

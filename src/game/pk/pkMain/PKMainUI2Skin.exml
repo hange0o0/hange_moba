@@ -6,7 +6,7 @@
 		<e:Image source="bg_jpg" x="0" id="bg0" width="640" height="960" y="0" anchorOffsetY="480"/>
 	</e:Group>
 	
-	<e:Group id="con" width="640" height="700" x="0" y="260">
+	<e:Group id="con" width="640" height="700" x="0" y="260" locked="true">
 		<e:Group id="downBG" x="-5" y="450">
 			<e:Image width="325" y="0" scaleX="-1" scale9Grid="40,44,240,266" height="250" x="650" source="book_bg1_jpg"/>
 			<e:Image y="0" scale9Grid="40,44,240,266" width="325" height="250" x="0" source="book_bg1_jpg"/>
@@ -17,14 +17,14 @@
 	</e:Group>
 	<ns1:PKMainHp id="hpGroup0" y="200" skinName="PKMainHpSkin" currentState="left" x="96"/>
 	<ns1:PKMainHp y="200" skinName="PKMainHpSkin" id="hpGroup1" currentState="right" x="416"/>
-	<e:Group id="skillGroup" y="230" horizontalCenter="0">
+	<e:Group id="skillGroup" y="230" horizontalCenter="0" locked="true">
 		<e:Image source="icon_b1_png" y="0" x="0" scaleX="0.8" scaleY="0.8" />
 		<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="35" stroke="2" strokeColor="0x000000" x="60" verticalCenter="0"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Group id="upGroup" x="0" y="0" width="640">
+	<e:Group id="upGroup" x="0" y="0" width="640" height="195">
 		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>
 		<e:Image source="book_bg2_jpg" y="0" scaleX="-1" width="325" right="-5" height="195" scale9Grid="40,44,240,266"/>
 		<e:Group x="10" width="308" top="10" bottom="10" id="playerGroup1">
@@ -116,8 +116,18 @@
 			</e:Group>
 		</e:Group>
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
+		<e:Group y="200" width="118" height="38" left="10">
+			<e:Image id="ms0" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
+			<e:Image id="ms1" source="card_star_png" horizontalCenter="0"/>
+			<e:Image id="ms2" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
+		</e:Group>
+		<e:Group y="200" width="118" height="38" right="10">
+			<e:Image id="es2" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
+			<e:Image id="es1" source="card_star_png" horizontalCenter="0"/>
+			<e:Image id="es0" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
+		</e:Group>
 	</e:Group>
-	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="510">
+	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="510" locked="true">
 		<e:Rect id="resultBG" width="100%" height="100%" x="0" y="0" fillAlpha="0.5"/>
 		<e:Group id="resultMC" horizontalCenter="0" verticalCenter="-72.5">
 		<e:Image id="rbg0" y="0" x="0" source="pk_fail_png"/>

@@ -2,7 +2,7 @@
 <e:Skin class="MyInfoUISkin" width="640" height="2000" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Scroller width="640" x="0" top="80" bottom="0" bounces="false">
+	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" bounces="false">
 		<e:Group>
 
 
@@ -18,8 +18,8 @@
 					<e:Image source="book_bg2_jpg" top="350" scaleX="-1" scale9Grid="40,44,240,266" bottom="0" x="640"/>
 				</e:Group>
 				<e:Group x="41.96969696969697" top="30" bottom="30">
-					<e:Group x="0" y="0" height="120">
-						<e:Group id="headGroup" x="-0.06969696969697026" y="0">
+					<e:Group x="0" y="0" height="150">
+						<e:Group id="headGroup" x="-0.06969696969697026" y="10">
 							<e:Image source="border2_png" y="0" x="0" width="100" height="100"/>
 							<e:Image source="head_bg2_jpg" y="3" x="3" width="94" height="94"/>
 							<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
@@ -28,6 +28,7 @@
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
 						<e:Label id="desText" x="124" y="48" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88" textColor="0xCCB48E"/>
+						<e:Label id="editWordBtn" text="..编辑宣言" right="10" bottom="10" size="22" textColor="0xafafaf"/>
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">
 						<e:Label id="levelText" y="8" text="等级：LV.32" x="60" textColor="0xCCB48E" size="30"/>
@@ -114,107 +115,116 @@
 						<e:Label id="lastLoginText" y="7" textColor="0xCCB48E" text="最近一次登陆：13-04-01 20:20:20" x="60"/>
 						<e:Image source="icon_server_png" y="0" x="0"/>
 					</e:Group>
-					<e:Group horizontalCenter="0.5" y="175" x="10" width="100%">
-						<e:Button id="editWordBtn" y="0" label="编辑宣言" skinName="Btn_r2Skin" x="113.03030303030306"/>
-						<e:Group x="266" y="10" width="160" height="56">
-							<e:Button id="honorBtn" y="0" label="成就" skinName="Btn_r2Skin" x="0"/>
-							<e:Image id="honorRed" source="red_point_png" y="-6" right="-8"/>
-						</e:Group>
-						<e:layout>
-							<e:HorizontalLayout gap="30" horizontalAlign="center" paddingTop="10"/>
-						</e:layout>
-					</e:Group>
 					<e:layout>
 						<e:VerticalLayout gap="15"/>
 					</e:layout>
 				</e:Group>
-				<e:Image source="main_mc_png" scaleY="-0.6" scaleX="0.6" bottom="-22" right="5"/>
-				<e:Image source="main_mc_png" bottom="-22" scaleX="-0.6" y="10" left="5" scaleY="-0.6"/>
 			</e:Group>
-			<e:Group x="107" y="914" height="290">
-				<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="600" height="240" horizontalCenter="0"/>
-				<e:Group y="11" horizontalCenter="0">
-					<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
-					<e:Label y="5" text="职业数据" x="205" textColor="0xC4A87C"/>
-					<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="middle"/>
-					</e:layout>
-				</e:Group>
-				<e:Label y="65" textColor="0xCCB48E" text="累计通关次数：0" id="mainLevelText" size="24" x="50"/>
-                <e:Label y="65" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText2" size="24" x="330"/>
-                <e:Label y="110" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText3" size="24" x="50"/>
-				<e:Group x="50" y="150">
-					<e:Label y="9" size="24" text="每天补助：" x="0" textColor="0xE0A44A"/>
-					<e:Image source="icon_money_png" y="0" x="144"/>
-					<e:Label id="mainAward1" y="5" textColor="0xCCB48E" text="123456" x="193"/>
-					<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>
-					<e:Label id="mainAward2" y="5" textColor="0xCCB48E" text="1234" x="378"/>
-				</e:Group>
-				<e:Group x="50" y="200">
-					<e:Label y="9" size="24" text="评分 +1：" x="0" textColor="0xE0A44A"/>
-					<e:Image source="icon_money_png" y="0" x="144"/>
-					<e:Label id="mainAward3" y="5" textColor="0xCCB48E" text="123456" x="193"/>
-					<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>
-					<e:Label id="mainAward4" x="378" y="5" textColor="0xCCB48E" text="1234"/>
-				</e:Group>
-			</e:Group>
-			<e:Group x="117" y="924" height="180">
-				<e:Image source="card_bg_png" y="35" width="600" height="130" scale9Grid="69,57,108,126" horizontalCenter="0"/>
-				<e:Group horizontalCenter="0" y="8" x="10">
-					<e:layout>
-						<e:HorizontalLayout verticalAlign="middle"/>
-					</e:layout>
-					<e:Image source="main_mc_png" y="0" scaleY="0.6" x="0" scaleX="0.6"/>
-					<e:Label y="5" text="研究院数据" x="205" textColor="0xC4A87C"/>
-					<e:Image source="main_mc_png" y="10" scaleY="0.6" x="10" scaleX="-0.6"/>
-				</e:Group>
-				<e:Label id="dailyText1" horizontalCenter="0" textColor="0xCCB48E" size="24" y="61" text="当前进度：10/10"/>
-<e:Label y="105" textColor="0xCCB48E" text="累计通关次数：0" id="dailyText2" size="24" x="50"/>
-				<e:Label y="105" textColor="0xCCB48E" text="获得研究积分：0" id="dailyText3" size="24" x="330"/>			</e:Group>
 
-			<e:Group x="87" y="894" height="220">
-				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="600" height="160" horizontalCenter="0"/>
-				<e:Group horizontalCenter="0" y="7" x="20">
-					<e:layout>
+			<e:Group id="tabGroup" x="0" y="846" width="640">
+				<e:TabBar itemRendererSkinName="MyTabItemSkin" y="0" id="tab" height="62" width="500" horizontalCenter="0">
+					<e:ArrayCollection>
+					<e:Array>
+						<e:Object label="战　绩"/>
+						<e:Object label="成　就"/>	
+					</e:Array>
+					</e:ArrayCollection>
+				</e:TabBar>
+				<e:Image source="line_png" y="60" horizontalCenter="0" width="650"/>
+				<ns1:HonorUI id="honorUI" x="0" y="70" skinName="HonorUISkin"/>
+				<e:Group id="fightGroup" x="0" y="70" width="640">
+					<e:Group x="0" y="0" height="290" width="600">
+					<e:Image source="card_bg_png" y="40" scale9Grid="69,75,108,98" width="600" height="240" horizontalCenter="0"/>
+					<e:Group y="11" horizontalCenter="0">
+						<e:Image x="0" y="0" scaleX="0.6" scaleY="0.6" source="main_mc_png"/>
+						<e:Label y="5" text="职业数据" x="205" textColor="0xC4A87C"/>
+						<e:Image y="10" scaleY="0.6" x="10" scaleX="-0.6" source="main_mc_png"/>
+						<e:layout>
 						<e:HorizontalLayout verticalAlign="middle"/>
-					</e:layout>
-					<e:Image source="main_mc_png" y="0" scaleY="0.6" scaleX="0.6" x="0"/>
-					<e:Label y="5" text="竞技场数据" x="205" textColor="0xC4A87C"/>
-					<e:Image source="main_mc_png" y="10" scaleY="0.6" scaleX="-0.6" x="10"/>
-				</e:Group>
-				<e:Label id="serverText1" y="61" textColor="0xCCB48E" text="积分：12345（历史最高：12345）" x="40" size="24"/>
-				<e:Label id="serverText2" y="101" textColor="0xCCB48E" text="当前等级：12（下一级积分：12345）" x="40" size="24"/>
-				<e:Label id="serverText3" y="139" textColor="0xCCB48E" size="24" text="胜利次数：123456" x="40"/>
-				<e:Label id="serverText4" y="139" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
-			</e:Group>
-			<e:Group y="904" x="97" height="240">
-				<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="600" height="190" horizontalCenter="0"/>
-				<e:Group horizontalCenter="0" y="5" x="30">
-					<e:layout>
+						</e:layout>
+					</e:Group>
+					<e:Label y="65" textColor="0xCCB48E" text="累计通关次数：0" id="mainLevelText" size="24" x="50"/>
+					<e:Label y="65" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText2" size="24" x="330"/>
+					<e:Label y="110" textColor="0xCCB48E" text="获得研究积分：0" id="mainLevelText3" size="24" x="50"/>
+					<e:Group x="50" y="150">
+						<e:Label y="9" size="24" text="每天补助：" x="0" textColor="0xE0A44A"/>
+						<e:Image source="icon_money_png" y="0" x="144"/>
+						<e:Label id="mainAward1" y="5" textColor="0xCCB48E" text="123456" x="193"/>
+						<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>
+						<e:Label id="mainAward2" y="5" textColor="0xCCB48E" text="1234" x="378"/>
+					</e:Group>
+					<e:Group x="50" y="200">
+						<e:Label y="9" size="24" text="评分 +1：" x="0" textColor="0xE0A44A"/>
+						<e:Image source="icon_money_png" y="0" x="144"/>
+						<e:Label id="mainAward3" y="5" textColor="0xCCB48E" text="123456" x="193"/>
+						<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>
+						<e:Label id="mainAward4" x="378" y="5" textColor="0xCCB48E" text="1234"/>
+					</e:Group>
+						<e:Image source="main_mc_png" scaleY="-0.6" scaleX="0.6" right="-20" top="0"/>
+						<e:Image source="main_mc_png" scaleX="-0.6" scaleY="-0.6" left="-20" top="0"/>
+					</e:Group>
+					<e:Group x="0" y="305" height="180">
+					<e:Image source="card_bg_png" y="35" width="600" height="130" scale9Grid="69,57,108,126" horizontalCenter="0"/>
+					<e:Group horizontalCenter="0" y="8" x="10">
+						<e:layout>
 						<e:HorizontalLayout verticalAlign="middle"/>
-					</e:layout>
-					<e:Image source="main_mc_png" y="0" scaleY="0.6" x="0" scaleX="0.6"/>
-					<e:Label y="5" text="修正场数据" x="205" textColor="0xC4A87C"/>
-					<e:Image source="main_mc_png" y="10" scaleY="0.6" x="10" scaleX="-0.6"/>
-				</e:Group>
-				<e:Label id="serverEqualText1" y="61" textColor="0xCCB48E" size="24" text="积分：12345（历史最高：12345）" x="40"/>
-				<e:Label id="serverEqualText2" y="99" textColor="0xCCB48E" size="24" text="当前等级：12（下一级积分：12345）" x="40"/>
-				<e:Label id="serverEqualText3" y="135" textColor="0xCCB48E" size="24" text="胜利次数：123456" x="40"/>
-				<e:Label id="serverEqualText5" y="170" textColor="0xCCB48E" size="24" text="当前连胜：123456" x="40"/>
-				<e:Label id="serverEqualText6" y="170" textColor="0xCCB48E" size="24" text="最高连胜：123456" x="330"/>
-				<e:Label id="serverEqualText4" y="135" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
-			</e:Group>
-			<e:Group y="788" x="60">
-				<e:Label y="0" text="最近常用卡兵：" horizontalCenter="0" textColor="0xC4A87C"/>
-				<e:List id="list" y="40" height="280" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
-					<e:layout>
+						</e:layout>
+						<e:Image source="main_mc_png" y="0" scaleY="0.6" x="0" scaleX="0.6"/>
+						<e:Label y="5" text="研究院数据" x="205" textColor="0xC4A87C"/>
+						<e:Image source="main_mc_png" y="10" scaleY="0.6" x="10" scaleX="-0.6"/>
+					</e:Group>
+					<e:Label id="dailyText1" horizontalCenter="0" textColor="0xCCB48E" size="24" y="61" text="当前进度：10/10"/>
+					<e:Label y="105" textColor="0xCCB48E" text="累计通关次数：0" id="dailyText2" size="24" x="50"/>
+					<e:Label y="105" textColor="0xCCB48E" text="获得研究积分：0" id="dailyText3" size="24" x="330"/>
+					</e:Group>
+					<e:Group x="0" y="500" height="220">
+					<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="600" height="160" horizontalCenter="0"/>
+					<e:Group horizontalCenter="0" y="7" x="20">
+						<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+						</e:layout>
+						<e:Image source="main_mc_png" y="0" scaleY="0.6" scaleX="0.6" x="0"/>
+						<e:Label y="5" text="竞技场数据" x="205" textColor="0xC4A87C"/>
+						<e:Image source="main_mc_png" y="10" scaleY="0.6" scaleX="-0.6" x="10"/>
+					</e:Group>
+					<e:Label id="serverText1" y="61" textColor="0xCCB48E" text="积分：12345（历史最高：12345）" x="40" size="24"/>
+					<e:Label id="serverText2" y="101" textColor="0xCCB48E" text="当前等级：12（下一级积分：12345）" x="40" size="24"/>
+					<e:Label id="serverText3" y="139" textColor="0xCCB48E" size="24" text="胜利次数：123456" x="40"/>
+					<e:Label id="serverText4" y="139" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
+					</e:Group>
+					<e:Group y="735" x="0" height="240">
+					<e:Image source="card_bg_png" y="35" scale9Grid="69,75,108,98" width="600" height="190" horizontalCenter="0"/>
+					<e:Group horizontalCenter="0" y="5" x="30">
+						<e:layout>
+						<e:HorizontalLayout verticalAlign="middle"/>
+						</e:layout>
+						<e:Image source="main_mc_png" y="0" scaleY="0.6" x="0" scaleX="0.6"/>
+						<e:Label y="5" text="修正场数据" x="205" textColor="0xC4A87C"/>
+						<e:Image source="main_mc_png" y="10" scaleY="0.6" x="10" scaleX="-0.6"/>
+					</e:Group>
+					<e:Label id="serverEqualText1" y="61" textColor="0xCCB48E" size="24" text="积分：12345（历史最高：12345）" x="40"/>
+					<e:Label id="serverEqualText2" y="99" textColor="0xCCB48E" size="24" text="当前等级：12（下一级积分：12345）" x="40"/>
+					<e:Label id="serverEqualText3" y="135" textColor="0xCCB48E" size="24" text="胜利次数：123456" x="40"/>
+					<e:Label id="serverEqualText5" y="170" textColor="0xCCB48E" size="24" text="当前连胜：123456" x="40"/>
+					<e:Label id="serverEqualText6" y="170" textColor="0xCCB48E" size="24" text="最高连胜：123456" x="330"/>
+					<e:Label id="serverEqualText4" y="135" textColor="0xCCB48E" size="24" text="失败次数：123456" x="330"/>
+					</e:Group>
+					<e:Group y="990" x="195">
+					<e:Label y="0" text="最近常用卡兵：" horizontalCenter="0" textColor="0xC4A87C"/>
+					<e:List id="list" y="40" height="280" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+						<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="25" verticalGap="20"/>
+						</e:layout>
+					</e:List>
+					</e:Group>
+					<e:layout>
+					<e:VerticalLayout gap="15" horizontalAlign="center"/>
 					</e:layout>
-				</e:List>
+				</e:Group>
+				<e:Image id="honorRed" source="red_point_png" y="-2" right="63"/>
 			</e:Group>
 			<e:layout>
-				<e:VerticalLayout gap="15" paddingLeft="0" paddingTop="0" horizontalAlign="center"/>
+				<e:VerticalLayout paddingLeft="0" paddingTop="0" horizontalAlign="center" gap="0"/>
 			</e:layout>
 		</e:Group>
 	</e:Scroller>

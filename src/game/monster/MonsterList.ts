@@ -360,22 +360,26 @@ class MonsterList extends game.BaseUI {
         {
             this.la.source = 'arrow1_png'
             this.lt.textColor = 0xCBB46B
+            this.lt.text = MonsterVO.getObject(this.dataArray[this.index-1].id).name;
         }
         else
         {
             this.la.source = 'arrow3_png'
             this.lt.textColor = 0x734B41
+            this.lt.text = ''
         }
 
         if(this.index < this.dataArray.length-1)
         {
             this.ra.source = 'arrow1_png'
             this.rt.textColor = 0xCBB46B
+            this.rt.text = MonsterVO.getObject(this.dataArray[this.index+1].id).name;
         }
         else
         {
             this.ra.source = 'arrow3_png'
             this.rt.textColor = 0x734B41
+            this.rt.text = ''
         }
 
         this.pageText.text =  (this.index + 1) + '/' + this.dataArray.length;

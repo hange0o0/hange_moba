@@ -60,6 +60,7 @@ var game_file_list = [
 	"bin-debug/game/honor/HonorItem.js",
 	"bin-debug/game/honor/HonorManager.js",
 	"bin-debug/game/honor/HonorSortItem.js",
+	"bin-debug/game/honor/HonorUI_bak.js",
 	"bin-debug/game/honor/HonorUI.js",
 	"bin-debug/game/mainPage/MainDayItem.js",
 	"bin-debug/game/mainPage/MainHeadItem.js",

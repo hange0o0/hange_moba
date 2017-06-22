@@ -53,14 +53,19 @@ class MyCardGroupUI extends game.BaseItem {
 
         var myCard = UM.getMyCard();
         var task = myCard.task;
-        if(!task || task.current >= task.num)
+        if(!task)
         {
             MyTool.removeMC(this.taskGroup)
             return;
         }
+
         this.con.addChild(this.taskGroup)
 
         this.taskRateText.text = Math.min(task.current,task.num)+'/'+task.num;
+        if(task.current >= task.num)
+        {
+            this.taskRateText.text = '已完成'
+        }
 
         var numStr = '['+task.num+']';
         var str = '[卡组任务：]使用['+MonsterVO.getObject(task.mid).name+']'
