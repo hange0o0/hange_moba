@@ -13,6 +13,7 @@
 	<e:Label id="levelText" text="LV.60" size="22" stroke="3" y="12" textColor="0xEED1A7" left="13"/>
 
 	<e:Label id="nameText" text="Label" size="20" horizontalCenter="0.5" stroke="3" textColor="0xFADEA2" bottom="20"/>
+	<e:Label id="desText" text="Label" size="20" horizontalCenter="1" stroke="3" bottom="58" textColor="0xe0a44a"/>
 	
 	
 </e:Skin>

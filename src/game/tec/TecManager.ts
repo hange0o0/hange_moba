@@ -132,6 +132,7 @@ class TecManager{
     public getList3(fillMonster){
         var arr = [];
         var mdata = CM.table[MonsterVO.dataKey];
+        var HM = HonorManager.getInstance()
         for(var s in mdata)
         {
             var vo = mdata[s];
@@ -139,12 +140,20 @@ class TecManager{
                 continue;
             //var kindVO = MonsterKindVO.getObject(vo.type);
             if(vo.level<= UM.level + 1)
-                arr.push({
+            {
+                var oo = {
                     list:arr,
                     id:vo.id,
+                    lv:UM.getMonsterLevel(vo.id),
                     openLevel:vo.level,
                     tecType:3
-                });
+                }
+                if(MonsterVO.getObject(oo.id).level > UM.level)
+                    oo['toLast'] = true;
+                HM.fillAwardStat(oo);
+                arr.push(oo);
+            }
+
         }
         //ArrayUtil.sortByField(arr,['id'],[0]);
         return arr;

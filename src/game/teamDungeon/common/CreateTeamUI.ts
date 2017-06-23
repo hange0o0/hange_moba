@@ -83,10 +83,30 @@ class CreateTeamUI extends game.BaseWindow {
         var name = this.nameText.text;
         var hard = this.sortList.selectedIndex+1;
         var type = this.data;
-        TeamDungeonManager.getInstance().createTeam(name,hard,type,function(){
-            self.hide();
-            InviteTeamUI.getInstance().show(type)
-        })
+
+        var fun = function(){
+            TeamDungeonManager.getInstance().createTeam(name,hard,type,function(){
+                self.hide();
+                InviteTeamUI.getInstance().show(type)
+            })
+        }
+        var hardData:any = TeamDungeonManager.getInstance().hardData[this.sortList.selectedIndex];
+        if(hard > 1 && UM.getForce() / hardData.force < 0.9)
+        {
+            Confirm('当前所选挑战难度大于你的能力，是否继续？',function(type){
+                if(type == 1)
+                {
+                    fun();
+                }
+            });
+        }
+        else
+        {
+            fun();
+        }
+
+
+
     }
 
     private onRandom(){

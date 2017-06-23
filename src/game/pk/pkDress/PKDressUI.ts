@@ -65,6 +65,7 @@ class PKDressUI extends game.BaseUI {
     private renewListTimer = 0;
     public taskMid = 0;
 
+    private lastRandomMV = 0;
 
     private isRemoveHistory = false
     public constructor() {
@@ -229,10 +230,22 @@ class PKDressUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.onMonsterLevel);
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewListEvent);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewListEvent);
-        //this.addPanelOpenEvent(GameEvent.client.force_change,this.renewList)
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
 
 
         GuideManager.getInstance().showGuide(this);
+    }
+
+    private onTimer(){
+        var t = egret.getTimer()
+        if(t - GameManager.getInstance().lastTouchTime > 5000 && t - this.lastRandomMV > 5000)
+        {
+            var mc = this.pkDressChooseUI['randomIcon']
+             var tw = egret.Tween.get(mc)
+            mc.rotation = 0;
+            tw.to({rotation:360},500)
+            this.lastRandomMV = t;
+        }
     }
 
     private renewTask(){

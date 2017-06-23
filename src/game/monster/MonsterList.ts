@@ -353,7 +353,7 @@ class MonsterList extends game.BaseUI {
 
 
     public renewPage(){
-        this.pageGroup.visible = true;
+
         if(this.dataArray.length <2)
             return;
         if(this.index > 0)
@@ -384,42 +384,43 @@ class MonsterList extends game.BaseUI {
 
         this.pageText.text =  (this.index + 1) + '/' + this.dataArray.length;
 
-        var pageSize = this.pageSize;
-        var current = this.index%pageSize;
-        var max = pageSize;
-        var maxPage = Math.ceil(this.dataArray.length/pageSize);
-        var page = Math.ceil((this.index+1)/pageSize)
-        if(page == maxPage)//最后一页
-        {
-            max = this.dataArray.length%pageSize || pageSize;
-        }
-
-        this.pageGroup.removeChildren()
-        if(page > 1)
-        {
-            var mc = this['p' + 0];
-            this.pageGroup.addChild(mc);
-            mc.source = 'point1_png';
-        }
-
-        for(var i=0;i<pageSize;i++)
-        {
-            var mc = this['p' + (i+1)];
-            if(i<max)
-            {
-                this.pageGroup.addChild(mc);
-                if(i == current)//当前
-                    mc.source = 'point2_png';
-                else
-                    mc.source = 'point1_png';
-            }
-        }
-
-        if(page < maxPage)
-        {
-            var mc = this['p' + 9];
-            this.pageGroup.addChild(mc);
-            mc.source = 'point1_png';
-        }
+        //this.pageGroup.visible = true;
+        //var pageSize = this.pageSize;
+        //var current = this.index%pageSize;
+        //var max = pageSize;
+        //var maxPage = Math.ceil(this.dataArray.length/pageSize);
+        //var page = Math.ceil((this.index+1)/pageSize)
+        //if(page == maxPage)//最后一页
+        //{
+        //    max = this.dataArray.length%pageSize || pageSize;
+        //}
+        //
+        //this.pageGroup.removeChildren()
+        //if(page > 1)
+        //{
+        //    var mc = this['p' + 0];
+        //    this.pageGroup.addChild(mc);
+        //    mc.source = 'point1_png';
+        //}
+        //
+        //for(var i=0;i<pageSize;i++)
+        //{
+        //    var mc = this['p' + (i+1)];
+        //    if(i<max)
+        //    {
+        //        this.pageGroup.addChild(mc);
+        //        if(i == current)//当前
+        //            mc.source = 'point2_png';
+        //        else
+        //            mc.source = 'point1_png';
+        //    }
+        //}
+        //
+        //if(page < maxPage)
+        //{
+        //    var mc = this['p' + 9];
+        //    this.pageGroup.addChild(mc);
+        //    mc.source = 'point1_png';
+        //}
     }
 }

@@ -780,8 +780,8 @@ class PKMainUI extends game.BaseUI {
         var kill2 = PKManager.getInstance().kill[this.enemyPKing.id] || []
         for(var i=0;i<3;i++)
         {
-            this['ms' + i].visible = kill1[i] < this.enemyPKing.index;
-            this['es' + i].visible = kill2[i] < this.selfPKing.index;
+            this['ms' + i].visible = kill1[i] < this.enemyPKing.index+1;
+            this['es' + i].visible = kill2[i] < this.selfPKing.index+1;
         }
         //if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
     }
@@ -1859,7 +1859,7 @@ class PKMainUI extends game.BaseUI {
                 this.resultBtnGroup.visible = false
                 this.resultBG.alpha = 0;
                 var tw = egret.Tween.get(this.resultBG);
-                tw.wait(500).to({alpha:0.8},300).call(function(){
+                tw.wait(500).to({alpha:0.85},300).call(function(){
                     this.resultBtnGroup.visible = true
                 },this)
                 //console.log('PK结束，卡一下')
@@ -2109,6 +2109,8 @@ class PKMainUI extends game.BaseUI {
             if(mvType == 5)
             {
                 VM.playBullet(skillID1,atkerItem,defenderItem,function(){
+                    if(this.isStop) //子弹有Tween
+                        return;
                     //被攻击击移后
                     var xy = VM.behitMoveBack(atkerItem,defenderItem,function(){
                         roundeData.stopNext = false;
@@ -2128,6 +2130,8 @@ class PKMainUI extends game.BaseUI {
             else
             {
                 VM.playBullet2(skillID1,atkerItem,defenderItem,function(){
+                    if(this.isStop) //子弹有Tween
+                        return;
                     //被攻击击移后
                     var xy = VM.behitMoveBack(atkerItem,defenderItem,function(){
                         roundeData.stopNext = false;

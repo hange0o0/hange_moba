@@ -8,6 +8,8 @@ class CollectItem extends game.BaseItem {
     private arrowMC: eui.Image;
     private levelText: eui.Label;
     private nameText: eui.Label;
+    private desText: eui.Label;
+
 
 
 
@@ -74,6 +76,35 @@ class CollectItem extends game.BaseItem {
         //    this.levelGroup.visible = true;
         //    this.levelText.text = level;
         //}
+        this.renewDes();
+    }
+
+    public renewDes(){
+        if(this.data.toLast)
+        {
+            this.desText.text = '';
+            return;
+        }
+
+        switch(CollectUI.getInstance()['sortList'].selectedIndex)
+        {
+            case 0://默认
+            case 1://等级升序
+            case 2://等级降序
+                this.desText.text = ''
+                break;
+            case 3://使用次数
+                this.desText.text = '使用：'+(this.data.t || 0)
+                break;
+            case 4://胜利次数
+                this.desText.text = '胜利：'+(this.data.w || 0)
+                break;
+            case 5://胜率
+                this.desText.text = '胜率：'+MyTool.toFixed(((this.data.r || 0)*100),1) + '%'
+                break;
+
+        }
+
     }
 
 

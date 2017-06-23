@@ -87,6 +87,7 @@ class MainPageUI extends game.BaseUI {
 
 
 
+    private gameItems = [];
     private pageArray = [];
     private currentPage= 0;
     private startPos;
@@ -165,6 +166,20 @@ class MainPageUI extends game.BaseUI {
 
         this.topPlayerTips.hide();
         this.leaderRed.visible = false
+
+
+        this.gameItems.push(this.mainGame);
+        this.gameItems.push(this.dayGame);
+        this.gameItems.push(this.mapGame);
+        this.gameItems.push(this.serverGame);
+        this.gameItems.push(this.serverGameEqual);
+        for(var i=0;i<this.gameItems.length;i++)
+        {
+            var item = this.gameItems[i];
+            item.visible = false;
+            item.anchorOffsetX = 320;
+            item.x = 320 + 320*i
+        }
     }
 
 
@@ -394,6 +409,10 @@ class MainPageUI extends game.BaseUI {
     private onBegin(e:egret.TouchEvent){
         if(GuideManager.getInstance().isGuiding)
             return;
+        //if(this.scrollGroup.x>=0)
+        //    return;
+        //if(this.scrollGroup.x <= (-4 * 360))
+        //    return;
         //if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
         //{
         //    return;
@@ -407,6 +426,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onMove(e:egret.TouchEvent){
+
         if(!this.startPos.drag)
         {
             if(Math.abs(e.stageX - this.startPos.x) > 10)
@@ -416,8 +436,50 @@ class MainPageUI extends game.BaseUI {
         }
         if(this.startPos.drag)
         {
+            if(this.scrollGroup.x>=0 && e.stageX-this.startPos.x > 0)
+                return;
+            if(this.scrollGroup.x <= (-(this.gameItems.length - 1) * 320)  && e.stageX-this.startPos.x < 0)
+                return;
             this.scrollGroup.x = this.startPos.tx + e.stageX-this.startPos.x;
+            this.renewGameItemShow();
         }
+    }
+
+    private renewGameItemShow(){
+        var start = Math.round(-this.scrollGroup.x/320);
+        var item1 = this.gameItems[start];
+        var item2;
+        var targetPos = -start*320
+        if(targetPos > this.scrollGroup.x + 10)
+            item2 = this.gameItems[start + 1];
+        else if(targetPos < this.scrollGroup.x - 10)
+            item2 = this.gameItems[start - 1];
+
+
+        var rate = 1 - Math.abs(targetPos - this.scrollGroup.x)/320
+        if(item1)
+        {
+            item1.visible = true
+            item1.scaleX = item1.scaleY = rate/2 + 0.5
+            item1.alpha = rate;
+        }
+
+        if(item2)
+        {
+            item2.visible = true
+            item2.scaleX = item2.scaleY = (1-rate)/2 + 0.5
+            item2.alpha = (1-rate);
+        }
+
+        for(var i=0;i<this.gameItems.length;i++)
+        {
+            if(this.gameItems[i] == item1)
+                continue
+            if(this.gameItems[i] == item2)
+                continue
+            this.gameItems[i].visible = false
+        }
+
     }
 
     private onEnd(e:egret.TouchEvent){
@@ -684,37 +746,38 @@ class MainPageUI extends game.BaseUI {
     public scrollToCurrentPage(nomovie=false){
         SharedObjectManager.instance.setMyValue('main_page',this.currentPage);
         egret.Tween.removeTweens(this.scrollGroup)
-        var pageSize = 640
+        var pageSize = 320
         var targetX = -this.currentPage * pageSize;
         //this.scroller.viewport.scrollV = 0;
         if(nomovie)
         {
             this.scrollGroup.x = targetX;
+            this.renewGameItemShow()
         }
         else if(this.scrollGroup.x != targetX)
         {
-            var tw:egret.Tween = egret.Tween.get(this.scrollGroup);
-            var lastPage =  Math.floor(Math.max(0,-this.scrollGroup.x)/pageSize);
-            var des = lastPage - this.currentPage
-            if(Math.abs(des) > 1)
-            {
-                des > 0?des--:des++;
-                this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
-                targetX = -(this.currentPage+des) * pageSize;
-                tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/pageSize)).call(function(){
-                    //this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
-                    //重新排序，保证一至
-                    this.scrollGroup.addChild(this.mainGame)
-                    this.scrollGroup.addChild(this.dayGame)
-                    this.scrollGroup.addChild(this.mapGame)
-                    this.scrollGroup.addChild(this.serverGame)
-                    this.scrollGroup.addChild(this.serverGameEqual)
-                    this.scrollToCurrentPage(true);
-                },this);
-            }
-            else {
-                tw.to({x: targetX}, Math.min(200, 200 * Math.abs(targetX - this.scrollGroup.x) / pageSize));
-            }
+            var tw:egret.Tween = egret.Tween.get(this.scrollGroup,{onChange:this.renewGameItemShow,onChangeObj:this});
+            //var lastPage =  Math.floor(Math.max(0,-this.scrollGroup.x)/pageSize);
+            //var des = lastPage - this.currentPage
+            //if(Math.abs(des) > 1)
+            //{
+            //    des > 0?des--:des++;
+            //    this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
+            //    targetX = -(this.currentPage+des) * pageSize;
+            //    tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/pageSize)).call(function(){
+            //        //this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
+            //        //重新排序，保证一至
+            //        this.scrollGroup.addChild(this.mainGame)
+            //        this.scrollGroup.addChild(this.dayGame)
+            //        this.scrollGroup.addChild(this.mapGame)
+            //        this.scrollGroup.addChild(this.serverGame)
+            //        this.scrollGroup.addChild(this.serverGameEqual)
+            //        this.scrollToCurrentPage(true);
+            //    },this);
+            //}
+            //else {
+                tw.to({x: targetX}, Math.min(200 * Math.abs(targetX - this.scrollGroup.x) / pageSize));
+            //}
         }
         var currentView;
         switch(this.currentPage)

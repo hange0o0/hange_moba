@@ -8,6 +8,7 @@ class GameManager {
 
     private timeID: egret.Timer;
     private lastTime: number;
+    public lastTouchTime: number;
     public lastTouchMC;
 	public constructor() {
         this.timeID = new egret.Timer(1000);
@@ -38,6 +39,7 @@ class GameManager {
         this.lastTouchMC = e.target;
         GameManager.stageX = e.stageX;
         GameManager.stageY = e.stageY;
+        this.lastTouchTime = egret.getTimer();
     }
 
 

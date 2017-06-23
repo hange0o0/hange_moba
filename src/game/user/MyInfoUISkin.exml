@@ -122,7 +122,7 @@
 			</e:Group>
 
 			<e:Group id="tabGroup" x="0" y="846" width="640">
-				<e:TabBar itemRendererSkinName="MyTabItemSkin" y="0" id="tab" height="62" width="500" horizontalCenter="0">
+				<e:TabBar itemRendererSkinName="MyTabItemSkin" y="0" id="tab" height="62" width="100%" horizontalCenter="0">
 					<e:ArrayCollection>
 					<e:Array>
 						<e:Object label="战　绩"/>
@@ -221,7 +221,7 @@
 					<e:VerticalLayout gap="15" horizontalAlign="center"/>
 					</e:layout>
 				</e:Group>
-				<e:Image id="honorRed" source="red_point_png" y="-2" right="63"/>
+				<e:Image id="honorRed" source="red_point_png" y="-2" right="5"/>
 			</e:Group>
 			<e:layout>
 				<e:VerticalLayout paddingLeft="0" paddingTop="0" horizontalAlign="center" gap="0"/>

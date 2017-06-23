@@ -238,34 +238,20 @@ class CollectUI extends game.BaseUI {
                 if(!noDefault)
                     arr.sort(this.sortByDefault)
                 break;
-            //case 1://可升级
-            //    for(var i=0;i<arr.length;i++)
-            //    {
-            //        var lv = UM.getMonsterLevel(arr[i].id);
-            //        if(lv >= TecManager.getInstance().maxLevel)
-            //            arr[i].need = Number.MAX_VALUE;
-            //        else
-            //            arr[i].need = TecManager.getInstance().collectNeed(lv + 1);
-            //    }
-            //    arr.sort(this.sortByLevelUp)
-            //    break;
             case 1://等级升序
-                for(var i=0;i<arr.length;i++)
-                {
-                    arr[i].lv = UM.getMonsterLevel(arr[i].id);
-                    if(MonsterVO.getObject(arr[i].id).level > UM.level)
-                        arr[i].lv = 9999;
-                }
                 arr.sort(this.sortByUp)
                 break;
             case 2://等级降序
-                for(var i=0;i<arr.length;i++)
-                {
-                    arr[i].lv = UM.getMonsterLevel(arr[i].id);
-                    if(MonsterVO.getObject(arr[i].id).level > UM.level)
-                        arr[i].lv = -9999;
-                }
                 arr.sort(this.sortByDown)
+                break;
+            case 3://使用次数
+                arr.sort(this.sortByUse)
+                break;
+            case 4://胜利次数
+                arr.sort(this.sortByWin)
+                break;
+            case 5://胜率
+                arr.sort(this.sortByRate)
                 break;
         }
     }
@@ -286,6 +272,10 @@ class CollectUI extends game.BaseUI {
     //    return this.sortByDefault(a,b)
     //}
     private sortByUp(a,b){
+        if(!a.toLast && b.toLast)
+            return -1;
+        if(a.toLast && !b.toLast)
+            return 1;
         if(a.lv < b.lv)
             return -1;
         if(a.lv > b.lv)
@@ -299,9 +289,62 @@ class CollectUI extends game.BaseUI {
         return 1;
     }
     private sortByDown(a,b){
-        if(a.lv > b.lv)
+        if(!a.toLast && b.toLast)
             return -1;
-        if(a.lv < b.lv)
+        if(a.toLast && !b.toLast)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+
+    private sortByUse(a,b){
+        if(!a.toLast && b.toLast)
+            return -1;
+        if(a.toLast && !b.toLast)
+            return 1;
+        if(a.t > b.t)
+            return -1;
+        if(a.t < b.t)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
+        if(a.id < b.id)
+            return -1;
+        return 1;
+
+    }
+    private sortByWin(a,b){
+        if(!a.toLast && b.toLast)
+            return -1;
+        if(a.toLast && !b.toLast)
+            return 1;
+        if(a.w > b.w)
+            return -1;
+        if(a.w < b.w)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+    private sortByRate(a,b){
+        if(!a.toLast && b.toLast)
+            return -1;
+        if(a.toLast && !b.toLast)
+            return 1;
+        if(a.r > b.r)
+            return -1;
+        if(a.r < b.r)
             return 1;
         if(a.openLevel < b.openLevel)
             return -1;

@@ -5,12 +5,9 @@ class HonorUI extends game.BaseContainer {
     //    return this.instance;
     //}
 
-    private infoText: eui.Label;
-    private sortBtn: eui.Image;
-    private sortText: eui.Label;
-    private sortGroup: eui.Group;
-    private sortList: eui.List;
     private list: eui.List;
+    private infoText: eui.Label;
+
 
 
 
@@ -45,32 +42,32 @@ class HonorUI extends game.BaseContainer {
 
         //this.addBtnEvent(this.upBtn,this.onUp);
         //this.addBtnEvent(this.downBtn,this.onDown);
-        this.addBtnEvent(this.sortBtn,this.onSort);
-        this.addBtnEvent(this.sortText,this.onSort);
+        //this.addBtnEvent(this.sortBtn,this.onSort);
+        //this.addBtnEvent(this.sortText,this.onSort);
+        //
+        //this.sortList.selectedIndex = SharedObjectManager.instance.getValue('honor_sort') || 0;
+        //this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
 
-        this.sortList.selectedIndex = SharedObjectManager.instance.getValue('honor_sort') || 0;
-        this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
-
-        this.onHideSort();
+        //this.onHideSort();
     }
 
     public beforeHide(){
         this.clearList([this.list])
     }
 
-    private onSelect(){
-        SharedObjectManager.instance.setValue('honor_sort',this.sortList.selectedIndex)
-        this.resort()
-    }
+    //private onSelect(){
+    //    SharedObjectManager.instance.setValue('honor_sort',this.sortList.selectedIndex)
+    //    this.resort()
+    //}
 
-    private onSort(){
-        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideSort,this);
-        this.sortGroup.visible = true;
-    }
-
-    private onHideSort(){
-        this.sortGroup.visible = false;
-    }
+    //private onSort(){
+    //    GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideSort,this);
+    //    this.sortGroup.visible = true;
+    //}
+    //
+    //private onHideSort(){
+    //    this.sortGroup.visible = false;
+    //}
 
     //private onUp(){
     //    this.scroller.stopAnimation();
@@ -118,7 +115,7 @@ class HonorUI extends game.BaseContainer {
 
 
     public renew(){
-        this.onHideSort();
+        //this.onHideSort();
         var arr;
         var HM = HonorManager.getInstance();
         //if(this.tab.selectedIndex == 0)
@@ -133,10 +130,11 @@ class HonorUI extends game.BaseContainer {
         {
             count += arr[i].level;
         }
-        this.setHtml(this.infoText,'<font color="#E0A44A">领奖进度：</font>' + count + '/' + arr.length*5);
-        this.sortListFun(arr);
+        this.setHtml(this.infoText,'使用卡兵取得指定数量胜场，即可获得钻石奖励\n<font color="#E0A44A">领奖进度：</font>' + count + '/' + arr.length*5);
+        arr.sort(this.sortByState)
+        //this.sortListFun(arr);
         this.list.dataProvider = new eui.ArrayCollection(arr);
-        this.list.validateNow();
+        //this.list.validateNow();
         //egret.callLater(function(){
         //    this.scroller.viewport.scrollV = lastV;
         //    this.renewBtn();
@@ -145,39 +143,39 @@ class HonorUI extends game.BaseContainer {
 
     }
 
-    public resort(){
-        this.sortListFun(this.listArray);
-        this.list.dataProvider = new eui.ArrayCollection(this.listArray);
-        //this.scroller.viewport.scrollV = 0;
-        //this.renewBtn();
-    }
+    //public resort(){
+    //    this.sortListFun(this.listArray);
+    //    this.list.dataProvider = new eui.ArrayCollection(this.listArray);
+    //    //this.scroller.viewport.scrollV = 0;
+    //    //this.renewBtn();
+    //}
 
-    private sortListFun(arr)
-    {
-        this.sortText.text = this.sortList.selectedItem.label;
-         switch(this.sortList.selectedIndex)
-         {
-             case 0://领奖状态
-                 arr.sort(this.sortByState)
-                 break;
-             case 1://使用次数
-                 arr.sort(this.sortByUse)
-                 break;
-             case 2://胜利次数
-                 arr.sort(this.sortByWin)
-                 break;
-             case 3://胜率
-                 arr.sort(this.sortByRate)
-                 break;
-             case 4://默认
-                 arr.sort(this.sortByDefault)
-                 break;
-         }
-        for(var i=0;i<arr.length;i++)
-        {
-            arr[i].index = i;
-        }
-    }
+    //private sortListFun(arr)
+    //{
+    //    this.sortText.text = this.sortList.selectedItem.label;
+    //     switch(this.sortList.selectedIndex)
+    //     {
+    //         case 0://领奖状态
+    //             arr.sort(this.sortByState)
+    //             break;
+    //         case 1://使用次数
+    //             arr.sort(this.sortByUse)
+    //             break;
+    //         case 2://胜利次数
+    //             arr.sort(this.sortByWin)
+    //             break;
+    //         case 3://胜率
+    //             arr.sort(this.sortByRate)
+    //             break;
+    //         case 4://默认
+    //             arr.sort(this.sortByDefault)
+    //             break;
+    //     }
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //        arr[i].index = i;
+    //    }
+    //}
     private sortByDefault(a,b){
         if(a.openLevel < b.openLevel)
             return -1;

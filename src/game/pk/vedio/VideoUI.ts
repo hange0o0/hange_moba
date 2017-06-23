@@ -89,6 +89,7 @@ class VideoUI extends game.BaseUI {
 
 
 
+    public currentVideoIndex = 0;
     public constructor() {
         super();
         this.skinName = "VideoUI2Skin";
@@ -407,6 +408,7 @@ class VideoUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.currentVideoIndex = VideoManager.getInstance().index;
         this.topUI.setTitle('战报 - 第'+StringUtil.numToStr(VideoManager.getInstance().index+1)+'轮');
         //return;
         this.upGroup.visible = false;

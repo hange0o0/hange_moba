@@ -5,12 +5,8 @@ class HonorItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
-    private useText: eui.Label;
-    private winText: eui.Label;
-    private winRateText: eui.Label;
-    private rateText: eui.Label;
     private awardBtn: eui.Button;
-    private barMC: eui.Image;
+    private rateText: eui.Label;
     private awardText: eui.Label;
     private finishText: eui.Label;
     private sGroup: eui.Group;
@@ -19,6 +15,7 @@ class HonorItem extends game.BaseItem {
     private s2: eui.Image;
     private s3: eui.Image;
     private s4: eui.Image;
+
 
 
 
@@ -60,9 +57,9 @@ class HonorItem extends game.BaseItem {
         }
         //oo = oo ||  {t:0,w:0}
         var awardLevel = this.data.level;
-        this.setText(this.useText ,'[使用：]' + this.data.t);
-        this.setText(this.winText, '[胜利：]' + this.data.w);
-        this.setText(this.winRateText, '[胜率：]' + MyTool.toFixed(this.data.w/(this.data.t || 1)*100,1) + '%');
+        //this.setText(this.useText ,'[使用：]' + this.data.t);
+        //this.setText(this.winText, '[胜利：]' + this.data.w);
+        //this.setText(this.winRateText, '[胜率：]' + MyTool.toFixed(this.data.w/(this.data.t || 1)*100,1) + '%');
 
         if(awardLevel == 5)
         {
@@ -75,15 +72,17 @@ class HonorItem extends game.BaseItem {
         }
         var award = HM.awardBase[awardLevel + 1]
 
-        this.rateText.text = this.data.w + '/' + award.num;
-        this.barMC.width = 280*Math.min(1,this.data.w/award.num)
+        this.setText(this.rateText, '[进度：]' + this.data.w + '/' + award.num);
+        //this.rateText.text = this.data.w + '/' + award.num;
+        //this.barMC.width = 280*Math.min(1,this.data.w/award.num)
         this.awardText.text = 'X' + award.diamond;
         this.awardBtn.visible = this.data.award
+        this.rateText.visible = !this.awardBtn.visible
 
-        if(this.awardBtn.visible)
-            this.barMC.source = 'bar1_png'
-        else
-            this.barMC.source = 'bar3_png'
+        //if(this.awardBtn.visible)
+        //    this.barMC.source = 'bar1_png'
+        //else
+        //    this.barMC.source = 'bar3_png'
 
         this.sGroup.removeChildren();
         for(var i=0;i<5;i++)

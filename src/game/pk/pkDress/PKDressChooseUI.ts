@@ -22,6 +22,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private a6: eui.Image;
     private a7: eui.Image;
     private a8: eui.Image;
+    private randomIcon: eui.Image;
     private pkBtn: eui.Button;
     private randomBtn: eui.Group;
     private resetBtn: eui.Group;

@@ -23,7 +23,7 @@ class VideoGuide extends game.BaseContainer {
     }
 
     private onVideo(){
-        PKMainUI.getInstance().show(VideoManager.getInstance().index+1);
+        PKMainUI.getInstance().show(VideoUI.getInstance().currentVideoIndex+1);
     }
     private onClose(){
         this.visible = false;

@@ -5,15 +5,12 @@
 	<e:Group id="starGroup" height="300" width="100%" x="0" y="120"/>
 	<e:Group x="0" top="180" bottom="140">
 		<e:Group horizontalCenter="0" width="640" height="100%" verticalCenter="0" maxHeight="580">
-			<e:Group id="scrollGroup" x="0" bottom="40">
-				<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame"/>
-				<ns1:MainDayItem id="dayGame" skinName="MainDayItemSkin"/>
-				<ns1:MainMapItem id="mapGame" x="10" y="10" skinName="MainMapItemSkin"/>
-				<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin"/>
-				<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin"/>
-				<e:layout>
-					<e:HorizontalLayout gap="0"/>
-				</e:layout>
+			<e:Group id="scrollGroup" x="0" bottom="40" height="540" width="640">
+				<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame" x="0" verticalCenter="0"/>
+				<ns1:MainDayItem id="dayGame" skinName="MainDayItemSkin" x="0" verticalCenter="0"/>
+				<ns1:MainMapItem id="mapGame" x="0" skinName="MainMapItemSkin" verticalCenter="0"/>
+				<ns1:MainServerItem id="serverGame" skinName="MainServerItemSkin" x="0" verticalCenter="0"/>
+				<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin" x="0" verticalCenter="0"/>
 			</e:Group>
 			<e:Scroller id="scroller" width="640" x="0" bottom="40" top="0" scrollPolicyH="off" visible="false">
 				<e:Group id="scrollGroupCon">
