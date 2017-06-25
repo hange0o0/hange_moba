@@ -909,6 +909,7 @@ class PKManager {
         {
             var mid = teamBase.list[i]
             var specialData = teamBase.mb[mid];
+            specialData.isOther = teamBase.team == 2;
             var oo = {
                 id:mid,
                 list:infoArr,

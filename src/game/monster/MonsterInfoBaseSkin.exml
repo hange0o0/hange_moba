@@ -57,11 +57,22 @@
 		<e:Image id="typeMC" x="12.06" y="8.03" scaleX="1.5" scaleY="1.5" source="monster_type1_png"/>
 	</e:Group>
 	<e:Rect width="580" horizontalCenter="0" top="510" bottom="20" ellipseHeight="10" ellipseWidth="10" strokeWeight="1" fillColor="0x180802" strokeColor="0xc2a87d"/>
-	<e:List id="list" x="38" top="520" itemRendererSkinName="MonsterInfoBaseItemSkin" bottom="30">
-		<e:layout>
+	<e:Group id="skillGroup" top="520" bottom="30" left="40" right="40">
+		<e:Group id="fightGroup" x="0" y="0" width="100%">
+			<e:Label id="totalNumText" text="Label" x="20" size="24" textColor="0xcbc08a" y="14"/>
+			<e:Label id="winNumText" text="Label" x="220" size="24" textColor="0xCBC08A" y="14"/>
+			<e:Label id="winRateText" text="Label" x="420" size="24" textColor="0xCBC08A" y="14"/>
+			<e:Rect width="100%" height="1" x="0" y="50" fillColor="0x8F7B5C"/>
+		</e:Group>
+		<e:List id="list" x="0" itemRendererSkinName="MonsterInfoBaseItemSkin" y="0">
+			<e:layout>
 			<e:VerticalLayout gap="10"/>
+			</e:layout>
+		</e:List>
+		<e:layout>
+			<e:VerticalLayout/>
 		</e:layout>
-	</e:List>
+	</e:Group>
 	<e:Group y="295" id="levelUpCon" x="335" visible="false">
 		<e:Group x="0" y="0" id="levelUpCoinGroup">
 			<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
@@ -87,7 +98,7 @@
 		<e:Image x="0" y="0" source="lock_icon2_png"/>
 		<e:Label id="levelDes" text="标签" x="32" y="3" textAlign="center" textColor="0xCBC08A" size="24"/>
 	</e:Group>
-	<e:Group y="400" horizontalCenter="0" width="580" height="93">
+	<e:Group y="400" horizontalCenter="0" width="580" height="93" locked="true">
 		<e:Image source="arrow7_png" y="30.36" scaleX="2" scaleY="-2" x="100" alpha="0.5"/>
 		<e:Rect height="100%" width="100%" y="0" strokeWeight="2" ellipseHeight="20" ellipseWidth="20" x="0" fillColor="0x180802" strokeColor="0xa38d6a"/>
 		<e:Label id="talkText" text="sdfasdfs" size="24" textColor="0xcbc08a" left="30" right="30" lineSpacing="5" top="20" bottom="20" verticalAlign="middle"/>

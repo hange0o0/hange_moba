@@ -46,7 +46,7 @@ class DayLogMoreUI extends game.BaseUI {
 
 
     public onShow(){
-        this.scroller.viewport.scrollV - 0;
+        this.scroller.viewport.scrollV = 0;
           this.pkResultGroup.renew()
     }
 

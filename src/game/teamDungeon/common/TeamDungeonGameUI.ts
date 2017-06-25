@@ -102,7 +102,7 @@ class TeamDungeonGameUI extends game.BaseUI {
     public renewEnemy(){
         var MM = MainGameManager.getInstance();
         //更新敌人
-        var specialData:any = {};
+        var specialData:any = {isOther:true};
         var enemyList = this.enemyArray = [];
         if(this.type == 'pve')
         {

@@ -14,11 +14,11 @@
 		<e:Image source="fire_top_jpg" x="0" scaleY="-1" y="107.95454545454527"/>
 		<e:Group id="leftBtn" y="1" x="10">
 			<e:Image id="la" source="arrow1_png" x="0" y="0"/>
-			<e:Label id="lt" text="上一个" x="55" textColor="0xCBB46B" height="100%" textAlign="center" verticalAlign="middle" size="28" y="0"/>
+			<e:Label id="lt" text="上一个" x="55" textColor="0xCBB46B" height="100%" textAlign="left" verticalAlign="middle" size="28" y="0" width="150"/>
 		</e:Group>
 		<e:Group id="rightBtn" y="1" right="10">
 			<e:Image id="ra" y="0" scaleX="-1" source="arrow3_png" right="0"/>
-			<e:Label id="rt" y="0" text="下一个一个" height="100%" verticalAlign="middle" textColor="0x734B41" size="28" right="55"/>
+			<e:Label id="rt" y="0" text="下一个一个" height="100%" verticalAlign="middle" textColor="0x734B41" size="28" right="55" width="150" textAlign="right"/>
 		</e:Group>
 		<e:Label id="pageText" text="1/11" textColor="0xCBB46B" size="24" y="20" x="299"/>
 		<e:Group id="pageGroup" y="4" horizontalCenter="1" visible="false">

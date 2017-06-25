@@ -102,6 +102,9 @@ class CollectItem extends game.BaseItem {
             case 5://胜率
                 this.desText.text = '胜率：'+MyTool.toFixed(((this.data.r || 0)*100),1) + '%'
                 break;
+            case 6://胜率
+                this.desText.text = '评分：'+Math.round(this.data.w * this.data.r);
+                break;
 
         }
 

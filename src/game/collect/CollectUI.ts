@@ -253,6 +253,9 @@ class CollectUI extends game.BaseUI {
             case 5://胜率
                 arr.sort(this.sortByRate)
                 break;
+            case 6://综合
+                arr.sort(this.sortByScore)
+                break;
         }
     }
     private sortByDefault(a,b){
@@ -345,6 +348,24 @@ class CollectUI extends game.BaseUI {
         if(a.r > b.r)
             return -1;
         if(a.r < b.r)
+            return 1;
+        if(a.openLevel < b.openLevel)
+            return -1;
+        if(a.openLevel > b.openLevel)
+            return 1;
+        if(a.id < b.id)
+            return -1;
+        return 1;
+    }
+
+    private sortByScore(a,b){
+        if(!a.toLast && b.toLast)
+            return -1;
+        if(a.toLast && !b.toLast)
+            return 1;
+        if(a.s > b.s)
+            return -1;
+        if(a.s < b.s)
             return 1;
         if(a.openLevel < b.openLevel)
             return -1;

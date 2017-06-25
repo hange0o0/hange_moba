@@ -86,6 +86,8 @@ class HonorManager{
         else
             data.r = 0;
 
+        data.s = data.w * data.r
+
         data.level = awardLevel;
         if(awardLevel == 5)
         {

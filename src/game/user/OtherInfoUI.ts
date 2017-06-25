@@ -247,6 +247,7 @@ class OtherInfoUI extends game.BaseUI {
 
 
         var specialData = {
+            isOther:true,
             isBase:true
         };
 

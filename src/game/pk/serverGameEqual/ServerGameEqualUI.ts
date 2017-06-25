@@ -97,6 +97,7 @@ class ServerGameEqualUI extends game.BaseUI {
         if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.gameid)
             data.enemy.userinfo = {head:0,nick:Base64.encode('神秘人'),level:'???',force:'???',win:'???',total:'???','exp':"???",max:'???'}
         var specialData = {
+            isOther:true,
             isEqual:true
         };
         var isTeam = false;

@@ -142,6 +142,7 @@ class PKResultGroup extends game.BaseContainer {
             var mid = team2Base.list[i]
             var specialData = team2Base.mb[mid];
             specialData.id = mid;
+            specialData.isOther = true;
             var oo = {
                 id:mid,
                 teamID:2,

@@ -13,6 +13,11 @@ class MonsterInfoBase extends game.BaseContainer {
     private coinText: eui.Label;
     private headMC: eui.Image;
     private typeMC: eui.Image;
+    private skillGroup: eui.Group;
+    private fightGroup: eui.Group;
+    private totalNumText: eui.Label;
+    private winNumText: eui.Label;
+    private winRateText: eui.Label;
     private list: eui.List;
     private levelUpCon: eui.Group;
     private levelUpCoinGroup: eui.Group;
@@ -23,6 +28,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private lockGroup: eui.Group;
     private levelDes: eui.Label;
     private talkText: eui.Label;
+
 
 
 
@@ -144,6 +150,7 @@ class MonsterInfoBase extends game.BaseContainer {
         var specialData = this.specialData
         var monsterID = vo.id;
 
+        var isMe = !specialData.isOther
 
         //其本信息
         this.headMC.source = vo.url;
@@ -166,6 +173,7 @@ class MonsterInfoBase extends game.BaseContainer {
         {
             var v = specialData.fight || 0;
             fightData = {atk:v,hp:v,speed:v};
+            isMe = false;
             //this.levelGroup.visible = false;
         }
         else if(specialData.atk && specialData.hp && specialData.speed)//pk中进来的，已带3围
@@ -308,6 +316,20 @@ class MonsterInfoBase extends game.BaseContainer {
         this.list.dataProvider = new eui.ArrayCollection(arr);
 
         this.talkText.text = '　' + this.vo.des
+
+
+        var honor = HonorManager.getInstance().getMonsterHonorData(monsterID)
+        if(isMe && honor.t)
+        {
+            this.skillGroup.addChildAt(this.fightGroup,0);
+            MyTool.setColorText(this.totalNumText,'[使用：]'+honor.t)
+            MyTool.setColorText(this.winNumText,'[胜利：]'+honor.w)
+            MyTool.setColorText(this.winRateText,'[胜率：]'+MyTool.toFixed(honor.w/honor.t*100,1) + '%')
+        }
+        else
+        {
+           MyTool.removeMC(this.fightGroup)
+        }
     }
 
     private changeTitle(str){

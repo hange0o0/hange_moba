@@ -294,6 +294,8 @@ class MonsterList extends game.BaseUI {
     //}
 
     public onShow(){
+        this.rt.text = ''
+        this.lt.text = ''
         GuideManager.getInstance().enableScrollV(this.scroller);
         var w = 93
         var h = 86
@@ -356,31 +358,53 @@ class MonsterList extends game.BaseUI {
 
         if(this.dataArray.length <2)
             return;
-        if(this.index > 0)
-        {
-            this.la.source = 'arrow1_png'
-            this.lt.textColor = 0xCBB46B
-            this.lt.text = MonsterVO.getObject(this.dataArray[this.index-1].id).name;
-        }
+        egret.Tween.removeTweens(this.lt)
+        var tw = egret.Tween.get(this.lt)
+        if(this.lt.text)
+            tw.to({scaleX:0},200)
         else
-        {
-            this.la.source = 'arrow3_png'
-            this.lt.textColor = 0x734B41
-            this.lt.text = ''
-        }
+            this.lt.scaleX = 0;
+        tw.call(function(){
+            if(this.index > 0)
+            {
+                this.la.source = 'arrow1_png'
+                this.lt.textColor = 0xCBB46B
 
-        if(this.index < this.dataArray.length-1)
-        {
-            this.ra.source = 'arrow1_png'
-            this.rt.textColor = 0xCBB46B
-            this.rt.text = MonsterVO.getObject(this.dataArray[this.index+1].id).name;
-        }
+                this.lt.text = MonsterVO.getObject(this.dataArray[this.index-1].id).name;
+            }
+            else
+            {
+                this.la.source = 'arrow3_png'
+                this.lt.textColor = 0x734B41
+                this.lt.text = ''
+            }
+        },this).to({scaleX:1},200)
+
+
+        egret.Tween.removeTweens(this.rt)
+        var tw = egret.Tween.get(this.rt)
+        if(this.rt.text)
+            tw.to({scaleX:0},200)
         else
-        {
-            this.ra.source = 'arrow3_png'
-            this.rt.textColor = 0x734B41
-            this.rt.text = ''
-        }
+            this.rt.scaleX = 0;
+        tw.call(function(){
+            if(this.index < this.dataArray.length-1)
+            {
+                this.ra.source = 'arrow1_png'
+                this.rt.textColor = 0xCBB46B
+                this.rt.text = MonsterVO.getObject(this.dataArray[this.index+1].id).name;
+            }
+            else
+            {
+                this.ra.source = 'arrow3_png'
+                this.rt.textColor = 0x734B41
+                this.rt.text = ''
+            }
+        },this).to({scaleX:1},200)
+
+
+
+
 
         this.pageText.text =  (this.index + 1) + '/' + this.dataArray.length;
 

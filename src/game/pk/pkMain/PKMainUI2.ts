@@ -755,7 +755,7 @@ class PKMainUI extends game.BaseUI {
             tw.to({x:10},300)
             var tw:egret.Tween = egret.Tween.get(this.playerGroup2);
             tw.to({x:322},300)
-
+            this.inPKer();
         }
         else
         {

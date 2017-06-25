@@ -96,7 +96,8 @@ class ServerGameUI extends game.BaseUI {
             data.enemy.userinfo = {head:0,nick:Base64.encode('神秘人'),level:'??',force:'???',win:'???',total:'???','exp':"???"}
 
         var specialData:any = {
-            isBase:true
+            isBase:true,
+            isOther:true
         };
         var isTeam = false;
         var arr = data.enemy.base.list;

@@ -89,7 +89,7 @@ class MyInfoUI extends game.BaseUI {
         this.addBtnEvent(this.addDiamondBtn, this.onAddDiamon);
         this.addBtnEvent(this.addEnergyBtn, this.onAddEnergy);
         this.addBtnEvent(this.addCardBtn, this.onAddCard);
-        this.addBtnEvent(this.editWordBtn, this.onChangeWord);
+        this.addBtnEvent(this.desText, this.onChangeWord);
 
         this.addBtnEvent(this.headGroup, this.onHead);
 

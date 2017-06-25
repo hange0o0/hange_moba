@@ -27,8 +27,8 @@
 							<e:Label text="更换头像" size="20" y="100" horizontalCenter="0" textColor="0xD19844"/>
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
-						<e:Label id="desText" x="124" y="48" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88" textColor="0xCCB48E"/>
 						<e:Label id="editWordBtn" text="..编辑宣言" right="10" bottom="10" size="22" textColor="0xafafaf"/>
+						<e:Label id="desText" x="124" y="48" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签" width="436" size="26" lineSpacing="5" height="88" textColor="0xCCB48E" verticalAlign="middle" textAlign="left"/>
 					</e:Group>
 					<e:Group x="0" y="109.09090909090907">
 						<e:Label id="levelText" y="8" text="等级：LV.32" x="60" textColor="0xCCB48E" size="30"/>
