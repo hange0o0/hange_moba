@@ -40,6 +40,7 @@
 					<e:Object label="使用次数"/>
 					<e:Object label="胜利次数"/>
 					<e:Object label="胜率排序"/>
+					<e:Object label="综合评分"/>
 				</e:Array>
 			</e:ArrayCollection>
 		</e:List>

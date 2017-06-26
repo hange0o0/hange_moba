@@ -5,13 +5,14 @@ class MainMapItem extends game.BaseItem {
     }
 
     private bgGroup: eui.Group;
-    private scoreText: eui.Label;
     private bg: eui.Image;
+    private scoreText: eui.Label;
     private lockMC: eui.Image;
     private desText: eui.Label;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
-    private awardBtn: eui.Group;
+    private redMC: eui.Image;
+
 
 
 
@@ -48,6 +49,7 @@ class MainMapItem extends game.BaseItem {
 
         this.lockMC.visible = UM.main_game.level < Config.mapLevel
         this.scoreText.visible = !this.lockMC.visible
+        this.redMC.visible = false;
         if(this.lockMC.visible)
         {
             this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.mapLevel) + '',0xE0A44A)+' 才可进入');
@@ -62,7 +64,10 @@ class MainMapItem extends game.BaseItem {
                 MD.reInit();
                 var awardMax = MD.getAwardMax();
                 if(MD.bag >= awardMax)
+                {
+                    this.redMC.visible = true;
                     this.setHtml(this.desText,'能量背包：' + this.createHtml(awardMax + '/' + awardMax,0xFFFF00));
+                }
                 else
                     this.desText.text = '能量背包：' + MD.bag + '/' + awardMax
             }

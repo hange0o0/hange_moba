@@ -28,12 +28,14 @@ class MapMainUI extends game.BaseUI {
     private desText: eui.Label;
     private awardText: eui.Label;
     private getBtn: eui.Button;
+    private redMC: eui.Image;
     private valueText: eui.Label;
     private exchangeBtn: eui.Button;
     private pkText: eui.Label;
     private pkBtn: eui.Button;
     private videoBtn: eui.Group;
     private timeText: eui.Label;
+
 
 
     private talkList = [];
@@ -397,6 +399,7 @@ class MapMainUI extends game.BaseUI {
         MyTool.setColorText(this.awardText,'[功勋背包：]' + MD.bag + '/' + MD.getAwardMax());
         MyTool.setColorText(this.valueText,'[功勋积累：]' + MD.value);
         MyTool.setColorText(this.pkText,'[通缉令：]' + MD.pkValue);
+        this.redMC.visible = MD.bag >= MD.getAwardMax();
 
         if(MD.enemy && MD.enemy.level == MD.level && !MD.enemy.is_pk)
         {

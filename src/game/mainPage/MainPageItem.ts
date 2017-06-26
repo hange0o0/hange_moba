@@ -1,7 +1,7 @@
 class MainPageItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "DebugUISkin";
+        this.skinName = "MainPageItemSkin";
     }
 
 
@@ -10,7 +10,9 @@ class MainPageItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        if(this.data)
+        if(this.data == 'red')
+            this.currentState = 'red';
+        else if(this.data)
             this.currentState = 'choose';
         else
             this.currentState = 'normal';

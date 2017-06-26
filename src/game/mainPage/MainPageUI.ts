@@ -739,7 +739,30 @@ class MainPageUI extends game.BaseUI {
 
         for(var i=0;i<this.pageArray.length;i++)
         {
-            this.pageArray[i].data = this.currentPage == i;
+            if(this.currentPage == i)
+            {
+                this.pageArray[i].data = true;
+            }
+            else
+            {
+                if(i==0 && !(UM.main_game.awardtime && DateUtil.isSameDay(UM.main_game.awardtime)))
+                    this.pageArray[i].data = 'red';
+                else if(i==2)
+                {
+                    var MD = MapData.getInstance();
+                    if(MD.lastTime) {
+                        MD.reInit();
+                        var awardMax = MD.getAwardMax();
+                        if (MD.bag >= awardMax)
+                            this.pageArray[i].data = 'red';
+                        else
+                            this.pageArray[i].data = false;
+                    } else
+                        this.pageArray[i].data = false;
+                }
+                else
+                    this.pageArray[i].data = false;
+            }
         }
     }
 

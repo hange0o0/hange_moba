@@ -28,10 +28,11 @@
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect height="1" width="400" x="48" y="74" fillColor="0x494747"/>
 	</e:Group>
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="5" locked="true">
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
+	<e:Image id="redMC" source="red_point_png" x="372" y="478"/>
 </e:Skin>

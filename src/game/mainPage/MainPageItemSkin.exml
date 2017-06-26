@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainPageItemSkin" width="30" height="30" currentState="normal" xmlns:e="http://ns.egret.com/eui" states="normal,choose,red" >
 	<e:Image source="point2_png" y="0" x="0" width="30" height="30" source.normal="point1_png" width.normal="20" height.normal="20" x.normal="5" y.normal="5" source.red="red_point_png"/>
+	<e:Group width="50" height="50" horizontalCenter="0" verticalCenter="0"/>
 </e:Skin>
