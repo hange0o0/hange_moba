@@ -48,10 +48,12 @@ class PKResultBase extends game.BaseContainer {
 
             if(this._desText.text)
                 this._desText.text += '\n';
-            if(PKManager.getInstance().pkType == PKManager.PKType.SERVER)
-                this._desText.text += '竞技场升到 '+award.gLevelUp+' 阶'
+            if(PKManager.getInstance().pkType == PKManager.PKType.MAIN)
+                this._desText.text += '职称升到 '+MainGameManager.getInstance().getStepName()
+            else if(PKManager.getInstance().pkType == PKManager.PKType.SERVER)
+                this._desText.text += '竞技场升到 '+ServerGameManager.getInstance().getStepName(UM.server_game.exp)
             else
-                this._desText.text += '修正场升到 '+award.gLevelUp+' 阶'
+                this._desText.text += '修正场升到 '+ServerGameEqualManager.getInstance().getStepName(UM.server_game_equal.exp)
             award.gLevelUp = 0;
             this.timer = egret.setTimeout(this.stepOne,this,300);
         }

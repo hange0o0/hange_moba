@@ -132,10 +132,14 @@ class SyncManager{
                         data.g_level_up = nowLevel;
                     break;
                 case 'sync_main_game':
+                    var lastLevel = MainGameManager.getInstance().getMainStepLevel()
                     for(ss in value)
                     {
                         UM.main_game[ss] = value[ss];
                     }
+                    var nowLevel = MainGameManager.getInstance().getMainStepLevel()
+                    if(nowLevel > lastLevel)
+                        data.g_level_up = nowLevel;
                     break;
                 case 'sync_day_game':
                     for(ss in value)
