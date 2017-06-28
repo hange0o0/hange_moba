@@ -101,19 +101,24 @@ class TeamDungeonItem extends game.BaseItem {
                     else
                         arr.push('[成员：]等待加入...');
                 }
-
+                this.desText.textAlign = 'left'
+                this.desText.lineSpacing = 5
                 MyTool.setColorText(this.desText,arr.join('\n'));
             }
             else
             {
-                this.desText.text = '邀请你的好友，组成战队一起来挑战吧';
+                this.desText.textAlign = 'center'
+                this.desText.lineSpacing = 10
+                this.desText.text = '邀请你的好友\n组成战队一起来挑战吧';
                 this.btn.label = '创建队伍'
             }
         }
         else
         {
             var cd = PM.getNextOpenTime();
-            this.desText.text = '邀请你的好友，组成战队一起来挑战吧';
+            this.desText.textAlign = 'center'
+            this.desText.lineSpacing = 10
+            this.desText.text = '邀请你的好友\n组成战队一起来挑战吧';
             this.cdText.text = '离开始还有：'+ DateUtil.getStringBySecond(cd);
             this.btn.visible = false;
         }

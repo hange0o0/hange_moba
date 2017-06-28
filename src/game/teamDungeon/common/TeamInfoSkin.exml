@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="TeamInfoSkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="TeamInfoSkin" width="580" height="660" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
-	<e:Label id="hardText" text="难度选择：" x="36" y="304" textColor="0xccb48e"/>
-	<e:Label id="forceText" y="355" text="战力上限：" x="86" textColor="0xccb48e" size="28"/>
-	<e:Label id="levelText" y="407" text="等级上限：" x="86" size="28" textColor="0xccb48e"/>
-	<e:Label text="加入该队伍后将不能加入其它队伍" size="22" textColor="0xfccf6c" horizontalCenter="0" bottom="125"/>
-	<e:Label id="nameText" y="108" text="队伍名称：" x="37" textColor="0xccb48e"/>
-	<e:Label y="155" text="队伍成员：" x="36" textColor="0xE0A44A"/>
+	<e:Label text="加入该队伍后将不能加入其它队伍" size="22" horizontalCenter="0" bottom="125" textColor="0x8c8c8c"/>
+	<e:Group y="300" horizontalCenter="0">
+		<e:Rect width="480" height="200" y="0" strokeWeight="1" strokeColor="0x703A05" fillAlpha="0.5" ellipseWidth="10" ellipseHeight="10" x="0"/>
+		<e:Label id="hardText" text="难度限制" y="18.789999999999964" textColor="0xE0A44A" size="24" horizontalCenter="0"/>
+		<e:Label id="forceText" y="80" text="战力上限：" x="40" textColor="0xCCB48E" size="24"/>
+		<e:Label id="levelText" y="120" text="等级上限：" x="40" textColor="0xCCB48E" size="24"/>
+		<e:Rect width="440" height="1" y="60" fillColor="0x6B4D21" x="20"/>
+	</e:Group>
+	<e:Label id="nameText" y="108" text="队伍名称：" x="45" textColor="0xccb48e" size="24"/>
+	<e:Label y="155" text="队伍成员：" x="45" textColor="0xE0A44A" size="24"/>
 	
 	
 	
@@ -18,7 +22,7 @@
 			<e:HorizontalLayout gap="30"/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="187" y="155">
+	<e:Group x="165" y="155">
 		<e:Group id="player0" y="0" x="0" width="100" height="127">
 			<e:Image id="headMC0" y="5" width="90" height="90" x="5" source="head_png"/>
 			<e:Image source="head_border1_png" y="0" x="0" width="100" height="100"/>

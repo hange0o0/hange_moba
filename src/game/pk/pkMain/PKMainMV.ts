@@ -197,6 +197,7 @@ class PKMainMV {
         mc.x = from.x;
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
+        //mc.scaleY = 0.3;
         var tw:egret.Tween = egret.Tween.get(mc);
         tw.to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
             //MyTool.removeMC(mc);
@@ -229,8 +230,9 @@ class PKMainMV {
         mc.x = from.x;
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
+        mc.scaleY = 0.5;
         var tw:egret.Tween = egret.Tween.get(mc);
-        tw.to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
+        tw.to({y:to.y,x:to.x,scaleY:1}, 0.8*dis,egret.Ease.sineIn).call(function(){
             //MyTool.removeMC(mc);
             MyTool.removeMC(mc);
             if(fun)
@@ -270,10 +272,11 @@ class PKMainMV {
         mc.x = from.x;
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
+        mc.scaleY = 0.5;
         var tw:egret.Tween = egret.Tween.get(mc);
         tw.wait(cd).call(function(){
             baseFrom.parent.addChild(mc);
-        }).to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
+        }).to({y:to.y,x:to.x,scaleY:1}, 0.8*dis,egret.Ease.sineIn).call(function(){
             MyTool.removeMC(mc);
         });
     }

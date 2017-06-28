@@ -21,6 +21,7 @@ class MainMapItem extends game.BaseItem {
 
 
     public index;
+    public haveRenew = false
 
     public childrenCreated() {
         this.addBtnEvent(this.startBtn, this.onStart,true);
@@ -37,6 +38,7 @@ class MainMapItem extends game.BaseItem {
 
 
     public renew() {
+        this.haveRenew = true;
         this.bg.source = 'main5_png'
 
         var MD = MapData.getInstance();

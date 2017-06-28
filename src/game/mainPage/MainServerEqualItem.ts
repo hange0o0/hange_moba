@@ -19,6 +19,7 @@ class MainServerEqualItem extends game.BaseItem {
 
 
     public index;
+    public haveRenew = false
 
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
@@ -42,6 +43,7 @@ class MainServerEqualItem extends game.BaseItem {
     }
 
     public renew() {
+        this.haveRenew = true;
         this.bg.source = 'main4_png'
         //{"choose":null,"exp":0,"win":0,"total":0,"last":0,"time":0,"pkdata":null,"pk":0}
         var serverData = UM.server_game_equal;

@@ -1,11 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="CreateTeamUISkin" width="580" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
-	<e:Label text="难度选择：" x="36" y="170" textColor="0xe0a44a"/>
-	<e:Label id="forceText" y="243" text="战力上限：" x="86" textColor="0xccb48e" size="28"/>
-	<e:Label id="levelText" y="295" text="等级上限：" x="86" textColor="0xccb48e" size="28"/>
-	<e:Label text="创建队伍后将不能加入其它队伍" size="22" textColor="0xfccf6c" horizontalCenter="0" bottom="125"/>
-	<e:Label y="108" text="队伍名称：" x="37" textColor="0xe0a44a"/>
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin" locked="true"/>
+	<e:Label text="难度选择：" x="45" y="176.06" textColor="0xe0a44a" size="24"/>
+	<e:Label text="创建队伍后将不能加入其它队伍" size="22" horizontalCenter="0" bottom="125" textColor="0x8c8c8c"/>
+	<e:Label y="114.06" text="队伍名称：" x="45" textColor="0xe0a44a" size="24"/>
 	<e:Group y="100" x="175">
 		<e:TextInput id="nameText" width="270" y="2" skinName="MyTextInputSkin" height="50" x="0" text="12345671234567"/>
 		<e:Group id="randomBtn" y="0" right="-50">
@@ -27,11 +25,18 @@
 			<e:HorizontalLayout gap="30"/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="185" y="163.92">
+	<e:Group x="50" y="230">
+		<e:Rect width="480" height="200" y="0" strokeWeight="1" strokeColor="0x703a05" fillAlpha="0.5" ellipseWidth="10" ellipseHeight="10" x="0"/>
+		<e:Label text="难度限制" y="18.789999999999964" textColor="0xE0A44A" size="24" horizontalCenter="0"/>
+		<e:Label id="forceText" y="80" text="战力上限：" x="40" textColor="0xccb48e" size="24"/>
+		<e:Label id="levelText" y="120" text="等级上限：" x="40" textColor="0xccb48e" size="24"/>
+		<e:Rect width="440" height="1" y="60" fillColor="0x6b4d21" x="20"/>
+	</e:Group>
+	<e:Group x="175.91" y="169.98" locked="true">
 		<e:Image source="border6_png" y="-1.4210854715202004e-14" scale9Grid="14,6,88,18" width="350" height="41" x="0"/>
 		<e:Image source="icon_add_png" y="4.090909090909079" id="sortBtn" right="10"/>
 		<e:Label id="sortText" y="8" textColor="0xCCB48E" text="标签标签标签" textAlign="left" width="300" size="26" x="10"/>
-		<e:Group id="sortGroup" y="36" x="0">
+		<e:Group id="sortGroup" y="36" x="0" visible="false">
 			<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="350" height="100%" x="0"/>
 			<e:List top="6" id="sortList" bottom="6" width="340" itemRendererSkinName="HonorSortItemSkin" x="5">
 				<e:layout>

@@ -18,6 +18,7 @@ class MainMainItem extends game.BaseItem {
 
 
     public index;
+    public haveRenew = false
 
     public childrenCreated() {
         this.addBtnEvent(this.awardBtn, this.onAward);
@@ -42,6 +43,7 @@ class MainMainItem extends game.BaseItem {
     }
 
     public renew() {
+        this.haveRenew = true;
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         var mainData = UM.main_game;
         var level = mainData.level;

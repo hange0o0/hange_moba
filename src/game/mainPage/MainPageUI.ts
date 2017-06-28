@@ -462,6 +462,8 @@ class MainPageUI extends game.BaseUI {
             item1.visible = true
             item1.scaleX = item1.scaleY = rate/2 + 0.5
             item1.alpha = rate;
+            if(!item1.haveRenew)
+                item1.renew()
         }
 
         if(item2)
@@ -469,6 +471,8 @@ class MainPageUI extends game.BaseUI {
             item2.visible = true
             item2.scaleX = item2.scaleY = (1-rate)/2 + 0.5
             item2.alpha = (1-rate);
+            if(!item2.haveRenew)
+                item2.renew()
         }
 
         for(var i=0;i<this.gameItems.length;i++)

@@ -11,13 +11,14 @@ class OtherInfoUI extends game.BaseUI {
     private headMC: eui.Image;
     private nameText: eui.Label;
     private desText: eui.Label;
-    private friendBtn: eui.Button;
+    private landText: eui.Label;
     private deleteBtn: eui.Button;
     private talkBtn: eui.Button;
     private pkBtn: eui.Button;
+    private friendBtn: eui.Button;
+    private friendDesText: eui.Label;
     private levelText: eui.Label;
     private forceText: eui.Label;
-    private landText: eui.Label;
     private friendGroup: eui.Group;
     private friendText: eui.Label;
     private friendWin: eui.Label;
@@ -36,6 +37,7 @@ class OtherInfoUI extends game.BaseUI {
     private serverEqualText5: eui.Label;
     private serverEqualText4: eui.Label;
     private list: eui.List;
+
 
 
 
@@ -101,6 +103,7 @@ class OtherInfoUI extends game.BaseUI {
         var self = this;
         FriendManager.getInstance().apply(this.dataIn.gameid,function(){
             self.friendBtn.visible = false;
+            self.friendDesText.text = '已发出好友请求'
         })
     }
 
@@ -154,6 +157,7 @@ class OtherInfoUI extends game.BaseUI {
 
         var FM = FriendManager.getInstance();
         MyTool.removeMC(this.friendGroup)
+        this.friendDesText.text = ''
         if(FM.friendData[this.dataIn.gameid])//是好友
         {
             this.friendBtn.visible = false;
@@ -179,9 +183,9 @@ class OtherInfoUI extends game.BaseUI {
             }
 
             var rate = MyTool.toFixed(win/((win + fail) || 1)*100,1);
-            this.friendWin.text = '胜利：' + win
-            this.friendFail.text = '失败：' + fail
-            this.friendText.text = '胜率：'+rate+'%'
+            MyTool.setColorText(this.friendWin,'[胜利：]' + win);
+            MyTool.setColorText(this.friendFail,'[失败：]' + fail)
+            MyTool.setColorText(this.friendText,'[胜率：]'+rate+'%')
         }
         else
         {
@@ -189,6 +193,8 @@ class OtherInfoUI extends game.BaseUI {
             this.pkBtn.visible = false;
             this.deleteBtn.visible = false;
             this.friendBtn.visible =  this.dataIn.level >= Config.friendLevel;
+            if(!this.friendBtn.visible)
+                this.friendDesText.text = '对方等级过低，无法审请好友'
         }
 
 

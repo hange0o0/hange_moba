@@ -137,7 +137,7 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
-            mc:"PKResultUI.getInstance().list.getChildAt(0)",
+            mc:"PKResultUI.getInstance().pkResultGroup.list.getChildAt(0)",
             text:'战场的变化果然瞬息万变,卡卡刚刚还没看清楚，战斗就结束了！让我们一起看看在首轮PK过程中，到底发生了什么',
         })
 

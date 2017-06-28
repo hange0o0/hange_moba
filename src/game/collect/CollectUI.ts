@@ -64,11 +64,13 @@ class CollectUI extends game.BaseUI {
     }
 
     private onSort(){
-        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideSort,this);
+        GameManager.stage.once(egret.TouchEvent.TOUCH_TAP,this.onHideSort,this,true);
         this.sortGroup.visible = true;
     }
 
-    private onHideSort(){
+    private onHideSort(e?){
+        if(e)
+            e.stopImmediatePropagation()
         this.sortGroup.visible = false;
     }
 
@@ -189,6 +191,8 @@ class CollectUI extends game.BaseUI {
 
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
+        if(GuideManager.getInstance().isGuiding)
+            this.sortList.selectedIndex = 0;
         this.renew();
         this.addPanelOpenEvent(GameEvent.client.collect_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renew);

@@ -25,5 +25,5 @@
 		</e:ArrayCollection>
 	</e:TabBar>
 
-	<e:Label id="emptyText" text="当前没有排行数据" y="332" horizontalCenter="0"/>
+	<e:Label id="emptyText" text="当前没有排行数据加把劲你就是第一名了" y="332" horizontalCenter="0" textColor="0xccb48e" size="24" textAlign="center" lineSpacing="20"/>
 </e:Skin>

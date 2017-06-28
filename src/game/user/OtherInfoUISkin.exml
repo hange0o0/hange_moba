@@ -9,7 +9,7 @@
 
 
 
-			<e:Group id="topGroup" x="50" y="20" height="260">
+			<e:Group id="topGroup" x="50" y="20" height="300">
 				<e:Group x="0" top="0" bottom="0" locked="true">
 					<e:Image source="book_bg2_jpg" scaleX="-1" scale9Grid="40,44,240,266" x="640" height="300" bottom="0"/>
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" x="0" height="300" bottom="0"/>
@@ -27,7 +27,8 @@
 						<e:Label id="nameText" text="标签标签" x="124" y="7" textColor="0xD19844"/>
 						<e:Label id="desText" x="125" y="43" text="标签标签标签标签标签标签标签标签标签标签标签标签" width="442" size="26" lineSpacing="5" textColor="0xCCB48E"/>
 						<e:Label id="landText" text="该玩家已超过 7 天没登录" y="19" size="18" textAlign="right" verticalAlign="middle" textColor="0xCCB48E" x="367"/>
-						<e:Group y="165" horizontalCenter="0.5">
+						<e:Label id="friendDesText" y="204" text="战力：12345" textColor="0xCCB48E" horizontalCenter="0.5" size="24"/>
+						<e:Group y="189" horizontalCenter="1">
 							<e:Button id="deleteBtn" label="删除" y="0" x="219.01515151515156" skinName="Btn_b2Skin"/>
 							<e:Button id="talkBtn" skinName="Btn_r2Skin" label="聊天" y="0" x="113.03030303030306"/>
 							<e:Button id="pkBtn" skinName="Btn_r2Skin" label="挑战" y="0" x="0"/>
@@ -35,9 +36,9 @@
 								<e:HorizontalLayout gap="10"/>
 							</e:layout>
 						</e:Group>
-						<e:Button id="friendBtn" label="加好友" y="163" skinName="Btn_r2Skin" horizontalCenter="0"/>
+						<e:Button id="friendBtn" label="加好友" y="187" skinName="Btn_r2Skin" horizontalCenter="0"/>
 					</e:Group>
-					<e:Group x="0" y="110">
+					<e:Group x="0" y="120">
 						<e:Group y="4" x="0">
 							<e:Label id="levelText" y="5" textColor="0xCCB48E" text="等级：LV.32" x="50"/>
 							<e:Image source="icon_lv_png" y="0" x="0"/>

@@ -116,7 +116,21 @@ class PKManager {
 
     public reChooseMyCard(){
         var self = this;
-        var cost = UM.getMyCard().num;
+        var myCard = UM.getMyCard();
+        var task = myCard.task;
+        var cost = myCard.num;
+        if(task && task.current >= task.num)
+        {
+            Confirm('当前卡组剩余使用次数：'+cost+'\n确定 '+MyTool.createHtml('马上',0xE0A44A)+' 更换新的卡组吗？',function(v){
+                if(v == 1)
+                {
+                    self.getMyCard()
+                }
+            })
+            return;
+        }
+
+
         Confirm('当前卡组剩余使用次数：'+cost+'\n确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石选择新的卡组吗？',function(v){
             if(v == 1)
             {
@@ -908,6 +922,13 @@ class PKManager {
         for(var i=0;i<teamBase.list.length;i++)
         {
             var mid = teamBase.list[i]
+            if(!mid)
+            {
+                teamBase.list.splice(i,1);
+                i--;
+                console.log(999999999999)
+                continue;
+            }
             var specialData = teamBase.mb[mid];
             specialData.isOther = teamBase.team == 2;
             var oo = {

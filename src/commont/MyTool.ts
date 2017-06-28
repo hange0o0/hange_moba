@@ -139,8 +139,9 @@ class MyTool {
     public static setHtml(txt,str){
         txt.textFlow = new egret.HtmlTextParser().parser(str);
     }
-    public static setColorText(txt,str){
-        str = str.replace(/\[/g,'<font color="#E0A44A">')
+    public static setColorText(txt,str,color?){
+        color = color || '#E0A44A'
+        str = str.replace(/\[/g,'<font color="'+color+'">')
         str = str.replace(/\]/g,'</font>')
         this.setHtml(txt,str);
     }

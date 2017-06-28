@@ -160,8 +160,8 @@
 						<e:Image source="icon_pvp_ticket_png" y="0" x="332"/>
 						<e:Label id="mainAward4" x="378" y="5" textColor="0xCCB48E" text="1234"/>
 					</e:Group>
-						<e:Image source="main_mc_png" scaleY="-0.6" scaleX="0.6" right="-20" top="0"/>
-						<e:Image source="main_mc_png" scaleX="-0.6" scaleY="-0.6" left="-20" top="0"/>
+						<e:Image source="main_mc_png" scaleY="-0.6" scaleX="0.6" right="-20" top="-20"/>
+						<e:Image source="main_mc_png" scaleX="-0.6" scaleY="-0.6" left="-20" top="-20"/>
 					</e:Group>
 					<e:Group x="0" y="305" height="180">
 					<e:Image source="card_bg_png" y="35" width="600" height="130" scale9Grid="69,57,108,126" horizontalCenter="0"/>
@@ -218,7 +218,7 @@
 					</e:List>
 					</e:Group>
 					<e:layout>
-					<e:VerticalLayout gap="15" horizontalAlign="center"/>
+					<e:VerticalLayout gap="15" horizontalAlign="center" paddingTop="20"/>
 					</e:layout>
 				</e:Group>
 				<e:Image id="honorRed" source="red_point_png" y="-2" right="5"/>

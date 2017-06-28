@@ -808,7 +808,7 @@ class PKMainUI extends game.BaseUI {
     private showRoundMovie(){
         this.roundGroup.visible = true;
         this.addChild(this.roundGroup);
-        this.roundGroup.y = this.upGroup.y + 230
+        this.roundGroup.y = this.upGroup.y + 260
         //this.roundGroup.skewX = 0;
         //this.roundMC1.x = 0
         //this.roundMC2.x = 360
@@ -977,7 +977,7 @@ class PKMainUI extends game.BaseUI {
         tw.to({alpha:1}, 300).call(function(){
             item.moving = false;
             item.showStar(star)
-            if(this.random() > 0.5)
+            if(this.random() > 0.8)
                 this.itemTalk(item);
         },this)
     }
@@ -998,7 +998,7 @@ class PKMainUI extends game.BaseUI {
         item.parent.addChild(item);
         var dis = Math.max(400,MyTool.getDis(pos,item));
         tw.to({scaleX:1.3,scaleY:1.3}, 300,egret.Ease.sineOut).to({scaleX:1.2,scaleY:1.2}, 200).to({scaleX:1.3,scaleY:1.3}, 200).
-            to({x:pos.x,y:pos.y,scaleX:0.85,scaleY:0.85}, dis/2).call(function(){
+            to({x:pos.x,y:pos.y,scaleX:0.8,scaleY:0.8}, dis/2).call(function(){
                 item.showStar(3)
                 item.moving = false;
                 this.itemTalk(item);
@@ -1938,7 +1938,7 @@ class PKMainUI extends game.BaseUI {
                 break;
         }
 
-        if(this.random() < 0.1)
+        if(this.random() < 0.2)
             this.showPKWord()
     }
 

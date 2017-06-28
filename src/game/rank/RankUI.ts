@@ -31,6 +31,8 @@ class RankUI extends game.BaseUI {
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.emptyText.visible = false;
+        this.emptyText.text = '当前没有排行数据\n加把劲你就是第一名了';
+
 
         this.tab.addEventListener(eui.ItemTapEvent.CHANGE, this.typeBarClick, this);
         //this.addBtnEvent(this, this.onClick);

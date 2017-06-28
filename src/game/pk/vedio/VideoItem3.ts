@@ -115,6 +115,7 @@ class VideoItem3 extends game.BaseItem {
         this.bottomLine.visible = this.stopClick
         if(data.type == 'over')
         {
+            //this.bg.fillColor = 0x000000
             this.hpGroup.visible = false;
             this.currentState = 'team1'
             this.roundText.text = '战斗结束'
@@ -132,6 +133,7 @@ class VideoItem3 extends game.BaseItem {
             //group.height = 600;
             return;
         }
+        //this.bg.fillColor = 0x111111
         var base = data[0];
         this.index = base.index;
         var atker = VC.getPlayerByID(base.atker);
@@ -166,8 +168,8 @@ class VideoItem3 extends game.BaseItem {
         }
 
         this.hpGroup.visible = true;
-        var decColor = 0xFF0000
-        var addColor = 0x00FF00
+        var decColor = 0x660000
+        var addColor = 0x006600
         var barWidth = 317;
         var chooseData = this.data;
         var item = chooseData[chooseData.length - 1];

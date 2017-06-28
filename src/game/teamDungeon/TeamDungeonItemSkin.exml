@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="TeamDungeonItemSkin" width="620" height="320" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bg" source="team1_jpg" x="5" y="15.64"/>
-	<e:Rect width="200" height="290" x="15" y="12.6" fillAlpha="0.7"/>
-	<e:Image source="black_bg_png" x="215" y="14.12" width="300" height="290"/>
-	<e:Image source="black_bg_png" x="25" y="28.68" width="250" height="50"/>
-	<e:Image x="0" y="0" width="100%" height="100%" source="dungeon_bg_png" scale9Grid="33,37,536,109"/>
-	<e:Group y="25.16" id="helpBtn" right="20" x="20">
+<e:Skin class="TeamDungeonItemSkin" width="620" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="team1_jpg" x="5" y="71"/>
+	<e:Image source="bar_dungeon_png" y="80" scale9Grid="66,65,402,38" height="260" horizontalCenter="0" scaleX="1.1" scaleY="1.1"/>
+	<e:Image source="bar_dungeon_title_png" y="0" scaleX="0.8" scaleY="0.8" horizontalCenter="0"/>
+	<e:Rect width="610" height="90" fillAlpha="0.7" horizontalCenter="0" bottom="10"/>
+	<e:Image x="0" y="56" width="100%" source="dungeon_bg_png" scale9Grid="33,37,536,109" height="460"/>
+	<e:Group id="helpBtn" right="30" x="20" bottom="35">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
-		<e:Label y="10" textColor="0xF8D05A" horizontalCenter="0" text="?"/>
+		<e:Label textColor="0xF8D05A" text="?" horizontalCenter="0" verticalCenter="0"/>
 	</e:Group>
-	<e:Button id="btn" label="按钮" x="435.36" y="238.64" skinName="Btn_r2Skin"/>
-	<e:Label id="titleText" text="标签" x="34.12" y="37.15" size="35" bold="true" strokeColor="0x000000" textColor="0xe0a44a"/>
-	<e:Label id="desText" x="49.12" y="95" text="标签" size="24" textColor="0xccb48e" stroke="1"/>
-	<e:Label id="cdText" y="262.24" text="标签" x="40" size="24" textColor="0xccb48e" stroke="1"/>
+	<e:Button id="btn" label="按钮" skinName="Btn_r2Skin" horizontalCenter="0" bottom="30"/>
+	<e:Label id="titleText" text="标签" y="12.24" size="28" bold="true" strokeColor="0x211b17" stroke="2" textColor="0xd6b29a" horizontalCenter="0"/>
+	<e:Label id="desText" text="标签" size="24" textColor="0xccb48e" stroke="2" horizontalCenter="0" verticalCenter="-40" textAlign="center" lineSpacing="10" width="300"/>
+	<e:Label id="cdText" text="标签" size="24" textColor="0xccb48e" stroke="2" bottom="106" horizontalCenter="0"/>
 </e:Skin>

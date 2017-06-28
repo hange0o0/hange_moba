@@ -18,6 +18,7 @@ class MainDayItem extends game.BaseItem {
 
 
     public index;
+    public haveRenew = false
 
     public childrenCreated() {
         this.addBtnEvent(this.startBtn, this.onStart,true);
@@ -28,6 +29,7 @@ class MainDayItem extends game.BaseItem {
     }
 
     public renew() {
+        this.haveRenew = true;
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         this.bg.source = 'main2_png'
 

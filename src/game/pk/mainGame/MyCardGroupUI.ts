@@ -64,7 +64,9 @@ class MyCardGroupUI extends game.BaseItem {
         this.taskRateText.text = Math.min(task.current,task.num)+'/'+task.num;
         if(task.current >= task.num)
         {
-            this.taskRateText.text = '已完成'
+            this.taskRateText.text = ''
+            MyTool.setColorText(this.taskText,'你的卡组任务已完成，可[免费]更换卡组');
+            return task.mid;
         }
 
         var numStr = '['+task.num+']';

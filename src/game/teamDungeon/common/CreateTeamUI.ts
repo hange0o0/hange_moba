@@ -57,13 +57,16 @@ class CreateTeamUI extends game.BaseWindow {
     private onSelect(){
         SharedObjectManager.instance.setValue('team_hard',this.sortList.selectedIndex)
         this.renewSelect()
+        this.sortGroup.visible = false;
     }
     private onOpen(){
-        GameManager.stage.once(egret.TouchEvent.TOUCH_END,this.onHideSort,this);
+        GameManager.stage.once(egret.TouchEvent.TOUCH_TAP,this.onHideSort,this,true);
         this.sortGroup.visible = true;
     }
 
-    private onHideSort(){
+    private onHideSort(e?){
+        if(e)
+            e.stopImmediatePropagation()
         this.sortGroup.visible = false;
     }
 

@@ -62,7 +62,7 @@
 			<e:Label id="totalNumText" text="Label" x="20" size="24" textColor="0xcbc08a" y="14"/>
 			<e:Label id="winNumText" text="Label" x="210" size="24" textColor="0xCBC08A" y="14"/>
 			<e:Label id="winRateText" text="Label" x="400" size="24" textColor="0xCBC08A" y="14"/>
-			<e:Rect width="100%" height="1" x="0" y="50" fillColor="0x8F7B5C"/>
+			<e:Rect height="1" y="50" fillColor="0x8F7B5C" left="20" right="20"/>
 		</e:Group>
 		<e:List id="list" x="0" itemRendererSkinName="MonsterInfoBaseItemSkin" y="0">
 			<e:layout>
