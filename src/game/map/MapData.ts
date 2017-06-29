@@ -259,7 +259,7 @@ class MapData {
     public getBoss(){
          var base = {
              atk:90,
-             hp:1000,
+             hp:600,
              speed:50,
          }
         var force =Math.pow(1+this.level/2,1.3);

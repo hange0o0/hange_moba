@@ -37,8 +37,8 @@
 					<e:Object label="默认排序"/>
 					<e:Object label="等级升序"/>
 					<e:Object label="等级降序"/>
-					<e:Object label="使用次数"/>
-					<e:Object label="胜利次数"/>
+					<e:Object label="使用场数"/>
+					<e:Object label="胜利场数"/>
 					<e:Object label="胜率排序"/>
 					<e:Object label="综合评分"/>
 				</e:Array>

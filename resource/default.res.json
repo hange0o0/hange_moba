@@ -5,7 +5,7 @@
 			"name":"js"
 		},
 		{
-			"keys":"main4_png,main1_png,main2_png,main3_png,team1_jpg,main5_png",
+			"keys":"main4_png,main1_png,main2_png,main3_png,team1_jpg,main5_png,team2_jpg",
 			"name":"build"
 		},
 		{
@@ -33,7 +33,7 @@
 			"name":"preload2_png"
 		},
 		{
-			"keys":"head_border_light1_png,head_border_light3_png,border_light_png,border_light1_png,border_light3_png,black_bg_png,main_bottom_mv_png,monster_type1_png,monster_type2_png,monster_type3_png",
+			"keys":"head_border_light1_png,head_border_light3_png,border_light_png,border_light1_png,border_light3_png,black_bg_png,main_bottom_mv_png,monster_type1_png,monster_type2_png,monster_type3_png,black_bg2_png",
 			"name":"preload2_png32"
 		},
 		{
@@ -1719,6 +1719,16 @@
 			"name":"bar_dungeon_title_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/bar_dungeon_title.png"
+		},
+		{
+			"name":"team2_jpg",
+			"type":"image",
+			"url":"game_assets/build/team2.jpg"
+		},
+		{
+			"name":"black_bg2_png",
+			"type":"image",
+			"url":"game_assets/preload2_png32/black_bg2.png"
 		}
 	]
 }

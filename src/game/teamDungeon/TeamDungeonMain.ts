@@ -79,7 +79,7 @@ class TeamDungeonMain extends game.BaseUI {
         }
     }
     private renew(){
-        var arr = ['pve'];
+        var arr = ['pve','pvp'];
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 }

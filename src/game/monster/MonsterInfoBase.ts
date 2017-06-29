@@ -322,8 +322,8 @@ class MonsterInfoBase extends game.BaseContainer {
         if(isMe && honor.t)
         {
             this.skillGroup.addChildAt(this.fightGroup,0);
-            MyTool.setColorText(this.totalNumText,'[使用：]'+honor.t)
-            MyTool.setColorText(this.winNumText,'[胜利：]'+honor.w)
+            MyTool.setColorText(this.totalNumText,'[使用：]'+honor.t + '场')
+            MyTool.setColorText(this.winNumText,'[胜利：]'+honor.w + '场')
             MyTool.setColorText(this.winRateText,'[胜率：]'+MyTool.toFixed(honor.w/honor.t*100,1) + '%')
         }
         else

@@ -76,7 +76,7 @@ class RankUI extends game.BaseUI {
     public renewRank(){
         this.topUI.setTitle(this.tab.selectedItem.label);
         var arr = RankManager.getInstance().getRankList(this.tab.selectedIndex+1);
-        this.emptyText.visible = arr.length == 0;
+        this.emptyText.visible = arr.length <= 1;
         this.list.dataProvider = new eui.ArrayCollection(arr);
     }
 

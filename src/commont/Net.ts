@@ -39,7 +39,7 @@ class Net extends egret.EventDispatcher{
         if(_get['debug_server'])
             oo.debug_server = 1;
         if(_get['new_version'])
-            oo.new_version = 1;
+            oo.new_version = _get['new_version'];
 
         variables.variables = oo;
         //(<any>variables.variables).msg = JSON.stringify(msg);

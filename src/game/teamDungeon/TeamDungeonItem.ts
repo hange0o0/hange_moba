@@ -51,6 +51,10 @@ class TeamDungeonItem extends game.BaseItem {
         {
             this.renewPVE();
         }
+        else if(this.data == 'pvp')
+        {
+            this.renewPVP();
+        }
 
         this.onTimer();
     }
@@ -60,6 +64,14 @@ class TeamDungeonItem extends game.BaseItem {
         {
             this.pveTimer();
         }
+        else if(this.data == 'pvp')
+        {
+            this.pvpTimer();
+        }
+    }
+
+    private pvpTimer(){
+
     }
 
     private pveTimer(){
@@ -126,6 +138,20 @@ class TeamDungeonItem extends game.BaseItem {
 
     private renewPVE(){
         this.bg.source = 'team1_jpg';
+        MyTool.changeGray(this.bg,false)
         this.titleText.text = TeamDungeonManager.DungeonName.pve;
+    }
+
+    private renewPVP(){
+        this.bg.source = 'team2_jpg';
+        MyTool.changeGray(this.bg,true);
+        this.titleText.text = TeamDungeonManager.DungeonName.pvp;
+
+        this.desText.textAlign = 'center'
+        this.desText.lineSpacing = 10
+        this.desText.text = '即将开放\n敬请期待';
+        this.cdText.text = '';
+        this.btn.visible = false;
+        this.helpBtn.visible = false;
     }
 }

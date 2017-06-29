@@ -6,7 +6,8 @@ class TeamDungeonManager {
         return this._instance;
     }
     public static DungeonName = {
-        'pve':'亡者墓园'
+        'pve':'亡者墓园',
+        'pvp':'幻蓝森林'
     }
 
     public hardData = [

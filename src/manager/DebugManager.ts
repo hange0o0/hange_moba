@@ -120,7 +120,7 @@ class DebugManager {
         var returnArr = [];
         var PKM = PKManager.getInstance();
         var index = 0;
-        while(PKM.getCost(returnArr) < 80)
+        while(PKM.getCost(returnArr) < 85)
         {
             returnArr = testCard.concat();
             for(var i=0;i<30;i++)
@@ -279,7 +279,7 @@ class DebugManager {
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
-    public testAllCard(time2 = 2048,testCard=null){
+    public testAllCard(time2 = 1024,testCard=null){
        var key = TM.now();
        var arr = this.winCardArr = [];
        var self = this;
@@ -349,7 +349,7 @@ class DebugManager {
         }
         dataIn.team1 = {"list":card1,"ring":{"id":1,"level":1}}
         dataIn.team2 = {"list":card2,"ring":{"id":1,"level":1}}
-        dataIn.need_server = needServer
+        //dataIn.need_server = needServer
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
             if(msg.result==1)

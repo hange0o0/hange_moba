@@ -8,7 +8,9 @@ class CollectItem extends game.BaseItem {
     private arrowMC: eui.Image;
     private levelText: eui.Label;
     private nameText: eui.Label;
+    private desBG: eui.Group;
     private desText: eui.Label;
+
 
 
 
@@ -82,6 +84,7 @@ class CollectItem extends game.BaseItem {
     public renewDes(){
         if(this.data.toLast)
         {
+            this.desBG.visible = false
             this.desText.text = '';
             return;
         }
@@ -107,6 +110,7 @@ class CollectItem extends game.BaseItem {
                 break;
 
         }
+        this.desBG.visible = this.desText.text && true;
 
     }
 
