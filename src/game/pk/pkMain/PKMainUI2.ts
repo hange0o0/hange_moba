@@ -20,15 +20,13 @@ class PKMainUI extends game.BaseUI {
     private downBG: eui.Group;
     private roleCon: eui.Group;
     private effectCon: eui.Group;
-    private hpGroup0: PKMainHp;
-    private hpGroup1: PKMainHp;
     private skillGroup: eui.Group;
     private skillText: eui.Label;
     private upGroup: eui.Group;
     private playerGroup1: eui.Group;
-    private hpBar0_: eui.Rect;
-    private hpBar0: eui.Rect;
-    private hpText0: eui.Label;
+    private ms0: eui.Image;
+    private ms1: eui.Image;
+    private ms2: eui.Image;
     private mpBar0: eui.Rect;
     private mpText0: eui.Label;
     private apBar0: eui.Rect;
@@ -40,9 +38,9 @@ class PKMainUI extends game.BaseUI {
     private defText0: eui.Label;
     private statList0: eui.Group;
     private playerGroup2: eui.Group;
-    private hpBar1_: eui.Rect;
-    private hpBar1: eui.Rect;
-    private hpText1: eui.Label;
+    private es2: eui.Image;
+    private es1: eui.Image;
+    private es0: eui.Image;
     private mpBar1: eui.Rect;
     private mpText1: eui.Label;
     private apBar1: eui.Rect;
@@ -53,12 +51,14 @@ class PKMainUI extends game.BaseUI {
     private speedText1: eui.Label;
     private atkText1: eui.Label;
     private statList1: eui.Group;
-    private ms0: eui.Image;
-    private ms1: eui.Image;
-    private ms2: eui.Image;
-    private es2: eui.Image;
-    private es1: eui.Image;
-    private es0: eui.Image;
+    private hpGroup0: eui.Group;
+    private hpBar0_: eui.Rect;
+    private hpBar0: eui.Rect;
+    private hpText0: eui.Label;
+    private hpGroup1: eui.Group;
+    private hpBar1_: eui.Rect;
+    private hpBar1: eui.Rect;
+    private hpText1: eui.Label;
     private resultGroup: eui.Group;
     private resultBG: eui.Rect;
     private resultMC: eui.Group;
@@ -75,6 +75,7 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -426,8 +427,7 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.con);
         egret.Tween.removeTweens(this.mpBar0);
         egret.Tween.removeTweens(this.mpBar1);
-        egret.Tween.removeTweens(this.hpGroup0);
-        egret.Tween.removeTweens(this.hpGroup1);
+
         var arr = this.itemArray;
         for(var i=0;i<arr.length;i++)
         {
@@ -446,8 +446,7 @@ class PKMainUI extends game.BaseUI {
         this.con.visible = false;
         this.roundGroup.visible = false;
         this.skillGroup.visible = false;
-        this.hpGroup0.visible = false;
-        this.hpGroup1.visible = false;
+
         this.resultGroup.visible = false;
 
         var itemHeight = 123;
@@ -1030,8 +1029,7 @@ class PKMainUI extends game.BaseUI {
         this.upGroup.visible = false;
         this.downBG.visible = false;
         this.roundGroup.visible = false;
-        this.hpGroup0.visible = false;
-        this.hpGroup1.visible = false;
+
 
 
         this.selfPKing = null
@@ -2500,20 +2498,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private showItemHp(item,data){
-        //console.log(data.hp);
-        //if(data.value)
-        //{
-        //    if(item.team == 1)
-        //        var hpGroup = this.hpGroup0
-        //    else
-        //        var hpGroup = this.hpGroup1
-        //
-        //    hpGroup.x = item.x
-        //    hpGroup.y = item.y + 50
-        //    this.effectCon.addChild(hpGroup);
-        //
-        //    hpGroup.data = data;
-        //}
+
         var str = ''
         if(data.isCDHP)
         {

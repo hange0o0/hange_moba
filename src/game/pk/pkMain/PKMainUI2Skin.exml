@@ -15,8 +15,6 @@
 		<e:Group id="roleCon" y="0" width="640" height="100%" x="0"/>
 		<e:Group id="effectCon" y="0" width="640" height="100%" x="0"/>
 	</e:Group>
-	<ns1:PKMainHp id="hpGroup0" y="200" skinName="PKMainHpSkin" currentState="left" x="96"/>
-	<ns1:PKMainHp y="200" skinName="PKMainHpSkin" id="hpGroup1" currentState="right" x="416"/>
 	<e:Group id="skillGroup" y="230" horizontalCenter="0">
 		<e:Image source="icon_b1_png" y="0" x="0" scaleX="0.8" scaleY="0.8" />
 		<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="35" stroke="2" strokeColor="0x000000" x="60" verticalCenter="0"/>
@@ -28,18 +26,17 @@
 		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>
 		<e:Image source="book_bg2_jpg" y="0" scaleX="-1" width="325" right="-5" height="195" scale9Grid="40,44,240,266"/>
 		<e:Group x="10" width="308" top="10" bottom="10" id="playerGroup1">
-			<e:Group x="87" y="7">
-				<e:Rect x="0" width="220" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
-				<e:Rect id="hpBar0_" height="24" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
-				<e:Rect id="hpBar0" height="24" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
-				<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
+			<e:Group y="58" width="118" height="38" left="95">
+				<e:Image id="ms0" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
+				<e:Image id="ms1" source="card_star_png" horizontalCenter="0"/>
+				<e:Image id="ms2" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
 			</e:Group>
-			<e:Group x="87" y="33">
+			<e:Group x="87" y="5">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar0" y="0" strokeColor="0xFAED05" width="140" height="24" x="0" fillColor="0x0E178F"/>
 				<e:Label id="mpText0" stroke="2" text="12300/45600" x="9" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
 			</e:Group>
-			<e:Group x="87" y="59">
+			<e:Group x="87" y="31">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar0" y="0" strokeColor="0xFAED05" width="10" height="24" x="0" fillColor="0xB4A502"/>
 				<e:Label id="apText0" text="12300/45600" stroke="2" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
@@ -72,18 +69,17 @@
 			</e:Group>
 		</e:Group>
 		<e:Group width="308" top="10" bottom="10" id="playerGroup2" x="322">
-			<e:Group x="0" y="7" width="220">
-				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
-				<e:Rect id="hpBar1_" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="24" right="0"/>
-				<e:Rect id="hpBar1" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="24" right="0"/>
-				<e:Label id="hpText1" stroke="2" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
+			<e:Group y="58" width="118" height="38" right="95">
+				<e:Image id="es2" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
+				<e:Image id="es1" source="card_star_png" horizontalCenter="0"/>
+				<e:Image id="es0" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
 			</e:Group>
-			<e:Group x="0" y="33" width="220">
+			<e:Group x="0" y="5" width="220">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0x0E178F" height="24" right="0"/>
 				<e:Label id="mpText1" verticalCenter="0" text="12300/45600" stroke="2" size="18" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
-			<e:Group x="0" y="59" width="220">
+			<e:Group x="0" y="31" width="220">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0xB4A502" height="24" right="0"/>
 				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="2" right="9" textColor="0xFCE1B8"/>
@@ -115,20 +111,22 @@
 				</e:layout>
 			</e:Group>
 		</e:Group>
+		<e:Group id="hpGroup0" x="0" y="200">
+			<e:Rect x="0" width="319" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
+			<e:Rect id="hpBar0_" height="30" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
+			<e:Rect id="hpBar0" height="30" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
+			<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
+		</e:Group>
+		<e:Group id="hpGroup1" y="200" width="319" right="0">
+			<e:Rect x="0" width="319" fillColor="0x20140D" height="30" y="0"/>
+			<e:Rect id="hpBar1_" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="30" right="0"/>
+			<e:Rect id="hpBar1" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="30" right="0"/>
+			<e:Label id="hpText1" stroke="2" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
+		</e:Group>
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
-		<e:Group y="200" width="118" height="38" left="10">
-			<e:Image id="ms0" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
-			<e:Image id="ms1" source="card_star_png" horizontalCenter="0"/>
-			<e:Image id="ms2" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
-		</e:Group>
-		<e:Group y="200" width="118" height="38" right="10">
-			<e:Image id="es2" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
-			<e:Image id="es1" source="card_star_png" horizontalCenter="0"/>
-			<e:Image id="es0" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
-		</e:Group>
 	</e:Group>
-	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="515">
-		<e:Rect id="resultBG" width="100%" height="100%" x="0" y="0"/>
+	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="515" locked="true">
+		<e:Rect id="resultBG" width="100%" x="0" top="-2" bottom="0"/>
 		<e:Group id="resultMC" horizontalCenter="0" verticalCenter="-72.5">
 		<e:Image id="rbg0" y="0" x="0" source="pk_fail_png"/>
 		<e:Image id="rbg1" y="0" scaleX="-1" x="490" source="pk_win_png"/>

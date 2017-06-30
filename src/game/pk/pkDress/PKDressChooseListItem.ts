@@ -9,16 +9,18 @@ class PKDressChooseListItem extends game.BaseItem {
     private typeMC: eui.Image;
     private nameGroup: eui.Group;
     private nameText: eui.Label;
-    private useBtn: eui.Button;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
+    private useBtn: eui.Button;
+    private costBar: eui.Rect;
     private coinText: eui.Label;
+    private hpBar: eui.Rect;
     private hpText: eui.Label;
-    private hpIndex: eui.Label;
+    private atkBar: eui.Rect;
     private atkText: eui.Label;
-    private atkIndex: eui.Label;
+    private speedBar: eui.Rect;
     private speedText: eui.Label;
-    private speedIndex: eui.Label;
+
 
 
 
