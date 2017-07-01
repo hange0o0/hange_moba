@@ -443,6 +443,8 @@ class PKMainUI extends game.BaseUI {
         var stageHeight = this.stageHeight = this.stage.stageHeight;
         this.jumpBtn.visible = false;
         this.upGroup.visible = false;
+        this.hpGroup0.visible = false;
+        this.hpGroup1.visible = false;
         this.con.visible = false;
         this.roundGroup.visible = false;
         this.skillGroup.visible = false;
@@ -786,6 +788,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private showRoundTalk(){
+        this.hpGroup0.visible = true;
+        this.hpGroup1.visible = true;
         this.initSeed();
         if(this.random() > 0.5)
         {
@@ -829,6 +833,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     public outPKer(){
+        this.hpGroup0.visible = false;
+        this.hpGroup1.visible = false;
         var VC  = VideoCode.getInstance();
         var appearObj = {};
         for(var s in VC.playerObject)

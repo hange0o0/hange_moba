@@ -168,23 +168,29 @@ class PKDressChooseListItem extends game.BaseItem {
 
         var atkData = PKDressUI.getInstance().atkData
         var fightData = atkData[vo.id];
-        this.hpText.text = '血:' +  fightData.hp
-        this.atkText.text = '攻:' +  fightData.atk
-        this.speedText.text = '速:' +  fightData.speed
+        this.hpText.text = '' +  fightData.hp
+        this.atkText.text = '' +  fightData.atk
+        this.speedText.text = '' +  fightData.speed
 
-        this.hpIndex.text = (atkData.hp.indexOf(fightData.hp) + 1)
-        this.atkIndex.text = (atkData.atk.indexOf(fightData.atk) + 1)
-        this.speedIndex.text = (atkData.speed.indexOf(fightData.speed) + 1)
+        var width = 100;
+       this.hpBar.width = width*fightData.hp/atkData.hp[0]
+       this.atkBar.width = width*fightData.atk/atkData.atk[0]
+       this.speedBar.width = width*(fightData.speed - atkData.speed[atkData.speed.length-1]*4/5)/(atkData.speed[0] - atkData.speed[atkData.speed.length-1]*4/5)
+       this.costBar.width = width*parseInt(this.coinText.text)/atkData.cost[0]
 
-        this.hpIndex.textColor = this.hpIndex.text == '1'?0xffff00:0xCCCCCC
-        this.atkIndex.textColor = this.atkIndex.text == '1'?0xffff00:0xCCCCCC
-        this.speedIndex.textColor = this.speedIndex.text == '1'?0xffff00:0xCCCCCC
-        if(this.hpIndex.text == '1')
-            this.hpIndex.text = '♕';
-        if(this.atkIndex.text == '1')
-            this.atkIndex.text = '♕';
-        if(this.speedIndex.text == '1')
-            this.speedIndex.text = '♕';
+        //this.hpIndex.text = (atkData.hp.indexOf(fightData.hp) + 1)
+        //this.atkIndex.text = (atkData.atk.indexOf(fightData.atk) + 1)
+        //this.speedIndex.text = (atkData.speed.indexOf(fightData.speed) + 1)
+        //
+        //this.hpIndex.textColor = this.hpIndex.text == '1'?0xffff00:0xCCCCCC
+        //this.atkIndex.textColor = this.atkIndex.text == '1'?0xffff00:0xCCCCCC
+        //this.speedIndex.textColor = this.speedIndex.text == '1'?0xffff00:0xCCCCCC
+        //if(this.hpIndex.text == '1')
+        //    this.hpIndex.text = '♕';
+        //if(this.atkIndex.text == '1')
+        //    this.atkIndex.text = '♕';
+        //if(this.speedIndex.text == '1')
+        //    this.speedIndex.text = '♕';
 
 
         //this.infoStr += this.createHtml('攻击：',0xE0A44A) + atkStr +
@@ -213,10 +219,10 @@ class PKDressChooseListItem extends game.BaseItem {
         //}
         var arr = PKDressUI.getInstance().chooseList.concat(vo.id)
         this.useBtn.skinName = 'Btn_r2Skin'
-        this.coinText.textColor = 0xCCB48E
+        //this.coinText.textColor = 0xCCB48E
         if(PKManager.getInstance().getCost(arr) > PKManager.PKCost)
         {
-            this.coinText.textColor = 0xFF0000
+            //this.coinText.textColor = 0xFF0000
             this.useBtn.skinName = 'Btn_d2Skin'
         }
         else if(PKDressUI.getInstance().chooseList.length >=6)

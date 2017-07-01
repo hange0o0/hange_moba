@@ -620,6 +620,7 @@ class PKDressUI extends game.BaseUI {
         this.atkData.atk = []
         this.atkData.hp = []
         this.atkData.speed = []
+        this.atkData.cost = []
 
         var ro = this.getCurrentResource();
         for(var i=0;i<this.monsterList.length;i++)
@@ -665,6 +666,7 @@ class PKDressUI extends game.BaseUI {
             this.atkData.hp.push(temp.hp);
             this.atkData.atk.push(temp.atk);
             this.atkData.speed.push(temp.speed);
+            this.atkData.cost.push(vo.cost);
 
 
             oo.cost = vo.cost
@@ -680,6 +682,7 @@ class PKDressUI extends game.BaseUI {
         this.atkData.hp.sort(sortNumber);
         this.atkData.atk.sort(sortNumber);
         this.atkData.speed.sort(sortNumber);
+        this.atkData.cost.sort(sortNumber);
 
         if(this.pkDressChooseUI.sortIndex == 0)
             ArrayUtil.sortByField(arr,['cost','id'],[0,0]);

@@ -111,14 +111,14 @@
 				</e:layout>
 			</e:Group>
 		</e:Group>
-		<e:Group id="hpGroup0" x="0" y="200">
-			<e:Rect x="0" width="319" height="24" y="0" fillColor="0x20140D" fillAlpha="1"/>
+		<e:Group id="hpGroup0" x="0" y="195">
+			<e:Rect x="0" width="319" height="24" y="0" fillColor="0x20140D" fillAlpha="0.5"/>
 			<e:Rect id="hpBar0_" height="30" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
 			<e:Rect id="hpBar0" height="30" width="150" x="0" y="0" strokeColor="0xFAED05" fillColor="0x8C0101"/>
 			<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" x="9" verticalCenter="0" textColor="0xFCE1B8"/>
 		</e:Group>
-		<e:Group id="hpGroup1" y="200" width="319" right="0">
-			<e:Rect x="0" width="319" fillColor="0x20140D" height="30" y="0"/>
+		<e:Group id="hpGroup1" y="195" width="319" right="0">
+			<e:Rect x="0" width="319" fillColor="0x20140D" height="30" y="0" fillAlpha="0.5"/>
 			<e:Rect id="hpBar1_" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="30" right="0"/>
 			<e:Rect id="hpBar1" y="0" strokeColor="0xFAED05" width="100" fillColor="0x8C0101" height="30" right="0"/>
 			<e:Label id="hpText1" stroke="2" verticalCenter="0" text="12300/45600" size="18" right="9" textColor="0xFCE1B8"/>
