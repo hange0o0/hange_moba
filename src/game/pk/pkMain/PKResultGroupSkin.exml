@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="PKResultGroupSkin" width="640" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="PKResultGroupSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 <e:Group id="moreGroup" x="0" y="0">
 				<e:Group x="0" y="0" height="82" width="640">
 					<e:Image source="book_bg1_jpg" x="0" y="35" scale9Grid="40,44,240,266" height="850"/>
@@ -39,21 +39,7 @@
 						<e:HorizontalLayout gap="0"/>
 					</e:layout>
 				</e:Group>
-				<e:Group y="98" x="20">
-					<e:List id="teamInfo1" top="30" x="0" bottom="10" width="300" itemRendererSkinName="PKResultItem4Skin">
-						<e:layout>
-							<e:VerticalLayout/>
-						</e:layout>
-					</e:List>
-					<e:List id="teamInfo2" bottom="10" width="300" top="30" x="10" y="10" itemRendererSkinName="PKResultItem4_Skin">
-						<e:layout>
-							<e:VerticalLayout/>
-						</e:layout>
-					</e:List>
-					<e:layout>
-						<e:HorizontalLayout/>
-					</e:layout>
-				</e:Group>
+	<ns1:PKResultMVP id="mvpMC" x="113" y="249" skinName="PKResultMVPSkin"/>
 				<e:List id="list" width="640" x="0" y="134" itemRendererSkinName="PKResultItem2Skin">
 					<e:layout>
 						<e:VerticalLayout gap="0"/>

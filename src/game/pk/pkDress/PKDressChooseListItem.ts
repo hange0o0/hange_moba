@@ -172,7 +172,7 @@ class PKDressChooseListItem extends game.BaseItem {
         this.atkText.text = '' +  fightData.atk
         this.speedText.text = '' +  fightData.speed
 
-        var width = 100;
+        var width = 105;
        this.hpBar.width = width*fightData.hp/atkData.hp[0]
        this.atkBar.width = width*fightData.atk/atkData.atk[0]
        this.speedBar.width = width*(fightData.speed - atkData.speed[atkData.speed.length-1]*4/5)/(atkData.speed[0] - atkData.speed[atkData.speed.length-1]*4/5)

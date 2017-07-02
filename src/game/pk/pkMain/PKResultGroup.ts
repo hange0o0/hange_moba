@@ -1,4 +1,5 @@
 class PKResultGroup extends game.BaseContainer {
+    private moreGroup: eui.Group;
     private titleBG: eui.Group;
     private rateBG: eui.Image;
     private rateText: eui.Label;
@@ -10,9 +11,11 @@ class PKResultGroup extends game.BaseContainer {
     private enemyText0: eui.Label;
     private enemyForceGroup: eui.Group;
     private enemyText: eui.Label;
-    private teamInfo1: eui.List;
-    private teamInfo2: eui.List;
+    //private teamInfo1: eui.List;
+    //private teamInfo2: eui.List;
+    private mvpMC: PKResultMVP;
     private list: eui.List;
+
 
 
 
@@ -30,9 +33,38 @@ class PKResultGroup extends game.BaseContainer {
         this.enemyList.itemRenderer = PKResultItem3
         this.selfList.itemRenderer = PKResultItem3
 
-        this.teamInfo1.itemRenderer = PKResultItem4
-        this.teamInfo2.itemRenderer = PKResultItem4
+        //this.teamInfo1.itemRenderer = PKResultItem4
+        //this.teamInfo2.itemRenderer = PKResultItem4
+        this.mvpMC.addEventListener('choose_monster',this.onChooseMvpMonster,this)
 
+    }
+
+    private onChooseMvpMonster(e){
+        var data = e.data;
+        if(data.team == 1)
+        {
+            var list = this.selfList
+            var list2 = this.enemyList
+        }
+        else
+        {
+            var list = this.enemyList
+            var list2 = this.selfList
+        }
+
+        for(var i=0;i<list.numChildren;i++)
+        {
+            var item:any = list.getChildAt(i);
+            if(item.data.index == data.index)
+                item.setChoose(1);
+            else
+                item.setChoose(0);
+        }
+        for(var i=0;i<list2.numChildren;i++)
+        {
+            var item:any = list2.getChildAt(i);
+            item.setChoose(0);
+        }
     }
 
     //private onMonsterClick(e){
@@ -72,7 +104,7 @@ class PKResultGroup extends game.BaseContainer {
 
 
     public beforeHide(){
-        this.clearList([this.list,this.enemyList,this.selfList,this.teamInfo1,this.teamInfo2])
+        this.clearList([this.list,this.enemyList,this.selfList])
     }
 
     public renew(){
@@ -100,11 +132,11 @@ class PKResultGroup extends game.BaseContainer {
             commonAdd =  Config.equalValue
         }
 
-        var totalData:any = {};
-        var hp = 0;
-        var atk = 0;
-        var speed = 0;
-        var speed2 = 999;
+        //var totalData:any = {};
+        //var hp = 0;
+        //var atk = 0;
+        //var speed = 0;
+        //var speed2 = 999;
         var info1 = [];
         var info2 = [];
 
@@ -120,7 +152,7 @@ class PKResultGroup extends game.BaseContainer {
                 index:i,
                 teamID:1,
 
-                totalData:totalData,
+                //totalData:totalData,
                 level:team1Base.mb[mid].lv,
                 win: PKM.winCount[i+team1ID],
                 die: PKM.die[i+team1ID],
@@ -129,10 +161,10 @@ class PKResultGroup extends game.BaseContainer {
             }
             info1.push(oo)
 
-            hp = Math.max(specialData.hp,hp)
-            atk = Math.max(specialData.atk,atk)
-            speed = Math.max(specialData.speed,speed)
-            speed2 = Math.min(specialData.speed,speed2)
+            //hp = Math.max(specialData.hp,hp)
+            //atk = Math.max(specialData.atk,atk)
+            //speed = Math.max(specialData.speed,speed)
+            //speed2 = Math.min(specialData.speed,speed2)
         }
 
 
@@ -150,7 +182,7 @@ class PKResultGroup extends game.BaseContainer {
                 specialData:specialData,
                 index:i,
 
-                totalData:totalData,
+                //totalData:totalData,
                 level:team2Base.mb[mid].lv,
                 win: PKM.winCount[i+team2ID],
                 die: PKM.die[i+team2ID],
@@ -159,10 +191,10 @@ class PKResultGroup extends game.BaseContainer {
             }
             info2.push(oo)
 
-            hp = Math.max(specialData.hp,hp)
-            atk = Math.max(specialData.atk,atk)
-            speed = Math.max(specialData.speed,speed)
-            speed2 = Math.min(specialData.speed,speed2)
+            //hp = Math.max(specialData.hp,hp)
+            //atk = Math.max(specialData.atk,atk)
+            //speed = Math.max(specialData.speed,speed)
+            //speed2 = Math.min(specialData.speed,speed2)
         }
 
         //PKM.resetInfoData(info1,info2);
@@ -191,16 +223,25 @@ class PKResultGroup extends game.BaseContainer {
         this.enemyForceGroup.y = -5
 
 
-        totalData.hp = hp;
-        totalData.atk = atk;
-        totalData.speed = speed;
-        totalData.speed2 = speed2;
-        this.teamInfo1.dataProvider = new eui.ArrayCollection(info1)
-        this.teamInfo2.dataProvider = new eui.ArrayCollection(info2)
+        //totalData.hp = hp;
+        //totalData.atk = atk;
+        //totalData.speed = speed;
+        //totalData.speed2 = speed2;
 
         this.titleBG.scaleY = 1;
         this.rateText.visible = true;
         this.rateText.alpha = 1;
+
+        if(PKM.mvpList)
+        {
+            this.moreGroup.addChild(this.mvpMC)
+            this.moreGroup.addChild(this.list)
+            this.mvpMC.renew();
+        }
+        else
+        {
+            MyTool.removeMC(this.mvpMC);
+        }
     }
 
     public showMore(){

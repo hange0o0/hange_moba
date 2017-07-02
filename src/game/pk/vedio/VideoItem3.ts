@@ -5,18 +5,20 @@ class VideoItem3 extends game.BaseItem {
     }
 
 
-    private bg: eui.Rect;
     private bg2: eui.Rect;
-    private con: eui.Group;
-    private roundText: eui.Label;
-    private closeBtn: eui.Label;
-    private openBtn: eui.Label;
-    private bottomLine: eui.Image;
+    private bg: eui.Rect;
     private hpGroup: eui.Group;
     private bb: eui.Rect;
     private bf: eui.Rect;
     private tb: eui.Rect;
     private tf: eui.Rect;
+    private chooseMC: eui.Rect;
+    private con: eui.Group;
+    private roundText: eui.Label;
+    private closeBtn: eui.Label;
+    private openBtn: eui.Label;
+    private bottomLine: eui.Image;
+
 
 
 
@@ -73,6 +75,7 @@ class VideoItem3 extends game.BaseItem {
         if(data == this.data && !this.stopClick)
         {
             this.isChoose = true;
+            this.chooseMC.visible = true
             this.bg.strokeColor = 0x774D2F
             this.bg2.strokeColor = 0x774D2F
             //if(shake)
@@ -93,6 +96,7 @@ class VideoItem3 extends game.BaseItem {
         else
         {
             //this.bg2.fillColor = 0x130A04
+            this.chooseMC.visible = false
             this.roundText.textColor = 0xFFFFFF;
             this.bg.strokeColor = 0x673D1F
             this.bg2.strokeColor = 0x673D1F
@@ -113,6 +117,7 @@ class VideoItem3 extends game.BaseItem {
         this.closeBtn.visible = this.stopClick && !this.closeFlag
         this.openBtn.visible = this.stopClick  && this.closeFlag
         this.bottomLine.visible = this.stopClick
+        this.chooseMC.visible = false
         if(data.type == 'over')
         {
             //this.bg.fillColor = 0x000000

@@ -218,10 +218,11 @@ class PKDressUI extends game.BaseUI {
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
+        this.pkDressChooseUI.resetSort();
         this.renewTask();
         this.removeOldHistory();
         this.reInitData();
-        this.pkDressChooseUI.resetSort();
+
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
 
 
@@ -663,16 +664,17 @@ class PKDressUI extends game.BaseUI {
             temp.hp =  Math.round(vo.hp * (1+fightData.hp/100));
             temp.atk =  Math.round(vo.atk * (1+fightData.atk/100));
             temp.speed =  Math.round(vo.speed * (1+fightData.speed/100));
+            temp.cost =  PKManager.getInstance().getCostByNum(vo.id,this.getMonsterNum(vo.id))
             this.atkData.hp.push(temp.hp);
             this.atkData.atk.push(temp.atk);
             this.atkData.speed.push(temp.speed);
-            this.atkData.cost.push(vo.cost);
+            this.atkData.cost.push(temp.cost);
 
 
-            oo.cost = vo.cost
-            oo.hp = vo.hp
-            oo.atk = vo.atk
-            oo.speed = vo.speed
+            oo.cost = temp.cost
+            oo.hp = temp.hp
+            oo.atk = temp.atk
+            oo.speed = temp.speed
         }
 
         var sortNumber = function(a,b)

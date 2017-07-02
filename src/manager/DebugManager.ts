@@ -16,6 +16,7 @@ class DebugManager {
 
     public maxMonsterID = 100;
     public MML = 100;  //测试出战怪的等级
+    public printDetail = false;  //打印胜出怪物
 
 
     public consoleDebug(){
@@ -295,7 +296,10 @@ class DebugManager {
                     var vo = MonsterVO.getObject(card[i]);
                     temp.push(vo.id+':'+vo.name);
                 }
-                console.log(arr.length + '\t\t' + temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
+                if(self.printDetail)
+                    console.log(arr.length + '\t\t' + temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length)
+                else
+                    console.log(arr.length + '\t\t\t' + PKManager.getInstance().getCost(card)+'/'+card.length)
                 if(self.testFinishFun)
                     self.testFinishFun();
                 SharedObjectManager.instance.setMyValue('testCard_'+key,arr);

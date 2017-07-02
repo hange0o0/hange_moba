@@ -19,6 +19,7 @@
 			<e:Rect id="tf" y="0" right="0" width="100" height="15" fillColor="0x330000"/>
 		</e:Group>
 	</e:Group>
+	<e:Rect id="chooseMC" fillAlpha="0" strokeWeight="2" strokeColor="0x89571e" top="0" bottom="0" left="-5" right="-5"/>
 	<e:Group id="con" minWidth="300" top="65" bottom="15" minHeight="27" left="20" right="20">
 		<e:layout>
 			<e:VerticalLayout/>

@@ -207,8 +207,8 @@ class CollectUI extends game.BaseUI {
     }
 
     public renewCoin(){
-        this.coinText.text = UM.coin + '';
-        this.cardText.text = UM.card + '';
+        this.coinText.text = NumberUtil.formatStrNum(UM.coin)// + '';
+        this.cardText.text = NumberUtil.formatStrNum(UM.card)// + '';
     }
 
     public renewList(){

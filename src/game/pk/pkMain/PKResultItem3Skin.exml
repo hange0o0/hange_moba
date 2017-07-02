@@ -3,7 +3,7 @@
          width="100">
 	<e:Image source="border2_png" x="0" y="0" width="100" height="100"/>
 	<e:Image id="headMC" source="head_png" x="5" y="5" width="90" height="90"/>
-	<e:Rect id="chooseMC" fillAlpha="0.2" strokeColor="0x0251fc" left="5" right="5" top="5" bottom="5"/>
+	<e:Rect id="chooseMC" fillAlpha="0" left="1" right="1" top="1" bottom="1" strokeWeight="3" ellipseWidth="10" ellipseHeight="10" strokeColor="0xffff00"/>
 	<e:Group y="60" x="-3">
 		<e:Image id="s3" source="card_star_png" y="0" x="30"/>
 		<e:Image id="s2" source="card_star_png" y="0" x="15"/>

@@ -84,20 +84,23 @@ class UserManager {
     }
 
     public initActive(){
-        if(this.active.team_pve)
+        if(this.active)
         {
-            if(!DateUtil.isSameDay(this.active.team_pve.lasttime))
+            if(this.active.team_pve)
             {
-                if(DateUtil.isSameDay(this.active.team_pve.lasttime+3600*24))//昨天
+                if(!DateUtil.isSameDay(this.active.team_pve.lasttime))
                 {
-                    this.active.team_pve.yteam = this.active.team_pve.team;
+                    if(DateUtil.isSameDay(this.active.team_pve.lasttime+3600*24))//昨天
+                    {
+                        this.active.team_pve.yteam = this.active.team_pve.team;
+                    }
+                    this.active.team_pve.team = 0
+                    this.active.team_pve.lasttime = TM.now();
                 }
-                this.active.team_pve.team = 0
-                this.active.team_pve.lasttime = TM.now();
             }
+            else
+                this.active.team_pve = {award:[]};
         }
-        else
-            this.active.team_pve = {award:[]};
     }
 
     public getDiamond(rmb=false){

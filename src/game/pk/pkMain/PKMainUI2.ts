@@ -23,6 +23,13 @@ class PKMainUI extends game.BaseUI {
     private skillGroup: eui.Group;
     private skillText: eui.Label;
     private upGroup: eui.Group;
+    private hpGroup: eui.Group;
+    private hpBar0_: eui.Rect;
+    private hpBar0: eui.Rect;
+    private hpText0: eui.Label;
+    private hpBar1_: eui.Rect;
+    private hpBar1: eui.Rect;
+    private hpText1: eui.Label;
     private playerGroup1: eui.Group;
     private ms0: eui.Image;
     private ms1: eui.Image;
@@ -51,14 +58,6 @@ class PKMainUI extends game.BaseUI {
     private speedText1: eui.Label;
     private atkText1: eui.Label;
     private statList1: eui.Group;
-    private hpGroup0: eui.Group;
-    private hpBar0_: eui.Rect;
-    private hpBar0: eui.Rect;
-    private hpText0: eui.Label;
-    private hpGroup1: eui.Group;
-    private hpBar1_: eui.Rect;
-    private hpBar1: eui.Rect;
-    private hpText1: eui.Label;
     private resultGroup: eui.Group;
     private resultBG: eui.Rect;
     private resultMC: eui.Group;
@@ -97,12 +96,13 @@ class PKMainUI extends game.BaseUI {
 
 
 
+
     //private dataIn;
     private stageHeight;
     private itemWidth = 114;
     private itemHeight = 110;
     private barWidth = 220;
-    private fightHeight = 450
+    private fightHeight = 425
     private conHeight = 960
 
 
@@ -443,8 +443,7 @@ class PKMainUI extends game.BaseUI {
         var stageHeight = this.stageHeight = this.stage.stageHeight;
         this.jumpBtn.visible = false;
         this.upGroup.visible = false;
-        this.hpGroup0.visible = false;
-        this.hpGroup1.visible = false;
+        this.hpGroup.y = 150;
         this.con.visible = false;
         this.roundGroup.visible = false;
         this.skillGroup.visible = false;
@@ -473,7 +472,7 @@ class PKMainUI extends game.BaseUI {
 
 
         //this.enemyGroup.y = stageHeight/2 - (400+40);
-        this.con.y = (stageHeight - this.conHeight)/2 + 260 + 400
+        this.con.y = (stageHeight - this.conHeight)/2 + 260 + 400 + 20
         this.upGroup.y = (stageHeight - this.conHeight)/2 - 400
 
 
@@ -679,7 +678,7 @@ class PKMainUI extends game.BaseUI {
         for(var i=0;i<arr.length;i++)
         {
             var item = arr[i];
-            item.y = Math.floor(i/3) * 100 + 530;
+            item.y = Math.floor(i/3) * 100 + 510;
             var x = (i%3) * 100
             if(team == 1)
                 item.x = x + 60;
@@ -788,8 +787,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private showRoundTalk(){
-        this.hpGroup0.visible = true;
-        this.hpGroup1.visible = true;
+        var tw = egret.Tween.get(this.hpGroup)
+        tw.to({y:193},300);
         this.initSeed();
         if(this.random() > 0.5)
         {
@@ -833,8 +832,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     public outPKer(){
-        this.hpGroup0.visible = false;
-        this.hpGroup1.visible = false;
+        var tw = egret.Tween.get(this.hpGroup)
+        tw.to({y:150},300);
         var VC  = VideoCode.getInstance();
         var appearObj = {};
         for(var s in VC.playerObject)
@@ -898,7 +897,7 @@ class PKMainUI extends game.BaseUI {
                 else
                 {
                     cd = 200 + 100*(data.index - 1);
-                    y = this.fightHeight-80;
+                    y = this.fightHeight-60;
                     if(data.teamID == 1)
                         x = 120 + (data.index-1)*130;
                     else
@@ -1615,6 +1614,7 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(bf)
         egret.Tween.removeTweens(bb)
 
+        var barWidth = 320;
         var decColor = 0xFF0000
         var addColor = 0x00FF00
         var rate1 = data.last/data.max
@@ -1622,23 +1622,21 @@ class PKMainUI extends game.BaseUI {
         if(rate1 > rate2)//-
         {
             bb.fillColor = decColor;
-            bb.width = this.barWidth * rate1
-            bf.width = this.barWidth * rate1
+            bb.width = barWidth * rate1
+            bf.width = barWidth * rate1
             var tw = egret.Tween.get(bf)
-            tw.to({width:this.barWidth * rate2},200);
+            tw.to({width:barWidth * rate2},200);
         }
         else
         {
             bb.fillColor = addColor;
-            bf.width = this.barWidth * rate1
-            bb.width = this.barWidth * rate1
+            bf.width = barWidth * rate1
+            bb.width = barWidth * rate1
 
             var tw = egret.Tween.get(bb)
-            tw.to({width:this.barWidth * rate2},200);
+            tw.to({width:barWidth * rate2},200);
         }
         text.text = (data.current || 0) + '/' + (data.max || 0)
-
-
     }
 
 
@@ -1648,7 +1646,7 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this['hpBar'+index + '_'])
         this['hpText'+index].text = (data.hp || 0)  + '/' + (data.maxHp || 0);
         this['apText'+index].text = data.ap  + '/' + PKManager.ApMax;
-        this['hpBar'+index].width =  Math.min(1,(data.hp || 0)  / (data.maxHp || 1)) * this.barWidth;
+        this['hpBar'+index].width =  Math.min(1,(data.hp || 0)  / (data.maxHp || 1)) * 320;
         this['hpBar'+index + '_'].width =  0;
         this['apBar'+index].width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
 

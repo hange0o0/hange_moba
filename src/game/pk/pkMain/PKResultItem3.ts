@@ -78,12 +78,12 @@ class PKResultItem3 extends game.BaseItem {
     public setChoose(type){
         this.chooseType = type;
         this.chooseMC.visible = type > 0;
-        if(type == 1)
-            this.chooseMC.fillColor = 0xFFFF00
-        else if(type == 2)
-            this.chooseMC.fillColor = 0xFF0000
-        else if(type == 3)
-            this.chooseMC.fillColor = 0x00FFFF
+        //if(type == 1)
+        //    this.chooseMC.fillColor = 0xFFFF00
+        //else if(type == 2)
+        //    this.chooseMC.fillColor = 0xFF0000
+        //else if(type == 3)
+        //    this.chooseMC.fillColor = 0x00FFFF
 
     }
 }

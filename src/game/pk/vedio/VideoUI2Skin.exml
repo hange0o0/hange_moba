@@ -127,7 +127,7 @@
 			<e:Label id="rhpText0" y="40" textColor="0x990000" text="123456" size="18" right="370"/>
 			<ns1:VideoMonsterItem id="rheadMC0" skinName="VideoMonsterItemSkin" y="3" right="293" scaleX="1.2" scaleY="1.2"/>
 		</e:Group>
-		<e:Label id="resultText" text="伤害 &amp; 治疗" y="390" horizontalCenter="0" size="22" textColor="0xD7D27A"/>
+		<e:Label id="resultText" text="伤害 &amp; 回血" y="390" horizontalCenter="0" size="22" textColor="0xD7D27A"/>
 		<e:Group id="myItemGroup" right="300" top="420" bottom="50">
 			<ns1:VideoItem id="myItem0" x="0" y="0" skinName="VideoItemSkin"/>
 			<ns1:VideoItem x="10" y="10" skinName="VideoItemSkin" id="myItem1"/>

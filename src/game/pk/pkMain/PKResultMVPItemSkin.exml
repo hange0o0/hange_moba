@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PKResultMVPItemSkin" width="50" height="400" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="100%" height="100%" x="0" y="0"/>
+	<e:Rect id="rateMC" width="34" height="300" bottom="60" strokeColor="0x000000" strokeWeight="1" horizontalCenter="0" fillColor="0x1b2282"/>
+	<e:Rect id="headBG" width="46" height="46" x="2" bottom="9" strokeColor="0x724404" strokeWeight="1"/>
+	<e:Image id="headMC" width="44" height="44" bottom="11" horizontalCenter="0"/>
+	<e:Image id="topMC" source="monster_type1_png" y="4" x="4"/>
+	<e:Label id="scoreText" text="Label" y="92" horizontalCenter="0" stroke="2" size="24" textColor="0xedc782"/>
+</e:Skin>
