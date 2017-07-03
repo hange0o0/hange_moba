@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="BookBGSkin" width="640" xmlns:e="http://ns.egret.com/eui" height="200">
+<e:Skin class="BookBGSkin" width="640" xmlns:e="http://ns.egret.com/eui" height="100">
 	<e:Group x="0" top="0" bottom="0">
 		<e:Image source="book_bg1_jpg" x="0" top="0" height="50%" scale9Grid="40,19,240,324"/>
 		<e:Image source="book_bg1_jpg" y="0" scaleX="-1" x="640" height="50%" scale9Grid="40,24,240,319"/>

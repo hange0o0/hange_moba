@@ -72,7 +72,7 @@ class VideoItem3 extends game.BaseItem {
     public setChoose(data,shake?){
         egret.Tween.removeTweens(this.roundText);
         //this.roundText.size = 18;
-        if(data == this.data && !this.stopClick)
+        if(data == this.data || this.stopClick) // && !this.stopClick
         {
             this.isChoose = true;
             this.chooseMC.visible = true
@@ -88,7 +88,8 @@ class VideoItem3 extends game.BaseItem {
             //}
             //else
             //{
-            this.roundText.textColor = 0xFFFF00;
+            this.roundText.textColor = 0xFFFFFF;
+            this.roundText.stroke = 0
             //this.bg2.fillColor = 0x000000
                 //this.roundText.size = 22;
             //}
@@ -97,6 +98,7 @@ class VideoItem3 extends game.BaseItem {
         {
             //this.bg2.fillColor = 0x130A04
             this.chooseMC.visible = false
+            this.roundText.stroke = 2
             this.roundText.textColor = 0xFFFFFF;
             this.bg.strokeColor = 0x673D1F
             this.bg2.strokeColor = 0x673D1F
@@ -122,14 +124,10 @@ class VideoItem3 extends game.BaseItem {
         {
             //this.bg.fillColor = 0x000000
             this.hpGroup.visible = false;
-            this.currentState = 'team1'
-            this.roundText.text = '战斗结束'
+            this.currentState = 'over'
+            this.roundText.text = ''
             this.con.removeChildren();
             this.con.addChild(VideoUI.getInstance()['resultMC'])
-            if(data.isWin)
-                this.currentState = 'team2';
-            else
-                this.currentState = 'team1';
             //var group = this.addGroup();
             //if(data.isWin)
             //    group.addChild(this.getWordText('战斗结束,获得胜利',0x00FF00))
@@ -151,7 +149,7 @@ class VideoItem3 extends game.BaseItem {
             this.currentState = 'team2';
         }
 
-        this.roundText.text = 'Round ' + this.index + '';
+        this.roundText.text = '第 ' + StringUtil.numToStr(this.index) + ' 回合';
 
         //if(atker.isPKing)
         //    this.bg.strokeColor = 0xBC703A;
@@ -175,7 +173,7 @@ class VideoItem3 extends game.BaseItem {
         this.hpGroup.visible = true;
         var decColor = 0x660000
         var addColor = 0x006600
-        var barWidth = 317;
+        var barWidth = 319;
         var chooseData = this.data;
         var item = chooseData[chooseData.length - 1];
         var data = item.result.player1;

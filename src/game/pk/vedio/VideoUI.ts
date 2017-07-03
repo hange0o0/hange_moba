@@ -112,6 +112,7 @@ class VideoUI extends game.BaseUI {
         this.vGroup.scroller = this.scroller;
         this.vGroup.margin = 0;
         this.vGroup.desTop = 0;
+        this.vGroup.marginBottom = -65;
 
 
         this.topUI.addEventListener('hide',this.hide,this);
@@ -133,7 +134,7 @@ class VideoUI extends game.BaseUI {
         this.guideBtn.addEventListener('end_drag',this.onDragEnd,this);
 
         this.tipsGroup.touchChildren = this.tipsGroup.touchEnabled = false;
-        this.setHtml(this.resultText,this.createHtml('伤害',0xFF0000) + ' & ' + this.createHtml('治疗',0x00FF00))
+        this.setHtml(this.resultText,this.createHtml('伤害',0xFF0000) + ' & ' + this.createHtml('回血',0x00FF00))
     }
 
     public showMVDebug(v?){}
