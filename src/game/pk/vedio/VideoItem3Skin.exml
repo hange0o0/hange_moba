@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoItem3Skin" currentState="team2" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" width="640"  states="team1,team2,over" >
-	<ns1:BookBG width="100%" x="0" skinName="BookBGSkin" top="65" bottom="0" top.over="0"/>
-	<e:Rect id="bg2" width="640" x="0" top="0" strokeColor="0x673D1F" fillColor="0x130A04" bottom="0" visible="false"/>
+	<e:Rect id="bg2" width="620" x="10" top="0" fillColor="0x130A04" bottom="0" fillAlpha="0" strokeColor="0xffffff" strokeWeight="2"/>
 	<e:Rect strokeColor="0x673D1F" width="640" x="0" y="0" height="2" fillColor="0x000000" visible="false"/>
 	<e:Rect y="38" strokeColor="0x673D1F" width="640" fillColor="0x000000" height="2" x="0" visible="false"/>
 
@@ -9,28 +8,34 @@
 	<e:Group id="hpGroup" y="50" horizontalCenter="0">
 		<e:Rect width="100%" y="0" height="15" x="0" fillColor="0x111111"/>
 		<e:Rect width="2" y="0" height="15" horizontalCenter="0" fillColor="0x999999"/>
-		<e:Group y="0" width="319" x="321">
+		<e:Group y="0" width="299" x="301">
 			<e:Rect id="bb" width="100" y="0" height="15" x="0"/>
 			<e:Rect id="bf" width="100" y="0" height="15" x="0" fillColor="0x330000"/>
 		</e:Group>
-		<e:Group width="319" y="0" x="0">
+		<e:Group width="299" y="0" x="0">
 			<e:Rect id="tb" right="0" width="100" y="0" height="15"/>
 			<e:Rect id="tf" y="0" right="0" width="100" height="15" fillColor="0x330000"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="con" minWidth="300" top="90" bottom="25" minHeight="27" left="30" right="30" top.over="20">
+	<e:Group id="con" minWidth="300" top="80" bottom="20" minHeight="27" left="25" right="25" top.over="20" top.team1="80" top.team2="80">
 		<e:layout>
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="-4" width="400" horizontalCenter="0">
-		<e:Group id="chooseMC" x="200" y="0">
+	<e:Group y="-4" width="400" horizontalCenter="0" visible="false">
+		<e:Group id="chooseMC" x="200" y="0" visible="false">
 			<e:Image y="0" source="self_title_png" source.team2="enemy_title_png" width="200" x="0"/>
 			<e:Image y="0" scaleX="-1" source="self_title_png" source.team2="enemy_title_png" width="200" x="0"/>
 		</e:Group>
-		<e:Label id="roundText" text="标签" size="18" strokeColor="0xFFFF00" stroke="0" height="22" verticalAlign="middle" horizontalCenter="0" y="17" strokeColor.team1="0x000099"  strokeColor.team2="0x990000"/>
 	</e:Group>
 	<e:Label id="closeBtn" text="[ 隐藏 ]" size="22" width="100" right="15" textAlign="right" y="-1" height="50" textColor="0xFCE1B8" verticalAlign="middle"/>
-	<e:Label id="openBtn" text="点击查看战斗过程" size="22" x="0" y="98.31" width="100%" textAlign="center" textColor="0xFDBA93"/>
+	<e:Label id="openBtn" text="点击查看战斗过程" size="22" x="0" y="67.98" width="100%" textAlign="center" textColor="0xFDBA93"/>
 	<e:Image id="bottomLine" source="line_png" width="650" x="-5" bottom="-5" visible="false"/>
+	<e:Group y="0" height="50" horizontalCenter="-17">
+		<e:Image source="card_battle2_png" x="0" y="0" source.team2="card_battle_png" visible.over="false"/>
+		<e:Label id="roundText" text="标签" size="18" strokeColor="0xFFFF00" stroke="0" height="22" verticalAlign="middle" y="13.00000000000002" strokeColor.team1="0x000099" strokeColor.team2="0x990000" x="289.00000000000006"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
 </e:Skin>

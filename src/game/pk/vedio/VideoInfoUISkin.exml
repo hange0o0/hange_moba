@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="VideoInfoUISkin" width="640" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" fillAlpha="0.5"/>
+	<e:Group id="con" x="200" width="440" top="0" bottom="0">
+		<e:Image source="book_bg1_jpg" x="0" y="0" width="100%" scale9Grid="40,44,240,266" height="50%"/>
+		<e:Image source="book_bg2_jpg" x="0" width="100%" scale9Grid="40,44,240,266" height="50%" bottom="0"/>
+		<e:Scroller id="scroller" top="10" bottom="10" left="10" right="0">
+			<e:Group id="scrollerGroup">
+			<e:Group id="infoGroup" y="330" horizontalCenter="0" x="40" scaleX="1" scaleY="1">
+				<e:Group id="hpGroup" x="-3.552713678800501e-14" y="10">
+				<e:Group x="0" y="0">
+					<e:Label text="血量：" x="0" size="24" verticalCenter="0" textColor="0xE0A44A"/>
+					<e:Rect x="60" width="280" fillColor="0x20140D" height="24" y="0"/>
+					<e:Rect id="hpBar1" x="60" strokeColor="0xFAED05" width="179" fillColor="0x8C0101" height="24" y="0"/>
+					<e:Rect id="hpBar2" y="0" strokeColor="0xFAED05" fillColor="0x8C0101" width="198" height="24" x="60"/>
+					<e:Label id="hpText" text="12300/45600" stroke="2" size="18" x="70" verticalCenter="0" textColor="0xFCE1B8"/>
+				</e:Group>
+				<e:Group x="0" y="39">
+					<e:Label y="0" size="24" text="怒气：" x="0" textColor="0xE0A44A"/>
+					<e:Rect x="60" width="280" fillColor="0x20140D" height="24" y="0"/>
+					<e:Rect id="mpBar" y="0" strokeColor="0xFAED05" width="184" fillColor="0x0E178F" height="24" x="60"/>
+					<e:Label id="mpText" text="12300/45600" stroke="2" size="18" verticalCenter="0" x="70" textColor="0xFCE1B8"/>
+				</e:Group>
+				<e:Group x="0" y="77.99999999999994">
+					<e:Label y="0" size="24" text="必杀：" x="0" textColor="0xE0A44A"/>
+					<e:Rect x="60" width="280" fillColor="0x20140D" height="24" y="0"/>
+					<e:Rect id="apBar" y="0" strokeColor="0xFAED05" width="10" fillColor="0xB4A502" height="24" x="60"/>
+					<e:Label id="apText" x="70" text="12300/45600" verticalAlign="top" stroke="2" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
+				</e:Group>
+				</e:Group>
+				<e:Label id="valueText" y="115" size="24" text="血量:280+56" x="7" lineSpacing="8" textColor="0xCCB48E" width="340"/>
+				<e:Group x="0" y="170">
+				<e:List id="list1" width="180" y="1" x="160">
+					<e:layout>
+					<e:VerticalLayout gap="10"/>
+					</e:layout>
+				</e:List>
+					<e:List id="list2" width="180" y="11" x="170">
+						<e:layout>
+						<e:VerticalLayout gap="10"/>
+						</e:layout>
+					</e:List>
+				<e:layout>
+					<e:HorizontalLayout paddingTop="10"/>
+				</e:layout>
+				</e:Group>
+				<e:layout>
+				<e:VerticalLayout gap="15" paddingTop="10" paddingBottom="25" horizontalAlign="center"/>
+				</e:layout>
+			</e:Group>
+			<e:Group id="headGroup" y="40" horizontalCenter="0" x="84" scaleX="1" scaleY="1">
+				<e:Image source="card_bg_png" scale9Grid="72,75,87,71" y="0" height="306" x="0" scaleX="0.8" scaleY="0.8"/>
+				<e:Image id="headMC" y="8" x="11" width="168" height="224" source=""/>
+				<e:Image id="teamIcon" source="card_battle2_png" x="10.59" y="7.57"/>
+				<e:Label id="teamText" text="Label" y="250" textColor="0xe0a44a" size="22" horizontalCenter="0" stroke="2"/>
+				<e:Group x="10" y="184">
+				<e:Rect fillAlpha="0.7" y="0" strokeWeight="1" width="170" height="50" x="0"/>
+				<e:Label id="nameText" y="13" size="24" text="血量压力" horizontalCenter="0" textColor="0xCCB48E"/>
+				</e:Group>
+			</e:Group>
+				<ns1:MonsterInfoBaseItem id="skillMC" y="330" skinName="VideoInfoSkillItemSkin" horizontalCenter="0" width="360"/>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+</e:Skin>

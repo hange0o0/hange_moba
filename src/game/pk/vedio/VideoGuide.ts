@@ -18,15 +18,18 @@ class VideoGuide extends game.BaseContainer {
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
 
-        this.addBtnEvent(this.closeBtn,this.onClose)
+        this.addBtnEvent(this.closeBtn,this.hide)
         this.addBtnEvent(this.videoBtn,this.onVideo)
     }
 
     private onVideo(){
         PKMainUI.getInstance().show(VideoUI.getInstance().currentVideoIndex+1);
     }
+
+    private hide(){
+        VideoUI.getInstance().closeGuide();
+    }
     private onClose(){
-        this.visible = false;
         this.clearList([this.list])
     }
 
@@ -66,5 +69,13 @@ class VideoGuide extends game.BaseContainer {
             //},this)
         }
 
+    }
+
+    public renewList(){
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            var item:any = this.list.getChildAt(i);
+            item.renewSelect();
+        }
     }
 }

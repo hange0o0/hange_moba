@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="VideoInfoSkillItemSkin" width="320" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label id="text" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标11签标签标签标签" top="55" textColor="0xCBC08A" size="24" left="0" right="0" lineSpacing="10" x="-38" y="-533" scaleX="1" scaleY="1"/>
+	<e:Group y="0" x="0">
+		<e:Image id="icon" source="icon_b1_png" x="0" width="80" height="80" y="0" scaleX="0.5" scaleY="0.5"/>
+		<e:Label id="titleText" text="标签" x="50" y="5" scaleX="1" scaleY="1"/>
+	</e:Group>
+	<e:Label id="typeText" text="标签" size="24" scaleX="1" scaleY="1" y="8" right="0"/>
+</e:Skin>

@@ -27,16 +27,21 @@ class PKResultMVPItem extends game.BaseItem {
         this.rateMC.height = Math.max(5,this.data.value/this.data.maxValue * 300);
         this.headMC.source = MonsterVO.getObject(this.data.mid).thumb
         this.scoreText.y = 400 - this.rateMC.height - 90;
-        this.topMC.y = this.scoreText.y - 10;
+        this.topMC.y = this.scoreText.y - 5;
+
+        if(this.data.mvp)
+            this.topMC.source = 'mvp_png'
+        else
+            this.topMC.source = 'king_icon_png'
 
 
         if(this.data.team == 1)
         {
-            this.rateMC.fillColor = 0x1B2282
+            this.rateMC.fillColor = 0x8E6709
         }
         else
         {
-            this.rateMC.fillColor = 0x7F1A1F
+            this.rateMC.fillColor = 0x8E3A09
         }
         this.setChoose(false);
     }

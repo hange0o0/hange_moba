@@ -34,7 +34,17 @@ class VideoGuideItem extends game.BaseItem {
     }
 
     private onClick(){
-        VideoUI.getInstance().scrollTo(this.data);
+        if(this.currentMC.visible)
+            VideoUI.getInstance().scrollTo(this.data);
+        else
+        {
+            VideoUI.getInstance().setChoose(this.data);
+            VideoUI.getInstance()['guideMC'].renewList();
+        }
+    }
+
+    public renewSelect(){
+        this.currentMC.visible = VideoUI.getInstance().lastChooseData == this.data;
     }
 
     public dataChanged() {
@@ -102,7 +112,8 @@ class VideoGuideItem extends game.BaseItem {
             this.bg.fillColor = 0x000099
         else
             this.bg.fillColor = 0x990000
-        this.currentMC.visible = VideoUI.getInstance().lastChooseData == this.data;
+        this.renewSelect();
+
 
         this.icon.visible = true
         this.posText.visible = false

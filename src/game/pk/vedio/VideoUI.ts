@@ -63,6 +63,8 @@ class VideoUI extends game.BaseUI {
     private enemyItem1: VideoItem;
     private enemyItem2: VideoItem;
     private tipsGroup: eui.Group;
+    private videoInfo: VideoInfoUI;
+
 
 
 
@@ -110,9 +112,9 @@ class VideoUI extends game.BaseUI {
         this.scrollGroup.addChild(this.vGroup)
         this.vGroup.itemRenderer = VideoItem3;
         this.vGroup.scroller = this.scroller;
-        this.vGroup.margin = 0;
-        this.vGroup.desTop = 0;
-        this.vGroup.marginBottom = -65;
+        this.vGroup.margin = -2;
+        this.vGroup.desTop = 2;
+        this.vGroup.marginBottom = -58;
 
 
         this.topUI.addEventListener('hide',this.hide,this);
@@ -125,8 +127,8 @@ class VideoUI extends game.BaseUI {
 
 
         this.addBtnEvent(this.guideBtn,this.openGuide);
-        this.addBtnEvent(this.playerGroup1,this.playerClick1);
-        this.addBtnEvent(this.playerGroup2,this.playerClick2);
+        //this.addBtnEvent(this.playerGroup1,this.playerClick1);
+        //this.addBtnEvent(this.playerGroup2,this.playerClick2);
 
         MyTool.removeMC(this.resultMC);
 
@@ -166,7 +168,12 @@ class VideoUI extends game.BaseUI {
         this.vGroup.clean()
     }
 
-
+   public showInfo(data){
+        this.videoInfo.showInfo(data)
+   }
+   public showSkill(data,svo){
+       this.videoInfo.showSkill(data,svo)
+   }
 
     private playerClick1(){
         this.showPlayer(1)
@@ -182,20 +189,42 @@ class VideoUI extends game.BaseUI {
         if(egret.getTimer() - this.dragTimer < 200)
             return;
         this.guideMC.visible = true;
+        this.guideMC.height = GameManager.stage.stageHeight - 260
+        this.guideMC.y = GameManager.stage.stageHeight;
+        var tw = egret.Tween.get(this.guideMC);
+        tw.to({y:260},300);
+
+        this.upGroup.visible = true;
+        this.upGroup.y = -130;
+        var tw = egret.Tween.get(this.upGroup);
+        tw.wait(200).to({y:70},100);
+
         this.guideMC.renew(this.lastChooseData,this.listArray)
     }
 
+    public closeGuide(){
+        var tw = egret.Tween.get(this.guideMC);
+        tw.to({y:GameManager.stage.stageHeight},300).call(function(){
+            this.guideMC.visible = false;
+            this.upGroup.visible = false;
+            this.guideMC.onClose()
+        },this);
+
+        var tw = egret.Tween.get(this.upGroup);
+        tw.to({y:-130},100);
+    }
+
     public scrollTo(item){
-        this.guideMC.visible = false;
+        this.closeGuide();
         this.vGroup.scrollToItem(item);
-        this.setChoose(item)
+        //this.setChoose(item)
     }
 
     private onScroll(){
         //this.scroller.stopAnimation();
         this.vGroup.onScroll(this.scroller.viewport.scrollV)
-        egret.clearTimeout(this.setChooseTimer);
-        this.setChooseTimer = egret.setTimeout(this.showFirstItem,this,200)
+        //egret.clearTimeout(this.setChooseTimer);
+        //this.setChooseTimer = egret.setTimeout(this.showFirstItem,this,200)
         this.scrollTime = egret.getTimer();
         //if(this.upGroup.visible && this.upGroup.y == this.upGroupY)
         //    this.closeGroup();
@@ -206,37 +235,49 @@ class VideoUI extends game.BaseUI {
             this.onScroll();
     }
 
-    private showFirstItem(){
-        var firstItem = this.vGroup.getFirstItem(this.scroller.viewport.scrollV);
-        if(firstItem)
-            this.setChoose(firstItem.data)
-    }
+    //private showFirstItem(){
+    //    var firstItem = this.vGroup.getFirstItem(this.scroller.viewport.scrollV);
+    //    if(firstItem)
+    //        this.setChoose(firstItem.data)
+    //}
 
     public setChoose(chooseData,isClick?){
 
         egret.clearTimeout(this.setChooseTimer);
+        //if(isClick)
+        //{
+        //    this.openGuide();
+        //    //this.scrollTime = 0;
+        //    //this.scroller.stopAnimation();
+        //    //if(this.tipsGroup.alpha)
+        //    //{
+        //    //    this.tipsGroup.visible = true;
+        //    //    var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
+        //    //    tw.wait(800).to({alpha:0}, 300).call(function(){
+        //    //        this.tipsGroup.visible = false;
+        //    //    },this)
+        //    //}
+        //}
         if(this.lastChooseData == chooseData)
+        {
+            if(isClick)
+            {
+                this.openGuide();
+            }
             return;
+        }
 
         this.team1BG.visible = this.team2BG.visible = false
         var item = chooseData[chooseData.length - 1];
         if(!item || !item.result)
             return;
 
+        this.lastChooseData = chooseData
         if(isClick)
         {
-            this.scrollTime = 0;
-            this.scroller.stopAnimation();
-            if(this.tipsGroup.alpha)
-            {
-                this.tipsGroup.visible = true;
-                var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
-                tw.wait(800).to({alpha:0}, 300).call(function(){
-                    this.tipsGroup.visible = false;
-                },this)
-            }
-
+            this.openGuide();
         }
+
         var VC = VideoCode.getInstance();
 
         var base = chooseData[0];
@@ -338,15 +379,15 @@ class VideoUI extends game.BaseUI {
         this.statList1.dataProvider = new eui.ArrayCollection(getList(buff));
 
 
-        for(var i=0;i<this.vGroup.numChildren;i++)
-        {
-            (<any>this.vGroup.getChildAt(i)).setChoose(chooseData,isClick);
-        }
+        //for(var i=0;i<this.vGroup.numChildren;i++)
+        //{
+        //    (<any>this.vGroup.getChildAt(i)).setChoose(chooseData,isClick);
+        //}
         //for(var i=0;i<this.list.numChildren;i++)
         //{
         //    (<any>this.list.getChildAt(i)).setChoose(chooseData);
         //}
-        this.lastChooseData = chooseData
+
 
         function getList(data){
             var arr = [];
@@ -422,7 +463,6 @@ class VideoUI extends game.BaseUI {
             //this.upGroup.visible = false;
             //this.visible = false;
         this.onOver()
-        this.openGuide();
         this.onDragEnd();
         //},this)
 
@@ -430,6 +470,7 @@ class VideoUI extends game.BaseUI {
             this.visible = false;
 
         this.tipsGroup.visible = false;
+        this.videoInfo.visible = false;
 
         //PKResultUI.getInstance().tempHide();
 
@@ -463,16 +504,24 @@ class VideoUI extends game.BaseUI {
         egret.setTimeout(function(){
             this.onScroll();
 
-            for(var i=0;i<this.vGroup.numChildren;i++)
-            {
-                (<any>this.vGroup.getChildAt(i)).setChoose(this.lastChooseData);
-            }
+
+            //for(var i=0;i<this.vGroup.numChildren;i++)
+            //{
+            //    (<any>this.vGroup.getChildAt(i)).setChoose(this.lastChooseData);
+            //}
             //this.showFirstItem();
             this.renewResultMC();
         },this,500)
 
-        this.setChoose(this.listArray[0])
+        //this.setChoose(this.listArray[0])
+
+        this.lastChooseData = this.listArray[0];
         this.upGroup.visible = true;
+        this.guideMC.visible = true;
+        this.upGroup.y = 70
+        this.guideMC.y = 260
+        this.guideMC.height = GameManager.stage.stageHeight - 260
+        this.guideMC.renew(this.lastChooseData,this.listArray)
 
         //this.list.dataProvider = new eui.ArrayCollection(this.listArray);
 

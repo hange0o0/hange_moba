@@ -71,6 +71,7 @@ class PKResultMVP extends game.BaseContainer {
                  case 0:
                      oo.value = item.mvp
                      oo.maxValue = mvpList.mvp
+                     oo.mvp = true
                      break;
                  case 1:
                      oo.value = item.hp

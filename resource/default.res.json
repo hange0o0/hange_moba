@@ -41,7 +41,7 @@
 			"name":"preload2_jpg"
 		},
 		{
-			"keys":"video_atk4_png,bar_bg_png,bar1_png,bar2_png,bar3_png,bar4_png,fight_fail_1_png,fight_win_png,pk_fail_png,pk_result_line_png,pk_win_png,video_atk1_png,video_atk2_png,video_atk3_png,card_battle_png,talk_bg_png,bar_pvp_1_png,bar_pvp_2_png,pk_e_11_png,pk_e_12_png,pk_e_13_png,pk_e_14_png,pk_e_15_png,pk_e_16_png,pk_e_17_png,pk_e_2_png,pk_e_3_png,pk_e_4_png,pk_e_5_png,pk_e_6_png,pk_e_7_png,pk_e_8_png,pk_e_1_png,pk_e_18_png,pk_e_19_png,pk_e_20_png,pk_e_9_png,pk_e_10_png,enemy_title_png,self_title_png,pk_round_bg_png",
+			"keys":"video_atk4_png,bar_bg_png,bar1_png,bar2_png,bar3_png,bar4_png,fight_fail_1_png,fight_win_png,pk_fail_png,pk_result_line_png,pk_win_png,video_atk1_png,video_atk2_png,video_atk3_png,card_battle_png,talk_bg_png,bar_pvp_1_png,bar_pvp_2_png,pk_e_11_png,pk_e_12_png,pk_e_13_png,pk_e_14_png,pk_e_15_png,pk_e_16_png,pk_e_17_png,pk_e_2_png,pk_e_3_png,pk_e_4_png,pk_e_5_png,pk_e_6_png,pk_e_7_png,pk_e_8_png,pk_e_1_png,pk_e_18_png,pk_e_19_png,pk_e_20_png,pk_e_9_png,pk_e_10_png,enemy_title_png,self_title_png,pk_round_bg_png,card_battle2_png,mvp_png",
 			"name":"pk"
 		},
 		{
@@ -1729,6 +1729,16 @@
 			"name":"black_bg2_png",
 			"type":"image",
 			"url":"game_assets/preload2_png32/black_bg2.png"
+		},
+		{
+			"name":"card_battle2_png",
+			"type":"image",
+			"url":"game_assets/pk/card_battle2.png"
+		},
+		{
+			"name":"mvp_png",
+			"type":"image",
+			"url":"game_assets/pk/mvp.png"
 		}
 	]
 }

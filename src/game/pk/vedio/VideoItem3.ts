@@ -49,17 +49,18 @@ class VideoItem3 extends game.BaseItem {
             this.onClose();
             return;
         }
-        if(this.isChoose)
-        {
+        //if(this.isChoose)
+        //{
             if(egret.getTimer() - this.lastClickTime < 800)
             {
-                var team = this.currentState == 'team1'?1:2;
-                VideoDetailUI.getInstance().show({data:this.data,team:team});
+                VideoUI.getInstance().setChoose(this.data,'item');
+                //var team = this.currentState == 'team1'?1:2;
+                //VideoDetailUI.getInstance().show({data:this.data,team:team});
             }
             this.lastClickTime = egret.getTimer();
-        }
-        else
-            VideoUI.getInstance().setChoose(this.data,'item');
+        //}
+        //else
+        //    VideoUI.getInstance().setChoose(this.data,'item');
     }
 
     private onClose(e?){
@@ -76,8 +77,8 @@ class VideoItem3 extends game.BaseItem {
         {
             this.isChoose = true;
             this.chooseMC.visible = true
-            this.bg.strokeColor = 0x774D2F
-            this.bg2.strokeColor = 0x774D2F
+            //this.bg.strokeColor = 0x774D2F
+            //this.bg2.strokeColor = 0x774D2F
             //if(shake)
             //{
             //    this.roundText.textColor = 0xFFFFFF;
@@ -88,21 +89,22 @@ class VideoItem3 extends game.BaseItem {
             //}
             //else
             //{
-            this.roundText.textColor = 0xFFFFFF;
-            this.roundText.stroke = 0
+            this.roundText.textColor = 0xFFFF00;
+            //this.roundText.stroke = 0
             //this.bg2.fillColor = 0x000000
-                //this.roundText.size = 22;
+                this.roundText.size = 22;
             //}
         }
         else
         {
             //this.bg2.fillColor = 0x130A04
             this.chooseMC.visible = false
-            this.roundText.stroke = 2
+            //this.roundText.stroke = 2
             this.roundText.textColor = 0xFFFFFF;
-            this.bg.strokeColor = 0x673D1F
-            this.bg2.strokeColor = 0x673D1F
+            //this.bg.strokeColor = 0x673D1F
+            //this.bg2.strokeColor = 0x673D1F
             this.isChoose = false;
+            this.roundText.size = 18;
         }
 
 
@@ -173,7 +175,7 @@ class VideoItem3 extends game.BaseItem {
         this.hpGroup.visible = true;
         var decColor = 0x660000
         var addColor = 0x006600
-        var barWidth = 319;
+        var barWidth = 299;
         var chooseData = this.data;
         var item = chooseData[chooseData.length - 1];
         var data = item.result.player1;
@@ -395,7 +397,7 @@ class VideoItem3 extends game.BaseItem {
 
             var nameText = this.getWordText('【'+svo.name + '】',color,26)
             group.addChild(nameText)
-            this.addItemClick(nameText,atker)
+            this.addItemClick(nameText,atker,svo)
 
             if(short && data.defender.length == 1 && data.defender[0].list.length==1 && data.defender[0].atker == data.defender[0].defender)
                 this.addEffect(data.defender[0].list[0],group);
@@ -404,19 +406,19 @@ class VideoItem3 extends game.BaseItem {
         }
     }
 
-    private addItemClick(mc,data){
+    private addItemClick(mc,data,svo){
         var self = this;
         var onDetail = function(e){
             if(self.isChoose)
                 e.stopImmediatePropagation();
-            var PKM = PKManager.getInstance();
-            var team = data.teamID
-            if(PKM.teamChange)
-                var teamBase = team == 1?PKM.team2Base:PKM.team1Base
-            else
-                var teamBase = team == 1?PKM.team1Base:PKM.team2Base
-
-            MonsterList.getInstance().show([{id:data.mid,specialData:teamBase.mb[data.mid]}])
+            //var PKM = PKManager.getInstance();
+            //var team = data.teamID
+            //if(PKM.teamChange)
+            //    var teamBase = team == 1?PKM.team2Base:PKM.team1Base
+            //else
+            //    var teamBase = team == 1?PKM.team1Base:PKM.team2Base
+            VideoUI.getInstance().showSkill({mid:data.mid,team:data.teamID,index:data.index},svo)
+            //MonsterList.getInstance().show([{id:data.mid,specialData:teamBase.mb[data.mid]}])
         }
 
         this.addBtnEvent(mc,onDetail);
@@ -429,7 +431,7 @@ class VideoItem3 extends game.BaseItem {
         var onDetail = function(e){
             if(self.isChoose)
                 e.stopImmediatePropagation();
-            VideoDetailUI.getInstance().show({data:self.data,team:data.teamID,index:data.index});
+            VideoUI.getInstance().showInfo({data:self.data,mid:data.mid,team:data.teamID,index:data.index});
         }
 
         this.addBtnEvent(mc,onDetail);
@@ -534,7 +536,7 @@ class VideoItem3 extends game.BaseItem {
         {
             var nameText = this.getWordText('【'+svo.name + '】',svo.type == 2?0x00DEFF:0x6fda13,26)
             group.addChild(nameText)
-            this.addItemClick(nameText,VideoCode.getInstance().getPlayerByID(atker))
+            this.addItemClick(nameText,VideoCode.getInstance().getPlayerByID(atker),svo)
         }
 
 
