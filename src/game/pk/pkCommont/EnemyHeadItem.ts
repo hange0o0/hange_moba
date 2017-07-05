@@ -12,8 +12,9 @@ class EnemyHeadItem extends game.BaseItem {
     private headMC2: eui.Image;
     private headBG: eui.Image;
     private lvText: eui.Label;
-    private indexText: eui.Label;
-    private closeBtn: eui.Group;
+    private closeBtn: eui.Image;
+    private nameText: eui.Label;
+
 
 
 
@@ -78,13 +79,13 @@ class EnemyHeadItem extends game.BaseItem {
         if(!this.data.vo)
             return;
 
-        //this.nameText.text = this.data.vo.name
+        this.nameText.text = this.data.vo.name
         if(this.data.isTeam)
         {
             MyTool.removeMC(this.chooseGroup);
-            this.addChild(this.teamGroup);
+            this.addChildAt(this.teamGroup,0);
             this.headMC2.source = this.data.vo.thumbRound
-            this.indexText.text = (this.data.index + 1) + ''
+            //this.indexText.text = (this.data.index + 1) + ''
             this.lvText.text = '';
             if(this.data.isMain)
             {
@@ -101,7 +102,7 @@ class EnemyHeadItem extends game.BaseItem {
         else
         {
             MyTool.removeMC(this.teamGroup);
-            this.addChild(this.chooseGroup);
+            this.addChildAt(this.chooseGroup,0);
             this.headMC.source = this.data.vo.thumb
         }
     }

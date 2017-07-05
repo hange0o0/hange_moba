@@ -33,10 +33,10 @@
 				</e:Group>
 
 			</e:Group>
-			<e:Group x="0" id="myGroup0" verticalCenter="0" width="640" height="455">
+			<e:Group x="0" id="myGroup0" verticalCenter="0" width="640" height="495">
 				<e:List y="75" horizontalCenter="0" itemRendererSkinName="MyHeadItemSkin" id="myList0">
 				<e:layout>
-					<e:TileLayout horizontalGap="15" requestedColumnCount="4" verticalGap="10"/>
+					<e:TileLayout horizontalGap="6" requestedColumnCount="4" verticalGap="6"/>
 				</e:layout>
 				<e:ArrayCollection>
 					<e:Array>

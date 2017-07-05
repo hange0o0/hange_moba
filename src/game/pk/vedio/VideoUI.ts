@@ -212,6 +212,16 @@ class VideoUI extends game.BaseUI {
 
         var tw = egret.Tween.get(this.upGroup);
         tw.to({y:-130},100);
+
+        if(this.tipsGroup.alpha)
+        {
+            console.log(9999)
+            this.tipsGroup.visible = true;
+            var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
+            tw.wait(3000).to({alpha:0}, 300).call(function(){
+                this.tipsGroup.visible = false;
+            },this)
+        }
     }
 
     public scrollTo(item){
@@ -228,6 +238,14 @@ class VideoUI extends game.BaseUI {
         this.scrollTime = egret.getTimer();
         //if(this.upGroup.visible && this.upGroup.y == this.upGroupY)
         //    this.closeGroup();
+
+        if(this.tipsGroup.alpha)
+        {
+            this.tipsGroup.visible = false;
+            egret.Tween.removeTweens(this.tipsGroup)
+            this.tipsGroup.alpha = 0;
+        }
+
     }
 
     private onScrollEnd(){
@@ -502,7 +520,7 @@ class VideoUI extends game.BaseUI {
         this.vGroup.setData(this.listArray);
         this.scroller.viewport.scrollV = 0;
         egret.setTimeout(function(){
-            this.onScroll();
+            this.vGroup.onScroll(this.scroller.viewport.scrollV)
 
 
             //for(var i=0;i<this.vGroup.numChildren;i++)

@@ -20,8 +20,7 @@ class PKMainUI extends game.BaseUI {
     private downBG: eui.Group;
     private roleCon: eui.Group;
     private effectCon: eui.Group;
-    private skillGroup: eui.Group;
-    private skillText: eui.Label;
+    private cloudGroup: eui.Group;
     private upGroup: eui.Group;
     private hpGroup: eui.Group;
     private hpBar0_: eui.Rect;
@@ -67,6 +66,11 @@ class PKMainUI extends game.BaseUI {
     private resultBtnGroup: eui.Group;
     private backBtn: eui.Button;
     private nextBtn: eui.Button;
+    private skillGroup: eui.Group;
+    private skillBG: eui.Rect;
+    private monsterGroup: eui.Group;
+    private monsterMC: eui.Image;
+    private skillText: eui.Label;
     private jumpBtn: eui.Image;
     private bottomMC: eui.Image;
     private topMC: eui.Image;
@@ -74,23 +78,6 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2157,9 +2144,9 @@ class PKMainUI extends game.BaseUI {
 
     private decode_atk(data,roundeData,svo?){
         var VC = VideoCode.getInstance();
-        var atkerPlayerVO = VC.getPlayerByID(data.atker);
+        //var atkerPlayerVO = VC.getPlayerByID(data.atker);
         var atkerItem = this.getMonster(data.atker);
-        if(atkerPlayerVO.mvo.atktype == 0) //近攻
+        if(atkerItem.data.vo.atktype == 0) //近攻
         {
             if(svo && !atkerItem.isPKing && !svo.hideName)
                 this.showSkillName(atkerItem,svo);
@@ -2171,7 +2158,7 @@ class PKMainUI extends game.BaseUI {
             {
                 this.showSkillName(atkerItem,svo);
             }
-            this.bulletAtk(data,roundeData,6,atkerPlayerVO.mvo.atktype)
+            this.bulletAtk(data,roundeData,6,atkerItem.data.vo.atktype)
         }
     }
 
@@ -2207,14 +2194,14 @@ class PKMainUI extends game.BaseUI {
         this.addEffectList(data,roundeData);
     }
 
-    private decode_skill(data,roundeData){
+    private decode_skill(data,roundeData,stopMainSkill?){
         var VC = VideoCode.getInstance();
-        var atkerPlayerVO = VC.getPlayerByID(data.atker);
+        //var atkerPlayerVO = VC.getPlayerByID(data.atker);
         var atkerItem = this.getMonster(data.atker);
         if(data.atker >= 10)
         {
-            var mvo = atkerPlayerVO.mvo;
-            var svo = mvo.getSkillByID(data.skillID,atkerPlayerVO.isPKing);
+            var mvo = atkerItem.data.vo;
+            var svo = mvo.getSkillByID(data.skillID,atkerItem.isPKing);
         }
         else
         {
@@ -2230,6 +2217,14 @@ class PKMainUI extends game.BaseUI {
         }
 
 
+        if(svo.type == 1 && !stopMainSkill)
+        {
+            this.showMainSkillName(atkerItem,svo,{
+                data:data,
+                roundeData:roundeData
+            })
+            return;
+        }
 
 
         if(!svo.mvType)
@@ -2611,7 +2606,8 @@ class PKMainUI extends game.BaseUI {
         if(skillVO.type == 1)
         {
             color = 0xEB911B;
-            this.showMainSkillName(item,skillVO);
+            fun && fun();
+            return;
         }
         else if(skillVO.type == 2)
         {
@@ -2628,14 +2624,55 @@ class PKMainUI extends game.BaseUI {
         }
     }
 
-    private showMainSkillName(item,skillVO){
+    private showMainSkillName(item,skillVO,afterData){
+        var mX = 320,mX2 =260,mY=240
+
+        //egret.Tween.removeTweens(this.skillGroup)
+        //egret.Tween.removeTweens(this.skillBG)
+        egret.Tween.removeTweens(this.monsterGroup)
+        //egret.Tween.removeTweens(this.skillNameGroup)
+
+
         this.skillGroup.visible = true;
+        this.skillText.width = 999;
         this.skillText.text = skillVO.name;
-        this.skillGroup.y = this.upGroup.y + 140;
-        egret.Tween.removeTweens(this.skillGroup)
-        var tw = egret.Tween.get(this.skillGroup)
-        tw.to({y:this.upGroup.y + 240},200).wait(800).to({y:this.upGroup.y + 140},100).call(function(){
+        this.skillText.width = this.skillText.textWidth;
+        this.skillText.text = ''
+        this.skillGroup.y = this.upGroup.y + 195
+        //this.skillBG.alpha = 0;
+
+        this.monsterGroup.alpha = 0.5;
+        this.monsterMC.source = item.data.vo.url;
+
+        var p = item.localToGlobal(item.anchorOffsetX,item.anchorOffsetY);
+        p= this.skillGroup.globalToLocal(p.x,p.y,p);
+
+        this.monsterGroup.x = p.x
+        this.monsterGroup.y = p.y
+        this.monsterGroup.scaleX = this.monsterGroup.scaleY = 0;
+        //var tw = egret.Tween.get(this.skillBG);
+        //tw.to({alpha:0.8},200).wait(1200).to({alpha:0},200);
+
+        var tw = egret.Tween.get(this.monsterGroup);
+        tw.wait(100).to({x:mX,y:mY,scaleX:1.1,scaleY:1.1,alpha:1},200).call(function(){
+            this.skillBG.visible = true;
+        },this).to({scaleX:1,scaleY:1},200).wait(300);
+        for(var i=0;i<skillVO.name.length;i++)
+        {
+            tw.call(function(index){
+                this.skillText.text = skillVO.name.substr(0,index)
+            },this,[i+1]).wait(200)
+        }
+
+        tw.wait(500).call(function(){
+            this.skillBG.visible = false;
+        },this).to({x:p.x,y:p.y,scaleX:0,scaleY:0,alpha:0.5},300).wait(200).call(function(){
             this.skillGroup.visible = false;
+            this.decode_skill(afterData.data,afterData.roundeData,true)
         },this);
+
+        //var tw = egret.Tween.get(this.skillNameGroup);
+        //tw.wait(300).to({scaleX:0.8,scaleY:0.8,alpha:1},300).to({scaleX:1,scaleY:1},200);
+
     }
 }

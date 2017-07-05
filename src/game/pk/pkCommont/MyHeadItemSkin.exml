@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="137" height="179">
+<e:Skin class="MyHeadItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="150" height="200">
 
-	<e:Image source="card_bg_png" y="0" height="179" x="0" width="137" scale9Grid="72,75,87,71"/>
-	<e:Image y="8" x="8" width="120" height="160" id="headMC" source=""/>
-	<e:Rect height="35" fillAlpha="0.5" bottom="9" left="7" right="7"/>
+	<e:Image source="card_bg_png" y="0" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
+	<e:Image y="9" x="10" width="130" height="153" id="headMC" source="" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Rect height="35" bottom="9" left="10" right="10" fillColor="0x2d190f"/>
 
 
 

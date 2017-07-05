@@ -31,7 +31,7 @@
 			<e:Image source="head_bg2_jpg" x="4" y="4" width="72" height="72"/>
 			<e:Image id="headMC" source="icon_power_png" x="4" y="4" width="72" height="72"/>
 			</e:Group>
-			<e:List id="enemyList" height="259" y="128" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+			<e:List id="enemyList" height="259" y="125" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 			<e:layout>
 				<e:TileLayout requestedColumnCount="4" horizontalGap="20" verticalGap="20" horizontalAlign="center"/>
 			</e:layout>

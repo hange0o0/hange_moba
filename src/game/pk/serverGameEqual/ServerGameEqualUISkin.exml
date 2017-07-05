@@ -45,7 +45,7 @@
 					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
 					<e:Label horizontalCenter="0" y="10" textColor="0xF8D05A" text="?"/>
 				</e:Group>
-				<e:List id="enemyList" height="259" y="131" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
+				<e:List id="enemyList" height="259" y="125" itemRendererSkinName="EnemyHeadItemSkin" horizontalCenter="0">
 					<e:layout>
 						<e:TileLayout requestedColumnCount="4" horizontalGap="20" verticalGap="20"/>
 					</e:layout>

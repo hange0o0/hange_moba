@@ -640,6 +640,10 @@
 				{
 					"compress":false,
 					"key":"monster_type3_png"
+				},
+				{
+					"compress":false,
+					"key":"black_bg2_png"
 				}
 			],
 			"sort":0
@@ -879,6 +883,14 @@
 				{
 					"compress":false,
 					"key":"pk_round_bg_png"
+				},
+				{
+					"compress":false,
+					"key":"card_battle2_png"
+				},
+				{
+					"compress":false,
+					"key":"mvp_png"
 				}
 			],
 			"sort":0
@@ -1223,6 +1235,10 @@
 		{
 			"compress":false,
 			"key":"window_bg_icon_jpg"
+		},
+		{
+			"compress":false,
+			"key":"team2_jpg"
 		}
 	]
 }

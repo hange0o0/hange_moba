@@ -4,9 +4,10 @@
 
 
 	<e:Button bottom="40" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
-	<e:List top="120" bottom="130" horizontalCenter="0" id="list" x="10" y="10" itemRendererSkinName="AwardItemSkin" maxWidth="510">
+	<e:List top="120" bottom="160" horizontalCenter="0" id="list" x="10" y="10" itemRendererSkinName="AwardItemSkin" maxWidth="510">
 		<e:layout>
 			<e:TileLayout horizontalGap="10" orientation="rows" requestedColumnCount="4"/>
 		</e:layout>
 	</e:List>
+	<e:Label id="desText" text="Label" size="22" horizontalCenter="0" bottom="125" textColor="0xccb48e"/>
 </e:Skin>

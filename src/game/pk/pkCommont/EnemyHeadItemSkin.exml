@@ -6,19 +6,15 @@
 		<e:Image source="border2_png" x="0" y="0" scale9Grid="11,11,68,68" width="116" height="116"/>
 		<e:Image id="headMC" x="5" y="5" width="106" height="106" source=""/>
 	</e:Group>
-	<e:Group id="teamGroup" horizontalCenter="0" verticalCenter="0" width="140" height="140">
-		<e:Image id="teamGroupBG" source="head_border_light1_png" horizontalCenter="0" verticalCenter="0" scaleX="1.1" scaleY="1.1"/>
-		<e:Image id="headMC2" y="8" width="124" height="124" x="9" source="head_png"/>
-		<e:Image source="head_border1_png" y="0" x="0" id="headBG" width="140" height="140"/>
-		<e:Label y="110" textColor="0xCCB48E" stroke="2" text="LV.60" textAlign="center" right="5" size="22" id="lvText" x="10"/>
-		<e:Group x="1" y="2">
-			<e:Image source="icon_empty_png" x="0" y="0"/>
-			<e:Label id="indexText" text="1" size="18" horizontalCenter="0" verticalCenter="0" textColor="0xDD9742"/>
-		</e:Group>
-		<e:Group id="closeBtn" y="100" horizontalCenter="0">
-			<e:Rect height="40" width="100" y="-1.4210854715202004e-14" x="0" fillAlpha="0.8" ellipseWidth="20" fillColor="0x2B261C" ellipseHeight="20" strokeColor="0x7A510F" strokeWeight="2"/>
-			<e:Image x="3" y="4" scaleY="0.8" scaleX="0.8" source="icon_money_png"/>
-			<e:Label text="贿赂" size="22" verticalCenter="1" x="44" textColor="0xFADEA2"/>
-		</e:Group>
+	<e:Group id="teamGroup" horizontalCenter="0" verticalCenter="0" width="130" height="130">
+		<e:Image id="teamGroupBG" source="head_border_light1_png" horizontalCenter="0" verticalCenter="0" scaleX="1" scaleY="1"/>
+		<e:Image id="headMC2" y="5" width="120" height="120" x="5" source="head_png"/>
+		<e:Image source="head_border1_png" y="0" x="0" id="headBG" width="130" height="130"/>
+		<e:Label y="10" textColor="0xCCB48E" stroke="2" text="LV.60" textAlign="center" size="22" id="lvText" left="0"/>
+		<e:Image id="closeBtn" y="5" source="icon_money_png" right="6"/>
+	</e:Group>
+	<e:Group horizontalCenter="0" y="100">
+		<e:Rect height="34" x="0" ellipseWidth="10" fillColor="0x2B261C" ellipseHeight="10" strokeColor="0x7A510F" strokeWeight="1" width="120"/>
+		<e:Label id="nameText" text="贿赂贿赂贿" size="20" textColor="0xFADEA2" verticalCenter="0" horizontalCenter="0"/>
 	</e:Group>
 </e:Skin>

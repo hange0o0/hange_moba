@@ -145,9 +145,9 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="tipsGroup" y="150" horizontalCenter="0" locked="true">
-		<e:Rect height="40" width="220" x="0" y="0" fillAlpha="0.8" ellipseHeight="20" ellipseWidth="20" strokeWeight="1" strokeColor="0xFCE1B8"/>
-		<e:Label text="点击此处查看更多" horizontalCenter="0" size="22" verticalCenter="0" textColor="0xFCE1B8"/>
+	<e:Group id="tipsGroup" horizontalCenter="0" bottom="50">
+		<e:Rect height="40" y="0" fillAlpha="0.8" ellipseHeight="20" ellipseWidth="20" strokeWeight="1" strokeColor="0xFCE1B8" width="100%" x="0"/>
+		<e:Label text="你可以点击头像或技能名称了解更多" size="22" verticalCenter="0" textColor="0xFCE1B8" left="15" right="15"/>
 	</e:Group>
 	<ns1:VideoInfoUI id="videoInfo" x="0" skinName="VideoInfoUISkin" top="75" bottom="0"/>
 	</e:Skin>

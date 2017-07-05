@@ -12,6 +12,8 @@ class AwardUI extends game.BaseWindow {
 
     private okBtn: eui.Button;
     private list: eui.List;
+    private desText: eui.Label;
+
 
 
 
@@ -37,6 +39,7 @@ class AwardUI extends game.BaseWindow {
     public onShow(){
         SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
         this.setTitle(this.data.title || '恭喜获得');
+        MyTool.setColorText(this.desText, this.data.des || '');
         var arr = [];
         if(this.data.coin)
         {

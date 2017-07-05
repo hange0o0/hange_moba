@@ -171,6 +171,8 @@ class PKResultBase extends game.BaseContainer {
         if(PKManager.getInstance().pkAward.finishTask)
         {
             PKManager.getInstance().pkAward.finishTask.title = '完成卡组任务';
+            if(UM.getMyCard().num != 10)
+                PKManager.getInstance().pkAward.finishTask.des = '你可以[免费]刷新卡组以获得新的任务';
             AwardUI.getInstance().show(PKManager.getInstance().pkAward.finishTask);
         }
         PKManager.getInstance().pkAward = null

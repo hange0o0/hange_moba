@@ -5,13 +5,12 @@
 	<e:Label text="创建队伍后将不能加入其它队伍" size="22" horizontalCenter="0" bottom="125" textColor="0x8c8c8c"/>
 	<e:Label y="114.06" text="队伍名称：" x="45" textColor="0xe0a44a" size="24"/>
 	<e:Group y="100" x="175">
-		<e:TextInput id="nameText" width="270" y="2" skinName="MyTextInputSkin" height="50" x="0" text="12345671234567"/>
+		<e:TextInput id="nameText" width="280" y="2" skinName="MyTextInputSkin" height="50" x="0" text="12345671234567"/>
 		<e:Group id="randomBtn" y="0" right="-50">
-			<e:Image source="main_border_png" x="0" y="0" scaleX="0.4" scaleY="0.4"/>
-			<e:Image source="random_btn_png" x="9" y="10" scaleY="0.4" scaleX="0.4"/>
+			<e:Image source="random_btn_png" x="0" y="-4" scaleY="0.6" scaleX="0.6"/>
 		</e:Group>
 		<e:layout>
-			<e:HorizontalLayout verticalAlign="middle"/>
+			<e:HorizontalLayout verticalAlign="middle" gap="20"/>
 		</e:layout>
 	</e:Group>
 	

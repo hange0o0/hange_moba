@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="MyCardGroupSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group id="con" x="0" top="0" bottom="10">
-		<e:Group id="myGroup" x="0" y="0" width="640" height="450">
+		<e:Group id="myGroup" x="0" y="0" width="640" height="490">
 			<e:List id="myList" y="75" horizontalCenter="0" itemRendererSkinName="MyHeadItemSkin">
 			<e:layout>
-				<e:TileLayout requestedColumnCount="4" horizontalGap="15" verticalGap="10"/>
+				<e:TileLayout requestedColumnCount="4" verticalGap="6" horizontalGap="6"/>
 			</e:layout>
 			<e:ArrayCollection>
 				<e:Array>
