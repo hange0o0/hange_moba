@@ -4,7 +4,7 @@
 
 
 
-	<e:Group y="200" x="320" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" id="bgGroup">
+	<e:Group y="200" x="320" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" id="bgGroup" locked="true">
 		<e:Image x="110" y="-79" fillMode="clip" height="500" id="bg" source="main4_png"/>
 	</e:Group>
 
@@ -16,7 +16,7 @@
 	<e:Group horizontalCenter="0" y="265" width="480">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:Label id="titleText" text="修正场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
-		<e:Image source="main_mc_png" y="0" x="0"/>
+		<e:Image source="main_mc_png" y="0" x="0" visible="false"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>
@@ -27,6 +27,14 @@
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" width="335" y="31" textColor="0xCCB48E" text="积分：12345(LV.5)" textAlign="center" lineSpacing="8" horizontalCenter="0" height="36"/>
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="匹配需消耗入场券：1" textAlign="center" horizontalCenter="0" height="60" x="10" verticalAlign="middle" size="24"/>
+		<e:Group id="barGroup" y="104" horizontalCenter="0">
+			<e:Group x="110" y="1">
+			<e:Rect width="206" height="20" x="0" y="0" ellipseWidth="10" ellipseHeight="10" strokeWeight="2" strokeColor="0x5B2C0A" fillColor="0x7F4418"/>
+			<e:Rect id="barMC" width="150" height="14" x="3" ellipseWidth="10" ellipseHeight="10" strokeColor="0xE0A44A" fillColor="0xA57A43" verticalCenter="0"/>
+			</e:Group>
+			<e:Label id="nextText" text="下一阶段：" x="0" y="0" size="22" textColor="0xCCB48E"/>
+			<e:Label id="rateText" text="下一阶段" x="320" y="0" size="22" textColor="0xE0A44A"/>
+		</e:Group>
 		<e:Rect fillColor="0x494747" width="400" y="79" height="1" x="48"/>
 		<e:Image id="lockMC" source="lock_icon_png" y="25" horizontalCenter="0"/>
 	</e:Group>
@@ -35,6 +43,13 @@
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="ticketGroup" y="266" right="90">
+		<e:Image source="ticket_icon_png" x="0" y="0"/>
+		<e:Label id="numText" text="Label" x="187.99999999999994" y="406" textColor="0xccb48e" size="22" stroke="2"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

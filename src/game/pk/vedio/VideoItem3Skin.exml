@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="VideoItem3Skin" currentState="team2" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" width="640"  states="team1,team2,over" >
-	<e:Rect id="bg2" width="620" x="10" top="0" fillColor="0x130A04" bottom="0" fillAlpha="0" strokeColor="0xffffff" strokeWeight="2"/>
+	<e:Rect id="bg2" width="620" x="10" top="0" fillColor="0x130A04" bottom="0" fillAlpha="0" strokeColor="0xffffff" strokeWeight="1"/>
 	<e:Rect strokeColor="0x673D1F" width="640" x="0" y="0" height="2" fillColor="0x000000" visible="false"/>
 	<e:Rect y="38" strokeColor="0x673D1F" width="640" fillColor="0x000000" height="2" x="0" visible="false"/>
 

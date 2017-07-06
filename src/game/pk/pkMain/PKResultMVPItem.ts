@@ -22,28 +22,52 @@ class PKResultMVPItem extends game.BaseItem {
     //}
 
     public dataChanged(){
-        this.topMC.visible = this.data.value == this.data.maxValue;
+        egret.Tween.removeTweens(this.topMC);
+        this.topMC.visible = this.data.isTop;
         this.scoreText.text = this.data.value;
         this.rateMC.height = Math.max(5,this.data.value/this.data.maxValue * 300);
         this.headMC.source = MonsterVO.getObject(this.data.mid).thumb
         this.scoreText.y = 400 - this.rateMC.height - 90;
-        this.topMC.y = this.scoreText.y - 5;
+        this.topMC.y = this.scoreText.y  + 30;
 
-        if(this.data.mvp)
-            this.topMC.source = 'mvp_png'
-        else
-            this.topMC.source = 'king_icon_png'
-
+        switch(this.data.type){
+            case 0:
+                this.topMC.source = 'mvp_png'
+                break;
+            case 1:
+                this.topMC.source = 'monster_type2_png'
+                break;
+            case 2:
+                this.topMC.source = 'monster_type1_png'
+                break;
+            case 3:
+                this.topMC.source = 'monster_type3_png'
+                break;
+        }
 
         if(this.data.team == 1)
         {
-            this.rateMC.fillColor = 0x8E6709
+            this.rateMC.fillColor = 0x325891
         }
         else
         {
-            this.rateMC.fillColor = 0x8E3A09
+            this.rateMC.fillColor = 0xA73321
         }
         this.setChoose(false);
+        this.addTopMV();
+    }
+
+    private addTopMV(){
+        if(!this.topMC.visible)
+            return;
+        this.once(egret.Event.REMOVED_FROM_STAGE,function(){
+            egret.Tween.removeTweens(this.topMC);
+        },this)
+
+        var tw = egret.Tween.get(this.topMC,{loop:true});
+        tw.to({scaleX:1.1,scaleY:0.8},200).to({scaleX:1,scaleY:1.1,y:this.topMC.y-10},200).
+            to({scaleX:1.1,scaleY:0.8,y:this.topMC.y},200).to({scaleX:1,scaleY:1},300).wait(2000);
+
     }
 
     public setChoose(b){
@@ -59,7 +83,7 @@ class PKResultMVPItem extends game.BaseItem {
         }
         else
         {
-            this.topMC.visible = this.data.value == this.data.maxValue;
+            this.topMC.visible = this.data.isTop;
             this.scoreText.visible = false
             this.rateMC.strokeColor = 0x000000
             this.rateMC.strokeWeight = 1

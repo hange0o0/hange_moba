@@ -39,7 +39,7 @@ class PKManager {
             '我想再比试一次','我只是变的更坚强了','我和你没完','我会继续努力的','主要是饿了\n要不不会输','早说了今天不宜动武','我渴望复仇','对不起\n我搞砸了','小心我咬你','和我的计划有出入',
             '这不是我想要的结果','真是失误','我犯了个错误','(╯﹏╰）','我感觉很难受','呃啊！医生！','不胜利毋宁死','我选择死亡','死亡，没什么好怕的','我还会回来的!','这次是你赢了','我感觉有点不舒服'],
         pking:['投降，或者死亡','来战个痛快','小心你的背后','这招看你怎么躲','我要认真了','你就只会这几招吗','我要出大招了','我会赐予你死亡','你究竟想怎样...','我的魔法会撕碎你','我已饥渴难耐','你会记住我的名字的',
-            '品尝我的愤怒吧','你死期将至！','我要粉碎你！','你是我的猎物','尝尝我的厉害吧', '你会后悔对上我的' ,'希望你能多坚持一会吧','不要输得太难看哦','对面上来的是什么啊','我允许你认输','唯有一战了','胜利输于我们的',
+            '品尝我的愤怒吧','你死期将至！','我要粉碎你！','你是我的猎物','尝尝我的厉害吧', '你会后悔对上我的' ,'希望你能多坚持一会吧','不要输得太难看哦','对面上来的是什么啊','我允许你认输','唯有一战了','胜利属于我们的',
             '我们来做个了结吧','你的身体有破绽','你空门大开啊','尝尝这个吧','接下...\n这一招吧','用这招....\n来决胜负吧', '马上将你解决掉', '就用你的死来结束吧','别罗嗦了...来吧','来啊!\n互相相害啊'],
         win_view:['太牛B了','好样的','我爱你！','爱死你了','对面太弱了','不错不错','威武','有希望了','好强哦~','想输都难','赢得漂亮','距离胜利又近一步了','看来我不用出手了','燃烧吧！\n小宇宙！',
             '加油，再赢一场','队友强\n我躺赢','这就是王者之气啊','刚才你们说什么来着','看到我们队有多强了吧','等会去哪庆功好呢','留几个给我杀啊','放轻点，别把对面吓跑了','蠢材！','让我来干掉你....',
@@ -542,12 +542,12 @@ class PKManager {
 
     private addMVPList(player)
     {
-        var rate = (this.pkResult.isequal?1:(Config.equalValue/(this.team1Base.f || (Config.equalValue))) )*10
+        var rate = (this.pkResult.isequal?1:Math.min(1,(Config.equalValue/(this.team1Base.f || (Config.equalValue)))))*10
         var mvp = this.pkResult.mvp[player.id].split('|')
         var hp:any = parseInt(mvp[0]);
         var atk:any = parseInt(mvp[1]);
         var help:any  = parseInt(mvp[2]) + parseInt(mvp[3]);
-        var mvp:any = Math.floor((hp + atk + help)/MonsterVO.getObject(player.mid).cost/rate)
+        var mvp:any = Math.round((hp + atk + help)/MonsterVO.getObject(player.mid).cost/rate)
         var oo = {
             id:player.id,
             mid:player.mid,

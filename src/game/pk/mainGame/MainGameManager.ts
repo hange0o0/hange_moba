@@ -32,34 +32,29 @@ class MainGameManager{
     }
 
     public stepName = ['卡士','卡使','卡将','卡帅','卡师','卡神','卡圣','卡皇','卡帝','卡君','卡尊','卡主','卡宗'];
-    public getMainStepLevel(lv?){
+
+    public getMainStep(lv?){
         var level = lv || UM.main_game.level;
-        if(level < 90)
-        {
-            return Math.floor((level+5)/10)
-        }
-        return  Math.floor(level/10)
+        return  Math.floor((level+5)/10)
     }
 
     public getStepName(lv?){
-        var level = this.getMainStepLevel(lv);
-        var index = Math.floor(level/10);
-        var step = level%10
-        if(step==0)
+        var step = this.getMainStep(lv);
+        var index = Math.floor(step/10);
+        var step2 = step%10
+        if(step2==0)
             return this.stepName[index];
         return this.stepName[index] + StringUtil.numToStr(step) + '阶';
+    }
+
+    public getStepLevel(step){
+         return  Math.max(0,step*10 - 5);
     }
 
     //下一阶分数
     public getNextStep(lv?){
         var level = lv || UM.main_game.level;
-        if(level < 85)
-        {
-            return (Math.floor((level + 5)/10) + 1)*10 - 5
-        }
-        if(level < 100)
-            return 100;
-        return  (Math.floor(level/10) + 1)*10
+        return this.getStepLevel(this.getMainStep(level) + 1)
     }
 
     public getHeadByLevel(level){

@@ -5,7 +5,7 @@
 
 
 
-	<e:Scroller id="scroller" width="640" top="70" bottom="0" horizontalCenter="0">
+	<e:Scroller id="scroller" width="640" top="75" bottom="0" horizontalCenter="0">
 		<e:Group id="scrollGroup">
 		</e:Group>
 	</e:Scroller>

@@ -28,7 +28,7 @@
 					<e:Label id="apText" x="70" text="12300/45600" verticalAlign="top" stroke="2" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
 				</e:Group>
 				</e:Group>
-				<e:Label id="valueText" y="115" size="24" text="血量:280+56" x="7" lineSpacing="8" textColor="0xCCB48E" width="340"/>
+				<e:Label id="valueText" y="115" size="24" text="血量:280+56" x="7" lineSpacing="15" textColor="0xCCB48E" width="340"/>
 				<e:Group x="0" y="170">
 				<e:List id="list1" width="180" y="1" x="160">
 					<e:layout>

@@ -4,12 +4,16 @@ class MainMainItem extends game.BaseItem {
         this.skinName = "MainMainItemSkin";
     }
 
+    private bgGroup: eui.Group;
+    private barGroup: eui.Group;
     private scoreText: eui.Label;
     private desText: eui.Label;
+    private barMC: eui.Rect;
+    private nextText: eui.Label;
+    private rateText: eui.Label;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
     private awardBtn: eui.Group;
-    private bgGroup: eui.Group;
 
 
 
@@ -43,11 +47,34 @@ class MainMainItem extends game.BaseItem {
     }
 
     public renew() {
+        var MM = MainGameManager.getInstance();
         this.haveRenew = true;
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'
         var mainData = UM.main_game;
         var level = mainData.level;
-        this.setHtml(this.scoreText,this.createHtml('称号：',0xE0A44A) + MainGameManager.getInstance().getStepName(level) + this.createHtml('  [评分：'+level+']',0xE0A44A,22));
+        this.setHtml(this.scoreText, this.createHtml('称号：', 0xE0A44A) + MainGameManager.getInstance().getStepName(level) + this.createHtml('  [评分：' + level + ']', 0xE0A44A, 22));
+
+
+        if (level >= MainGameManager.getInstance().maxLevel) {
+            MyTool.removeMC(this.startBtn)
+            this.barGroup.visible = false;
+            this.desText.text = '更高阶的职业评定即将开放！'
+        }
+        else
+        {
+            this.barGroup.visible = true;
+            this.desText.text = ''
+
+            var lastLevel = MM.getStepLevel(MM.getMainStep());
+            var nextLevel = MM.getStepLevel(MM.getMainStep() + 1);
+            this.nextText.text = MainGameManager.getInstance().getStepName(nextLevel) + '：';
+            this.rateText.text = (level - lastLevel) + '/' +(nextLevel - lastLevel);;
+            this.barMC.width = 200 *(level - lastLevel)/(nextLevel - lastLevel);
+        }
+
+
+
+
 
         MyTool.removeMC(this.awardBtn);
         if(mainData.awardtime && DateUtil.isSameDay(mainData.awardtime))//已领过奖
@@ -62,10 +89,10 @@ class MainMainItem extends game.BaseItem {
         //if(UM.main_game.choose)
         //{
         this.startBtn.label = '开始挑战'
-        if(UM.getEnergy() >= 1)
-            this.setHtml(this.desText,'每次挑战需要消耗 ' + this.createHtml('1',0xFFFF00) + ' 点体力');
-        else
-            this.setHtml(this.desText,'每次挑战需要消耗 ' + this.createHtml('1',0xFF0000) + ' 点体力');
+        //if(UM.getEnergy() >= 1)
+        //    this.setHtml(this.desText,'每次挑战需要消耗 ' + this.createHtml('1',0xFFFF00) + ' 点体力');
+        //else
+        //    this.setHtml(this.desText,'每次挑战需要消耗 ' + this.createHtml('1',0xFF0000) + ' 点体力');
         //}
         //else
         //{
@@ -76,11 +103,7 @@ class MainMainItem extends game.BaseItem {
         //        this.setHtml(this.desText,'抽取卡兵需消耗体力：' + this.createHtml('1',0xFF0000));
         //}
 
-        if(level >= MainGameManager.getInstance().maxLevel)
-        {
-            MyTool.removeMC(this.startBtn)
-            this.desText.text = '更高阶的职业评定即将开放！'
-        }
+
 
 
         //RankManager.getInstance().renewPageHead(this.bgGroup,this.headMC,3);

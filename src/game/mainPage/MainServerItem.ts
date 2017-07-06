@@ -4,15 +4,20 @@ class MainServerItem extends game.BaseItem {
         this.skinName = "MainServerItemSkin";
     }
 
+    private bgGroup: eui.Group;
     private bg: eui.Image;
     private titleText: eui.Label;
     private scoreText: eui.Label;
     private desText: eui.Label;
+    private barGroup: eui.Group;
+    private barMC: eui.Rect;
+    private nextText: eui.Label;
     private lockMC: eui.Image;
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
-    private bgGroup: eui.Group;
+    private rateText: eui.Label;
+
 
 
 
@@ -56,6 +61,7 @@ class MainServerItem extends game.BaseItem {
             this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.serverLevel) + '',0xE0A44A)+' 才可进入');
             //this.desText.text = '公会评分达' + Config.serverLevel + '后开放'
             this.btnGroup.visible = false;
+            this.barGroup.visible = false;
         }
         else
         {
@@ -74,10 +80,21 @@ class MainServerItem extends game.BaseItem {
             {
                 this.startBtn.label = '开始匹配'
             }
-            if(UM.getEnergy() >= 1)
-                this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFFFF00));
-            else
-                this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFF0000));
+
+            this.barGroup.visible = true;
+            this.desText.text = ''
+
+            var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
+            var nowExp = ServerGameManager.getInstance().getPKTableExp(level)
+            var nextExp = ServerGameManager.getInstance().getPKTableExp(level + 1)
+            this.barMC.width = 200 * Math.max(0,serverData.exp - nowExp) / (nextExp - nowExp)
+            this.rateText.text = Math.max(0,serverData.exp - nowExp) + '/' + (nextExp - nowExp)
+            this.nextText.text = ServerGameManager.getInstance().getStepName(nextExp)
+
+            //if(UM.getEnergy() >= 1)
+            //    this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFFFF00));
+            //else
+            //    this.setHtml(this.desText,'挑战需消耗体力：' + this.createHtml('1',0xFF0000));
         }
 
 

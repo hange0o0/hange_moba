@@ -4,15 +4,22 @@ class MainServerEqualItem extends game.BaseItem {
         this.skinName = "MainServerEqualItemSkin";
     }
 
+    private bgGroup: eui.Group;
+    private bg: eui.Image;
+    private titleText: eui.Label;
+    private scoreText: eui.Label;
+    private desText: eui.Label;
+    private barGroup: eui.Group;
+    private barMC: eui.Rect;
+    private nextText: eui.Label;
+    private lockMC: eui.Image;
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
-    private scoreText: eui.Label;
-    private desText: eui.Label;
-    private titleText: eui.Label;
-    private lockMC: eui.Image;
-    private bg: eui.Image;
-    private bgGroup: eui.Group;
+    private ticketGroup: eui.Group;
+    private numText: eui.Label;
+    private rateText: eui.Label;
+
 
 
 
@@ -58,47 +65,67 @@ class MainServerEqualItem extends game.BaseItem {
         if(this.lockMC.visible)
         {
 
+            this.ticketGroup.visible = false
             this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.serverEqualLevel) + '',0xE0A44A)+' 才可进入');
             this.btnGroup.visible = false;
+            this.barGroup.visible = false;
         }
         else
         {
+            this.ticketGroup.visible = true
             this.btnGroup.visible = true;
             MyTool.removeMC(this.retryBtn);
             var num = UM.getPropNum(21);
+            if(num >= 1)
+                this.setHtml(this.numText, '' + num);
+            else
+                this.setHtml(this.numText,this.createHtml('0',0xFF0000));
+
+            this.barGroup.visible = true;
+            this.desText.text = ''
+
+            var level = ServerGameEqualManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
+            var nowExp = ServerGameEqualManager.getInstance().getPKTableExp(level)
+            var nextExp = ServerGameEqualManager.getInstance().getPKTableExp(level + 1)
+            this.barMC.width = 200 * Math.max(0,serverData.exp - nowExp) / (nextExp - nowExp)
+            this.rateText.text = Math.max(0,serverData.exp - nowExp) + '/' + (nextExp - nowExp)
+            this.nextText.text = ServerGameEqualManager.getInstance().getStepName(nextExp)
+
+
+
            if(serverData.pk)//已PK过
             {
                 this.btnGroup.addChildAt(this.retryBtn,0);
                 this.startBtn.label = '重新匹配'
-                if(num >= 1)
-                    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
-                else
-                    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
+                //if(num >= 1)
+                //    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
+                //else
+                //    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
             }
             else if(serverData.choose)//已有卡版数据
             {
                 this.startBtn.label = '开始挑战';
-                if(UM.getEnergy() >= 1)
-                    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
-                else
-                    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+                //if(UM.getEnergy() >= 1)
+                //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+                //else
+                //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
             }
             else
             {
                 if(!serverData.open)
                 {
-                    if(num >= 1)
-                        this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
-                    else
-                        this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
-                    this.startBtn.label = '进入'
+                    //if(num >= 1)
+                    //    this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
+                    //else
+                    //    this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
+                    //this.startBtn.label = '进入'
                 }
                 else
                 {
-                    if(UM.getEnergy() >= 1)
-                        this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
-                    else
-                        this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+                    //if(UM.getEnergy() >= 1)
+                    //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+                    //else
+                    //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
                     this.startBtn.label = '开始匹配'
                 }
             }

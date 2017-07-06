@@ -9,8 +9,12 @@ class MainDayItem extends game.BaseItem {
     private scoreText: eui.Label;
     private lockMC: eui.Image;
     private desText: eui.Label;
+    private barGroup: eui.Group;
+    private barMC: eui.Rect;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
+    private nextText: eui.Label;
+
 
 
 
@@ -35,7 +39,7 @@ class MainDayItem extends game.BaseItem {
 
         DayGameManager.getInstance().resetDay();
         var myData = UM.day_game;
-        this.setHtml(this.scoreText,  this.createHtml('当前进度：',0xE0A44A) + myData.level + '/10');
+        this.setHtml(this.scoreText,  this.createHtml('累计战力奖励：',0xE0A44A) + Math.floor(myData.score/2));
 
         this.lockMC.visible = UM.level < Config.dayLevel
         this.scoreText.visible = !this.lockMC.visible
@@ -44,18 +48,22 @@ class MainDayItem extends game.BaseItem {
 
             this.desText.text = '玩家 ' + Config.dayLevel + ' 级开放'
             this.btnGroup.visible = false;
+            this.barGroup.visible = false;
         }
         else
         {
             this.btnGroup.visible = true;
             if(myData.level == 10)
+            {
                 this.desText.text = '今日已通关';
+                this.barGroup.visible = false
+            }
             else
             {
-                if(UM.getEnergy() >= 1)
-                    this.setHtml(this.desText,'每次PK消耗体力：' + this.createHtml('1',0xFFFF00));
-                else
-                    this.setHtml(this.desText,'每次PK消耗体力：' + this.createHtml('1',0xFF0000));
+                this.barGroup.visible = true
+                this.desText.text = ''
+                this.nextText.text = myData.level + '/10';
+                this.barMC.width = 200 * myData.level / 10;
             }
         }
 

@@ -58,6 +58,7 @@ class PKResultMVP extends game.BaseContainer {
         var mvpList = PKManager.getInstance().mvpList
         var list = mvpList.list;
         var arr = [];
+        var topObj = {};
         for(var i=0;i<list.length;i++)
         {
             var item = list[i];
@@ -65,13 +66,13 @@ class PKResultMVP extends game.BaseContainer {
                  id:item.id,
                  mid:item.mid,
                  team:item.team,
+                 type:this.tab.selectedIndex,
              }
              switch(this.tab.selectedIndex)
              {
                  case 0:
                      oo.value = item.mvp
                      oo.maxValue = mvpList.mvp
-                     oo.mvp = true
                      break;
                  case 1:
                      oo.value = item.hp
@@ -86,6 +87,11 @@ class PKResultMVP extends game.BaseContainer {
                      oo.maxValue = mvpList.help
                      break;
              }
+            if(!topObj[this.tab.selectedIndex] && oo.value == oo.maxValue)
+            {
+                oo.isTop = true;
+                topObj[this.tab.selectedIndex] = true;
+            }
             arr.push(oo);
         }
         this.list.dataProvider = new eui.ArrayCollection(arr);

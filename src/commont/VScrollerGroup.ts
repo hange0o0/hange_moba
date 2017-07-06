@@ -177,7 +177,7 @@ class VScrollerGroup extends eui.Group{
 
                 if(!this.heightObj[startIndex])
                 {
-                    //item.validateNow();
+                    item.validateNow();
                     this.heightObj[startIndex] = item.height + this.margin
                     resetHeight = true;
                 }
@@ -221,7 +221,7 @@ class VScrollerGroup extends eui.Group{
         var item = this.getItem();
         this.addChild(item);
         item.data = data;
-        //item.validateNow();
+        item.validateNow();
         var h = item.height + this.margin;
         this.feeItem(item);
         return h;

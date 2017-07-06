@@ -222,6 +222,12 @@ class VideoInfoUI extends game.BaseContainer {
                 str += ' <font color="#FF0000">'+def + '%</font>';
             else
                 str += '正常';
+
+            this.infoGroup.addChildAt(this.hpGroup,0)
+        }
+        else
+        {
+             MyTool.removeMC(this.hpGroup);
         }
 
 

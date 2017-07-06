@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="PKResultMVPSkin" width="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="480">
-	<e:TabBar itemRendererSkinName="MyTabItemSkin" id="tab" height="60" width="520" y="410" horizontalCenter="0">
+	<e:Rect width="520" height="60" fillAlpha="0.5" horizontalCenter="0" bottom="55"/>
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" id="tab" height="60" width="520" horizontalCenter="0" bottom="10" locked="true">
 		<e:ArrayCollection>
 		<e:Array>
 			<e:Object label="综合评分"/>
@@ -10,7 +11,29 @@
 		</e:Array>
 		</e:ArrayCollection>
 	</e:TabBar>
-	<e:Group y="0" horizontalCenter="0">
+	<e:Group x="40.00000000000001" bottom="115">
+		<e:Rect width="520" height="20" y="0" x="0" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="0" x="0" fillAlpha="0.1" fillColor="0x999999"/>
+		<e:Rect width="520" height="20" y="10" x="10" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="10" x="10" fillAlpha="0.1" fillColor="0x999999"/>
+		<e:Rect width="520" height="20" y="10" x="10" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="10" x="10" fillColor="0x999999" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="20" x="20" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="20" x="20" fillColor="0x999999" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="30" x="30" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="30" x="30" fillColor="0x999999" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="40" x="40" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="40" x="40" fillColor="0x999999" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="50" x="50" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="50" x="50" fillColor="0x999999" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="60" x="60" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="60" x="60" fillColor="0x999999" fillAlpha="0.1"/>
+		<e:Rect width="520" height="20" y="70" x="70" fillAlpha="0.1"/>
+		<e:layout>
+		<e:VerticalLayout gap="0"/>
+		</e:layout>
+	</e:Group>
+	<e:Group height="385" horizontalCenter="0" bottom="70">
 		<e:List id="list" height="400" y="0" x="0">
 			<e:layout>
 			<e:HorizontalLayout gap="0"/>
@@ -18,4 +41,6 @@
 		</e:List>
 		<e:Rect width="100%" height="3" y="338" x="0" fillColor="0x160c00"/>
 	</e:Group>
+	<e:Image source="main_mc_png" rotation="90" right="5" bottom="15" visible="false"/>
+	<e:Image source="main_mc_png" rotation="90" bottom="15" left="5" scaleY="-1" visible="false"/>
 </e:Skin>

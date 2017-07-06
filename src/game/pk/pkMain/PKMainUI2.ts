@@ -293,7 +293,7 @@ class PKMainUI extends game.BaseUI {
             width:640,
             height:this.fightHeight + 100
         }
-        var mc = AniManager.getInstance().showCloud(this,rect,b)
+        var mc = AniManager.getInstance().showCloud(this.cloudGroup,rect,b)
 
 
         this.cloudArr.push(mc)
@@ -1600,6 +1600,15 @@ class PKMainUI extends game.BaseUI {
         var bb = this['hpBar'+index + '_'];
         egret.Tween.removeTweens(bf)
         egret.Tween.removeTweens(bb)
+
+        if(data.max < 0)
+        {
+            text.text = '';
+            bb.width = 0
+            bf.width = 0
+            return;
+        }
+
 
         var barWidth = 320;
         var decColor = 0xFF0000

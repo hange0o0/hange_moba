@@ -112,9 +112,9 @@ class VideoUI extends game.BaseUI {
         this.scrollGroup.addChild(this.vGroup)
         this.vGroup.itemRenderer = VideoItem3;
         this.vGroup.scroller = this.scroller;
-        this.vGroup.margin = -2;
-        this.vGroup.desTop = 2;
-        this.vGroup.marginBottom = -58;
+        this.vGroup.margin = -1;
+        this.vGroup.desTop = 15;
+        this.vGroup.marginBottom = 10;
 
 
         this.topUI.addEventListener('hide',this.hide,this);

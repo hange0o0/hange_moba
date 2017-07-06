@@ -14,7 +14,7 @@
 
 
 
-	<e:Group y="265" width="480" horizontalCenter="0" locked="true">
+	<e:Group y="265" width="480" horizontalCenter="0">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:Label text="究极研究院" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
 		<e:Image source="main_mc_png" y="0" x="0"/>
@@ -24,11 +24,19 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Group y="300" horizontalCenter="0" locked="true">
+	<e:Group y="300" horizontalCenter="0">
 		<e:Image source="card_bg_png" y="0" scale9Grid="69,75,108,98" width="480" height="160" x="0"/>
 		<e:Label id="scoreText" x="73" y="30" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8"/>
 		<e:Image source="lock_icon_png" y="25" horizontalCenter="0" id="lockMC" x="30"/>
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
+		<e:Group id="barGroup" y="104" horizontalCenter="0">
+			<e:Group x="110" y="1">
+			<e:Rect width="206" height="20" x="0" y="0" ellipseWidth="10" ellipseHeight="10" strokeWeight="2" strokeColor="0x5B2C0A" fillColor="0x7F4418"/>
+			<e:Rect id="barMC" width="150" height="14" x="3" ellipseWidth="10" ellipseHeight="10" strokeColor="0xE0A44A" fillColor="0xA57A43" verticalCenter="0"/>
+			</e:Group>
+			<e:Label text="挑战进度：" x="0" y="0" size="22" textColor="0xCCB48E"/>
+			<e:Label id="nextText" text="下一阶段" x="320" y="0" size="22" textColor="0xe0a44a"/>
+		</e:Group>
 		<e:Rect fillColor="0x494747" width="400" y="74" height="1" x="48"/>
 	</e:Group>
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5" locked="true">

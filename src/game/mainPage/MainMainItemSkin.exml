@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainMainItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Group y="200" id="bgGroup" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" x="320">
+	<e:Group y="200" id="bgGroup" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" x="320" locked="true">
 		<e:Image x="105" y="-166" source="main1_png"/>
 	</e:Group>
-	<e:Group y="263" width="300" horizontalCenter="0">
+	<e:Group y="263" width="300" horizontalCenter="0" locked="true">
 		<e:Image source="black_bg_png" y="0" height="60" width="50%" right="0"/>
 		<e:Image source="black_bg_png" y="0" height="60" width="50%" scaleX="-1" left="0"/>
 	</e:Group>
@@ -12,7 +12,7 @@
 
 
 
-	<e:Group horizontalCenter="0" y="265" width="480">
+	<e:Group horizontalCenter="0" y="265" width="480" locked="true">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:Label text="卡士公会" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
 		<e:Image source="main_mc_png" y="0" x="0"/>
@@ -21,11 +21,19 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Group y="300" horizontalCenter="0" locked="true">
+	<e:Group y="300" horizontalCenter="0">
 		<e:Image y="0" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
 		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" x="73"/>
-		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
+		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24" visible="false"/>
 		<e:Rect height="1" width="400" x="48" y="74" fillColor="0x494747"/>
+		<e:Group id="barGroup" y="104" horizontalCenter="0">
+			<e:Group x="110" y="1">
+				<e:Rect width="206" height="20" x="0" y="0" ellipseWidth="10" ellipseHeight="10" strokeWeight="2" strokeColor="0x5b2c0a" fillColor="0x7f4418"/>
+				<e:Rect id="barMC" width="150" height="14" x="3" ellipseWidth="10" ellipseHeight="10" strokeColor="0xE0A44A" fillColor="0xa57a43" verticalCenter="0"/>
+			</e:Group>
+			<e:Label id="nextText" text="下一阶段：" x="0" y="0" size="22" textColor="0xccb48e"/>
+			<e:Label id="rateText" text="下一阶段" x="320" y="0" size="22" textColor="0xe0a44a"/>
+		</e:Group>
 	</e:Group>
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5" locked="true">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
