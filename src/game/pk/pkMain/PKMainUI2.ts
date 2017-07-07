@@ -738,10 +738,10 @@ class PKMainUI extends game.BaseUI {
             this.playerGroup2.x = 640
             this.mpBar0.width = 1;
             this.mpBar1.width = 1;
-            var tw:egret.Tween = egret.Tween.get(this.playerGroup1);
-            tw.to({x:10},300)
-            var tw:egret.Tween = egret.Tween.get(this.playerGroup2);
-            tw.to({x:322},300)
+            //var tw:egret.Tween = egret.Tween.get(this.playerGroup1);
+            //tw.to({x:10},300)
+            //var tw:egret.Tween = egret.Tween.get(this.playerGroup2);
+            //tw.to({x:322},300)
             this.inPKer();
         }
         else
@@ -776,6 +776,14 @@ class PKMainUI extends game.BaseUI {
     private showRoundTalk(){
         var tw = egret.Tween.get(this.hpGroup)
         tw.to({y:193},300);
+
+        var tw = egret.Tween.get(this.playerGroup1)
+        tw.to({x:0},300);
+
+        var tw = egret.Tween.get(this.playerGroup2)
+        tw.to({x:322},300);
+
+
         this.initSeed();
         if(this.random() > 0.5)
         {
@@ -821,6 +829,13 @@ class PKMainUI extends game.BaseUI {
     public outPKer(){
         var tw = egret.Tween.get(this.hpGroup)
         tw.to({y:150},300);
+
+        var tw = egret.Tween.get(this.playerGroup1)
+        tw.to({x:-320},300);
+
+        var tw = egret.Tween.get(this.playerGroup2)
+        tw.to({x:640},300);
+
         var VC  = VideoCode.getInstance();
         var appearObj = {};
         for(var s in VC.playerObject)
@@ -1021,6 +1036,8 @@ class PKMainUI extends game.BaseUI {
         this.upGroup.visible = false;
         this.downBG.visible = false;
         this.roundGroup.visible = false;
+        this.resultGroup.visible = false;
+        this.skillGroup.visible = false;
 
 
 
@@ -1130,7 +1147,7 @@ class PKMainUI extends game.BaseUI {
 
     private displayTalkWord(data){
         var talkItem = this.getTalkItem();
-        this.addChild(talkItem);
+        this.cloudGroup.addChild(talkItem);
         talkItem.setData(data);
         for(var i=0;i<this.talkList.length;i++)//重叠了
         {
@@ -1160,7 +1177,7 @@ class PKMainUI extends game.BaseUI {
         if(id)
         {
             var emoItem = this.getEmoItem();
-            this.addChild(emoItem);
+            this.cloudGroup.addChild(emoItem);
             emoItem.setData({item:item,id:id});
         }
     }
@@ -1168,7 +1185,7 @@ class PKMainUI extends game.BaseUI {
     public showItemEmo(item,id)
     {
         var emoItem = this.getEmoItem();
-        this.addChild(emoItem);
+        this.cloudGroup.addChild(emoItem);
         emoItem.setData({item:item,id:id,disActive:true});
     }
 

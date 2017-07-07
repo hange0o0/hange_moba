@@ -118,12 +118,8 @@ class UserManager {
         return this.tec_force + this.award_force;
     }
 
-    public getMaxEnergy(){
-
-    }
-
     public getEnergy(){
-        var v = (this.energy.vip?24:30)*60;
+        var v = this.getEnergyStep();
         var t = TM.now();
         var add =   Math.floor((t - this.energy.t)/v)
         if(add > 0)
@@ -135,8 +131,12 @@ class UserManager {
         return this.energy.v;
     }
 
+    public getEnergyStep(){
+        return (this.energy.vip?24:30)*60;
+    }
+
     public getNextEnergyCD(){
-        var v = (this.energy.vip?24:30)*60;
+        var v = this.getEnergyStep();
         this.getEnergy();
         //if(this.energy.t == TM.now())
         //    return 0;

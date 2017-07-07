@@ -4,15 +4,15 @@
 	<e:Image source="book_bg2_jpg" y="0" height="150" right="0" scaleX="-1" scale9Grid="40,10,240,300"/>
 	<e:Image source="button_go_2_png" y="3" horizontalCenter="0" height="56" scale9Grid="19,6,118,3" alpha="0.9"/>
 	<e:Group y="4" horizontalCenter="0" width="602">
-		<e:Rect width="299" y="-2" height="24" x="-1" fillColor="0x240D0D" strokeWeight="2" strokeColor="0x000000"/>
-		<e:Rect width="299" y="-2" fillColor="0x240D0D" height="24" right="-1" strokeColor="0x000000" strokeWeight="2"/>
-		<e:Group y="0" width="300" left="1">
-			<e:Rect id="b0" width="295" y="3" fillColor="0x6A1414" height="14" left="0"/>
-			<e:Rect id="f0" width="200" y="0" fillColor="0x6A1414" height="20" strokeColor="0xFFCC00" left="0"/>
+		<e:Rect width="302" y="-2" height="24" x="-1" fillColor="0x240D0D" strokeWeight="2" strokeColor="0x000000"/>
+		<e:Rect width="302" y="-2" fillColor="0x240D0D" height="24" right="-1" strokeColor="0x000000" strokeWeight="2"/>
+		<e:Group y="0" width="300" left="0">
+			<e:Rect id="b0" width="295" y="3" fillColor="0x6A1414" height="14" right="0"/>
+			<e:Rect id="f0" width="200" y="0" fillColor="0x6A1414" height="20" strokeColor="0xFFCC00" right="0"/>
 		</e:Group>
-		<e:Group y="0" width="300" right="1">
-			<e:Rect id="b1" width="300" y="3" fillColor="0x6A1414" height="14" right="0"/>
-			<e:Rect id="f1" width="300" y="0" fillColor="0x6A1414" height="20" strokeColor="0xFFCC00" right="0"/>
+		<e:Group y="0" width="300" right="0">
+			<e:Rect id="b1" width="300" y="3" fillColor="0x6A1414" height="14" x="0"/>
+			<e:Rect id="f1" width="300" y="0" fillColor="0x6A1414" height="20" strokeColor="0xFFCC00" x="0"/>
 		</e:Group>
 	</e:Group>
 
@@ -27,7 +27,7 @@
 		<e:Image source="border2_png" y="0" x="0"/>
 		<e:Image id="headMC1" source="head_png" y="5" x="5" width="80" height="80"/>
 	</e:Group>
-	<e:Image id="winIcon" source="menu_icon_1_png" x="132" y="55" rotation="15"/>
+	<e:Image id="winIcon" x="132" y="60" rotation="15" source="card_star_png" scaleX="1.2" scaleY="1.2"/>
 	<e:Label id="hpText0" text="12345/6758" x="125" y="32" size="22" textColor="0xEA4E4E" stroke="1"/>
 	<e:Label id="decText0" y="73" textColor="0xC54040" text="985" size="30" right="340" stroke="1"/>
 	<e:Label y="73" textColor="0xC54040" text="14567" size="30" id="decText1" left="340" stroke="1"/>

@@ -151,13 +151,15 @@ class TeamPVEManager {
                 return;
             }
         }
+        if(this.data)
+            this.data.getTime = TM.now();
         Net.addUser(oo);
         Net.send(GameEvent.team.team_pve_info,oo,function(data){
             var msg = data.msg;
             self.renewData(msg.pve);
             if(fun)
                 fun();
-        });
+        },force);
     }
 
     public list(fun?){

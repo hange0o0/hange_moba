@@ -550,6 +550,10 @@
 				{
 					"compress":false,
 					"key":"bar_dungeon_title_png"
+				},
+				{
+					"compress":false,
+					"key":"side_bg_png"
 				}
 			],
 			"sort":0

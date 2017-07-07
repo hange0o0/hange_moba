@@ -10,6 +10,9 @@ class InviteTeamItem extends game.BaseItem {
     private forceText: eui.Label;
     private levelText: eui.Label;
     private inviteBtn: eui.Button;
+    private friendText: eui.Label;
+    private addFriendBtn: eui.Button;
+
 
 
 
@@ -17,6 +20,11 @@ class InviteTeamItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.inviteBtn,this.onInvite)
         this.addBtnEvent(this.headMC,this.onClick)
+        this.addBtnEvent(this.addFriendBtn,this.onAddFriend)
+    }
+
+    private onAddFriend(){   //
+        FriendAddUI.getInstance().show();
     }
 
     private onClick(){
@@ -30,7 +38,17 @@ class InviteTeamItem extends game.BaseItem {
     }
 
     public dataChanged(){
+
         var FM = FriendManager.getInstance();
+        if(this.data.showFriend)
+        {
+            this.currentState = 'add';
+            this.friendText.text = '好友数量：' + FM.friendList.length + '/' + FM.maxFriendNum;
+            return;
+        }
+
+        this.currentState = 'friend';
+
         var data = FM.friendData[this.data].info;
         this.headMC.source = MyTool.getHeadUrl(data.head);
         this.nameText.text = data.nick;

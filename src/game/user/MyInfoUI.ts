@@ -260,15 +260,15 @@ class MyInfoUI extends game.BaseUI {
         if(!this.stage)
             return;
         var cd = UM.getNextEnergyCD();
-        if(cd == 0)
+        this.setText(this.energyText,'[体力：]' + UM.energy.v + '/' + UM.maxEnergy);
+        if(UM.energy.v  >= UM.maxEnergy)
         {
-            this.setText(this.energyText,'[体力：]' + UM.energy.v + '/' + 60);
             this.reEnergyText.text = '';
         }
         else
         {
-            this.setText(this.energyText,'[体力：]' + UM.energy.v + '/' + 60);
-            this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后回复'+1+'点体力';
+            cd +=    (UM.maxEnergy -UM.energy.v - 1) * UM.getEnergyStep()
+            this.reEnergyText.text = '' + DateUtil.getStringBySecond(cd) + ' 后满体力';
         }
 
 

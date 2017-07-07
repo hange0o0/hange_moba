@@ -117,7 +117,14 @@ class PKDressUI extends game.BaseUI {
 
     private onClose(){
         if(this.enemyScrollerGroup.visible)
+        {
             this.enemyScrollerGroup.visible = false;
+            for(var i=0;i<this.enemyList.numChildren;i++)
+            {
+                var item:any = this.enemyList.getChildAt(i)
+                item.setChoose(false);
+            }
+        }
         else
             this.hide()
     }

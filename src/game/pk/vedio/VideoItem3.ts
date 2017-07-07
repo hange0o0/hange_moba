@@ -51,7 +51,7 @@ class VideoItem3 extends game.BaseItem {
         }
         //if(this.isChoose)
         //{
-            if(egret.getTimer() - this.lastClickTime < 800)
+            if(egret.getTimer() - this.lastClickTime < 500)
             {
                 VideoUI.getInstance().setChoose(this.data,'item');
                 //var team = this.currentState == 'team1'?1:2;

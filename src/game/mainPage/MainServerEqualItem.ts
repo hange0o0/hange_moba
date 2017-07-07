@@ -7,18 +7,20 @@ class MainServerEqualItem extends game.BaseItem {
     private bgGroup: eui.Group;
     private bg: eui.Image;
     private titleText: eui.Label;
+    private rightMC: eui.Image;
     private scoreText: eui.Label;
     private desText: eui.Label;
     private barGroup: eui.Group;
     private barMC: eui.Rect;
     private nextText: eui.Label;
+    private rateText: eui.Label;
     private lockMC: eui.Image;
     private btnGroup: eui.Group;
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
     private ticketGroup: eui.Group;
     private numText: eui.Label;
-    private rateText: eui.Label;
+
 
 
 
@@ -66,6 +68,7 @@ class MainServerEqualItem extends game.BaseItem {
         {
 
             this.ticketGroup.visible = false
+            this.rightMC.visible = true
             this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.serverEqualLevel) + '',0xE0A44A)+' 才可进入');
             this.btnGroup.visible = false;
             this.barGroup.visible = false;
@@ -73,6 +76,7 @@ class MainServerEqualItem extends game.BaseItem {
         else
         {
             this.ticketGroup.visible = true
+            this.rightMC.visible = false
             this.btnGroup.visible = true;
             MyTool.removeMC(this.retryBtn);
             var num = UM.getPropNum(21);

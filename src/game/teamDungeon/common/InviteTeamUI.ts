@@ -49,10 +49,23 @@ class InviteTeamUI extends game.BaseUI {
 
     private superShow(){
         super.show();
+
+
     }
 
     public onShow(){
-        var list = FriendManager.getInstance().friendList;
+        this.renewList();
+        this.addPanelOpenEvent(GameEvent.client.friend_list_change,this.renewList)
+    }
+
+    private renewList(){
+        var FM = FriendManager.getInstance();
+        var list = FM.friendList.concat();
+        if(FM.friendList.length < FM.maxFriendNum)
+        {
+            list.unshift({showFriend:true});
+        }
+
         this.list.dataProvider = new eui.ArrayCollection(list);
     }
 }

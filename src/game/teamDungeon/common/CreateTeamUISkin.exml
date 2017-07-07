@@ -26,7 +26,7 @@
 	</e:Group>
 	<e:Group x="50" y="230">
 		<e:Rect width="480" height="200" y="0" strokeWeight="1" strokeColor="0x703a05" fillAlpha="0.5" ellipseWidth="10" ellipseHeight="10" x="0"/>
-		<e:Label text="难度限制" y="18.789999999999964" textColor="0xE0A44A" size="24" horizontalCenter="0"/>
+		<e:Label id="hardText" text="难度限制" y="18.789999999999964" textColor="0xE0A44A" size="24" horizontalCenter="0"/>
 		<e:Label id="forceText" y="80" text="战力上限：" x="40" textColor="0xccb48e" size="24"/>
 		<e:Label id="levelText" y="120" text="等级上限：" x="40" textColor="0xccb48e" size="24"/>
 		<e:Rect width="440" height="1" y="60" fillColor="0x6b4d21" x="20"/>

@@ -16,7 +16,7 @@
 	<e:Group horizontalCenter="0" y="265" width="480">
 		<e:Image source="main_mc_png" y="1" x="328" scaleX="-1"/>
 		<e:Label id="titleText" text="修正场" x="128" y="6" size="40" textColor="0xCCB48E" stroke="4" width="100%" textAlign="center"/>
-		<e:Image source="main_mc_png" y="0" x="0" visible="false"/>
+		<e:Image id="rightMC" source="main_mc_png" y="0" x="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="10"/>
 		</e:layout>

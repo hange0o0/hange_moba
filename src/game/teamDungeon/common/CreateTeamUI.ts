@@ -10,16 +10,18 @@ class CreateTeamUI extends game.BaseWindow {
         this.skinName = "CreateTeamUISkin";
     }
 
-    private forceText: eui.Label;
-    private levelText: eui.Label;
     private nameText: eui.TextInput;
     private randomBtn: eui.Group;
     private cancleBtn: eui.Button;
     private okBtn: eui.Button;
+    private hardText: eui.Label;
+    private forceText: eui.Label;
+    private levelText: eui.Label;
     private sortBtn: eui.Image;
     private sortText: eui.Label;
     private sortGroup: eui.Group;
     private sortList: eui.List;
+
 
 
 
@@ -138,5 +140,6 @@ class CreateTeamUI extends game.BaseWindow {
         this.setHtml(this.forceText,this.createHtml('卡士战力上限：',0xE0A44A) + hardData.force);
         this.setHtml(this.levelText,this.createHtml('卡兵等级上限：',0xE0A44A) + hardData.level + '级');
         this.sortText.text = hardData.label;
+        this.hardText.text = hardData.name + ' 难度限制';
     }
 }
