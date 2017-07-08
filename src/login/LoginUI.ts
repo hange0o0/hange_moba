@@ -5,18 +5,20 @@ class LoginUI extends game.BaseUI {
         return this.instance;
     }
 
-    private topMC: eui.Image;
     private bgGroup: eui.Group;
+    private topMC: eui.Image;
     private bottomMC: eui.Image;
     private logGroup: eui.Group;
     private nameText: eui.TextInput;
     private passwordText: eui.TextInput;
+    private quickRegisterBtn: eui.Button;
     private registerBtn: eui.Button;
     private loginBtn: eui.Button;
     private reloginGroup: eui.Group;
     private reloginNameText: eui.Label;
     private changeBtn: eui.Button;
     private loginBtn2: eui.Button;
+
 
 
 
@@ -32,7 +34,7 @@ class LoginUI extends game.BaseUI {
         super.childrenCreated();
         this.addBtnEvent(this.loginBtn, this.onLogin);
         this.addBtnEvent(this.loginBtn2, this.onLogin);
-        //this.addBtnEvent(this.tryBtn, this.onTry);
+        this.addBtnEvent(this.quickRegisterBtn, this.onGuest);
         this.addBtnEvent(this.registerBtn, this.onRegister);
         this.addBtnEvent(this.changeBtn, this.onChangeUser);
 
@@ -49,8 +51,9 @@ class LoginUI extends game.BaseUI {
     public show(){
         var LM = LoginManager.getInstance();
         if(LM.lastUser && LM.quickPassword) {
-            if(LoginManager.getInstance().isAuto)
+            if(LM.isAuto)
             {
+
                 LM.login(LM.lastUser,null);
                 return;
             }
@@ -80,6 +83,13 @@ class LoginUI extends game.BaseUI {
         if(LM.lastUser) {
             this.nameText.text = LM.lastUser;
             this.reloginNameText.text = LM.lastUser;
+            if(LM.isGuest(LM.lastUser))
+            {
+                this.nameText.text = '游客账号';
+                this.reloginNameText.text = '游客账号';
+                this.passwordText.text = '游客账号免密码';
+            }
+
             if (LM.quickPassword) {
                this.reloginGroup.visible = true
                this.logGroup.visible = false
@@ -121,22 +131,40 @@ class LoginUI extends game.BaseUI {
 
     private onLogin(){
         var LM = LoginManager.getInstance();
+        var name = this.nameText.text;
+
+        var isGuest = false
+        if(this.nameText.text == '游客账号')
+        {
+            if(!LM.guestData)
+            {
+                Alert('没有在本机上找到游客账号');
+                return;
+            }
+            name = LM.guestData.name;
+            isGuest = true;
+        }
+
+
         if(this.logGroup.visible)
         {
             var psw = this.passwordText.text;
-            if(!LM.testName(this.nameText.text))
+            if(!isGuest)
             {
-                return;
+                if(!LM.testName(name))
+                {
+                    return;
+                }
+                if(!LM.testPassword(psw))
+                {
+                    return;
+                }
             }
-            if(!LM.testPassword(psw))
-            {
-                return;
-            }
-            LM.login(this.nameText.text,psw);
+            LM.login(name,psw || '666');
         }
         else
         {
-            LM.login(this.reloginNameText.text,null);
+            LM.login(name,null);
         }
 
         //if(LM.lastPassword && LM.lastPassword == psw) {
@@ -153,27 +181,28 @@ class LoginUI extends game.BaseUI {
         //}
         //
     }
-    //private onTry(){
-    //    var LM = LoginManager.getInstance();
-    //    if(LM.lastPassword)
-    //    {
-    //        Confirm('检测到您已注册了一个游客账号，是否使用该账号继续登录？',function(type){
-    //            if(type == 1)
-    //            {
-    //                LM.login(LM.lastUser,LM.lastPassword);
-    //            }
-    //            else if(type == 2)
-    //            {
-    //                LM.quickRegister();
-    //            }
-    //        },['重新注册','好的']);
-    //    }
-    //    else
-    //    {
-    //        LM.quickRegister();
-    //    }
-    //
-    //}
+
+    private onGuest(){
+        var LM = LoginManager.getInstance();
+        if(LM.guestData)
+        {
+            Confirm('检测到您已注册了一个游客账号，是否使用该账号继续登录？',function(type){
+                if(type == 1)
+                {
+                    LM.login(LM.guestData.name,LM.guestData.password);
+                }
+                else if(type == 2)
+                {
+                    LM.quickRegister();
+                }
+            },['重新注册','好的']);
+        }
+        else
+        {
+            LM.quickRegister();
+        }
+
+    }
     private onRegister(){
         var LM = LoginManager.getInstance();
         //if(LM.lastPassword) {

@@ -1060,6 +1060,8 @@ class PKMainUI extends game.BaseUI {
             }
             else if(DayLogMoreUI.getInstance().stage)
                 this.hide();
+            //VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,VideoUI.getInstance().currentVideoIndex);
+
         }
         else
             PKResultUI.getInstance().show();
@@ -1147,7 +1149,10 @@ class PKMainUI extends game.BaseUI {
 
     private displayTalkWord(data){
         var talkItem = this.getTalkItem();
-        this.cloudGroup.addChild(talkItem);
+        if(data.item.out)
+            this.addChild(talkItem);
+        else
+            this.cloudGroup.addChild(talkItem);
         talkItem.setData(data);
         for(var i=0;i<this.talkList.length;i++)//重叠了
         {
@@ -1177,17 +1182,20 @@ class PKMainUI extends game.BaseUI {
         if(id)
         {
             var emoItem = this.getEmoItem();
-            this.cloudGroup.addChild(emoItem);
+            if(item.out)
+                this.addChild(emoItem);
+            else
+                this.cloudGroup.addChild(emoItem);
             emoItem.setData({item:item,id:id});
         }
     }
 
-    public showItemEmo(item,id)
-    {
-        var emoItem = this.getEmoItem();
-        this.cloudGroup.addChild(emoItem);
-        emoItem.setData({item:item,id:id,disActive:true});
-    }
+    //public showItemEmo(item,id)
+    //{
+    //    var emoItem = this.getEmoItem();
+    //    this.cloudGroup.addChild(emoItem);
+    //    emoItem.setData({item:item,id:id,disActive:true});
+    //}
 
 
     private getTalkData(item,talkBase,actionItem?){

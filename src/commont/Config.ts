@@ -11,7 +11,7 @@ class Config {
     public static host: string = 'hangegame.com';
     //public static host: string = '172.17.196.195:90';
     public static user_version: number = 1;
-    public static version: number = 5;
+    public static version: number = 6;
     public static m_version: number = 0;
     public static pk_version: number = 4;
     public static cdn: string = "";

@@ -21,12 +21,12 @@
 			<e:Group x="0" y="0" width="320">
 			<e:Rect id="hpBar0_" height="30" width="150" y="0" fillColor="0x8C0101" strokeColor="0x000000" strokeWeight="1" right="1"/>
 			<e:Rect id="hpBar0" height="30" width="150" y="0" fillColor="0x8C0101" strokeColor="0x000000" strokeWeight="1" right="1"/>
-			<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" verticalCenter="0" textColor="0xFCE1B8" right="10"/>
+			<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" verticalCenter="1" textColor="0xFCE1B8" right="10"/>
 			</e:Group>
 			<e:Group y="0" width="320" x="320">
 			<e:Rect id="hpBar1_" y="0" width="100" fillColor="0x8C0101" height="30" strokeWeight="1" strokeColor="0x000000" left="1"/>
 			<e:Rect id="hpBar1" y="0" width="100" fillColor="0x8C0101" height="30" strokeWeight="1" strokeColor="0x000000" left="1"/>
-			<e:Label id="hpText1" stroke="2" verticalCenter="0" text="12300/45600" size="18" textColor="0xFCE1B8" left="10"/>
+			<e:Label id="hpText1" stroke="2" verticalCenter="1" text="12300/45600" size="18" textColor="0xFCE1B8" left="10"/>
 			</e:Group>
 		</e:Group>
 		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>

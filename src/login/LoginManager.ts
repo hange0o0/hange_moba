@@ -23,6 +23,8 @@ class LoginManager{
 
     public isAuto = false
 
+    public guestData
+
     public constructor() {
         var oo =  SharedObjectManager.instance.getValue('user') || {};
         this.lastUser = oo.user;
@@ -36,6 +38,12 @@ class LoginManager{
         }
 
         this.logText = SharedObjectManager.instance.getValue('logText') || {}
+
+        this.guestData = SharedObjectManager.instance.getValue('guest') || null
+    }
+
+    public isGuest(name){
+        return (this.guestData && this.guestData.name == name);
     }
 
     public showLoginUI(){
@@ -98,8 +106,24 @@ class LoginManager{
         var self = this;
         var oo:any = {};
         oo.name = name;
+        var isGuest = this.isGuest(name)
+
+        if(isGuest && (Date.now() - this.guestData.time) > 48*3600*1000)//超过48小时要变正式
+        {
+            self.quickPassword = null;
+            self.isAuto = false;
+            LoginUI.getInstance().onChangeUser();
+            RegisterUI.getInstance().show(true);
+            return;
+        }
+
         if(password)
-            oo.password = md5.incode(password);
+        {
+            if(isGuest)
+                oo.password = this.guestData.password;
+            else
+                oo.password = md5.incode(password);
+        }
         else
             oo.quick_password = this.quickPassword;
         Net.send(GameEvent.sys.login,oo,function(data){
@@ -192,80 +216,83 @@ class LoginManager{
         },true,2);
     }
 
-    ////创建一个游客账号
-    //public quickRegister(fun?){
-    //    var self = this;
-    //    var oo:any = {};
-    //    Net.send(GameEvent.sys.quick_register,oo,function(data){
-    //        var msg = data.msg;
-    //        if(msg.fail == 1)
-    //        {
-    //            Alert('注册失败');
-    //            return;
-    //        }
-    //
-    //        if(msg.fail == 2)
-    //        {
-    //            Alert('该用户名已被使用');
-    //            return;
-    //        }
-    //
-    //        self.gameid = msg.data.id;
-    //        self.openKey = msg.data.cdkey;
-    //        self.lastLand = msg.data.last_land;
-    //        self.myServer = {};
-    //
-    //        self.lastUser = msg.data.name;
-    //        self.lastPassword = msg.data.password;
-    //        self.writeDB();
-    //
-    //        self.onUserLogin();
-    //        if(fun)
-    //            fun();
-    //    },true,2);
-    //}
-    //
-    ////把游客帐号变成注册账号
-    //public reRegister(name,password,fun?){
-    //    var self = this;
-    //    var oo:any = {};
-    //    oo.name = name;
-    //    oo.password = password;
-    //
-    //    oo.last_name = self.lastUser;
-    //    oo.last_password = self.lastPassword;
-    //    Net.send(GameEvent.sys.re_register,oo,function(data){
-    //        var msg = data.msg;
-    //        if(msg.fail == 1)
-    //        {
-    //            Alert('注册失败');
-    //            return;
-    //        }
-    //
-    //        if(msg.fail == 2)
-    //        {
-    //            Alert('该用户名已被使用');
-    //            return;
-    //        }
-    //
-    //
-    //        self.gameid = msg.userdata.id;
-    //        self.openKey = msg.userdata.cdkey;
-    //        self.lastLand = msg.userdata.last_land;
-    //        self.fillServer(msg.userdata.server);
-    //
-    //
-    //
-    //        self.lastUser = name;
-    //        self.lastPassword = null
-    //        self.writeDB();
-    //
-    //
-    //        self.onUserLogin();
-    //        if(fun)
-    //            fun();
-    //    },true,2);
-    //}
+    //创建一个游客账号
+    public quickRegister(fun?){
+        var self = this;
+        var oo:any = {};
+        Net.send(GameEvent.sys.quick_register,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                self.quickRegister(fun);
+                return;
+            }
+
+            self.gameid = msg.data.id;
+            self.openKey = msg.data.cdkey;
+            self.lastLand = msg.data.last_land;
+            self.myServer = {};
+            self.lastUser = msg.data.name;
+            self.quickPassword = msg.quick_password
+            self.lastServer = SharedObjectManager.instance.getValue('user_server_' + self.lastUser);
+
+
+            self.guestData = {};
+            self.guestData.name = msg.data.name
+            self.guestData.password = msg.data.password
+            self.guestData.time = Date.now();
+            SharedObjectManager.instance.setValue('guest',self.guestData)
+
+
+            self.writeDB();
+            self.onUserLogin();
+            if(fun)
+                fun();
+        },true,2);
+    }
+
+    //把游客帐号变成注册账号
+    public reRegister(name,password,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.name = name;
+        oo.password = md5.incode(password);
+
+        oo.last_name = self.guestData.name;
+        oo.last_password = self.guestData.password;
+        Net.send(GameEvent.sys.re_register,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('该用户名已被使用');
+                return;
+            }
+
+            //if(msg.fail == 2)
+            //{
+            //    Alert('该用户名已被使用');
+            //    return;
+            //}
+
+
+            self.gameid = msg.userdata.id;
+            self.openKey = msg.userdata.cdkey;
+            self.lastLand = msg.userdata.last_land;
+            self.fillServer(msg.userdata.server);
+
+
+            self.guestData = null
+            SharedObjectManager.instance.setValue('guest',null)
+
+            self.lastUser = name;
+            self.writeDB();
+
+
+            self.onUserLogin();
+            if(fun)
+                fun();
+        },true,2);
+    }
 
     private fillServer(server){
         this.myServer = {};

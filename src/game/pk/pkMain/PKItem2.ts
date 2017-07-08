@@ -52,23 +52,23 @@ class PKItem2 extends game.BaseItem {
 
     public childrenCreated() {
         this.headMC.mask = null;
-        this.addBtnEvent(this,this.onClick)
+        //this.addBtnEvent(this,this.onClick)
     }
 
-    private onClick(){
-        var talkBase = PKManager.getInstance().pkEmo
-        var str;
-        if(this.win3)
-            str = ArrayUtil.randomOne(talkBase.win3)
-        else if(this.die)
-            str = ArrayUtil.randomOne(talkBase.loss)
-        else if(this.isPKing)
-            str = ArrayUtil.randomOne(talkBase.pking)
-        else
-            str = ArrayUtil.randomOne(talkBase.view)
-
-        PKMainUI.getInstance().showItemEmo(this,str);
-    }
+    //private onClick(){
+    //    var talkBase = PKManager.getInstance().pkEmo
+    //    var str;
+    //    if(this.win3)
+    //        str = ArrayUtil.randomOne(talkBase.win3)
+    //    else if(this.die)
+    //        str = ArrayUtil.randomOne(talkBase.loss)
+    //    else if(this.isPKing)
+    //        str = ArrayUtil.randomOne(talkBase.pking)
+    //    else
+    //        str = ArrayUtil.randomOne(talkBase.view)
+    //
+    //    PKMainUI.getInstance().showItemEmo(this,str);
+    //}
 
 
     public dataChanged() {
@@ -163,8 +163,9 @@ class PKItem2 extends game.BaseItem {
 
         if(data.hp == 0)
         {
-            var talkBase = PKManager.getInstance().pkEmo
-            PKMainUI.getInstance().showItemEmo(this,ArrayUtil.randomOne(talkBase.pking));
+            //var talkBase = PKManager.getInstance().pkEmo
+            //PKMainUI.getInstance().showItemEmo(this,ArrayUtil.randomOne(talkBase.pking));
+
             //this.hpText.y = -60
             //this.hpText.alpha = 0;
             //this.hpText.text = '无伤'

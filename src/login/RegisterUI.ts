@@ -36,11 +36,13 @@ class RegisterUI extends game.BaseWindow {
     public onShow(){
         if(this.openType)//转正
         {
-             this.titleText.text = '账号转正'
+             this.titleText.text = '游客账号转正'
+            this.currentState = 'guest'
         }
         else
         {
              this.titleText.text = '注册账号'
+            this.currentState = 'normal'
         }
         this.nameText.text = ''
         this.passwordText1.text = ''
@@ -62,6 +64,9 @@ class RegisterUI extends game.BaseWindow {
             Alert('两次输入密码不一致');
             return;
         }
-        LM.register(this.nameText.text,this.passwordText1.text);
+        if(this.openType)
+            LM.reRegister(this.nameText.text,this.passwordText1.text);
+        else
+            LM.register(this.nameText.text,this.passwordText1.text);
     }
 }
