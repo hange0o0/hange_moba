@@ -464,7 +464,7 @@ class VideoUI extends game.BaseUI {
     public hide(){
         super.hide();
         //PKResultUI.getInstance().tempShow();
-        GuideManager.getInstance().showGuide(PKWinUI.getInstance())
+        GuideManager.getInstance().showGuide(PKFailUI.getInstance())
     }
 
     public onShow(){
@@ -531,9 +531,9 @@ class VideoUI extends game.BaseUI {
             this.renewResultMC();
         },this,500)
 
-        //this.setChoose(this.listArray[0])
-
-        this.lastChooseData = this.listArray[0];
+        this.setChoose(this.listArray[0])
+        //
+        //this.lastChooseData = this.listArray[0];
         this.upGroup.visible = true;
         this.guideMC.visible = true;
         this.upGroup.y = 70

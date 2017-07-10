@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520">
-	<e:Image y="0" width="520" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
-	<e:Rect height="60" width="490" x="15" y="16" fillColor="0x262119" strokeWeight="1"/>
+<e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="560">
+	<e:Image y="0" width="560" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
+	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422B08" horizontalCenter="0"/>
+
 
 	<e:Label y="33" size="24" text="角色注册" textColor="0xE3D1B6" horizontalCenter="0" stroke="2"/>
 	<e:Group horizontalCenter="0" bottom="40">
@@ -21,7 +23,8 @@
 	<e:Group id="headGroup" y="100" horizontalCenter="0">
 		<e:Image source="border2_png" y="0" x="0" width="120" height="120" scale9Grid="11,11,68,68"/>
 		<e:Image source="head_bg2_jpg" x="6" y="6" width="108" height="108"/>
-		<e:Image id="headMC" x="6" y="6" width="108" height="108" source="head_png"/>
+		<e:Image id="headMC" x="6" y="6" width="108" height="108" source="head_png"/>
+
 		<e:Label text="点击更换" bottom="8" horizontalCenter="0" size="20" textColor="0xE7C779" stroke="2"/>
 	</e:Group>
 </e:Skin>

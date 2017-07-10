@@ -35,7 +35,11 @@ class MyTool {
         return Math.pow(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2),0.5)
     }
 
-    public static changeGray(mc,b=true){
+    public static changeGray(mc,b=true,isBtn?){
+        if(isBtn)
+        {
+            mc.touchChildren = mc.touchEnabled = !b
+        }
         if(!b)
         {
             mc.filters = null;
@@ -101,25 +105,34 @@ class MyTool {
     }
 
 
-    //长按监听
-    public static addLongTouch(mc:any,fun,thisObj?){
+    public static addLongTouch(mc,fun,thisObj){
+        var timer;
+        mc.touchEnabled = true;
         mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,thisObj);
-        var x,y;
-        var timer = -1;
         function onTouchStart(e){
-            mc.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
-            timer = egret.setTimeout(onTouchTimer,thisObj,600);
-            x = e.stageX
-            y = e.stageY
-        }
-        function onTouchTimer(){
-            if(Math.abs(x - GameManager.stageX) > 10 || Math.abs(y - GameManager.stageY) > 10)
-                return;
-             fun.apply(thisObj,[mc]);
+            var stageX = e.stageX
+            var stageY = e.stageY
+            GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+            GameManager.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+            GameManager.stage.once(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
+            egret.clearTimeout(timer);
+            timer = egret.setTimeout(function(){
+                if( Math.abs(GameManager.stageX - stageX) > 20 ||  Math.abs(GameManager.stageY - stageY) > 20)
+                {
+                    GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+                    GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
+                    return;
+                }
+                fun.apply(thisObj);
+            },this,600)
+
         }
         function onTouchEnd(){
+            GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+            GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
             egret.clearTimeout(timer);
         }
+
     }
 
     //双击监听

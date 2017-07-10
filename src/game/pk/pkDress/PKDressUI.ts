@@ -8,7 +8,6 @@ class PKDressUI extends game.BaseUI {
 
 
 
-    private topUI: TopUI;
     private coinText: eui.Label;
     private forceText: eui.Label;
     private upBtnGroup: eui.Group;
@@ -18,6 +17,7 @@ class PKDressUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private pkDressChooseUI: PKDressChooseUI;
+    private pkDressSettingUI: PKDressSettingUI;
     private taskGroup: eui.Group;
     private taskText: eui.Label;
     private taskRateText: eui.Label;
@@ -31,6 +31,8 @@ class PKDressUI extends game.BaseUI {
     private enemyScrollerGroup: eui.Group;
     private monsterScroller: eui.Scroller;
     private enemyMonsterInfo: MonsterInfoBase;
+    private topUI: TopUI;
+
 
 
 
@@ -68,6 +70,8 @@ class PKDressUI extends game.BaseUI {
     private lastRandomMV = 0;
 
     private isRemoveHistory = false
+
+    private randomSetting
     public constructor() {
         super();
         this.skinName = "PKDressUISkin";
@@ -113,6 +117,53 @@ class PKDressUI extends game.BaseUI {
         this.addEventListener('after_drag',this.onDragAfter,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp);
+
+        this.pkDressSettingUI.addEventListener('dress_setting', this.onDressSetting, this)
+        this.pkDressSettingUI.addEventListener('dress_setting_change', this.onDressSettingChange, this)
+        this.pkDressSettingUI.addEventListener('dress_setting_choose', this.onDressSettingChoose, this)
+    }
+
+    private onDressSetting(e){
+        this.randomSetting = e.data
+        this.pkDressChooseUI.setRandomBG(this.randomSetting)
+        this.onRandom();
+        this.hideSetting();
+
+        MyTool.removeMC(this.monsterInfo);
+        this.scrollerGroup.addChild(this.list)
+    }
+    private onDressSettingChange(){
+        var arr = this.pkDressSettingUI.getPKArr();
+        this.setHtml(this.coinText,this.createHtml('剩余卡符：',0xE0A44A) + (PKManager.PKCost - PKManager.getInstance().getCost(arr)) + '');
+
+    }
+    private onDressSettingChoose(e){
+        if(e.data)
+        {
+            this.monsterInfo.renew(e.data,this.specialData);
+            MyTool.removeMC(this.list);
+            this.scrollerGroup.addChild(this.monsterInfo)
+        }
+        else
+        {
+            MyTool.removeMC(this.monsterInfo);
+            this.scrollerGroup.addChild(this.list)
+        }
+
+        if(this.taskGroup.parent)
+            this.taskGroup.parent.addChild(this.taskGroup)
+    }
+
+    public showSetting(){
+        MyTool.removeMC(this.pkDressChooseUI);
+        this.scrollerGroup.addChildAt(this.pkDressSettingUI,0);
+        this.pkDressSettingUI.init(this.monsterList,this.randomSetting);
+        this.onDressSettingChange();
+    }
+    private hideSetting(){
+        MyTool.removeMC(this.pkDressSettingUI);
+        this.scrollerGroup.addChildAt(this.pkDressChooseUI,0);
+        this.renew();
     }
 
     private onClose(){
@@ -154,7 +205,8 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onRandom(){
-        this.changeChooseList(PKManager.getInstance().getRandomCard(this.monsterList,this.isEqual));
+        this.changeChooseList(PKManager.getInstance().getRandomCard(this.monsterList,this.isEqual,this.randomSetting));
+        GuideManager.getInstance().showGuide(PKDressUI.getInstance())
     }
     private onReset(){
          this.changeChooseList([]);
@@ -165,6 +217,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private onClickSimpleList(e){
+        this.hideSetting();
         this.scroller.stopAnimation();
         this.pkDressChooseUI.selectMCByIndex(e.data || 0)
         this.validateNow();
@@ -216,6 +269,7 @@ class PKDressUI extends game.BaseUI {
         this.specialData.isEqual = this.isEqual;
         this.specialData.hard = data.hard;
 
+        this.randomSetting = null;
 
 
 
@@ -225,6 +279,9 @@ class PKDressUI extends game.BaseUI {
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
+
+        MyTool.removeMC(this.pkDressSettingUI);
+        this.scrollerGroup.addChildAt(this.pkDressChooseUI,0);
         this.pkDressChooseUI.resetSort();
         this.renewTask();
         this.removeOldHistory();
@@ -439,6 +496,7 @@ class PKDressUI extends game.BaseUI {
             Alert('每次战斗最多可出战6位卡兵');
             return;
         }
+        this.hideSetting();
         this.pkDressChooseUI.addItem(mid);
     }
     
@@ -506,7 +564,7 @@ class PKDressUI extends game.BaseUI {
         return count;
     }
     private saveHistory(){
-        this.history[this.historyKey] = {key:this.historyKey,list:this.chooseList,time:TM.now()};
+        this.history[this.historyKey] = {key:this.historyKey,list:this.chooseList,time:TM.now(),randomSetting:this.randomSetting};
         SharedObjectManager.instance.setMyValue('dress_history',this.history);
     }
 
@@ -556,8 +614,12 @@ class PKDressUI extends game.BaseUI {
             this.history[this.historyKey] = {list:[],time:TM.now()};
         var data = this.history[this.historyKey];
         this.chooseList = data.list;
+        this.randomSetting = data.randomSetting;
         if(GuideManager.getInstance().isGuiding)
+        {
             this.chooseList.length = 0;
+            this.randomSetting = null;
+        }
 
 
         this.list.selectedIndex = -1;
@@ -568,6 +630,7 @@ class PKDressUI extends game.BaseUI {
         this.renewList();
         this.renew();
         this.pkDressChooseUI.renew(this.chooseList);
+        this.pkDressChooseUI.setRandomBG(this.randomSetting);
         this.renewSimpleList();
 
 

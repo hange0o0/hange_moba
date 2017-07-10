@@ -181,11 +181,46 @@ class PKManager {
     }
 
     //取一个随机布局
-    public getRandomCard(list,isEqual){
+    public getRandomCard(list,isEqual,data?){
+        var GM = GuideManager.getInstance();
+        if(GM.isGuiding)
+        {
+            switch(GM.guideRandom)
+            {
+                case 0:
+                    GM.guideRandom ++;
+                    return [29, 59, 43, 59, 1];
+                case 1:
+                    GM.guideRandom ++;
+                    return [59, 20, 53, 20, 53, 59];
+                case 2:
+                    GM.guideRandom ++;
+                    return [53, 1, 5, 59, 5, 20];
+                case 3:
+                    GM.guideRandom ++;
+                    return [16, 1, 5, 53, 5, 5];
+
+            }
+        }
+        data = data || {};
         list = list.concat();
         var index = 0;
         var history = {};
         var total = 88;
+
+        if(data.dis && data.dis.length > 0)
+        {
+             for(var i=0;i<data.dis.length;i++)
+             {
+                 index = list.indexOf(data.dis[i]);
+                 if(index != -1)
+                 {
+                     list.splice(index,1);
+                 }
+             }
+            //while(list.length <8)
+            //    list = list.concat(list);
+        }
 
         if(!isEqual) //低于(平均等级-1)的只留一个(太差的才处理)
         {
@@ -198,19 +233,43 @@ class PKManager {
                 level += levelObj[id];
             }
             level = Math.floor(level/list.length) - 1;
+            list = list.concat(list)
             for(var s in levelObj)
             {
                 if(levelObj[s] >= level)
                     list.push(parseInt(s));
             }
+            list = list.concat(list);
         }
         else
+        {
             list = list.concat(list);
+            list = list.concat(list).concat(list)
+        }
+        if(data.need)
+        {
+            for(var i=0;i<data.need.length;i++)
+            {
+                index = list.indexOf(data.need[i]);
+                list.splice(index,1);
+            }
+        }
+
+
+        index = 0;
         while(true)
         {
             var returnArr = [];
+            if(data.need)
+                returnArr = data.need.concat();
+            if(returnArr.length >= 6)
+            {
+                ArrayUtil.random(returnArr,3);
+                return returnArr;
+            }
             var newList = list.concat();
-            for(var i=0;i<30;i++)
+            var num = (6-returnArr.length)+3
+            for(var i=0;i<num;i++)
             {
                 if(newList.length == 0)
                     break;
@@ -229,7 +288,7 @@ class PKManager {
             history[cost].push(returnArr);
 
             index ++;
-            if(index >= 5)
+            if(index >= 3)
             {
                 index = 0;
                 var arr = [];
@@ -241,13 +300,14 @@ class PKManager {
                 }
                 if(arr.length > 0)
                 {
+
                     break
                 }
                 total --
             }
         }
         returnArr = ArrayUtil.randomOne(arr);
-        ArrayUtil.random(returnArr);
+        ArrayUtil.random(returnArr,3);
         return returnArr;
     }
 

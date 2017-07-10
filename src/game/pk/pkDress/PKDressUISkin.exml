@@ -25,6 +25,7 @@
 	<e:Scroller id="scroller" x="0" width="640" top="150" bottom="0" top.open="450" bottom.open="0">
 		<e:Group id="scrollerGroup" height="279" width="360">
 			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin"/>
+			<ns1:PKDressSettingUI id="pkDressSettingUI" x="-1000" y="1592" skinName="PKDressSettingSkin"/>
 			<e:Group id="taskGroup" width="640" height="70" x="-2" y="421">
 				<e:Image source="border6_png" scale9Grid="14,8,88,16" top="10" bottom="0" left="10" right="10"/>
 				<e:Image source="note_icon_png" x="30" verticalCenter="5" scaleX="0.8" scaleY="0.8"/>

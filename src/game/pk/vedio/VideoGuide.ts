@@ -27,7 +27,7 @@ class VideoGuide extends game.BaseContainer {
     }
 
     private hide(){
-        VideoUI.getInstance().closeGuide();
+        VideoUI.getInstance().scrollTo(VideoUI.getInstance().lastChooseData);
     }
     private onClose(){
         this.clearList([this.list])

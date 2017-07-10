@@ -119,19 +119,19 @@ class GuideUI extends game.BaseContainer{
 
             this.anyClick.visible = fun != null;
 
-            if(GuideManager.getInstance().guideStep == 1)
-            {
+            //if(GuideManager.getInstance().guideStep == 1)
+            //{
                 this.tipsGroup.alpha = 1;
                 this.showText(text);
-            }
-            else
-            {
-                this.tipsGroup.alpha = 0;
-                var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
-                tw.wait(200).to({alpha:1},200).call(function(){
-                    this.showText(text);
-                },this)
-            }
+            //}
+            //else
+            //{
+            //    this.tipsGroup.alpha = 0;
+            //    var tw:egret.Tween = egret.Tween.get(this.tipsGroup);
+            //    tw.wait(200).to({alpha:1},200).call(function(){
+            //        this.showText(text);
+            //    },this)
+            //}
 
             if(mc)
             {

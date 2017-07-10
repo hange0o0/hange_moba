@@ -9,6 +9,7 @@ class GuideManager {
     public isGuiding:Boolean=true;
 
     public guideStep = 0;
+    public guideRandom = 0;
     private guideArr = [];
     public constructor() {
         this.init();
@@ -25,6 +26,7 @@ class GuideManager {
     }
 
     public showGuide(ui?){
+        console.log('showGuide')
         if(!this.isGuiding)
             return;
         if(ui)
@@ -34,6 +36,7 @@ class GuideManager {
     }
 
     public reInit(){
+        this.guideRandom = 0;
         this.guideArr[0].text = '亲爱的['+UM.nick+']，欢迎来到卡士世界！你想成为世界上最强大的卡士吗？你想成为那万众瞩目的唯一吗？那么，现在就让卡卡来带领你，踏上这成为至强王者之路吧！';
     }
 
@@ -66,7 +69,7 @@ class GuideManager {
             mc:"this.getMainGameRect()",
             text:'在上方区域呈现的是对手的卡组，我们需观察一下，以方便我们制定合适的战术',
             fun:function(){
-                MainGameUI.getInstance().scrollToEnd();
+                //MainGameUI.getInstance().scrollToEnd();
                 self.showGuide(MainGameUI.getInstance())
             }
         })
@@ -113,11 +116,11 @@ class GuideManager {
             text:'点这里可以把它移到最前面，当然你也可以通过[拖动]来完成这个操作。',
         })
 
-        this.addGuideObj({
-            ui:"PKDressUI.getInstance()",
-            mc:"PKDressUI.getInstance()['list'].getChildAt(1)['useBtn']",
-            text:'虽然卡卡觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多出召唤一位卡兵吧',
-        })
+        //this.addGuideObj({
+        //    ui:"PKDressUI.getInstance()",
+        //    mc:"PKDressUI.getInstance()['list'].getChildAt(1)['useBtn']",
+        //    text:'虽然卡卡觉得这样的阵型足以打败对手了，但既然还有符文剩余，那就保险一点多出召唤一位卡兵吧',
+        //})
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
@@ -127,8 +130,8 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
-            mc:"new egret.Rectangle(0,600+(GameManager.stage.stageHeight - 960)/2,640,360)",
-            text:'是不是很简单？如果想了解更多的PK信息，可以多关注一下下方的内容，里面可是包罗万有的哦~',
+            //mc:"new egret.Rectangle(0,600+(GameManager.stage.stageHeight - 960)/2,640,360)",
+            text:'啊啊啊？！！怎么输了，不对吧，这对新人也太不友好了！为什么呢？！！',
             fun:function(){
                 PKResultUI.getInstance().guideScroll();
                 //self.showGuide(PKWinUI.getInstance())
@@ -137,20 +140,109 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
-            mc:"PKResultUI.getInstance().pkResultGroup.list.getChildAt(0)",
-            text:'战场的变化果然瞬息万变,卡卡刚刚还没看清楚，战斗就结束了！让我们一起看看在首轮PK过程中，到底发生了什么',
+            mc:"PKResultUI.getInstance().pkResultGroup.list.getChildAt(1)",
+            text:'这一个对决卡卡是很有信心的啊，为什么还是输了呢（刚刚卡卡开小差，没看清楚）？让我们一起看看在这轮PK过程中，到底发生了什么',
         })
 
         this.addGuideObj({
-            ui:"PKWinUI.getInstance()",
-            mc:"PKWinUI.getInstance()['backBtn']",
-            text:'哦，原来如此，虽然没有想像中的大胜，但我们至少还是赢了，对不对？那么，现在请跟随卡卡回到世界首页，了解一下其它功能吧',
+            ui:"PKFailUI.getInstance()",
+            mc:"PKFailUI.getInstance()['okBtn']",
+            text:'哦，原来如此，想不到[堕天使]和[僵尸法师]能组成这么厉害的COMBO。但我们就这样子认输了吗？不，不，不，我们刚才只是大意了而已',
         })
+            ////////
+
+        this.addGuideObj({
+            ui:"MainGameUI.getInstance()",
+            mc:"MainGameUI.getInstance()['chooseBtn0']",
+            text:'为了弥补刚才的错误，卡卡现在要把压箱技能都告诉你了，擦亮你的眼睛看好哦~点击[挑战]按钮，开始学习卡卡独门绝招吧！',
+        })
+
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
+            text:'看到这个按钮没，点一下它，系统会给我们提供一些参考意见，试试看吧',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
+            text:'卡卡感觉这个布阵不咋样的，再点一下看有没更好的选择',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
+            text:'怎么老是有[【异型】]的，就没有卡卡喜欢的[【人鱼战士】]呢，我们[长按]随机按钮，打开随机设置面板',
+        })
+
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h0']['addBtn']",
+            text:'[【人鱼战士】]必须得出战啊，点击[+]号，可让系统为我们最少出战一个[【人鱼战士】]',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h0']['addBtn']",
+            text:'一个[【人鱼战士】]怎么够呢，再点一下，让系统为我们出战两个[【人鱼战士】]吧',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h1']['decBtn']",
+            text:'卡卡觉得[【异型】]不太适合我们这次战斗，就不要出战了吧。点击[-]号，系统将不会为我们出战[【异型】]',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']['pkBtn']",
+            text:'好了，让我们看看系统能为我们推荐什么阵容呢',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
+            text:'这个阵容感觉还不错，但卡卡还是想试试有没有更好的',
+        })
+
+        this.addGuideObj({
+            toBottom:true,
+            ui:"PKDressUI.getInstance()",
+            mc:"PKDressUI.getInstance()['pkDressChooseUI']['pkBtn']",
+            text:'三个[【人鱼战士】]！！漂亮！！这样应该能赢了吧？点击[挑战]试试看吧。。。(心虚ing)',
+        })
+
+        this.addGuideObj({
+            ui:"PKResultUI.getInstance()",
+            fun:function(){
+                self.showGuide()
+            },
+            text:'是不是很简单就赢了，[【人鱼战士】]果然是最强大的！',
+        })
+        this.addGuideObj({
+            ui:"PKResultUI.getInstance()",
+            mc:"PKWinUI.getInstance()['backBtn']",
+            text:'卡兵对决果然考验人的智慧，现在先放松放松，让卡卡带你带你再去其它地方逛逛吧！',
+        })
+          ////////
+
+
+
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance().videoBtn",
-            text:'刚才我们的对战是可以在[PK记录]再重温一下的，如果有需要的话你可以再进去看一下。但现在，请让你用最神圣的态度来面对我们将要进行的事情，就是--',
+            text:'哎呀，刚才太兴奋忘了看战报数据了！算了，反正是可以在[PK记录]找到刚才的对战记录的，先放一放吧。现在，请让你用最神圣的态度来面对我们将要进行的事情，就是--',
             hideHand:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())

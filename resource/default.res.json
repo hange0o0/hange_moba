@@ -21,7 +21,7 @@
 			"name":"login_load"
 		},
 		{
-			"keys":"window2_png,menu_icon_2_png,guide2_png,menu_icon_3_png,menu_icon_5_png,btn_r3__png,btn_r3_png,menu_icon_6_png,head_png,random_btn_png,btn_close2__png,btn_b1__png,card_bg_png,btn_b1_png,btn_close2_png,menu_icon_4_png,btn_r1__png,btn_r1_png,btn_d2_png,point2_png,btn_d1_png,menu_icon_1_png,btn_close1__png,icon_new_png,icon_pvp_3_png,icon_power_png,btn_close1_png,icon_lv_png,icon_money_png,icon_rank_png,icon_pvp_ticket_png,icon_token_png,icon_pve_png,icon_empty_png,point1_png,lock_icon_png,left_btn_png,border_head_png,red_point_png,font_num5_fnt,replay_mc_png,border1_png,line_png,guide1_png,main_border_png,choose_icon_png,king_icon_png,shop_card_png,menu_icon_7_png,main_light_png,menu_icon_9_png,menu_icon_8_png,diamond_icon_png,coin_icon_png,get_award_png,card_back_bg_png,menu_icon_10_png,energy_icon_png,ticket_icon_png,card_icon_png",
+			"keys":"window2_png,menu_icon_2_png,guide2_png,menu_icon_3_png,menu_icon_5_png,btn_r3__png,btn_r3_png,menu_icon_6_png,head_png,random_btn_png,btn_close2__png,btn_b1__png,card_bg_png,btn_b1_png,btn_close2_png,menu_icon_4_png,btn_r1__png,btn_r1_png,btn_d2_png,point2_png,btn_d1_png,menu_icon_1_png,btn_close1__png,icon_new_png,icon_pvp_3_png,icon_power_png,btn_close1_png,icon_lv_png,icon_money_png,icon_rank_png,icon_pvp_ticket_png,icon_token_png,icon_pve_png,icon_empty_png,point1_png,lock_icon_png,left_btn_png,border_head_png,red_point_png,font_num5_fnt,replay_mc_png,border1_png,line_png,guide1_png,main_border_png,choose_icon_png,king_icon_png,shop_card_png,menu_icon_7_png,main_light_png,menu_icon_9_png,menu_icon_8_png,diamond_icon_png,coin_icon_png,get_award_png,card_back_bg_png,menu_icon_10_png,energy_icon_png,ticket_icon_png,card_icon_png,guide_mv_json,guide_mv_png",
 			"name":"preload_png"
 		},
 		{
@@ -33,7 +33,7 @@
 			"name":"preload2_png"
 		},
 		{
-			"keys":"head_border_light1_png,head_border_light3_png,border_light_png,border_light1_png,border_light3_png,black_bg_png,main_bottom_mv_png,monster_type1_png,monster_type2_png,monster_type3_png,black_bg2_png",
+			"keys":"head_border_light1_png,head_border_light3_png,border_light_png,border_light1_png,border_light3_png,black_bg_png,main_bottom_mv_png,monster_type1_png,monster_type2_png,monster_type3_png,black_bg2_png,head_border_light2_png",
 			"name":"preload2_png32"
 		},
 		{
@@ -1744,6 +1744,21 @@
 			"name":"side_bg_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/side_bg.png"
+		},
+		{
+			"name":"guide_mv_json",
+			"type":"json",
+			"url":"game_assets/preload_png/guide_mv.json"
+		},
+		{
+			"name":"guide_mv_png",
+			"type":"image",
+			"url":"game_assets/preload_png/guide_mv.png"
+		},
+		{
+			"name":"head_border_light2_png",
+			"type":"image",
+			"url":"game_assets/preload2_png32/head_border_light2.png"
 		}
 	]
 }

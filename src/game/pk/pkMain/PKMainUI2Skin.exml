@@ -21,28 +21,34 @@
 			<e:Group x="0" y="0" width="320">
 			<e:Rect id="hpBar0_" height="30" width="150" y="0" fillColor="0x8C0101" strokeColor="0x000000" strokeWeight="1" right="1"/>
 			<e:Rect id="hpBar0" height="30" width="150" y="0" fillColor="0x8C0101" strokeColor="0x000000" strokeWeight="1" right="1"/>
-			<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" verticalCenter="1" textColor="0xFCE1B8" right="10"/>
+			<e:Label stroke="2" text="12300/45600" size="18" id="hpText0" verticalCenter="1" textColor="0xFCE1B8" left="10"/>
 			</e:Group>
 			<e:Group y="0" width="320" x="320">
 			<e:Rect id="hpBar1_" y="0" width="100" fillColor="0x8C0101" height="30" strokeWeight="1" strokeColor="0x000000" left="1"/>
 			<e:Rect id="hpBar1" y="0" width="100" fillColor="0x8C0101" height="30" strokeWeight="1" strokeColor="0x000000" left="1"/>
-			<e:Label id="hpText1" stroke="2" verticalCenter="1" text="12300/45600" size="18" textColor="0xFCE1B8" left="10"/>
+			<e:Label id="hpText1" stroke="2" verticalCenter="1" text="12300/45600" size="18" textColor="0xFCE1B8" right="10"/>
 			</e:Group>
 		</e:Group>
 		<e:Image source="book_bg2_jpg" x="-5" y="0" width="325" scale9Grid="40,44,240,266" height="195"/>
 		<e:Image source="book_bg2_jpg" y="0" scaleX="-1" width="325" right="-5" height="195" scale9Grid="40,44,240,266"/>
 		<e:Group x="10" width="308" top="10" bottom="10" id="playerGroup1">
-			<e:Group y="58" width="118" height="38" left="95">
-				<e:Image id="ms0" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
-				<e:Image id="ms1" source="card_star_png" horizontalCenter="0"/>
-				<e:Image id="ms2" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
+			<e:Group x="95" y="-3.99">
+				<e:Label id="nameText0" text="Labebebebe" x="0" y="8.99" size="22" bold="true" textColor="0xe0a44a"/>
+				<e:Group y="0" height="38" x="122">
+					<e:Image id="ms2" source="card_star_png" verticalCenter="-4" horizontalCenter="24" scaleX="0.8" scaleY="0.8"/>
+					<e:Image id="ms1" source="card_star_png" horizontalCenter="-6" scaleX="0.8" scaleY="0.8" verticalCenter="-4"/>
+					<e:Image id="ms0" source="card_star_png" verticalCenter="-4" horizontalCenter="-36" scaleX="0.8" scaleY="0.8"/>
+				</e:Group>
+				<e:layout>
+					<e:HorizontalLayout verticalAlign="middle"/>
+				</e:layout>
 			</e:Group>
-			<e:Group x="87" y="5">
+			<e:Group x="87" y="64">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar0" y="0" strokeColor="0xFAED05" width="140" height="24" x="0" fillColor="0x0E178F"/>
 				<e:Label id="mpText0" stroke="2" text="12300/45600" x="9" size="18" verticalCenter="0" textColor="0xFCE1B8"/>
 			</e:Group>
-			<e:Group x="87" y="31">
+			<e:Group x="87" y="36">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar0" y="0" strokeColor="0xFAED05" width="10" height="24" x="0" fillColor="0xB4A502"/>
 				<e:Label id="apText0" text="12300/45600" stroke="2" size="18" x="9" verticalCenter="0" verticalAlign="top" textColor="0xFCE1B8"/>
@@ -75,17 +81,23 @@
 			</e:Group>
 		</e:Group>
 		<e:Group width="308" top="10" bottom="10" id="playerGroup2" x="322">
-			<e:Group y="58" width="118" height="38" right="95">
-				<e:Image id="es2" source="card_star_png" verticalCenter="0" horizontalCenter="-40"/>
-				<e:Image id="es1" source="card_star_png" horizontalCenter="0"/>
-				<e:Image id="es0" source="card_star_png" verticalCenter="0" horizontalCenter="40"/>
+			<e:Group y="-3.99" right="95">
+				<e:Group y="0" height="38" x="0">
+					<e:Image id="es2" source="card_star_png" verticalCenter="-4" horizontalCenter="-30" scaleX="0.8" scaleY="0.8"/>
+					<e:Image id="es1" source="card_star_png" horizontalCenter="0" scaleX="0.8" scaleY="0.8" verticalCenter="-4"/>
+					<e:Image id="es0" source="card_star_png" verticalCenter="-4" horizontalCenter="30" scaleX="0.8" scaleY="0.8"/>
+				</e:Group>
+				<e:Label id="nameText1" text="Labebebebe" y="8.99" size="22" bold="true" textColor="0xe0a44a" x="84"/>
+				<e:layout>
+					<e:HorizontalLayout verticalAlign="middle"/>
+				</e:layout>
 			</e:Group>
-			<e:Group x="0" y="5" width="220">
+			<e:Group x="0" y="64" width="220">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="mpBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0x0E178F" height="24" right="0"/>
 				<e:Label id="mpText1" verticalCenter="0" text="12300/45600" stroke="2" size="18" right="9" textColor="0xFCE1B8"/>
 			</e:Group>
-			<e:Group x="0" y="31" width="220">
+			<e:Group x="0" y="36" width="220">
 				<e:Rect x="0" width="220" fillColor="0x20140D" height="24" y="0"/>
 				<e:Rect id="apBar1" y="0" strokeColor="0xFAED05" width="220" fillColor="0xB4A502" height="24" right="0"/>
 				<e:Label id="apText1" verticalCenter="0" text="12300/45600" size="18" stroke="2" right="9" textColor="0xFCE1B8"/>

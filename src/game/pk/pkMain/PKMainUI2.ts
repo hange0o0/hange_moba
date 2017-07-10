@@ -30,9 +30,10 @@ class PKMainUI extends game.BaseUI {
     private hpBar1: eui.Rect;
     private hpText1: eui.Label;
     private playerGroup1: eui.Group;
-    private ms0: eui.Image;
-    private ms1: eui.Image;
+    private nameText0: eui.Label;
     private ms2: eui.Image;
+    private ms1: eui.Image;
+    private ms0: eui.Image;
     private mpBar0: eui.Rect;
     private mpText0: eui.Label;
     private apBar0: eui.Rect;
@@ -44,6 +45,7 @@ class PKMainUI extends game.BaseUI {
     private defText0: eui.Label;
     private statList0: eui.Group;
     private playerGroup2: eui.Group;
+    private nameText1: eui.Label;
     private es2: eui.Image;
     private es1: eui.Image;
     private es0: eui.Image;
@@ -78,6 +80,7 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -722,6 +725,8 @@ class PKMainUI extends game.BaseUI {
         var cd = 1000
         if(this.playVideoIndex && this.pkStep == this.playVideoIndex)
         {
+            egret.Tween.removeTweens(this.playerGroup1);
+            egret.Tween.removeTweens(this.playerGroup2);
             this.playerGroup1.visible = true
             this.playerGroup2.visible = true
             this.mpBar0.width = 1;
@@ -732,6 +737,8 @@ class PKMainUI extends game.BaseUI {
         }
         else if(this.pkStep == 1)
         {
+            egret.Tween.removeTweens(this.playerGroup1);
+            egret.Tween.removeTweens(this.playerGroup2);
             this.playerGroup1.visible = true
             this.playerGroup2.visible = true
             this.playerGroup1.x = -320
@@ -884,6 +891,7 @@ class PKMainUI extends game.BaseUI {
                         x = 150;
                         this.selfPKing = item
                         this.headMC0.source = data.mvo.thumb;
+                        this.nameText0.text = data.mvo.name;
                         this.renewTop(data.orginData,data,0)
                     }
                     else
@@ -891,6 +899,7 @@ class PKMainUI extends game.BaseUI {
                         x = 640-150;
                         this.enemyPKing = item;
                         this.headMC1.source = data.mvo.thumb;
+                        this.nameText1.text = data.mvo.name;
                         this.renewTop(data.orginData,data,1)
                     }
                     item.isPKing = true;
@@ -1657,7 +1666,7 @@ class PKMainUI extends game.BaseUI {
             var tw = egret.Tween.get(bb)
             tw.to({width:barWidth * rate2},200);
         }
-        text.text = (data.current || 0) + '/' + (data.max || 0)
+        text.text = (data.current || 0) + ' /' + (data.max || 0)
     }
 
 
@@ -1665,8 +1674,8 @@ class PKMainUI extends game.BaseUI {
     private renewTop(data,player,index){
         egret.Tween.removeTweens(this['hpBar'+index])
         egret.Tween.removeTweens(this['hpBar'+index + '_'])
-        this['hpText'+index].text = (data.hp || 0)  + '/' + (data.maxHp || 0);
-        this['apText'+index].text = data.ap  + '/' + PKManager.ApMax;
+        this['hpText'+index].text = (data.hp || 0)  + ' /' + (data.maxHp || 0);
+        this['apText'+index].text = data.ap  +  '/' + PKManager.ApMax;
         this['hpBar'+index].width =  Math.min(1,(data.hp || 0)  / (data.maxHp || 1)) * 320;
         this['hpBar'+index + '_'].width =  0;
         this['apBar'+index].width =  Math.min(1,data.ap  / PKManager.ApMax) * this.barWidth;
@@ -1677,7 +1686,7 @@ class PKMainUI extends game.BaseUI {
 
     private renewMP(data,player,index){
         egret.Tween.removeTweens(this['mpBar'+index])
-        this['mpText'+index].text = data.mp  + '/' + data.maxMp;
+        this['mpText'+index].text = data.mp  + ' /' + data.maxMp;
         var tw = egret.Tween.get(this['mpBar'+index])
         tw.to({width:Math.min(1,data.mp  / data.maxMp) * this.barWidth},200)
     }

@@ -280,7 +280,7 @@ class DebugManager {
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
-    public testAllCard(time2 = 1024,testCard=null){
+    public testAllCard(time2 = 2048,testCard=null){
        var key = TM.now();
        var arr = this.winCardArr = [];
        var self = this;

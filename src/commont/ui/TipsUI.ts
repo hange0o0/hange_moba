@@ -21,7 +21,7 @@ class TipsUI extends game.BaseContainer{
 
 		//this.verticalCenter = 0;
 		GameManager.container.addChild(this);
-		this.text.text = v;
+		this.setHtml(this.text,v);
 		if(this.text.numLines > 1)
 			this.text.textAlign = 'left'
 		this.timer = egret.setTimeout(this.onTimer,this,cd);

@@ -1,13 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="RegisterUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,guest" >
-	<e:Image x="0" y="0" width="520" height="380" source="card_bg_png" scale9Grid="52,33,122,125" height.guest="400"/>
-	<e:Rect y="14" strokeWeight="1" width="490" fillAlpha="1" height="60" x="15" fillColor="0x262119"/>
-	<e:Label y="105" text="用户名：" x="75" size="22" textColor="0xC4A36A"/>
-	<e:TextInput x="171" skinName="MyTextInputSkin" y="93" height="45" id="nameText" width="280" prompt="请输入您的邮箱"/>
-	<e:Label y="162" textColor="0xC4A36A" size="22" text="密码：" x="97"/>
-	<e:TextInput id="passwordText1" skinName="MyTextInputSkin" y="151" width="280" height="45" x="171" prompt="密码长度最小为6" displayAsPassword="true"/>
-	<e:Label y="218" textColor="0xC4A36A" size="22" text="密码确认：" x="53"/>
-	<e:TextInput id="passwordText2" width="280" y="207" skinName="MyTextInputSkin" height="45" x="171" prompt="重复一次上方密码" displayAsPassword="true"/>
+	<e:Image x="0" y="0" width="560" height="380" source="card_bg_png" scale9Grid="52,33,122,125" height.guest="400"/>
+	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422b08" horizontalCenter="0"/>
+
+
+
+
+
+	<e:Group y="92.99999999999999" horizontalCenter="0">
+		<e:Label y="12.000000000000028" text="用户邮箱：" x="0" size="22" textColor="0xC4A36A"/>
+		<e:TextInput x="118.00000000000003" skinName="MyTextInputSkin" y="0" height="45" id="nameText" width="280" prompt="请输入您的邮箱"/>
+		<e:Label y="69.00000000000004" textColor="0xC4A36A" size="22" text="密　　码：" x="0"/>
+		<e:TextInput id="passwordText1" skinName="MyTextInputSkin" y="58.00000000000004" width="280" height="45" x="118.00000000000003" prompt="密码长度最小为6" displayAsPassword="true"/>
+		<e:Label y="125.00000000000001" textColor="0xC4A36A" size="22" text="密码确认：" x="0"/>
+		<e:TextInput id="passwordText2" width="280" y="114.00000000000001" skinName="MyTextInputSkin" height="45" x="118.00000000000003" prompt="重复一次上方密码" displayAsPassword="true"/>
+	</e:Group>
 	<e:Group y="285" horizontalCenter="0" horizontalCenter.guest="0" y.guest="309.26">
 		<e:Button id="backBtn" label="返回" y="0" x="0" skinName="Btn_b2Skin"/>
 		<e:Button id="loginBtn" skinName="Btn_r2Skin" label="注册" y="0" x="0"/>

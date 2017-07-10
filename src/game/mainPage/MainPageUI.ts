@@ -13,24 +13,6 @@ class MainPageUI extends game.BaseUI {
 
     private bottomMV: eui.Image;
     private starGroup: eui.Group;
-    private headMC: eui.Image;
-    private honorRed: eui.Image;
-    private expBar: eui.Image;
-    private nameText: eui.Label;
-    private forceText: eui.Label;
-    private levelText: eui.Label;
-    private coinGroup: eui.Group;
-    private coinText: eui.Label;
-    private addCoinBtn: eui.Group;
-    private energyGroup: eui.Group;
-    private energyText: eui.Label;
-    private addEnergyBtn: eui.Group;
-    private diamondGroup: eui.Group;
-    private diamondText: eui.Label;
-    private addDiamondBtn: eui.Group;
-    private cardGroup: eui.Group;
-    private feeText: eui.Label;
-    private addFreeBtn: eui.Group;
     private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
     private dayGame: MainDayItem;
@@ -64,10 +46,30 @@ class MainPageUI extends game.BaseUI {
     private friendRed: eui.Image;
     private friendLockMC: eui.Image;
     private bagBtn: eui.Group;
+    private headMC: eui.Image;
+    private honorRed: eui.Image;
+    private expBar: eui.Image;
+    private nameText: eui.Label;
+    private forceText: eui.Label;
+    private levelText: eui.Label;
+    private coinGroup: eui.Group;
+    private coinText: eui.Label;
+    private addCoinBtn: eui.Group;
+    private energyGroup: eui.Group;
+    private energyText: eui.Label;
+    private addEnergyBtn: eui.Group;
+    private diamondGroup: eui.Group;
+    private diamondText: eui.Label;
+    private addDiamondBtn: eui.Group;
+    private cardGroup: eui.Group;
+    private feeText: eui.Label;
+    private addFreeBtn: eui.Group;
     private diamonDrawBtn: eui.Group;
     private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
     private topPlayerTips: TopPlayerTips;
+    private guideText: eui.Label;
+
 
 
 
@@ -180,6 +182,18 @@ class MainPageUI extends game.BaseUI {
             item.anchorOffsetX = 320;
             item.x = 320 + 320*i
         }
+    }
+
+    private renewGuideText(){
+        if(GuideManager.getInstance().isGuiding)
+        {
+            this.guideText.text = ''
+            return
+        }
+        this.guideText.textFlow = <Array<egret.ITextElement>>[
+            {text: "任务12345\n", style: {"underline": true}},
+            {text: "任务12345", style: {"underline": true}}
+        ];
     }
 
 
@@ -615,6 +629,8 @@ class MainPageUI extends game.BaseUI {
         this.renewFriendRed();
         this.renewCollectRed();
         this.renewHonorRed();
+
+        this.renewGuideText();
 
         egret.setTimeout(function() {
             MainPageUI.getInstance().renewPage();

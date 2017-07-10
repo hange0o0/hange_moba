@@ -163,6 +163,7 @@ class TecManager{
     public levelUp(type,id,fun?){
         var self = this;
         var oo:any = {};
+        var force = UM.getForce();
 
         if(type == 1)
             oo.type = 'main';
@@ -196,6 +197,7 @@ class TecManager{
                 return;
             }
             SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
+            ShowTips('升级成功，战力' + MyTool.createHtml('　+'+(UM.getForce() - force),0xE0A44A))
             if(fun)
                 fun();
         });

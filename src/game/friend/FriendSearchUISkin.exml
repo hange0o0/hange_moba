@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="FriendSearchUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="0" y="0" width="520" height="340" source="card_bg_png" scale9Grid="52,33,122,125"/>
-	<e:Rect y="14" strokeWeight="1" width="490" fillAlpha="1" height="60" x="15" fillColor="0x262119"/>
+	<e:Image x="0" y="0" width="560" height="340" source="card_bg_png" scale9Grid="52,33,122,125"/>
+	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422B08" horizontalCenter="0"/>
+
 
 	<e:TextInput skinName="MyTextInputSkin" y="120" height="50" id="nameText" width="320" horizontalCenter="0"/>
 

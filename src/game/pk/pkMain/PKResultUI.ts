@@ -57,7 +57,7 @@ class PKResultUI extends game.BaseUI {
     public guideScroll(){      //13
         this.scroller.stopAnimation();
         var tw = egret.Tween.get(this.scroller.viewport);
-        tw.to({scrollV:800},300).call(function(){
+        tw.to({scrollV:1200},300).call(function(){
             GuideManager.getInstance().showGuide(PKResultUI.getInstance())
         },this);
     }

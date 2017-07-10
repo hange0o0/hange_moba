@@ -22,9 +22,10 @@ class PKDressChooseUI extends game.BaseContainer {
     private a6: eui.Image;
     private a7: eui.Image;
     private a8: eui.Image;
-    private randomIcon: eui.Image;
     private pkBtn: eui.Button;
     private randomBtn: eui.Group;
+    private randomBG: eui.Image;
+    private randomIcon: eui.Image;
     private resetBtn: eui.Group;
     private sortBtn: eui.Group;
     private sortText: eui.Label;
@@ -33,6 +34,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private deleteBtn: eui.Button;
     private removeGroup: eui.Group;
     private removeText: eui.Label;
+
 
 
 
@@ -165,9 +167,18 @@ class PKDressChooseUI extends game.BaseContainer {
         this.cb.selected = true;
 
 
-
+        MyTool.addLongTouch(this.randomBtn,this.onRandomSetting,this)
 
         //console.log(this.posArray);
+    }
+
+    private onRandomSetting(){
+        PKDressUI.getInstance().showSetting();
+        GuideManager.getInstance().showGuide(PKDressUI.getInstance())
+    }
+
+    public setRandomBG(b){
+         this.randomBG.visible = b;
     }
 
     public resetSort(){
@@ -199,9 +210,15 @@ class PKDressChooseUI extends game.BaseContainer {
     }
 
     public onRandom(){
+        var GM = GuideManager.getInstance();
+        if(GM.isGuiding && GM.guideRandom == 2)
+            return;
+
         this.dispatchEventWith('random');
     }
     public onReset(){
+        if(GuideManager.getInstance().isGuiding)
+            return;
         this.dispatchEventWith('reset');
     }
 
