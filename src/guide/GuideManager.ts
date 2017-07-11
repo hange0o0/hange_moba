@@ -37,7 +37,7 @@ class GuideManager {
 
     public reInit(){
         this.guideRandom = 0;
-        this.guideArr[0].text = '亲爱的['+UM.nick+']，欢迎来到卡士世界！你想成为世界上最强大的卡士吗？你想成为那万众瞩目的唯一吗？那么，现在就让卡卡来带领你，踏上这成为至强王者之路吧！';
+        this.guideArr[0].text = '亲爱的['+UM.nick+']，欢迎来到卡士世界！'
     }
 
     private init(){
@@ -45,29 +45,77 @@ class GuideManager {
         //            hideHand:false,
         this.addGuideObj({
             fun:function(){
-                //MainPageUI.getInstance().onGuide0()
                 self.showGuide()
             },
-            text:'亲爱的['+UM.nick+']，欢迎来到卡士世界！你想成为世界上最强大的卡士吗？你想成为那万众瞩目的唯一吗？那么，现在就让卡卡来带领你，踏上这成为至强王者之路吧！',
+            text:'亲爱的['+UM.nick+']，欢迎来到卡士世界！',
         })
 
         this.addGuideObj({
             fun:function(){
                 self.showGuide()
             },
-            text:'你知道什么是卡士吗？在卡卡看来，所谓的卡士，可以比作是卡兵中的[司令]，利用手中有限的卡兵进行[排兵布阵]，然后让你的队伍出战来为你取得胜利，最考验运筹帷幄的能力了',
+            text:'你想成为世界上最强大的卡士吗？你想成为那[万众瞩目]的唯一吗？',
+        })
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'那么，现在就让卡卡来带领你，踏上这成为[至强王者]之路吧！',
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'但在这之前，我们必需得清楚一个问题：[什么是卡士?]',
+        })
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'在卡卡看来，所谓的卡士，可以比作是卡兵中的[司令]。',
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'他们利用手中有限的卡兵进行[排兵布阵]，制定出战顺序后，就让队伍按照他的计划作战，最终为他取得胜利',
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'他们[不需要参与]到具体的战斗，但却影响了整个的战斗流程，最考验其[运筹帷幄]的能力了',
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'不是每个人都有能力做好这件事情，到底你适不适合这样的工作，卡卡要对你进行一下[考查]',
         })
 
 
         this.addGuideObj({
             mc:"MainPageUI.getInstance()['mainGame']['startBtn']",
-            text:'到底你能不能当好这个司令呢？我们先来[卡士公会]作个实力认证吧。他们是卡士世界最权威的认证机构，他们的认证结果能反映每位卡士的真实能力！',
+            text:'[卡士公会]是卡士世界最权威的认证机构，我们就从这里开始吧！',
         })
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"this.getMainGameRect()",
-            text:'在上方区域呈现的是对手的卡组，我们需观察一下，以方便我们制定合适的战术',
+            text:'在上方区域呈现的是我们[对手的卡兵]，了解对方的兵阵能方便我们制定合适的战术',
+            fun:function(){
+                //MainGameUI.getInstance().scrollToEnd();
+                self.showGuide(MainGameUI.getInstance())
+            }
+        })
+        this.addGuideObj({
+            ui:"MainGameUI.getInstance()",
+            mc:"this.getMainGameRect2()",
+            text:'而下方区域是我们[本轮]所能出战的[兵种]，我们将在其中[挑选合适的]以组成我们的出战部队',
             fun:function(){
                 //MainGameUI.getInstance().scrollToEnd();
                 self.showGuide(MainGameUI.getInstance())
@@ -77,7 +125,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"MainGameUI.getInstance()['chooseBtn0']",
-            text:'看来对手的实力不怎么样嘛，就让我们去打败它吧！点击[挑战]按钮，进入布阵环节！',
+            text:'在了解双方的兵力对比后，卡卡觉得我们应该很轻松就能取得胜利了！点击[挑战]按钮，进入布阵环节！',
         })
 
         this.addGuideObj({
@@ -95,13 +143,13 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['sortBtn']",
-            text:'卡卡觉得我们还需要一位强大的肉盾，看看有啥合适的？点击[排序按钮]，调整为[按血量排序]',
+            text:'卡卡觉得我们还需要一位强大的肉盾！点击[排序按钮]，调整为[按血量排序]，看看谁是最肉的？',
         })
 
         this.addGuideObj({
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['list'].getChildAt(0)['useBtn']",
-            text:'这个肉盾血量够多，那就选它吧。',
+            text:'这个肉盾血量果然够多，那就选它吧。',
         })
 
         this.addGuideObj({
@@ -131,7 +179,7 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             //mc:"new egret.Rectangle(0,600+(GameManager.stage.stageHeight - 960)/2,640,360)",
-            text:'啊啊啊？！！怎么输了，不对吧，这对新人也太不友好了！为什么呢？！！',
+            text:'啊啊啊？！！怎么会输了，这对[新人]也太不友好了！这个对决卡卡是很有信心的啊，[为什么]呢？！！',
             fun:function(){
                 PKResultUI.getInstance().guideScroll();
                 //self.showGuide(PKWinUI.getInstance())
@@ -141,20 +189,27 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"PKResultUI.getInstance().pkResultGroup.list.getChildAt(1)",
-            text:'这一个对决卡卡是很有信心的啊，为什么还是输了呢（刚刚卡卡开小差，没看清楚）？让我们一起看看在这轮PK过程中，到底发生了什么',
+            text:'卡卡刚才开了点小差，没看仔细，让我们一起回顾一下在这轮[关键的]PK过程中，到底发生了什么?',
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide(PKFailUI.getInstance())
+            },
+            text:'哦，原来如此，想不到[堕天使]和[僵尸法师]还能组成这么厉害的COMBO！卡卡又学到一招了！',
         })
 
         this.addGuideObj({
             ui:"PKFailUI.getInstance()",
             mc:"PKFailUI.getInstance()['okBtn']",
-            text:'哦，原来如此，想不到[堕天使]和[僵尸法师]能组成这么厉害的COMBO。但我们就这样子认输了吗？不，不，不，我们刚才只是大意了而已',
+            text:'但我们就这样子认输了吗？不！我们刚才只是大意了而已！我们的目标是成为至强王者，这样的小失败并[不能]阻挡我们的脚步',
         })
             ////////
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
             mc:"MainGameUI.getInstance()['chooseBtn0']",
-            text:'为了弥补刚才的错误，卡卡现在要把压箱技能都告诉你了，擦亮你的眼睛看好哦~点击[挑战]按钮，开始学习卡卡独门绝招吧！',
+            text:'为了弥补刚才的失误，卡卡现在要把压箱技能都告诉你。点击[挑战]按钮，开始学习卡卡的独门绝招吧！',
         })
 
 
@@ -162,7 +217,7 @@ class GuideManager {
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'看到这个按钮没，点一下它，系统会给我们提供一些参考意见，试试看吧',
+            text:'看到这个[随机]按钮没，点一下它，系统会给我们组成[尽可能用尽卡符]的队伍配置，试试看吧',
         })
 
         this.addGuideObj({
@@ -176,15 +231,24 @@ class GuideManager {
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'怎么老是有[【异型】]的，就没有卡卡喜欢的[【人鱼战士】]呢，我们[长按]随机按钮，打开随机设置面板',
+            text:'怎么老是有[【异型】]的，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【【长按】】]随机按钮，可以打开设置面板哦',
         })
 
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide(PKDressUI.getInstance())
+            },
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']",
+            toBottom:true,
+            text:'在这个设置面板中，我们可以告诉系统我们的[布阵需求]，从而能生成[符合]我们[预期]的卡组',
+        })
 
         this.addGuideObj({
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressSettingUI']['h0']['addBtn']",
-            text:'[【人鱼战士】]必须得出战啊，点击[+]号，可让系统为我们最少出战一个[【人鱼战士】]',
+            text:'[【人鱼战士】]是必须得出战！点击[+]号，可让系统为我们最少出战一个[【人鱼战士】]',
         })
 
         this.addGuideObj({
@@ -212,7 +276,7 @@ class GuideManager {
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'这个阵容感觉还不错，但卡卡还是想试试有没有更好的',
+            text:'这个阵容虽然感觉还不错，但卡卡还是想试试有没有更好的',
         })
 
         this.addGuideObj({
@@ -225,35 +289,38 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             fun:function(){
-                self.showGuide()
+                self.showGuide(PKResultUI.getInstance())
             },
             text:'是不是很简单就赢了，[【人鱼战士】]果然是最强大的！',
         })
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"PKWinUI.getInstance()['backBtn']",
-            text:'卡兵对决果然考验人的智慧，现在先放松放松，让卡卡带你带你再去其它地方逛逛吧！',
+            text:'看来你还是挺有本事的，卡卡相信你能成为强大的卡士。现在我们再去其它地方逛逛吧！',
         })
-          ////////
-
-
-
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance().videoBtn",
-            text:'哎呀，刚才太兴奋忘了看战报数据了！算了，反正是可以在[PK记录]找到刚才的对战记录的，先放一放吧。现在，请让你用最神圣的态度来面对我们将要进行的事情，就是--',
+            text:'哎呀，刚才太兴奋忘了看战报数据了！但不用担心，我们还可以在[PK记录]找到刚才的对战记录的。',
             hideHand:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
             }
         })
 
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide(MainPageUI.getInstance())
+            },
+            text:'将军的强大固然是取胜的关键，但没有[强大的士兵]，胜利也是遥不可及的',
+        })
+
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"MainPageUI.getInstance()['collectBtn']",
-            text:'花钱！！！刚才我们在PK中不是获得了一些[卡兵碎片]和[金币]吗，我们可以用它来在[【卡兵】]中对卡兵进行[升级]。卡卡想想都有点小兴奋呢~',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
+            text:'刚才我们在对战中获得了一些[卡兵碎片]和[金币]，我们可以用它来对卡兵进行[升级]。',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
         })
 
         this.addGuideObj({
@@ -265,13 +332,13 @@ class GuideManager {
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['info']['levelUpBtn']",
-            text:'卡卡告诉你一个小秘密，升级单个卡兵的时候，我们的[总战力]也会得到同步提升，这可是会增强[所有卡兵]的对战实力的哦',
+            text:'虽然我们只升级单个卡兵，但我们的[总战力]也是会得到同步提升，这可是会增强[所有卡兵]的对战实力的哦',
         })
 
         this.addGuideObj({
             ui:"MonsterList.getInstance()",
             mc:"MonsterList.getInstance()['topUI']['closeBtn']",
-            text:'升完级是不是觉得自己牛X了很多呢，想再去挑战一下其它卡士吧？没问题让我们再看看其它的对战功能吧',
+            text:'升完级是不是觉得自己强大了很多呢，想再去挑战一下其它卡士吧？没问题让我们再看看[其它]的对战功能吧',
         })
 
         this.addGuideObj({
@@ -283,15 +350,36 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'[究极研究院]的老怪物们最喜欢挑战高难度的事情了，他们每天都会发布[10]个题目让全世界玩家[共同]挑战。经常参与他们的活动，会获得[永久的战力]奖励哦！',
+            text:'[究极研究院]的老怪物们最喜欢挑战高难度的事情了，他们每天都会发布[10]个题目让全世界玩家[共同]挑战。',
             hideHand:true,
             toBottom:true,
+            fun:function(){
+                self.showGuide()
+
+            }
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            mc:"this.getMainRect()",
+            hideHand:true,
+            toBottom:true,
+            text:'因为经常参与他们的活动，会获得[永久的战力]奖励。所以卡卡建议你[每天]都来冲刺一下自己的极限！',
+        })
+
+        this.addGuideObj({
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 2;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
-            }
+            },
+            mc:"this.getMainRect()",
+            hideHand:true,
+            toBottom:true,
+            text:'如果实在打不过，也可以与[其它卡士]交流一下，因为你们的题目是[一样的]！',
         })
 
         this.addGuideObj({
@@ -302,10 +390,22 @@ class GuideManager {
             toBottom:true,
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
+
+            }
+        })
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 3;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
-            }
+            },
+            ui:"MainPageUI.getInstance()",
+            mc:"this.getMainRect()",
+            hideHand:true,
+            toBottom:true,
+            text:'但这种体力活并[不需要]你来[亲自出手]，交给你的卡兵吧，只要他们足够[强大]，清剿起来速度还是会[很快]的',
         })
 
         this.addGuideObj({
@@ -337,11 +437,23 @@ class GuideManager {
             fun:function(){
                 self.showGuide()
             },
-            text:'哦，对了，有一个很多卡士都会犯错我必须和你说一下，就是[不要]专注于升级某几个卡兵，[全面发展]才是卡士世界的主题，卡卡希望你能记住这一点，能让你少走很多弯路哦~',
+            text:'哦，对了，还有一个重要的事情得提醒你一下：[不要]专注于升级某几个卡兵，[全面发展]才是卡士世界的主题！',
+        })
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'这可是很多新手卡士都会犯的错误哦，卡卡希望你能[避开]。',
+        })
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide()
+            },
+            text:'虽然你相处的时间时间不长，但我能感受到你有成为[强大卡士]的天赋，希望以后能在[更高]的地方看到你的名字',
         })
 
         this.addGuideObj({
-            text:'好了，现在你对这个世界已有了一定的了解了吧，但其实还有更多[未知的领域]需要你在世界中慢慢去探索哦。卡卡我现在还要去引领下一位极有天赋的卡士，就此别过，88~',
+            text:'卡卡就此别过，我会想念你的，88~',
             fun:function(){
                 self.isGuiding = false;
                 GuideUI.getInstance().hide();
@@ -389,6 +501,10 @@ class GuideManager {
 
     private getMainGameRect(){
         return new egret.Rectangle(0,80,640,390);
+    }
+
+    private getMainGameRect2(){
+        return new egret.Rectangle(0,80+390,640,GameManager.stage.stageHeight-80-100-390);
     }
 
 }

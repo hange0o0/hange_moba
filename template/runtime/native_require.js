@@ -9,8 +9,8 @@ var game_file_list = [
 	"libs/modules/game/game.js",
 	"libs/modules/tween/tween.js",
 	"bin-debug/commont/BaseUI.js",
-	"bin-debug/game/pk/pkCommont/EnemyHeadItem.js",
 	"bin-debug/game/pk/pkMain/PKResultBase.js",
+	"bin-debug/game/pk/pkCommont/EnemyHeadItem.js",
 	"bin-debug/game/pk/pkMain/PKItem2.js",
 	"bin-debug/commont/MyTool.js",
 	"bin-debug/commont/MyWindow.js",
@@ -117,7 +117,7 @@ var game_file_list = [
 	"bin-debug/game/pk/pkMain/PKEmoItem.js",
 	"bin-debug/game/pk/pkMain/PKFailUI.js",
 	"bin-debug/game/pk/pkMain/PKItem.js",
-	"bin-debug/commont/Config.js",
+	"bin-debug/util/StringUtil.js",
 	"bin-debug/game/pk/pkMain/PKItemBig.js",
 	"bin-debug/game/pk/pkMain/PKLoadingUI.js",
 	"bin-debug/game/pk/pkMain/PKMainHp.js",
@@ -226,7 +226,7 @@ var game_file_list = [
 	"bin-debug/util/ObjectUtil.js",
 	"bin-debug/util/PopUpManager.js",
 	"bin-debug/util/ShapeObject.js",
-	"bin-debug/util/StringUtil.js",
+	"bin-debug/commont/Config.js",
 	//----auto game_file_list end----
 ];
 

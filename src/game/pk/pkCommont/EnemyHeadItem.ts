@@ -13,7 +13,9 @@ class EnemyHeadItem extends game.BaseItem {
     private headBG: eui.Image;
     private lvText: eui.Label;
     private closeBtn: eui.Image;
+    private nameGroup: eui.Group;
     private nameText: eui.Label;
+
 
 
 
@@ -80,6 +82,7 @@ class EnemyHeadItem extends game.BaseItem {
             return;
 
         this.nameText.text = this.data.vo.name
+        this.nameGroup.horizontalCenter= 0
         if(this.data.isTeam)
         {
             MyTool.removeMC(this.chooseGroup);
@@ -98,6 +101,14 @@ class EnemyHeadItem extends game.BaseItem {
                     this.lvText.text = 'LV.' + this.data.specialData.lv;
             }
 
+
+            if(this.data.index > 2 && this.data.list.length == 5)
+            {
+                this.teamGroup.horizontalCenter= 80
+                this.nameGroup.horizontalCenter= 80
+            }
+            else
+                this.teamGroup.horizontalCenter= 0
         }
         else
         {
