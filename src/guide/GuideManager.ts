@@ -8,6 +8,7 @@ class GuideManager {
     public currentStepId: Number;
     public isGuiding:Boolean=true;
 
+
     public guideStep = 0;
     public guideRandom = 0;
     private guideArr = [];
