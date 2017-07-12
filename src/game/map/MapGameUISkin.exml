@@ -2,6 +2,10 @@
 <e:Skin class="MapGameUISkin" width="640" height="1000" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group right="80" top="10" id="helpBtn" x="10" y="10">
+		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
+		<e:Label horizontalCenter="0" textColor="0xF8D05A" y="10" text="?"/>
+	</e:Group>
 	<e:Image source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="123" bottom="-20" height="120"/>
 	<e:Group horizontalCenter="0" bottom="20">
 		<e:Button id="enemyBtn" label="重新搜寻" y="-874" skinName="Btn_b2Skin" x="270" scaleX="1" scaleY="1"/>
@@ -36,10 +40,6 @@
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
-				<e:Group right="20" top="8" id="helpBtn" x="10" y="10">
-					<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
-					<e:Label horizontalCenter="0" textColor="0xF8D05A" y="10" text="?"/>
-				</e:Group>
 
 			</e:Group>
 			<ns1:MyCardGroupUI id="myCardGroup" x="-25" y="387" skinName="MyCardGroupSkin"/>

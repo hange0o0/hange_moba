@@ -91,7 +91,7 @@ class MainPageUI extends game.BaseUI {
 
     private gameItems = [];
     private pageArray = [];
-    private currentPage= 0;
+    public currentPage= 0;
     private startPos;
     private playHeadTime = 0;
 

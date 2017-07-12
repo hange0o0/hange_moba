@@ -2,6 +2,10 @@
 <e:Skin class="MainGameUISkin" width="640" height="1200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group right="80" id="helpBtn" x="10" y="10">
+		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
+		<e:Label horizontalCenter="0" textColor="0xF8D05A" y="10" text="?"/>
+	</e:Group>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="100" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640">
@@ -32,10 +36,6 @@
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
-				<e:Group right="20" id="helpBtn" x="10" y="8">
-					<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
-					<e:Label horizontalCenter="0" textColor="0xF8D05A" y="10" text="?"/>
-				</e:Group>
 
 			</e:Group>
 			<ns1:MyCardGroupUI id="myCardGroup" x="-25" y="387" skinName="MyCardGroupSkin"/>

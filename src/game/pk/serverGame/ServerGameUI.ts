@@ -6,17 +6,23 @@ class ServerGameUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private helpBtn: eui.Group;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private infoGroup: eui.Group;
     private winText: eui.Label;
     private rankText: eui.Label;
     private forceText: eui.Label;
     private nameText: eui.Label;
     private levelText: eui.Label;
-    private helpBtn: eui.Group;
     private headMC: eui.Image;
     private enemyList: eui.List;
+    private openGroup: eui.Group;
+    private btnGroup: eui.Group;
+    private retryBtn: eui.Button;
+    private startBtn: eui.Button;
+    private desText: eui.Label;
     private myCardGroup: MyCardGroupUI;
     private historyList: eui.List;
     private resetBtn: eui.Button;

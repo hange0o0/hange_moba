@@ -14,10 +14,16 @@ class ServerGameEqualManager{
     public stepName = ['黄','玄','地','天','武','圣','尊','神'];
     public getStepName(exp){
         var level = this.getPKTableLevel(exp)
+        return this.getStepNameByLevel(level)
+    }
+
+    public getStepNameByLevel(level){
         var step = level%3 || 3
         level = Math.floor((level - 1)/3)
         return this.stepName[level] + '级' + ['','下','中','上'][step]+'品';
     }
+    getStepNameByLevel
+
 
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_serverEqual_log') || [];
@@ -57,6 +63,10 @@ class ServerGameEqualManager{
             if(fun)
                 fun();
         }
+    }
+
+    public getCurrentLevel(){
+        return this.getPKTableLevel(UM.server_game_equal.exp)
     }
 
     //根据经验，返回所在等级

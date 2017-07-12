@@ -46,6 +46,14 @@ class LoginUI extends game.BaseUI {
         
         //this.passwordText.text = '111111'
         this.nameText.text = ''
+        this.nameText.addEventListener(egret.FocusEvent.FOCUS_OUT,this.onFocusOut,this)
+    }
+
+    private onFocusOut(){
+         if(this.nameText.text != '游客账号' && this.passwordText.text == '游客账号免密码')
+         {
+             this.passwordText.text = '';
+         }
     }
 
     public show(){

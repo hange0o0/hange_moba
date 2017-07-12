@@ -2,6 +2,10 @@
 <e:Skin class="FriendPKAskUISkin" width="640" height="1500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg_jpg" x="0" y="0" locked="true"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group id="helpBtn" right="80" top="10" x="10" y="10">
+		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
+		<e:Label y="10" textColor="0xF8D05A" text="?" horizontalCenter="0"/>
+	</e:Group>
 	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" scrollPolicyH="off">
 		<e:Group id="scrollerGroup">
 			<e:Group id="enemyGroup" x="0" y="0" width="640" height="110">
@@ -16,10 +20,6 @@
 				<e:RadioButton x="304" label="修正场规则" y="9" skinName="MyRadioButtonSkin" id="ringRadio1"/>
 				<e:Label text="挑战宣言：" x="25" y="58" textColor="0xCCB48E" size="26"/>
 				<e:TextInput id="inputText" x="150" y="53" skinName="MyTextInputSkin" width="524" maxChars="20" prompt="你可敢与我一战？！" scaleX="0.8" scaleY="0.8"/>
-				<e:Group id="helpBtn" y="20" top="47" right="15" x="20">
-					<e:Image source="main_border_png" y="0" scaleY="0.42" scaleX="0.42" x="0"/>
-					<e:Label y="10" textColor="0xF8D05A" text="?" horizontalCenter="0"/>
-				</e:Group>
 
 
 			</e:Group>
@@ -29,15 +29,11 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
 				<e:Label id="pkTypeText" textColor="0xCCB48E" text="PK类型：竞技场规则" x="25" y="15"/>
-				<e:Group id="helpBtn0" right="20" top="5" x="10" y="10">
-					<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
-					<e:Label y="10" textColor="0xF8D05A" text="?" horizontalCenter="0"/>
-				</e:Group>
 			</e:Group>
-			<e:Group id="myGroup0" y="481" height="540" x="90">
+			<e:Group id="myGroup0" y="481" height="570" x="90">
 				<e:List id="myList0" y="80" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+						<e:TileLayout requestedColumnCount="4" horizontalGap="6"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>
@@ -65,10 +61,10 @@
 					<e:Button id="chooseBtn0" label="使用出战" y="0" skinName="Btn_r3Skin" x="365"/>
 				</e:Group>
 			</e:Group>
-			<e:Group id="myGroup1" y="491" height="540" x="100">
+			<e:Group id="myGroup1" y="491" height="570" x="100">
 				<e:List y="80" horizontalCenter="0" height="239" itemRendererSkinName="MyHeadItemSkin" id="myList1">
 					<e:layout>
-						<e:TileLayout requestedColumnCount="4" horizontalGap="30"/>
+						<e:TileLayout requestedColumnCount="4" horizontalGap="6"/>
 					</e:layout>
 					<e:ArrayCollection>
 						<e:Array>

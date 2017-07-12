@@ -6,13 +6,43 @@ class TaskManager {
         return this._instance;
     }
 
-    private taskData = []
-    private taskIndex = []
     private guideLight;
+    public nowAction//正在进行的指引
+    public actionStep//正在进行的指引的步数
 
 
     public constructor() {
          this.init()
+    }
+
+    public getTaskIDByLine(line){
+        var task = UM.active.task;
+        return task[line]
+    }
+
+    //当前的任务列表
+    public getCurrentTaskList(){
+        var task = UM.active.task;
+        var line = TaskVO.lineData;
+        var arr = [];
+        for(var s in task)
+        {
+            if(s == 'stat')
+                continue;
+            var vo = TaskVO.getObject(task[s]).getNextTaskVO();
+            if(vo && vo.isEnable())
+                arr.push(vo);
+        }
+
+        for(var s in line)
+        {
+            if(!task[s])
+            {
+                if(vo.isEnable())
+                    arr.push(vo);
+            }
+        }
+        return arr;
     }
 
     private init(){

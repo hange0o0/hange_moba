@@ -28,6 +28,7 @@ class DayGameManager{
     }
 
     public passDay(){
+        DayGameManager.getInstance().resetDay();
         if(DayGameUI.getInstance().stage)
             DayGameUI.getInstance().hide();
         if(PKDressUI.getInstance().stage && PKDressUI.getInstance().pkType == 'day_game')

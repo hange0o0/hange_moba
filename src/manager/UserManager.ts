@@ -261,17 +261,17 @@ class UserManager {
     //    return  this.collect.num[id] || 0
     //}
 
-    //取显示的大等级
-    public getMonsterCollect(monsterID){
-        return Math.floor(this.getMonsterLevel(monsterID)/10);
-        //var vo = MonsterVO.getObject(monsterID);
-        //var max = vo.collect;
-        //if(this.collect.level[monsterID])
-        //{
-        //    max = Math.max(max,this.collect.level[monsterID]);
-        //}
-        //return max;
-    }
+    ////取显示的大等级
+    //public getMonsterCollect(monsterID){
+    //    return Math.floor(this.getMonsterLevel(monsterID)/10);
+    //    //var vo = MonsterVO.getObject(monsterID);
+    //    //var max = vo.collect;
+    //    //if(this.collect.level[monsterID])
+    //    //{
+    //    //    max = Math.max(max,this.collect.level[monsterID]);
+    //    //}
+    //    //return max;
+    //}
 
     //得到最常用的10个怪
     public getCommonUse(list){

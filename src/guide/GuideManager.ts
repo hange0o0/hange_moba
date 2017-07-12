@@ -232,7 +232,7 @@ class GuideManager {
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'怎么老是有[【异型】]的，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【【长按】】]随机按钮，可以打开设置面板哦',
+            text:'怎么都是[【异型】]，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【长按】]随机按钮，可以打开自定义面板哦',
         })
 
 

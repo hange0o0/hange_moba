@@ -70,6 +70,16 @@ class HonorManager{
          return UM.honor.monster[id] || {t:0,w:0}
     }
 
+    //是否有领过奖
+    public isHonor(){
+         for(var s in UM.honor.monster)
+         {
+              if(UM.honor.monster[s].a)
+                return s;
+         }
+        return null;
+    }
+
     //是否可以领奖
     public fillAwardStat(data){
         var oo;
