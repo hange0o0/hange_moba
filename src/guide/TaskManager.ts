@@ -38,11 +38,38 @@ class TaskManager {
         {
             if(!task[s])
             {
+                var vo = TaskVO.lineData[s][0];
                 if(vo.isEnable())
                     arr.push(vo);
             }
         }
         return arr;
+    }
+
+    public getTaskText(){
+        var textArr = [];
+        var arr = this.getCurrentTaskList();
+        for(var i=0;i<arr.length;i++)
+        {
+            if(i != 0)
+                textArr.push({text:'\n'})
+
+            var vo:TaskVO = arr[i];
+            if(vo.isFinish())
+            {
+                var href = 'event:award_'+vo.id;
+                textArr.push({text:vo.getDes()  ,style:{href:href,"underline": true}})
+                textArr.push({text: '　已完成',style:{href:href,textColor:0x6DC966}})
+            }
+            else
+            {
+                var href = 'event:go_'+vo.id;
+                textArr.push({text:vo.getDes(),style:{href:href,"underline": true}})
+                textArr.push({text: '　' + vo.getRate(),style:{href:href,textColor:0xE0A44A}})
+            }
+
+        }
+        return textArr;
     }
 
     private init(){

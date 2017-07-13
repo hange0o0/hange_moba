@@ -1,0 +1,55 @@
+class MainTaskUI extends game.BaseContainer {
+    public constructor() {
+        super();
+        this.skinName = "MainTaskUISkin";
+    }
+
+    private taskText: eui.Label;
+    private list: eui.List;
+    private closeBtn: eui.Group;
+    private redMC: eui.Image;
+
+
+
+
+
+
+
+    public time = 0;
+    public childrenCreated() {
+        super.childrenCreated();
+        this.addBtnEvent(this.closeBtn,this.onClose)
+        this.addBtnEvent(this,this.onClick)
+        this.currentState = 'close'
+        this.list.itemRenderer = MainTaskItem;
+    }
+
+    public onClose(e){
+        e.stopImmediatePropagation()
+       this.currentState='close'
+    }
+
+    private onClick(){
+          if(this.currentState == 'close')
+          {
+              this.currentState='open';
+
+          }
+    }
+
+    public renew(){
+        var count = 0;
+        var arr = TaskManager.getInstance().getCurrentTaskList();
+        this.list.dataProvider = new eui.ArrayCollection(arr)
+        for(var i=0;i<arr.length;i++)
+        {
+            if(arr[i].isFinish())
+                count ++;
+        }
+        this.taskText.text = '任务：' + count + '/' + arr.length;
+        this.redMC.visible = count > 0;
+    }
+
+
+
+}

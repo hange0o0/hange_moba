@@ -1,5 +1,5 @@
 class TaskVO {
-    public static dataKey = 'task';
+    public static dataKey = 'task_base';
     public static key = 'id';
     public static getObject(id: number): TaskVO{
         return CM.table[this.dataKey][id];
@@ -61,8 +61,8 @@ class TaskVO {
         this.card = Math.floor(data.card);
 
         var arr = (this.id + '').split(',')
-        this.index1 = Math.floor(arr[0])
-        this.index2 = Math.floor(arr[0]) || 0
+        this.index1 = parseInt(arr[0])
+        this.index2 = parseInt(arr[0]) || 0
     }
 
     public getNextTaskVO(){
@@ -226,6 +226,7 @@ class TaskVO {
         switch(this.type)
         {
             case 'draw':
+                MainPageUI.getInstance()['topPlayerTips'].hide();
                 TM.showGuideMC(MainPageUI.getInstance()['diamonDrawBtn'])
                 break;
             case 'main_game':
@@ -240,7 +241,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 2;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
-                    TM.showGuideMC(MainPageUI.getInstance()['mapGame'].startBtn)
+                    TM.showGuideMC(MainPageUI.getInstance()['mapGame']['startBtn'])
                 }
                 else
                 {
@@ -250,7 +251,7 @@ class TaskVO {
             case 'main_award':
                 MainPageUI.getInstance().currentPage = 0;
                 MainPageUI.getInstance().scrollToCurrentPage(true)
-                TM.showGuideMC(MainPageUI.getInstance()['mainGame'].awardBtn)
+                TM.showGuideMC(MainPageUI.getInstance()['mainGame']['awardBtn'])
                 break;
             case 'server_game':
                 if(this.value1 < 0)
@@ -258,7 +259,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 3;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
-                    TM.showGuideMC(MainPageUI.getInstance()['serverGame'].startBtn)
+                    TM.showGuideMC(MainPageUI.getInstance()['serverGame']['startBtn'])
                 }
                 else
                 {
@@ -289,7 +290,7 @@ class TaskVO {
                 TM.nowAction = this.type;
                 MainPageUI.getInstance().currentPage = 4;
                 MainPageUI.getInstance().scrollToCurrentPage(true)
-                TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual'].ticketGroup)
+                TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual']['ticketGroup'])
                 break;
             case 'server_equal_game':
                 if(this.value1 < 0)
@@ -297,7 +298,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 4;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
-                    TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual'].startBtn)
+                    TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual']['startBtn'])
                 }
                 else
                 {
@@ -313,7 +314,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 1;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
-                    TM.showGuideMC(MainPageUI.getInstance()['dayGame'].startBtn)
+                    TM.showGuideMC(MainPageUI.getInstance()['dayGame']['startBtn'])
                 }
                 else
                 {
@@ -384,6 +385,7 @@ class TaskVO {
                     return '虚空修正场达到[' +ServerGameEqualManager.getInstance().getStepNameByLevel(this.value1)  + ']'
                 break;
             case 'card':
+                return '把['+MonsterVO.getObject(this.value1).name+']升到['+this.value2+']级'
                 break;
             case 'day_game':
                 if(this.value1 < 0)

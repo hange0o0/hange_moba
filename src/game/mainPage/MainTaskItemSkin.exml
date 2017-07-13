@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MainTaskItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="30">
+	<e:Group x="0" y="0">
+		<e:Image source="point2_png" x="-88" y="73" scaleX="0.3" scaleY="0.3"/>
+		<e:Group x="8" y="4">
+			<e:Label id="titleText" text="Label" x="0" y="0" size="24" textColor="0xccb48e" bold="true"/>
+			<e:Rect height="1" y="25" left="0" right="0" strokeColor="0xccb48e" fillColor="0xccb48e"/>
+		</e:Group>
+		<e:Label id="resultText" text="Label" x="0" y="0" size="24" textColor="0xCCB48E"/>
+		<e:layout>
+			<e:HorizontalLayout gap="10" verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

@@ -68,7 +68,8 @@ class MainPageUI extends game.BaseUI {
     private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
     private topPlayerTips: TopPlayerTips;
-    private guideText: eui.Label;
+    private mainTask: MainTaskUI;
+
 
 
 
@@ -151,6 +152,9 @@ class MainPageUI extends game.BaseUI {
 
 
 
+        //this.guideText.addEventListener(egret.TextEvent.LINK,this.onTextLink,this)
+        //this.guideText.touchEnabled =  true
+
 
         this.taskText.mask = this.taskMask;
 
@@ -184,17 +188,23 @@ class MainPageUI extends game.BaseUI {
         }
     }
 
-    private renewGuideText(){
-        if(GuideManager.getInstance().isGuiding)
-        {
-            this.guideText.text = ''
-            return
-        }
-        this.guideText.textFlow = <Array<egret.ITextElement>>[
-            {text: "任务12345\n", style: {"underline": true}},
-            {text: "任务12345", style: {"underline": true}}
-        ];
-    }
+    //private onTextLink(e){
+    //    console.log(e.text);
+    //}
+    //
+    //private renewGuideText(){
+    //    if(GuideManager.getInstance().isGuiding)
+    //    {
+    //        this.guideText.text = ''
+    //        return
+    //    }
+    //    this.guideText.textFlow = <Array<egret.ITextElement>>TaskManager.getInstance().getTaskText();
+    //
+    //    //    [
+    //    //    {text: "任务12345\n", style: {"underline": true,href:'event:123'}},
+    //    //    {text: "任务12345", style: {"underline": true,href:'event:456'}}
+    //    //];
+    //}
 
 
     private onDraw(){
@@ -629,8 +639,8 @@ class MainPageUI extends game.BaseUI {
         this.renewFriendRed();
         this.renewCollectRed();
         this.renewHonorRed();
+        this.mainTask.renew();
 
-        this.renewGuideText();
 
         egret.setTimeout(function() {
             MainPageUI.getInstance().renewPage();
@@ -739,7 +749,7 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewTask(){
-        this.taskText.x = 560;
+        this.taskText.x = 380;
         this.setHtml(this.taskText,HelpManager.getInstance().getInfoText());
         egret.Tween.removeTweens(this.taskText);
         var tw:egret.Tween = egret.Tween.get(this.taskText);

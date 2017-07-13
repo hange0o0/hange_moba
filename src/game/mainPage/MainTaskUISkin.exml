@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MainTaskUISkin" currentState="close" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="open,close" >
+	<e:Image source="border5_png" scale9Grid="10,7,60,10" left="0" right="0" top="0" bottom="0" minHeight="50" minWidth="180"/>
+	<e:Image source="menu_icon_9_png" x="8" scaleX="0.4" scaleY="0.4" y="8" y.open="11.04" x.open="11.04"/>
+	<e:Label id="taskText" text="任务：9/9" y="13" size="24" textColor="0xc4a87c" left="50" right="20" left.open="54" right.open="16" y.open="16.04"/>
+	<e:List id="list" left="15" right="15" top="65" bottom="15" includeIn="open" minWidth="200">
+		<e:layout>
+			<e:VerticalLayout gap="15"/>
+		</e:layout>
+	</e:List>
+	<e:Rect height="1" y="53" left="10" right="10" includeIn="open" fillColor="0x75572b"/>
+	<e:Image id="closeBtn" source="btn_close3_png" right="10" top="10" scaleX="0.7" scaleY="0.7" includeIn="open"/>
+	<e:Image id="redMC" source="red_point_png" right="-5" top="-5" includeIn="close"/>
+</e:Skin>

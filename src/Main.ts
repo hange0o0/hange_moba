@@ -192,6 +192,7 @@ class Main extends eui.UILayer {
         if(_get['debug'] == 100)
         {
             Net.getInstance().serverHost = 'http://172.17.196.195:90/gameindex.php';
+            document.body.style.background='#FFFFFF'
             return
         }
         if(_get['debug'] == 101)
