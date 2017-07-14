@@ -49,15 +49,16 @@
 			</e:ArrayCollection>
 			</e:List>
 			<e:Group id="openGroup" left="10" right="10" top="0" bottom="10">
-				<e:Rect fillAlpha="0.8" x="0" y="0" width="100%" height="100%"/>
-				<e:Group id="btnGroup" y="210.91000000000003" horizontalCenter="0">
+				<e:Rect fillAlpha="0.6" x="0" y="0" width="100%" height="100%"/>
+				<e:Group id="btnGroup" y="280" horizontalCenter="0">
 					<e:Button id="retryBtn" x="0" skinName="Btn_b2Skin" y="-5.684341886080802e-14" label="再次挑战"/>
 					<e:Button id="startBtn" y="0.599999999999909" skinName="Btn_r2Skin" label="进入" x="223.33000000000004"/>
 					<e:layout>
 						<e:HorizontalLayout gap="30"/>
 					</e:layout>
 				</e:Group>
-				<e:Label id="desText" text="Label" y="100" horizontalCenter="0" textColor="0xccb48e" stroke="2"/>
+				<e:Label id="desText" text="Label" horizontalCenter="0" textColor="0xccb48e" stroke="3" lineSpacing="20" size="28" verticalCenter="0"/>
+				<e:Image id="failMC" source="fight_fail_1_png" y="70" horizontalCenter="0"/>
 			</e:Group>
 		</e:Group>
 		<ns1:MyCardGroupUI id="myCardGroup" x="-25" y="387" skinName="MyCardGroupSkin"/>

@@ -21,13 +21,16 @@ class MonsterInfoBase extends game.BaseContainer {
     private list: eui.List;
     private levelUpCon: eui.Group;
     private levelUpCoinGroup: eui.Group;
+    private coinRect: eui.Rect;
     private levelUpCoinText: eui.Label;
     private levelUpBtn: eui.Button;
     private levelUpCardGroup: eui.Group;
+    private cardRect: eui.Rect;
     private levelUpCardText: eui.Label;
     private lockGroup: eui.Group;
     private levelDes: eui.Label;
     private talkText: eui.Label;
+
 
 
 
@@ -113,6 +116,7 @@ class MonsterInfoBase extends game.BaseContainer {
         else
             this.levelUpCoinText.textColor = 0xCCCCCC
         this.levelUpCoinText.text = '' + NumberUtil.addNumSeparator(cost);
+        this.coinRect.width = 110 * Math.min(1,cost/UM.coin);
 
         if(collectNeed > collectNum)
         {
@@ -124,6 +128,7 @@ class MonsterInfoBase extends game.BaseContainer {
             this.levelUpCardText.textColor = 0xCCCCCC
         }
         this.levelUpCardText.text = '' + NumberUtil.addNumSeparator(collectNeed);
+        this.cardRect.width = 110 * Math.min(1,collectNeed/UM.card);
 
         if(levelUpAble)
             this.levelUpBtn.skinName = 'Btn_r1Skin'

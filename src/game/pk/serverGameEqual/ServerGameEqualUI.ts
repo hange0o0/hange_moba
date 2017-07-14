@@ -25,8 +25,10 @@ class ServerGameEqualUI extends game.BaseUI {
     private retryBtn: eui.Button;
     private startBtn: eui.Button;
     private desText: eui.Label;
+    private failMC: eui.Image;
     private myCardGroup: MyCardGroupUI;
     private historyList: eui.List;
+
 
 
 
@@ -59,6 +61,8 @@ class ServerGameEqualUI extends game.BaseUI {
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
 
+        this.addBtnEvent(this.retryBtn, this.onRetry);
+        this.addBtnEvent(this.startBtn, this.onStart);
 
         this.scroller.bounces = false;
 
@@ -70,10 +74,20 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
 
-    private onLog(){
-        DayLogUI.getInstance().show(ServerGameEqualManager.getInstance().logList,'修正挑战日志');
+    private onRetry(){
+        var self = this;
+        ServerGameEqualManager.getInstance().getCard(true,function(){
+            self.renew();
+        });
     }
 
+    private onStart(){
+        var self = this;
+        ServerGameEqualManager.getInstance().getCard(false,function(){
+            ShowTips('已为你匹配到新的对手');
+            self.renew();
+        });
+    }
     private onReset(){
         PKManager.getInstance().reChooseMyCard()
     }
@@ -96,6 +110,45 @@ class ServerGameEqualUI extends game.BaseUI {
     public onShow(){
         this.scroller.viewport.scrollV = 0;
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
+
+        this.renew();
+        this.renewSelf();
+        this.renewHistory();
+        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
+
+        if(TaskManager.getInstance().nowAction == 'server_game_equal')
+        {
+            TaskManager.getInstance().showGuideMC(this.chooseBtn)
+        }
+    }
+
+    private renew(){
+        this.renewEnemy();
+        this.renewInfo();
+    }
+
+    private renewInfo(){
+        var data = UM.server_game_equal;
+
+        if(!data.pk && data.choose)
+        {
+            this.openGroup.visible = false;
+            this.chooseBtn.touchEnabled = true;
+            this.chooseBtn.skinName = 'Btn_r2Skin';
+            return;
+        }
+
+        this.openGroup.visible = true;
+        this.chooseBtn.touchEnabled = false;
+        this.chooseBtn.skinName = 'Btn_d2Skin';
+
+
+        MyTool.setColorText(this.desText,'你可以选择继续挑战[同一玩家]\n或重新匹配[新的玩家]作为对手');
+        this.btnGroup.addChildAt(this.retryBtn,0);
+        this.startBtn.label = '重新匹配'
+    }
+
+    private renewEnemy(){
         var data = UM.server_game_equal;
 
 
@@ -170,10 +223,6 @@ class ServerGameEqualUI extends game.BaseUI {
 
 
         this.headMC.source = MyTool.getHeadUrl(uf.head);
-
-        this.renewSelf();
-        this.renewHistory();
-        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
     }
 
 

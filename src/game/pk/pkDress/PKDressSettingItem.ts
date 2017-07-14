@@ -7,9 +7,18 @@ class PKDressSettingItem extends game.BaseItem {
     private chooseGroup: eui.Group;
     private chooseGroupBG: eui.Image;
     private headMC: eui.Image;
-    private numText: eui.Label;
+    private desBG: eui.Image;
+    private numGroup: eui.Group;
+    private n0: eui.Image;
+    private n1: eui.Image;
+    private n2: eui.Image;
+    private n3: eui.Image;
+    private n4: eui.Image;
+    private n5: eui.Image;
     private addBtn: eui.Group;
     private decBtn: eui.Group;
+
+
 
 
 
@@ -28,6 +37,7 @@ class PKDressSettingItem extends game.BaseItem {
         this.addBtnEvent(this.addBtn,this.onAdd);
         this.addBtnEvent(this.decBtn,this.onDec);
         this.chooseGroupBG.visible = false;
+        this.numGroup.touchEnabled = this.numGroup.touchChildren = false;
 
     }
 
@@ -59,23 +69,23 @@ class PKDressSettingItem extends game.BaseItem {
     public dataChanged() {
         this.setting = this.data.setting;
         var vo = MonsterVO.getObject(this.data.mid);
-        this.headMC.source = vo.thumb
+
         var num = this.setting.monsterSelect[this.data.mid] || 0
+        this.numGroup.removeChildren()
         if(num < 0)
         {
-            this.numText.text = '×'
-            this.numText.size = 30
-            this.numText.textColor = 0xCC0000
+            this.headMC.source = vo.thumbGray
         }
         else
         {
-            if(num)
-                this.numText.textColor = 0xE0A44A
-            else
-                this.numText.textColor = 0x666666
-            this.numText.size = 22
-            this.numText.text = num + ''
+            this.headMC.source = vo.thumb
+            for(var i=0;i<num;i++)
+            {
+                this.numGroup.addChild(this['n' + i])
+            }
         }
+
+        this.desBG.visible = num > 0
 
 
         MyTool.changeGray(this.decBtn,num<0 || this.setting.getDisArr().length >= 7,true)

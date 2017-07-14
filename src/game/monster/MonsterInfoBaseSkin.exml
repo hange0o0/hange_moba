@@ -56,7 +56,7 @@
 		<e:Image id="headMC" x="15" y="13" width="240" height="320" source=""/>
 		<e:Image id="typeMC" x="12.06" y="8.03" scaleX="1.5" scaleY="1.5" source="monster_type1_png"/>
 	</e:Group>
-	<e:Rect width="580" horizontalCenter="0" top="510" bottom="20" ellipseHeight="10" ellipseWidth="10" strokeWeight="1" fillColor="0x180802" strokeColor="0xc2a87d"/>
+	<e:Rect width="580" horizontalCenter="0" top="510" bottom="20" ellipseHeight="10" ellipseWidth="10" strokeWeight="1" fillColor="0x180802" strokeColor="0xc2a87d" locked="true"/>
 	<e:Group id="skillGroup" top="520" bottom="30" left="40" right="40">
 		<e:Group id="fightGroup" x="0" y="0" width="100%" height="62">
 			<e:Rect height="52" y="5" left="0" right="0" fillColor="0x000000" fillAlpha="0.5" ellipseWidth="15" ellipseHeight="15" strokeWeight="1" strokeColor="0x917d5e"/>
@@ -73,9 +73,10 @@
 			<e:VerticalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="295" id="levelUpCon" x="335" visible="false">
+	<e:Group y="295" id="levelUpCon" x="335">
 		<e:Group x="0" y="0" id="levelUpCoinGroup">
 			<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
+			<e:Rect id="coinRect" width="50" height="25" x="34" y="6" fillColor="0x380000"/>
 			<e:Image source="icon_money_png" y="0" x="0"/>
 			<e:Label id="levelUpCoinText" y="8" textColor="0xCCCCCC" text="123456" size="24" x="44"/>
 			<e:Group y="-3" x="131">
@@ -86,6 +87,7 @@
 		<e:Button id="levelUpBtn" y="2" label="升升级" x="182" width="90" height="80" skinName="Btn_d1Skin"/>
 		<e:Group x="0" y="45" id="levelUpCardGroup">
 			<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
+			<e:Rect id="cardRect" width="50" height="25" x="34" y="6" fillColor="0x380000"/>
 			<e:Image source="icon_pvp_ticket_png" y="0" x="0"/>
 			<e:Label id="levelUpCardText" y="8" textColor="0xCCCCCC" text="12345" size="24" x="44"/>
 		<e:Group y="-3" x="131">

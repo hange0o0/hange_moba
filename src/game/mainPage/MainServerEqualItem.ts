@@ -52,8 +52,14 @@ class MainServerEqualItem extends game.BaseItem {
         ServerGameEqualManager.getInstance().openPKView(true);
     }
     private onStart(){
-        ServerGameEqualManager.getInstance().openPKView();
-
+        var data = UM.server_game_equal;
+        var haveData = data.pk || data.choose
+        if(!haveData)//未PK过
+        {
+            ServerGameEqualManager.getInstance().openPKView();
+            return;
+        }
+        ServerGameEqualUI.getInstance().show();
     }
 
     public renew() {
@@ -100,44 +106,45 @@ class MainServerEqualItem extends game.BaseItem {
             this.rateText.text = Math.max(0,serverData.exp - nowExp) + '/' + (nextExp - nowExp)
             this.nextText.text = ServerGameEqualManager.getInstance().getStepName(nextExp)
 
+            MyTool.removeMC(this.retryBtn);
+            this.startBtn.label = '进入'
 
-
-           if(serverData.pk)//已PK过
-            {
-                this.btnGroup.addChildAt(this.retryBtn,0);
-                this.startBtn.label = '重新匹配'
-                //if(num >= 1)
-                //    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
-                //else
-                //    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
-            }
-            else if(serverData.choose)//已有卡版数据
-            {
-                this.startBtn.label = '开始挑战';
-                //if(UM.getEnergy() >= 1)
-                //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
-                //else
-                //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
-            }
-            else
-            {
-                if(!serverData.open)
-                {
-                    //if(num >= 1)
-                    //    this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
-                    //else
-                    //    this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
-                    //this.startBtn.label = '进入'
-                }
-                else
-                {
-                    //if(UM.getEnergy() >= 1)
-                    //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
-                    //else
-                    //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
-                    this.startBtn.label = '开始匹配'
-                }
-            }
+           //if(serverData.pk)//已PK过
+           // {
+           //     this.btnGroup.addChildAt(this.retryBtn,0);
+           //     this.startBtn.label = '重新匹配'
+           //     //if(num >= 1)
+           //     //    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
+           //     //else
+           //     //    this.setHtml(this.desText,'匹配或重试需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
+           // }
+           // else if(serverData.choose)//已有卡版数据
+           // {
+           //     this.startBtn.label = '开始挑战';
+           //     //if(UM.getEnergy() >= 1)
+           //     //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+           //     //else
+           //     //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00)+ '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+           // }
+           // else
+           // {
+           //     if(!serverData.open)
+           //     {
+           //         //if(num >= 1)
+           //         //    this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFFFF00)+ '\n当前拥有数量：' + num);
+           //         //else
+           //         //    this.setHtml(this.desText,'进入修正场需消耗修正币：' + this.createHtml('1',0xFF0000)+ '\n当前拥有数量：' + num);
+           //         //this.startBtn.label = '进入'
+           //     }
+           //     else
+           //     {
+           //         //if(UM.getEnergy() >= 1)
+           //         //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFFFF00) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+           //         //else
+           //         //    this.setHtml(this.desText,'每次挑战需消耗体力：' + this.createHtml('1',0xFF0000) + '\n连胜次数：' + this.createHtml(serverData.last,0xFFFF00) + '　　修正币数量：' + this.createHtml(num,0xFFFF00));
+           //         this.startBtn.label = '开始匹配'
+           //     }
+           // }
         }
 
         //RankManager.getInstance().renewPageHead(this.bgGroup,this.headMC,6);

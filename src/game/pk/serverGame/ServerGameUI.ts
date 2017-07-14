@@ -39,6 +39,7 @@ class ServerGameUI extends game.BaseUI {
 
 
 
+
     private enemyArray
 
     public constructor() {
@@ -56,6 +57,9 @@ class ServerGameUI extends game.BaseUI {
         this.addBtnEvent(this.chooseBtn, this.onChoose);
         this.addBtnEvent(this.headMC, this.onOtherInfo);
 
+        this.addBtnEvent(this.retryBtn, this.onRetry);
+        this.addBtnEvent(this.startBtn, this.onStart);
+
         this.enemyList.itemRenderer =  EnemyHeadItem;
         this.historyList.itemRenderer =  DayLogItem;
 
@@ -67,10 +71,24 @@ class ServerGameUI extends game.BaseUI {
         //this.addBtnEvent(this.logBtn, this.onLog);
     }
 
-
-    private onLog(){
-        DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技挑战日志');
+    private onRetry(){
+        var self = this;
+        ServerGameManager.getInstance().getCard(true,function(){
+            self.renew();
+        });
     }
+    private onStart(){
+        var self = this;
+        ServerGameManager.getInstance().getCard(false,function(){
+            ShowTips('已为你匹配到新的对手');
+            self.renew();
+        });
+    }
+
+    //private onLog(){
+    //    DayLogUI.getInstance().show(ServerGameManager.getInstance().logList,'竞技挑战日志');
+    //}
+
     private onReset(){
         PKManager.getInstance().reChooseMyCard()
     }
@@ -94,8 +112,63 @@ class ServerGameUI extends game.BaseUI {
     public onShow(){
         this.scroller.viewport.scrollV = 0;
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
+
+
+
+        this.renew();
+        this.renewSelf();
+        this.renewHistory();
+
+
+        this.addPanelOpenEvent(GameEvent.client.force_change,this.renewSelf)
+        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewSelf);
+        this.addPanelOpenEvent(GameEvent.client.card_change,this.renewSelf);
+        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewSelf);
+        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
+
+        if(TaskManager.getInstance().nowAction == 'server_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.chooseBtn)
+        }
+    }
+
+    private renew(){
+        this.renewEnemy();
+        this.renewInfo();
+    }
+
+    private renewInfo(){
         var data = UM.server_game;
 
+        if(!data.pk && data.choose)
+        {
+            this.openGroup.visible = false;
+            this.chooseBtn.touchEnabled = true;
+            this.chooseBtn.skinName = 'Btn_r2Skin';
+            return;
+        }
+
+        this.openGroup.visible = true;
+        this.chooseBtn.touchEnabled = false;
+        this.chooseBtn.skinName = 'Btn_d2Skin';
+
+
+        MyTool.setColorText(this.desText,'你可以选择继续挑战[同一玩家]\n或重新匹配[新的玩家]作为对手');
+        this.btnGroup.addChildAt(this.retryBtn,0);
+        this.startBtn.label = '重新匹配'
+    }
+
+    private renewEnemy(){
+        var data = UM.server_game;
+
+        var haveData = data.pk || data.choose
+        if(!haveData)//已PK过
+        {
+            this.infoGroup.visible = false;
+            return;
+        }
+
+        this.infoGroup.visible = true;
         //更新敌人
         var enemyList = this.enemyArray = [];
         if(!data.enemy.userinfo || data.enemy.userinfo.gameid == UM.gameid)
@@ -184,16 +257,6 @@ class ServerGameUI extends game.BaseUI {
         MyTool.setColorText(this.rankText,'[积分：]'+ uf.exp);
         MyTool.setColorText(this.forceText,'[战力：]'+ uf.force);
         this.headMC.source = MyTool.getHeadUrl(uf.head);
-
-        this.renewSelf();
-        this.renewHistory();
-
-
-        this.addPanelOpenEvent(GameEvent.client.force_change,this.renewSelf)
-        this.addPanelOpenEvent(GameEvent.client.monster_level_change,this.renewSelf);
-        this.addPanelOpenEvent(GameEvent.client.card_change,this.renewSelf);
-        this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewSelf);
-        this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
     }
 
     private renewSelf(){

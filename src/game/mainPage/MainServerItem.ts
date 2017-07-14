@@ -26,7 +26,7 @@ class MainServerItem extends game.BaseItem {
 
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
-        this.addBtnEvent(this.startBtn, this.onStart,true);
+        this.addBtnEvent(this.startBtn, this.onStart);
         addBtnTips(this.scoreText,this.onScore,this);
     }
 
@@ -41,7 +41,14 @@ class MainServerItem extends game.BaseItem {
         ServerGameManager.getInstance().openPKView(true);
     }
     private onStart(){
-        ServerGameManager.getInstance().openPKView();
+        var data = UM.server_game;
+        var haveData = data.pk || data.choose
+        if(!haveData)//未PK过
+        {
+            ServerGameManager.getInstance().openPKView();
+            return;
+        }
+        ServerGameUI.getInstance().show();
     }
 
     public renew() {
@@ -67,19 +74,20 @@ class MainServerItem extends game.BaseItem {
         {
             this.btnGroup.visible = true;
             MyTool.removeMC(this.retryBtn);
-            if(serverData.pk)//已PK过
-            {
-                this.btnGroup.addChildAt(this.retryBtn,0);
-                this.startBtn.label = '重新匹配'
-            }
-            else if(serverData.choose)//已有卡版数据
-            {
-                this.startBtn.label = '开始挑战';
-            }
-            else
-            {
-                this.startBtn.label = '开始匹配'
-            }
+            this.startBtn.label = '进入'
+            //if(serverData.pk)//已PK过
+            //{
+            //    this.btnGroup.addChildAt(this.retryBtn,0);
+            //    this.startBtn.label = '重新匹配'
+            //}
+            //else if(serverData.choose)//已有卡版数据
+            //{
+            //    this.startBtn.label = '开始挑战';
+            //}
+            //else
+            //{
+            //    this.startBtn.label = '开始匹配'
+            //}
 
             this.barGroup.visible = true;
             this.desText.text = ''
