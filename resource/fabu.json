@@ -300,6 +300,10 @@
 				{
 					"compress":false,
 					"key":"card_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"btn_close3_png"
 				}
 			],
 			"sort":0
@@ -648,6 +652,10 @@
 				{
 					"compress":false,
 					"key":"black_bg2_png"
+				},
+				{
+					"compress":false,
+					"key":"head_border_light2_png"
 				}
 			],
 			"sort":0
@@ -1243,6 +1251,10 @@
 		{
 			"compress":false,
 			"key":"team2_jpg"
+		},
+		{
+			"compress":false,
+			"key":"guide_mv_png"
 		}
 	]
 }

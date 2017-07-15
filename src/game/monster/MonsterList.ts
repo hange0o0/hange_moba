@@ -327,6 +327,11 @@ class MonsterList extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewLevelUp)
 
         GuideManager.getInstance().showGuide(MonsterList.getInstance());
+
+        if(TaskManager.getInstance().nowAction == 'comment')
+        {
+            TaskManager.getInstance().showGuideMC(this.talkBtn)
+        }
     }
 
     private renewLevelUp(){

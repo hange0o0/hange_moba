@@ -46,31 +46,31 @@ class TaskManager {
         return arr;
     }
 
-    public getTaskText(){
-        var textArr = [];
-        var arr = this.getCurrentTaskList();
-        for(var i=0;i<arr.length;i++)
-        {
-            if(i != 0)
-                textArr.push({text:'\n'})
-
-            var vo:TaskVO = arr[i];
-            if(vo.isFinish())
-            {
-                var href = 'event:award_'+vo.id;
-                textArr.push({text:vo.getDes()  ,style:{href:href,"underline": true}})
-                textArr.push({text: '　已完成',style:{href:href,textColor:0x6DC966}})
-            }
-            else
-            {
-                var href = 'event:go_'+vo.id;
-                textArr.push({text:vo.getDes(),style:{href:href,"underline": true}})
-                textArr.push({text: '　' + vo.getRate(),style:{href:href,textColor:0xE0A44A}})
-            }
-
-        }
-        return textArr;
-    }
+    //public getTaskText(){
+    //    var textArr = [];
+    //    var arr = this.getCurrentTaskList();
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //        if(i != 0)
+    //            textArr.push({text:'\n'})
+    //
+    //        var vo:TaskVO = arr[i];
+    //        if(vo.isFinish())
+    //        {
+    //            var href = 'event:award_'+vo.id;
+    //            textArr.push({text:vo.getDes()  ,style:{href:href,"underline": true}})
+    //            textArr.push({text: '　已完成',style:{href:href,textColor:0x6DC966}})
+    //        }
+    //        else
+    //        {
+    //            var href = 'event:go_'+vo.id;
+    //            textArr.push({text:vo.getDes(),style:{href:href,"underline": true}})
+    //            textArr.push({text: '　' + vo.getRate(),style:{href:href,textColor:0xE0A44A}})
+    //        }
+    //
+    //    }
+    //    return textArr;
+    //}
 
     private init(){
          //id,type,value1,value2,awarddiamond,awardCoin,awardCard
@@ -122,18 +122,52 @@ class TaskManager {
             this.guideLight.touchEnabled = false;
         }
 
-        var rect = mc.getBounds();
-        var p1 = mc.localToGlobal(rect.x, rect.y);
-        var p2 = mc.localToGlobal(rect.x + rect.width, rect.y + rect.height);
+        egret.setTimeout(function(){
+            var rect = mc.getBounds();
+            var p1 = mc.localToGlobal(rect.x, rect.y);
+            var p2 = mc.localToGlobal(rect.x + rect.width, rect.y + rect.height);
 
-        this.guideLight.x = p1.x + (p2.x - p1.x) / 2
-        this.guideLight.y = p1.y + (p2.y - p1.y) / 2
-        GameManager.container.addChild(this.guideLight);
-        this.guideLight.gotoAndPlay(1, 1);
+            this.guideLight.x = p1.x + (p2.x - p1.x) / 2
+            this.guideLight.y = p1.y + (p2.y - p1.y) / 2
+            GameManager.container.addChild(this.guideLight);
+            this.guideLight.gotoAndPlay(1, 1);
+        },this,300);
+
     }
 
     private onGuideLightComplete() {
         this.guideLight.stop();
         MyTool.removeMC(this.guideLight);
+    }
+
+
+    public getTaskAward(taskid,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.taskid = taskid;
+        Net.addUser(oo);
+        Net.send(GameEvent.active.get_task_award,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail ==1)
+            {
+                Alert('该任务不在进行中')
+                return;
+            }
+            if(msg.fail ==2)
+            {
+                Alert('该任务还没开启')
+                return;
+            }
+            if(msg.fail ==3)
+            {
+                Alert('该任务还没完成')
+                return;
+            }
+            msg.award.title = '任务完成';
+            AwardUI.getInstance().show(msg.award)
+            EM.dispatch(GameEvent.client.task_change);
+            if(fun)
+                fun();
+        });
     }
 }

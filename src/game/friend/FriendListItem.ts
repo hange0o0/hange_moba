@@ -51,6 +51,10 @@ class FriendListItem extends game.BaseItem {
         {
             this.currentState = 'add';
             this.friendText.text = '好友数量：' + FM.friendList.length + '/' + FM.maxFriendNum;
+            if(TaskManager.getInstance().nowAction == 'friend')
+            {
+                TaskManager.getInstance().showGuideMC(this.addFriendBtn)
+            }
             return;
         }
 

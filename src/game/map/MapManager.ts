@@ -177,6 +177,7 @@ class MapManager{
         Net.send(GameEvent.mapGame.map_start,oo,function(data){
             var msg = data.msg;
              MD.fillData(msg.data);
+            EM.dispatch(GameEvent.client.task_change);
             if(fun)
                 fun();
         });
@@ -197,6 +198,7 @@ class MapManager{
                 return
             }
             MD.fillData(msg.data);
+            EM.dispatch(GameEvent.client.task_change);
             if(fun)
                 fun();
         });

@@ -70,6 +70,12 @@ class TeamDungeonMain extends game.BaseUI {
 
         this.renew();
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+
+        if(TaskManager.getInstance().nowAction == 'friend_dungeon')
+        {
+            this.list.validateNow()
+            TaskManager.getInstance().showGuideMC(this.list.getChildAt(0)['btn'])
+        }
     }
 
     private onTimer(){

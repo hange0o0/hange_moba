@@ -152,6 +152,7 @@ class MyInfoUI extends game.BaseUI {
         var self = this;
         HonorManager.getInstance().getHonorMore(function(){
             self.honorUI.renew();
+
         })
 
     }
@@ -302,6 +303,12 @@ class MyInfoUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.change_head,this.renew);
         this.addPanelOpenEvent(GameEvent.client.word_change,this.renew);
         this.addPanelOpenEvent(GameEvent.client.honor_change,this.renewHonor);
+
+        if(TaskManager.getInstance().nowAction == 'honor')
+        {
+            this.tab.validateNow()
+            TaskManager.getInstance().showGuideMC(this.tab.getChildAt(1))
+        }
     }
 
     public renew(){

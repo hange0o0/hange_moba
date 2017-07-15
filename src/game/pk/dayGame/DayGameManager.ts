@@ -38,6 +38,7 @@ class DayGameManager{
     public resetDay(){
         if(!DateUtil.isSameDay(UM.day_game.lasttime))
         {
+            UM.day_game.isNew = UM.day_game.lasttime == 0
             UM.day_game.lasttime = TM.now()
             UM.day_game.level = 0;
         }

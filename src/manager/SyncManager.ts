@@ -99,10 +99,10 @@ class SyncManager{
                     }
                     EM.dispatch(GameEvent.client.honor_change);
                     break;
-                case 'sync_active_task':
-                    UM.active.task = value;
-                    EM.dispatch(GameEvent.client.task_change);
-                    break;
+                //case 'sync_active_task':
+                //    UM.active.task = value;
+                //    EM.dispatch(GameEvent.client.task_change);
+                //    break;
                 case 'sync_award_force':
                     UM.award_force = value;
                     EM.dispatch(GameEvent.client.force_change);
@@ -159,6 +159,13 @@ class SyncManager{
                     {
                         UM.active[ss] = value[ss];
                     }
+                    break;
+                case 'sync_task':
+                    for(ss in value)
+                    {
+                        UM.active.task[ss] = value[ss];
+                    }
+                    EM.dispatch(GameEvent.client.task_change);
                     break;
             }
         }

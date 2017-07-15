@@ -71,12 +71,37 @@ class FriendAddUI extends game.BaseWindow {
     public onShow(){
          this.renew();
         this.addPanelOpenEvent('timer',this.onTimer)
+
+        if(TaskManager.getInstance().nowAction == 'friend')
+        {
+            this.list.validateNow()
+            TaskManager.getInstance().showGuideMC(this.list.getChildAt(0)['addBtn'])
+        }
     }
 
     public renew(){
         var FM = FriendManager.getInstance();
         this.onTimer();
-        this.list.dataProvider = new eui.ArrayCollection(FM.missArray);
+        var stat =  UM.active.stat || {};
+        if(!stat['friend'])
+        {
+            var arr = FM.missArray
+            arr.unshift({
+                openid:'npc',
+                nick:Base64.encode('卡卡'),
+                head:'5',
+                level:'1',
+                force:'1'
+            })
+            if(arr.length > 5)
+                arr.length  = 5;
+            this.list.dataProvider = new eui.ArrayCollection(arr);
+        }
+        else
+        {
+            this.list.dataProvider = new eui.ArrayCollection(FM.missArray);
+        }
+
         this.emptyText.visible = FM.missArray.length == 0;
     }
 }

@@ -167,6 +167,7 @@ class HonorManager{
             }
 
             AwardUI.getInstance().show(msg);
+            EM.dispatch(GameEvent.client.task_change);
             if(fun)
                 fun();
         });

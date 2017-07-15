@@ -163,7 +163,8 @@ class GameEvent {
     }
 
     public static active = {
-        diamond_draw:'diamond_draw'
+        diamond_draw:'diamond_draw',
+        get_task_award:'get_task_award'
     }
 
 

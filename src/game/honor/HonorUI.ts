@@ -140,7 +140,11 @@ class HonorUI extends game.BaseContainer {
         //    this.renewBtn();
         //},this)
 
-
+        if(TaskManager.getInstance().nowAction == 'honor')
+        {
+            this.list.validateNow();
+            TaskManager.getInstance().showGuideMC(this.list.getChildAt(0)['awardBtn'])
+        }
     }
 
     //public resort(){

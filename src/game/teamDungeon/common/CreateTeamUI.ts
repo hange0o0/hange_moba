@@ -133,6 +133,14 @@ class CreateTeamUI extends game.BaseWindow {
         this.nameText.text = SharedObjectManager.instance.getValue('team_name') || '';
         this.onHideSort();
         this.renewSelect();
+
+
+        if(TaskManager.getInstance().nowAction == 'friend_dungeon')
+        {
+            TaskManager.getInstance().showGuideMC(this.okBtn)
+            this.nameText.text = '菜刀队' + UM.uid
+        }
+
     }
 
     private renewSelect(){

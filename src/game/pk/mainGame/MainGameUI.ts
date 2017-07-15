@@ -98,6 +98,8 @@ class MainGameUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renewSelf);
         this.addPanelOpenEvent(GameEvent.client.coin_change,this.renewSelf);
         this.addPanelOpenEvent(GameEvent.client.my_card_change,this.renewSelf);
+
+
     }
 
     public renewPrice(){

@@ -53,6 +53,11 @@ class MainAwardBeforeUI extends game.BaseWindow {
         this.mainAward2.text = '' + award.coin;
         this.mainAward3.text = '' +  award.card;
 
+        if(TaskManager.getInstance().nowAction == 'main_award')
+        {
+            TaskManager.getInstance().showGuideMC(this.okBtn)
+        }
+
     }
     public onTimer(){
         var cd = DateUtil.getNextDateTimeByHours(0) - TM.now()

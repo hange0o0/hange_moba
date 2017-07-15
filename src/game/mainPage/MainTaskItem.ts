@@ -22,7 +22,7 @@ class MainTaskItem extends game.BaseItem {
     private onClick(){
         if(this.data.isFinish())
         {
-
+            TaskManager.getInstance().getTaskAward(this.data.id);
         }
         else
             this.data.onClick();

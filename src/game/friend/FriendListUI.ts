@@ -158,6 +158,8 @@ class FriendListUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.friend_pk_change,this.renewPKE)
         this.addPanelOpenEvent(GameEvent.client.friend_list_change,this.renewListE)
         this.addPanelOpenEvent(GameEvent.client.friend_red_change,this.renewRed)
+
+
     }
 
     public renew(){

@@ -3,7 +3,7 @@
 	<e:Image source="border5_png" scale9Grid="10,7,60,10" left="0" right="0" top="0" bottom="0" minHeight="50" minWidth="180"/>
 	<e:Image source="menu_icon_9_png" x="8" scaleX="0.4" scaleY="0.4" y="8" y.open="11.04" x.open="11.04"/>
 	<e:Label id="taskText" text="任务：9/9" y="13" size="24" textColor="0xc4a87c" left="50" right="20" left.open="54" right.open="16" y.open="16.04"/>
-	<e:List id="list" left="15" right="15" top="65" bottom="15" includeIn="open" minWidth="200">
+	<e:List id="list" left="15" right="15" top="65" bottom="15" includeIn="open" minWidth="370">
 		<e:layout>
 			<e:VerticalLayout gap="15"/>
 		</e:layout>

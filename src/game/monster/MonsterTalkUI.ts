@@ -141,6 +141,10 @@ class MonsterTalkUI extends game.BaseUI {
         this.validateNow();
         this.renewTalk();
 
+        if(TaskManager.getInstance().nowAction == 'comment')
+        {
+            TaskManager.getInstance().showGuideMC(this.talkBtn)
+        }
 
     }
 

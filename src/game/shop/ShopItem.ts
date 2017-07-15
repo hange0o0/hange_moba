@@ -27,7 +27,8 @@ class ShopItem extends game.BaseItem {
 
     private onBuy(){
         var self = this;
-        if(this.data.type == 'diamond' && UM.getDiamond() < this.data.cost)
+        var free = this.data.id == 31 && !(UM.active.stat || {})['ticket']
+        if(!free && this.data.type == 'diamond' && UM.getDiamond() < this.data.cost)
         {
             Alert('钻石不足！')
             return;

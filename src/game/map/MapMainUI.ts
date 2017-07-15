@@ -169,6 +169,10 @@ class MapMainUI extends game.BaseUI {
         var MD = MapData.getInstance();
         var self = this;
         var beforeValue = MD.value
+        if(TaskManager.getInstance().nowAction == 'map_game_buy')
+        {
+            TaskManager.getInstance().showGuideMC(this.exchangeBtn)
+        }
         if(MD.bag <= 0)
             return;
         MapManager.getInstance().get_award(function(){
@@ -270,6 +274,20 @@ class MapMainUI extends game.BaseUI {
 
         AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(30)) //+hp
         AniManager.getInstance().preLoadMV(PKMainMV.getInstance().getMVKey(39)) //add
+
+
+        if(TaskManager.getInstance().nowAction == 'map_game_pk')
+        {
+            TaskManager.getInstance().showGuideMC(this.pkBtn)
+        }
+        else if(TaskManager.getInstance().nowAction == 'map_game_buy')
+        {
+            TaskManager.getInstance().showGuideMC(this.getBtn)
+        }
+        else if(TaskManager.getInstance().nowAction == 'map_game_next')
+        {
+            TaskManager.getInstance().showGuideMC(this.rightBtn)
+        }
     }
 
     //激活后重新表现

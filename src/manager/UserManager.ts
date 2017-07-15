@@ -21,6 +21,7 @@ class UserManager {
     public head: string;
     public coin: number;
     public exp: number;
+    public uid: number;
     public next_exp: number;
     public level: number;
     public tec_force:number;
@@ -50,6 +51,7 @@ class UserManager {
         this.gameid = data.gameid;
         this.landid = data.land_key;
         this.nick = data.nick;
+        this.uid = data.uid;
         this.word = data.word;
         this.head = data.head;
         this.coin = data.coin;

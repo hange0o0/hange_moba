@@ -147,6 +147,11 @@ class DayGameUI extends game.BaseUI {
         }
 
         this.renewHistory();
+
+        if(TaskManager.getInstance().nowAction == 'day_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.chooseBtn0)
+        }
     }
 
     private renewHistory(){

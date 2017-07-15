@@ -33,9 +33,9 @@
 		<e:Image id="leftBtn" source="left_btn_png" x="0" verticalCenter="0"/>
 		<e:Image id="rightBtn" source="left_btn_png" scaleX="-1" verticalCenter="0" right="0"/>
 	</e:Group>
-	<e:Group id="taskGroup" x="190" y="123" width="380">
-		<e:Rect id="taskMask" height="55" width="380" x="0" y="-1" fillAlpha="1"/>
-		<e:Label id="taskText" text="任务：在10场无科技PK中取得6场胜利（12/99）" y="17" size="22" x="50" textColor="0xFCCC8E"/>
+	<e:Group id="helpGroup" x="190" y="123" width="380">
+		<e:Rect id="helpMask" height="55" width="380" x="0" y="-1" fillAlpha="1"/>
+		<e:Label id="helpText" text="任务：在10场无科技PK中取得6场胜利（12/99）" y="17" size="22" x="50" textColor="0xFCCC8E"/>
 	</e:Group>
 
 

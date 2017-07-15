@@ -24,6 +24,8 @@ class FriendAddItem extends game.BaseItem {
     }
 
     private onClick(){
+        if(this.data.openid == 'npc')
+            return;
         OtherInfoUI.getInstance().showID(this.data.openid)
     }
 

@@ -36,6 +36,8 @@ class HonorItem extends game.BaseItem {
 
     private onAward(){
         HonorManager.getInstance().award('monster',this.data.id,this.data.level+1);
+        if(TaskManager.getInstance().nowAction == 'honor')
+            TaskManager.getInstance().nowAction = null;
     }
 
     public dataChanged(){

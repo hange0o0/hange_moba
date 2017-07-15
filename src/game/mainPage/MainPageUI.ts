@@ -28,9 +28,9 @@ class MainPageUI extends game.BaseUI {
     private p4: MainPageItem;
     private leftBtn: eui.Image;
     private rightBtn: eui.Image;
-    private taskGroup: eui.Group;
-    private taskMask: eui.Rect;
-    private taskText: eui.Label;
+    private helpGroup: eui.Group;
+    private helpMask: eui.Rect;
+    private helpText: eui.Label;
     private setBtn: eui.Group;
     private helpBtn: eui.Group;
     private videoBtn: eui.Group;
@@ -134,7 +134,6 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.exp_change,this.renewExp,this);
         EM.addEvent(GameEvent.client.level_change,this.onLevelChange,this);
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
-        EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
         EM.addEvent(GameEvent.client.change_head,this.renewTop,this);
         EM.addEvent(GameEvent.client.pk_start,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.get_card,this.scrollToCurrentPage,this);
@@ -144,6 +143,13 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.monster_level_change,this.renewCollectRed,this);
         EM.addEvent(GameEvent.client.card_change,this.renewCollectRed,this);
         EM.addEvent(GameEvent.client.coin_change,this.renewCollectRed,this);
+
+
+        //任务相关
+        EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
+        EM.addEvent(GameEvent.client.force_change,this.renewTask,this);
+        EM.addEvent(GameEvent.client.pk_start,this.renewTask,this);
+        EM.addEvent(GameEvent.client.monster_level_change,this.renewTask,this);
 
 
         EM.addEvent(GameEvent.client.honor_change,this.renewHonorRed,this);
@@ -156,7 +162,7 @@ class MainPageUI extends game.BaseUI {
         //this.guideText.touchEnabled =  true
 
 
-        this.taskText.mask = this.taskMask;
+        this.helpText.mask = this.helpMask;
 
         for(var i=0;i<=4;i++)
         {
@@ -630,7 +636,7 @@ class MainPageUI extends game.BaseUI {
 
         this.renewTop();
 
-        this.renewTask();
+        this.renewHelp();
         this.renewPage();
         this.onLevelChange();//内含this.scrollToCurrentPage();
 
@@ -639,7 +645,7 @@ class MainPageUI extends game.BaseUI {
         this.renewFriendRed();
         this.renewCollectRed();
         this.renewHonorRed();
-        this.mainTask.renew();
+        this.renewTask();
 
 
         egret.setTimeout(function() {
@@ -749,11 +755,15 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewTask(){
-        this.taskText.x = 380;
-        this.setHtml(this.taskText,HelpManager.getInstance().getInfoText());
-        egret.Tween.removeTweens(this.taskText);
-        var tw:egret.Tween = egret.Tween.get(this.taskText);
-        tw.to({x:-this.taskText.textWidth-100}, (this.taskText.textWidth + 560+100)*20).call(this.renewTask,this);
+        this.mainTask.renew();
+    }
+
+    public renewHelp(){
+        this.helpText.x = 380;
+        this.setHtml(this.helpText,HelpManager.getInstance().getInfoText());
+        egret.Tween.removeTweens(this.helpText);
+        var tw:egret.Tween = egret.Tween.get(this.helpText);
+        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + 560+100)*20).call(this.renewHelp,this);
     }
 
     public renewPage(){

@@ -102,6 +102,8 @@ class ShopUI extends game.BaseUI {
             this.renewScroll(this.dataIn);
         }
         this.dataIn = null;
+
+
     }
 
     public renewScroll(dataIn,mv?){

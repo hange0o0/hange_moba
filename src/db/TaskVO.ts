@@ -20,7 +20,7 @@ class TaskVO {
             ArrayUtil.sortByField(this.lineData[s],['index1','index2'],[0,0])
             for(var i=0;i<this.lineData[s].length;i++)
             {
-                this.lineData[s].index = i;
+                this.lineData[s][i].index = i;
             }
         }
     }
@@ -100,7 +100,7 @@ class TaskVO {
     }
 
     public isFinish(){
-        var stat = UM.active.stat || {};
+        var stat = UM.active.task.stat || {};
         var MD = MapData.getInstance();
         var level:any;
         this.currentValue = 0;
@@ -139,6 +139,10 @@ class TaskVO {
                 return false;
                 break;
             case 'server_game':
+                if(this.value1 < 0)
+                {
+                    return UM.server_game.pkdata
+                }
                 this.currentValue = ServerGameManager.getInstance().getCurrentLevel()
                 return this.currentValue >= this.value1;
                 break;
@@ -189,6 +193,10 @@ class TaskVO {
                 return false;
                 break;
             case 'server_equal_game':
+                if(this.value1 < 0)
+                {
+                    return UM.server_game_equal.pkdata
+                }
                 this.currentValue = ServerGameEqualManager.getInstance().getCurrentLevel()
                 return this.currentValue >= this.value1;
                 break;
@@ -197,8 +205,15 @@ class TaskVO {
                 return this.currentValue >= this.value2;
                 break;
             case 'day_game':
-                this.currentValue = UM.day_game.level
-                return this.currentValue >= this.value1;
+                if(this.value1 < 0)
+                {
+                    return UM.day_game.pkdata
+                }
+                else
+                {
+                    this.currentValue = UM.day_game.level
+                    return this.currentValue >= this.value1;
+                }
                 break;
             case 'friend':
                 if(stat['friend'])
@@ -241,6 +256,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 2;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
+                    MainPageUI.getInstance()['topPlayerTips'].hide();
                     TM.showGuideMC(MainPageUI.getInstance()['mapGame']['startBtn'])
                 }
                 else
@@ -249,8 +265,10 @@ class TaskVO {
                 }
                 break;
             case 'main_award':
+                TM.nowAction = this.type;
                 MainPageUI.getInstance().currentPage = 0;
                 MainPageUI.getInstance().scrollToCurrentPage(true)
+                MainPageUI.getInstance()['topPlayerTips'].hide();
                 TM.showGuideMC(MainPageUI.getInstance()['mainGame']['awardBtn'])
                 break;
             case 'server_game':
@@ -259,6 +277,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 3;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
+                    MainPageUI.getInstance()['topPlayerTips'].hide();
                     TM.showGuideMC(MainPageUI.getInstance()['serverGame']['startBtn'])
                 }
                 else
@@ -280,7 +299,7 @@ class TaskVO {
                 break;
             case 'honor':
                 TM.nowAction = this.type;
-                MyInfoUI.getInstance().show();
+                TM.showGuideMC(MainPageUI.getInstance()['headMC'])
                 break;
             case 'comment':
                 TM.nowAction = this.type;
@@ -298,6 +317,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 4;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
+                    MainPageUI.getInstance()['topPlayerTips'].hide();
                     TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual']['startBtn'])
                 }
                 else
@@ -314,6 +334,7 @@ class TaskVO {
                     TM.nowAction = this.type;
                     MainPageUI.getInstance().currentPage = 1;
                     MainPageUI.getInstance().scrollToCurrentPage(true)
+                    MainPageUI.getInstance()['topPlayerTips'].hide();
                     TM.showGuideMC(MainPageUI.getInstance()['dayGame']['startBtn'])
                 }
                 else
@@ -391,7 +412,7 @@ class TaskVO {
                 if(this.value1 < 0)
                     return '参加究极研究院活动'
                 else
-                    return '本日在研究院攻克[' +ServerGameEqualManager.getInstance().getStepNameByLevel(this.value1)  + '题]'
+                    return '今天在研究院完成[' +this.value1  + '题]'
                 break;
             case 'friend':
                 return '添加好友'
