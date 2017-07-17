@@ -71,6 +71,13 @@ class ServerGameUI extends game.BaseUI {
         //this.addBtnEvent(this.logBtn, this.onLog);
     }
 
+
+
+    public hide(){
+        TaskManager.getInstance().cleanNowAcrion('server_game');
+        super.hide();
+    }
+
     private onRetry(){
         var self = this;
         ServerGameManager.getInstance().getCard(true,function(){

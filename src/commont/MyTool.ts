@@ -124,7 +124,7 @@ class MyTool {
                     return;
                 }
                 fun.apply(thisObj);
-            },this,600)
+            },this,400)
 
         }
         function onTouchEnd(){

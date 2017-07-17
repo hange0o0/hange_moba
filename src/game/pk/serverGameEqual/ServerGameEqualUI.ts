@@ -74,6 +74,11 @@ class ServerGameEqualUI extends game.BaseUI {
     }
 
 
+    public hide(){
+        TaskManager.getInstance().cleanNowAcrion('server_game_equal');
+        super.hide();
+    }
+
     private onRetry(){
         var self = this;
         ServerGameEqualManager.getInstance().getCard(true,function(){

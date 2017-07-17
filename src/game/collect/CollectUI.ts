@@ -16,10 +16,21 @@ class CollectUI extends game.BaseUI {
     private sortText: eui.Label;
     private sortGroup: eui.Group;
     private sortList: eui.List;
+    private openGroup: eui.Group;
+    private openScroller: eui.Scroller;
+    private monsterBase: MonsterInfoBase;
+    private closeBtn: eui.Button;
+    private scrollH: eui.Scroller;
+    private listH: eui.List;
 
 
 
 
+
+
+
+    public chooseMonster = 0
+    private open = false
     private fillMonster = 0;
     private listArr;
     public constructor() {
@@ -39,18 +50,55 @@ class CollectUI extends game.BaseUI {
         this.list.itemRenderer = CollectItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        this.list.addEventListener(eui.ItemTapEvent.ITEM_TAP,this.onListChoose,this);
 
-
+        this.listH.itemRenderer = CollectItem;
+        this.scrollH.viewport = this.listH;
+        this.listH.addEventListener(eui.ItemTapEvent.ITEM_TAP,this.onListChoose2,this);
 
         this.addBtnEvent(this.sortBtn,this.onSort);
         this.addBtnEvent(this.sortText,this.onSort);
         this.addBtnEvent(this.coinGroup,this.onCoin);
         this.addBtnEvent(this.cardGroup,this.onCard);
+        this.addBtnEvent(this.closeBtn,this.onClose);
 
         this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
         this.sortGroup.visible = false;
     }
+
+    private onListChoose(){
+        this.open = true;
+        this.chooseMonster = this.list.selectedItem.id;
+        this.listH.selectedIndex = -1;
+        this.renewList();
+        this.openScroller.viewport.scrollV = 0;
+    }
+
+    private onListChoose2(){
+        this.chooseMonster = this.listH.selectedItem.id;
+        this.renewMonster();
+        for(var i=0;i<this.listH.numChildren;i++)
+        {
+            var item:any = this.listH.getChildAt(i);
+            item.setChoose(CollectUI.getInstance().chooseMonster);
+        }
+        this.openScroller.viewport.scrollV = 0;
+    }
+
+    private onClose(){
+        this.open = false;
+        this.chooseMonster = 0;
+        var scrollV = this.scroller.viewport.scrollV
+        this.renewList();
+        this.scroller.validateNow();
+        this.scroller.viewport.scrollV = scrollV
+    }
+
+    private renewMonster(){
+        this.monsterBase.renew(this.chooseMonster);
+    }
+
 
     private onCard(){
         ShopUI.getInstance().show('card')
@@ -179,6 +227,8 @@ class CollectUI extends game.BaseUI {
     }
     public show(){
         var self = this;
+        this.open = false;
+        this.chooseMonster = 0;
         self.superShow();
         //CollectManager.getInstance().getCollectMore(function(){
         //    self.superShow();
@@ -215,7 +265,9 @@ class CollectUI extends game.BaseUI {
         this.listArr = TecManager.getInstance().getList3(this.fillMonster);
 
         this.resort();
-        this.list.dataProvider = new eui.ArrayCollection(this.listArr)
+
+
+        //this.list.dataProvider = new eui.ArrayCollection(this.listArr)
     }
 
     private justRenewList(){
@@ -228,8 +280,43 @@ class CollectUI extends game.BaseUI {
 
     public resort(){
         this.sortListFun(this.listArr);
-        this.list.dataProvider = new eui.ArrayCollection(this.listArr);
-        this.scroller.viewport.scrollV = 0;
+        if(this.open)
+        {
+            this.openGroup.visible = true;
+            this.scroller.visible = false;
+            this.renewMonster();
+
+            var des = 0;
+            if(this.listH.selectedIndex == -1)
+            {
+                des =158*(this.list.selectedIndex%4);
+            }
+            else
+                des = 158*this.listH.selectedIndex - this.scrollH.viewport.scrollH;
+            this.listH.dataProvider = new eui.ArrayCollection(this.listArr);
+
+            this.scrollH.validateNow();
+            for(var i=0;i<this.listArr.length;i++)
+            {
+                 if(this.listArr[i].id == this.chooseMonster)
+                 {
+                     this.scrollH.viewport.scrollH = Math.min(Math.max(0,i*158 - des),this.scrollH.viewport.contentWidth-640)
+                     this.listH.selectedIndex = i;
+                     break;
+                 }
+            }
+
+            //setChoose
+            //this.scrollH.viewport.scrollH = 0;
+        }
+        else
+        {
+            this.openGroup.visible = false;
+            this.scroller.visible = true;
+            this.list.dataProvider = new eui.ArrayCollection(this.listArr);
+            this.scroller.viewport.scrollV = 0;
+        }
+
         //this.renewBtn();
     }
 
@@ -300,6 +387,10 @@ class CollectUI extends game.BaseUI {
             return -1;
         if(a.toLast && !b.toLast)
             return 1;
+        if(a.lv < b.lv)
+            return 1;
+        if(a.lv > b.lv)
+            return -1;
         if(a.openLevel < b.openLevel)
             return -1;
         if(a.openLevel > b.openLevel)

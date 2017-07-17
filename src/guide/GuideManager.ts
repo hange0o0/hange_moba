@@ -30,6 +30,7 @@ class GuideManager {
         console.log('showGuide')
         if(!this.isGuiding)
             return;
+
         if(ui)
             ui.validateNow();
         MyTool.stopClick(300);
@@ -458,8 +459,8 @@ class GuideManager {
             fun:function(){
                 self.isGuiding = false;
                 GuideUI.getInstance().hide();
-
                 MainPageUI.getInstance()['currentPage'] = 0;
+                MainPageUI.getInstance()['mainTask'].visible = true;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
                 MyCardTaskUI.getInstance().testShow();

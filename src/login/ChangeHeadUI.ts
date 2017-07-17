@@ -19,7 +19,9 @@ class ChangeHeadUI extends game.BaseWindow {
     private okBtn: eui.Button;
     private head1: HeadItem;
     private head2: HeadItem;
+    private headGroup: eui.Group;
     private changeGroup: eui.Group;
+
 
 
 
@@ -55,11 +57,13 @@ class ChangeHeadUI extends game.BaseWindow {
         {
             this.head2.currentState = 'up';
             this.changeGroup.visible = false;
+            this.headGroup.y = 55;
         }
         else
         {
             this.head2.currentState = 'down';
             this.changeGroup.visible = true;
+            this.headGroup.y = 25;
         }
     }
 

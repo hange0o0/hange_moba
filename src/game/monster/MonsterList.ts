@@ -277,6 +277,7 @@ class MonsterList extends game.BaseUI {
     public hide(){
         super.hide();
         GuideManager.getInstance().showGuide(CollectUI.getInstance());
+        TaskManager.getInstance().cleanNowAcrion('comment');
     }
 
     public show(list?,index?){

@@ -48,6 +48,13 @@ class DayGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
     }
 
+
+
+    public hide(){
+        TaskManager.getInstance().cleanNowAcrion('day_game');
+        super.hide();
+    }
+
     private onHelp(){
         HelpManager.getInstance().dayHelp();
     }

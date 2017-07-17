@@ -49,6 +49,11 @@ class FriendListUI extends game.BaseUI {
 
     }
 
+    public hide(){
+        TaskManager.getInstance().cleanNowAcrion('friend');
+        super.hide();
+    }
+
     private renewRed(){
         var FM = FriendManager.getInstance();
         this.red1.visible = FM.logRed();

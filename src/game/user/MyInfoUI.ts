@@ -280,6 +280,7 @@ class MyInfoUI extends game.BaseUI {
 
 
     public hide(){
+        TaskManager.getInstance().cleanNowAcrion('honor');
         super.hide();
     }
     public show(v?){

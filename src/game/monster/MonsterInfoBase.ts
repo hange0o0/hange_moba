@@ -232,7 +232,7 @@ class MonsterInfoBase extends game.BaseContainer {
                     if(specialData.hard)
                         nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + '/'+levelLimit+')</font>'
                     else
-                        nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
+                        nameStr += ' <font color="#cc9900" size="20">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
 
                     if(specialData.hard)
                     {

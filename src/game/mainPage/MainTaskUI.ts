@@ -4,10 +4,12 @@ class MainTaskUI extends game.BaseContainer {
         this.skinName = "MainTaskUISkin";
     }
 
+    private taskIcon: eui.Image;
     private taskText: eui.Label;
     private list: eui.List;
-    private closeBtn: eui.Group;
+    private closeBtn: eui.Image;
     private redMC: eui.Image;
+
 
 
 
@@ -33,8 +35,16 @@ class MainTaskUI extends game.BaseContainer {
           if(this.currentState == 'close')
           {
               this.currentState='open';
-
+              egret.Tween.removeTweens(this.taskIcon)
+              this.taskIcon.alpha = 1;
           }
+    }
+
+    public showMV(){
+        egret.Tween.removeTweens(this.taskIcon)
+        this.taskIcon.alpha = 1;
+        var tw = egret.Tween.get(this.taskIcon,{loop:true})
+        tw.to({alpha:0.3},1000).to({alpha:1},1000)//.wait(1000)
     }
 
     public renew(){

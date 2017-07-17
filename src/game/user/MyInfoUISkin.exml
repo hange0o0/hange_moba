@@ -24,7 +24,7 @@
 							<e:Image source="head_bg2_jpg" y="3" x="3" width="94" height="94"/>
 							<e:Image id="headMC" source="head_png" y="3" x="3" width="94" height="94"/>
 							<e:Rect height="30" width="94" x="3" fillAlpha="0.7" bottom="3" visible="false"/>
-							<e:Label text="更换头像" size="20" y="100" horizontalCenter="0" textColor="0xD19844"/>
+							<e:Label text="更换头像" size="20" y="87.88" horizontalCenter="0" textColor="0xD19844" stroke="2"/>
 						</e:Group>
 						<e:Label id="nameText" text="标签标签" x="124" y="12" textColor="0xCCB48E"/>
 						<e:Label id="editWordBtn" text="..编辑宣言" right="10" bottom="10" size="22" textColor="0xafafaf"/>

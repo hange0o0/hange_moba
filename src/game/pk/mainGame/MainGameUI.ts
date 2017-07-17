@@ -17,6 +17,7 @@ class MainGameUI extends game.BaseUI {
     private historyList: eui.List;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
+    private coinRect: eui.Rect;
 
 
 
@@ -105,9 +106,10 @@ class MainGameUI extends game.BaseUI {
     public renewPrice(){
         var cost = MainGameManager.getInstance().getKillCost();
         if(cost > UM.coin)
-            this.setHtml(this.moneyText, '<font color="#ff0000">' + cost + '</font>/' + UM.coin);
+            this.setHtml(this.moneyText, '<font color="#ff0000">' + cost + '</font>');
         else
-            this.moneyText.text = '' + cost + '/' + UM.coin;
+            this.moneyText.text = '' + cost;
+        this.coinRect.width = 150 * Math.min(1,cost/UM.coin);
     }
 
     public renewEnemy(){

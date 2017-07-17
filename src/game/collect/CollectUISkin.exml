@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="CollectUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="0" y="0" source="bg_jpg"/>
+	<e:Rect width="100%" height="100%" x="0" y="0"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Rect height="60" width="640" x="0" y="74" fillAlpha="0.3"/>
-	<e:Group id="coinGroup" x="18" y="86">
+	<e:Group id="coinGroup" x="18" y="86" locked="true">
 		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
 		<e:Image source="icon_money_png" y="1" x="0"/>
 		<e:Label y="9" textColor="0xCCCCCC" text="123456789" id="coinText" size="24" x="44"/>
 	</e:Group>
-	<e:Group id="cardGroup" x="210" y="86">
+	<e:Group id="cardGroup" x="210" y="86" locked="true">
 		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="150" height="40" x="21"/>
 		<e:Image y="1" x="0" source="icon_pvp_ticket_png"/>
 		<e:Label id="cardText" y="9" textColor="0xCCCCCC" text="123456789" size="24" x="44"/>
@@ -18,7 +18,7 @@
 			<e:List id="list" height="802" width="100%" x="0" y="0" itemRendererSkinName="CollectItemSkin">
 
 				<e:layout>
-					<e:TileLayout horizontalGap="8" verticalGap="30" paddingLeft="8" paddingRight="8" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left" requestedColumnCount="4"/>
+					<e:TileLayout horizontalGap="8" verticalGap="20" paddingLeft="8" paddingRight="8" paddingTop="20" paddingBottom="20" horizontalAlign="left" rowAlign="top" columnAlign="left" requestedColumnCount="4"/>
 				</e:layout>
 			</e:List>
 		</e:Group>
@@ -26,7 +26,7 @@
 	<e:Image source="border6_png" y="86" scale9Grid="14,6,88,18" width="210" height="41" x="421"/>
 	<e:Image source="icon_add_png" y="90" x="590" id="sortBtn"/>
 	<e:Label id="sortText" y="93" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="424"/>
-	<e:Group id="sortGroup" y="124" x="421">
+	<e:Group id="sortGroup" y="124" x="421" locked="true" visible="false">
 		<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="210" height="100%" x="0"/>
 		<e:List id="sortList" width="200" x="5" top="6" bottom="6" itemRendererSkinName="HonorSortItemSkin">
 			<e:layout>
@@ -44,6 +44,30 @@
 				</e:Array>
 			</e:ArrayCollection>
 		</e:List>
+	</e:Group>
+	<e:Group id="openGroup" x="-4.999999999999996" top="135" bottom="0">
+		<e:Scroller id="openScroller" width="640" x="4.999999999999996" bounces="false" top="0" bottom="240">
+			<e:Group>
+			<e:Group x="0" y="240">
+				<ns1:MonsterInfoBase id="monsterBase" x="0" y="0" skinName="MonsterInfoBaseSkin"/>
+				<e:Button id="closeBtn" label="" y="10" skinName="Btn_close1Skin" right="10"/>
+			</e:Group>
+			<e:layout>
+				<e:VerticalLayout/>
+			</e:layout>
+			</e:Group>
+		</e:Scroller>
+		<e:Scroller id="scrollH" width="100%" height="230" x="4.999999999999996" scaleX="1" scaleY="1" bounces="false" bottom="0">
+			<e:Group>
+			<e:List id="listH" width="200" height="200" x="10" y="34">
+				<e:layout>
+				<e:HorizontalLayout gap="8" paddingLeft="8"/>
+				</e:layout>
+			</e:List>
+			</e:Group>
+		</e:Scroller>
+		<e:Image source="line_png" x="0" y="0" width="650"/>
+		<e:Image source="line_png" x="0" width="650" bottom="235"/>
 	</e:Group>
 
 

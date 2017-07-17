@@ -31,7 +31,10 @@ class TeamDungeonMain extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
     }
 
+
+
     public hide(){
+        TaskManager.getInstance().cleanNowAcrion('friend_dungeon');
         super.hide();
     }
 

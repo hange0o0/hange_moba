@@ -4,12 +4,14 @@ class CollectItem extends game.BaseItem {
         this.skinName = "CollectItemSkin";
     }
 
+    private chooseBG: eui.Image;
     private headMC: eui.Image;
     private arrowMC: eui.Image;
     private levelText: eui.Label;
     private nameText: eui.Label;
-    private desBG: eui.Group;
+    private desBG: eui.Image;
     private desText: eui.Label;
+
 
 
 
@@ -25,10 +27,11 @@ class CollectItem extends game.BaseItem {
 
     private onClick(){
         //CollectItemInfo.getInstance().show(this.data,this);
-        MonsterList.getInstance().show(this.data.list,this.data.list.indexOf(this.data));
+        //MonsterList.getInstance().show(this.data.list,this.data.list.indexOf(this.data));
     }
 
     public dataChanged(){
+
         //var CM = CollectManager.getInstance();
         var level = UM.getMonsterLevel(this.data.id);
         //this.headBG.source = 'head_border' + (UM.getMonsterCollect(vo.id) + 1) + '_png';
@@ -78,6 +81,7 @@ class CollectItem extends game.BaseItem {
         //    this.levelGroup.visible = true;
         //    this.levelText.text = level;
         //}
+        this.setChoose(CollectUI.getInstance().chooseMonster);
         this.renewDes();
     }
 
@@ -112,6 +116,13 @@ class CollectItem extends game.BaseItem {
         }
         this.desBG.visible = this.desText.text && true;
 
+    }
+
+    public setChoose(mid)
+    {
+        var b = this.data.id == mid
+        this.chooseBG.visible = b;
+        return b
     }
 
 

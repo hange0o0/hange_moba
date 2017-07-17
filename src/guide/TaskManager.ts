@@ -15,6 +15,11 @@ class TaskManager {
          this.init()
     }
 
+    public cleanNowAcrion(key){
+        if(TaskManager.getInstance().nowAction == key)
+            TaskManager.getInstance().nowAction = null;
+    }
+
     public getTaskIDByLine(line){
         var task = UM.active.task;
         return task[line]

@@ -37,6 +37,11 @@ class ShopUI extends game.BaseUI {
         this.clearList([this.list])
     }
 
+    public hide(){
+        TaskManager.getInstance().cleanNowAcrion('buy_ticket');
+        super.hide();
+    }
+
 
     public show(v?){
         this.dataIn = v;

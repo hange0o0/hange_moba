@@ -647,6 +647,12 @@ class MainPageUI extends game.BaseUI {
         this.renewHonorRed();
         this.renewTask();
 
+        this.mainTask.visible = !GuideManager.getInstance().isGuiding;
+        if(!UM.active.task[1] || TaskVO.getObject(UM.active.task[1]).index < 30)
+        {
+            this.mainTask.showMV()//打开
+        }
+
 
         egret.setTimeout(function() {
             MainPageUI.getInstance().renewPage();

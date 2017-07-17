@@ -21,8 +21,11 @@
 	</e:Group>
 	<e:Group y="75" horizontalCenter="0" width="540" visible.choose="false">
 		<e:Rect height="100%" width="540" fillColor="0x130A05" fillAlpha="1" horizontalCenter="0" y="0"/>
-		<ns1:HeadItem id="head1" y="25" skinName="HeadItemSkin" left="80"/>
-		<ns1:HeadItem id="head2" skinName="HeadItemSkin" y="25" right="80"/>
+			<e:Group id="headGroup" includeIn="change" y="55" left="80" right="80">
+			<ns1:HeadItem id="head1" y="25" skinName="HeadItemSkin" left="0" x.change="0" y.change="0"/>
+			<ns1:HeadItem id="head2" skinName="HeadItemSkin" y="25" right="0" x.change="280" y.change="0"/>
+			<e:Image source="arrow2_png" y="30.00000000000003" horizontalCenter="0" scaleX="-1" x="211.99999999999991"/>
+		</e:Group>
 		<e:Group id="changeGroup" y="150" horizontalCenter="0">
 			<e:Label text="更换头像需消耗钻石:" y="0" size="24" x="243.7878787878788" textColor="0xEFE5AD" textColor.change="0xe0a44a"/>
 			<e:Image source="icon_token_png" x="0" y="132.12121212121212"/>
@@ -31,7 +34,6 @@
 				<e:HorizontalLayout verticalAlign="middle"/>
 			</e:layout>
 		</e:Group>
-		<e:Image source="arrow2_png" y="55" horizontalCenter="0" scaleX="-1"/>
 		<e:Image source="line_png" x="0" y="205" width="100%"/>
 	</e:Group>
 </e:Skin>

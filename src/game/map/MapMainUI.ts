@@ -225,6 +225,10 @@ class MapMainUI extends game.BaseUI {
         this.stopAll();
         MainPageUI.getInstance()['mapGame'].renew();
         this.stage.removeEventListener(egret.Event.ACTIVATE,this.onActive,this);
+
+        TaskManager.getInstance().cleanNowAcrion('map_game_buy');
+        TaskManager.getInstance().cleanNowAcrion('map_game_pk');
+        TaskManager.getInstance().cleanNowAcrion('map_game_next');
         super.hide();
     }
 

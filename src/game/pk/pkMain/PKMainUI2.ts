@@ -2675,10 +2675,10 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.monsterGroup)
         //egret.Tween.removeTweens(this.skillNameGroup)
 
-
+        var skillName = skillVO.name.split('').join(' ');
         this.skillGroup.visible = true;
         this.skillText.width = 999;
-        this.skillText.text = skillVO.name;
+        this.skillText.text = skillName;
         this.skillText.width = this.skillText.textWidth;
         this.skillText.text = ''
         this.skillGroup.y = this.upGroup.y + 195
@@ -2700,11 +2700,12 @@ class PKMainUI extends game.BaseUI {
         tw.wait(100).to({x:mX,y:mY,scaleX:1.1,scaleY:1.1,alpha:1},200).call(function(){
             this.skillBG.visible = true;
         },this).to({scaleX:1,scaleY:1},200).wait(300);
-        for(var i=0;i<skillVO.name.length;i++)
+
+        for(var i=0;i<skillName.length;i++)
         {
             tw.call(function(index){
-                this.skillText.text = skillVO.name.substr(0,index)
-            },this,[i+1]).wait(200)
+                this.skillText.text = skillName.substr(0,index)
+            },this,[i+1]).wait(100)
         }
 
         tw.wait(500).call(function(){

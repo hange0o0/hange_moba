@@ -36,6 +36,13 @@ class MainAwardBeforeUI extends game.BaseWindow {
         });
     }
 
+
+
+    public hide(){
+        TaskManager.getInstance().cleanNowAcrion('main_award');
+        super.hide();
+    }
+
     public show(){
         super.show();
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
