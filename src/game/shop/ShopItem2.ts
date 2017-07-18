@@ -34,11 +34,13 @@ class ShopItem2 extends game.BaseItem {
     public flash(){
         var tw:egret.Tween = egret.Tween.get(this.titleText);
         tw.to({stroke:3},200)
-        if(TaskManager.getInstance().nowAction == 'buy_ticket' && this.data.shopType == 'ticket')
+        console.log(this.data.shopType)
+        if(TaskManager.getInstance().nowAction == 'buy_ticket' && this.data.wType == 'ticket')
         {
+
             tw.call(function(){
                 TaskManager.getInstance().showGuideMC(this.list.getChildAt(0)['buyBtn'])
-            })
+            },this)
 
         }
 

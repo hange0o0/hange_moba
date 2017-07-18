@@ -76,6 +76,11 @@ class MapExchangeUI extends game.BaseContainer {
         var tw = egret.Tween.get(this);
         tw.to({bottom:10},200).to({bottom:0},200)
         this.onShow();
+
+        if(TaskManager.getInstance().nowAction == 'map_game_buy')
+        {
+            TaskManager.getInstance().showGuideMC(this.btn1)
+        }
     }
 
     public onShow(){

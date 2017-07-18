@@ -72,6 +72,7 @@ class CollectUI extends game.BaseUI {
         this.chooseMonster = this.list.selectedItem.id;
         this.listH.selectedIndex = -1;
         this.renewList();
+        this.openScroller.stopAnimation();
         this.openScroller.viewport.scrollV = 0;
     }
 
@@ -83,6 +84,7 @@ class CollectUI extends game.BaseUI {
             var item:any = this.listH.getChildAt(i);
             item.setChoose(CollectUI.getInstance().chooseMonster);
         }
+        this.openScroller.stopAnimation();
         this.openScroller.viewport.scrollV = 0;
     }
 
@@ -294,7 +296,7 @@ class CollectUI extends game.BaseUI {
             else
                 des = 158*this.listH.selectedIndex - this.scrollH.viewport.scrollH;
             this.listH.dataProvider = new eui.ArrayCollection(this.listArr);
-
+            this.scrollH.stopAnimation();
             this.scrollH.validateNow();
             for(var i=0;i<this.listArr.length;i++)
             {

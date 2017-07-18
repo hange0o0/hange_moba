@@ -239,9 +239,15 @@ class OtherInfoUI extends game.BaseUI {
 
 
         var cd = Math.floor((TM.now() - dataIn.last_land)/(24*3600));
+        //if(cd >=14)
+        //{
+        //    this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+14+'</font> 天没登录');
+        //    //this.topGroup.height = 300;
+        //}
+        //else
         if(cd >=7)
         {
-            this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+cd+'</font> 天没登录');
+            this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+7+'</font> 天没登录');
             //this.topGroup.height = 300;
         }
         else

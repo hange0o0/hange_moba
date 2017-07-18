@@ -382,6 +382,9 @@ class PKMainUI extends game.BaseUI {
         //VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,0);
         //this.hide();
         //return;
+        PKPosManager.getInstance().controller = this;
+
+
         if(this.loadUI == null)
         {
             MainPageUI.getInstance().visible = true;
@@ -566,22 +569,10 @@ class PKMainUI extends game.BaseUI {
             this.shakeBG();
             this.showCound(true)
             this.showCound(true)
+            if(PKDressUI.getInstance().stage)
+                PKDressUI.getInstance().closeRelate();
         },this).wait(600).call(this.addItemMovie,this);    //.wait(100)
         tw2.to({x:315,y:Y},500,egret.Ease.sineIn) //.wait(100)
-
-
-
-        //if(des > 0)
-        //{
-        //    this.topMC.alpha = 0
-        //    this.bottomMC.alpha = 0
-        //    var tw:egret.Tween = egret.Tween.get(this.topMC);
-        //    tw.to({alpha:1},100)
-        //    var tw:egret.Tween = egret.Tween.get(this.bottomMC);
-        //    tw.to({alpha:1},100)
-        //}
-
-
     }
 
 
@@ -1247,387 +1238,6 @@ class PKMainUI extends game.BaseUI {
         return str;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //在PK区内找一空位置
-    private findFightEmpty(startPoint,mapData,enemy?,enemyDis?){
-        var startX = 60  + 60
-        var startY = 100  + 60
-        var endX = 640-60 -60
-        var endY = this.fightHeight -60 -120 - 80
-        var step = 10;
-        while(true)
-        {
-            var ok = true;
-            var x = startPoint.x -step + this.random()*step*2
-            var y = startPoint.y -step + this.random()*step*2
-            if(x < startX)
-                x = startX;
-            else if(x > endX)
-                x = endX;
-
-            if(y < startY)
-                y = startY;
-            else if(y > endY)
-                y = endY;
-            var xy = {x:x,y:y}
-            for(var s in mapData){
-                var dis =MyTool.getDis(xy,mapData[s])
-                if(enemy && enemy.id == s && dis <enemyDis)
-                {
-                    ok = false;
-                    break;
-                }
-                if(dis < 120)
-                {
-                    ok = false;
-                    break;
-                }
-            }
-
-            if(ok)//找到
-            {
-                return xy;
-            }
-
-            step+= 10;
-            if(step > 320 + 160)
-            {
-                enemy = null
-            }
-            if(step >1000)//找了100次都找不到
-            {
-                return null;//原地不动了
-            }
-        }
-        return null
-
-    }
-
-    //目标周周有重叠
-    private isHitTestOther(item,len=120){
-        for(var s in this.itemArray){
-            if(item == this.itemArray[s])
-                continue;
-            if(this.itemArray[s].out)
-                continue
-            var dis =MyTool.getDis(item,this.itemArray[s])
-            if(dis < len)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //是否不在PK区内
-    private testOut(item,fun?){//,enemy?,enemyDis?,testEnemy?
-        if(item.x < 60 || item.x > 640 - 60 || item.y < 100 || item.y > this.fightHeight-60-120 || this.isHitTestOther(item))// (testEnemy && MyTool.getDis(item,enemy)<enemyDis))
-        {
-            var startPoint = item;
-            if(!item.action)
-                startPoint = item.team == 1?{x:160,y:480} :{x:480,y:480}
-            var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),item.enemy,200) //,enemy,enemyDis
-            if(!newPos)
-                return false;
-            //console.log(newPos)
-            var VM = PKMainMV.getInstance();
-            VM.jumpToXY(item,newPos,fun,this,100);
-            item.action = true;
-            return true
-        }
-        return false;
-    }
-
-    //A跳向B附近，随机的
-    private randomJump(atker,fun,enemyDis = 150){
-        if(!atker || !atker.isPKing)
-            return false;
-        if(this.random() < 0.7)
-            return false;
-        var startPoint = atker;
-        var newPos = this.findFightEmpty(startPoint,this.getCurrentMap(),atker.enemy,enemyDis)
-        if(!newPos)
-            return false;
-        var VM = PKMainMV.getInstance();
-        VM.jumpToXY(atker,newPos,fun,this,100);
-        return true;
-    }
-
-    private getCurrentMap(){
-        var map = {}
-        var arr = this.itemArray
-        for(var i=0;i<arr.length;i++)
-        {
-            var oo = arr[i];
-            if(!oo.out)
-            {
-                map[oo.id] = {x:oo.x,y:oo.y}
-            }
-        }
-        return map;
-    }
-
-    //在目标附近的都跳开
-    private jumpOut(item,toXY,noMove?){
-        noMove = noMove || []
-        var arr = this.itemArray
-        var map = this.getCurrentMap();
-        map[item.id + '_'] = map[item.id];
-        map[item.id] = toXY
-        var jumpArr = [];
-        for(var i=0;i<arr.length;i++)
-        {
-            var oo = arr[i];
-            if(oo.out)
-                continue;
-            if(noMove.length && noMove.indexOf(oo) != -1)
-                continue;
-            var nowXY = map[oo.id]
-            if(oo != item && MyTool.getDis(toXY,nowXY) < 120)
-            {
-                delete map[oo.id];
-                var newPos = this.findRoundPos(oo,map,30)
-                if(!newPos)
-                    newPos = this.findRoundPos(oo,map,60)
-                if(!newPos)
-                    newPos = this.findRoundPos(oo,map,90)
-                if(!newPos)
-                    newPos = this.findRoundPos(oo,map,120)
-
-                if(newPos)
-                    jumpArr.push({item:oo,newPos:newPos});
-                else
-                {
-                    newPos = this.findEmptyPos(oo,map,160)
-                    jumpArr.push({item:oo,newPos:newPos,jump:true});
-                }
-
-                map[oo.id] = newPos;
-            }
-        }
-
-        var VM = PKMainMV.getInstance();
-        for(var i=0;i<jumpArr.length;i++)
-        {
-            var oo = jumpArr[i];
-            //if(oo.item.jumping)
-            //{
-            //    this.needMoveItem.push(oo.item);
-            //    continue;
-            //}
-            if(oo.jump)
-                VM.jumpToXY(oo.item,oo.newPos)
-            else
-                VM.moveToXY(oo.item,oo.newPos)
-        }
-        return jumpArr.length > 0;
-    }
-
-    //找自己附近的位置
-    private findRoundPos(item,mapData,limit):any{
-        var ok = true;
-        var startX = Math.max(60,item.x - limit);
-        var startY = Math.max(100,item.y - limit);
-        var endX = Math.min(640-60, startX + limit*2);
-        var endY = Math.min(this.fightHeight-80, startY + limit*2);
-
-        if(!item.isPKing)
-        {
-            startX += 50;
-            //startY -= 50;
-            endX -= 50;
-            endY -= 100;
-        }
-        var step = 30;
-        while(step--)
-        {
-            var ok = true;
-            var x = startX + this.random()*(endX - startX);
-            var y = startY + this.random()*(endY - startY)
-            var xy = {x:x,y:y}
-            for(var s in mapData){
-                var dis =MyTool.getDis(xy,mapData[s])
-                if(dis < 120)
-                {
-                    ok = false;
-                    break;
-                }
-            }
-
-            if(ok)//找到
-            {
-                return xy;
-            }
-        }
-        return this.findRoundPos(item,mapData,limit + 50);
-
-    }
-
-    //找自己附近的位置外，查找最近的空位置
-    private findEmptyPos(item,mapData,limit):any{
-        var step = 10;//10次后会变成全屏
-        var x1 = Math.max(60,item.x - limit)
-        var x2 = Math.min(640-60,item.x + limit)
-        var y1 = Math.max(80,item.y - limit)
-        var y2 = Math.min(this.fightHeight-80,item.y + limit);
-        var stepX1 = (x1-60)/5
-        var stepX2 = (640-60 - x2)/5
-        var stepY1 = (y1-80)/10
-        var stepY2 = (this.fightHeight-80 - y2)/10;
-
-        while(step--)
-        {
-            var tryTime = 40;//试20次
-            if(step < 6)
-            {
-                tryTime = 20
-            }
-            while(true)
-            {
-                var error = false
-                if(step < 6)
-                {
-                    var startX = x1;
-                    var startY = y1 - stepY1;
-                    var endX = x2;
-                    var endY = y2 + stepY2;
-                    var type = tryTime%2;
-                    if(item.y < this.fightHeight/2)  //在上半地图由下开始找
-                        type = 1-type;
-
-                    if(type == 0)
-                    {
-
-                        if(y1 - startY == 0)
-                            error = true;
-                        else
-                            var y = startY + this.random()*(y1 - startY);
-                    }
-                    else
-                    {
-
-                        if(endY - y2 == 0)
-                            error = true;
-                        else
-                            var y = y2 + this.random()*(endY - y2);
-                    }
-                    if(!error)
-                        var x = x1 + this.random()*(x2 - x1);
-                }
-                else
-                {
-
-                    var startX = x1 - stepX1;
-                    var startY = y1 - stepY1;
-                    var endX = x2 + stepX2;
-                    var endY = y2 + stepY2;
-                    var type = tryTime%4
-                    if(item.y < this.fightHeight/2)  //在上半地图由下开始找
-                        type = 3-type;
-                    if(type == 0)
-                    {
-                        if(x1 - startX == 0)
-                            error = true;
-                        else
-                        {
-                            var x = startX + this.random()*(x1 - startX);
-                            var y = startY + this.random()*(y2 - startY)
-                        }
-
-
-                    }
-                    else if(type == 1)
-                    {
-                        if(y1 - startY == 0)
-                            error = true;
-                        else
-                        {
-                            var x = x1 + this.random()*(endX - x1);
-                            var y = startY + this.random()*(y1 - startY)
-                        }
-
-
-                    }
-                    else if(type == 2)
-                    {
-                        if(endX - x2 == 0)
-                            error = true;
-                        else
-                        {
-                            var x = x2 + this.random()*(endX - x2);
-                            var y = y1 + this.random()*(endY - y1)
-                        }
-                    }
-                    else
-                    {
-                        if(endY - y2 == 0)
-                            error = true;
-                        else {
-                            var x = startX + this.random() * (x2 - startX);
-                            var y = y2 + this.random() * (endY - y2)
-                        }
-                    }
-                }
-
-
-                if(!error)
-                {
-                    var ok = true;
-                    var xy = {x:x,y:y}
-                    for(var s in mapData){
-                        var dis =MyTool.getDis(xy,mapData[s])
-                        if(dis < 120)
-                        {
-                            ok = false;
-                            break;
-                        }
-                    }
-
-                    if(ok)//找到
-                    {
-                        return xy;
-                    }
-                }
-
-                tryTime --;
-                if(tryTime == 0)
-                    break;
-            }
-            //向加大一圈的地方找
-            x1 = startX
-            x2 = endX
-            y1 = startY
-            y2 = endY
-        }
-        return {x:item.x,y:item.y};//找不到就不动了
-    }
-
     private renewHP(data,index){
         var text = this['hpText'+index];
         var bf = this['hpBar'+index];
@@ -1915,11 +1525,12 @@ class PKMainUI extends game.BaseUI {
                     })
                 }
             }
-            if(this.testOut(this.selfPKing,this.pkOne))
+            var PPM = PKPosManager.getInstance();
+            if(PPM.testOut(this.selfPKing,this.pkOne))
             {
                 return
             }
-            if(this.testOut(this.enemyPKing,this.pkOne))
+            if(PPM.testOut(this.enemyPKing,this.pkOne))
             {
                 return
             }
@@ -2039,7 +1650,7 @@ class PKMainUI extends game.BaseUI {
     private nearAtk(data,roundeData,svo?){
         //var mvType,skill
         //mvType?,skillID?
-
+        var PPM = PKPosManager.getInstance();
         var atker = data.atker;
         var defender = data.defender;
 
@@ -2068,7 +1679,7 @@ class PKMainUI extends game.BaseUI {
                 this.addEffectList(data,roundeData);
             },this)
 
-            this.jumpOut(defenderItem,xy,[atkerItem]);
+            PPM.jumpOut(defenderItem,xy,[atkerItem]);
 
             if(!atkerItem.isPKing)
             {
@@ -2098,13 +1709,13 @@ class PKMainUI extends game.BaseUI {
 
         },this,waitCD)
         if(atkerItem.isPKing)
-            this.jumpOut(atkerItem,xy,[defenderItem]);
+            PPM.jumpOut(atkerItem,xy,[defenderItem]);
     }
 
     //远攻型
     private bulletAtk(data,roundeData,mvType?,skillID1?,skillID2?,fun?){
         var VM = PKMainMV.getInstance();
-
+        var PPM = PKPosManager.getInstance();
 
         var atker = data.atker;
         var defender = data.defender;
@@ -2114,7 +1725,7 @@ class PKMainUI extends game.BaseUI {
 
         if(atkerItem.isPKing && this.getDis(atkerItem,defenderItem) < 200)
         {
-            var newPos = this.findFightEmpty(atkerItem,this.getCurrentMap(),defenderItem,200) //,enemy,enemyDis
+            var newPos = PPM.findFightEmpty(atkerItem,PPM.getCurrentMap(),defenderItem,200) //,enemy,enemyDis
             if(newPos)
             {
                 VM.jumpToXY(atkerItem,newPos,function(){
@@ -2149,7 +1760,7 @@ class PKMainUI extends game.BaseUI {
                         roundeData.notEffect = selfList.concat(playList);
                         this.addEffectList(data,roundeData);
                     },this)
-                    this.jumpOut(defenderItem,xy,[atkerItem]);
+                    PPM.jumpOut(defenderItem,xy,[atkerItem]);
 
 
                     if(skillID2)
@@ -2170,7 +1781,7 @@ class PKMainUI extends game.BaseUI {
                         roundeData.notEffect = selfList.concat(playList);
                         this.addEffectList(data,roundeData);
                     },this)
-                    this.jumpOut(defenderItem,xy,[atkerItem]);
+                    PPM.jumpOut(defenderItem,xy,[atkerItem]);
 
 
                     if(mvType && skillID2)

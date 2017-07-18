@@ -17,11 +17,11 @@ class TaskVO {
 
         for(var s in this.lineData)
         {
-            ArrayUtil.sortByField(this.lineData[s],['index1','index2'],[0,0])
-            for(var i=0;i<this.lineData[s].length;i++)
-            {
-                this.lineData[s][i].index = i;
-            }
+            ArrayUtil.sortByField(this.lineData[s],['index'],[0])
+            //for(var i=0;i<this.lineData[s].length;i++)
+            //{
+            //    this.lineData[s][i].index = i;
+            //}
         }
     }
 
@@ -36,11 +36,10 @@ class TaskVO {
     public diamond
     public coin
     public card
-
-
+    public energy
     public index;
-    private index1;
-    private index2;
+
+
     private currentValue;
     public constructor(data?: any) {
         if(data)
@@ -54,19 +53,18 @@ class TaskVO {
         this.type = data.type;
 
         this.level = Math.floor(data.level);
+        this.index = Math.floor(data.index);
         this.value1 = Math.floor(data.value1);
         this.value2 = Math.floor(data.value2);
-        this.diamond = Math.floor(data.diamond);
-        this.coin = Math.floor(data.coin);
-        this.card = Math.floor(data.card);
+        this.diamond = Math.floor(data.diamond || 0);
+        this.coin = Math.floor(data.coin || 0);
+        this.card = Math.floor(data.card || 0);
+        this.energy = Math.floor(data.energy || 0);
 
-        var arr = (this.id + '').split(',')
-        this.index1 = parseInt(arr[0])
-        this.index2 = parseInt(arr[0]) || 0
     }
 
     public getNextTaskVO(){
-        return TaskVO.lineData[this.line][this.index + 1];
+        return TaskVO.lineData[this.line][this.index];
     }
 
     public isEnable(){
@@ -287,15 +285,15 @@ class TaskVO {
                 break;
             case 'map_game_pk':
                 TM.nowAction = this.type;
-                MapGameUI.getInstance().show();
+                MapMainUI.getInstance().show();
                 break;
             case 'map_game_buy':
                 TM.nowAction = this.type;
-                MapGameUI.getInstance().show();
+                MapMainUI.getInstance().show();
                 break;
             case 'map_game_next':
                 TM.nowAction = this.type;
-                MapGameUI.getInstance().show();
+                MapMainUI.getInstance().show();
                 break;
             case 'honor':
                 TM.nowAction = this.type;
@@ -437,25 +435,25 @@ class TaskVO {
             case 'buy_ticket':
             case 'friend':
             case 'friend_dungeon':
-                return this.currentValue + '/1'
+                return this.currentValue + ' /1'
                 break;
             case 'main_game':
             case 'force':
                 if(this.value1 >= 1000)
                     return '差'+  (this.value1 - this.currentValue)
-                return this.currentValue +  '/' + this.value1;
+                return this.currentValue +  ' /' + this.value1;
                 break;
             case 'map_game':
             case 'server_game':
             case 'server_equal_game':
             case 'day_game':
                 if(this.value1 < 0)
-                    return  this.currentValue + '/1'
-                return this.currentValue +  '/' + this.value1;
+                    return  this.currentValue + ' /1'
+                return this.currentValue +  ' /' + this.value1;
                 break;
             case 'map_game_pk':
             case 'card':
-                return this.currentValue +  '/' + this.value1
+                return this.currentValue +  ' /' + this.value1
                 break;
         }
         return '??'

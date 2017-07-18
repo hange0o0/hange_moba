@@ -1,7 +1,7 @@
-class MapMainUI extends game.BaseUI {
-    private static instance:MapMainUI;
+class MapMainUI2 extends game.BaseUI {
+    private static instance:MapMainUI2;
     public static getInstance() {
-        if (!this.instance) this.instance = new MapMainUI();
+        if (!this.instance) this.instance = new MapMainUI2();
         return this.instance;
     }
 
@@ -283,17 +283,14 @@ class MapMainUI extends game.BaseUI {
         if(TaskManager.getInstance().nowAction == 'map_game_pk')
         {
             TaskManager.getInstance().showGuideMC(this.pkBtn)
-            MapExchangeUI.getInstance().hide();
         }
         else if(TaskManager.getInstance().nowAction == 'map_game_buy')
         {
             TaskManager.getInstance().showGuideMC(this.getBtn)
-            MapExchangeUI.getInstance().hide();
         }
         else if(TaskManager.getInstance().nowAction == 'map_game_next')
         {
             TaskManager.getInstance().showGuideMC(this.rightBtn)
-            MapExchangeUI.getInstance().hide();
         }
     }
 

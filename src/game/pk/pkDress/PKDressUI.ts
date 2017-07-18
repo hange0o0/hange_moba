@@ -75,7 +75,7 @@ class PKDressUI extends game.BaseUI {
     public constructor() {
         super();
         this.skinName = "PKDressUISkin";
-
+        this.hideVisible = true;
 
     }
 
@@ -425,7 +425,7 @@ class PKDressUI extends game.BaseUI {
         }
         var chooseData = {list:this.chooseList,index:this.dataIn.index}
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
-            self.closeRelate();
+            //self.closeRelate();
             if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
             {
                 ShowTips('PK请求已发送');
@@ -438,7 +438,7 @@ class PKDressUI extends game.BaseUI {
         })
     }
 
-    private closeRelate(){
+    public closeRelate(){
         this.hide();
          switch(this.pkType)
          {
