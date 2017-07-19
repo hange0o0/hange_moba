@@ -138,6 +138,8 @@ class PKDressUI extends game.BaseUI {
 
     }
     private onDressSettingChoose(e){
+        if(this.taskGroup.parent)
+            this.taskGroup.parent.addChild(this.taskGroup)
         if(e.data)
         {
             this.monsterInfo.renew(e.data,this.specialData);
@@ -150,8 +152,7 @@ class PKDressUI extends game.BaseUI {
             this.scrollerGroup.addChild(this.list)
         }
 
-        if(this.taskGroup.parent)
-            this.taskGroup.parent.addChild(this.taskGroup)
+
     }
 
     public showSetting(){
@@ -280,10 +281,11 @@ class PKDressUI extends game.BaseUI {
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
 
+        this.renewTask();
         MyTool.removeMC(this.pkDressSettingUI);
         this.scrollerGroup.addChildAt(this.pkDressChooseUI,0);
         this.pkDressChooseUI.resetSort();
-        this.renewTask();
+
         this.removeOldHistory();
         this.reInitData();
 
@@ -327,7 +329,7 @@ class PKDressUI extends game.BaseUI {
             MyTool.removeMC(this.taskGroup)
             return;
         }
-        this.scrollerGroup.addChild(this.taskGroup)
+        this.scrollerGroup.addChildAt(this.taskGroup,0)
         //if(myCard.num < task.num - task.current) //不可能完成了
         //{
         //    this.taskRateText.textColor = 0xFF0000;
@@ -517,6 +519,9 @@ class PKDressUI extends game.BaseUI {
     private onChooseItem(e){
         e = e || {};
         var infoStr;
+
+        if(this.taskGroup.parent)
+            this.taskGroup.parent.addChild(this.taskGroup)
         if(e.data)
         {
             for(var i=0;i<this.list.numChildren;i++)
@@ -535,8 +540,7 @@ class PKDressUI extends game.BaseUI {
             this.scrollerGroup.addChild(this.list)
         }
 
-        if(this.taskGroup.parent)
-            this.taskGroup.parent.addChild(this.taskGroup)
+
 
         for(var i=0;i<this.simpleList.numChildren;i++)
         {
@@ -653,10 +657,11 @@ class PKDressUI extends game.BaseUI {
             this.upBtnGroup.addChild(this.viewBtn);
 
 
-        MyTool.removeMC(this.monsterInfo);
-        this.scrollerGroup.addChild(this.list)
+
         if(this.taskGroup.parent)
             this.taskGroup.parent.addChild(this.taskGroup)
+        MyTool.removeMC(this.monsterInfo);
+        this.scrollerGroup.addChild(this.list)
     }
 
     private renewEnemy(){

@@ -81,7 +81,7 @@ class MonsterInfoBase extends game.BaseContainer {
         var oo =  this.vo
         TecManager.getInstance().levelUp(3,oo.id,function(){
             self.renewMonster();
-            GuideManager.getInstance().showGuide(MonsterList.getInstance());
+            GuideManager.getInstance().showGuide(CollectUI.getInstance());
         });
     }
 

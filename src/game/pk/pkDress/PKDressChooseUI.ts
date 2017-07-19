@@ -212,14 +212,17 @@ class PKDressChooseUI extends game.BaseContainer {
     public onRandom(){
         var GM = GuideManager.getInstance();
         if(GM.isGuiding && GM.guideRandom == 2)
+        {
+            ShowTips('请' + this.createHtml('【长按】',0xE0A44A)+'随机按钮')
             return;
+        }
 
         this.dispatchEventWith('random');
     }
     public onReset(){
         if(GuideManager.getInstance().isGuiding)
         {
-            ShowTips('请' + this.createHtml('【长按】',0xE0A44A)+'随机按钮')
+
             return;
         }
         this.dispatchEventWith('reset');

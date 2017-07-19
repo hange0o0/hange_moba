@@ -52,7 +52,7 @@ class CollectUI extends game.BaseUI {
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.list.addEventListener(eui.ItemTapEvent.ITEM_TAP,this.onListChoose,this);
 
-        this.listH.itemRenderer = CollectItem;
+        this.listH.itemRenderer = CollectDownItem;
         this.scrollH.viewport = this.listH;
         this.listH.addEventListener(eui.ItemTapEvent.ITEM_TAP,this.onListChoose2,this);
 
@@ -74,6 +74,8 @@ class CollectUI extends game.BaseUI {
         this.renewList();
         this.openScroller.stopAnimation();
         this.openScroller.viewport.scrollV = 0;
+
+        GuideManager.getInstance().showGuide(this);
     }
 
     private onListChoose2(){
@@ -287,14 +289,15 @@ class CollectUI extends game.BaseUI {
             this.openGroup.visible = true;
             this.scroller.visible = false;
             this.renewMonster();
+            var itemWidth = 120 + 10
 
             var des = 0;
             if(this.listH.selectedIndex == -1)
             {
-                des =158*(this.list.selectedIndex%4);
+                des = (610-itemWidth)/2;
             }
             else
-                des = 158*this.listH.selectedIndex - this.scrollH.viewport.scrollH;
+                des = itemWidth*this.listH.selectedIndex - this.scrollH.viewport.scrollH;
             this.listH.dataProvider = new eui.ArrayCollection(this.listArr);
             this.scrollH.stopAnimation();
             this.scrollH.validateNow();
@@ -302,14 +305,11 @@ class CollectUI extends game.BaseUI {
             {
                  if(this.listArr[i].id == this.chooseMonster)
                  {
-                     this.scrollH.viewport.scrollH = Math.min(Math.max(0,i*158 - des),this.scrollH.viewport.contentWidth-640)
+                     this.scrollH.viewport.scrollH = Math.min(Math.max(0,i*itemWidth - des),this.scrollH.viewport.contentWidth-610)
                      this.listH.selectedIndex = i;
                      break;
                  }
             }
-
-            //setChoose
-            //this.scrollH.viewport.scrollH = 0;
         }
         else
         {

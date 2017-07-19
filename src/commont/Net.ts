@@ -101,12 +101,7 @@ class Net extends egret.EventDispatcher{
             try {
                 var data = JSON.parse(e.target.data)
             }catch(e){
-                if(_get['debug'] == 100)
-                {
-                    document.body.style.background='#000000'
-                    console.log(e.target.data)
-                    return;
-                }
+
                 if(Config.isDebug)
                     Alert('通信数据异常');
                 else

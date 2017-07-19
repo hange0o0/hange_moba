@@ -332,22 +332,22 @@ class GuideManager {
         })
 
         this.addGuideObj({
-            ui:"MonsterList.getInstance()",
-            mc:"MonsterList.getInstance()['info']['levelUpBtn']",
+            ui:"CollectUI.getInstance()",
+            mc:"CollectUI.getInstance()['monsterBase']['levelUpBtn']",
             text:'虽然我们只升级单个卡兵，但我们的[总战力]也是会得到同步提升，这可是会增强[所有卡兵]的对战实力的哦',
-        })
-
-        this.addGuideObj({
-            ui:"MonsterList.getInstance()",
-            mc:"MonsterList.getInstance()['topUI']['closeBtn']",
-            text:'升完级是不是觉得自己强大了很多呢，想再去挑战一下其它卡士吧？没问题让我们再看看[其它]的对战功能吧',
         })
 
         this.addGuideObj({
             ui:"CollectUI.getInstance()",
             mc:"CollectUI.getInstance()['topUI']['closeBtn']",
-            text:'我们可是要回到世界首页哦',
+            text:'升完级是不是觉得自己强大了很多呢，想再去挑战一下其它卡士吧？没问题让我们再看看[其它]的对战功能吧',
         })
+
+        //this.addGuideObj({
+        //    ui:"CollectUI.getInstance()",
+        //    mc:"CollectUI.getInstance()['topUI']['closeBtn']",
+        //    text:'我们可是要回到世界首页哦',
+        //})
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",

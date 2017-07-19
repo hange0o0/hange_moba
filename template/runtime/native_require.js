@@ -35,6 +35,7 @@ var game_file_list = [
 	"bin-debug/debug/DebugUI.js",
 	"bin-debug/debug/ScrollTest.js",
 	"bin-debug/game/bag/PropManager.js",
+	"bin-debug/game/collect/CollectDownItem.js",
 	"bin-debug/game/collect/CollectItem.js",
 	"bin-debug/game/collect/CollectManager.js",
 	"bin-debug/game/collect/CollectUI.js",

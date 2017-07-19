@@ -117,5 +117,4 @@ class EnemyHeadItem extends game.BaseItem {
             this.headMC.source = this.data.vo.thumb
         }
     }
-
 }

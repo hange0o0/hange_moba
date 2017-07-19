@@ -1,4 +1,11 @@
 function Alert(msg,fun?,btnLabel?){
+
+    if(_get['debug'] == 100)
+    {
+        document.body.style.background='#000000'
+        return;
+    }
+
     var panel = new AlertUI();
     panel.show(msg,fun,btnLabel);
 }

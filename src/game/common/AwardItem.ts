@@ -29,15 +29,15 @@ class AwardItem extends game.BaseItem {
             MonsterList.getInstance().show([this.data]);
             return;
         }
-        this.infoGroup.visible = true;
-        this.timer = egret.setTimeout(function(){
-            this.infoGroup.visible = false;
-        },this,2000);
+        //this.infoGroup.visible = true;
+        //this.timer = egret.setTimeout(function(){
+        //    this.infoGroup.visible = false;
+        //},this,2000);
     }
 
     public dataChanged() {
         this.newIcon.visible = false;
-        this.infoGroup.visible = false;
+        this.infoGroup.visible = true;
         egret.clearTimeout(this.timer);
         this.desText.text = this.data.des;
         if(this.data.color == 'red')
