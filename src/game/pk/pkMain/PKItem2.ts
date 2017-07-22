@@ -37,12 +37,16 @@ class PKItem2 extends game.BaseItem {
     public self  //已方出战单位
     public isPKing
     public out = false;
+    public isAtking = 0;
+    public isBeAtking = 0;
 
     public ox;   //原始的
     public oy;   //原始的
     public boxX;   //原始的
     public boxY;   //原始的
     public ar = -1; //攻击方向，-1为向上，1为向下
+
+
 
     //public set x(v){
     //    console.log('====' + v);

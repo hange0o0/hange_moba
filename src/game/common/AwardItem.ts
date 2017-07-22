@@ -92,6 +92,7 @@ class AwardItem extends game.BaseItem {
                 this.mc.source = mvo.thumb;
                 this.desText.text = mvo.name;
                 this.newIcon.visible = true;
+                this.infoGroup.visible = false;
                 break;
             }
             default:    //prop

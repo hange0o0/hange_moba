@@ -11,6 +11,9 @@ class AniManager {
     private mcPool = [];
     private mvList = [];
 
+    private imgPool = [];
+    private imgList = [];
+
 
     //frameRate:默认是12，要变快就加大，慢变就减小
     public mvConfig = {
@@ -31,6 +34,7 @@ class AniManager {
 
     public mvSoundConfig = {}
     public aniList = []
+
 
 
 
@@ -74,10 +78,42 @@ class AniManager {
         }
     }
 
+    public getImg(source){
+         var mc = this.imgPool.pop() || new eui.Image()
+        mc.source = source;
+        this.imgList.push(mc);
+
+        return mc;
+    }
+    public removeImg(mc){
+        var index = this.imgList.indexOf(mc);
+        if(index != -1)
+        {
+            this.imgList.splice(index,1);
+        }
+        index = this.imgPool.indexOf(mc);
+        if(index == -1)
+        {
+            this.imgPool.push(mc);
+        }
+
+        mc.rotation = 0
+        mc.scaleX = 1
+        mc.scaleY = 1
+        mc.alpha = 1
+        egret.Tween.removeTweens(mc);
+        MyTool.removeMC(mc);
+    }
+
     public removeAllMV(){
         while(this.mvList.length > 0)
         {
             this.removeMV(this.mvList[0])
+        }
+
+        while(this.imgList.length > 0)
+        {
+            this.removeImg(this.imgList[0])
         }
     }
 
@@ -109,6 +145,7 @@ class AniManager {
         mc.scaleX = 1
         mc.scaleY = 1
         mc.alpha = 1
+        egret.Tween.removeTweens(mc);
 
         MyTool.removeMC(mc);
     }

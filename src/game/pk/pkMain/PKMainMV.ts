@@ -8,6 +8,8 @@ class PKMainMV {
     }
 
 
+
+
     //移向指定玩家
     public moveToTarget(a,b,fun1?,thisObj?,waitCD?){
         a.parent.addChild(a);
@@ -33,9 +35,9 @@ class PKMainMV {
         var dis = MyTool.getDis(a,b);
         if(frontWait)
             tw.wait(frontWait);
-        a.moving = true;
+        a.moving = egret.getTimer();
         tw.to(b, Math.pow(dis,0.8) * 3.5).call(function(){
-            a.moving = false;
+            a.moving = 0;
             fun1 && fun1.apply(thisObj);
         },thisObj)
     }
@@ -46,8 +48,8 @@ class PKMainMV {
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         a.parent.addChild(a);
-        a.jumping = true;
-        a.moving = true;
+        a.jumping = egret.getTimer();
+        a.moving = egret.getTimer();
         var dis = Math.max(400*speedRate,MyTool.getDis(a,b));
         //if(frontWait)
         //    tw.wait(frontWait);
@@ -55,8 +57,8 @@ class PKMainMV {
         if(sp.before)
             tw.wait(sp.before);
         tw.to({x:b.x,y:b.y}, dis*speedRate).call(function(){
-            a.jumping = false;
-            a.moving = false;
+            a.jumping = 0;
+            a.moving = 0;
             //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
         });
         var tw:egret.Tween = egret.Tween.get(a);
@@ -208,7 +210,8 @@ class PKMainMV {
     }
 
     public playBullet2(id,from,to,fun?,thisObj?,xy?){
-        var mc = new eui.Image('bullet' + id + '_png');
+        var AM = AniManager.getInstance();
+        var mc = AM.getImg('bullet' + id + '_png');
         if(id == 8)
         {
             mc.anchorOffsetX = 20;
@@ -234,7 +237,7 @@ class PKMainMV {
         var tw:egret.Tween = egret.Tween.get(mc);
         tw.to({y:to.y,x:to.x,scaleY:1}, 0.8*dis,egret.Ease.sineIn).call(function(){
             //MyTool.removeMC(mc);
-            MyTool.removeMC(mc);
+            AM.removeImg(mc);
             if(fun)
                 fun.apply(thisObj);
         });
@@ -251,7 +254,8 @@ class PKMainMV {
 
      //输助
     public playBullet2_(id,from,to,xy?,cd?){
-        var mc = new eui.Image('bullet' + id + '_png');
+        var AM = AniManager.getInstance();
+        var mc = AM.getImg('bullet' + id + '_png');
         if(id == 8)
         {
             mc.anchorOffsetX = 20;
@@ -277,7 +281,7 @@ class PKMainMV {
         tw.wait(cd).call(function(){
             baseFrom.parent.addChild(mc);
         }).to({y:to.y,x:to.x,scaleY:1}, 0.8*dis,egret.Ease.sineIn).call(function(){
-            MyTool.removeMC(mc);
+            AM.removeImg(mc);
         });
     }
 

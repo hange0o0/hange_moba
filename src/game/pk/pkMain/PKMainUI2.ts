@@ -93,6 +93,7 @@ class PKMainUI extends game.BaseUI {
     private itemHeight = 110;
     private barWidth = 220;
     private fightHeight = 425
+    private fightWidth = 640
     private conHeight = 960
 
 

@@ -65,6 +65,8 @@ class CollectUI extends game.BaseUI {
         this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
         this.sortGroup.visible = false;
+
+        this.closeBtn.visible = false;
     }
 
     private onListChoose(){
@@ -79,6 +81,11 @@ class CollectUI extends game.BaseUI {
     }
 
     private onListChoose2(){
+        if(this.chooseMonster == this.listH.selectedItem.id)
+        {
+            this.onClose();
+            return
+        }
         this.chooseMonster = this.listH.selectedItem.id;
         this.renewMonster();
         for(var i=0;i<this.listH.numChildren;i++)

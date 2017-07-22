@@ -7,13 +7,13 @@ class PKPosManager {
         return this._instance;
     }
 
-    public controller;
+    public controller;  //random,fightHeight,itemArray
 
     //在PK区内找一空位置
     public findFightEmpty(startPoint,mapData,enemy?,enemyDis?){
         var startX = 60  + 60
         var startY = 100  + 60
-        var endX = 640-60 -60
+        var endX = this.controller.fightWidth-60 -60
         var endY = this.controller.fightHeight -60 -120 - 80
         var step = 10;
         while(true)
@@ -82,7 +82,7 @@ class PKPosManager {
 
     //是否不在PK区内
     public testOut(item,fun?){//,enemy?,enemyDis?,testEnemy?
-        if(item.x < 60 || item.x > 640 - 60 || item.y < 100 || item.y > this.controller.fightHeight-60-120 || this.isHitTestOther(item))// (testEnemy && MyTool.getDis(item,enemy)<enemyDis))
+        if(item.x < 60 || item.x > this.controller.fightWidth - 60 || item.y < 100 || item.y > this.controller.fightHeight-60-120 || this.isHitTestOther(item))// (testEnemy && MyTool.getDis(item,enemy)<enemyDis))
         {
             var startPoint = item;
             if(!item.action)
@@ -120,10 +120,10 @@ class PKPosManager {
         for(var i=0;i<arr.length;i++)
         {
             var oo = arr[i];
-            if(!oo.out)
-            {
+            //if(!oo.out)
+            //{
                 map[oo.id] = {x:oo.x,y:oo.y}
-            }
+            //}
         }
         return map;
     }
@@ -147,19 +147,19 @@ class PKPosManager {
             if(oo != item && MyTool.getDis(toXY,nowXY) < 120)
             {
                 delete map[oo.id];
-                var newPos = this.findRoundPos(oo,map,30)
+                var newPos = this.findInPos(oo,map,30)
                 if(!newPos)
-                    newPos = this.findRoundPos(oo,map,60)
+                    newPos = this.findInPos(oo,map,60)
                 if(!newPos)
-                    newPos = this.findRoundPos(oo,map,90)
+                    newPos = this.findInPos(oo,map,90)
                 if(!newPos)
-                    newPos = this.findRoundPos(oo,map,120)
+                    newPos = this.findInPos(oo,map,120)
 
                 if(newPos)
                     jumpArr.push({item:oo,newPos:newPos});
                 else
                 {
-                    newPos = this.findEmptyPos(oo,map,160)
+                    newPos = this.findOutPos(oo,map,160)
                     jumpArr.push({item:oo,newPos:newPos,jump:true});
                 }
 
@@ -171,6 +171,7 @@ class PKPosManager {
         for(var i=0;i<jumpArr.length;i++)
         {
             var oo = jumpArr[i];
+            //egret.Tween.removeTweens(oo.item);
             if(oo.jump)
                 VM.jumpToXY(oo.item,oo.newPos)
             else
@@ -180,11 +181,11 @@ class PKPosManager {
     }
 
     //找自己附近的位置
-    public findRoundPos(item,mapData,limit):any{
+    public findInPos(item,mapData,limit):any{
         var ok = true;
         var startX = Math.max(60,item.x - limit);
         var startY = Math.max(100,item.y - limit);
-        var endX = Math.min(640-60, startX + limit*2);
+        var endX = Math.min(this.controller.fightWidth-60, startX + limit*2);
         var endY = Math.min(this.controller.fightHeight-80, startY + limit*2);
 
         if(!item.isPKing)
@@ -215,19 +216,19 @@ class PKPosManager {
                 return xy;
             }
         }
-        return this.findRoundPos(item,mapData,limit + 50);
+        return this.findInPos(item,mapData,limit + 50);
 
     }
 
     //找自己附近的位置外，查找最近的空位置
-    public findEmptyPos(item,mapData,limit):any{
+    public findOutPos(item,mapData,limit):any{
         var step = 10;//10次后会变成全屏
         var x1 = Math.max(60,item.x - limit)
-        var x2 = Math.min(640-60,item.x + limit)
+        var x2 = Math.min(this.controller.fightWidth-60,item.x + limit)
         var y1 = Math.max(80,item.y - limit)
         var y2 = Math.min(this.controller.fightHeight-80,item.y + limit);
         var stepX1 = (x1-60)/5
-        var stepX2 = (640-60 - x2)/5
+        var stepX2 = (this.controller.fightWidth-60 - x2)/5
         var stepY1 = (y1-80)/10
         var stepY2 = (this.controller.fightHeight-80 - y2)/10;
 
@@ -356,5 +357,10 @@ class PKPosManager {
             y2 = endY
         }
         return {x:item.x,y:item.y};//找不到就不动了
+    }
+
+    public jumpToXY(item,newPos,fun?){
+        var VM = PKMainMV.getInstance();
+        VM.jumpToXY(item,newPos,fun,this.controller)
     }
 }
