@@ -98,6 +98,8 @@ class MapMainUI2 extends game.BaseUI {
         this.con.addChild(this.con1)
         this.con.addChild(this.con2)
 
+
+
     }
 
     public random(){
@@ -106,6 +108,10 @@ class MapMainUI2 extends game.BaseUI {
 
     private setTimeout(fun,cd,data?){
         var tw:egret.Tween = egret.Tween.get(this);
+        tw.wait(cd).call(fun,this,data)
+    }
+    private setInterval(fun,cd,data?){
+        var tw:egret.Tween = egret.Tween.get(this,{loop:true});
         tw.wait(cd).call(fun,this,data)
     }
 
@@ -206,6 +212,9 @@ class MapMainUI2 extends game.BaseUI {
 
     public onShow(){
         this.fightHeight = (this.stage.stageHeight - 410) //+ 320
+        this.con1.y = this.fightHeight/2 + 30
+        this.con2.y = this.fightHeight/2 - 30
+
         PKPosManager.getInstance().controller = this;
         this.onMapChange();
 
@@ -235,28 +244,87 @@ class MapMainUI2 extends game.BaseUI {
         MD.setPKDisplayData();
         this.stopAll();
         this.isStop = false;
-        this.onTimer();
+
 
         this.myMonsterList = MonsterVO.getListByLevel(UM.level);
         this.enemyMonsterList = MonsterVO.getListByLevel(MD.level);
-        this.con1.y = this.fightHeight/2+100
-        this.con2.y = this.fightHeight/2-100
-        this.addPlayer();
 
         this.showCound(true)
         this.showCound(true)
+
+        this.onTimer();
+        this.setInterval(this.onCD,200)
+    }
+
+
+
+    private onCD(){
+        this.removeDie()
+        for(var i=0;i<5;i++)
+        {
+            if(Math.random() > 0.4 + this.getLineNum(1,i)*0.15)
+                this.addLine(1,i)
+            if(Math.random() > 0.4 + this.getLineNum(2,i)*0.15)
+                this.addLine(2,i);
+        }
+        if(Math.random() > 0.5)
+            this.selfAtk();
+        if(Math.random() > 0.5)
+            this.enemyAtk();
+
+    }
+
+    //向前一格
+    private walkItem(item,index){
+        this.posData[item.key] = null;
+        var keyArr = item.key.split('_');
+        var toIndex = parseInt(keyArr[2]) - 1
+        keyArr[2]  =toIndex
+
+        item.line = toIndex;
+        item.key = keyArr.join('_');
+        this.posData[item.key] = item;
+
+        var yy = toIndex * 130 + 60;
+        if(keyArr[0] == 2)
+        {
+            yy = -yy;
+        }
+        if(item.y != yy)
+        {
+            var VM = PKMainMV.getInstance();
+            VM.walkTo(item,{x:item.x,y:yy},null,null,index * 200)
+        }
+    }
+
+    private getLineNum(team,column){
+        var count = 0;
+        for(var i=0;i<5;i++)
+        {
+            if(this.posData[team+'_'+column+'_' + i])
+                count ++;
+        }
+        return count
     }
 
     private addLine(team,column){
         var list = [];
-        for(var i=0;i<4;i++)
+        var index = 0;
+        for(var i=1;i<5;i++)
         {
             var key = team+'_'+column+'_' + i;
-            if(this.posData[key])
-                list.push(this.posData[key])
+            var frontKey = team+'_'+column+'_' + (i-1);
+            var frontItem = this.posData[frontKey];
+            var item = this.posData[key];
+            if(item && !item.moving && !frontItem && (!item.isAtking || egret.getTimer() - item.isAtking > 2000)) //要向前走
+            {
+                this.walkItem(item,index);
+                index ++;
+                return;
+            }
         }
 
-        if(list.length < 4)
+        if(!this.posData[team+'_'+column+'_'+3])
         {
             var item:any = this.getItem();
             item.x = column * 120 + 20
@@ -273,98 +341,91 @@ class MapMainUI2 extends game.BaseUI {
                 item.y = -500
             }
             item.line = -1;
+            item.key = team+'_'+column+'_'+4;
             list.push(item)
             this.itemArray.push(item);
 
-            for(var i=0;i<4;i++)
+            this.walkItem(item,index);
+        }
+    }
+
+    //private addPlayer(){
+    //    //var MD = MapData.getInstance();
+    //    var add = false
+    //    for(var i=0;i<5;i++)
+    //    {
+    //        add = this.addLine(1,i) || add;
+    //        add = this.addLine(2,i) || add;
+    //    }
+    //    if(add)
+    //        this.setTimeout(this.addPlayer,500)
+    //    else
+    //        this.pk();
+    //}
+    //
+    //private pk(){
+    //    var tw = egret.Tween.get(this.con1);
+    //    this.con1.y = this.fightHeight/2+100;
+    //    //tw.to({y:this.con1.y + 30},200,egret.Ease.sineOut).wait(200).to({y:this.fightHeight/2-10},400,egret.Ease.sineIn)
+    //    //.to({y:this.fightHeight/2+10},200).wait(1000)
+    //    //for(var i=0;i<10;i++)
+    //    //{
+    //    //    tw.call(this.selfAtk,this).wait(200);
+    //    //}
+    //    //tw.wait(800).to({y:this.fightHeight/2+100},400).wait(500)
+    //
+    //
+    //    var tw = egret.Tween.get(this.con2);
+    //    this.con2.y = this.fightHeight/2-100;
+    //    //tw.to({y:this.con2.y - 30},200,egret.Ease.sineOut).wait(200).to({y:this.fightHeight/2+10},400,egret.Ease.sineIn)
+    //    //    .to({y:this.fightHeight/2-10},200).call(this.collideDie,this).wait(1000);
+    //    //for(var i=0;i<10;i++)
+    //    //{
+    //    //    tw.call(this.enemyAtk,this).wait(200);
+    //    //}
+    //    //tw.wait(800).to({y:this.fightHeight/2-100},400).wait(500).call(this.readdPlayer,this)
+    //}
+
+    //private collideDie(){
+    //    var line1Arr = [];
+    //    for(var i=0;i<this.itemArray.length;i++)
+    //    {
+    //        var item = this.itemArray[i];
+    //        if(item.die)
+    //            continue;
+    //        if(item.line == 0)
+    //            line1Arr.push(item)
+    //    }
+    //    ArrayUtil.random(line1Arr);
+    //
+    //    var index = 0;
+    //    while(Math.random() > 0.5 && line1Arr.length > 6){
+    //         this.showDie(line1Arr.pop(),null,index*200)
+    //        index ++;
+    //    }
+    //
+    //}
+
+    private removeDie(){
+        var t = egret.getTimer();
+        for(var i=0;i<this.itemArray.length;i++)
+        {
+            var item = this.itemArray[i];
+            if(item.die && t-item.die > 1000)
             {
-                var key = team+'_'+column+'_' + i;
-                item = list[i];
-                this.posData[key] = item;
-                if(item && item.line != i)
-                {
-                    item.line = i;
-                    var yy = i * 120 + 60;
-                    if(team == 2)
-                        yy = -yy;
-                    if(item.y != yy)
-                    {
-                        var tw = egret.Tween.get(item);
-                        tw.to({y:yy},Math.abs(item.y - yy))
-                    }
-                }
+                this.itemArray.splice(i,1);
+                this.freeItem(item);
+                delete this.posData[item.key];
+                i--;
             }
-            return true;
         }
-        return false;
-    }
-
-    private addPlayer(){
-        //var MD = MapData.getInstance();
-        var add = false
-        for(var i=0;i<5;i++)
-        {
-            add = this.addLine(1,i) || add;
-            add = this.addLine(2,i) || add;
-        }
-        if(add)
-            this.setTimeout(this.addPlayer,500)
-        else
-            this.pk();
-        //
-        //
-        //for(var i=0;i<4;i++)
-        //{
-        //    for(var j=0;j<5;j++)
-        //    {
-        //        var item = this.getItem();
-        //        this.con1.addChild(item);
-        //        item.data = {vo:ArrayUtil.randomOne(list1),team:1};
-        //        item.x = j * 120 + 20
-        //        item.y = i * 120 + 60
-        //        item.line = i;
-        //        this.itemArray.push(item);
-        //
-        //
-        //        var item = this.getItem();
-        //        this.con2.addChild(item);
-        //        item.data = {vo:ArrayUtil.randomOne(list2),team:2};
-        //        item.x = j * 120 + 20
-        //        item.y = -(i * 120 + 60)
-        //        item.line = i;
-        //        this.itemArray.push(item);
-        //    }
-        //}
-
-
-
-
-    }
-
-    private pk(){
-        var tw = egret.Tween.get(this.con1);
-        this.con1.y = this.fightHeight/2+100;
-        tw.to({y:this.fightHeight/2+10},300)
-        for(var i=0;i<10;i++)
-        {
-            tw.call(this.selfAtk,this).wait(200);
-        }
-        tw.wait(800).to({y:this.fightHeight/2+100},300).wait(500)
-
-        var tw = egret.Tween.get(this.con2);
-        this.con2.y = this.fightHeight/2-100;
-        tw.to({y:this.fightHeight/2-10},300);
-        for(var i=0;i<10;i++)
-        {
-            tw.call(this.enemyAtk,this).wait(200);
-        }
-        tw.wait(800).to({y:this.fightHeight/2-100},300).wait(500).call(this.readdPlayer,this)
     }
 
     //补充满玩家
-    private readdPlayer(){
-        this.pk();
-    }
+    //private readdPlayer(){
+    //    this.removeDie();
+    //    this.addPlayer();
+    //}
 
     //取攻击数据
     private getAtkObj(team){
@@ -376,18 +437,29 @@ class MapMainUI2 extends game.BaseUI {
             var item = this.itemArray[i];
             if(item.die)
                 continue;
+            if(item.moving)
+                continue;
             if(item.line >= 3)
                 continue;
             if(item.team == team)
             {
-                if(t - item.isAtking > 2000)
+                if(item.line > 0) //如果前面没人
+                {
+                    var keyArr = item.key.split('_');
+                    keyArr[2]  = 0
+                    if(!this.posData[keyArr.join('_')])
+                        continue;
+                }
+                if(!item.isAtking || t - item.isAtking > 2000)
                     atkerList.push(item);
                 continue;
             }
-            if(item.line < 2) //只会打前两排
+            if(item.line < 2 && !item.moving) //只会打前两排
             {
                 if(item.line == 1 && Math.random()>0.5)//第二排有一定几率不被攻击
+                {
                     continue
+                }
                 defendList.push(item);
             }
         }
@@ -429,7 +501,7 @@ class MapMainUI2 extends game.BaseUI {
 
 
     private testItemDie(item){
-        var b = true
+        var b = Math.random() > 0.7
         if(b)
         {
             this.showDie(item);
@@ -543,13 +615,15 @@ class MapMainUI2 extends game.BaseUI {
     }
 
 
-    private showDie(item,fun?){
+    private showDie(item,fun?,cd=-1){
+        if(cd == -1)
+            cd = 200;
+        item.die = egret.getTimer() + cd;
 
-        item.die = true;
         var x = item.x;
         var v = 2
         var tw:egret.Tween = egret.Tween.get(item);
-        tw.wait(200).to({x:x - 30}, 30*v).to({x:x + 20}, 50*v).to({x:x - 10}, 30*v).to({x:x}, 10*v).to({alpha:0}, 300);
+        tw.wait(cd).to({x:x - 30}, 30*v).to({x:x + 20}, 50*v).to({x:x - 10}, 30*v).to({x:x}, 10*v).to({alpha:0}, 300);
         if(fun)
             tw.call(fun,this);
     }
@@ -584,102 +658,4 @@ class MapMainUI2 extends game.BaseUI {
 
 
 
-
-
-
-
-
-
-
-
-
-     /////////////////*******************************************************************************************************
-    //要求这个item发话
-    private itemTalk(item){
-        if(Math.random() < 0.4)
-        {
-            this.showPKEMO(item)
-            return;
-        }
-        this.displayTalkWord({item:item,txt:this.getTalkStr(item)})
-    }
-
-    private displayTalkWord(data){
-        var talkItem = this.getTalkItem();
-        this.addChild(talkItem);
-        talkItem.setData(data);
-        for(var i=0;i<this.talkList.length;i++)//重叠了
-        {
-            var item = this.talkList[i];
-            if(item.active && item != talkItem)
-            {
-                if(Math.abs(item.y - talkItem.y) < 10 && Math.abs(item.x - talkItem.x) < 130)
-                {
-                    talkItem.remove()
-                    break;
-                }
-            }
-        }
-    }
-    private getTalkItem():PKTalkItem{
-        for(var i=0;i<this.talkList.length;i++)
-        {
-            if(!this.talkList[i].active)
-            {
-                return this.talkList[i];
-            }
-        }
-        var item:PKTalkItem = new PKTalkItem();
-        this.talkList.push(item);
-        return item;
-    }
-
-    private getEmoItem():PKEmoItem{
-        for(var i=0;i<this.emoList.length;i++)
-        {
-            if(!this.emoList[i].active)
-            {
-                return this.emoList[i];
-            }
-        }
-        var item:PKEmoItem = new PKEmoItem();
-        this.emoList.push(item);
-        return item;
-    }
-
-    //item发话,actionItem的行为进行评价
-    private getTalkStr(item){
-        var talkBase = PKManager.getInstance().pkWord
-        return this.getTalkData(item,talkBase);
-    }
-
-
-    //显示PK表情
-    private showPKEMO(item,actionItem?){
-        var talkBase = PKManager.getInstance().pkEmo
-        var id = this.getTalkData(item,talkBase);
-        if(id)
-        {
-            var emoItem = this.getEmoItem();
-            this.addChild(emoItem);
-            emoItem.setData({item:item,id:id});
-        }
-    }
-
-    private getTalkData(item,talkBase){
-        return ArrayUtil.randomOne(talkBase.map);
-    }
-
-    private showItemTalk(){
-        if(MapExchangeUI.getInstance().visible)
-            return;
-        if(this.openTime && egret.getTimer() - this.openTime < 1000)
-            return;
-        this.openTime = 0;
-        this.itemTalk(ArrayUtil.randomOne(this.itemArray))
-        if(Math.random() < 0.3)
-        {
-            this.setTimeout(this.showItemTalk,500);
-        }
-    }
 }

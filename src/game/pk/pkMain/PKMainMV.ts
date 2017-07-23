@@ -7,7 +7,32 @@ class PKMainMV {
         return this._instance;
     }
 
-
+    public walkTo(a,oo,fun1?,thisObj?,waitCD?){
+        a.parent.addChild(a);
+        a.moving = egret.getTimer();
+        //egret.Tween.removeTweens(a);
+        var tw:egret.Tween = egret.Tween.get(a);
+        var dis = MyTool.getDis(a,oo);
+        var cd = dis * (2 + Math.random());
+        var step = Math.ceil(cd/200)
+        cd = step*200
+        var tw2 = egret.Tween.get(a);
+        if(waitCD)
+        {
+            tw.wait(waitCD)
+            tw2.wait(waitCD)
+        }
+        while(step > 0)
+        {
+            step--;
+            tw2.to({scaleX:1.2,scaleY:1.2}, 100,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, 100,egret.Ease.sineIn);
+        }
+        tw.to(oo, cd).call(function(){
+            a.moving = 0;
+        });
+        if(fun1)
+            tw.call(fun1,thisObj)
+    }
 
 
     //移向指定玩家
