@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainPageItemSkin" width="30" height="30" currentState="normal" xmlns:e="http://ns.egret.com/eui" states="normal,choose,red" >
-	<e:Image source="point2_png" y="0" x="0" width="30" height="30" source.normal="point1_png" width.normal="20" height.normal="20" x.normal="5" y.normal="5" source.red="red_point_png"/>
-	<e:Group width="50" height="50" horizontalCenter="0" verticalCenter="0"/>
+<e:Skin class="MainPageItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width="95" height="120" >
+	<e:Image id="chooseMC" source="head_border_light2_png" y="3.33" scaleX="0.8" scaleY="0.8" x="-22"/>
+	<e:Image id="bg" x="0" scaleX="0.8" scaleY="0.8" source="main_pk3_png" bottom="0"/>
+	<e:Image id="redMC" source="red_point_png" y="29.31" x="64.34"/>
+	<e:Image id="lockMC" source="lock_icon_png" right="-10" bottom="0"/>
+
+
 </e:Skin>

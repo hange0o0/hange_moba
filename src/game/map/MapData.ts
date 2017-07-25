@@ -17,15 +17,15 @@ class MapData {
     public monsterValues:any = {};//每个怪对BOSS造成的伤害
     public bossCD = 0;
 
-    public pkList = []//pk中的队列(打完这个BOSS用的卡兵)
+    //public pkList = []//pk中的队列(打完这个BOSS用的卡兵)
     //public bakList = []//接着出场的队列(不参与打完这个BOSS)
-    public pkPool = []//pk生成的队列
-    public pkPoolLevel = 0;//生成PKPool标识
+    //public pkPool = []//pk生成的队列
+    //public pkPoolLevel = 0;//生成PKPool标识
 
 
-    public currentBossHp = 0
-    public currentBossMaxHp = 0
-    public setDisplayTime = 0;
+    //public currentBossHp = 0
+    //public currentBossMaxHp = 0
+    //public setDisplayTime = 0;
 
 
     public level = 1;
@@ -46,7 +46,7 @@ class MapData {
 
     public initData(){
         this.fillData(UM.pk_common.map || {});
-        this.resetPKPool();
+        //this.resetPKPool();
     }
 
     public addValue(v){
@@ -70,31 +70,31 @@ class MapData {
         this.serverBossCD = map.cd || 0;
     }
 
-    //重置怪物池
-    private resetPKPool(){
-        if(this.pkPoolLevel != UM.level)
-        {
-            this.pkPoolLevel = UM.level;
-            var list = MonsterVO.getListByLevel(UM.level);
-            if(this.pkPool.length > 0)
-            {
-
-                var addArr = []
-                for(var i=0;i<7;i++)
-                {
-                    var vo = this.pkPool.pop();
-                    var index = list.indexOf(vo);
-                    list.splice(index,1);
-                    addArr.push(vo);
-                }
-                this.pkPool = list.concat(addArr);
-            }
-            else
-            {
-                this.pkPool = list
-            }
-        }
-    }
+    ////重置怪物池
+    //private resetPKPool(){
+    //    if(this.pkPoolLevel != UM.level)
+    //    {
+    //        this.pkPoolLevel = UM.level;
+    //        var list = MonsterVO.getListByLevel(UM.level);
+    //        if(this.pkPool.length > 0)
+    //        {
+    //
+    //            var addArr = []
+    //            for(var i=0;i<7;i++)
+    //            {
+    //                var vo = this.pkPool.pop();
+    //                var index = list.indexOf(vo);
+    //                list.splice(index,1);
+    //                addArr.push(vo);
+    //            }
+    //            this.pkPool = list.concat(addArr);
+    //        }
+    //        else
+    //        {
+    //            this.pkPool = list
+    //        }
+    //    }
+    //}
 
     //private resetBakList(){
     //    while(this.bakList.length < 10)
@@ -104,17 +104,17 @@ class MapData {
     //}
 
     //取要出战的ID
-    private getPKID(){
-        return this.getOneID();//this.bakList.shift() ||
-    }
-    //生成一个ID
-    private getOneID(){
-        var index = Math.floor(Math.random() * (this.pkPool.length - 7));
-        var vo = this.pkPool[index]
-        this.pkPool.splice(index,1);
-        this.pkPool.push(vo);
-        return vo.id;
-    }
+    //private getPKID(){
+    //    return this.getOneID();//this.bakList.shift() ||
+    //}
+    ////生成一个ID
+    //private getOneID(){
+    //    var index = Math.floor(Math.random() * (this.pkPool.length - 7));
+    //    var vo = this.pkPool[index]
+    //    this.pkPool.splice(index,1);
+    //    this.pkPool.push(vo);
+    //    return vo.id;
+    //}
 
     public getBossVO(){
         var seed = this.lastTime;
@@ -125,10 +125,10 @@ class MapData {
     }
 
     //当前正在PK的对像已经过的时间
-    public getPKPass(){
-        var passcd = TM.now() - this.lastTime;
-        return passcd%this.showCD;
-    }
+    //public getPKPass(){
+    //    var passcd = TM.now() - this.lastTime;
+    //    return passcd%this.showCD;
+    //}
 
     //计算数据
     public reInit(){
@@ -147,59 +147,59 @@ class MapData {
         }
     }
 
-    public getNeedNum(){
-        var cd = this.getCurrentCD();  //打完一个BOSS需要的时间
-        return Math.round(cd / this.showCD);
-    }
+    //public getNeedNum(){
+    //    var cd = this.getCurrentCD();  //打完一个BOSS需要的时间
+    //    return Math.round(cd / this.showCD);
+    //}
 
-    public setPKDisplayData(){
-        if(this.setDisplayTime == this.lastTime)  //都是同一批次，不用重新计算
-        {
-            this.resetHp();
-            return;
-        }
-        var needNum = this.getNeedNum();
-        var cd = this.getCurrentCD()
-        if(this.setDisplayTime + cd == this.lastTime) //相邻的批次
-        {
-            this.pkList.splice(0,needNum-1);
-        }
-        else //相差太远，重置
-        {
-            this.pkList.length = 0;
-        }
-        this.setDisplayTime = this.lastTime;
-        var count = needNum + 10
-        while(this.pkList.length < count)
-        {
-            this.pkList.push(this.getPKID());
-        }
-        //this.resetBakList();
+    //public setPKDisplayData(){
+    //    if(this.setDisplayTime == this.lastTime)  //都是同一批次，不用重新计算
+    //    {
+    //        this.resetHp();
+    //        return;
+    //    }
+    //    var needNum = this.getNeedNum();
+    //    var cd = this.getCurrentCD()
+    //    if(this.setDisplayTime + cd == this.lastTime) //相邻的批次
+    //    {
+    //        this.pkList.splice(0,needNum-1);
+    //    }
+    //    else //相差太远，重置
+    //    {
+    //        this.pkList.length = 0;
+    //    }
+    //    this.setDisplayTime = this.lastTime;
+    //    var count = needNum + 10
+    //    while(this.pkList.length < count)
+    //    {
+    //        this.pkList.push(this.getPKID());
+    //    }
+    //    //this.resetBakList();
+    //
+    //    //计算血量
+    //    this.resetHp();
+    //}
 
-        //计算血量
-        this.resetHp();
-    }
-
-    private resetHp(){
-        var needNum = this.getNeedNum();
-        var pkIndex = this.getPKingIndex();
-        this.currentBossHp = 0
-        this.currentBossMaxHp = 0
-        for(var i=0;i<needNum;i++)
-        {
-            var id = this.pkList[i];
-            this.currentBossMaxHp += this.monsterHurts[id];
-            if(i>= pkIndex)
-                this.currentBossHp += this.monsterHurts[id];
-        }
-    }
+    //private resetHp(){
+    //    var needNum = this.getNeedNum();
+    //    var pkIndex = this.getPKingIndex();
+    //    this.currentBossHp = 0
+    //    this.currentBossMaxHp = 0
+    //    for(var i=0;i<needNum;i++)
+    //    {
+    //        var id = this.pkList[i];
+    //        this.currentBossMaxHp += this.monsterHurts[id];
+    //        if(i>= pkIndex)
+    //            this.currentBossHp += this.monsterHurts[id];
+    //    }
+    //}
 
 
     //当前正在打的坐标
-    public getPKingIndex(){
-        var passCD = (TM.now() - this.lastTime);
-        return Math.floor(passCD / this.showCD);
-    }
+    //public getPKingIndex(){
+    //    var passCD = (TM.now() - this.lastTime);
+    //    return Math.floor(passCD / this.showCD);
+    //}
 
     ////一个卡兵出战完毕
     //public onPKOneFinish(){
@@ -207,10 +207,10 @@ class MapData {
     //    this.currentBossHp -= this.monsterHurts[id];
     //}
 
-    public onKillBoss(){
-        this.reInit();
-        this.setPKDisplayData();
-    }
+    //public onKillBoss(){
+    //    this.reInit();
+    //    this.setPKDisplayData();
+    //}
 
 
 

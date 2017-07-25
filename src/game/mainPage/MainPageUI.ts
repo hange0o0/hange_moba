@@ -13,21 +13,11 @@ class MainPageUI extends game.BaseUI {
 
     private bottomMV: eui.Image;
     private starGroup: eui.Group;
-    private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
     private dayGame: MainDayItem;
     private mapGame: MainMapItem;
     private serverGame: MainServerItem;
     private serverGameEqual: MainServerEqualItem;
-    private scroller: eui.Scroller;
-    private scrollGroupCon: eui.Group;
-    private p0: MainPageItem;
-    private p1: MainPageItem;
-    private p2: MainPageItem;
-    private p3: MainPageItem;
-    private p4: MainPageItem;
-    private leftBtn: eui.Image;
-    private rightBtn: eui.Image;
     private helpGroup: eui.Group;
     private helpMask: eui.Rect;
     private helpText: eui.Label;
@@ -40,6 +30,7 @@ class MainPageUI extends game.BaseUI {
     private leaderRed: eui.Image;
     private leaderLockMC: eui.Image;
     private rankBtn: eui.Group;
+    private rankRed: eui.Image;
     private collectBtn: eui.Group;
     private collectRed: eui.Image;
     private friendBtn: eui.Group;
@@ -67,8 +58,12 @@ class MainPageUI extends game.BaseUI {
     private diamonDrawBtn: eui.Group;
     private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
-    private topPlayerTips: TopPlayerTips;
     private mainTask: MainTaskUI;
+    private page0: MainPageItem;
+    private page1: MainPageItem;
+    private page2: MainPageItem;
+    private page3: MainPageItem;
+    private page4: MainPageItem;
 
 
 
@@ -89,19 +84,19 @@ class MainPageUI extends game.BaseUI {
 
 
 
+
+
+    private itemX = 320
+    private itemY = 300
 
     private gameItems = [];
     private pageArray = [];
     public currentPage= 0;
-    private startPos;
-    private playHeadTime = 0;
 
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.headMC, this.onHead);
 
-        this.addBtnEvent(this.leftBtn, this.onLeft);
-        this.addBtnEvent(this.rightBtn, this.onRight);
         this.addBtnEvent(this.coinGroup,this.onAddCoin);
         this.addBtnEvent(this.diamondGroup,this.onAddDiamond);
         this.addBtnEvent(this.energyGroup,this.onAddEnergy);
@@ -138,6 +133,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.pk_start,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.get_card,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.energy_change,this.scrollToCurrentPage,this);
+        EM.addEvent(GameEvent.client.main_level_change,this.onMainLevelChange,this);
 
 
         EM.addEvent(GameEvent.client.monster_level_change,this.renewCollectRed,this);
@@ -166,17 +162,11 @@ class MainPageUI extends game.BaseUI {
 
         for(var i=0;i<=4;i++)
         {
-            var mc = this['p'+i];
+            var mc = this['page'+i]
+            mc.data = i;
             this.pageArray.push(mc);
-            this.addBtnEvent(mc,this.onPageClick)
         }
 
-
-        //this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
-        this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
-        this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
-
-        this.topPlayerTips.hide();
         this.leaderRed.visible = false
 
 
@@ -189,8 +179,11 @@ class MainPageUI extends game.BaseUI {
         {
             var item = this.gameItems[i];
             item.visible = false;
+            item.index = i;
             item.anchorOffsetX = 320;
-            item.x = 320 + 320*i
+            item.anchorOffsetY = 300;
+            item.x = this.itemX
+            item.y = this.itemY
         }
     }
 
@@ -261,6 +254,10 @@ class MainPageUI extends game.BaseUI {
         this.friendRed.visible = FM.friendRed();
     }
 
+    private onPassDay(){
+        this.rankRed.visible = true;
+    }
+
     private onTimer(){
         var cd = UM.getNextDrawCD()
         var b = cd <= 0;
@@ -290,16 +287,8 @@ class MainPageUI extends game.BaseUI {
 
             if(!this.bottomMV.visible && Math.random() < 0.2 && (egret.getTimer() - this.bottomMV['playTimer']) > 5*1000)
                 this.playerBottomMV();
+        }
 
-            if(egret.getTimer() > this.playHeadTime){
-                this.playHeadTime = egret.getTimer() + 20*1000
-                this.playRankHead();
-            }
-        }
-        else if(egret.getTimer() > this.playHeadTime-5*1000)
-        {
-            this.playHeadTime = egret.getTimer() + 5*1000;
-        }
     }
 
     private playerBottomMV(){
@@ -418,150 +407,9 @@ class MainPageUI extends game.BaseUI {
     }
 
 
-    private onPageClick(e){
-        for(var i=0;i<=this.pageArray.length;i++)
-        {
-            var mc = this.pageArray[i];
-            if(mc == e.currentTarget)
-            {
-                if(i != this.currentPage)
-                {
-                    //var noMV = Math.abs(i - this.currentPage)>1
-                    this.currentPage = i;
-                    this.scrollToCurrentPage();
-                    this.renewPage();
-                }
-                break;
-            }
-        }
-    }
-
-    private onBegin(e:egret.TouchEvent){
-        if(GuideManager.getInstance().isGuiding)
-            return;
-        //if(this.scrollGroup.x>=0)
-        //    return;
-        //if(this.scrollGroup.x <= (-4 * 360))
-        //    return;
-        //if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
-        //{
-        //    return;
-        //}
-
-        this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
-        this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
-
-        this.startPos = {x:e.stageX,tx:this.scrollGroup.x};
-
-    }
-
-    private onMove(e:egret.TouchEvent){
-
-        if(!this.startPos.drag)
-        {
-            if(Math.abs(e.stageX - this.startPos.x) > 10)
-            {
-                this.startPos.drag = true;
-            }
-        }
-        if(this.startPos.drag)
-        {
-            if(this.scrollGroup.x>=0 && e.stageX-this.startPos.x > 0)
-                return;
-            if(this.scrollGroup.x <= (-(this.gameItems.length - 1) * 320)  && e.stageX-this.startPos.x < 0)
-                return;
-            this.scrollGroup.x = this.startPos.tx + e.stageX-this.startPos.x;
-            this.renewGameItemShow();
-        }
-    }
-
-    private renewGameItemShow(){
-        var start = Math.round(-this.scrollGroup.x/320);
-        var item1 = this.gameItems[start];
-        var item2;
-        var targetPos = -start*320
-        if(targetPos > this.scrollGroup.x + 10)
-            item2 = this.gameItems[start + 1];
-        else if(targetPos < this.scrollGroup.x - 10)
-            item2 = this.gameItems[start - 1];
-
-
-        var rate = 1 - Math.abs(targetPos - this.scrollGroup.x)/320
-        if(item1)
-        {
-            item1.visible = true
-            item1.scaleX = item1.scaleY = rate/2 + 0.5
-            item1.alpha = rate;
-            if(!item1.haveRenew)
-                item1.renew()
-        }
-
-        if(item2)
-        {
-            item2.visible = true
-            item2.scaleX = item2.scaleY = (1-rate)/2 + 0.5
-            item2.alpha = (1-rate);
-            if(!item2.haveRenew)
-                item2.renew()
-        }
-
-        for(var i=0;i<this.gameItems.length;i++)
-        {
-            if(this.gameItems[i] == item1)
-                continue
-            if(this.gameItems[i] == item2)
-                continue
-            this.gameItems[i].visible = false
-        }
-
-    }
-
-    private onEnd(e:egret.TouchEvent){
-        this.scrollGroup.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
-        this.scrollGroup.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
-        if(Math.abs(this.scrollGroup.x - this.startPos.tx) > 150)//可翻页
-        {
-            if(this.scrollGroup.x > this.startPos.tx)//右移
-            {
-                this.onLeft();
-            }
-            else
-            {
-                this.onRight();
-            }
-
-        }
-        else
-        {
-            this.scrollToCurrentPage();
-        }
-
-    }
-
-    //滚动后防止按钮事件被触发
-    private onTouchTap(e:egret.TouchEvent){
-        if(this.startPos && this.startPos.drag)
-        {
-            e.stopPropagation();
-        }
-    }
-
-
 
     private onHead(){
          MyInfoUI.getInstance().show();
-    }
-    private onLeft(){
-        if(this.currentPage > 0)
-            this.currentPage --;
-        this.scrollToCurrentPage();
-        this.renewPage();
-    }
-    private onRight(){
-        if(this.currentPage < this.pageArray.length - 1)
-            this.currentPage ++;
-        this.scrollToCurrentPage();
-        this.renewPage();
     }
 
 
@@ -571,55 +419,20 @@ class MainPageUI extends game.BaseUI {
     private onCollect(){
         CollectUI.getInstance().show();
     }
-    //private onBag(){
-    //    BagUI.getInstance().show();
-    //
-    //}
-    //private onMap(){
-    //    if(UM.main_game.level < Config.mapLevel)
-    //    {
-    //        Alert('你现在还实力还不适宜进入野外，赶快把实力提升到' + this.createHtml('卡士一阶',0xE0A44A)+'再来吧~')
-    //        return;
-    //    }
-    //    MapUI.getInstance().show();
-    //}
 
     private onTeam(){
         TeamDungeonMain.getInstance().show();
     }
     private onRank(){
+        this.rankRed.visible = false
+        SharedObjectManager.instance.setMyValue('rank_red',TM.now())
         RankUI.getInstance().show();
 
     }
     private onLeader(){
         Alert('领队系统尚未开放')
     }
-    //private onTec(){
-    //    TecUI.getInstance().show();
-    //
-    //}
 
-
-    //private onMain(){
-    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
-    //    MainGameUI.getInstance().show();
-    //
-    //}
-    //private onServer(){
-    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
-    //    ServerGameUI.getInstance().show();
-    //
-    //}
-    //private onServerEqual(){
-    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
-    //    ServerGameEqualUI.getInstance().show();
-    //
-    //}
-    //private onDay(){
-    //    SoundManager.getInstance().playEffect(SoundConfig.effect_join);
-    //    DayGameUI.getInstance().show();
-    //
-    //}
 
     public onShow(){
         this.currentPage = SharedObjectManager.instance.getMyValue('main_page') || 0;
@@ -646,6 +459,8 @@ class MainPageUI extends game.BaseUI {
         this.renewCollectRed();
         this.renewHonorRed();
         this.renewTask();
+
+        this.rankRed.visible = !DateUtil.isSameDay(SharedObjectManager.instance.getMyValue('rank_red') || 0) && RankManager.getInstance().isRankOpen()
 
         this.mainTask.visible = !GuideManager.getInstance().isGuiding;
         if(!UM.active.task[1] || TaskVO.getObject(UM.active.task[1]).index < 30)
@@ -690,6 +505,7 @@ class MainPageUI extends game.BaseUI {
         this.bottomMV.visible = false
         this.bottomMV['playTimer'] = 0;
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer);
+        this.addPanelOpenEvent(GameEvent.client.pass_day,this.onPassDay);
         this.onTimer();
     }
 
@@ -742,6 +558,11 @@ class MainPageUI extends game.BaseUI {
     public onLevelChange(){
         this.friendLockMC.visible = UM.level < Config.friendLevel;
         this.teamLockMC.visible = UM.level < Config.friendLevel;
+        this.renewPage();
+        this.scrollToCurrentPage(true);
+    }
+    public onMainLevelChange(){
+        this.renewPage();
         this.scrollToCurrentPage(true);
     }
 
@@ -751,12 +572,6 @@ class MainPageUI extends game.BaseUI {
             this.energyText.text = energy + '/' + UM.maxEnergy;
         else
             this.setHtml(this.energyText,this.createHtml(DateUtil.getStringBySecond(UM.getNextEnergyCD()).substr(-5),0xFF0000));
-        //if(UM.energy.v >= UM.maxEnergy) //full
-        //    this.energyText.textColor = 0xF9D36C
-        //else if(UM.energy.v == 0) //empty
-        //    this.energyText.textColor = 0xFC8C8C
-        //else
-        //    this.energyText.textColor = 0xCCCCCC
 
     }
 
@@ -765,89 +580,107 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewHelp(){
-        this.helpText.x = 380;
+        this.helpText.x = 350;
         this.setHtml(this.helpText,HelpManager.getInstance().getInfoText());
         egret.Tween.removeTweens(this.helpText);
         var tw:egret.Tween = egret.Tween.get(this.helpText);
-        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + 560+100)*20).call(this.renewHelp,this);
+        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + 350+100)*20).call(this.renewHelp,this);
+    }
+
+    public clickPage(page){
+         if(this.currentPage == page)
+            return;
+        this.currentPage = page
+        this.renewPage();
+        this.scrollToCurrentPage();
     }
 
     public renewPage(){
-        if(this.currentPage == 0)
-            this.leftBtn.visible = false;
-        else
-            this.leftBtn.visible = true;
-
-        if(this.currentPage == this.pageArray.length - 1)
-            this.rightBtn.visible = false;
-        else
-            this.rightBtn.visible = true;
-
         for(var i=0;i<this.pageArray.length;i++)
         {
-            if(this.currentPage == i)
+            this.pageArray[i].dataChanged();
+        }
+    }
+
+    //移出动画
+    private movieOut(item){
+        if(!item.visible)
+            return
+        egret.Tween.removeTweens(item);
+        item.scaleX =  item.scaleY = 1;
+        item.alpha = 1;
+        item.x = this.itemX;
+        item.y = this.itemY;
+
+        var pageItem = this.pageArray[item.index];
+        var p = pageItem.localToGlobal(pageItem.width/2,pageItem.height/2)
+        var p = item.parent.globalToLocal(p.x,p.y,p);
+        var tw = egret.Tween.get(item);
+        tw.to({x:p.x,y:p.y,alpha:0.3,scaleX:0.2,scaleY:0.2},300).call(function(){
+            item.visible = false;
+        })
+    }
+    //移入动画
+    private movieIn(item){
+
+        item.visible = true;
+        egret.Tween.removeTweens(item);
+        item.scaleX =  item.scaleY = 0.2;
+        item.alpha = 0.3;
+        item.parent.addChild(item);
+
+        var pageItem = this.pageArray[item.index];
+        var p = pageItem.localToGlobal(pageItem.width/2,pageItem.height/2)
+        var p = item.parent.globalToLocal(p.x,p.y,p);
+
+        item.x = p.x;
+        item.y = p.y;
+
+        var tw = egret.Tween.get(item);
+        tw.to({x:this.itemX,y:this.itemY,alpha:1,scaleX:1,scaleY:1},300).call(function(){
+
+        })
+    }
+
+    private changeAtOnce(){
+        for(var i=0;i<this.gameItems.length;i++)
+        {
+            var item = this.gameItems[i];
+            item.visible = this.currentPage == i
+            egret.Tween.removeTweens(item);
+            if(item.visible)
             {
-                this.pageArray[i].data = true;
-            }
-            else
-            {
-                if(i==0 && !(UM.main_game.awardtime && DateUtil.isSameDay(UM.main_game.awardtime)))
-                    this.pageArray[i].data = 'red';
-                else if(i==2)
-                {
-                    var MD = MapData.getInstance();
-                    if(MD.lastTime) {
-                        MD.reInit();
-                        var awardMax = MD.getAwardMax();
-                        if (MD.bag >= awardMax)
-                            this.pageArray[i].data = 'red';
-                        else
-                            this.pageArray[i].data = false;
-                    } else
-                        this.pageArray[i].data = false;
-                }
-                else
-                    this.pageArray[i].data = false;
+                item.scaleX =  item.scaleY = 1;
+                item.alpha = 1;
+                item.x = this.itemX;
+                item.y = this.itemY;
             }
         }
     }
 
     public scrollToCurrentPage(nomovie=false){
         SharedObjectManager.instance.setMyValue('main_page',this.currentPage);
-        egret.Tween.removeTweens(this.scrollGroup)
         var pageSize = 320
         var targetX = -this.currentPage * pageSize;
         //this.scroller.viewport.scrollV = 0;
+
+
         if(nomovie)
         {
-            this.scrollGroup.x = targetX;
-            this.renewGameItemShow()
+            this.changeAtOnce();
         }
-        else if(this.scrollGroup.x != targetX)
+        else
         {
-            var tw:egret.Tween = egret.Tween.get(this.scrollGroup,{onChange:this.renewGameItemShow,onChangeObj:this});
-            //var lastPage =  Math.floor(Math.max(0,-this.scrollGroup.x)/pageSize);
-            //var des = lastPage - this.currentPage
-            //if(Math.abs(des) > 1)
-            //{
-            //    des > 0?des--:des++;
-            //    this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
-            //    targetX = -(this.currentPage+des) * pageSize;
-            //    tw.to({x: targetX}, Math.min(200,200*Math.abs(targetX-this.scrollGroup.x)/pageSize)).call(function(){
-            //        //this.scrollGroup.swapChildrenAt(this.currentPage,this.currentPage +des);
-            //        //重新排序，保证一至
-            //        this.scrollGroup.addChild(this.mainGame)
-            //        this.scrollGroup.addChild(this.dayGame)
-            //        this.scrollGroup.addChild(this.mapGame)
-            //        this.scrollGroup.addChild(this.serverGame)
-            //        this.scrollGroup.addChild(this.serverGameEqual)
-            //        this.scrollToCurrentPage(true);
-            //    },this);
-            //}
-            //else {
-                tw.to({x: targetX}, Math.min(200 * Math.abs(targetX - this.scrollGroup.x) / pageSize));
-            //}
+            for(var i=0;i<this.gameItems.length;i++)
+            {
+                var item = this.gameItems[i];
+                if(this.currentPage == i)
+                    this.movieIn(item)
+                else
+                    this.movieOut(item)
+            }
         }
+
         var currentView;
         switch(this.currentPage)
         {
@@ -877,13 +710,12 @@ class MainPageUI extends game.BaseUI {
         if(currentView)
         {
             currentView.renew();
-            this.playHeadTime = Math.max(this.playHeadTime,egret.getTimer() + 5*1000);
         }
     }
 
-    private playRankHead(){
-        RankManager.getInstance().renewPageHead(this.topPlayerTips);
-    }
+    //private playRankHead(){
+    //    RankManager.getInstance().renewPageHead(this.topPlayerTips);
+    //}
 
 
 }

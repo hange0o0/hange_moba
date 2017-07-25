@@ -139,7 +139,10 @@ class SyncManager{
                     }
                     var nowLevel = MainGameManager.getInstance().getMainStep()
                     if(nowLevel > lastLevel)
+                    {
                         data.g_level_up = nowLevel;
+                        EM.dispatch(GameEvent.client.main_level_change);
+                    }
                     break;
                 case 'sync_day_game':
                     for(ss in value)

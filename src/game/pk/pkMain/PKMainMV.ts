@@ -14,8 +14,8 @@ class PKMainMV {
         var tw:egret.Tween = egret.Tween.get(a);
         var dis = MyTool.getDis(a,oo);
         var cd = dis * (2 + Math.random());
-        var step = Math.ceil(cd/200)
-        cd = step*200
+        var step = Math.ceil(cd/150)
+        cd = step*150
         var tw2 = egret.Tween.get(a);
         if(waitCD)
         {
@@ -34,6 +34,44 @@ class PKMainMV {
             tw.call(fun1,thisObj)
     }
 
+    private linePool = []
+    public drawLine(from,to,team,con?){
+         var rect:eui.Rect = this.linePool.pop()
+        if(!rect)
+        {
+            rect = new eui.Rect()
+            rect.width = 4
+            rect.fillAlpha = 0.5
+            rect.anchorOffsetX = 2
+        }
+        if(con)
+            con.addChildAt(rect,0)
+        else
+            from.parent.addChildAt(rect,0);
+
+        var dis = MyTool.getDis(from,to);
+
+        if(team == 2)
+        {
+            rect.fillColor = 0x550000;
+        }
+        else
+        {
+            rect.fillColor = 0x000055;
+        }
+
+        rect.height = 0;
+        rect.alpha = 1;
+        rect.x = from.x;
+        rect.y = from.y;
+        rect.rotation = this.getRota(from,to) + 180;
+        var tw:egret.Tween = egret.Tween.get(rect);
+        tw.to({height:dis},Math.min(300,dis*2)).wait(200).to({alpha:0.3},200).call(function(){
+            MyTool.removeMC(rect);
+            this.linePool.push(rect)
+        },this)
+    }
+
 
     //移向指定玩家
     public moveToTarget(a,b,fun1?,thisObj?,waitCD?){
@@ -41,13 +79,14 @@ class PKMainMV {
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var dis = MyTool.getDis(a,b);
-        var rate = 100/dis;
+        var rate = (a.atkDis || 100)/dis;
+        //var rate = 100/dis;
         var x = b.x - (b.x - a.x)*rate;
         var y = b.y - (b.y - a.y)*rate;
         var oo = {x:x,y:y};
         if(waitCD)
             tw.wait(waitCD)
-        tw.to(oo, Math.pow(dis-100,0.8) * 3,egret.Ease.sineIn);
+        tw.to(oo, Math.pow(dis-(a.atkDis || 100),0.8) * 3,egret.Ease.sineIn);
         if(fun1)
             tw.call(fun1,thisObj)
         return oo;
