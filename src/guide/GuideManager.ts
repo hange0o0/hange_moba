@@ -56,20 +56,14 @@ class GuideManager {
             fun:function(){
                 self.showGuide()
             },
-            text:'你想成为世界上最强大的卡士吗？你想成为那[万众瞩目]的唯一吗？',
-        })
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'那么，现在就让卡卡来带领你，踏上这成为[至强王者]之路吧！',
+            text:'你想成为世界上最强大的卡士吗？卡卡现在将带领你踏上这成为[至强王者]之路！',
         })
 
         this.addGuideObj({
             fun:function(){
                 self.showGuide()
             },
-            text:'但在这之前，我们必需得清楚一个问题：[什么是卡士?]',
+            text:'但在这之前，我们必需得弄清一个问题：[什么是卡士?]',
         })
         this.addGuideObj({
             fun:function(){
@@ -496,8 +490,8 @@ class GuideManager {
     }
 
     private getMainRect(){
-        var h = Math.min(580,GameManager.stage.stageHeight - 180 -130)
-        var top = (GameManager.stage.stageHeight - 180 -130 - h)/2 + 180
+        var h = GameManager.stage.stageHeight - 140 -260//Math.min(580,GameManager.stage.stageHeight - 180 -130)
+        var top = 140//(GameManager.stage.stageHeight - 180 -130 - h)/2 + 180
         return new egret.Rectangle(80,top,480,h);
     }
 

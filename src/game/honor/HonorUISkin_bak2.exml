@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="HonorUISkin_bak2" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+
+
+
+	<e:Image source="line_png" width="650" y="62" x="-5"/>
+	<e:List id="list" width="640" x="0" y="70">
+		<e:layout>
+			<e:TileLayout horizontalGap="0" requestedColumnCount="2"/>
+		</e:layout>
+
+	</e:List>
+
+
+
+
+	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="10" size="22" textColor="0xCCB48E" height="53" x="8" lineSpacing="5" verticalAlign="middle" width="100%" textAlign="center"/>
+
+
+
+
+
+</e:Skin>

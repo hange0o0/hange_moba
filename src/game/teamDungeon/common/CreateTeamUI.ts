@@ -148,6 +148,6 @@ class CreateTeamUI extends game.BaseWindow {
         this.setHtml(this.forceText,this.createHtml('卡士战力上限：',0xE0A44A) + hardData.force);
         this.setHtml(this.levelText,this.createHtml('卡兵等级上限：',0xE0A44A) + hardData.level + '级');
         this.sortText.text = hardData.label;
-        this.hardText.text = hardData.name + ' 难度限制';
+        this.hardText.text = '【' + hardData.name + '】限制：';
     }
 }

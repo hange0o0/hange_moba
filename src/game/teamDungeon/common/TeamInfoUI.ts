@@ -108,7 +108,7 @@ class TeamInfoUI extends game.BaseWindow {
     private renewSelect(){
         var data = this.teamData;
         var hardData:any = TeamDungeonManager.getInstance().hardData[data.game_data.hard-1];
-        this.hardText.text = hardData.name + '难度'
+        this.hardText.text = '【' + hardData.name + '】难度：'
         this.setHtml(this.forceText,this.createHtml('卡士战力上限：',0xE0A44A) + hardData.force);
         this.setHtml(this.levelText,this.createHtml('卡兵等级上限：',0xE0A44A) + hardData.level + '级');
 

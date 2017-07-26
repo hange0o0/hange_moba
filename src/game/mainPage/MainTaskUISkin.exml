@@ -9,8 +9,8 @@
 		</e:layout>
 	</e:List>
 	<e:Rect height="1" y="53" left="10" right="10" includeIn="open" fillColor="0x75572b"/>
-	<e:Group id="closeBtn" width="50" height="50" right="10" top="10">
-		<e:Image source="btn_close3_png" scaleX="0.5" scaleY="0.5" includeIn="open" x="22" y="4"/>
+	<e:Group id="closeBtn" width="50" height="50" right="10" includeIn="open" top="10">
+		<e:Image source="btn_close3_png" scaleX="0.5" scaleY="0.5" x="22" y="4"/>
 	</e:Group>
 	<e:Image id="redMC" source="red_point_png" right="-5" top="-5" includeIn="close"/>
 </e:Skin>

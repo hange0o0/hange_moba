@@ -152,6 +152,98 @@ class OtherInfoUI extends game.BaseUI {
         this.renew();
     }
 
+    private renewList(){
+        var dataIn = this.dataIn
+        var oo:any;
+        var list = [];
+        var FM = FriendManager.getInstance();
+        if(FM.friendData[dataIn.gameid])//是好友
+        {
+            var info = FM.friendData[dataIn.gameid].pk;
+            var win =0;
+            var fail =0;
+            if(info)
+            {
+                if(info.friend_key.indexOf(dataIn.gameid) == 0)
+                {
+                    win = Math.floor(info.win1);
+                    fail = Math.floor(info.win2);
+                }
+                else
+                {
+                    win = Math.floor(info.win2);
+                    fail = Math.floor(info.win1);
+                }
+            }
+            oo = {title:'好友切磋胜利次数',icon:'',des: win}
+            list.push(oo)
+            oo = {title:'好友切磋失败次数',icon:'',des: fail}
+            list.push(oo)
+        }
+        this.setText(this.levelText, '[等级：]$$','LV.'+ UM.level,'LV.'+ dataIn.level);
+        this.setText(this.forceText, '[战力：]$$',UM.getForce(),dataIn.force);
+
+
+        oo = {title:'玩家等级',icon:'',des: 'LV.' + dataIn.level,myValue:UM.level,otherValue:dataIn.level}
+        list.push(oo)
+
+        oo = {title:'总战力',icon:'',des: '' + dataIn.force, myValue:UM.getForce(), otherValue:dataIn.force}
+        list.push(oo)
+
+
+        oo = {title:'职业称号',icon:'',des: MainGameManager.getInstance().getStepName(dataIn.main_game.level) + ' [评分：'+ dataIn.main_game.level+']',
+            myValue:UM.main_game.level, otherValue:dataIn.main_game.level}
+        list.push(oo)
+
+        var myData = dataIn.day_game;
+        var myData2 = UM.day_game;
+
+        oo = {title:'10胜通关次数',icon:'',des: myData.times + '次',myValue:myData2.times, otherValue:myData.times}
+        list.push(oo)
+
+        oo = {title:'获得研究积分',icon:'',des: myData.score + '分',myValue:myData2.score, otherValue:myData.score}
+        list.push(oo)
+
+
+        var otherLevel = dataIn.map_level;
+        oo = {title:'到达最高据点',icon:'',des: '第'+(otherLevel + 1)+'据点',myValue:MapData.getInstance().maxLevel, otherValue:otherLevel}
+        list.push(oo)
+
+
+        var serverData = dataIn.server_game;
+        var serverData2 = UM.server_game;
+        oo = {title:'竞技场段位',icon:'',des: ServerGameManager.getInstance().getStepName(serverData.exp) + ' [积分：'+serverData.exp+']',myValue:myData2.exp, otherValue:myData.exp}
+        list.push(oo)
+
+        oo = {title:'历史最高积分',icon:'',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
+        list.push(oo)
+
+        oo = {title:'胜利次数',icon:'',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
+        list.push(oo)
+
+        oo = {title:'胜率',icon:'',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
+        list.push(oo)
+
+
+        var serverData = dataIn.server_game_equal;
+        serverData2 = UM.server_game_equal;
+
+        oo = {title:'修正场评价',icon:'',des: ServerGameManager.getInstance().getStepName(serverData.exp) + ' [评分：'+serverData.exp+']',myValue:myData2.exp, otherValue:myData.exp}
+        list.push(oo)
+
+        oo = {title:'历史最高评分',icon:'',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
+        list.push(oo)
+
+        oo = {title:'胜利次数',icon:'',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
+        list.push(oo)
+
+        oo = {title:'胜率',icon:'',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
+        list.push(oo)
+
+        oo = {title:'最高连胜',icon:'',des: serverData.max + '次',myValue:myData2.max, otherValue:myData.max}
+        list.push(oo)
+    }
+
     private renew(){
        var dataIn = this.dataIn
 

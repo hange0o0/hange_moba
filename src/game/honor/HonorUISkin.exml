@@ -1,21 +1,24 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="HonorUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="HonorUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bg_jpg" y="0" x="0" locked="true"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Scroller top="125" x="0" bottom="0" width="640" id="scroller" y="10" bounces="false">
+		<e:Group>
+			<e:List id="list" width="640" x="0" top="0" bottom="370">
+				<e:layout>
+					<e:TileLayout horizontalGap="8" verticalGap="8" paddingTop="10" paddingLeft="6"/>
+				</e:layout>
+
+
+			</e:List>
+		</e:Group>
+	</e:Scroller>
+	<e:Image source="line_png" width="650" y="120" x="-5"/>
 
 
 
-	<e:Image source="line_png" width="650" y="62" x="-5"/>
-	<e:List id="list" width="640" x="0" y="70">
-		<e:layout>
-			<e:TileLayout horizontalGap="0" requestedColumnCount="2"/>
-		</e:layout>
 
-	</e:List>
-
-
-
-
-	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="10" size="22" textColor="0xCCB48E" height="53" x="8" lineSpacing="5" verticalAlign="middle" width="100%" textAlign="center"/>
-
+	<e:Label id="infoText" text="使用指定怪物获得指定场数胜利，即可获得奖励" y="90" size="22" textColor="0xCCB48E" lineSpacing="5" verticalAlign="middle" x="10"/>
 
 
 

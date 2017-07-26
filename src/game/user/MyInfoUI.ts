@@ -150,12 +150,131 @@ class MyInfoUI extends game.BaseUI {
     private renewHonor(){
         this.renewHonorRed();
         var self = this;
-        HonorManager.getInstance().getHonorMore(function(){
-            self.honorUI.renew();
+        //HonorManager.getInstance().getHonorMore(function(){
+        //    self.honorUI.renew();
+        //
+        //})
+    }
 
-        })
+    private renewList(){
+        var oo:any;
+         var list = [];
+
+        oo = {title:'玩家等级',icon:'',des: 'LV.' + UM.level + ' [经验：'+UM.exp + ' / ' + UM.next_exp+']'}
+        list.push(oo)
+
+
+        oo = {title:'体力回满时间',icon:'',des: ''}
+        oo.onTimer = function(){
+            var cd = UM.getNextEnergyCD();
+            if(UM.energy.v  >= UM.maxEnergy)
+            {
+                return '体力已满'
+            }
+            else
+            {
+                cd +=    (UM.maxEnergy -UM.energy.v - 1) * UM.getEnergyStep()
+                return  DateUtil.getStringBySecond(cd) + ' 后满体力';
+            }
+        }
+        list.push(oo)
+
+
+        oo = {title:'总战力',icon:'',des: (UM.award_force + UM.tec_force)}
+        list.push(oo)
+
+        oo = {title:'卡兵战力',icon:'',des:UM.getTecForce()}
+        oo.fun = function(){CollectUI.getInstance().show();}
+        list.push(oo)
+
+        oo = {title:'等级战力',icon:'',des:UM.getLevelForce()}
+        oo.fun = function(){Alert('玩家升级可提升等级战力，赶快去战斗吧')}
+        list.push(oo)
+
+        oo = {title:'奖励战力',icon:'',des:UM.award_force}
+        oo.fun = function(){Alert('研究院积分提升会获得奖励战力，节日活动中也有可能获得奖励')}
+        list.push(oo)
+
+
+
+
+        var mainData = UM.main_game;
+        var level:any = mainData.level;
+        var nextLevel = MainGameManager.getInstance().getNextStep();
+
+        oo = {title:'职业称号',icon:'',des: MainGameManager.getInstance().getStepName(level) + ' [评分：'+level +'/'+nextLevel+']'}
+        if (level < MainGameManager.getInstance().maxLevel)
+            oo.fun = function(){MainGameUI.getInstance().show()}
+        list.push(oo)
+
+        var myData = UM.day_game;
+        oo = {title:'研究院进度',icon:'',des: myData.level + '/10'}
+        if(myData.level < 10 && UM.level < Config.dayLevel)
+            oo.fun = function(){DayGameUI.getInstance().show()}
+        list.push(oo)
+
+        oo = {title:'10胜通关次数',icon:'',des: myData.times + '次'}
+        list.push(oo)
+
+        oo = {title:'获得研究积分',icon:'',des: myData.score + '分'}
+        list.push(oo)
+
+
+        oo = {title:'到达最高据点',icon:'',des: '第'+(MapData.getInstance().maxLevel + 1)+'据点'}
+        if(UM.main_game.level < Config.mapLevel)
+            oo.fun = function(){MapMainUI.getInstance().show()}
+        list.push(oo)
+
+        var serverData = UM.server_game;
+        level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
+
+        oo = {title:'竞技场段位',icon:'',des: ServerGameManager.getInstance().getStepName(serverData.exp) + ' [积分：'+serverData.exp +'/'+ServerGameManager.getInstance().getPKTableExp(level + 1)+']'}
+        if(UM.main_game.level < Config.serverLevel)
+            oo.fun = function(){ServerGameUI.getInstance().show()}
+        list.push(oo)
+
+        oo = {title:'历史最高积分',icon:'',des: serverData.top + '分'}
+        list.push(oo)
+
+        oo = {title:'胜利次数',icon:'',des: serverData.win + '次'}
+        list.push(oo)
+
+        oo = {title:'挑战次数',icon:'',des: serverData.total + '次'}
+        list.push(oo)
+
+        var serverData = UM.server_game_equal;
+        level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
+
+        oo = {title:'修正场评价',icon:'',des: ServerGameEqualManager.getInstance().getStepName(serverData.exp) + ' [评分：'+serverData.exp +'/'+ServerGameEqualManager.getInstance().getPKTableExp(level + 1)+']'}
+        if(UM.main_game.level < Config.serverEqualLevel)
+            oo.fun = function(){ServerGameUI.getInstance().show()}
+        list.push(oo)
+
+        oo = {title:'历史最高评分',icon:'',des: serverData.top + '分'}
+        list.push(oo)
+
+        oo = {title:'胜利次数',icon:'',des: serverData.win + '次'}
+        list.push(oo)
+
+        oo = {title:'挑战次数',icon:'',des: serverData.total + '次'}
+        list.push(oo)
+
+        oo = {title:'最高连胜',icon:'',des: serverData.max + '次'  + (serverData.last? ' [当前：' + serverData.last + '次]':'')}
+        list.push(oo)
+
+        oo = {title:'最近一次登陆',icon:'',des: DateUtil.formatDate('yy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(UM.last_land))}
+        list.push(oo)
+
+        oo = {title:'本次游戏时长',icon:'',des: ''}
+        oo.onTimer = function(){
+            return DateUtil.getStringBySecond(Math.floor(egret.getTimer()/1000))
+        }
+        list.push(oo)
+
 
     }
+
+
     private renewFight(){
         var mainData = UM.main_game;
         var level:any = mainData.level;

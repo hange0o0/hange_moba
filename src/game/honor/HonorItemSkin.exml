@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="HonorItemSkin" width="320" height="120" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,finish" >
-	<e:Image source="item_bg_jpg" y="0" width="320" height="120" x="0" scale9Grid="20,12,437,76"/>
-	<e:Image source="border2_png" y="11" scale9Grid="11,11,68,68" width="90" height="90" x="12"/>
-	<e:Image source="head_png" y="16" x="17" width="80" height="80" id="headMC"/>
+<e:Skin class="HonorItemSkin" width="310" height="180" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,finish" >
+	<e:Image source="item_bg_jpg" y="0" width="310" height="180" x="0" scale9Grid="20,12,437,76"/>
+	<e:Image source="border2_png" y="14.04" scale9Grid="11,11,68,68" width="90" height="90" x="19.59"/>
+	<e:Image source="head_png" y="22" x="24.59" width="80" height="80" id="headMC"/>
 
 
 
 
-	<e:Button id="awardBtn" label="领取" visible.finish="false" y="50" x="195" skinName="Btn_r1Skin"/>
-	<e:Label id="rateText" y="73" size="24" text="1243/4564" visible.finish="false" textColor="0xCCB48E" x="120"/>
-	<e:Group y="20" visible.finish="false" x="120">
+	<e:Button id="awardBtn" label="领取" visible.finish="false" skinName="Btn_r2Skin" horizontalCenter="0" bottom="15" scaleX="0.8" scaleY="0.8"/>
+	<e:Label id="rateText" y="68.08" size="24" text="1243/4564" visible.finish="false" textColor="0xCCB48E" x="127.59"/>
+	<e:Group y="23.04" visible.finish="false" x="127.59">
 		<e:Label y="3" size="24" text="奖励：" x="-3" textColor="0xE0A44A"/>
 		<e:Image x="60" y="1" scaleX="0.7" scaleY="0.7" source="icon_token_png"/>
 		<e:Label id="awardText" text="123456" x="92" y="4" size="22" textColor="0xCCB48E"/>
@@ -19,9 +19,9 @@
 
 
 
-	<e:Label id="finishText" text="已完成" x="163" y="44" visible.normal="false" textColor="0xE0A44A"/>
+	<e:Label id="finishText" text="已完成" x="170.59" y="47.04" visible.normal="false" textColor="0xE0A44A"/>
 
-	<e:Group id="sGroup" y="76" horizontalCenter="-102.5" x.finish="10">
+	<e:Group id="sGroup" y="79.04" horizontalCenter="-89.5" x.finish="10">
 		<e:Image id="s0" source="card_star_png" x="0" y="0" scaleX="0.8" scaleY="0.8"/>
 		<e:Image source="card_star_png" y="10" x="10" scaleX="0.8" scaleY="0.8" id="s1"/>
 		<e:Image source="card_star_png" y="20" x="20" scaleX="0.8" scaleY="0.8" id="s2"/>

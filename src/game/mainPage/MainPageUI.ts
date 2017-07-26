@@ -616,17 +616,17 @@ class MainPageUI extends game.BaseUI {
         var p = pageItem.localToGlobal(pageItem.width/2,pageItem.height/2)
         var p = item.parent.globalToLocal(p.x,p.y,p);
         var tw = egret.Tween.get(item);
-        tw.to({x:p.x,y:p.y,alpha:0.3,scaleX:0.2,scaleY:0.2},300).call(function(){
+        tw.to({x:p.x,y:p.y,alpha:0.8,scaleX:0.1,scaleY:0.1},300).call(function(){
             item.visible = false;
         })
     }
     //移入动画
     private movieIn(item){
 
-        item.visible = true;
+        item.visible = false;
         egret.Tween.removeTweens(item);
-        item.scaleX =  item.scaleY = 0.2;
-        item.alpha = 0.3;
+        item.scaleX =  item.scaleY = 0.1;
+        item.alpha = 0.8;
         item.parent.addChild(item);
 
         var pageItem = this.pageArray[item.index];
@@ -637,7 +637,9 @@ class MainPageUI extends game.BaseUI {
         item.y = p.y;
 
         var tw = egret.Tween.get(item);
-        tw.to({x:this.itemX,y:this.itemY,alpha:1,scaleX:1,scaleY:1},300).call(function(){
+        tw.wait(100).call(function(){
+            item.visible = true;
+        }).to({x:this.itemX,y:this.itemY,alpha:1,scaleX:1,scaleY:1},300).call(function(){
 
         })
     }

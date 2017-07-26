@@ -233,7 +233,7 @@ class DebugManager {
                 var vo = MonsterVO.getObject(card[j]);
                 temp.push(vo.id+':'+vo.name);
             }
-            console.log((i+1)+'\t'+temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length);
+            //console.log((i+1)+'\t'+temp.join(',') + '\t\t\tcost:' + PKManager.getInstance().getCost(card)+'/'+card.length);
             var mid2 = {};
             for(var j=0;j<card.length;j++)
             {
@@ -272,6 +272,7 @@ class DebugManager {
                 free.push(i);
         }
         console.log('无上场： \t' + free.join(','))
+        return midArr;
     }
 
     public testAllLevel(lv = 100){
@@ -280,8 +281,8 @@ class DebugManager {
     }
 
     //开始测试卡组   跑time1次，每次从time2个卡组中选,结果写入硬盘
-    public testAllCard(time2 = 2048,testCard=null){
-       var key = TM.now();
+    public testAllCard(time2 = 2048,testCard=null,addKey=''){
+       var key = addKey + '_' + TM.now();
        var arr = this.winCardArr = [];
        var self = this;
         this.stop = 0;
@@ -305,7 +306,7 @@ class DebugManager {
                 SharedObjectManager.instance.setMyValue('testCard_'+key,arr);
                 if(self.stop)
                 {
-                    console.log('==================testEnd======================' + DateUtil.getStringBySecond(TM.now() - key))
+                    console.log('==================testEnd======================')
                     self.showWinCard();
                     Net.getInstance().outPut = true;
                 }
@@ -328,6 +329,8 @@ class DebugManager {
         testOne();
 
         function testOne(){
+            if(self.stop == 100)
+                return;
             if(list.length >= 2 && self.stop < 10)
             {
                 self.testCard(list.shift(),list.shift(),function(card){
@@ -679,6 +682,63 @@ class DebugManager {
         console.log('noUse:  ' + noUse.length + '   ' + noUse.join(','))
     }
 
+
+    ////////////////////////////////////评分
+    public scoreDM = [];
+    public testScore(times=2048){
+        for(var i=0;i<5;i++)
+        {
+            var dm = new DebugManager();
+            dm.testAllCard(times,null,(i+1) + '');
+            this.scoreDM.push(dm);
+        }
+    }
+
+    public stopScore(){
+        var monsterObj = {}
+        for(var i=0;i<this.scoreDM.length;i++)
+        {
+            var dm = this.scoreDM[i];
+            var arr = dm.showWinCard();
+            for(var j=0;j<arr.length;j++)
+            {
+                var oo = arr[j];
+                if(!monsterObj[oo.id])
+                {
+                    var mvo = MonsterVO.getObject(oo.id);
+                    monsterObj[oo.id] = {id:oo.id,cost:mvo.cost,lv:mvo.level,name:mvo.name,score:0,list:[]};
+                }
+                monsterObj[oo.id].list.push(j+1);
+                //console.log((i + 1) +  ' \tid:' + oo.id + '\t 总数:\t' + oo.num + '\t 场数:\t' + oo.num2 + '\t 花费:\t' + mvo.cost + '\t lv:\t' + mvo.level + '\t  ' + mvo.name)
+            }
+            dm.stop = 100;//强行结束
+        }
+
+        var resultArr = [];
+        for(var s in monsterObj)
+        {
+             var item = monsterObj[s];
+            item.list.sort(sortNumber);
+            for(var i=1;i<item.list.length-1;i++) //去掉最高最低
+            {
+                item.score += item.list[i];
+            }
+            resultArr.push(item);
+        }
+        ArrayUtil.sortByField(resultArr,['score','cost'],[0,0])
+        console.log('======================  scoreResult   =========================')
+        for(var i=0;i<resultArr.length;i++)
+        {
+            var item = resultArr[i];
+            console.log((i + 1) +  ' \tid:' + item.id + '\t 分数:\t' + item.score + '\t 排名:\t' + item.list.join(',')  + '\t 花费:\t' + item.cost + '\t lv:\t' + item.lv + '\t  ' + item.name)
+        }
+
+        this.scoreDM.length = 0;
+        function sortNumber(a,b)
+        {
+            return a - b
+        }
+    }
 
 }
 

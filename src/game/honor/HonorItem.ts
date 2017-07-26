@@ -35,7 +35,8 @@ class HonorItem extends game.BaseItem {
     }
 
     private onAward(){
-        HonorManager.getInstance().award('monster',this.data.id,this.data.level+1);
+        if(this.data.award)
+            HonorManager.getInstance().award('monster',this.data.id,this.data.level+1);
     }
 
     public dataChanged(){
@@ -76,8 +77,12 @@ class HonorItem extends game.BaseItem {
         //this.rateText.text = this.data.w + '/' + award.num;
         //this.barMC.width = 280*Math.min(1,this.data.w/award.num)
         this.awardText.text = 'X' + award.diamond;
-        this.awardBtn.visible = this.data.award
-        this.rateText.visible = !this.awardBtn.visible
+
+        if(this.data.award)
+            this.awardBtn.skinName = 'Btn_r2Skin'
+        else
+            this.awardBtn.skinName = 'Btn_d2Skin'
+        //this.rateText.visible = !this.awardBtn.visible
 
         //if(this.awardBtn.visible)
         //    this.barMC.source = 'bar1_png'
