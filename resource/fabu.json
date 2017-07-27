@@ -304,6 +304,42 @@
 				{
 					"compress":false,
 					"key":"btn_close3_png"
+				},
+				{
+					"compress":false,
+					"key":"main_pk1_png"
+				},
+				{
+					"compress":false,
+					"key":"main_pk2_png"
+				},
+				{
+					"compress":false,
+					"key":"main_pk3_png"
+				},
+				{
+					"compress":false,
+					"key":"main_pk4_png"
+				},
+				{
+					"compress":false,
+					"key":"main_pk5_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_map_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_pvp_2_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_day_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_main_png"
 				}
 			],
 			"sort":0

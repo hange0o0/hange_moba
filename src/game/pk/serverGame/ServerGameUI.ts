@@ -115,6 +115,17 @@ class ServerGameUI extends game.BaseUI {
             OtherInfoUI.getInstance().showID(gameid);
     }
 
+    public show(){
+        var data = UM.server_game;
+        var haveData = data.pk || data.choose
+        if(!haveData)//未PK过
+        {
+            ServerGameManager.getInstance().openPKView();
+            return;
+        }
+        super.show();
+    }
+
 
     public onShow(){
         this.scroller.viewport.scrollV = 0;

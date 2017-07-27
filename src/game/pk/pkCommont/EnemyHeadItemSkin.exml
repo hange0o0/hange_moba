@@ -14,7 +14,7 @@
 		<e:Image id="closeBtn" y="5" source="icon_money_png" right="6"/>
 	</e:Group>
 	<e:Group id="nameGroup" horizontalCenter="0" y="95">
-		<e:Rect height="34" x="0" ellipseWidth="10" fillColor="0x2B261C" ellipseHeight="10" strokeColor="0x7A510F" strokeWeight="1" width="120"/>
+		<e:Rect height="34" x="0" ellipseWidth="10" fillColor="0x2B261C" ellipseHeight="10" strokeColor="0x7A510F" strokeWeight="1" width="116"/>
 		<e:Label id="nameText" text="贿赂贿赂贿" size="20" textColor="0xFADEA2" verticalCenter="0" horizontalCenter="0"/>
 	</e:Group>
 </e:Skin>

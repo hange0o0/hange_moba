@@ -101,16 +101,16 @@ class CollectItem extends game.BaseItem {
                 this.desText.text = ''
                 break;
             case 3://使用次数
-                this.desText.text = '使用：'+(this.data.t || 0)
+                MyTool.setColorText(this.desText, '[使用：]'+(this.data.t || 0));
                 break;
             case 4://胜利次数
-                this.desText.text = '胜利：'+(this.data.w || 0)
+                MyTool.setColorText(this.desText, '[胜利：]'+(this.data.w || 0))
                 break;
             case 5://胜率
-                this.desText.text = '胜率：'+MyTool.toFixed(((this.data.r || 0)*100),1) + '%'
+                MyTool.setColorText(this.desText, '[胜率：]'+MyTool.toFixed(((this.data.r || 0)*100),1) + '%')
                 break;
             case 6://胜率
-                this.desText.text = '评分：'+Math.round(this.data.w * this.data.r);
+                MyTool.setColorText(this.desText, '[评分：]'+Math.round(this.data.w * this.data.r));
                 break;
 
         }

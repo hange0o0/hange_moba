@@ -580,11 +580,11 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewHelp(){
-        this.helpText.x = 350;
+        this.helpText.x = 360;
         this.setHtml(this.helpText,HelpManager.getInstance().getInfoText());
         egret.Tween.removeTweens(this.helpText);
         var tw:egret.Tween = egret.Tween.get(this.helpText);
-        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + 350+100)*20).call(this.renewHelp,this);
+        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + 360+100)*20).call(this.renewHelp,this);
     }
 
     public clickPage(page){

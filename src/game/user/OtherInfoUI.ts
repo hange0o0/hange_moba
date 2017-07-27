@@ -6,37 +6,21 @@ class OtherInfoUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private scroller: eui.Scroller;
     private scrollGroup: eui.Group;
     private topGroup: eui.Group;
     private headMC: eui.Image;
     private nameText: eui.Label;
     private desText: eui.Label;
     private landText: eui.Label;
+    private friendDesText: eui.Label;
     private deleteBtn: eui.Button;
     private talkBtn: eui.Button;
     private pkBtn: eui.Button;
     private friendBtn: eui.Button;
-    private friendDesText: eui.Label;
-    private levelText: eui.Label;
-    private forceText: eui.Label;
-    private friendGroup: eui.Group;
-    private friendText: eui.Label;
-    private friendWin: eui.Label;
-    private friendFail: eui.Label;
-    private mainLevelText: eui.Label;
-    private mainLevelText2: eui.Label;
-    private dailyText2: eui.Label;
-    private dailyText3: eui.Label;
-    private serverText1: eui.Label;
-    private serverText2: eui.Label;
-    private serverText3: eui.Label;
-    private serverText4: eui.Label;
-    private serverEqualText1: eui.Label;
-    private serverEqualText2: eui.Label;
-    private serverEqualText3: eui.Label;
-    private serverEqualText5: eui.Label;
-    private serverEqualText4: eui.Label;
+    private monsterList: eui.List;
     private list: eui.List;
+
 
 
 
@@ -64,11 +48,12 @@ class OtherInfoUI extends game.BaseUI {
         this.addBtnEvent(this.pkBtn, this.onPK);
         this.addBtnEvent(this.deleteBtn, this.onDelete);
 
-        this.list.itemRenderer = EnemyHeadItem;
+        this.monsterList.itemRenderer = EnemyHeadItem;
+        this.list.itemRenderer = MyInfoItem;
     }
 
     public beforeHide(){
-        this.clearList([this.list])
+        this.clearList([this.list,this.monsterList])
     }
 
 
@@ -148,7 +133,7 @@ class OtherInfoUI extends game.BaseUI {
     }
 
     public onShow(){
-
+        this.scroller.viewport.scrollV = 0;
         this.renew();
     }
 
@@ -175,80 +160,78 @@ class OtherInfoUI extends game.BaseUI {
                     fail = Math.floor(info.win1);
                 }
             }
-            oo = {title:'好友切磋胜利次数',icon:'',des: win}
+            oo = {title:'好友切磋胜利',icon:'icon_atk_png',des: win + '次'}
             list.push(oo)
-            oo = {title:'好友切磋失败次数',icon:'',des: fail}
+            oo = {title:'好友切磋失败',icon:'icon_atk_png',des: fail + '次'}
             list.push(oo)
         }
-        this.setText(this.levelText, '[等级：]$$','LV.'+ UM.level,'LV.'+ dataIn.level);
-        this.setText(this.forceText, '[战力：]$$',UM.getForce(),dataIn.force);
 
-
-        oo = {title:'玩家等级',icon:'',des: 'LV.' + dataIn.level,myValue:UM.level,otherValue:dataIn.level}
+        oo = {title:'玩家等级',icon:'icon_lv_png',des: 'LV.' + dataIn.level,myValue:UM.level,otherValue:dataIn.level}
         list.push(oo)
 
-        oo = {title:'总战力',icon:'',des: '' + dataIn.force, myValue:UM.getForce(), otherValue:dataIn.force}
+        oo = {title:'总战力',icon:'icon_power_png',des: '' + dataIn.force, myValue:UM.getForce(), otherValue:dataIn.force}
         list.push(oo)
 
 
-        oo = {title:'职业称号',icon:'',des: MainGameManager.getInstance().getStepName(dataIn.main_game.level) + ' [评分：'+ dataIn.main_game.level+']',
+        oo = {title:'职业称号',icon:'icon_main_png',des: MainGameManager.getInstance().getStepName(dataIn.main_game.level) + '　[评分:]'+ dataIn.main_game.level+'',
             myValue:UM.main_game.level, otherValue:dataIn.main_game.level}
         list.push(oo)
 
         var myData = dataIn.day_game;
         var myData2 = UM.day_game;
 
-        oo = {title:'10胜通关次数',icon:'',des: myData.times + '次',myValue:myData2.times, otherValue:myData.times}
+        oo = {title:'10胜通关次数',icon:'icon_day_png',des: myData.times + '次',myValue:myData2.times, otherValue:myData.times}
         list.push(oo)
 
-        oo = {title:'获得研究积分',icon:'',des: myData.score + '分',myValue:myData2.score, otherValue:myData.score}
+        oo = {title:'获得研究积分',icon:'icon_day_png',des: myData.score + '分',myValue:myData2.score, otherValue:myData.score}
         list.push(oo)
 
 
-        var otherLevel = dataIn.map_level;
-        oo = {title:'到达最高据点',icon:'',des: '第'+(otherLevel + 1)+'据点',myValue:MapData.getInstance().maxLevel, otherValue:otherLevel}
+        var otherLevel = (dataIn.pk_common.map || {}).max_level || 0;
+        oo = {title:'到达最高据点',icon:'icon_map_png',des: '第'+(otherLevel + 1)+'据点',myValue:MapData.getInstance().maxLevel, otherValue:otherLevel}
         list.push(oo)
 
 
         var serverData = dataIn.server_game;
         var serverData2 = UM.server_game;
-        oo = {title:'竞技场段位',icon:'',des: ServerGameManager.getInstance().getStepName(serverData.exp) + ' [积分：'+serverData.exp+']',myValue:myData2.exp, otherValue:myData.exp}
+        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分：]'+serverData.exp+'',myValue:myData2.exp, otherValue:myData.exp}
         list.push(oo)
 
-        oo = {title:'历史最高积分',icon:'',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
+        oo = {title:'历史最高积分',icon:'icon_pvp_2_png',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
         list.push(oo)
 
-        oo = {title:'胜利次数',icon:'',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
+        oo = {title:'胜利次数',icon:'icon_pvp_2_png',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
         list.push(oo)
 
-        oo = {title:'胜率',icon:'',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
+        oo = {title:'胜率',icon:'icon_pvp_2_png',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
         list.push(oo)
 
 
         var serverData = dataIn.server_game_equal;
         serverData2 = UM.server_game_equal;
 
-        oo = {title:'修正场评价',icon:'',des: ServerGameManager.getInstance().getStepName(serverData.exp) + ' [评分：'+serverData.exp+']',myValue:myData2.exp, otherValue:myData.exp}
+        oo = {title:'修正场评价',icon:'icon_pvp_3_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[评分:]'+serverData.exp+'',myValue:myData2.exp, otherValue:myData.exp}
         list.push(oo)
 
-        oo = {title:'历史最高评分',icon:'',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
+        oo = {title:'历史最高评分',icon:'icon_pvp_3_png',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
         list.push(oo)
 
-        oo = {title:'胜利次数',icon:'',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
+        oo = {title:'胜利次数',icon:'icon_pvp_3_png',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
         list.push(oo)
 
-        oo = {title:'胜率',icon:'',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
+        oo = {title:'胜率',icon:'icon_pvp_3_png',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
         list.push(oo)
 
-        oo = {title:'最高连胜',icon:'',des: serverData.max + '次',myValue:myData2.max, otherValue:myData.max}
+        oo = {title:'最高连胜',icon:'icon_pvp_3_png',des: serverData.max + '次',myValue:myData2.max, otherValue:myData.max}
         list.push(oo)
+
+        this.list.dataProvider = new eui.ArrayCollection(list)
     }
 
     private renew(){
        var dataIn = this.dataIn
 
         var FM = FriendManager.getInstance();
-        MyTool.removeMC(this.friendGroup)
         this.friendDesText.text = ''
         if(FM.friendData[this.dataIn.gameid])//是好友
         {
@@ -256,28 +239,6 @@ class OtherInfoUI extends game.BaseUI {
             this.talkBtn.visible = true;
             this.pkBtn.visible = true;
             this.deleteBtn.visible = true;
-            this.scrollGroup.addChildAt(this.friendGroup,1);
-            var info = FM.friendData[this.dataIn.gameid].pk;
-            var win =0;
-            var fail =0;
-            if(info)
-            {
-                if(info.friend_key.indexOf(this.dataIn.gameid) == 0)
-                {
-                    win = Math.floor(info.win1);
-                    fail = Math.floor(info.win2);
-                }
-                else
-                {
-                    win = Math.floor(info.win2);
-                    fail = Math.floor(info.win1);
-                }
-            }
-
-            var rate = MyTool.toFixed(win/((win + fail) || 1)*100,1);
-            MyTool.setColorText(this.friendWin,'[胜利：]' + win);
-            MyTool.setColorText(this.friendFail,'[失败：]' + fail)
-            MyTool.setColorText(this.friendText,'[胜率：]'+rate+'%')
         }
         else
         {
@@ -293,50 +254,11 @@ class OtherInfoUI extends game.BaseUI {
         this.headMC.source = MyTool.getHeadUrl(dataIn.head);
         this.nameText.text = dataIn.nick;
         this.desText.text = '　　' + (dataIn.word || '我无话可说..');
-        this.setText(this.levelText, '[等级：]$$','LV.'+ UM.level,'LV.'+ dataIn.level);
-        this.setText(this.forceText, '[战力：]$$',UM.getForce(),dataIn.force);
 
-
-        this.setText(this.mainLevelText,'[当前称号：]$$',UM.main_game.level ,dataIn.main_game.level,MainGameManager.getInstance().getStepName(dataIn.main_game.level));
-        this.setText(this.mainLevelText2,'  [评分：]$$',UM.main_game.level ,dataIn.main_game.level)
-
-
-        var myData = dataIn.day_game;
-        var myData2 = UM.day_game;
-        this.setText(this.dailyText2, '[累计通关次数：]$$',myData2.times,myData.times);
-        this.setText(this.dailyText3, '[获得研究积分：]$$',myData2.score, myData.score);
-
-        var serverData = dataIn.server_game;
-        var serverData2 = UM.server_game;
-        var level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
-        var level2 = ServerGameManager.getInstance().getPKTableLevel(serverData2.exp)
-        this.setHtml(this.serverText1,this.changeValue('[积分：]$$',serverData2.exp,serverData.exp) + this.changeValue('（[历史最高]：$$）',serverData2.top,serverData.top));
-        this.setText(this.serverText2, '[当前段位：]$$',level2,level,ServerGameManager.getInstance().getStepName(serverData.exp));
-        this.setText(this.serverText3, '[胜利次数：]$$',serverData2.win,serverData.win);
-        this.setText(this.serverText4, '[胜率：]$$', MyTool.toFixed(serverData2.win/(serverData2.total||1)*100,1) + '%', MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%');
-
-
-        var serverData = dataIn.server_game_equal;
-        serverData2 = UM.server_game_equal;
-        level = ServerGameEqualManager.getInstance().getPKTableLevel(serverData.exp)
-        level2 = ServerGameEqualManager.getInstance().getPKTableLevel(serverData2.exp)
-
-        this.setHtml(this.serverEqualText1,this.changeValue('[评分：]$$',serverData2.exp,serverData.exp) + this.changeValue('（[历史最高]：$$）',serverData2.top,serverData.top));
-        this.setText(this.serverEqualText2, '[天赋等级：]$$',level2,level,ServerGameEqualManager.getInstance().getStepName(serverData.exp));
-        this.setText(this.serverEqualText3,  '[胜利次数：]$$',serverData2.win,serverData.win);
-        this.setText(this.serverEqualText4, '[胜率：]$$',MyTool.toFixed(serverData2.win/(serverData2.total||1)*100,1) + '%',MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%');
-        this.setText(this.serverEqualText5, '[最高连胜：]$$',serverData2.max,serverData.max);
-
-
+        this.renewList();
 
 
         var cd = Math.floor((TM.now() - dataIn.last_land)/(24*3600));
-        //if(cd >=14)
-        //{
-        //    this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+14+'</font> 天没登录');
-        //    //this.topGroup.height = 300;
-        //}
-        //else
         if(cd >=7)
         {
             this.setHtml(this.landText,'该玩家已超过 <font color="#FF0000">'+7+'</font> 天没登录');
@@ -371,33 +293,33 @@ class OtherInfoUI extends game.BaseUI {
                 list:arr
             }
         }
-        this.list.dataProvider = new eui.ArrayCollection(arr)
+        this.monsterList.dataProvider = new eui.ArrayCollection(arr)
 
 
     }
 
-    private setText(text,str,myValue,otherValue,w?){
-
-        str = this.changeValue(str,myValue,otherValue,w);
-        this.setHtml(text,str);
-    }
-
-    private changeValue(str,myValue,otherValue,w?){
-        if(myValue > otherValue)
-        {
-            str = str.replace('$$','<font color="#FFFF00">'+(w || otherValue)+'</font>')
-        }
-        else if(myValue < otherValue)
-        {
-            str = str.replace('$$','<font color="#ff0000">'+(w || otherValue)+'</font>')
-        }
-        else
-        {
-            str = str.replace('$$',(w || otherValue))
-        }
-
-        str = str.replace(/\[/g,'<font color="#E0A44A">')
-        str = str.replace(/\]/g,'</font>')
-        return str;
-    }
+    //private setText(text,str,myValue,otherValue,w?){
+    //
+    //    str = this.changeValue(str,myValue,otherValue,w);
+    //    this.setHtml(text,str);
+    //}
+    //
+    //private changeValue(str,myValue,otherValue,w?){
+    //    if(myValue > otherValue)
+    //    {
+    //        str = str.replace('$$','<font color="#FFFF00">'+(w || otherValue)+'</font>')
+    //    }
+    //    else if(myValue < otherValue)
+    //    {
+    //        str = str.replace('$$','<font color="#ff0000">'+(w || otherValue)+'</font>')
+    //    }
+    //    else
+    //    {
+    //        str = str.replace('$$',(w || otherValue))
+    //    }
+    //
+    //    str = str.replace(/\[/g,'<font color="#E0A44A">')
+    //    str = str.replace(/\]/g,'</font>')
+    //    return str;
+    //}
 }

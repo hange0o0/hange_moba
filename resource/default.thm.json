@@ -150,6 +150,7 @@
     "src/game/teamDungeon/teamPVE/TeamPVEMainItemSkin.exml",
     "src/game/teamDungeon/teamPVE/TeamPVEMainSkin.exml",
     "src/game/user/GameLogUISkin.exml",
+    "src/game/user/MyInfoItemSkin.exml",
     "src/game/user/MyInfoUISkin.exml",
     "src/game/user/OtherInfoUISkin.exml",
     "src/game/user/SettingSkin.exml",

@@ -30,12 +30,13 @@ class CollectDownItem extends game.BaseItem {
     public childrenCreated() {
         MyTool.removeMC(this.teamGroup);
         this.addChildAt(this.chooseGroup,0);
-
+        this.scaleX = this.scaleY = 0.8
     }
 
     public dataChanged(){
         var mvo = MonsterVO.getObject(this.data.id);
         this.headMC.source = mvo.thumb
+        this.nameText.size = 22
         this.nameText.text = mvo.name
         this.setChoose(CollectUI.getInstance().chooseMonster);
         this.renewDes();
@@ -55,20 +56,21 @@ class CollectDownItem extends game.BaseItem {
                 break;
             case 1://等级升序
             case 2://等级降序
-                this.nameText.text = '等级:' + UM.getMonsterLevel(this.data.id)
+                MyTool.setColorText(this.nameText, 'LV.' + UM.getMonsterLevel(this.data.id))
                 break;
             case 3://使用次数
-                this.nameText.text = '使用:'+(this.data.t || 0)
+                MyTool.setColorText(this.nameText, ''+(this.data.t || 0) + '次')
                 break;
             case 4://胜利次数
-                this.nameText.text = '胜利:'+(this.data.w || 0)
+                MyTool.setColorText(this.nameText, ''+(this.data.w || 0) + '次')
                 break;
             case 5://胜率
-                this.nameText.text = '胜率:'+MyTool.toFixed(((this.data.r || 0)*100),1) + '%'
+                MyTool.setColorText(this.nameText, ''+MyTool.toFixed(((this.data.r || 0)*100),1) + '%')
                 break;
             case 6://胜率
-                this.nameText.text = '评分:'+Math.round(this.data.w * this.data.r);
+                MyTool.setColorText(this.nameText, ''+Math.round(this.data.w * this.data.r) +'分');
                 break;
+
 
         }
     }

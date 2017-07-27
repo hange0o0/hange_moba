@@ -12,8 +12,8 @@
 			<ns1:MainServerEqualItem id="serverGameEqual" skinName="MainServerEqualItemSkin" x="0" y="0" scaleX="1" scaleY="1"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="helpGroup" x="190" y="123" width="350">
-		<e:Rect id="helpMask" height="55" width="350" x="0" y="-1" fillAlpha="1"/>
+	<e:Group id="helpGroup" x="190" y="123" width="360">
+		<e:Rect id="helpMask" height="55" width="360" x="0" y="-1" fillAlpha="1"/>
 		<e:Label id="helpText" text="科技PK中取得6场胜" y="17" size="22" x="50" textColor="0xFCCC8E"/>
 	</e:Group>
 

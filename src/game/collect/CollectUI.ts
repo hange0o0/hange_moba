@@ -296,7 +296,7 @@ class CollectUI extends game.BaseUI {
             this.openGroup.visible = true;
             this.scroller.visible = false;
             this.renewMonster();
-            var itemWidth = 120 + 10
+            var itemWidth = 120*0.8 + 15
 
             var des = 0;
             if(this.listH.selectedIndex == -1)

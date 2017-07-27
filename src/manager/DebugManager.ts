@@ -1,5 +1,6 @@
 class DebugManager {
     private static _instance:DebugManager;
+    private static cd = 0
     public static getInstance():DebugManager {
         if (!this._instance)
             this._instance = new DebugManager();
@@ -17,6 +18,13 @@ class DebugManager {
     public maxMonsterID = 100;
     public MML = 100;  //测试出战怪的等级
     public printDetail = false;  //打印胜出怪物
+
+    public get netCD(){
+        return DebugManager.cd;
+    }
+    public set netCD(v){
+        DebugManager.cd = v;
+    }
 
 
     public consoleDebug(){
@@ -335,7 +343,10 @@ class DebugManager {
             {
                 self.testCard(list.shift(),list.shift(),function(card){
                     list.push(card);
-                    testOne();
+                    if(self.netCD)
+                        setTimeout(testOne,self.netCD);
+                    else
+                        testOne();
                 },list.length <time/8)//头3轮不记录
             }
             else

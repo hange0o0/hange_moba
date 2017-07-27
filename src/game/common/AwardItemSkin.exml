@@ -7,7 +7,7 @@
 		<e:Label id="desText" y="120" size="24" text="标签" textColor="0xCCB48E" horizontalCenter="0" stroke="2"/>
 		<e:Group id="infoGroup" y="75" horizontalCenter="0">
 			<e:Rect height="30" width="100" x="0" y="0" fillAlpha="0.6"/>
-			<e:Label id="infoText" text="标签标签签" horizontalCenter="0" size="20" verticalCenter="0" stroke="1" textColor="0xFFFFFF"/>
+			<e:Label id="infoText" text="标签标签签" horizontalCenter="0" size="20" verticalCenter="0" stroke="1" textColor="0xcbc08a"/>
 		</e:Group>
 	</e:Group>
 	<e:Image id="newIcon" source="icon_new_png" y="83" right="-8"/>

@@ -41,13 +41,6 @@ class MainServerItem extends game.BaseItem {
         ServerGameManager.getInstance().openPKView(true);
     }
     private onStart(){
-        var data = UM.server_game;
-        var haveData = data.pk || data.choose
-        if(!haveData)//未PK过
-        {
-            ServerGameManager.getInstance().openPKView();
-            return;
-        }
         ServerGameUI.getInstance().show();
     }
 

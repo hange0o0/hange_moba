@@ -112,6 +112,17 @@ class ServerGameEqualUI extends game.BaseUI {
             OtherInfoUI.getInstance().showID(gameid);
     }
 
+    public show(){
+        var data = UM.server_game_equal;
+        var haveData = data.pk || data.choose
+        if(!haveData)//未PK过
+        {
+            ServerGameEqualManager.getInstance().openPKView();
+            return;
+        }
+        super.show();
+    }
+
     public onShow(){
         this.scroller.viewport.scrollV = 0;
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);

@@ -1,10 +1,12 @@
 class MyInfoItem extends game.BaseItem {
 
-    private chooseMC: eui.Image;
-    private bg: eui.Image;
-    private redMC: eui.Image;
-    private lockMC: eui.Button;
+    private icon: eui.Image;
     private titleText: eui.Label;
+    private desText: eui.Label;
+    private addText: eui.Label;
+    private btn: eui.Group;
+    private btnText: eui.Label;
+
 
     public constructor() {
         super();
@@ -13,7 +15,7 @@ class MyInfoItem extends game.BaseItem {
 
 
     public childrenCreated() {
-        this.addBtnEvent(this,this.onClick);
+        this.addBtnEvent(this.btn,this.onClick);
     }
 
     private onClick(){
@@ -22,43 +24,45 @@ class MyInfoItem extends game.BaseItem {
 
     public dataChanged() {
         this.titleText.text = this.data.title
-        this.titleText.text = this.data.des
-        this.bg.source = this.data.icon
+        MyTool.setColorText(this.desText,this.data.des + '')
+        this.icon.source = this.data.icon
         if(this.data.fun)
         {
-            this.lockMC.visible = true;
-            this.lockMC.label = this.data.btn || '提升' ;
+            this.btn.visible = true;
+            this.btnText.text = this.data.btn || '提升' ;
         }
         else
         {
-            this.lockMC.visible = false;
+            this.btn.visible = false;
         }
 
         if('myValue' in  this.data)
         {
              if(this.data.myValue > this.data.otherValue)
              {
-                 this.titleText.text = '+' + (this.data.myValue - this.data.otherValue)
-                 this.titleText.textColor = 0xFFFF00
+                 this.addText.text = '+' + (this.data.myValue - this.data.otherValue)
+                 this.addText.textColor = 0xFFFF00
              }
              else if(this.data.myValue < this.data.otherValue)
              {
-                 this.titleText.text = '' + (this.data.myValue - this.data.otherValue)
-                 this.titleText.textColor = 0xFF0000
+                 this.addText.text = '' + (this.data.myValue - this.data.otherValue)
+                 this.addText.textColor = 0xFF0000
              }
             else
              {
-                 this.titleText.text = '--';
-                 this.titleText.textColor = 0xCCB48E
+                 this.addText.text = '--';
+                 this.addText.textColor = 0xCCB48E
              }
         }
+        else
+            this.addText.text = ''
 
         this.onTimer();
     }
 
     public onTimer(){
         if(this.data.onTimer)
-            this.titleText.text = this.data.onTimer();
+            this.desText.text = this.data.onTimer();
     }
 
 

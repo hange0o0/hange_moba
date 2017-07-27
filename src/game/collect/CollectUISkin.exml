@@ -29,7 +29,7 @@
 	<e:Group id="openGroup" x="0" top="135" bottom="0" width="640">
 		<e:Image source="book_bg2_jpg" left="0" bottom="0"/>
 		<e:Image source="book_bg2_jpg" bottom="0" scaleX="-1" right="0"/>
-		<e:Scroller id="openScroller" width="640" x="0" bounces="false" top="0" bottom="160">
+		<e:Scroller id="openScroller" width="640" x="0" bounces="false" top="0" bottom="130">
 		<e:Group>
 			<e:Group x="0" y="240">
 			<ns1:MonsterInfoBase id="monsterBase" x="0" y="0" skinName="MonsterInfoBaseSkin"/>
@@ -40,17 +40,17 @@
 			</e:layout>
 		</e:Group>
 		</e:Scroller>
-		<e:Scroller id="scrollH" width="610" height="130" x="15" scaleX="1" scaleY="1" bounces="false" bottom="20">
+		<e:Scroller id="scrollH" width="610" height="100" x="15" scaleX="1" scaleY="1" bounces="false" bottom="20">
 		<e:Group>
 			<e:List id="listH" width="200" height="200" x="10" y="34">
 			<e:layout>
-				<e:HorizontalLayout gap="10" paddingLeft="0"/>
+				<e:HorizontalLayout gap="15" paddingLeft="0"/>
 			</e:layout>
 			</e:List>
 		</e:Group>
 		</e:Scroller>
 		<e:Image source="line_png" y="0" width="620" horizontalCenter="0"/>
-		<e:Image source="line_png" width="620" bottom="155" horizontalCenter="0"/>
+		<e:Image source="line_png" width="620" bottom="125" horizontalCenter="0"/>
 	</e:Group>
 	<e:Group id="sortGroup" y="124" x="421" locked="true" visible="false">
 		<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="210" height="100%" x="0"/>
