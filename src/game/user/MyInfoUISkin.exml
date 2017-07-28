@@ -53,7 +53,7 @@
 			</e:Group>
 			<e:List id="list" x="186" y="774" width="630">
 				<e:layout>
-					<e:VerticalLayout gap="3"/>
+					<e:VerticalLayout gap="-2"/>
 				</e:layout>
 			</e:List>
 

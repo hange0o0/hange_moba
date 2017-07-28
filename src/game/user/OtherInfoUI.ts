@@ -194,7 +194,7 @@ class OtherInfoUI extends game.BaseUI {
 
         var serverData = dataIn.server_game;
         var serverData2 = UM.server_game;
-        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分：]'+serverData.exp+'',myValue:myData2.exp, otherValue:myData.exp}
+        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分:]'+serverData.exp+'',myValue:myData2.exp, otherValue:myData.exp}
         list.push(oo)
 
         oo = {title:'历史最高积分',icon:'icon_pvp_2_png',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}

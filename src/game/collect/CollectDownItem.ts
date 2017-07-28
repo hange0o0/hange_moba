@@ -30,7 +30,7 @@ class CollectDownItem extends game.BaseItem {
     public childrenCreated() {
         MyTool.removeMC(this.teamGroup);
         this.addChildAt(this.chooseGroup,0);
-        this.scaleX = this.scaleY = 0.8
+        this.scaleX = this.scaleY = 0.7
     }
 
     public dataChanged(){

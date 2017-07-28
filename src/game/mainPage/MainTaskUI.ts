@@ -53,8 +53,16 @@ class MainTaskUI extends game.BaseContainer {
         this.list.dataProvider = new eui.ArrayCollection(arr)
         for(var i=0;i<arr.length;i++)
         {
-            if(arr[i].isFinish())
+            var item = arr[i];
+            if(item.isFinish())
+            {
+                if(!TaskManager.getInstance().lastFinishStat[item.id])
+                {
+                    ShowTips('【'+item.getDes() + '】　已完成');
+                    TaskManager.getInstance().lastFinishStat[item.id] = true;
+                }
                 count ++;
+            }
         }
         this.taskText.text = '任务：' + count + '/' + arr.length;
         this.redMC.visible = count > 0;

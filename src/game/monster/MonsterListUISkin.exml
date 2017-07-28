@@ -37,9 +37,6 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="talkBtn" x="30" y="297">
-		<e:Image source="menu_icon_4_png" y="0" x="0"/>
-		<e:Label text="讨论" horizontalCenter="0" bottom="0" stroke="2" size="26" strokeColor="0x333333"/>
-	</e:Group>
+
 
 </e:Skin>

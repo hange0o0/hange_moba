@@ -693,6 +693,8 @@ class VideoItem3 extends game.BaseItem {
         if(!size)
             size = 20;
         var hpText = new eui.Label();
+        hpText.height = 50;
+        hpText.verticalAlign = 'middle';
         hpText.size = size;
         this.setHtml(hpText,txt);
         hpText.textColor = color

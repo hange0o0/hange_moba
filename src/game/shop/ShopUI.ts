@@ -49,7 +49,7 @@ class ShopUI extends game.BaseUI {
         {
             if(FromManager.getInstance().isTapTap && this.dataIn == 'diamond')
             {
-                MyInfoUI.getInstance().show(1);
+                HonorUI.getInstance().show();
                 this.hide();
                 return;
             }

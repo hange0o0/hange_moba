@@ -27,6 +27,10 @@ class DayGameManager{
         return '守卫' + level;
     }
 
+    public isRed(){
+        return !UM.day_game.level && (this.logList.length == 0 || !DateUtil.isSameDay(this.logList[0].time))
+    }
+
     public passDay(){
         DayGameManager.getInstance().resetDay();
         if(DayGameUI.getInstance().stage)
@@ -38,7 +42,6 @@ class DayGameManager{
     public resetDay(){
         if(!DateUtil.isSameDay(UM.day_game.lasttime))
         {
-            UM.day_game.isNew = UM.day_game.lasttime == 0
             UM.day_game.lasttime = TM.now()
             UM.day_game.level = 0;
         }

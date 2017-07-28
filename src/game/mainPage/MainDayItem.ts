@@ -32,6 +32,13 @@ class MainDayItem extends game.BaseItem {
         DayGameUI.getInstance().show();
     }
 
+    public onShow(){
+        if(TaskManager.getInstance().nowAction == 'day_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.startBtn)
+        }
+    }
+
     public renew() {
         this.haveRenew = true;
         //'{"choose":null,"level":1,"kill":[],"awardtime":0,"time":0,"pkdata":null}'

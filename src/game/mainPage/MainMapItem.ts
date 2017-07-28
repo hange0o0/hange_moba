@@ -34,7 +34,12 @@ class MainMapItem extends game.BaseItem {
 
         //addBtnTips(this.scoreText,this.onScore,this);
     }
-
+    public onShow(){
+        if(TaskManager.getInstance().nowAction == 'map_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.startBtn)
+        }
+    }
 
     private onStart(){
         MapMainUI.getInstance().show();

@@ -66,9 +66,16 @@ class HonorUI extends game.BaseUI {
     }
 
     public onShow(){
-        this.renew();
         this.scroller.viewport.scrollV = 0;
+        this.renew();
+
         this.addPanelOpenEvent(GameEvent.client.honor_change,this.renew)
+
+        if(TaskManager.getInstance().nowAction == 'honor')
+        {
+            var item:any = this.list.getChildAt(0);
+            TaskManager.getInstance().showGuideMC(item['awardBtn'])
+        }
     }
 
 

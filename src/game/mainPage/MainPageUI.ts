@@ -149,6 +149,7 @@ class MainPageUI extends game.BaseUI {
 
 
         EM.addEvent(GameEvent.client.honor_change,this.renewHonorRed,this);
+        EM.addEvent(GameEvent.client.word_change,this.renewHonorRed,this);
 
         EM.addEvent(GameEvent.client.friend_red_change,this.renewFriendRed,this);
 
@@ -163,7 +164,7 @@ class MainPageUI extends game.BaseUI {
         for(var i=0;i<=4;i++)
         {
             var mc = this['page'+i]
-            mc.data = i;
+            mc.index = i;
             this.pageArray.push(mc);
         }
 
@@ -229,6 +230,11 @@ class MainPageUI extends game.BaseUI {
     }
 
     private renewHonorRed(){
+        if(!UM.word)
+        {
+            this.honorRed.visible =  true;
+            return
+        }
         if(UM.honor.monster)
         {
             for(var s in UM.honor.monster)
@@ -248,6 +254,8 @@ class MainPageUI extends game.BaseUI {
         }
         else
             this.honorRed.visible =  UM.honor.isred;
+
+
     }
     private renewFriendRed(){
         var FM = FriendManager.getInstance();
@@ -445,6 +453,7 @@ class MainPageUI extends game.BaseUI {
         ServerGameEqualManager.getInstance().initData();
         MapManager.getInstance().initData();
         TeamPVEManager.getInstance().initData();
+        TaskManager.getInstance().initData();
         this.diamondDrawLight.visible = false;
 
         this.renewTop();
@@ -607,6 +616,16 @@ class MainPageUI extends game.BaseUI {
         if(!item.visible)
             return
         egret.Tween.removeTweens(item);
+        //item.scaleX =  item.scaleY = 1;
+        //item.alpha = 1;
+        //item.x = this.itemX;
+        //item.y = this.itemY;
+        //
+        //var tw = egret.Tween.get(item);
+        //tw.to({y:-600},300).call(function(){
+        //    item.visible = false;
+        //})
+
         item.scaleX =  item.scaleY = 1;
         item.alpha = 1;
         item.x = this.itemX;
@@ -619,6 +638,7 @@ class MainPageUI extends game.BaseUI {
         tw.to({x:p.x,y:p.y,alpha:0.8,scaleX:0.1,scaleY:0.1},300).call(function(){
             item.visible = false;
         })
+
     }
     //移入动画
     private movieIn(item){
@@ -637,10 +657,10 @@ class MainPageUI extends game.BaseUI {
         item.y = p.y;
 
         var tw = egret.Tween.get(item);
-        tw.wait(100).call(function(){
+        tw.call(function(){
             item.visible = true;
         }).to({x:this.itemX,y:this.itemY,alpha:1,scaleX:1,scaleY:1},300).call(function(){
-
+            item.onShow()
         })
     }
 

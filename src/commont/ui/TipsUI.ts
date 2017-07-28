@@ -16,15 +16,18 @@ class TipsUI extends game.BaseContainer{
 
 	public show(v?,cd?){
 		egret.clearTimeout(this.timer);
-		this.horizontalCenter = 0;
-		this.y =  GameManager.stage.stageHeight * 0.2;
+
 
 		//this.verticalCenter = 0;
-		GameManager.container.addChild(this);
+		GameManager.stage.addChild(this);
 		this.setHtml(this.text,v);
 		if(this.text.numLines > 1)
 			this.text.textAlign = 'left'
 		this.timer = egret.setTimeout(this.onTimer,this,cd);
+
+		this.validateNow();
+		this.x =  (GameManager.stage.stageWidth -this.width)/2
+		this.y =  GameManager.stage.stageHeight * 0.1;
 	}
 
 	private onTimer(){

@@ -38,6 +38,17 @@ class MainServerEqualItem extends game.BaseItem {
         EM.addEvent(GameEvent.client.prop_change,this.renew,this)
     }
 
+    public onShow(){
+        if(TaskManager.getInstance().nowAction == 'server_equal_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.startBtn)
+        }
+        else if(TaskManager.getInstance().nowAction == 'buy_ticket')
+        {
+            TaskManager.getInstance().showGuideMC(this.ticketGroup)
+        }
+    }
+
     private onTicket(){
         ShopUI.getInstance().show('ticket');
     }

@@ -906,7 +906,6 @@ class PKMainUI extends game.BaseUI {
                     else
                         x = 390 + ((data.index-1)*130);
                     item.isPKing = false;
-                    item.showLight();
                 }
 
                 if(this.isNotEqual(item.x,x) || this.isNotEqual(item.y,y))
@@ -928,9 +927,13 @@ class PKMainUI extends game.BaseUI {
                     }
                     else
                     {
-                        VM.jumpToXY(item,{
+                        var toXY = {
                             x:x,y:y
-                        },null,null,0,1,{before:cd});
+                        }
+                        if(this.getDis(item,toXY) < 100)
+                            VM.moveToXY(item,toXY,null,null,cd);
+                        else
+                            VM.jumpToXY(item,toXY,null,null,0,1,{before:cd});
                     }
                 }
                 item.ox = x;
@@ -1420,55 +1423,54 @@ class PKMainUI extends game.BaseUI {
         return null;
     }
 
-    public showItem(){
-        var VC  = VideoCode.getInstance();
-        for(var s in VC.playerObject)
-        {
-            var data = VC.playerObject[s];
-            if(data.index >= 0)
-            {
-                var item = this.getItem()
-                item.data = {
-                    vo:data.mvo,
-                    team:data.teamID,
-                    index:data.index
-                }
-                item.id = data.id;
-                this.itemArray.push(item);
-                this.roleCon.addChild(item);
-                if(data.index == 0)
-                {
-                    item.y = (this.fightHeight - 100)/2;
-                    if(data.teamID == 1)
-                    {
-                        item.x = 150;
-                        this.selfPKing = item
-                    }
-                    else
-                    {
-                        item.x = 640-150;
-                        this.enemyPKing = item;
-                    }
-                    item.isPKing = true;
-                    item.showLight(true);
-                }
-                else
-                {
-                    item.y = this.fightHeight-80;
-                    if(data.teamID == 1)
-                        item.x = 120 + (data.index-1)*130;
-                    else
-                        item.x = 640-(120 + (data.index-1)*130);
-                    item.showLight();
-                }
-                item.ox = item.x;
-                item.oy = item.y;
-            }
-        }
-        this.selfPKing.enemy = this.enemyPKing
-        this.enemyPKing.enemy = this.selfPKing
-        this.pkOne();
-    }
+    //public showItem(){
+    //    var VC  = VideoCode.getInstance();
+    //    for(var s in VC.playerObject)
+    //    {
+    //        var data = VC.playerObject[s];
+    //        if(data.index >= 0)
+    //        {
+    //            var item = this.getItem()
+    //            item.data = {
+    //                vo:data.mvo,
+    //                team:data.teamID,
+    //                index:data.index
+    //            }
+    //            item.id = data.id;
+    //            this.itemArray.push(item);
+    //            this.roleCon.addChild(item);
+    //            if(data.index == 0)
+    //            {
+    //                item.y = (this.fightHeight - 100)/2;
+    //                if(data.teamID == 1)
+    //                {
+    //                    item.x = 150;
+    //                    this.selfPKing = item
+    //                }
+    //                else
+    //                {
+    //                    item.x = 640-150;
+    //                    this.enemyPKing = item;
+    //                }
+    //                item.isPKing = true;
+    //                item.showLight(true);
+    //            }
+    //            else
+    //            {
+    //                item.y = this.fightHeight-80;
+    //                if(data.teamID == 1)
+    //                    item.x = 120 + (data.index-1)*130;
+    //                else
+    //                    item.x = 640-(120 + (data.index-1)*130);
+    //            }
+    //            item.ox = item.x;
+    //            item.oy = item.y;
+    //        }
+    //    }
+    //    this.selfPKing.enemy = this.enemyPKing
+    //    this.enemyPKing.enemy = this.selfPKing
+    //    this.pkOne();
+    //}
 
     public pkOne(){
         var data = this.listArray[this.index];

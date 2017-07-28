@@ -153,7 +153,7 @@ class MyInfoUI extends game.BaseUI {
         var serverData = UM.server_game;
         level = ServerGameManager.getInstance().getPKTableLevel(serverData.exp)
 
-        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分"]'+serverData.exp +'/'+ServerGameManager.getInstance().getPKTableExp(level + 1)+''}
+        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分:]'+serverData.exp +'/'+ServerGameManager.getInstance().getPKTableExp(level + 1)+''}
         if(UM.main_game.level >= Config.serverLevel)
             oo.fun = function(){ServerGameUI.getInstance().show()}
         list.push(oo)

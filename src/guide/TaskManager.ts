@@ -10,9 +10,21 @@ class TaskManager {
     public nowAction//正在进行的指引
     public actionStep//正在进行的指引的步数
 
+    public lastFinishStat = {};
+
 
     public constructor() {
-         this.init()
+
+    }
+
+    public initData(){
+        this.lastFinishStat = {};
+        var list = this.getCurrentTaskList()
+        for(var i=0;i<list.length;i++)
+        {
+            var item = list[i];
+            this.lastFinishStat[item.id] = item.isFinish()
+        }
     }
 
     public cleanNowAcrion(key){
@@ -51,64 +63,6 @@ class TaskManager {
         return arr;
     }
 
-    //public getTaskText(){
-    //    var textArr = [];
-    //    var arr = this.getCurrentTaskList();
-    //    for(var i=0;i<arr.length;i++)
-    //    {
-    //        if(i != 0)
-    //            textArr.push({text:'\n'})
-    //
-    //        var vo:TaskVO = arr[i];
-    //        if(vo.isFinish())
-    //        {
-    //            var href = 'event:award_'+vo.id;
-    //            textArr.push({text:vo.getDes()  ,style:{href:href,"underline": true}})
-    //            textArr.push({text: '　已完成',style:{href:href,textColor:0x6DC966}})
-    //        }
-    //        else
-    //        {
-    //            var href = 'event:go_'+vo.id;
-    //            textArr.push({text:vo.getDes(),style:{href:href,"underline": true}})
-    //            textArr.push({text: '　' + vo.getRate(),style:{href:href,textColor:0xE0A44A}})
-    //        }
-    //
-    //    }
-    //    return textArr;
-    //}
-
-    private init(){
-         //id,type,value1,value2,awarddiamond,awardCoin,awardCard
-          //----mainlevel        1+
-        //force
-        //main_game     level
-
-        //main_award
-
-        //draw
-
-
-
-        //server_game
-
-        //map_game
-        //map_game_buy
-        //map_game_pk   times
-        //map_game_next
-
-        //buy_ticket
-        //server_equal_game
-        //honor
-
-        //-----------userlevel  1000+
-        //day_game
-        //card  monster level
-        //friend
-        //friend_dungeon
-
-
-
-    }
 
     //在MC上显示一次光效
     public showGuideMC(mc) {

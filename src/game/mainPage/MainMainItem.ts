@@ -33,6 +33,17 @@ class MainMainItem extends game.BaseItem {
         addBtnTips(this.scoreText,this.onScore,this);
     }
 
+    public onShow(){
+        if(TaskManager.getInstance().nowAction == 'main_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.startBtn)
+        }
+        else if(TaskManager.getInstance().nowAction == 'main_award')
+        {
+            TaskManager.getInstance().showGuideMC(this.awardBtn)
+        }
+    }
+
     private onAward(){
         MainAwardBeforeUI.getInstance().show();
 

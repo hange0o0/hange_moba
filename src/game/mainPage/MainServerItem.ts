@@ -30,6 +30,13 @@ class MainServerItem extends game.BaseItem {
         addBtnTips(this.scoreText,this.onScore,this);
     }
 
+    public onShow(){
+        if(TaskManager.getInstance().nowAction == 'server_game')
+        {
+            TaskManager.getInstance().showGuideMC(this.startBtn)
+        }
+    }
+
     private onScore(){
         var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
         var nextExp = ServerGameManager.getInstance().getPKTableExp(level + 1)

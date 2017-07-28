@@ -43,7 +43,7 @@ class CollectUI extends game.BaseUI {
         super.childrenCreated();
 
         this.topUI.setTitle('卡兵列表')
-        this.topUI.addEventListener('hide',this.hide,this);
+        this.topUI.addEventListener('hide',this.onClose,this);
 
 
 
@@ -60,7 +60,7 @@ class CollectUI extends game.BaseUI {
         this.addBtnEvent(this.sortText,this.onSort);
         this.addBtnEvent(this.coinGroup,this.onCoin);
         this.addBtnEvent(this.cardGroup,this.onCard);
-        this.addBtnEvent(this.closeBtn,this.onClose);
+        //this.addBtnEvent(this.closeBtn,this.onClose);
 
         this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
@@ -83,7 +83,7 @@ class CollectUI extends game.BaseUI {
     private onListChoose2(){
         if(this.chooseMonster == this.listH.selectedItem.id)
         {
-            this.onClose();
+            //this.onClose();
             return
         }
         this.chooseMonster = this.listH.selectedItem.id;
@@ -98,12 +98,17 @@ class CollectUI extends game.BaseUI {
     }
 
     private onClose(){
-        this.open = false;
-        this.chooseMonster = 0;
-        var scrollV = this.scroller.viewport.scrollV
-        this.renewList();
-        this.scroller.validateNow();
-        this.scroller.viewport.scrollV = scrollV
+        if(this.open && !GuideManager.getInstance().isGuiding)
+        {
+            this.open = false;
+            this.chooseMonster = 0;
+            var scrollV = this.scroller.viewport.scrollV
+            this.renewList();
+            this.scroller.validateNow();
+            this.scroller.viewport.scrollV = scrollV
+            return;
+        }
+        this.hide();
     }
 
     private renewMonster(){
@@ -236,10 +241,18 @@ class CollectUI extends game.BaseUI {
             MainPageUI.getInstance().renewPage();
         }
     }
-    public show(){
+    public show(mid?){
         var self = this;
         this.open = false;
         this.chooseMonster = 0;
+
+        if(mid)
+        {
+            this.open = true;
+            this.chooseMonster = mid
+        }
+
+
         self.superShow();
         //CollectManager.getInstance().getCollectMore(function(){
         //    self.superShow();
@@ -260,6 +273,11 @@ class CollectUI extends game.BaseUI {
         this.addPanelOpenEvent(GameEvent.client.card_change,this.renew);
 
         GuideManager.getInstance().showGuide(CollectUI.getInstance());
+
+        if(TaskManager.getInstance().nowAction == 'comment')
+        {
+            TaskManager.getInstance().showGuideMC(this.monsterBase['talkBtn'])
+        }
     }
 
     public renew(){
@@ -296,7 +314,7 @@ class CollectUI extends game.BaseUI {
             this.openGroup.visible = true;
             this.scroller.visible = false;
             this.renewMonster();
-            var itemWidth = 120*0.8 + 15
+            var itemWidth = 120*0.7 + 15
 
             var des = 0;
             if(this.listH.selectedIndex == -1)

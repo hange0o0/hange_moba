@@ -105,4 +105,7 @@
 		<e:Rect height="100%" width="100%" y="0" strokeWeight="2" ellipseHeight="20" ellipseWidth="20" x="0" fillColor="0x180802" strokeColor="0xa38d6a"/>
 		<e:Label id="talkText" text="sdfasdfs" size="24" textColor="0xcbc08a" left="30" right="30" lineSpacing="5" top="20" bottom="20" verticalAlign="middle"/>
 	</e:Group>
+	<e:Group id="talkBtn" right="10" top="10" width="80" height="80">
+		<e:Image source="menu_icon_4_png" scaleX="0.5" scaleY="0.5" right="10" top="14"/>
+	</e:Group>
 </e:Skin>

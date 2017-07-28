@@ -100,7 +100,6 @@ class TaskVO {
     public isFinish(){
         var stat = UM.active.task.stat || {};
         var MD = MapData.getInstance();
-        var level:any;
         this.currentValue = 0;
         switch(this.type)
         {
@@ -239,49 +238,39 @@ class TaskVO {
         switch(this.type)
         {
             case 'draw':
-                MainPageUI.getInstance()['topPlayerTips'].hide();
                 TM.showGuideMC(MainPageUI.getInstance()['diamonDrawBtn'])
                 break;
             case 'main_game':
-                MainGameUI.getInstance().show();
+                TM.nowAction = this.type;
+                if(MainPageUI.getInstance().currentPage == 0)
+                    MainPageUI.getInstance()['mainGame'].onShow();
+                else
+                    TM.showGuideMC(MainPageUI.getInstance()['page0'])
                 break;
             case 'force':
-                CollectUI.getInstance().show()
+                TM.showGuideMC(MainPageUI.getInstance()['collectBtn'])
+                //CollectUI.getInstance().show()
                 break;
             case 'map_game':
-                if(this.value1 < 0)
-                {
-                    TM.nowAction = this.type;
-                    MainPageUI.getInstance().currentPage = 2;
-                    MainPageUI.getInstance().scrollToCurrentPage(true)
-                    MainPageUI.getInstance()['topPlayerTips'].hide();
-                    TM.showGuideMC(MainPageUI.getInstance()['mapGame']['startBtn'])
-                }
+                TM.nowAction = this.type;
+                if(MainPageUI.getInstance().currentPage == 2)
+                    MainPageUI.getInstance()['mapGame'].onShow();
                 else
-                {
-                    MapGameUI.getInstance().show();
-                }
+                    TM.showGuideMC(MainPageUI.getInstance()['page2'])
                 break;
             case 'main_award':
                 TM.nowAction = this.type;
-                MainPageUI.getInstance().currentPage = 0;
-                MainPageUI.getInstance().scrollToCurrentPage(true)
-                MainPageUI.getInstance()['topPlayerTips'].hide();
-                TM.showGuideMC(MainPageUI.getInstance()['mainGame']['awardBtn'])
+                if(MainPageUI.getInstance().currentPage == 0)
+                    MainPageUI.getInstance()['mainGame'].onShow();
+                else
+                    TM.showGuideMC(MainPageUI.getInstance()['page0'])
                 break;
             case 'server_game':
-                if(this.value1 < 0)
-                {
-                    TM.nowAction = this.type;
-                    MainPageUI.getInstance().currentPage = 3;
-                    MainPageUI.getInstance().scrollToCurrentPage(true)
-                    MainPageUI.getInstance()['topPlayerTips'].hide();
-                    TM.showGuideMC(MainPageUI.getInstance()['serverGame']['startBtn'])
-                }
+                TM.nowAction = this.type;
+                if(MainPageUI.getInstance().currentPage == 3)
+                    MainPageUI.getInstance()['serverGame'].onShow();
                 else
-                {
-                    ServerGameUI.getInstance().show();
-                }
+                    TM.showGuideMC(MainPageUI.getInstance()['page3'])
                 break;
             case 'map_game_pk':
                 TM.nowAction = this.type;
@@ -301,44 +290,33 @@ class TaskVO {
                 break;
             case 'comment':
                 TM.nowAction = this.type;
-                MonsterList.getInstance().showID(HonorManager.getInstance().isHonor())
+                CollectUI.getInstance().show(HonorManager.getInstance().isHonor())
+                //MonsterList.getInstance().showID(HonorManager.getInstance().isHonor())
                 break;
             case 'buy_ticket':
                 TM.nowAction = this.type;
-                MainPageUI.getInstance().currentPage = 4;
-                MainPageUI.getInstance().scrollToCurrentPage(true)
-                TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual']['ticketGroup'])
+                if(MainPageUI.getInstance().currentPage == 4)
+                    MainPageUI.getInstance()['serverGameEqual'].onShow();
+                else
+                    TM.showGuideMC(MainPageUI.getInstance()['page4'])
                 break;
             case 'server_equal_game':
-                if(this.value1 < 0)
-                {
-                    TM.nowAction = this.type;
-                    MainPageUI.getInstance().currentPage = 4;
-                    MainPageUI.getInstance().scrollToCurrentPage(true)
-                    MainPageUI.getInstance()['topPlayerTips'].hide();
-                    TM.showGuideMC(MainPageUI.getInstance()['serverGameEqual']['startBtn'])
-                }
+                TM.nowAction = this.type;
+                if(MainPageUI.getInstance().currentPage == 4)
+                    MainPageUI.getInstance()['serverGameEqual'].onShow();
                 else
-                {
-                   ServerGameEqualUI.getInstance().show();
-                }
+                    TM.showGuideMC(MainPageUI.getInstance()['page4'])
                 break;
             case 'card':
-                MonsterList.getInstance().showID(this.value1)
+                CollectUI.getInstance().show(this.value1)
+               // MonsterList.getInstance().showID(this.value1)
                 break;
             case 'day_game':
-                if(this.value1 < 0)
-                {
-                    TM.nowAction = this.type;
-                    MainPageUI.getInstance().currentPage = 1;
-                    MainPageUI.getInstance().scrollToCurrentPage(true)
-                    MainPageUI.getInstance()['topPlayerTips'].hide();
-                    TM.showGuideMC(MainPageUI.getInstance()['dayGame']['startBtn'])
-                }
+                TM.nowAction = this.type;
+                if(MainPageUI.getInstance().currentPage == 1)
+                    MainPageUI.getInstance()['dayGame'].onShow();
                 else
-                {
-                    DayGameUI.getInstance().show();
-                }
+                    TM.showGuideMC(MainPageUI.getInstance()['page1'])
                 break;
             case 'friend':
                 TM.nowAction = this.type;

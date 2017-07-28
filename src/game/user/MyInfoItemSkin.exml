@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="MyInfoItemSkin" width="630" height="60" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group y="0" horizontalCenter="0" width="100%" height="100%">
-		<e:Rect height="100%" width="100%" y="0" strokeWeight="2" ellipseHeight="10" ellipseWidth="10" x="0" fillColor="0x180802" strokeColor="0xA38D6A"/>
-		<e:Rect height="100%" width="210" y="0" strokeWeight="2" ellipseHeight="10" ellipseWidth="10" x="0" strokeColor="0xA38D6A" fillColor="0x000000"/>
+		<e:Rect height="100%" width="100%" y="0" strokeWeight="2" ellipseHeight="10" ellipseWidth="10" x="0" fillColor="0x180802" strokeColor="0x775f3b"/>
+		<e:Rect height="100%" width="210" y="0" strokeWeight="2" ellipseHeight="10" ellipseWidth="10" x="0" fillColor="0x000000" strokeColor="0x775f3b"/>
 		<e:Rect width="20" y="2" x="200" fillColor="0x000000" strokeColor="0xA38D6A" height="56"/>
-		<e:Rect width="2" y="4" x="220" strokeColor="0xA38D6A" height="52" fillColor="0xa38d6a"/>
+		<e:Rect width="2" y="4" x="220" strokeColor="0xA38D6A" height="52" fillColor="0x775f3b"/>
 		<e:Image id="icon" source="icon_money_png" verticalCenter="0" horizontalCenter="-285"/>
 		<e:Label id="titleText" text="好友切磋胜利" size="24" lineSpacing="5" verticalAlign="middle" x="60" verticalCenter="0" textColor="0xe0a44a"/>
 		<e:Label id="desText" text="好友切磋胜利次数" size="24" textColor="0xCBC08A" lineSpacing="5" verticalAlign="middle" x="235" verticalCenter="0"/>

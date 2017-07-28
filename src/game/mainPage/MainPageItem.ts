@@ -5,6 +5,8 @@ class MainPageItem extends game.BaseItem {
     private redMC: eui.Image;
     private lockMC: eui.Image;
 
+    
+    public index;
     public constructor() {
         super();
         this.skinName = "MainPageItemSkin";
@@ -16,13 +18,13 @@ class MainPageItem extends game.BaseItem {
     }
 
     private onClick(){
-         MainPageUI.getInstance().clickPage(this.data)
+         MainPageUI.getInstance().clickPage(this.index)
     }
 
     public dataChanged() {
-        this.bg.source = 'main_pk'+(this.data + 1)+'_png'
+        this.bg.source = 'main_pk'+(this.index + 1)+'_png'
         this.lockMC.visible = this.isLock()
-        this.setChoose(MainPageUI.getInstance().currentPage == this.data);
+        this.setChoose(MainPageUI.getInstance().currentPage == this.index);
     }
 
     public setChoose(b){
@@ -37,9 +39,11 @@ class MainPageItem extends game.BaseItem {
 
     //是否有红点
     private isRed(){
-        if(this.data==0 && !(UM.main_game.awardtime && DateUtil.isSameDay(UM.main_game.awardtime)))
+        if(this.index==0 && !(UM.main_game.awardtime && DateUtil.isSameDay(UM.main_game.awardtime)))
             return true
-        else if(this.data == 2)
+        else if(this.index==1 && DayGameManager.getInstance().isRed())
+            return true
+        else if(this.index == 2)
         {
             var MD = MapData.getInstance();
             if(MD.lastTime) {
@@ -56,7 +60,7 @@ class MainPageItem extends game.BaseItem {
     }
     //是否锁住
     private isLock(){
-        switch(this.data)
+        switch(this.index)
         {
             case 1:
                 return UM.level < Config.dayLevel
