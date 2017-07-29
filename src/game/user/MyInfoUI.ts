@@ -145,7 +145,7 @@ class MyInfoUI extends game.BaseUI {
         list.push(oo)
 
 
-        oo = {title:'到达最高据点',icon:'icon_map_png',des: '第'+(MapData.getInstance().maxLevel + 1)+'据点'}
+        oo = {title:'到达最高据点',icon:'icon_map_png',des: '第'+(MapData.getInstance().maxLevel)+'据点'}
         if(UM.main_game.level >= Config.mapLevel)
             oo.fun = function(){MapMainUI.getInstance().show()}
         list.push(oo)

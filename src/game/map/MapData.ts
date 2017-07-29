@@ -59,7 +59,7 @@ class MapData {
     public fillData(map){
         this.level = map.level || 1;
         this.value = map.value || 0;
-        this.maxLevel = map.max_level || 0;
+        this.maxLevel = map.max_level || 1;
         this.bag = map.bag || 0;
         this.pkValue = map.pk_value || 0;
         this.step = map.step || 0;

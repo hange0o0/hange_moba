@@ -51,6 +51,10 @@ class Net extends egret.EventDispatcher{
     public send(head,msg,fun?,isMode = true,serverType=1){
         var loader = new egret.URLLoader();
         loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
+        loader['isMode'] = isMode
+        loader['fun'] = fun
+        loader['head'] = head
+        loader['msg'] = msg;
         if(serverType == 1)
         {
             if(!this.serverHost)
@@ -81,95 +85,104 @@ class Net extends egret.EventDispatcher{
         loader.load(request);
 
 
-        function onComplete(e){
-            if(isMode)
-                this.modeNum --;
-            if(this.modeNum <= 0)
-            {
-                GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
-                this.removeLoading();
-            }
 
 
-            loader.removeEventListener(egret.Event.COMPLETE, onComplete, this);
-            loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);
-            if(Config.isDebug && this.outPut)
-            {
-                console.log('====receive>        '+head)
-                console.log(e.target.data +'   ' +TM.now());
-            }
-            try {
-                var data = JSON.parse(e.target.data)
-            }catch(e){
 
-                if(Config.isDebug)
-                    Alert('通信数据异常');
-                else
-                    Alert('通信数据异常',refresh,'重新登陆');
-                return;
-            }
-            if(data.error)
-            {
-                GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
-                this.removeLoading();
-                switch (data.error)
-                {
-                    case 1:
-                        if(_get['app'])
-                            Alert('游戏已更新，请重新下载');
-                        else
-                            Alert('游戏已更新，请登陆重进',refresh,'重新登陆');
-                        GameManager.getInstance().stopTimer();
-                        break;
-                    case 2:
-                        Alert('该用户已在其它地方登录',refresh,'重新登陆');
-                        GameManager.getInstance().stopTimer();
-                        break;
-                    case 3:
-                        Alert('通信出错',refresh,'重新登陆');
-                        break;
-                    case 4:
-                        Alert('用户数据写入失败',refresh,'重新登陆');
-                        GameManager.getInstance().stopTimer();
-                        break;
-                    case 5:
-                        Alert('服务器正在维护中，请稍后再试',refresh);
-                        GameManager.getInstance().stopTimer();
-                        break;
-                    case 99:
-                        Alert(data.error_str,refresh);
-                        GameManager.getInstance().stopTimer();
-                        break;
-                }
-                return;
-            }
-            TM.init(data.server_time);
-            SyncManager.getInstance().snyc(data.msg);
-            var oo:any = {};
-            oo.sendData = msg;
-            oo.msg = data.msg;
-            if(fun)
-                fun(oo);
-            this.dispatchEventWith(head,false,oo);
-        }
+        loader.addEventListener(egret.Event.COMPLETE, this.onComplete, this);
+        loader.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onError, this);
 
-        function onError(e){
-            loader.removeEventListener(egret.Event.COMPLETE, onComplete, this);
-            loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);
-            Alert('与服务器失去连接！',refresh);
-            GameManager.getInstance().stopTimer();
+    }
+
+    private onComplete(e){
+        var loader = e.currentTarget;
+        var isMode = loader.isMode
+        var fun = loader.fun
+        var head = loader.head
+        var msg = loader.msg
+
+        if(isMode)
+            this.modeNum --;
+        if(this.modeNum <= 0)
+        {
             GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
             this.removeLoading();
-
-        }
-        function refresh(){
-            location.reload();
         }
 
 
-        loader.addEventListener(egret.Event.COMPLETE, onComplete, this);
-        loader.addEventListener(egret.IOErrorEvent.IO_ERROR, onError, this);
+        loader.removeEventListener(egret.Event.COMPLETE, this.onComplete, this);
+        loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, this.onError, this);
+        if(Config.isDebug && this.outPut)
+        {
+            console.log('====receive>        '+head)
+            console.log(e.target.data +'   ' +TM.now());
+        }
+        try {
+            var data = JSON.parse(e.target.data)
+        }catch(e){
 
+            if(Config.isDebug)
+                Alert('通信数据异常');
+            else
+                Alert('通信数据异常',this.refresh,'重新登陆');
+            return;
+        }
+        if(data.error)
+        {
+            GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
+            this.removeLoading();
+            switch (data.error)
+            {
+                case 1:
+                    if(_get['app'])
+                        Alert('游戏已更新，请重新下载');
+                    else
+                        Alert('游戏已更新，请登陆重进',this.refresh,'重新登陆');
+                    GameManager.getInstance().stopTimer();
+                    break;
+                case 2:
+                    Alert('该用户已在其它地方登录',this.refresh,'重新登陆');
+                    GameManager.getInstance().stopTimer();
+                    break;
+                case 3:
+                    Alert('通信出错',this.refresh,'重新登陆');
+                    break;
+                case 4:
+                    Alert('用户数据写入失败',this.refresh,'重新登陆');
+                    GameManager.getInstance().stopTimer();
+                    break;
+                case 5:
+                    Alert('服务器正在维护中，请稍后再试',this.refresh);
+                    GameManager.getInstance().stopTimer();
+                    break;
+                case 99:
+                    Alert(data.error_str,this.refresh);
+                    GameManager.getInstance().stopTimer();
+                    break;
+            }
+            return;
+        }
+        TM.init(data.server_time);
+        SyncManager.getInstance().snyc(data.msg);
+        var oo:any = {};
+        oo.sendData = msg;
+        oo.msg = data.msg;
+        if(fun)
+            fun(oo);
+        this.dispatchEventWith(head,false,oo);
+    }
+
+    private onError(e){
+        var loader = e.currentTarget;
+        loader.removeEventListener(egret.Event.COMPLETE, this.onComplete, this);
+        loader.removeEventListener(egret.IOErrorEvent.IO_ERROR, this.onError, this);
+        Alert('与服务器失去连接！',this.refresh);
+        GameManager.getInstance().stopTimer();
+        GameManager.container.touchChildren = GameManager.container.touchEnabled = true;
+        this.removeLoading();
+
+    }
+    private refresh(){
+        location.reload();
     }
 
     private addLoading(){

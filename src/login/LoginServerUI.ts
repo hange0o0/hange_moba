@@ -35,7 +35,7 @@ class LoginServerUI extends game.BaseUI {
     }
 
     private onBack(){
-        //LoginManager.getInstance().quickPassword = null;
+        LoginManager.getInstance().quickPassword = null;
         LoginUI.getInstance().show();
         PopUpManager.movieChange(LoginServerUI.getInstance(),LoginUI.getInstance(),-1)
     }

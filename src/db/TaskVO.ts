@@ -77,7 +77,7 @@ class TaskVO {
         if(this.type == 'map_game_pk')
         {
             var MD = MapData.getInstance();
-            if(MD.step || MD.maxLevel || MD.pkValue)
+            if(MD.step || MD.maxLevel>1 || MD.pkValue)
                 return true
             MD.reInit();
             if(!MD.pkValue)
@@ -145,7 +145,7 @@ class TaskVO {
                 break;
             case 'map_game_pk':
                 this.currentValue = MD.step;
-                if(MD.maxLevel> 0)
+                if(MD.maxLevel> 1)
                     this.currentValue = 10;
                 return this.currentValue >= this.value1
                 break;
@@ -158,7 +158,7 @@ class TaskVO {
                 return false;
                 break;
             case 'map_game_next':
-                if(MD.maxLevel> 0)
+                if(MD.maxLevel> 1)
                 {
                     this.currentValue = 1;
                     return true;
@@ -425,13 +425,13 @@ class TaskVO {
             case 'server_game':
             case 'server_equal_game':
             case 'day_game':
+            case 'map_game_pk':
                 if(this.value1 < 0)
                     return  this.currentValue + ' /1'
                 return this.currentValue +  ' /' + this.value1;
                 break;
-            case 'map_game_pk':
             case 'card':
-                return this.currentValue +  ' /' + this.value1
+                return this.currentValue +  ' /' + this.value2
                 break;
         }
         return '??'

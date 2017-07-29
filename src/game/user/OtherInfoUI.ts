@@ -187,8 +187,8 @@ class OtherInfoUI extends game.BaseUI {
         list.push(oo)
 
 
-        var otherLevel = (dataIn.pk_common.map || {}).max_level || 0;
-        oo = {title:'到达最高据点',icon:'icon_map_png',des: '第'+(otherLevel + 1)+'据点',myValue:MapData.getInstance().maxLevel, otherValue:otherLevel}
+        var otherLevel = (dataIn.pk_common.map || {}).max_level || 1;
+        oo = {title:'到达最高据点',icon:'icon_map_png',des: '第'+(otherLevel)+'据点',myValue:MapData.getInstance().maxLevel, otherValue:otherLevel}
         list.push(oo)
 
 

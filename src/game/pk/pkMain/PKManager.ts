@@ -724,6 +724,30 @@ class PKManager {
                     this.pkAward.desArr.push('据点进度：' + (MD.step + 1) + '/' + MD.maxBossTimes)
                 }
             }
+
+            if(!data.g_level_up && data.result)
+            {
+                if(this.pkType == PKManager.PKType.MAIN)
+                    this.pkAward.desArr.push('职业评分升至：' + UM.main_game.level)
+                else if(this.pkType == PKManager.PKType.DAY)
+                    this.pkAward.desArr.push('今日研究进度：' + UM.day_game.level + '/10')
+                else if(this.pkType == PKManager.PKType.SERVER)
+                {
+                    var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)
+                    var nowExp = ServerGameManager.getInstance().getPKTableExp(level)
+                    var nextExp = ServerGameManager.getInstance().getPKTableExp(level + 1)
+                    var des = (nextExp - nowExp) - Math.max(0,UM.server_game.exp - nowExp)
+                    this.pkAward.desArr.push('竞技场积分：' + UM.server_game.exp + '\n离下一段位还差：'+ des)
+                }
+                else if(this.pkType == PKManager.PKType.SERVER_EQUAL)
+                {
+                    var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game_equal.exp)
+                    var nowExp = ServerGameManager.getInstance().getPKTableExp(level)
+                    var nextExp = ServerGameManager.getInstance().getPKTableExp(level + 1)
+                    var des = (nextExp - nowExp) - Math.max(0,UM.server_game_equal.exp - nowExp)
+                    this.pkAward.desArr.push('修正场积分：' + UM.server_game_equal.exp + '\n离下一称号还差：'+ des)
+                }
+            }
         }
 
 

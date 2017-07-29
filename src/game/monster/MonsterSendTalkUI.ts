@@ -73,6 +73,12 @@ class MonsterSendTalkUI extends game.BaseWindow {
         this.editText.text = '';
         //this.editText.setFocus();
 
+        if(TaskManager.getInstance().nowAction == 'comment')
+        {
+            this.editText.text = '没有什么看法，就是做个任务'
+            TaskManager.getInstance().showGuideMC(this.sendBtn)
+        }
+
 
     }
 }
