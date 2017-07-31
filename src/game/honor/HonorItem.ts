@@ -73,7 +73,7 @@ class HonorItem extends game.BaseItem {
         }
         var award = HM.awardBase[awardLevel + 1]
 
-        this.setText(this.rateText, '[进度：]' + this.data.w + '/' + award.num);
+        this.setText(this.rateText, '[胜利：]' + this.data.w + '/' + award.num);
         //this.rateText.text = this.data.w + '/' + award.num;
         //this.barMC.width = 280*Math.min(1,this.data.w/award.num)
         this.awardText.text = 'X' + award.diamond;

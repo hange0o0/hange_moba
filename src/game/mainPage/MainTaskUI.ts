@@ -37,14 +37,16 @@ class MainTaskUI extends game.BaseContainer {
               this.currentState='open';
               egret.Tween.removeTweens(this.taskIcon)
               this.taskIcon.alpha = 1;
+              GuideUI.getInstance().hideHand();
           }
     }
 
     public showMV(){
-        egret.Tween.removeTweens(this.taskIcon)
-        this.taskIcon.alpha = 1;
-        var tw = egret.Tween.get(this.taskIcon,{loop:true})
-        tw.to({alpha:0.3},1000).to({alpha:1},1000)//.wait(1000)
+        GuideUI.getInstance().showHand(this);
+        //egret.Tween.removeTweens(this.taskIcon)
+        //this.taskIcon.alpha = 1;
+        //var tw = egret.Tween.get(this.taskIcon,{loop:true})
+        //tw.to({alpha:0.3},1000).to({alpha:1},1000)//.wait(1000)
     }
 
     public renew(){

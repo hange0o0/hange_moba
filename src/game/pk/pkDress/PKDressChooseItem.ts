@@ -28,7 +28,7 @@ class PKDressChooseItem extends game.BaseItem {
     public childrenCreated(){
         //MyTool.addDoubleTouch(this,this.onDoubleClick,this)
         DragManager.getInstance().setDrag(this,true);
-        addBtnTips(this,this.onTips,this);
+        //addBtnTips(this,this.onTips,this);
         //this.addBtnEvent(this.noteIcon,this.onNote)
     }
 

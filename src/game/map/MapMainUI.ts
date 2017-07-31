@@ -631,7 +631,17 @@ class MapMainUI extends game.BaseUI {
 
 
     private testItemDie(item){
-        var b = Math.random() > 0.7
+        var normalDie = 3600*6//6 hour
+        var rate = (MapData.getInstance().bossCD - normalDie)/normalDie
+        if(item.team == 1)
+            rate = 0.5 + rate*0.5;
+        else
+            rate = 0.5 - rate*0.5
+
+        rate = Math.max(rate,0.1)
+        rate = Math.min(rate,0.9)
+
+        var b = Math.random() < rate
         if(b)
         {
             this.showDie(item);

@@ -24,6 +24,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private a8: eui.Image;
     private pkBtn: eui.Button;
     private randomBtn: eui.Group;
+    private randomSet: eui.Group;
     private randomBG: eui.Image;
     private randomIcon: eui.Image;
     private resetBtn: eui.Group;
@@ -90,6 +91,8 @@ class PKDressChooseUI extends game.BaseContainer {
     private dragTarget
     private overTarget
 
+    private randomPos = {x:0,y:0};
+
 
     public sortIndex = 0;
     private sortArr = [
@@ -106,6 +109,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.mvItem = new PKDressChooseItem();
         this.itemGroup.addChild(this.mvItem);
         this.mvItem.visible = false;
+        this.randomSet.visible = false;
         var des = 126;
         for(var i=1;i<=6;i++)
         {
@@ -167,9 +171,27 @@ class PKDressChooseUI extends game.BaseContainer {
         this.cb.selected = true;
 
 
-        MyTool.addLongTouch(this.randomBtn,this.onRandomSetting,this)
+        //MyTool.addTouchUp(this.randomBtn,this.onRandomSetting,this)
+        //MyTool.addLongTouch(this.randomBtn,this.onRandomSetting,this)
 
-        //console.log(this.posArray);
+        this.randomBtn.touchChildren = false
+        this.randomPos.x = this.randomBtn.x
+        this.randomPos.y = this.randomBtn.y
+        DragManager.getInstance().setDrag(this.randomBtn,false,{x:this.randomBtn.x,y:this.randomBtn.y - 100,width:0,height:100});
+        this.randomBtn.addEventListener('start_drag',this.onRandomDragStart,this);
+        this.randomBtn.addEventListener('end_drag',this.onRandomDragEnd,this);
+    }
+
+    private onRandomDragStart(){
+        this.randomSet.visible = true;
+    }
+    private onRandomDragEnd(){
+        if(this.randomPos.y - this.randomBtn.y > 50)
+        {
+             this.onRandomSetting();
+        }
+        this.randomBtn.y = this.randomPos.y
+        this.randomSet.visible = false;
     }
 
     private onRandomSetting(){
@@ -213,7 +235,7 @@ class PKDressChooseUI extends game.BaseContainer {
         var GM = GuideManager.getInstance();
         if(GM.isGuiding && GM.guideRandom == 2)
         {
-            ShowTips('请' + this.createHtml('【长按】',0xE0A44A)+'随机按钮')
+            ShowTips('请' + this.createHtml('【向上拖动】',0xE0A44A)+'随机按钮')
             return;
         }
 
@@ -241,7 +263,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private onDragStart(e){
         this.changeState('drag')
-        e.stopImmediatePropagation();
+        //e.stopImmediatePropagation();
         e.target.alpla = 0.8;
         this._selectIndex = this.mcArray.indexOf(e.target);
         this.dragTarget.data = e.target.data
@@ -251,7 +273,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.renewSplice();
     }
     private onDragMove(e){
-        e.stopImmediatePropagation();
+        //e.stopImmediatePropagation();
         this.dragTarget.x = e.data.x - this.dragTarget.width/2;
         this.dragTarget.y = e.data.y - this.dragTarget.height/2;
         this.overTarget = -1;
@@ -302,7 +324,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
     }
     private onDragEnd(e){
-        e.stopImmediatePropagation();
+        //e.stopImmediatePropagation();
         //var target = this.getTestTarget(this.dragTarget.x + this.dragTarget.width/2,this.dragTarget.y + this.dragTarget.height/2)
         MyTool.removeMC(this.dragTarget)
 
@@ -570,6 +592,9 @@ class PKDressChooseUI extends game.BaseContainer {
         this.renewPos(null,true);
         this.renewSplice();
         this.justRenewList();
+
+        this.randomBtn.y = this.randomPos.y
+        this.randomSet.visible = false;
     }
 
     //交换位置

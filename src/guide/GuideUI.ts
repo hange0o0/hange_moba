@@ -46,10 +46,11 @@ class GuideUI extends game.BaseContainer{
     }
 
     private onClick(){
-        console.log('click')
         if(this.textIndex < this.textIn.length)
         {
             this.textIndex = this.textIn.length
+            this.testAnyClickShow();
+
              return;
         }
         if(this.clickFun)
@@ -58,6 +59,16 @@ class GuideUI extends game.BaseContainer{
             this.clickFun();
         }
 
+    }
+
+    private testAnyClickShow(){
+        if(this.clickFun != null)
+        {
+            this.anyClick.visible = true;
+            this.anyClick.alpha = 0;
+            var tw = egret.Tween.get(this.anyClick,{loop:true});
+            tw.to({alpha:1},500).wait(300).to({alpha:0},500)
+        }
     }
 
     private handMove(){
@@ -95,19 +106,40 @@ class GuideUI extends game.BaseContainer{
         if(this.textIndex > this.textIn.length)
         {
             this.tipTxt.removeEventListener(egret.Event.ENTER_FRAME,this.onText,this)
+            this.testAnyClickShow();
         }
     }
 
     public hide(){
         MyTool.removeMC(this);
+        egret.Tween.removeTweens(this.anyClick)
+        this.handStop();
     }
-    
+
+    public showHand(mc){
+        var rect = mc.getBounds();
+        var p1 = mc.localToGlobal(rect.x, rect.y);
+        var p2 = mc.localToGlobal(rect.x + rect.width, rect.y + rect.height);
+
+        this.handMC.x = p1.x + (p2.x - p1.x) / 2
+        this.handMC.y = p2.y//p1.y + (p2.y - p1.y) / 2
+        GameManager.container.addChild(this.handMC);
+        this.handMC.visible = true;
+        this.handMC.rotation = 0;
+        this.handMove();
+    }
+    public hideHand(){
+        this.handStop();
+        MyTool.removeMC(this.handMC);
+    }
+
     public show(dataIn){
         var mc = dataIn.mc;
         var text = dataIn.text;
         var fun = dataIn.fun;
         var hideHand = dataIn.hideHand;
         var toBottom = dataIn.toBottom;
+        this.addChild(this.handMC);
         this.handStop();
         this.tipTxt.text = '';
         this.tipTxt.removeEventListener(egret.Event.ENTER_FRAME,this.onText,this)
@@ -117,7 +149,10 @@ class GuideUI extends game.BaseContainer{
             this.tipTxt.text = '';
             this.clickFun = fun;
 
-            this.anyClick.visible = fun != null;
+            this.anyClick.visible = false;
+            this.anyClick.anchorOffsetX = 0;
+            egret.Tween.removeTweens(this.anyClick);
+            //this.anyClick.visible = fun != null;
 
             //if(GuideManager.getInstance().guideStep == 1)
             //{

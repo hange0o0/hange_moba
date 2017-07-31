@@ -31,6 +31,10 @@
 	</e:Group>
 	<e:Group width="640" x="0" visible.selected="false" visible.drag="false" y="320" height="90">
 		<e:Button id="pkBtn" label="出　战" skinName="Btn_r3Skin" x="211" y="13.5"/>
+		<e:Group id="randomSet" scaleX="0.6" scaleY="0.6" x="549" y="-76.9" width="118" height="118">
+			<e:Image source="main_border_png" x="0" y="0"/>
+			<e:Image horizontalCenter="0" verticalCenter="0" source="menu_icon_6_png"/>
+		</e:Group>
 		<e:Group id="randomBtn" scaleX="0.6" scaleY="0.6" x="549" y="10.100000000000001" width="118" height="118">
 			<e:Image id="randomBG" source="head_border_light2_png" horizontalCenter="0" verticalCenter="0"/>
 			<e:Image source="main_border_png" x="0" y="0"/>

@@ -33,6 +33,7 @@ class CollectUI extends game.BaseUI {
     private open = false
     private fillMonster = 0;
     private listArr;
+    private quickClose = false
     public constructor() {
         super();
         this.skinName = "CollectUISkin";
@@ -98,7 +99,12 @@ class CollectUI extends game.BaseUI {
     }
 
     private onClose(){
-        if(this.open && !GuideManager.getInstance().isGuiding)
+        if(this.quickClose)
+        {
+            this.hide();
+            return;
+        }
+        if(this.open)
         {
             this.open = false;
             this.chooseMonster = 0;
@@ -245,12 +251,16 @@ class CollectUI extends game.BaseUI {
         var self = this;
         this.open = false;
         this.chooseMonster = 0;
+        this.quickClose = GuideManager.getInstance().isGuiding;
 
         if(mid)
         {
             this.open = true;
+            this.quickClose = true;
             this.chooseMonster = mid
         }
+
+
 
 
         self.superShow();

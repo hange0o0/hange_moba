@@ -6,9 +6,10 @@
 class GuideManager {
     private static _instance: GuideManager;
     public currentStepId: Number;
-    public isGuiding:Boolean=true;
+    public isGuiding:boolean=true;
 
 
+    public guideKey;
     public guideStep = 0;
     public guideRandom = 0;
     private guideArr = [];
@@ -27,10 +28,9 @@ class GuideManager {
     }
 
     public showGuide(ui?){
-        console.log('showGuide')
         if(!this.isGuiding)
             return;
-
+        this.guideKey = ''
         if(ui)
             ui.validateNow();
         MyTool.stopClick(300);
@@ -225,9 +225,10 @@ class GuideManager {
 
         this.addGuideObj({
             toBottom:true,
+            guideKey:'randomBtn',
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'怎么都是[【异型】]，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【长按】]随机按钮，可以打开自定义面板哦',
+            text:'怎么都是[【异型】]，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【向上拖动】]随机按钮，可以打开自定义面板哦',
         })
 
 
@@ -457,6 +458,7 @@ class GuideManager {
                 MainPageUI.getInstance()['mainTask'].visible = true;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
+                GuideUI.getInstance().showHand(MainPageUI.getInstance()['mainTask'])
                 MyCardTaskUI.getInstance().testShow();
             }
         })
@@ -478,6 +480,8 @@ class GuideManager {
         guideData.text = data.text;
         guideData.toBottom = data.toBottom;
         guideData.hideHand = data.hideHand || false;
+
+        this.guideKey = data.guideKey
 
         var testUI = data.ui
         if(testUI && typeof testUI == 'string')

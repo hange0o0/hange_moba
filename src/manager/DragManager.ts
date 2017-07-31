@@ -18,14 +18,15 @@ class DragManager {
     private dragDes;
     private isDraging = false
     //设置该MC可拖动
-    public setDrag(mc,lockCenter=true){
+    public setDrag(mc,lockCenter=true,drag_sp?){
         mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this,true,999)
         mc.lockCenter = lockCenter;
+        mc.drag_sp = drag_sp;
     }
 
     private onBegin(e:egret.TouchEvent){
 
-         if(GuideManager.getInstance().isGuiding)
+         if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideKey != 'randomBtn' )
             return;
         if(e.currentTarget.stopDrag || this.isDraging)
             return;
@@ -33,6 +34,11 @@ class DragManager {
         this.currentDrag = e.currentTarget;
         this.currentDrag.dispatchEventWith('before_drag',true,{x:e.stageX,y:e.stageY});
         this.isDraging = true;
+
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+
+
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
         //this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onEnd,this)
@@ -44,23 +50,23 @@ class DragManager {
             this.dragDes = {x:this.currentDrag.x + (e.localX -this.currentDrag.width/2),y:this.currentDrag.y + e.localY - this.currentDrag.height/2}
     }
 
-    //设为拖动状态
-    public setDragBegin(item,stageX,stageY,noEvent?){
-        noEvent = noEvent || {};
-        this.currentDrag = item;
-        this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
-        this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
-        if(!noEvent.cancel)
-            this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onEnd,this)
-        if(!noEvent.outside)
-            this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE,this.onEnd,this)   //滚动区的拖不出来
-
-        this.startPos = {x:stageX,y:stageY,drag:true};
-        this.dragDes = {x:this.currentDrag.x,y:this.currentDrag.y}
-
-
-        //this.dragDes = {x:this.currentDrag.x + (e.localX -this.currentDrag.width/2),y:this.currentDrag.y + e.localY - this.currentDrag.height/2}
-    }
+    ////设为拖动状态
+    //public setDragBegin(item,stageX,stageY,noEvent?){
+    //    noEvent = noEvent || {};
+    //    this.currentDrag = item;
+    //    this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+    //    this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+    //    if(!noEvent.cancel)
+    //        this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onEnd,this)
+    //    if(!noEvent.outside)
+    //        this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE,this.onEnd,this)   //滚动区的拖不出来
+    //
+    //    this.startPos = {x:stageX,y:stageY,drag:true};
+    //    this.dragDes = {x:this.currentDrag.x,y:this.currentDrag.y}
+    //
+    //
+    //    //this.dragDes = {x:this.currentDrag.x + (e.localX -this.currentDrag.width/2),y:this.currentDrag.y + e.localY - this.currentDrag.height/2}
+    //}
 
     private onMove(e:egret.TouchEvent){
         if(!this.startPos.drag)
@@ -77,29 +83,43 @@ class DragManager {
             {
                 this.currentDrag.x = e.stageX-this.startPos.x + this.dragDes.x;
                 this.currentDrag.y = e.stageY-this.startPos.y + this.dragDes.y;
+
+                if(this.currentDrag.drag_sp)   //移动范围
+                {
+                    var sp = this.currentDrag.drag_sp;
+                    if(this.currentDrag.x < sp.x)
+                        this.currentDrag.x = sp.x
+                    else if(this.currentDrag.x > sp.x +  sp.width)
+                        this.currentDrag.x = sp.x + sp.width
+
+                    if(this.currentDrag.y < sp.y)
+                        this.currentDrag.y = sp.y
+                    else if(this.currentDrag.y > sp.y + sp.height)
+                        this.currentDrag.y = sp.y +  sp.height
+                }
             }
             this.currentDrag.dispatchEventWith('move_drag',true,{x:e.stageX,y:e.stageY});
         }
     }
 
     private onEnd(e:egret.TouchEvent){
-        if(this.startPos.drag)
+        if(this.currentDrag)
         {
             this.currentDrag.dispatchEventWith('end_drag',true);
         }
-        if(this.currentDrag)
-            this.currentDrag.dispatchEventWith('after_drag',true);
+        var currentDrag = this.currentDrag
         this.endDrag();
+        if(currentDrag)
+            currentDrag.dispatchEventWith('after_drag',true);
+
     }
 
     private endDrag(){
         this.isDraging = false;
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
         if(this.currentDrag)
         {
-            this.currentDrag.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
-            this.currentDrag.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
-            this.currentDrag.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onEnd,this)
-            this.currentDrag.stage.removeEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE,this.onEnd,this)
             this.currentDrag = null;
         }
     }

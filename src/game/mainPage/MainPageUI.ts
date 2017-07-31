@@ -472,7 +472,7 @@ class MainPageUI extends game.BaseUI {
         this.rankRed.visible = !DateUtil.isSameDay(SharedObjectManager.instance.getMyValue('rank_red') || 0) && RankManager.getInstance().isRankOpen()
 
         this.mainTask.visible = !GuideManager.getInstance().isGuiding;
-        if(!UM.active.task[1] || TaskVO.getObject(UM.active.task[1]).index < 30)
+        if(!GuideManager.getInstance().isGuiding && (!UM.active.task[1] || TaskVO.getObject(UM.active.task[1]).index < 5))
         {
             this.mainTask.showMV()//打开
         }

@@ -242,7 +242,7 @@ class MapData {
             totalHurt += hurt;
         }
         totalHurt /= list.length;//平均伤害值
-        this.bossCD = Math.ceil(bossData.hp/totalHurt) * this.showCD
+        this.bossCD = Math.max(30,Math.ceil(bossData.hp/totalHurt) * this.showCD)
 
         return this.bossCD;
     }

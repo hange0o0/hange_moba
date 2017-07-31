@@ -80,6 +80,18 @@ class MainGameManager{
         return UM.main_game.kill.indexOf(index) != -1;
     }
 
+    public getMainForce(level?){
+        level = level || UM.main_game.level
+        var add = level;
+        var index = 1;
+        while(level > 10*index)
+        {
+            add += (level - 10*index);
+            index ++;
+        }
+        return add;
+    }
+
     ////打开PK对战内容的表现
     public openPKView(fun?){
         if(UM.getEnergy()<1)

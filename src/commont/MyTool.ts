@@ -113,6 +113,7 @@ class MyTool {
             var stageX = e.stageX
             var stageY = e.stageY
             GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+            GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
             GameManager.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
             GameManager.stage.once(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
             egret.clearTimeout(timer);
@@ -134,6 +135,31 @@ class MyTool {
         }
 
     }
+
+    //public static addTouchUp(mc,fun,thisObj){
+    //    mc.touchEnabled = true;
+    //    mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,thisObj,true,999)
+    //    var stageX
+    //    var stageY
+    //    function onTouchStart(e){
+    //        stageX = e.stageX
+    //        stageY = e.stageY
+    //        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+    //        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+    //        mc.dispatchEventWith('before_drag',true);
+    //    }
+    //
+    //    function onTouchEnd(){
+    //        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
+    //        if( Math.abs(GameManager.stageX - stageX) < 50 &&  stageY-GameManager.stageY > 50)
+    //        {
+    //            fun.apply(thisObj);
+    //        }
+    //        mc.dispatchEventWith('after_drag',true);
+    //
+    //    }
+    //
+    //}
 
     //双击监听
     public static addDoubleTouch(mc:any,fun,thisObj?){
