@@ -76,14 +76,14 @@ class GuideManager {
             fun:function(){
                 self.showGuide()
             },
-            text:'他们利用手中有限的卡兵进行[排兵布阵]，制定出战顺序后，就让队伍按照他的计划作战，最终为他取得胜利',
+            text:'他利用手中有限的卡兵进行[排兵布阵]，制定出战顺序后，就让队伍按照他的计划作战，最终为他取得胜利',
         })
 
         this.addGuideObj({
             fun:function(){
                 self.showGuide()
             },
-            text:'他们[不需要参与]到具体的战斗，但却影响了整个的战斗流程，最考验其[运筹帷幄]的能力了',
+            text:'他[不需要参与]到具体的战斗，但却影响了整个的战斗流程，最考验其[运筹帷幄]的能力了',
         })
 
         this.addGuideObj({
@@ -178,6 +178,7 @@ class GuideManager {
             text:'啊啊啊？！！怎么会输了，这对[新人]也太不友好了！这个对决卡卡是很有信心的啊，[为什么]呢？！！',
             fun:function(){
                 PKResultUI.getInstance().guideScroll();
+                MyTool.stopClick(500);
                 //self.showGuide(PKWinUI.getInstance())
             }
         })
@@ -456,6 +457,7 @@ class GuideManager {
                 GuideUI.getInstance().hide();
                 MainPageUI.getInstance()['currentPage'] = 0;
                 MainPageUI.getInstance()['mainTask'].visible = true;
+                MainPageUI.getInstance()['helpGroup'].visible = true;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
                 GuideUI.getInstance().showHand(MainPageUI.getInstance()['mainTask'])

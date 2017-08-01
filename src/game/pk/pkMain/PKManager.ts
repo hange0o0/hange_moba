@@ -73,6 +73,7 @@ class PKManager {
 
     public pkResult;
     public pkAward;
+    public pkStartTime;
     public pkType;
     //public videoType;
     public pkData;
@@ -422,8 +423,10 @@ class PKManager {
 
     //PK的统一入口
     public startPK(type,choose,myFun?){
+        var self = this;
+        this.pkStartTime = egret.getTimer();
         var fun = function(){
-            EM.dispatch(GameEvent.client.pk_start)
+            self.pkStartTime = 0;
              if(myFun)
                  myFun();
         }

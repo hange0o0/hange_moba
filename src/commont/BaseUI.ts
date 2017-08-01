@@ -190,7 +190,10 @@ module game {
         public resizeFun(){
 
         }
-        
+        public onVisibleChange(){
+
+        }
+
         public onResize(e:Event):void{
 //            console.log(GameManager.stage.stageWidth, GameManager.stage.stageHeight)
 //            console.log(GameManager.stage.width, GameManager.stage.height)

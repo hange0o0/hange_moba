@@ -131,6 +131,7 @@ class PopUpManager {
             var ui = GameManager.container.getChildAt(i);
             if(ui instanceof game.BaseUI)
             {
+                var lastVisible = ui.visible;
                 if(!setVisible)
                 {
                     ui.visible = true;
@@ -141,6 +142,8 @@ class PopUpManager {
                     ui.visible = true;
                 else
                     ui.visible = false;
+                if(lastVisible != ui.visible)
+                    ui.onVisibleChange()
             }
         }
     }

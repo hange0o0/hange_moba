@@ -62,6 +62,7 @@ class MainTaskUI extends game.BaseContainer {
                 {
                     ShowTips('【'+item.getDes() + '】　[已完成]',2000);
                     TaskManager.getInstance().lastFinishStat[item.id] = true;
+                    TaskManager.getInstance().nowAction = null;
                 }
                 count ++;
             }

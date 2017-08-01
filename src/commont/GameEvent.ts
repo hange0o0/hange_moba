@@ -21,7 +21,7 @@ class GameEvent {
         main_kill:'main_kill',
         change_head:'change_head',
         word_change:'word_change',
-        pk_start:'pk_start',
+        pk_end:'pk_end',
         get_card:'get_card', //获得对战卡组
         monster_level_change:'monster_level_change',
 

@@ -102,6 +102,10 @@ class DragManager {
         }
     }
 
+    public stopDrag(){
+         this.onEnd(null);
+    }
+
     private onEnd(e:egret.TouchEvent){
         if(this.currentDrag)
         {

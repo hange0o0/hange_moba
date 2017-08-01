@@ -179,6 +179,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.randomPos.y = this.randomBtn.y
         DragManager.getInstance().setDrag(this.randomBtn,false,{x:this.randomBtn.x,y:this.randomBtn.y - 100,width:0,height:100});
         this.randomBtn.addEventListener('start_drag',this.onRandomDragStart,this);
+        this.randomBtn.addEventListener('move_drag',this.onRandomDragMove,this);
         this.randomBtn.addEventListener('end_drag',this.onRandomDragEnd,this);
     }
 
@@ -186,12 +187,17 @@ class PKDressChooseUI extends game.BaseContainer {
         this.randomSet.visible = true;
     }
     private onRandomDragEnd(){
-        if(this.randomPos.y - this.randomBtn.y > 50)
-        {
-             this.onRandomSetting();
-        }
         this.randomBtn.y = this.randomPos.y
         this.randomSet.visible = false;
+    }
+    private onRandomDragMove(){
+        if(this.randomPos.y - this.randomBtn.y > 80)
+        {
+            this.onRandomSetting();
+            DragManager.getInstance().stopDrag();
+            this.randomBtn.y = this.randomPos.y
+            this.randomSet.visible = false;
+        }
     }
 
     private onRandomSetting(){

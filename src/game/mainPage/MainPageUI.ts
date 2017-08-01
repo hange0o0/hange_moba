@@ -11,6 +11,7 @@ class MainPageUI extends game.BaseUI {
     }
 
 
+    private bg: eui.Image;
     private bottomMV: eui.Image;
     private starGroup: eui.Group;
     private mainGame: MainMainItem;
@@ -84,7 +85,7 @@ class MainPageUI extends game.BaseUI {
 
 
 
-
+    private bgTW
 
     private itemX = 320
     private itemY = 300
@@ -130,7 +131,7 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.level_change,this.onLevelChange,this);
         EM.addEvent(GameEvent.client.energy_change,this.renewEnergy,this);
         EM.addEvent(GameEvent.client.change_head,this.renewTop,this);
-        EM.addEvent(GameEvent.client.pk_start,this.scrollToCurrentPage,this);
+        EM.addEvent(GameEvent.client.pk_end,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.get_card,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.energy_change,this.scrollToCurrentPage,this);
         EM.addEvent(GameEvent.client.main_level_change,this.onMainLevelChange,this);
@@ -144,7 +145,7 @@ class MainPageUI extends game.BaseUI {
         //任务相关
         EM.addEvent(GameEvent.client.task_change,this.renewTask,this);
         EM.addEvent(GameEvent.client.force_change,this.renewTask,this);
-        EM.addEvent(GameEvent.client.pk_start,this.renewTask,this);
+        EM.addEvent(GameEvent.client.pk_end,this.renewTask,this);
         EM.addEvent(GameEvent.client.monster_level_change,this.renewTask,this);
 
 
@@ -186,6 +187,15 @@ class MainPageUI extends game.BaseUI {
             item.x = this.itemX
             item.y = this.itemY
         }
+
+        this.bg.width = 1280+640
+        this.bg.x = 0;
+        var tw = this.bgTW = egret.Tween.get(this.bg,{loop:true});
+        tw.to({x:-1280},1000*300).to({x:0})
+    }
+
+    public onVisibleChange(){
+        this.bgTW.setPaused(!this.visible)
     }
 
     //private onTextLink(e){
@@ -293,23 +303,22 @@ class MainPageUI extends game.BaseUI {
             this.addStar();
             egret.setTimeout(this.addStar,this,500);
 
-            if(!this.bottomMV.visible && Math.random() < 0.2 && (egret.getTimer() - this.bottomMV['playTimer']) > 5*1000)
-                this.playerBottomMV();
+            //if(!this.bottomMV.visible && Math.random() < 0.2 && (egret.getTimer() - this.bottomMV['playTimer']) > 5*1000)
+            //    this.playerBottomMV();
         }
-
     }
 
-    private playerBottomMV(){
-        this.bottomMV['playTimer'] = egret.getTimer();
-        this.bottomMV.visible = true
-        egret.Tween.removeTweens(this.bottomMV);
-        this.bottomMV.alpha = 0;
-        this.bottomMV.x = Math.random()*640 - 320;
-        var tw = egret.Tween.get(this.bottomMV)
-        tw.to({alpha:Math.random() * 0.3 + 0.2},1000 + Math.random() * 500).to({alpha:0},1000 + Math.random() * 500).call(function(){
-            this.bottomMV.visible = false
-        },this);
-    }
+    //private playerBottomMV(){
+    //    this.bottomMV['playTimer'] = egret.getTimer();
+    //    this.bottomMV.visible = true
+    //    egret.Tween.removeTweens(this.bottomMV);
+    //    this.bottomMV.alpha = 0;
+    //    this.bottomMV.x = Math.random()*640 - 320;
+    //    var tw = egret.Tween.get(this.bottomMV)
+    //    tw.to({alpha:Math.random() * 0.3 + 0.2},1000 + Math.random() * 500).to({alpha:0},1000 + Math.random() * 500).call(function(){
+    //        this.bottomMV.visible = false
+    //    },this);
+    //}
 
     private addStar(){
         if(Math.random()<0.2) { //流星
@@ -472,7 +481,8 @@ class MainPageUI extends game.BaseUI {
         this.rankRed.visible = !DateUtil.isSameDay(SharedObjectManager.instance.getMyValue('rank_red') || 0) && RankManager.getInstance().isRankOpen()
 
         this.mainTask.visible = !GuideManager.getInstance().isGuiding;
-        if(!GuideManager.getInstance().isGuiding && (!UM.active.task[1] || TaskVO.getObject(UM.active.task[1]).index < 5))
+        this.helpGroup.visible = !GuideManager.getInstance().isGuiding;
+        if(!GuideManager.getInstance().isGuiding && (!UM.active.task[1] || TaskVO.getObject(UM.active.task[1]).index < 2))
         {
             this.mainTask.showMV()//打开
         }
@@ -585,6 +595,8 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewTask(){
+        if(PKManager.getInstance().pkStartTime && egret.getTimer() - PKManager.getInstance().pkStartTime < 5*1000)
+            return;
         this.mainTask.renew();
     }
 

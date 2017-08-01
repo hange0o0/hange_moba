@@ -7,8 +7,11 @@ class LoginUI extends game.BaseUI {
 
     private bgGroup: eui.Group;
     private topMC: eui.Image;
+    private mc1: eui.Image;
+    private mc2: eui.Image;
     private bottomMC: eui.Image;
     private logGroup: eui.Group;
+    private btnGroup: eui.Group;
     private nameText: eui.TextInput;
     private passwordText: eui.TextInput;
     private quickRegisterBtn: eui.Button;
@@ -22,7 +25,7 @@ class LoginUI extends game.BaseUI {
 
 
 
-
+     private showQuickKey = 0;
 
     public constructor() {
         super();
@@ -38,6 +41,9 @@ class LoginUI extends game.BaseUI {
         this.addBtnEvent(this.registerBtn, this.onRegister);
         this.addBtnEvent(this.changeBtn, this.onChangeUser);
 
+        MyTool.addLongTouch(this.mc1, this.onMC1,this);
+        MyTool.addLongTouch(this.mc2, this.onMC2,this);
+
         //var LM = LoginManager.getInstance();
         //if(LM.lastUser && !LM.lastPassword)
         //{
@@ -47,6 +53,23 @@ class LoginUI extends game.BaseUI {
         //this.passwordText.text = '111111'
         this.nameText.text = ''
         this.nameText.addEventListener(egret.FocusEvent.FOCUS_OUT,this.onFocusOut,this)
+
+        MyTool.removeMC(this.quickRegisterBtn)
+    }
+
+    private onMC1(){
+        if(this.showQuickKey == 0)
+            this.showQuickKey = 1;
+        else if(this.showQuickKey == 2)
+            this.btnGroup.addChildAt(this.quickRegisterBtn,0)
+        else
+            this.showQuickKey = 0;
+    }
+    private onMC2(){
+        if(this.showQuickKey == 1)
+            this.showQuickKey = 2;
+        else
+            this.showQuickKey = 0;
     }
 
     private onFocusOut(){

@@ -14,6 +14,8 @@ class GuideUI extends game.BaseContainer{
     private leftRect: eui.Group;
     private rightRect: eui.Group;
     private bottomRect: eui.Group;
+    private soundBtn: eui.Image;
+
 
 
 
@@ -37,6 +39,7 @@ class GuideUI extends game.BaseContainer{
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this,this.onClick);
+        this.addBtnEvent(this.soundBtn,this.onSoundClick);
 
         this.stopClickGroup.touchEnabled = false;
         this.tipsBg.touchEnabled = false;
@@ -44,6 +47,13 @@ class GuideUI extends game.BaseContainer{
         this.handMC.x = this.handMC.y = 0
 
     }
+
+    private onSoundClick(e){
+        e.stopImmediatePropagation()
+        SoundManager.getInstance().soundPlaying = SoundManager.getInstance().bgPlaying = !SoundManager.getInstance().bgPlaying
+        this.renewSound();
+    }
+
 
     private onClick(){
         if(this.textIndex < this.textIn.length)
@@ -133,7 +143,20 @@ class GuideUI extends game.BaseContainer{
         MyTool.removeMC(this.handMC);
     }
 
+    private renewSound(){
+        if( SoundManager.getInstance().soundPlaying)
+            this.soundBtn.source = 'v18_png'
+        else
+            this.soundBtn.source = 'v19_png'
+    }
+
     public show(dataIn){
+        this.renewSound();
+
+
+
+
+
         var mc = dataIn.mc;
         var text = dataIn.text;
         var fun = dataIn.fun;
