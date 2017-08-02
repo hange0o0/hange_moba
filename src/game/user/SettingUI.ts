@@ -80,6 +80,7 @@ class SettingUI extends game.BaseWindow {
     }
 
     public onShow(){
+        this.PKCB.visible = UM.level >=10;//10级才有跳过功能
         this.musicCB.selected = SoundManager.getInstance().bgPlaying
         this.soundCB.selected = SoundManager.getInstance().soundPlaying
         this.friendCB.selected = UM.friends.stop;

@@ -340,6 +340,7 @@ class MapMainUI extends game.BaseUI {
         this.openTime = egret.getTimer();
         MD.reInit();
         this.stopAll();
+        PKMainMV.getInstance().speed = false;
 
         this.renewBossHp();
         this.myMonsterList = MonsterVO.getListByLevel(UM.level);

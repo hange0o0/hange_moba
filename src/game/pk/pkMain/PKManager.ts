@@ -23,8 +23,12 @@ class PKManager {
 
     public constructor() {
         //this.onPK('test',null);
-        this.pkJump = SharedObjectManager.instance.getValue('pkJump') || false
 
+
+    }
+
+    public initData(){
+        this.pkJump = (SharedObjectManager.instance.getValue('pkJump') || false) && UM.level >=10
     }
 
     public pkWord = {

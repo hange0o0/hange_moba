@@ -146,7 +146,7 @@ class TaskVO {
             case 'map_game_pk':
                 this.currentValue = MD.step;
                 if(MD.maxLevel> 1)
-                    this.currentValue = 10;
+                    this.currentValue = 5;
                 return this.currentValue >= this.value1
                 break;
             case 'map_game_buy':

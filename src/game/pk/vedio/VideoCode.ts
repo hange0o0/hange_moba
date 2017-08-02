@@ -217,6 +217,12 @@ class VideoCode{
         this.addRoundOverData();
         for(var i=0;i<this.listArray.length;i++)//重新编号
         {
+            if(!this.listArray[i].length)
+            {
+                this.listArray.splice(i,1);
+                i--;
+                continue;
+            }
             this.listArray[i][0].index = i+1;
         }
 

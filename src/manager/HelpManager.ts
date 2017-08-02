@@ -173,7 +173,7 @@ class HelpManager {
 
     public getInfoText(){
         var text = ArrayUtil.randomOne(this.infoList);
-        return text.replace(/\[/g,'<font color="#FFFF00">').replace(/\]/g,'<\/font>')
+        return text.replace(/\[/g,'<font color="#E0A44A">').replace(/\]/g,'<\/font>')
     }
 
     public mainHelp(){

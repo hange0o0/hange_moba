@@ -157,7 +157,6 @@ var game_file_list = [
 	"bin-debug/game/pk/vedio/VideoItem3.js",
 	"bin-debug/game/pk/vedio/VideoManager.js",
 	"bin-debug/game/pk/vedio/VideoMonsterItem.js",
-	"bin-debug/game/pk/vedio/VideoMV.js",
 	"bin-debug/game/pk/vedio/VideoPlayUI.js",
 	"bin-debug/game/pk/vedio/VideoStatItem.js",
 	"bin-debug/game/pk/vedio/VideoTopStatItem.js",

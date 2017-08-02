@@ -11,12 +11,12 @@ class TeamDungeonManager {
     }
 
     public hardData = [
-        {lv:1,force:100,level:3,enemyForce:100,label:''},
-        {lv:2,force:1000,level:6,enemyForce:1200,label:''}
-        //{lv:3,force:2000,level:10,enemyForce:2500,label:''},
-        //{lv:4,force:4000,level:15,enemyForce:5000,label:''},
-        //{lv:5,force:7000,level:20,enemyForce:8500,label:''},
-        //{lv:6,force:10000,level:25,enemyForce:13000,label:''},
+        {lv:1,force:100,level:4,label:''},
+        {lv:2,force:1000,level:10,label:''}
+        //{lv:3,force:3000,level:15,,label:''},
+        //{lv:4,force:6000,level:20,label:''},
+        //{lv:5,force:10000,level:25,label:''},
+        //{lv:6,force:15000,level:30,label:''},
     ];
 
 
@@ -36,7 +36,7 @@ class TeamDungeonManager {
     }
 
     public getEnemyForce(hard,index){
-        return this.hardData[hard-1].enemyForce + hard*(index - 1);
+        return this.hardData[hard-1].force + Math.floor((Math.pow(hard,2)-0.5)*(index - 1));
     }
 
     public resetData(data){

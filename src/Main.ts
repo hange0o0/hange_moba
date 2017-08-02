@@ -239,6 +239,15 @@ class Main extends eui.UILayer {
             //EgretManager.getInstance().startup()
         //    return;
         //}
+        if(_get['openid2'])
+        {
+            var arr = _get['openid2'].split('_')
+            LoginManager.getInstance().getServerList(function(){
+                LoginManager.getInstance().debugLoginServer(arr[1],arr[0],_get['openkey']);
+            })
+
+            return;
+        }
 
         if(_get['openid'])
         {

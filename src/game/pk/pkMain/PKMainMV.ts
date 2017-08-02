@@ -7,6 +7,8 @@ class PKMainMV {
         return this._instance;
     }
 
+    public speed = false;
+
     public walkTo(a,oo,fun1?,thisObj?,waitCD?){
         a.parent.addChild(a);
         a.moving = egret.getTimer();
@@ -86,7 +88,10 @@ class PKMainMV {
         var oo = {x:x,y:y};
         if(waitCD)
             tw.wait(waitCD)
-        tw.to(oo, Math.pow(dis-(a.atkDis || 100),0.8) * 3,egret.Ease.sineIn);
+        var cd = Math.pow(dis-(a.atkDis || 100),0.8) * 3;
+        if(this.speed)
+            cd=2/3*cd
+        tw.to(oo, cd,egret.Ease.sineIn);
         if(fun1)
             tw.call(fun1,thisObj)
         return oo;
@@ -100,7 +105,10 @@ class PKMainMV {
         if(frontWait)
             tw.wait(frontWait);
         a.moving = egret.getTimer();
-        tw.to(b, Math.pow(dis,0.8) * 3.5).call(function(){
+        var cd = Math.pow(dis,0.8) * 3.5;
+        if(this.speed)
+            cd/=2
+        tw.to(b,cd).call(function(){
             a.moving = 0;
             fun1 && fun1.apply(thisObj);
         },thisObj)
@@ -115,12 +123,15 @@ class PKMainMV {
         a.jumping = egret.getTimer();
         a.moving = egret.getTimer();
         var dis = Math.max(400*speedRate,MyTool.getDis(a,b));
+        var cd = dis*speedRate;
+        if(this.speed)
+            cd/=2
         //if(frontWait)
         //    tw.wait(frontWait);
         //SoundManager.getInstance().playEffect(SoundConfig.pk_jump);
         if(sp.before)
             tw.wait(sp.before);
-        tw.to({x:b.x,y:b.y}, dis*speedRate).call(function(){
+        tw.to({x:b.x,y:b.y}, cd).call(function(){
             a.jumping = 0;
             a.moving = 0;
             //SoundManager.getInstance().playEffect(SoundConfig.pk_jump2);
@@ -128,7 +139,7 @@ class PKMainMV {
         var tw:egret.Tween = egret.Tween.get(a);
         if(sp.before)
             tw.wait(sp.before);
-        tw.to({scaleX:1.3,scaleY:1.3}, dis*2/3*speedRate,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, dis/3*speedRate,egret.Ease.sineIn);
+        tw.to({scaleX:1.3,scaleY:1.3}, cd*2/3,egret.Ease.sineOut).to({scaleX:1,scaleY:1}, cd/3,egret.Ease.sineIn);
         if(fun1)
         {
 
@@ -172,14 +183,14 @@ class PKMainMV {
         //egret.Tween.removeTweens(a);
         var tw:egret.Tween = egret.Tween.get(a);
         var y = a.y
-        tw.to({scaleX:1.1,scaleY:1.1,y:y - 10}, 200);
+        tw.to({scaleX:1.1,scaleY:1.1,y:y - 10}, this.speed?100:200);
         if(fun1)
             tw.call(fun1,thisObj);
-        tw.to({rotation:- 10}, 100).to({rotation: 10}, 200).to({rotation:0},100)
+        tw.to({rotation:- 10}, this.speed?50:100).to({rotation: 10}, this.speed?100:200).to({rotation:0},this.speed?50:100)
         if(a.out)
-            tw.to({scaleX:0.85,scaleY:0.85,y:y}, 200);
+            tw.to({scaleX:0.85,scaleY:0.85,y:y}, this.speed?100:200);
         else
-            tw.to({scaleX:1,scaleY:1,y:y}, 200);
+            tw.to({scaleX:1,scaleY:1,y:y}, this.speed?100:200);
     }
 
     //退后再前进
@@ -265,7 +276,10 @@ class PKMainMV {
         mc.rotation = this.getRota(from,to);
         //mc.scaleY = 0.3;
         var tw:egret.Tween = egret.Tween.get(mc);
-        tw.to({y:to.y,x:to.x}, 0.8*dis,egret.Ease.sineIn).call(function(){
+        var cd = 0.8*dis;
+        if(this.speed)
+            cd=2/3*cd;
+        tw.to({y:to.y,x:to.x},cd ,egret.Ease.sineIn).call(function(){
             //MyTool.removeMC(mc);
             AM.removeMV(mc);
             if(fun)
@@ -298,8 +312,11 @@ class PKMainMV {
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
         mc.scaleY = 0.5;
+        var cd = 0.8*dis;
+        if(this.speed)
+            cd=2/3*cd;
         var tw:egret.Tween = egret.Tween.get(mc);
-        tw.to({y:to.y,x:to.x,scaleY:1}, 0.8*dis,egret.Ease.sineIn).call(function(){
+        tw.to({y:to.y,x:to.x,scaleY:1}, cd,egret.Ease.sineIn).call(function(){
             //MyTool.removeMC(mc);
             AM.removeImg(mc);
             if(fun)
@@ -309,11 +326,11 @@ class PKMainMV {
         this.playBullet2_(id,baseFrom,to,{
             x:from.x + 30 -15*Math.random(),
             y:from.y + 30 -15*Math.random(),
-        },100);
+        },this.speed?50:100);
         this.playBullet2_(id,baseFrom,to,{
             x:from.x + 30 -15*Math.random(),
             y:from.y + 30 -15*Math.random(),
-        },200);
+        },this.speed?100:200);
     }
 
      //输助
@@ -341,10 +358,13 @@ class PKMainMV {
         mc.y = from.y;
         mc.rotation = this.getRota(from,to);
         mc.scaleY = 0.5;
+        var mcd = 0.8*dis;
+        if(this.speed)
+            mcd=2/3*cd;
         var tw:egret.Tween = egret.Tween.get(mc);
         tw.wait(cd).call(function(){
             baseFrom.parent.addChild(mc);
-        }).to({y:to.y,x:to.x,scaleY:1}, 0.8*dis,egret.Ease.sineIn).call(function(){
+        }).to({y:to.y,x:to.x,scaleY:1}, mcd,egret.Ease.sineIn).call(function(){
             AM.removeImg(mc);
         });
     }

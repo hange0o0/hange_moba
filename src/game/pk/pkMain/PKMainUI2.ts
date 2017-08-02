@@ -145,10 +145,14 @@ class PKMainUI extends game.BaseUI {
     private loadGroup2 = []
 
 
+    public get speed(){return PKMainMV.getInstance().speed}
+    public set speed(v){PKMainMV.getInstance().speed = v}
+
+
     public playVideoIndex = 0;
     public childrenCreated() {
         super.childrenCreated();
-        this.addBtnEvent(this.jumpBtn, this.onJump);
+        this.addBtnEvent(this.jumpBtn, this.onChangeSpeed);
         this.addBtnEvent(this.backBtn, this.onJump);
         this.addBtnEvent(this.nextBtn, this.onNext);
 
@@ -162,6 +166,19 @@ class PKMainUI extends game.BaseUI {
 
         this.bg0.scrollRect = new egret.Rectangle(0,0,325,1500)
         this.bg1.scrollRect = new egret.Rectangle(315,0,325,1500)
+    }
+
+    private onChangeSpeed(){
+         this.speed = !this.speed
+         this.renewJumpBtn();
+        SharedObjectManager.instance.setMyValue('pk_speed',this.speed)
+    }
+
+    private renewJumpBtn(){
+        if(this.speed)
+            MyTool.changeGray(this.jumpBtn,false)
+        else
+            MyTool.changeGray(this.jumpBtn,true)
     }
 
     private setTimeout(fun,cd,data?){
@@ -384,6 +401,8 @@ class PKMainUI extends game.BaseUI {
         //this.hide();
         //return;
         PKPosManager.getInstance().controller = this;
+        this.speed = SharedObjectManager.instance.getMyValue('pk_speed') || 0;
+        this.renewJumpBtn();
 
 
         if(this.loadUI == null)
@@ -715,6 +734,8 @@ class PKMainUI extends game.BaseUI {
         this.index = 0
         this.outPKer()
         var cd = 1000
+        if(this.speed)
+            cd = 300;
         if(this.playVideoIndex && this.pkStep == this.playVideoIndex)
         {
             egret.Tween.removeTweens(this.playerGroup1);
@@ -745,8 +766,11 @@ class PKMainUI extends game.BaseUI {
         }
         else
         {
-            this.setTimeout(this.inPKer,1000)
-            cd += 1000;
+            var temp = 1000;
+            if(this.speed)
+                temp = 300;
+            this.setTimeout(this.inPKer,temp)
+            cd += temp;
         }
 
         this.setTimeout(this.showRoundTalk,cd)
@@ -798,10 +822,18 @@ class PKMainUI extends game.BaseUI {
                 this.itemTalk(this.enemyPKing)
             },500)
         }
-        this.setTimeout(this.showRoundMovie,2000)
+        if(this.speed)
+            this.setTimeout(this.showRoundMovie,500)
+        else
+            this.setTimeout(this.showRoundMovie,2000)
     }
 
     private showRoundMovie(){
+        if(this.speed)
+        {
+            this.pkOne();
+            return;
+        }
         this.roundGroup.visible = true;
         this.addChild(this.roundGroup);
         this.roundGroup.y = this.upGroup.y + 260
@@ -1131,12 +1163,12 @@ class PKMainUI extends game.BaseUI {
 
             this.displayTalkWord({item:item,txt:this.getTalkStr(item,actionItem)})
 
-            if(this.random() < 0.1)
-            {
-                this.setTimeout(function(){
-                    this.showPKWord(actionItem);
-                },300);
-            }
+            //if(this.random() < 0.1)
+            //{
+            //    this.setTimeout(function(){
+            //        this.showPKWord(actionItem);
+            //    },300);
+            //}
 
         }
     }
@@ -1152,6 +1184,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private displayTalkWord(data){
+        if(this.speed)
+            return;
         var talkItem = this.getTalkItem();
         if(data.item.out)
             this.addChild(talkItem);
@@ -1183,6 +1217,8 @@ class PKMainUI extends game.BaseUI {
     private showPKEMO(item,actionItem?){
         var talkBase = PKManager.getInstance().pkEmo
         var id = this.getTalkData(item,talkBase,actionItem);
+        if(this.speed)
+            return;
         if(id)
         {
             var emoItem = this.getEmoItem();
@@ -1874,7 +1910,7 @@ class PKMainUI extends game.BaseUI {
         }
 
 
-        if(svo.type == 1 && !stopMainSkill)
+        if(svo.type == 1 && !stopMainSkill && !this.speed)
         {
             this.showMainSkillName(atkerItem,svo,{
                 data:data,
@@ -1989,7 +2025,7 @@ class PKMainUI extends game.BaseUI {
 
                 this.setTimeout(function(){
                     this.addEffectList(data,roundeData);
-                },600)
+                },this.speed?300:600)
             }
 
 
@@ -2043,7 +2079,7 @@ class PKMainUI extends game.BaseUI {
         {
             this.setTimeout(function(){
                 this.addOneSkill(roundeData.arr,roundeData.index+1);
-            },maxEffectNum + 300);
+            },maxEffectNum + (this.speed?100:300));
         }
 
 
@@ -2150,6 +2186,8 @@ class PKMainUI extends game.BaseUI {
         {
 
         }
+        if(this.speed)
+            return 100;
         return 300
     }
 
@@ -2238,19 +2276,39 @@ class PKMainUI extends game.BaseUI {
                 }
             }
         }
+        if(this.speed)
+        {
+            if(wordType == 'name')  //技能
+            {
+                tw.wait(delay).to({scaleX:1.1,scaleY:1.1,alpha:1,y:label['targetY']},100).to({scaleX:1,scaleY:1},100).wait(300);
+            }
+            else if(wordType == 'stat')
+            {
+                tw.wait(delay).to({y:label['targetY'],alpha:1},100).wait(300).to({y:label['targetY'] - 30,alpha:0},100)
+            }
+            else //血
+            {
+                tw.wait(delay).to({y:label['targetY'],alpha:1},100).wait(300);
+            }
 
-        if(wordType == 'name')  //技能
-        {
-            tw.wait(delay).to({scaleX:1.1,scaleY:1.1,alpha:1,y:label['targetY']},200).to({scaleX:1,scaleY:1},200).wait(500);
         }
-        else if(wordType == 'stat')
+        else
         {
-            tw.wait(delay).to({y:label['targetY'],alpha:1},200).wait(500).to({y:label['targetY'] - 30,alpha:0},100)
+            if(wordType == 'name')  //技能
+            {
+                tw.wait(delay).to({scaleX:1.1,scaleY:1.1,alpha:1,y:label['targetY']},200).to({scaleX:1,scaleY:1},200).wait(500);
+            }
+            else if(wordType == 'stat')
+            {
+                tw.wait(delay).to({y:label['targetY'],alpha:1},200).wait(500).to({y:label['targetY'] - 30,alpha:0},100)
+            }
+            else //血
+            {
+                tw.wait(delay).to({y:label['targetY'],alpha:1},200).wait(600);
+            }
         }
-        else //血
-        {
-            tw.wait(delay).to({y:label['targetY'],alpha:1},200).wait(600);
-        }
+
+
 
 
         tw.call(function(){
@@ -2263,8 +2321,11 @@ class PKMainUI extends game.BaseUI {
         if(skillVO.type == 1)
         {
             color = 0xEB911B;
-            fun && fun();
-            return;
+            if(!this.speed)
+            {
+                fun && fun();
+                return;
+            }
         }
         else if(skillVO.type == 2)
         {
@@ -2277,7 +2338,7 @@ class PKMainUI extends game.BaseUI {
         this.showItemWord(item,{text:skillVO.name,textColor:color},0,'name');
         if(fun)
         {
-            this.setTimeout(fun,500);
+            this.setTimeout(fun,this.speed?250:500);
         }
     }
 

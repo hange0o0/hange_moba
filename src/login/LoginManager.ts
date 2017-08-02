@@ -420,6 +420,35 @@ class LoginManager{
         });
     }
 
+    public debugLoginServer(gameid,serverid,cdkey,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.id = gameid;
+        oo.cdkey = cdkey;
+        Net.getInstance().serverID = serverid;
+        Net.getInstance().serverHost = this.serverList[serverid].host;
+        Net.send(GameEvent.sys.login_server,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('用户状态已过期!');
+                return;
+            }
+
+            if(msg.fail == 2)
+            {
+                Alert('没这个玩家');
+                return;
+            }
+
+            UM.fill(msg.data);
+            MainPageUI.getInstance().show();
+            MainLoadingUI.getInstance().hide();
+            if(fun)
+                fun();
+        });
+    }
+
     public relogin(){
         var self = LoginManager.getInstance();
         var oo:any = {};

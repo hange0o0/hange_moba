@@ -197,7 +197,22 @@ class PKDressChooseUI extends game.BaseContainer {
             DragManager.getInstance().stopDrag();
             this.randomBtn.y = this.randomPos.y
             this.randomSet.visible = false;
+            //因为派发after_drag事件时已移除了显示对象，pkDressUI收不到
+            //但也要等松开手指才释放滚动行为
+            GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onDragCancel,this)
+            GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onDragAfter,this)
+
         }
+    }
+
+    private onDragAfter(){
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onDragAfter,this)
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onDragCancel,this)
+        PKDressUI.getInstance().onDragAfter();
+    }
+    private onDragCancel(){
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onDragAfter,this)
+        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onDragAfter,this)
     }
 
     private onRandomSetting(){
@@ -483,7 +498,7 @@ class PKDressChooseUI extends game.BaseContainer {
                  mc.visible = false;
                  continue;
              }
-             mc.visible = this.cb.selected || this.dragTarget.parent;
+             mc.visible = this.cb.selected || (this.dragTarget && this.dragTarget.parent);
              mc.scaleX = 1
              mc.scaleY = 1 * mc.bsy;
          }

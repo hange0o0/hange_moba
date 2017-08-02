@@ -6,7 +6,9 @@ class MapData {
         return this._instance;
     }
     public showCD = 5;
-    public maxBossTimes = 10;
+    public get maxBossTimes(){
+        return (this.level-1) + 5;
+    }
 
 
     public serverBossCD = 0;

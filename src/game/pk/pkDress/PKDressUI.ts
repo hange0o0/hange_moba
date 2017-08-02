@@ -247,9 +247,11 @@ class PKDressUI extends game.BaseUI {
 
     private onDragBefore(){
         this.scroller.scrollPolicyV = eui.ScrollPolicy.OFF;
+        //console.log('onDragBefore')
     }
-    private onDragAfter(){
+    public onDragAfter(){
         this.scroller.scrollPolicyV = eui.ScrollPolicy.ON;
+        //console.log('onDragAfter')
     }
     private changeCardIndex(){
         this.index ++;

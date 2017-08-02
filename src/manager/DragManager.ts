@@ -1,5 +1,6 @@
-class DragManager {
+class DragManager extends egret.EventDispatcher{
     public constructor() {
+        super();
     }
 
     private static _instance: DragManager;
@@ -30,7 +31,6 @@ class DragManager {
             return;
         if(e.currentTarget.stopDrag || this.isDraging)
             return;
-
         this.currentDrag = e.currentTarget;
         this.currentDrag.dispatchEventWith('before_drag',true,{x:e.stageX,y:e.stageY});
         this.isDraging = true;
@@ -41,7 +41,10 @@ class DragManager {
 
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
         this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
-        //this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onEnd,this)
+        this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onCancel,this)
+        //this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_CANCEL,function(){
+        //    console.log('cancel')
+        //},this)
         //this.currentDrag.stage.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE,this.onEnd,this)
 
         this.startPos = {x:e.stageX,y:e.stageY};
@@ -114,14 +117,23 @@ class DragManager {
         var currentDrag = this.currentDrag
         this.endDrag();
         if(currentDrag)
+        {
             currentDrag.dispatchEventWith('after_drag',true);
+        }
+    }
 
+    private onCancel(e){
+        e.preventDefault()
+        console.log('cancel')
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+        GameManager.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
     }
 
     private endDrag(){
         this.isDraging = false;
         GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
         GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+        GameManager.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,this.onCancel,this)
         if(this.currentDrag)
         {
             this.currentDrag = null;

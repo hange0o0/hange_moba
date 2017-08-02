@@ -463,6 +463,7 @@ class MainPageUI extends game.BaseUI {
         MapManager.getInstance().initData();
         TeamPVEManager.getInstance().initData();
         TaskManager.getInstance().initData();
+        PKManager.getInstance().initData();
         this.diamondDrawLight.visible = false;
 
         this.renewTop();
