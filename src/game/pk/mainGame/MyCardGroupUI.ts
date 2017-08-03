@@ -47,6 +47,17 @@ class MyCardGroupUI extends game.BaseItem {
                 list:chooseList1
             });
         }
+        if(chooseList1.length <= 6)
+        {
+            (<eui.TileLayout>this.myList.layout).requestedColumnCount = 3;
+            (<eui.TileLayout>this.myList.layout).horizontalGap = 30;
+        }
+        else
+        {
+            (<eui.TileLayout>this.myList.layout).requestedColumnCount = 4;
+            (<eui.TileLayout>this.myList.layout).horizontalGap = 6;
+        }
+
         this.myList.dataProvider = new eui.ArrayCollection(chooseList1);
         this.titleText.text = '我的卡组（'+(10-myCard.num)+'/10）'
 

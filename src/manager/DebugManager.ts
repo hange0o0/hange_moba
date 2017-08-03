@@ -115,16 +115,36 @@ class DebugManager {
 
 
         }
-        var arr = [
-            card1.pop(),
-            card1.pop(),
-            card2.pop(),
-            card2.pop(),
-            card2.pop(),
-            card2.pop(),
-            card3.pop(),
-            card3.pop()
-        ];
+        var id:any
+        var arr = [];
+        for(var i=0;i<2;i++)
+        {
+            id = card1.pop();
+            if(id)
+                arr.push(id);
+
+            id = card2.pop();
+            if(id)
+                arr.push(id);
+            id = card2.pop();
+            if(id)
+                arr.push(id);
+
+            id = card3.pop();
+            if(id)
+                arr.push(id);
+        }
+
+        if(arr.length < 8)
+        {
+            var newArr = card1.concat(card2).concat(card3);
+            ArrayUtil.random(newArr,3);
+            while(newArr.length > 0 && arr.length < 8)
+            {
+                arr.push(newArr.pop())
+            }
+        }
+
 
         var returnArr = [];
         var PKM = PKManager.getInstance();
@@ -428,6 +448,18 @@ class DebugManager {
         }
     }
 
+    public monsterLevel(){
+        for(var i=1;i<=25;i++)
+        {
+            var list = MonsterVO.getListByLevel(i,true);
+            console.log('=============================    ' + i)
+            for(var j=0;j<list.length;j++)
+            {
+                console.log('    ' + list[j].id + ':' + list[j].name)
+            }
+        }
+    }
+
     //列出最强的卡
     public getTopWinCard(num = 1){
         var self = this;
@@ -691,6 +723,46 @@ class DebugManager {
         }
         console.log('useNum:  ' + count)
         console.log('noUse:  ' + noUse.length + '   ' + noUse.join(','))
+    }
+
+    public getGuessList(){
+        var arr = []
+        var key = '_main_card_' + TM.now();
+        var self = this;
+        Net.getInstance().outPut = false;
+        var testOne = function(){
+            self.MML = self.getLevel(arr.length);
+            //self.MML = Math.floor(arr.length/100) +1
+            if(self.MML > 30)
+            {
+                console.log('Done!')
+                //for(var i=0;i<arr.length;i++)
+                //{
+                //    arr[i] = 'array('+arr[i].join(',')+')';
+                //}
+                //SharedObjectManager.instance.setMyValue(key,'array('+arr.join(',')+')');
+                Net.getInstance().outPut = true;
+                return;
+            }
+            self.testOneCard(Math.min(arr.length*32,2048),null,function(card){
+                arr.push(card)
+                console.log(arr.length)
+                SharedObjectManager.instance.setMyValue(key,arr);
+                testOne();
+            })
+        }
+        testOne();
+    }
+
+    private getLevel(num){
+        var value = 0;
+        for(var i=1;i<100;i++)
+        {
+            var temp = Math.floor((Math.pow(i,1.65) - Math.pow(i-1,1.65))*5)
+            if(num < value + temp)
+                return i;
+            value += temp;
+        }
     }
 
 

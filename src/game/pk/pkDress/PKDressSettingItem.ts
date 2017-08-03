@@ -61,12 +61,15 @@ class PKDressSettingItem extends game.BaseItem {
     }
 
     public setChooseing(mid){
-        this.chooseGroupBG.visible = this.data.mid == mid;
+        if(this.data)
+            this.chooseGroupBG.visible = this.data.mid == mid;
     }
 
     //type == 1,显示基础
     //type == 2,在主线PK中，会杀
     public dataChanged() {
+        if(!this.data || !this.data.mid)
+            return;
         this.setting = this.data.setting;
         var vo = MonsterVO.getObject(this.data.mid);
 

@@ -154,7 +154,16 @@
 			<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="32" stroke="5" strokeColor="0x000000" bold="true" y="260" scaleX="1" scaleY="1" horizontalCenter="0"/>
 		</e:Group>
 	</e:Group>
-	<e:Image id="jumpBtn" source="jump_btn_png" scaleX="0.9" scaleY="0.9" y="710" x="320" anchorOffsetX="36" anchorOffsetY="36"/>
+	<e:Group id="jumpBtn" anchorOffsetX="36" anchorOffsetY="36" x="320" y="720">
+		<e:Image source="main_border_png" x="0" y="0" width="72" height="72"/>
+		<e:Group id="jumpCon" y="21" horizontalCenter="2">
+			<e:Image source="arrow7_png" x="0" y="0" rotation="-90"/>
+			<e:Image id="jumpArrow" source="arrow7_png" x="10" y="10" rotation="-90"/>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle" gap="-15"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
 	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
 	<e:Group id="roundGroup" horizontalCenter="0" width="360" height="200" y="280" anchorOffsetY="100" locked="true" visible="false">

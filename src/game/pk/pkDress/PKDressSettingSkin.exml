@@ -6,7 +6,7 @@
 
 
 
-    <e:Group id="itemGroup" x="0" y="15" width="640">
+    <e:Group id="itemGroup" x="0" y="15" horizontalCenter="0">
 			<ns1:PKDressSettingItem id="h0" skinName="PKDressSettingItemSkin" x="82" y="12"/>
 		<ns1:PKDressSettingItem id="h1" skinName="PKDressSettingItemSkin" x="72" y="2"/>
 			<ns1:PKDressSettingItem id="h2" skinName="PKDressSettingItemSkin" x="82" y="12"/>
@@ -16,7 +16,7 @@
 			<ns1:PKDressSettingItem id="h6" skinName="PKDressSettingItemSkin" x="122" y="52"/>
 			<ns1:PKDressSettingItem id="h7" skinName="PKDressSettingItemSkin" x="132" y="62"/>
 			<e:layout>
-				<e:TileLayout requestedColumnCount="4" horizontalGap="20" paddingLeft="30" verticalGap="6"/>
+				<e:TileLayout requestedColumnCount="4" horizontalGap="20" verticalGap="6"/>
 			</e:layout>
 	
 

@@ -45,10 +45,10 @@ class PKMainUI extends game.BaseUI {
     private defText0: eui.Label;
     private statList0: eui.Group;
     private playerGroup2: eui.Group;
-    private nameText1: eui.Label;
     private es2: eui.Image;
     private es1: eui.Image;
     private es0: eui.Image;
+    private nameText1: eui.Label;
     private mpBar1: eui.Rect;
     private mpText1: eui.Label;
     private apBar1: eui.Rect;
@@ -73,13 +73,16 @@ class PKMainUI extends game.BaseUI {
     private monsterGroup: eui.Group;
     private monsterMC: eui.Image;
     private skillText: eui.Label;
-    private jumpBtn: eui.Image;
+    private jumpBtn: eui.Group;
+    private jumpCon: eui.Group;
+    private jumpArrow: eui.Image;
     private bottomMC: eui.Image;
     private topMC: eui.Image;
     private roundGroup: eui.Group;
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -176,9 +179,9 @@ class PKMainUI extends game.BaseUI {
 
     private renewJumpBtn(){
         if(this.speed)
-            MyTool.changeGray(this.jumpBtn,false)
+            this.jumpCon.addChild(this.jumpArrow)
         else
-            MyTool.changeGray(this.jumpBtn,true)
+            MyTool.removeMC(this.jumpArrow)
     }
 
     private setTimeout(fun,cd,data?){

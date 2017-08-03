@@ -204,7 +204,6 @@ class PKManager {
                 case 3:
                     GM.guideRandom ++;
                     return [16, 1, 5, 53, 5, 5];
-
             }
         }
         data = data || {};

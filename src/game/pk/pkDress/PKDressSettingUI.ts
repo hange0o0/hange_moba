@@ -99,7 +99,24 @@ class PKDressSettingUI extends game.BaseContainer {
         }
         for(var i=0;i<this.itemArr.length;i++)
         {
-            this.itemArr[i].setChooseing(null);
+            if(arr[i])
+            {
+                this.itemGroup.addChild(this.itemArr[i])
+                this.itemArr[i].setChooseing(null);
+            }
+            else
+                MyTool.removeMC(this.itemArr[i]);
+        }
+
+        if(arr.length <= 6)
+        {
+            (<eui.TileLayout>this.itemGroup.layout).requestedColumnCount = 3;
+            (<eui.TileLayout>this.itemGroup.layout).horizontalGap = 40;
+        }
+        else
+        {
+            (<eui.TileLayout>this.itemGroup.layout).requestedColumnCount = 4;
+            (<eui.TileLayout>this.itemGroup.layout).horizontalGap = 20;
         }
     }
 

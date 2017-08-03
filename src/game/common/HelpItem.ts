@@ -15,7 +15,8 @@ class HelpItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.setHtml(this.text,this.data.text.replace(/\[/g,'<font color="#FFFF00">').replace(/\]/g,'<\/font>'))
+        MyTool.setColorText(this.text,this.data.text)
+        //this.setHtml(this.text,this.data.text.replace(/\[/g,'<font color="#FFFF00">').replace(/\]/g,'<\/font>'))
         this.bg.visible = this.data.index%2 == 0;
     }
 

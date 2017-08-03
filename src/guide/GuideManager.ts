@@ -229,7 +229,7 @@ class GuideManager {
             guideKey:'randomBtn',
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'怎么都是[【异型】]，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【向上拖动】]随机按钮，可以打开自定义面板哦',
+            text:'怎么都是[【僵尸法师】]，就没有卡卡喜欢的[【人鱼战士】]呢，我们[【向上拖动】]随机按钮，可以打开自定义面板哦',
         })
 
 
@@ -259,8 +259,8 @@ class GuideManager {
         this.addGuideObj({
             toBottom:true,
             ui:"PKDressUI.getInstance()",
-            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h1']['decBtn']",
-            text:'卡卡觉得[【异型】]不太适合我们这次战斗，就不要出战了吧。点击[-]号，系统将不会为我们出战[【异型】]',
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h5']['decBtn']",
+            text:'卡卡觉得[【僵尸法师】]不太适合我们这次战斗，就不要出战了吧。点击[-]号，系统将不会为我们出战[【异型】]',
         })
 
         this.addGuideObj({
