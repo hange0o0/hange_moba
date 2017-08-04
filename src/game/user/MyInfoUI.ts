@@ -117,7 +117,7 @@ class MyInfoUI extends game.BaseUI {
         list.push(oo)
 
         oo = {title:'奖励战力',icon:'icon_power_png',des:UM.award_force}
-        oo.fun = function(){Alert('研究院积分提升会获得奖励战力，节日活动中也有可能获得奖励')}
+        oo.fun = function(){Alert('低战通关卡士公公，研究院积分提升，节日活动中都有可能获得')}
         list.push(oo)
 
 

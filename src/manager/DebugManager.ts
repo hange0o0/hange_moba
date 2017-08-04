@@ -725,8 +725,64 @@ class DebugManager {
         console.log('noUse:  ' + noUse.length + '   ' + noUse.join(','))
     }
 
-    public getGuessList(){
+    public getGuessList(begin = 0){
         var arr = []
+        for(var i=0;i<begin;i++)
+        {
+            arr.push(0);
+        }
+        var key = 'guess_card_' + TM.now();
+        var self = this;
+        Net.getInstance().outPut = false;
+        var testOne = function(){
+            self.MML = (arr.length/20);
+            //self.MML = Math.floor(arr.length/100) +1
+            if(self.MML > 30)
+            {
+                console.log('Done!')
+                for(var i=0;i<arr.length;i++)
+                {
+                    arr[i] = 'array('+arr[i].join(',')+')';
+                }
+                SharedObjectManager.instance.setMyValue(key,'array('+arr.join(',')+')');
+                Net.getInstance().outPut = true;
+                return;
+            }
+            self.testOneCard(2048,null,function(card){
+                arr.push(card)
+                console.log(arr.length)
+                SharedObjectManager.instance.setMyValue(key,arr);
+                testOne();
+            })
+        }
+        testOne();
+    }
+
+    private getGuessLevel(num){
+        var value = 0;
+        for(var i=0;i<100;i++)
+        {
+            var temp = Math.min(100,i*10 + 20)
+            if(num < value + temp)
+                return i+1;
+            value += temp;
+        }
+    }
+
+
+    public showMainList(arr){
+        for(var i=0;i<10;i++)
+        {
+            console.log(i,arr.slice(i*100,(i+1)*100).join('|'));
+        }
+    }
+
+    public getMainList(begin = 0){
+        var arr = []
+        for(var i=0;i<begin;i++)
+        {
+            arr.push(0);
+        }
         var key = '_main_card_' + TM.now();
         var self = this;
         Net.getInstance().outPut = false;

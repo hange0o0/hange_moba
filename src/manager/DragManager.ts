@@ -110,7 +110,7 @@ class DragManager extends egret.EventDispatcher{
     }
 
     private onEnd(e:egret.TouchEvent){
-        if(this.currentDrag)
+        if(this.startPos.drag && this.currentDrag)
         {
             this.currentDrag.dispatchEventWith('end_drag',true);
         }

@@ -28,7 +28,7 @@ class AlertUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.setHtml(this.text, this.textIn);
+        MyTool.setColorText(this.text, this.textIn);
         this.okBtn.label = this.btnLabel || '确认'
         if(this.text.numLines > 1)
             this.text.textAlign = 'left'

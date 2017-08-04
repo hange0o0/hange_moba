@@ -92,6 +92,11 @@ class MainGameManager{
         return add;
     }
 
+    public getAwardForce(level?){
+        level = level || UM.main_game.level
+        return  Math.ceil((level + 100)/200);
+    }
+
     ////打开PK对战内容的表现
     public openPKView(fun?){
         if(UM.getEnergy()<1)

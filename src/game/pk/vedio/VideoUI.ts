@@ -129,6 +129,7 @@ class VideoUI extends game.BaseUI {
         this.addBtnEvent(this.guideBtn,this.openGuide);
         //this.addBtnEvent(this.playerGroup1,this.playerClick1);
         //this.addBtnEvent(this.playerGroup2,this.playerClick2);
+        this.upGroup.addEventListener(egret.Event.RESIZE,this.onUpResize,this)
 
         MyTool.removeMC(this.resultMC);
 
@@ -137,6 +138,14 @@ class VideoUI extends game.BaseUI {
 
         this.tipsGroup.touchChildren = this.tipsGroup.touchEnabled = false;
         this.setHtml(this.resultText,this.createHtml('伤害',0xFF0000) + ' & ' + this.createHtml('回血',0x00FF00))
+    }
+
+    private onUpResize(){
+        if(this.guideMC.visible)
+        {
+            this.guideMC.height = GameManager.stage.stageHeight - 70 - this.upGroup.height
+            this.guideMC.y = GameManager.stage.stageHeight - this.guideMC.height
+        }
     }
 
     public showMVDebug(v?){}
@@ -188,16 +197,21 @@ class VideoUI extends game.BaseUI {
     private openGuide(){
         if(egret.getTimer() - this.dragTimer < 200)
             return;
-        this.guideMC.visible = true;
-        this.guideMC.height = GameManager.stage.stageHeight - 260
-        this.guideMC.y = GameManager.stage.stageHeight;
-        var tw = egret.Tween.get(this.guideMC);
-        tw.to({y:260},300);
 
         this.upGroup.visible = true;
         this.upGroup.y = -130;
         var tw = egret.Tween.get(this.upGroup);
         tw.wait(200).to({y:70},100);
+
+        this.guideMC.visible = true;
+        this.guideMC.height = GameManager.stage.stageHeight - 70 - this.upGroup.height
+        this.guideMC.y = GameManager.stage.stageHeight;
+        var tw = egret.Tween.get(this.guideMC);
+        tw.to({y:GameManager.stage.stageHeight - this.guideMC.height},300);
+
+
+
+
 
         this.guideMC.renew(this.lastChooseData,this.listArray)
     }
@@ -394,7 +408,9 @@ class VideoUI extends game.BaseUI {
             this.defGroup1.visible = false
         }
 
-        this.statList1.dataProvider = new eui.ArrayCollection(getList(buff));
+        var buffList = getList(buff);
+        this.statList1.dataProvider = new eui.ArrayCollection(buffList);
+        (<eui.TileLayout>this.statList1.layout).requestedColumnCount = Math.min(8,buffList.length);
 
 
         //for(var i=0;i<this.vGroup.numChildren;i++)

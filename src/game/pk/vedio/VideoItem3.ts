@@ -315,7 +315,7 @@ class VideoItem3 extends game.BaseItem {
 
 
         this.getMonster(defender[0].defender,group)
-        group.addChild(this.getWordText('触发效果：'))
+        //group.addChild(this.getWordText('效果：'))
         this.addEffectList(data,group);
     }
 
@@ -558,13 +558,12 @@ class VideoItem3 extends game.BaseItem {
                 this.getMonster(arr[i].defender,group)
             for(var j=begin,begin=0;j<list.length;j++)
             {
-                if(group.numChildren >4)
+                if(group.numChildren >= 4)
                 {
                     group = this.addGroup();
                     this.getMonster(arr[i].defender,group)
                 }
                 this.addEffect(list[j],group);
-
             }
 
         }

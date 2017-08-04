@@ -6,18 +6,20 @@ class MainGameUI extends game.BaseUI {
     }
 
     private topUI: TopUI;
+    private helpBtn: eui.Group;
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private forceText: eui.Label;
     private coinGroup: eui.Group;
+    private coinRect: eui.Rect;
     private moneyText: eui.Label;
     private enemyList: eui.List;
-    private helpBtn: eui.Group;
     private myCardGroup: MyCardGroupUI;
     private historyList: eui.List;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
-    private coinRect: eui.Rect;
+
 
 
 
@@ -42,6 +44,7 @@ class MainGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         this.addBtnEvent(this.coinGroup, this.onCoin);
+        this.addBtnEvent(this.forceText, this.onTips);
 
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
@@ -58,6 +61,13 @@ class MainGameUI extends game.BaseUI {
 
     private onReset(){
         PKManager.getInstance().reChooseMyCard()
+    }
+
+    private onTips(){
+        var myForce = UM.getForce();
+        var enemyForce = MainGameManager.getInstance().getMainForce()
+        var awardForce = MainGameManager.getInstance().getAwardForce()
+        Alert('通关时如果我方战力不高于关卡BOSS战力，则获得['+awardForce+'点]战力奖励！\n我方战力：['+myForce+']\n敌方战力：['+enemyForce+']\n(使用贿赂技能后无效)',null,'知道了')
     }
 
 
@@ -109,7 +119,7 @@ class MainGameUI extends game.BaseUI {
             this.setHtml(this.moneyText, '<font color="#ff0000">' + cost + '</font>');
         else
             this.moneyText.text = '' + cost;
-        this.coinRect.width = 150 * Math.min(1,cost/UM.coin);
+        this.coinRect.width = 130 * Math.min(1,cost/UM.coin);
     }
 
     public renewEnemy(){
@@ -193,6 +203,19 @@ class MainGameUI extends game.BaseUI {
     }
 
     private renewSelf(){
+
+        var enemyForce = MainGameManager.getInstance().getMainForce()
+        var myForce = UM.getForce();
+        var awardForce = MainGameManager.getInstance().getAwardForce()
+
+        var str = '[敌方战力:]' + enemyForce;
+        if(enemyForce<myForce)
+            str += this.createHtml(' 【+'+awardForce+'】',0x888888)
+        else
+            str += this.createHtml(' 【+'+awardForce+'】',0xDDDD00)
+        MyTool.setColorText(this.forceText,str)
+
+
         this.myCardGroup.renew();
     }
     private renewHistory(){
