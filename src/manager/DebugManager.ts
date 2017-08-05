@@ -735,7 +735,7 @@ class DebugManager {
         var self = this;
         Net.getInstance().outPut = false;
         var testOne = function(){
-            self.MML = (arr.length/20);
+            self.MML = self.getGuessLevel(arr.length);
             //self.MML = Math.floor(arr.length/100) +1
             if(self.MML > 30)
             {

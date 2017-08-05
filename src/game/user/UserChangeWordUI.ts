@@ -19,7 +19,7 @@ class UserChangeWordUI extends game.BaseWindow {
 
 
 
-
+     private emptyText;
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.cancelBtn, this.hide);
@@ -42,13 +42,15 @@ class UserChangeWordUI extends game.BaseWindow {
 
     private onSend(){
         var self = this;
-        if(this.editText.text == 'hange0o0 debug')
+        if(this.editText.text == 'debug' && this.emptyText == 2)
         {
-            Alert('999');
+            Config.isDebug = true;
+            Alert('debug open')
             return;
         }
         if(!this.editText.text)
         {
+            this.emptyText ++;
             Alert('没输入任何内容')
             return
         }
@@ -72,6 +74,7 @@ class UserChangeWordUI extends game.BaseWindow {
     }
 
     public onShow(){
+        this.emptyText = 0
         this.editText.text = UM.word || '';
         //this.editText.setFocus();
 
