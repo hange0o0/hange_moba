@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKFailUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="PKFailUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+
+
 	<e:Group x="74" y="36" locked="true">
 		<e:Image source="pk_fail_png" y="0" x="0"/>
 		<e:Image source="pk_fail_png" y="0" scaleX="-1" x="492"/>
@@ -13,7 +15,8 @@
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
 			<e:layout>
 				<e:TileLayout/>
-			</e:layout>
+			</e:layout>
+
 		</e:List>
 		<e:Group id="noteGroup" x="84" y="112">
 			<e:Rect width="100%" x="0" strokeWeight="3" fillAlpha="0.2" strokeColor="0x47437A" ellipseHeight="20" ellipseWidth="20" top="15" bottom="0"/>
@@ -23,6 +26,7 @@
 		<e:Group id="btnGroup" x="65" y="175">
 			<e:Button id="backBtn" y="0" label="返回" x="0" skinName="Btn_b2Skin"/>
 			<e:Button id="okBtn" skinName="Btn_r2Skin" y="71" label="再试一次" x="0"/>
+			<e:Button id="reviewBtn" label="回　放" x="20.00000000000003" y="20" skinName="Btn_b2Skin"/>
 			<e:layout>
 				<e:HorizontalLayout gap="30"/>
 			</e:layout>

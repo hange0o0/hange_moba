@@ -34,7 +34,7 @@ class EnemyHeadItem extends game.BaseItem {
         this.teamGroupBG.visible = false;
         this.chooseGroupBG.visible = false;
 
-        addBtnTips(this,this.onTips,this);
+        addBtnTips(this,this.onTips);
 
         //MyTool.addTestBlock(this);
     }

@@ -88,7 +88,7 @@ class DayLogItem extends game.BaseItem {
         }
 
         PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.data.videoData);
-        PKMainUI.getInstance().show();
+        PKMainUI.getInstance().show(null,true);
     }
 
     public dataChanged() {

@@ -66,7 +66,7 @@ class MainGameManager{
 
     //杀一个敌人的花费
     public getKillCost(){
-        var level = UM.main_game.level;
+        var level = UM.main_game.level + 1;
         return level*300*(UM.main_game.kill.length+1);
     }
 
@@ -93,7 +93,7 @@ class MainGameManager{
     }
 
     public getAwardForce(level?){
-        level = level || UM.main_game.level
+        level = level || (UM.main_game.level + 1)
         return  Math.ceil((level + 100)/200);
     }
 

@@ -92,7 +92,7 @@ class MainGameUI extends game.BaseUI {
 
     public show(){
         var self = this
-        MainGameManager.getInstance().loadCache(UM.main_game.level,function(){
+        MainGameManager.getInstance().loadCache(UM.main_game.level+1,function(){
             self.superShow();
         })
     }
@@ -129,7 +129,7 @@ class MainGameUI extends game.BaseUI {
             isNPC:true
         };
         var enemyList = this.enemyArray = [];
-        var arr = MainGameVO.getObject(UM.main_game.level).list;
+        var arr = MainGameVO.getObject(UM.main_game.level+1).list;
         var killNum = 0;
         for(var i=0;i<arr.length;i++)
         {
@@ -182,7 +182,7 @@ class MainGameUI extends game.BaseUI {
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
-        this.topUI.setTitle('公会评定-第'+(UM.main_game.level)+'关');
+        this.topUI.setTitle('公会评定-第'+(UM.main_game.level+1)+'关');
 
         this.renewEnemy();
         this.renewSelf();

@@ -27,7 +27,8 @@ class MainServerItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.startBtn, this.onStart);
-        addBtnTips(this.scoreText,this.onScore,this);
+        addBtnTips(this.scoreText,this.onScore);
+        this.scoreText['thisObj'] = this;
     }
 
     public onShow(){

@@ -170,7 +170,7 @@ class PKResultBase extends game.BaseContainer {
         this.onStepOver();
         PKResultUI.getInstance().showMore(this)
 
-        if(PKManager.getInstance().pkAward.finishTask)
+        if(PKManager.getInstance().pkAward && PKManager.getInstance().pkAward.finishTask)
         {
             PKManager.getInstance().pkAward.finishTask.title = '完成卡组任务';
             if(UM.getMyCard().num != 10)

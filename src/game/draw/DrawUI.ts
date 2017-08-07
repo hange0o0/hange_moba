@@ -67,10 +67,11 @@ class DrawUI extends game.BaseWindow {
     public showOtherDraw(mid){
         var arr = [];
         var mdata = CM.table[MonsterVO.dataKey];
+        var level = Math.max(3,UM.level);
         for(var s in mdata)
         {
             var vo = mdata[s];
-            if(vo.level<= UM.level && vo.id != mid)
+            if(vo.level<= level && vo.id != mid)
                 arr.push(vo.id);
         }
         ArrayUtil.random(arr);

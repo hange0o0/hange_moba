@@ -13,6 +13,8 @@ class PKFailUI extends PKResultBase {
     private btnGroup: eui.Group;
     private backBtn: eui.Button;
     private okBtn: eui.Button;
+    private reviewBtn: eui.Button;
+
 
 
 
@@ -30,6 +32,12 @@ class PKFailUI extends PKResultBase {
         super.childrenCreated();
         this.addBtnEvent(this.backBtn, this.onBack);
         this.addBtnEvent(this.okBtn, this.onRestart);
+        this.addBtnEvent(this.reviewBtn, this.onReview);
+    }
+
+    private onReview(){
+        PKResultUI.getInstance().hide();
+        PKMainUI.getInstance().show(null,true)
     }
 
 
@@ -105,7 +113,7 @@ class PKFailUI extends PKResultBase {
         }
         else
         {
-            this.btnGroup.addChild(this.okBtn);
+            this.btnGroup.addChildAt(this.okBtn,1);
         }
 
         if(PKM.pkType != PKManager.PKType.REPLAY)

@@ -34,7 +34,8 @@ class MainServerEqualItem extends game.BaseItem {
         this.addBtnEvent(this.retryBtn, this.onRetry);
         this.addBtnEvent(this.ticketGroup, this.onTicket);
         this.addBtnEvent(this.startBtn, this.onStart,true);
-        addBtnTips(this.scoreText,this.onScore,this);
+        addBtnTips(this.scoreText,this.onScore);
+        this.scoreText['thisObj'] = this;
         EM.addEvent(GameEvent.client.prop_change,this.renew,this)
     }
 

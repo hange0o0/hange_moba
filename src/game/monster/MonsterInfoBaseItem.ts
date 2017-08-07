@@ -13,8 +13,10 @@ class MonsterInfoBaseItem extends game.BaseItem {
 
     public childrenCreated(){
         this.text.wordWrap = true;
-        addBtnTips(this.typeText,this.onTypeText,this)
-        addBtnTips(this.icon,this.onIcon,this)
+        addBtnTips(this.typeText,this.onTypeText)
+        addBtnTips(this.icon,this.onIcon)
+        this.icon['thisObj'] = this;
+        this.icon['typeText'] = this;
     }
 
     private onTypeText(){

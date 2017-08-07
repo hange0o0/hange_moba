@@ -20,34 +20,35 @@ function ShowTips(msg,cd=1000){
     TipsUI.getInstance().show(msg,cd);
 }
 
-function addBtnTips(mc,str,thisObj){
+function addBtnTips(mc,str){
     var timer;
     mc.touchEnabled = true;
-    mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,thisObj);
+
+    mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,mc.thisObj || mc);
     function onTouchStart(e){
         var stageX = e.stageX
         var stageY = e.stageY
-        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
-        mc.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
-        mc.stage.once(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
+        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,mc.thisObj || mc);
+        mc.stage.once(egret.TouchEvent.TOUCH_END,onTouchEnd,mc.thisObj || mc);
+        mc.stage.once(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,mc.thisObj || mc);
         egret.clearTimeout(timer);
         timer = egret.setTimeout(function(){
             if( Math.abs(GameManager.stageX - stageX) > 20 ||  Math.abs(GameManager.stageY - stageY) > 20)
             {
-                mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
-                mc.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
+                mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,mc.thisObj || mc);
+                mc.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,mc.thisObj || mc);
                 return;
             }
             if(typeof str == 'string')
                 TouchTipsUI.getInstance().show(e,str);
             else
-                TouchTipsUI.getInstance().show(e,str.apply(thisObj));
+                TouchTipsUI.getInstance().show(e,str.apply(mc.thisObj || mc));
         },this,300)
 
     }
     function onTouchEnd(){
-        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,thisObj);
-        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,thisObj);
+        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_END,onTouchEnd,mc.thisObj || mc);
+        mc.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL,onTouchEnd,mc.thisObj || mc);
         if(TouchTipsUI.getInstance().stage)
             mc.stopClickTimer = egret.getTimer();
         egret.clearTimeout(timer);

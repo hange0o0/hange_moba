@@ -723,6 +723,8 @@ class PKDressChooseUI extends game.BaseContainer {
             if(mc.data)
             {
                 var temp = PKDressUI.getInstance().atkData[mc.data.id];
+                if(!temp)
+                    continue;
                 this.atkData.hp.push(temp.hp);
                 this.atkData.atk.push(temp.atk);
                 this.atkData.speed.push(temp.speed);

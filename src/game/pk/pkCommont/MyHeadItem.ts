@@ -18,7 +18,7 @@ class MyHeadItem extends game.BaseItem {
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this,this.onClick);
-        addBtnTips(this,this.onTips,this);
+        addBtnTips(this,this.onTips);
     }
 
     private onTips(){

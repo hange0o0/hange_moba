@@ -95,12 +95,16 @@ class PKDressChooseItem extends game.BaseItem {
         {
             var fightList = PKDressUI.getInstance().atkData;
             var fightData = fightList[this.data.id];
-            if(atkData.hp[0] == fightData.hp)
-                str += this.createHtml('血',0xFF4747)
-            if(atkData.atk[0] == fightData.atk)
-                str += this.createHtml('攻',0xFDC04F)
-            if(atkData.speed[0] == fightData.speed)
-                str += this.createHtml('速',0x747DFF)
+            if(fightData)
+            {
+                if(atkData.hp[0] == fightData.hp)
+                    str += this.createHtml('血',0xFF4747)
+                if(atkData.atk[0] == fightData.atk)
+                    str += this.createHtml('攻',0xFDC04F)
+                if(atkData.speed[0] == fightData.speed)
+                    str += this.createHtml('速',0x747DFF)
+            }
+
 
             //var arr = [];
             //arr.push({w:this.createHtml('血',0xFF4747),v:atkData.hp.indexOf(fightData.hp),v2:fightList.hp.indexOf(fightData.hp),v3:1})

@@ -14,7 +14,7 @@ class TeamDungeonAwardBoxItem extends game.BaseItem {
 
     public childrenCreated() {
          this.addBtnEvent(this,this.onClick)
-        addBtnTips(this,this.onScore,this);
+        addBtnTips(this,this.onScore);
     }
 
     private onScore(){

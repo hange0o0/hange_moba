@@ -27,6 +27,8 @@ class PKDressEnemyItem extends EnemyHeadItem {
 
 
     public setChoose(b) {
+        if(!this.data)
+            return;
         this.isChoose = b;
         if(this.data.isTeam)
         {

@@ -1,15 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="PKWinUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="PKWinUISkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+
+
 	<e:Group id="resultGroup" horizontalCenter="0" top="330" bottom="20">
 		<e:Label id="desText" text="标签" y="0" textColor="0xFFFF00" x="111" textAlign="center" lineSpacing="10"/>
 		<e:List id="list" y="52" itemRendererSkinName="PKResultItemSkin" x="0">
 			<e:layout>
 				<e:TileLayout/>
-			</e:layout>
+			</e:layout>
+
 		</e:List>
 		<e:Group id="btnGroup" x="0" y="60">
 			<e:Button id="backBtn" label="返回" y="71" x="0" skinName="Btn_b2Skin"/>
 			<e:Button id="okBtn" label="继续挑战" y="0" skinName="Btn_r2Skin" x="0"/>
+			<e:Button id="reviewBtn" label="回　放" x="20.00000000000003" y="20" skinName="Btn_b2Skin"/>
 			<e:layout>
 				<e:HorizontalLayout gap="20"/>
 			</e:layout>

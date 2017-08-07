@@ -36,7 +36,7 @@ class FriendPKItem extends game.BaseItem {
         if(this.state == 3)//看录像
         {
             FPKM.playBack(this.data.id,function(){
-                PKMainUI.getInstance().show();
+                PKMainUI.getInstance().show(null,true);
             });
         }
         else if(this.state == 2) //应战

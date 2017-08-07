@@ -199,7 +199,7 @@ class Main extends eui.UILayer {
         {
             GameManager.container.visible = false;
         }
-        Config.isDebug =  _get['debug'];
+        Config.isDebug =  _get['debug'] || SharedObjectManager.instance.getMyValue('debug');
         var LM = LoginManager.getInstance();
         if(!(LM.lastUser && LM.quickPassword && LM.lastServer)) {
             egret.setTimeout(function(){

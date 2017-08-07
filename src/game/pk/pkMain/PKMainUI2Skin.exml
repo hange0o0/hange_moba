@@ -131,7 +131,7 @@
 		</e:Group>
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>
-	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="515" visible="false">
+	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="515">
 		<e:Rect id="resultBG" width="100%" x="0" top="-2" bottom="0"/>
 		<e:Group id="resultMC" horizontalCenter="0" verticalCenter="-72.5">
 		<e:Image id="rbg0" y="0" x="0" source="pk_fail_png"/>
@@ -139,10 +139,11 @@
 		<e:Image id="rbg2" y="118" x="156" source="fight_win_png"/>
 		</e:Group>
 		<e:Group id="resultBtnGroup" y="360" horizontalCenter="0">
-		<e:Button id="backBtn" label="返回" x="0" y="0" skinName="Btn_b2Skin"/>
+		<e:Button id="backBtn" label="返　回" x="0" y="0" skinName="Btn_b2Skin"/>
 		<e:Button id="nextBtn" label="下一轮" x="10.000000000000028" y="10" skinName="Btn_r2Skin"/>
+			<e:Button id="reviewBtn" label="回　放" x="20.00000000000003" y="20" skinName="Btn_b2Skin"/>
 		<e:layout>
-			<e:HorizontalLayout gap="50"/>
+			<e:HorizontalLayout gap="10"/>
 		</e:layout>
 		</e:Group>
 	</e:Group>
@@ -154,7 +155,7 @@
 			<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="32" stroke="5" strokeColor="0x000000" bold="true" y="260" scaleX="1" scaleY="1" horizontalCenter="0"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="jumpBtn" anchorOffsetX="36" anchorOffsetY="36" x="320" y="720">
+	<e:Group id="jumpBtn" anchorOffsetX="36" anchorOffsetY="36" x="36" y="720">
 		<e:Image source="main_border_png" x="0" y="0" width="72" height="72"/>
 		<e:Group id="jumpCon" y="21" horizontalCenter="2">
 			<e:Image source="arrow7_png" x="0" y="0" rotation="-90"/>
@@ -171,4 +172,5 @@
 		<e:Image id="roundMC2" source="pk_round_bg_png" y="100" x="360" scaleX="-1" anchorOffsetY="100"/>
 		<e:Label id="roundText" y="95" textColor="0xEB911B" text="ROUND 11" size="22" horizontalCenter="0.5"/>
 	</e:Group>
+	<e:Image id="jumpBtn2" source="jump_btn_png" y="720" anchorOffsetX="36" anchorOffsetY="36" x="604"/>
 	</e:Skin>

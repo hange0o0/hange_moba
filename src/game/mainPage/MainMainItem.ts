@@ -30,7 +30,8 @@ class MainMainItem extends game.BaseItem {
         //this.addBtnEvent(this.scoreText, this.onScore);
         EM.addEvent(GameEvent.client.pass_day,this.renew,this)
 
-        addBtnTips(this.scoreText,this.onScore,this);
+        addBtnTips(this.scoreText,this.onScore);
+        this.scoreText['thisObj'] = this;
     }
 
     public onShow(){
