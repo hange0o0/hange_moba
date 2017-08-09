@@ -225,7 +225,7 @@ class PKDressUI extends game.BaseUI {
         MyTool.resetScrollV(this.scroller);
     }
 
-    private changeChooseList(list){
+    public changeChooseList(list){
         this.chooseList = list
         this.pkDressChooseUI.renew(this.chooseList);
         this.saveHistory();
@@ -254,6 +254,27 @@ class PKDressUI extends game.BaseUI {
         //console.log('onDragAfter')
     }
     private changeCardIndex(){
+        if(this.changeBtn.label == '过关提示')
+        {
+            var self = this;
+            if(UM.main_game.show_pass)
+            {
+                MainGameTipsUI.getInstance().show();
+                return;
+            }
+            var cost = MainGameManager.getInstance().getTipsCost();
+            Confirm('确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石查看本关提示吗？',function(v){
+                if(v == 1)
+                {
+                    if(!UM.testDiamond(cost))
+                    {
+                        return;
+                    }
+                    MainGameTipsUI.getInstance().show();
+                }
+            })
+            return;
+        }
         this.index ++;
         if(this.index >= this.dataIn.data.length)
             this.index = 0;
@@ -654,6 +675,11 @@ class PKDressUI extends game.BaseUI {
         else
         {
             this.topUI.setTitle('布阵');
+            if(this.pkType == PKManager.PKType.MAIN)
+            {
+                this.upBtnGroup.addChild(this.changeBtn);
+                this.changeBtn.label = '过关提示';
+            }
         }
         if(this.dataIn.enemy)
             this.upBtnGroup.addChild(this.viewBtn);

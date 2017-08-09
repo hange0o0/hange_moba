@@ -13,6 +13,7 @@ class MainGameManager{
     public maxLevel = 600;
 
     public logList
+    public mainPass;
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_main_log') || [];
     }
@@ -81,7 +82,7 @@ class MainGameManager{
     }
 
     public getMainForce(level?){
-        level = level || UM.main_game.level
+        level = level || (UM.main_game.level + 1)
         var add = level;
         var index = 1;
         while(level > 10*index)
@@ -90,6 +91,17 @@ class MainGameManager{
             index ++;
         }
         return add;
+    }
+
+    public getMainMonsterLevel(level?){
+        var force = this.getMainForce(level);
+        return MonsterManager.getInstance().getEnemyMonsterLevel(force);
+    }
+
+
+    public getTipsCost(level?){
+        level = level || (UM.main_game.level + 1)
+        return Math.ceil(level/20);
     }
 
     public getAwardForce(level?){
@@ -179,6 +191,8 @@ class MainGameManager{
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
             UM.main_game.pkdata = Config.pk_version;
             self.addLogList(PKManager.getInstance().getLogData({round:nowLevel,type:PKManager.PKType.MAIN}));
+            if(nowLevel != UM.main_game.level)
+                self.mainPass = null
             if(fun)
                 fun();
         });
@@ -227,6 +241,37 @@ class MainGameManager{
             }
             AwardUI.getInstance().show(msg.award);
             EM.dispatch(GameEvent.client.get_card)
+            if(fun)
+                fun();
+        });
+    }
+
+    public getMainPass(fun?){
+        if(this.mainPass && TM.now() - this.mainPass.time < 5*60)
+        {
+            fun && fun();
+            return;
+        }
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.mainGame.get_main_pass,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == -1)
+            {
+                Alert('暂时还没有收录，赶快加油帮助后来者吧！\n(并没有扣除玩家钻石)');
+                return;
+            }
+            if(msg.fail == 1)
+            {
+                Alert('钻石不足');
+                return;
+            }
+            self.mainPass = {
+                list:msg.list,
+                time:TM.now()
+            }
+            UM.main_game.show_pass = true
             if(fun)
                 fun();
         });

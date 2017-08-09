@@ -102,9 +102,9 @@ class PKManager {
     public winnerRate//胜利者剩余血量百分比
     public isWin//胜利
 
-    public teamChange = false//队伍ID发生过转换
+    public pkJump//胜利
 
-    public pkJump;
+    public teamChange = false//队伍ID发生过转换
     public pkLog = {};
 
     ////不同位置的加成值和比例
@@ -507,6 +507,40 @@ class PKManager {
         });
     }
 
+    public buyPKJump(num,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.num = num;
+        Net.addUser(oo);
+        Net.send(GameEvent.pkCore.buy_pk_jump,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('钻石不足');
+                return;
+            }
+            UM.pk_common.pk_jump = (UM.pk_common.pk_jump || 0) + num*20;
+            if(fun)
+                fun(msg);
+        });
+    }
+    public PKJumpAction(fun?){
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.pkCore.pk_jump,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                UM.pk_common.pk_jump = 0;
+            }
+            else
+                UM.pk_common.pk_jump --;
+            if(fun)
+                fun();
+        },false);
+    }
+
     public getReplayByData(type,oo,fun?){
         var key = md5.incode(JSON.stringify(oo));
         if(this.pkLog[key])
@@ -661,20 +695,22 @@ class PKManager {
         //    this.team2Ring = this.team2Base.r;
         //}
 
-        this.pkAward = {
-            levelUp:false,
-            gLevelUp:0,
-            newTask:false,
-            finishTask:false,
-            forceUp:false,
-            getNewCard:false,
-            passMap:false,
-            desArr:[],
-            prop:[]
-        }
 
+        this.pkAward = null;
         if(!data.dealAward)
         {
+            this.pkAward = {
+                levelUp:false,
+                gLevelUp:0,
+                newTask:false,
+                finishTask:false,
+                forceUp:false,
+                getNewCard:false,
+                passMap:false,
+                desArr:[],
+                prop:[]
+            }
+
             var award = data.award || {};
             if(award.coin)
                 this.pkAward.prop.push({type:'coin',des:'×' + award.coin})

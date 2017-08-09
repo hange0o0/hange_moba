@@ -108,14 +108,14 @@ class LoginManager{
         oo.name = name;
         var isGuest = this.isGuest(name)
 
-        if(isGuest && (Date.now() - this.guestData.time) > 48*3600*1000)//超过48小时要变正式
-        {
-            self.quickPassword = null;
-            self.isAuto = false;
-            LoginUI.getInstance().onChangeUser();
-            RegisterUI.getInstance().show(true);
-            return;
-        }
+        //if(isGuest && (Date.now() - this.guestData.time) > 48*3600*1000)//超过48小时要变正式
+        //{
+        //    self.quickPassword = null;
+        //    self.isAuto = false;
+        //    LoginUI.getInstance().onChangeUser();
+        //    RegisterUI.getInstance().show(true);
+        //    return;
+        //}
 
         if(password)
         {

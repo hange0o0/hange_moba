@@ -186,6 +186,13 @@ class MonsterInfoBase extends game.BaseContainer {
         {
             var v = specialData.fight || 0;
             fightData = {atk:v,hp:v,speed:v};
+            if(specialData.lv)
+            {
+                var levelAdd = UM.getTecAdd('monster',specialData.lv);
+                fightData.atk += levelAdd;
+                fightData.hp += levelAdd;
+            }
+
             isMe = false;
             //this.levelGroup.visible = false;
         }

@@ -97,9 +97,10 @@ class EnemyHeadItem extends game.BaseItem {
             else
             {
                 this.closeBtn.visible = false;
-                if(this.data.specialData.lv)
-                    this.lvText.text = 'LV.' + this.data.specialData.lv;
             }
+
+            if(this.data.specialData.lv)
+                this.lvText.text = 'LV.' + this.data.specialData.lv;
 
 
             if(this.data.index > 2 && this.data.list.length == 5)
@@ -109,6 +110,23 @@ class EnemyHeadItem extends game.BaseItem {
             }
             else
                 this.teamGroup.horizontalCenter= 0
+
+            if(this.data.compare)
+            {
+                var mlevel = UM.getMonsterLevel(this.data.id);
+                MyTool.changeGray(this.headMC2,this.data.disable)
+                var textColor = 0xCCB48E;
+                if(!this.lvText.text)
+                    this.lvText.text = 'LV.0';
+                if(this.data.specialData.lv < mlevel)
+                    this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml('+'+( mlevel-this.data.specialData.lv),0xFF0000)+')');
+                else if(this.data.specialData.lv > mlevel)
+                    this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml(mlevel-this.data.specialData.lv,0x00FF00)+')');
+                //    textColor = 0xFF0000;
+                //if(!this.lvText.text)
+                //    this.lvText.text = 'LV.0';
+                //this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml(mlevel,textColor)+')');
+            }
         }
         else
         {

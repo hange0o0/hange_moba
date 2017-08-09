@@ -76,6 +76,8 @@ class UserManager {
         this.pk_common = data.pk_common; //  '{history:{}}'
 
 
+
+
         this.initActive();
 
         this.friendtime = data.friendtime || 1;

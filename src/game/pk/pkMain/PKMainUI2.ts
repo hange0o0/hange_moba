@@ -77,13 +77,15 @@ class PKMainUI extends game.BaseUI {
     private jumpBtn: eui.Group;
     private jumpCon: eui.Group;
     private jumpArrow: eui.Image;
+    private jumpBtn2: eui.Group;
+    private jumpIcon: eui.Image;
     private bottomMC: eui.Image;
     private topMC: eui.Image;
     private roundGroup: eui.Group;
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
-    private jumpBtn2: eui.Image;
+
 
 
 
@@ -178,7 +180,15 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onQuickJump(){
-        this.onJump();
+        if(PKManager.getInstance().pkAward)
+        {
+            var self = this;
+            PKJumpWindow.getInstance().show(function(){
+                self.onJump();
+            })
+        }
+        else
+            this.onJump();
     }
     private onReview(){
         this.resultGroup.visible = false;
@@ -491,6 +501,11 @@ class PKMainUI extends game.BaseUI {
         this.bottomMC.y = this.stageHeight-des
         this.jumpBtn.y =  des + 700;
         this.jumpBtn2.y =  des + 700;
+
+        if(PKManager.getInstance().pkAward)
+            this.jumpIcon.source = 'jump_icon_png'
+        else
+            this.jumpIcon.source = 'jump_icon2_png'
         //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CommonNumInputSkin" currentState="type1" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="193" states="type3,type2,type1,type4" >
+	<e:Rect strokeWeight="2" ellipseHeight="20" ellipseWidth="20" fillColor="0x180802" strokeColor="0xA38D6A" left="20" right="20" top="3" bottom="3"/>
+
+
+
+	<e:EditableText id="input" text="标签" size="24" restrict="0-9" verticalAlign="middle" textAlign="center" maxChars="3" height="27" left="35" right="35" textColor="0xccb48e" verticalCenter="0"/>
+	<e:Group id="addBtn" y="0" right="0">
+		<e:Image source="border5_png" x="0" y="0" scale9Grid="10,8,60,7" width="50" height="50"/>
+		<e:Image source="icon_add_png" verticalCenter="-1" horizontalCenter="0"/>
+	</e:Group>
+	<e:Group id="reduceBtn" y="0" x="0">
+		<e:Image source="border5_png" x="0" y="0" scale9Grid="10,8,60,7" width="50" height="50"/>
+		<e:Image source="icon_dec_png" horizontalCenter="0" verticalCenter="-1"/>
+	</e:Group>
+	</e:Skin>

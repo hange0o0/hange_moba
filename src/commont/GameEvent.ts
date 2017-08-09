@@ -66,6 +66,8 @@ class GameEvent {
     }
 
     public static pkCore = {
+        buy_pk_jump:'buy_pk_jump',
+        pk_jump:'pk_jump',
         pk_result:'pk_result',
         pk_result_type:'pk_result_type',
         get_my_card:'get_my_card',
@@ -117,6 +119,7 @@ class GameEvent {
     public static mainGame = {
         get_main_card:'get_main_card',
         main_award:'main_award',
+        get_main_pass:'get_main_pass',
         main_kill:'main_kill',
         pk_main:'pk_main'
     }

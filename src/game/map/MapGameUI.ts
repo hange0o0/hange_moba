@@ -132,12 +132,15 @@ class MapGameUI extends game.BaseUI {
         var MD = MapData.getInstance();
         this.topUI.setTitle('据点 '+MD.level + ' 通辑令');
         //更新敌人
-        var specialData:any = {
-            isNPC:true,
-            fight:MD.enemy.force
-        };
+        //var specialData:any = {
+        //    isNPC:true,
+        //    fight:MD.enemy.force
+        //};
         var enemyList = this.enemyArray = [];
         var arr = MD.enemy.list
+
+        var fight = MD.enemy.force;
+        var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight);
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
@@ -146,7 +149,11 @@ class MapGameUI extends game.BaseUI {
                 isTeam:true,
 
                 id: id,
-                specialData: specialData,
+                specialData:{
+                    isNPC:true,
+                    fight:fight,
+                    lv:lv,
+                },
 
                 index: i,
 

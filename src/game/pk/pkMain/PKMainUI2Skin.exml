@@ -165,6 +165,10 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
+	<e:Group id="jumpBtn2" anchorOffsetX="36" anchorOffsetY="36" y="720" x="604">
+		<e:Image source="main_border_png" x="0" y="0" width="72" height="72"/>
+		<e:Image id="jumpIcon" scaleX="1.4" scaleY="1.4" horizontalCenter="0" verticalCenter="0" source="jump_icon2_png"/>
+	</e:Group>
 	<e:Image id="bottomMC" source="fire_top_jpg" x="0" scaleY="-1" y="960" anchorOffsetY="123"/>
 	<e:Image id="topMC" source="fire_top_jpg" x="0" y="-121"/>
 	<e:Group id="roundGroup" horizontalCenter="0" width="360" height="200" y="280" anchorOffsetY="100" locked="true" visible="false">
@@ -172,5 +176,4 @@
 		<e:Image id="roundMC2" source="pk_round_bg_png" y="100" x="360" scaleX="-1" anchorOffsetY="100"/>
 		<e:Label id="roundText" y="95" textColor="0xEB911B" text="ROUND 11" size="22" horizontalCenter="0.5"/>
 	</e:Group>
-	<e:Image id="jumpBtn2" source="jump_btn_png" y="720" anchorOffsetX="36" anchorOffsetY="36" x="604"/>
 	</e:Skin>

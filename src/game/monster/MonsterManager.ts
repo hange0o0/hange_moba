@@ -12,6 +12,18 @@ class MonsterManager{
 
     }
 
+    public getEnemyMonsterLevel(force){
+        force = Math.pow(force,0.62)-6;
+        var level = 0;
+        var levelForce = 0;
+        while(levelForce + level < force)
+        {
+            levelForce += level;
+            level ++;
+        }
+        return Math.max(0,level-1);
+    }
+
     public getMonsterValue(monsterID){
         var force = (UM.award_force + UM.tec_force);
         var fightData = UM.getTecMonsterAdd(monsterID);

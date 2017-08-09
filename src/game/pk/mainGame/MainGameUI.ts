@@ -11,6 +11,8 @@ class MainGameUI extends game.BaseUI {
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
     private forceText: eui.Label;
+    private awardGroup: eui.Group;
+    private awardForceText: eui.Label;
     private coinGroup: eui.Group;
     private coinRect: eui.Rect;
     private moneyText: eui.Label;
@@ -125,12 +127,14 @@ class MainGameUI extends game.BaseUI {
     public renewEnemy(){
         var MM = MainGameManager.getInstance();
         //更新敌人
-        var specialData:any = {
-            isNPC:true
-        };
+        //var specialData:any = {
+        //    isNPC:true
+        //};
         var enemyList = this.enemyArray = [];
         var arr = MainGameVO.getObject(UM.main_game.level+1).list;
         var killNum = 0;
+        var fight = MM.getMainForce();
+        var lv = MM.getMainMonsterLevel();
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
@@ -145,7 +149,11 @@ class MainGameUI extends game.BaseUI {
                 isTeam:true,
 
                 id: id,
-                specialData: specialData,
+                specialData: {
+                    isNPC:true,
+                    fight:fight,
+                    lv:lv,
+                },
 
                 index: i-killNum,
 
@@ -208,11 +216,13 @@ class MainGameUI extends game.BaseUI {
         var myForce = UM.getForce();
         var awardForce = MainGameManager.getInstance().getAwardForce()
 
-        var str = '[敌方战力:]' + enemyForce;
-        if(enemyForce<myForce)
-            str += this.createHtml(' 【+'+awardForce+'】',0x888888)
-        else
-            str += this.createHtml(' 【+'+awardForce+'】',0xDDDD00)
+        var str = '[关卡战力:]' + enemyForce;
+        this.awardForceText.text = '+' + awardForce
+        MyTool.changeGray(enemyForce<myForce);
+        //if(enemyForce<myForce)
+        //    str += this.createHtml(' 【+'+awardForce+'】',0x888888)
+        //else
+        //    str += this.createHtml(' 【+'+awardForce+'】',0xDDDD00)
         MyTool.setColorText(this.forceText,str)
 
 

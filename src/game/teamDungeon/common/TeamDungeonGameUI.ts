@@ -102,15 +102,18 @@ class TeamDungeonGameUI extends game.BaseUI {
     public renewEnemy(){
         var MM = MainGameManager.getInstance();
         //更新敌人
-        var specialData:any = {isOther:true};
+        //var specialData:any = {isOther:true};
         var enemyList = this.enemyArray = [];
         if(this.type == 'pve')
         {
             var PVEM = TeamPVEManager.getInstance();
-            specialData = {
-                isNPC:true,
-                fight:TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)
-            };
+            //specialData = {
+            //    isNPC:true,
+            //    fight:TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)
+            //};
+
+            var fight = TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)
+            var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight);
 
             for(var i=0;i<this.data.list.length;i++)
             {
@@ -120,7 +123,11 @@ class TeamDungeonGameUI extends game.BaseUI {
                     isTeam:true,
 
                     id: id,
-                    specialData: specialData,
+                    specialData:{
+                        isNPC:true,
+                        fight:fight,
+                        lv:lv,
+                    },
                     index: i,
                     list:enemyList
                 });
