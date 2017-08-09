@@ -182,6 +182,11 @@ class PKMainUI extends game.BaseUI {
     private onQuickJump(){
         if(PKManager.getInstance().pkAward)
         {
+            if(GuideManager.getInstance().isGuiding)
+            {
+                Alert('新手过程中不能跳过')
+                return;
+            }
             var self = this;
             PKJumpWindow.getInstance().show(function(){
                 self.onJump();
@@ -503,9 +508,15 @@ class PKMainUI extends game.BaseUI {
         this.jumpBtn2.y =  des + 700;
 
         if(PKManager.getInstance().pkAward)
+        {
             this.jumpIcon.source = 'jump_icon_png'
+            MyTool.changeGray(this.jumpBtn2,GuideManager.getInstance().isGuiding)
+        }
         else
+        {
             this.jumpIcon.source = 'jump_icon2_png'
+            MyTool.changeGray(this.jumpBtn2,false)
+        }
         //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
         //var scene = PKManager.getInstance().getPKBG(PKManager.getInstance().pkType);

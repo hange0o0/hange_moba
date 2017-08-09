@@ -35,6 +35,7 @@ class RankUI extends game.BaseUI {
 
 
         this.tab.addEventListener(eui.ItemTapEvent.CHANGE, this.typeBarClick, this);
+        this.tab.selectedIndex = 2
         //this.addBtnEvent(this, this.onClick);
     }
 
@@ -51,15 +52,16 @@ class RankUI extends game.BaseUI {
         })
     }
 
-    public show(rankType = 1){
+    public show(rankType = 0){
         if(!RankManager.getInstance().isRankOpen())
         {
             Alert('排行榜明天开放！')
             return;
         }
+
         this.indexIn = rankType - 1;
         var self = this;
-        RankManager.getInstance().getRank(rankType,function(){
+        RankManager.getInstance().getRank(rankType || 3,function(){
             self.superShow();
         })
     }
@@ -69,7 +71,8 @@ class RankUI extends game.BaseUI {
     }
 
     public onShow(){
-        this.tab.selectedIndex = this.indexIn;
+        if(this.indexIn >= 0)
+            this.tab.selectedIndex = this.indexIn;
         this.renewRank();
     }
 
