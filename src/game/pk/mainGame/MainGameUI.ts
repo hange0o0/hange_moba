@@ -10,9 +10,11 @@ class MainGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private forceGroup: eui.Group;
     private forceText: eui.Label;
     private awardGroup: eui.Group;
     private awardForceText: eui.Label;
+    private forceRedMC: eui.Image;
     private coinGroup: eui.Group;
     private coinRect: eui.Rect;
     private moneyText: eui.Label;
@@ -21,6 +23,7 @@ class MainGameUI extends game.BaseUI {
     private historyList: eui.List;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
+
 
 
 
@@ -46,7 +49,7 @@ class MainGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         this.addBtnEvent(this.coinGroup, this.onCoin);
-        this.addBtnEvent(this.forceText, this.onTips);
+        this.addBtnEvent(this.forceGroup, this.onTips);
 
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
@@ -66,10 +69,12 @@ class MainGameUI extends game.BaseUI {
     }
 
     private onTips(){
+        this.forceRedMC.visible = false;
+        SharedObjectManager.instance.setMyValue('main_force_red',true);
         var myForce = UM.getForce();
         var enemyForce = MainGameManager.getInstance().getMainForce()
         var awardForce = MainGameManager.getInstance().getAwardForce()
-        Alert('通关时如果我方战力不高于关卡BOSS战力，则获得['+awardForce+'点]战力奖励！\n我方战力：['+myForce+']\n敌方战力：['+enemyForce+']\n(使用贿赂技能后无效)',null,'知道了')
+        Alert('通关时如果我方战力不高于关卡BOSS战力，则获得['+awardForce+'点]战力奖励！\n　我方战力：['+myForce+']\n　敌方战力：['+enemyForce+']\n(使用贿赂技能后不能获得战力奖励)',null,'知道了')
     }
 
 
@@ -192,6 +197,8 @@ class MainGameUI extends game.BaseUI {
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         this.topUI.setTitle('公会评定-第'+(UM.main_game.level+1)+'关');
 
+        this.forceRedMC.visible = !SharedObjectManager.instance.getMyValue('main_force_red');
+
         this.renewEnemy();
         this.renewSelf();
         this.renewHistory();
@@ -218,7 +225,7 @@ class MainGameUI extends game.BaseUI {
 
         var str = '[关卡战力:]' + enemyForce;
         this.awardForceText.text = '+' + awardForce
-        MyTool.changeGray(enemyForce<myForce);
+        MyTool.changeGray(this.awardGroup,enemyForce<myForce);
         //if(enemyForce<myForce)
         //    str += this.createHtml(' 【+'+awardForce+'】',0x888888)
         //else

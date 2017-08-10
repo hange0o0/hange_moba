@@ -42,6 +42,13 @@ class UserChangeWordUI extends game.BaseWindow {
 
     private onSend(){
         var self = this;
+        if(Config.isDebug && this.editText.text == 'diamond')
+        {
+            Alert('diamond')
+            this.hide();
+            PayManager.getInstance().buy(104,null)
+            return;
+        }
         if(this.editText.text == 'debug' && this.emptyText == 2)
         {
             Config.isDebug = true;

@@ -41,8 +41,10 @@ class LoginUI extends game.BaseUI {
         this.addBtnEvent(this.registerBtn, this.onRegister);
         this.addBtnEvent(this.changeBtn, this.onChangeUser);
 
-        MyTool.addLongTouch(this.mc1, this.onMC1,this);
-        MyTool.addLongTouch(this.mc2, this.onMC2,this);
+        this.addBtnEvent(this.mc1, this.onMC1);
+
+        //MyTool.addLongTouch(this.mc1, this.onMC1,this);
+        //MyTool.addLongTouch(this.mc2, this.onMC2,this);
 
         //var LM = LoginManager.getInstance();
         //if(LM.lastUser && !LM.lastPassword)
@@ -58,19 +60,23 @@ class LoginUI extends game.BaseUI {
     }
 
     private onMC1(){
-        if(this.showQuickKey == 0)
-            this.showQuickKey = 1;
-        else if(this.showQuickKey == 2)
+        if(this.nameText.text == 'debug')
+        {
             this.btnGroup.addChildAt(this.quickRegisterBtn,0)
-        else
-            this.showQuickKey = 0;
+        }
+        //if(this.showQuickKey == 0)
+        //    this.showQuickKey = 1;
+        //else if(this.showQuickKey == 2)
+        //    this.btnGroup.addChildAt(this.quickRegisterBtn,0)
+        //else
+        //    this.showQuickKey = 0;
     }
-    private onMC2(){
-        if(this.showQuickKey == 1)
-            this.showQuickKey = 2;
-        else
-            this.showQuickKey = 0;
-    }
+    //private onMC2(){
+    //    if(this.showQuickKey == 1)
+    //        this.showQuickKey = 2;
+    //    else
+    //        this.showQuickKey = 0;
+    //}
 
     private onFocusOut(){
          if(this.nameText.text != '游客账号' && this.passwordText.text == '游客账号免密码')

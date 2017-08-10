@@ -194,16 +194,16 @@ class PKManager {
             {
                 case 0:
                     GM.guideRandom ++;
-                    return [29, 59, 43, 59, 1];
+                    return [15, 53, 53, 7, 56, 56];
                 case 1:
                     GM.guideRandom ++;
-                    return [59, 20, 53, 20, 53, 59];
+                    return [15, 56, 56, 15, 1];
                 case 2:
                     GM.guideRandom ++;
-                    return [53, 1, 5, 59, 5, 20];
+                    return [5, 1, 56, 56, 7, 5]
                 case 3:
                     GM.guideRandom ++;
-                    return [16, 1, 5, 53, 5, 5];
+                    return [1, 5,53,5,56, 5]
             }
         }
         data = data || {};

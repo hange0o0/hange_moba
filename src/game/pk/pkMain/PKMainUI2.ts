@@ -432,11 +432,14 @@ class PKMainUI extends game.BaseUI {
     }
 
     public onShow() {
+
         //VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,0);
         //this.hide();
         //return;
         PKPosManager.getInstance().controller = this;
-        this.speed = SharedObjectManager.instance.getMyValue('pk_speed') || 0;
+        this.speed = SharedObjectManager.instance.getMyValue('pk_speed') || false;
+        if(GuideManager.getInstance().isGuiding)
+            this.speed = false;
         this.renewJumpBtn();
 
 
@@ -507,15 +510,16 @@ class PKMainUI extends game.BaseUI {
         this.jumpBtn.y =  des + 700;
         this.jumpBtn2.y =  des + 700;
 
+
+        MyTool.changeGray(this.jumpBtn2,false)
         if(PKManager.getInstance().pkAward)
         {
             this.jumpIcon.source = 'jump_icon_png'
-            MyTool.changeGray(this.jumpBtn2,GuideManager.getInstance().isGuiding)
         }
         else
         {
             this.jumpIcon.source = 'jump_icon2_png'
-            MyTool.changeGray(this.jumpBtn2,false)
+
         }
         //this.jumpBtn.bottom = Math.max(10,(stageHeight - this.fightHeight)/2 + 10);
 
@@ -616,6 +620,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private addSceneMovie(){
+        this.touchChildren = this.touchEnabled = false;
         var Y =this.stageHeight/2;
         var desY =  this.random()*200-100
         var scale = 1.5
@@ -683,7 +688,13 @@ class PKMainUI extends game.BaseUI {
         this.jumpBtn2.scaleX = 0;
         this.jumpBtn2.scaleY = 0;
         this.jumpBtn2.rotation = 0;
-        tw.wait(1000).to({scaleX:1.2,scaleY:1.2,rotation:360},300).to({scaleX:1,scaleY:1},300)
+        tw.wait(1000).to({scaleX:1.2,scaleY:1.2,rotation:360},300).to({scaleX:1,scaleY:1},300).call(function(){
+            if(GuideManager.getInstance().isGuiding)
+            {
+                MyTool.changeGray(this.jumpBtn2,true)
+            }
+            this.touchChildren = this.touchEnabled = true;
+        },this)
 
         var tw:egret.Tween = egret.Tween.get(this.jumpBtn);
         this.jumpBtn.visible = true;

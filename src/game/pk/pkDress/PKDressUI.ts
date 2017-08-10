@@ -250,6 +250,8 @@ class PKDressUI extends game.BaseUI {
         //console.log('onDragBefore')
     }
     public onDragAfter(){
+        if(GuideManager.getInstance().isGuiding)
+            return;
         this.scroller.scrollPolicyV = eui.ScrollPolicy.ON;
         //console.log('onDragAfter')
     }
