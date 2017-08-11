@@ -76,6 +76,24 @@ class MainGameManager{
         return {coin:level*300,card:Math.floor(level/20+1)};
     }
 
+    //
+    public testMainAdd(addForce,str,fun){
+        var myForce = UM.getForce();
+        var enemyForce = MainGameManager.getInstance().getMainForce()
+        if(myForce <= enemyForce && (myForce + addForce) > enemyForce)
+        {
+            var add = (myForce + addForce) - enemyForce
+            Confirm(str + '，玩家战力将[超过]公会关卡战力(+'+add+')，[无法]获得关卡奖励战力，是否继续？',function(v){
+                if(v == 1)
+                {
+                    fun && fun();
+                }
+            },['取消','继续'])
+            return true;
+        }
+        return false
+    }
+
     //该位置是否被杀了
     public isKill(index){
         return UM.main_game.kill.indexOf(index) != -1;
@@ -309,7 +327,7 @@ class MainGameManager{
                 self.lastPKData = data;
                 PKManager.getInstance().onPK(PKManager.PKType.REPLAY,self.lastPKData);
                 var level = data.info.level;
-                self.addLogList(PKManager.getInstance().getLogData({round:level || "??",type:PKManager.PKType.MAIN},UM.main_game.pkdata.time));
+                self.addLogList(PKManager.getInstance().getLogData({round:level-1 || "??",type:PKManager.PKType.MAIN},UM.main_game.pkdata.time));
                 if(fun)
                     fun();
             })

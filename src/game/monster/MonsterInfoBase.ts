@@ -44,6 +44,7 @@ class MonsterInfoBase extends game.BaseContainer {
 
 
 
+    private levelUpForce;
 
     private vo;
      private specialData;
@@ -87,10 +88,15 @@ class MonsterInfoBase extends game.BaseContainer {
             return;
         var self = this;
         var oo =  this.vo
-        TecManager.getInstance().levelUp(3,oo.id,function(){
-            self.renewMonster();
-            GuideManager.getInstance().showGuide(CollectUI.getInstance());
-        });
+        var upFun = function(){
+            TecManager.getInstance().levelUp(3,oo.id,function(){
+                self.renewMonster();
+                GuideManager.getInstance().showGuide(CollectUI.getInstance());
+            });
+        }
+        if(MainGameManager.getInstance().testMainAdd(this.levelUpForce - UM.getForce(),'升级该卡怪后',upFun))
+            return;
+        upFun();
     }
 
     public setMinHeight(v){
@@ -290,7 +296,8 @@ class MonsterInfoBase extends game.BaseContainer {
         {
             //先模拟升一级
             UM.tec.monster[monsterID] = (UM.tec.monster[monsterID] || 0) + 1
-            var force = (UM.award_force + UM.getTecForce() + UM.getLevelForce());
+            var force = UM.award_force + UM.getTecForce()// + UM.getLevelForce());
+            this.levelUpForce = force;
             fightData = UM.getTecMonsterAdd(monsterID);
             fightData.atk += force;
             fightData.hp += force;

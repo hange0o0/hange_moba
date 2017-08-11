@@ -879,6 +879,22 @@ class DebugManager {
         }
     }
 
+    public showMainLevel(page){
+        CM.loadCache('main_game'+page+'_json',function(){
+            for(var i=0;i<100;i++)
+            {
+                var level = (page-1)*100 + i + 1;
+                var data = MainGameVO.getObject(level).list
+                var temp = [];
+                for(var j=0;j<data.length;j++)
+                {
+                    temp.push(MonsterVO.getObject(data[j]).name);
+                }
+                console.log(level + ':' + temp.join(','))
+            }
+        })
+    }
+
 }
 
 //DM.testMV('mv2',10,[30,31])

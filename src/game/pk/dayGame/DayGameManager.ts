@@ -28,7 +28,7 @@ class DayGameManager{
     }
 
     public isRed(){
-        return UM.level >= Config.dayLevel && !UM.day_game.level && (this.logList.length == 0 || !DateUtil.isSameDay(this.logList[0].time))
+        return UM.main_game.level >= Config.dayLevel && !UM.day_game.level && (this.logList.length == 0 || !DateUtil.isSameDay(this.logList[0].time))
     }
 
     public passDay(){

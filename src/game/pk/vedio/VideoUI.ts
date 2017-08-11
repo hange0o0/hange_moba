@@ -553,8 +553,8 @@ class VideoUI extends game.BaseUI {
         this.upGroup.visible = true;
         this.guideMC.visible = true;
         this.upGroup.y = 70
-        this.guideMC.y = 260
-        this.guideMC.height = GameManager.stage.stageHeight - 260
+        this.guideMC.y = 70 + this.upGroup.height
+        this.guideMC.height = GameManager.stage.stageHeight - 70 - this.upGroup.height
         this.guideMC.renew(this.lastChooseData,this.listArray)
 
         //this.list.dataProvider = new eui.ArrayCollection(this.listArray);

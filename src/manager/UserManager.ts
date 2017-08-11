@@ -191,6 +191,7 @@ class UserManager {
 
     //计算科技战力
     public getTecForce(){
+        //return tec_force;
         var tec_force = 0;
         //科技影响
         function getTecAdd(data){

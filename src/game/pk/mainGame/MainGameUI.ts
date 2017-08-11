@@ -74,7 +74,11 @@ class MainGameUI extends game.BaseUI {
         var myForce = UM.getForce();
         var enemyForce = MainGameManager.getInstance().getMainForce()
         var awardForce = MainGameManager.getInstance().getAwardForce()
-        Alert('通关时如果我方战力不高于关卡BOSS战力，则获得['+awardForce+'点]战力奖励！\n　我方战力：['+myForce+']\n　敌方战力：['+enemyForce+']\n(使用贿赂技能后不能获得战力奖励)',null,'知道了')
+        if(myForce > enemyForce)
+            var myForceStr = this.createHtml(myForce,0xFF0000)
+        else
+            var myForceStr = myForce + ''
+        Alert('通关时若我方战力不高于关卡战力\n则获得 ['+awardForce+'点] 战力奖励！\n　　[我方战力：]'+myForceStr+']\n　　[敌方战力：]'+enemyForce+'\n注：使用贿赂技能后[不能]获得奖励',null,'知道了')
     }
 
 
@@ -197,7 +201,7 @@ class MainGameUI extends game.BaseUI {
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         this.topUI.setTitle('公会评定-第'+(UM.main_game.level+1)+'关');
 
-        this.forceRedMC.visible = !SharedObjectManager.instance.getMyValue('main_force_red');
+
 
         this.renewEnemy();
         this.renewSelf();
@@ -232,7 +236,7 @@ class MainGameUI extends game.BaseUI {
         //    str += this.createHtml(' 【+'+awardForce+'】',0xDDDD00)
         MyTool.setColorText(this.forceText,str)
 
-
+        this.forceRedMC.visible = !SharedObjectManager.instance.getMyValue('main_force_red') && enemyForce >= myForce;
         this.myCardGroup.renew();
     }
     private renewHistory(){

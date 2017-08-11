@@ -63,7 +63,7 @@ class MainPageItem extends game.BaseItem {
         switch(this.index)
         {
             case 1:
-                return UM.level < Config.dayLevel
+                return UM.main_game.level < Config.dayLevel
             case 2:
                 return UM.main_game.level < Config.mapLevel
             case 3:

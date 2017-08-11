@@ -108,13 +108,13 @@ class MyInfoUI extends game.BaseUI {
         oo = {title:'总战力',icon:'icon_power_png',des: (UM.award_force + UM.tec_force)}
         list.push(oo)
 
-        oo = {title:'卡兵战力',icon:'icon_power_png',des:UM.getTecForce()}
+        oo = {title:'卡兵战力',icon:'icon_power_png',des:UM.tec_force}
         oo.fun = function(){CollectUI.getInstance().show();}
         list.push(oo)
 
-        oo = {title:'等级战力',icon:'icon_power_png',des:UM.getLevelForce()}
-        oo.fun = function(){Alert('玩家升级可提升等级战力，赶快去战斗吧')}
-        list.push(oo)
+        //oo = {title:'等级战力',icon:'icon_power_png',des:UM.getLevelForce()}
+        //oo.fun = function(){Alert('玩家升级可提升等级战力，赶快去战斗吧')}
+        //list.push(oo)
 
         oo = {title:'奖励战力',icon:'icon_power_png',des:UM.award_force}
         oo.fun = function(){Alert('低战通关卡士公公，研究院积分提升，节日活动中都有可能获得')}
@@ -134,7 +134,7 @@ class MyInfoUI extends game.BaseUI {
 
         var myData = UM.day_game;
         oo = {title:'研究院进度',icon:'icon_day_png',des: myData.level + '/10'}
-        if(myData.level < 10 && UM.level >= Config.dayLevel)
+        if(myData.level < 10 && UM.main_game.level >= Config.dayLevel)
             oo.fun = function(){DayGameUI.getInstance().show()}
         list.push(oo)
 

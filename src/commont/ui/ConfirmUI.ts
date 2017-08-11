@@ -30,7 +30,8 @@ class ConfirmUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.setHtml(this.text,this.textIn);
+        MyTool.setColorText(this.text,this.textIn);
+        this.text.validateNow()
         if(this.text.numLines > 1 && !this.sp.middle)
             this.text.textAlign = 'left'
         if(this.btnWord)

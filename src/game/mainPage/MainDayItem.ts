@@ -48,12 +48,13 @@ class MainDayItem extends game.BaseItem {
         var myData = UM.day_game;
         this.setHtml(this.scoreText,  this.createHtml('累计战力奖励：',0xE0A44A) + Math.floor(myData.score/2));
 
-        this.lockMC.visible = UM.level < Config.dayLevel
+
+        this.lockMC.visible = UM.main_game.level < Config.dayLevel
         this.scoreText.visible = !this.lockMC.visible
         if(this.lockMC.visible)
         {
-
-            this.desText.text = '玩家 ' + Config.dayLevel + ' 级开放'
+            this.setHtml(this.desText,this.createHtml( '' + MainGameManager.getInstance().getStepName(Config.dayLevel) + '',0xE0A44A)+' 才可进入');
+            //this.desText.text = '公会评分达' + Config.serverLevel + '后开放'
             this.btnGroup.visible = false;
             this.barGroup.visible = false;
         }
