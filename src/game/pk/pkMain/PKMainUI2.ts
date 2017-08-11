@@ -1167,8 +1167,15 @@ class PKMainUI extends game.BaseUI {
                 VideoUI.getInstance().visible = true;
             }
             else if(DayLogMoreUI.getInstance().stage)
+            {
                 this.hide();
-            //VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,VideoUI.getInstance().currentVideoIndex);
+            }
+
+            if(VideoUI.getInstance().stage)
+            {
+                VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,VideoUI.getInstance().currentVideoIndex);
+            }
+
 
         }
         else

@@ -18,6 +18,8 @@ class DayGameManager{
     public dataTime = 0;
     public lastPKData;
 
+    public dayPass;
+
 
 
     public getHeadByLevel(level){
@@ -45,6 +47,10 @@ class DayGameManager{
             UM.day_game.lasttime = TM.now()
             UM.day_game.level = 0;
         }
+    }
+
+    public getTipsCost(){
+        return (UM.day_game.level + 1)*10;
     }
 
     //public getLogList(){
@@ -79,6 +85,37 @@ class DayGameManager{
         //    if(fun)
         //        fun();
         //})
+    }
+
+    public getDayPass(fun?){
+        if(this.dayPass && TM.now() - this.dayPass.time < 5*60)
+        {
+            fun && fun();
+            return;
+        }
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.dayGame.get_day_pass,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == -1)
+            {
+                Alert('暂时还没有收录，赶快加油帮助后来者吧！\n(并没有扣除玩家钻石)');
+                return;
+            }
+            if(msg.fail == 1)
+            {
+                Alert('钻石不足');
+                return;
+            }
+            self.dayPass = {
+                list:msg.list,
+                time:TM.now()
+            }
+            UM.day_game.show_pass = true
+            if(fun)
+                fun();
+        });
     }
 
 
@@ -232,4 +269,66 @@ class DayGameManager{
     //        })
     //    }
     //}
+
+    private testCardObj = {};
+    public findWinCard(){
+        this.testCardObj = {}
+        this.testOneCard();
+    }
+
+    private testOneCard(){
+        var self = this;
+        var card = this.getTestCard()
+        if(card)
+        {
+            this.testCardNet(card,function(b){
+                if(b)   //win
+                {
+                    PKDressUI.getInstance().changeChooseList(card)
+                    Alert('Done!')
+                }
+                else
+                {
+                    self.testOneCard();
+                }
+            })
+        }
+        else
+        {
+            Alert('没找到')
+        }
+    }
+
+    private getTestCard(){
+        var index = 100;
+        var myCard = this.data.choose.list;
+
+        while(index--)
+        {
+            var card = PKManager.getInstance().getRandomCard(myCard,true)
+            if(!this.testCardObj[card.join(',')])
+            {
+                this.testCardObj[card.join(',')] = true;
+                return card;
+            }
+        }
+        return null;
+    }
+
+    private testCardNet(myList,fun){
+        var dataIn:any = {}
+        dataIn.team1 = {"list":myList,"fight":Config.equalValue,"tec":{}}
+
+        var myData = UM.day_game;
+
+        var arr = this.data.levels[myData.level].list
+        var fight = (myData.level + 1 - 3)*35 + Config.equalValue
+        dataIn.team2 = {"list":arr,"fight":fight,"tec":{}}
+
+        PKDressUI.getInstance()['coinText'].text = ('find...' + ObjectUtil.objLength(this.testCardObj))
+        Net.send('test',dataIn,function(data) {
+            var msg = data.msg;
+            fun(msg.result);
+        })
+    }
 }

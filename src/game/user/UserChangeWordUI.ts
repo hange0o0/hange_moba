@@ -52,7 +52,7 @@ class UserChangeWordUI extends game.BaseWindow {
         if(this.editText.text == 'debug' && this.emptyText == 2)
         {
             Config.isDebug = true;
-            SharedObjectManager.instance.setMyValue('debug',true)
+            SharedObjectManager.instance.setValue('debug_open',true)
             Alert('debug open')
             this.hide();
             return;

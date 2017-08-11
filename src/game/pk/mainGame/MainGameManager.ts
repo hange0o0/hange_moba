@@ -119,7 +119,7 @@ class MainGameManager{
 
     public getTipsCost(level?){
         level = level || (UM.main_game.level + 1)
-        return Math.ceil(level/20);
+        return Math.ceil(level/10);
     }
 
     public getAwardForce(level?){
@@ -332,6 +332,78 @@ class MainGameManager{
                     fun();
             })
         }
+    }
+
+
+
+    private testCardObj = {};
+    public findWinCard(){
+        this.testCardObj = {}
+        this.testOneCard();
+    }
+
+    private testOneCard(){
+        var self = this;
+        var card = this.getTestCard()
+        if(card)
+        {
+            this.testCardNet(card,function(b){
+                if(b)   //win
+                {
+                    PKDressUI.getInstance().changeChooseList(card)
+                    Alert('Done!')
+                }
+                else
+                {
+                      self.testOneCard();
+                }
+            })
+        }
+        else
+        {
+            Alert('没找到')
+        }
+    }
+
+    private getTestCard(){
+        var index = 100;
+        var myCard = UM.getMyCard();
+        while(index--)
+        {
+            var card = PKManager.getInstance().getRandomCard(myCard.list,true)
+            if(!this.testCardObj[card.join(',')])
+            {
+                this.testCardObj[card.join(',')] = true;
+                return card;
+            }
+        }
+        return null;
+    }
+
+    private testCardNet(myList,fun){
+        var dataIn:any = {}
+        dataIn.team1 = {"list":myList,"fight":UM.getForce(),"tec":{}}
+        for(var i=0;i<myList.length;i++)
+        {
+            var mid = myList[i];
+            dataIn.team1.tec[mid] = UM.getTecMonsterAdd(mid);
+        }
+
+        var arr = MainGameVO.getObject(UM.main_game.level+1).list;
+        var fight = this.getMainForce();
+        var lv = this.getMainMonsterLevel();
+        var lvAdd = UM.getTecAdd('monster',lv);
+        dataIn.team2 = {"list":arr,"fight":fight,"tec":{}}
+        for(var i=0;i<arr.length;i++)
+        {
+            var mid = arr[i];
+            dataIn.team2.tec[mid] = lvAdd;
+        }
+        PKDressUI.getInstance()['coinText'].text = ('find...' + ObjectUtil.objLength(this.testCardObj))
+        Net.send('test',dataIn,function(data) {
+            var msg = data.msg;
+            fun(msg.result);
+        })
     }
 
 

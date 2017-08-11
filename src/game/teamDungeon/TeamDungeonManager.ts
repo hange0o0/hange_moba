@@ -129,7 +129,7 @@ class TeamDungeonManager {
                 UM.active.team_pve.team = team;
                 UM.active.team_pve.lasttime = TM.now();
             }
-            SharedObjectManager.instance.setValue('team_name',name)
+            SharedObjectManager.instance.setMyValue('team_name',name)
             if(fun)
                 fun();
         });

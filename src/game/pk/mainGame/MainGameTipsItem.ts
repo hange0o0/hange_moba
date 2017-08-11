@@ -53,41 +53,62 @@ class MainGameTipsItem extends game.BaseItem {
         var teamData =  data.pkdata;
         var ok = true;
 
-        MyTool.setColorText(this.resultText,'本布阵由 ['+nick+'] 提供');
-        var myForce = UM.getForce()
-        this.titleText.text = '通关战力：' + teamData.force + '('+myForce+')';
-        if(myForce > teamData.force)
-            this.titleBG.fillColor = 0x4F2900
-        else if(myForce < teamData.force)
-            this.titleBG.fillColor = 0x0F243A
-        else
-            this.titleBG.fillColor = 0x300000
-
-        var myCard = UM.getMyCard();
-        var myCardObj = {};
-        this.list = teamData.list;
-        for(var i=0;i<myCard.list.length;i++) {
-            myCardObj[myCard.list[i]] = true;
-        }
-
         var arr = [];
-        for(var i=0;i<teamData.list.length;i++)
+        this.list = teamData.list;
+        if(MainGameTipsUI.getInstance().isDay)
         {
-            var id = teamData.list[i];
-             arr.push({
-                 vo: MonsterVO.getObject(id),
-                 isTeam:true,
-                 disable:!myCardObj[id],
-                 compare:true,
-                 id: id,
-                 index: i,
-                 specialData: {lv:teamData.mlevel[id]},
-                 list:arr
-             })
-
-            if(!myCardObj[id])
-                ok = false;
+            for(var i=0;i<teamData.list.length;i++)
+            {
+                var id = teamData.list[i];
+                arr.push({
+                    vo: MonsterVO.getObject(id),
+                    isTeam:true,
+                    id: id,
+                    index: i,
+                    specialData: {isEqual:true},
+                    list:arr
+                })
+            }
+            this.titleText.text = '通关时间：' + DateUtil.formatDate('yyyy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(this.data.time));
         }
+        else
+        {
+            var myCard = UM.getMyCard();
+            var myCardObj = {};
+
+            for(var i=0;i<myCard.list.length;i++) {
+                myCardObj[myCard.list[i]] = true;
+            }
+            for(var i=0;i<teamData.list.length;i++)
+            {
+                var id = teamData.list[i];
+                arr.push({
+                    vo: MonsterVO.getObject(id),
+                    isTeam:true,
+                    disable:!myCardObj[id],
+                    compare:true,
+                    id: id,
+                    index: i,
+                    specialData: {lv:teamData.mlevel[id]},
+                    list:arr
+                })
+
+                if(!myCardObj[id])
+                    ok = false;
+            }
+
+            var myForce = UM.getForce()
+            this.titleText.text = '通关战力：' + teamData.force + '('+myForce+')';
+            if(myForce > teamData.force)
+                this.titleBG.fillColor = 0x4F2900
+            else if(myForce < teamData.force)
+                this.titleBG.fillColor = 0x0F243A
+            else
+                this.titleBG.fillColor = 0x300000
+        }
+
+
+
 
         this.enemyList.dataProvider = new eui.ArrayCollection(arr);
         if(arr.length <4)
@@ -103,6 +124,9 @@ class MainGameTipsItem extends game.BaseItem {
             else
                 (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
         }
+
+        MyTool.setColorText(this.resultText,'本布阵由 ['+nick+'] 提供');
+
 
         if(ok)
         {

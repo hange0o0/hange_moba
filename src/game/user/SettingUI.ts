@@ -71,7 +71,7 @@ class SettingUI extends game.BaseWindow {
 
     private onPK(){
         PKManager.getInstance().pkJump = !PKManager.getInstance().pkJump;
-        SharedObjectManager.instance.setValue("pkJump",PKManager.getInstance().pkJump)
+        SharedObjectManager.instance.setMyValue("pkJump",PKManager.getInstance().pkJump)
     }
 
     private onQQ(){

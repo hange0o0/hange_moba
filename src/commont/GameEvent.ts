@@ -113,6 +113,7 @@ class GameEvent {
 
     public static dayGame = {
         get_day_game:'get_day_game',
+        get_day_pass:'get_day_pass',
         pk_day_game:'pk_day_game'
     }
 

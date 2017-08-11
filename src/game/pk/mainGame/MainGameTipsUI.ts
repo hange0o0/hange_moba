@@ -10,6 +10,8 @@ class MainGameTipsUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private list: eui.List;
 
+
+    public isDay
     public constructor() {
         super();
         this.skinName = "MainGameTipsUISkin";
@@ -37,8 +39,16 @@ class MainGameTipsUI extends game.BaseUI {
     }
 
 
-    public show(){
+    public show(isDay?){
         var self = this;
+        this.isDay = isDay;
+        if(isDay)
+        {
+            DayGameManager.getInstance().getDayPass(function(){
+                self.superShow();
+            })
+            return;
+        }
         MainGameManager.getInstance().getMainPass(function(){
              self.superShow();
         })
@@ -51,7 +61,10 @@ class MainGameTipsUI extends game.BaseUI {
 
     public onShow(){
         //var DM = DayGameManager.getInstance();
-        var list = MainGameManager.getInstance().mainPass.list;//DM.getLogList();
+        if(this.isDay)
+            var list = DayGameManager.getInstance().dayPass.list;//DM.getLogList();
+        else
+            var list = MainGameManager.getInstance().mainPass.list;//DM.getLogList();
         this.list.dataProvider = new eui.ArrayCollection(list);
     }
 

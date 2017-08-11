@@ -28,7 +28,7 @@ class PKManager {
     }
 
     public initData(){
-        this.pkJump = (SharedObjectManager.instance.getValue('pkJump') || false) && UM.level >=10
+        this.pkJump = (SharedObjectManager.instance.getMyValue('pkJump') || false) && UM.level >=10
     }
 
     public pkWord = {

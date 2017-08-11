@@ -535,6 +535,19 @@ class PKDressChooseUI extends game.BaseContainer {
             if(!item.data)
             {
                 ShowTips('请点击下方卡兵选择上阵单位')
+                if(Config.isDebug && (PKDressUI.getInstance().pkType == PKManager.PKType.MAIN || PKDressUI.getInstance().pkType == PKManager.PKType.DAY))
+                {
+                    Confirm('find？',function(v){
+                        if(v == 1)
+                        {
+                            if(PKDressUI.getInstance().pkType == PKManager.PKType.MAIN)
+                                MainGameManager.getInstance().findWinCard()
+                            else if(PKDressUI.getInstance().pkType == PKManager.PKType.DAY)
+                                DayGameManager.getInstance().findWinCard()
+                        }
+                    })
+
+                }
                 return
             }
             this.selectIndex = index;

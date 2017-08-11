@@ -89,6 +89,7 @@ class VideoInfoUI extends game.BaseContainer {
 
         switch(data.index)
         {
+
             case 0:
                 this.teamText.text = '出战中'
                 break
@@ -97,6 +98,9 @@ class VideoInfoUI extends game.BaseContainer {
                 break
             case 2:
                 this.teamText.text = '3号位'
+                break
+            default:
+                this.teamText.text = '无出战'
                 break
         }
     }
@@ -134,6 +138,11 @@ class VideoInfoUI extends game.BaseContainer {
 
 
         var baseData = playerList[data.index];
+        if(!baseData)
+        {
+            MyTool.removeMC(this.infoGroup)
+            return;
+        }
         var atk = 0
         var speed = 0
         var def = 0;

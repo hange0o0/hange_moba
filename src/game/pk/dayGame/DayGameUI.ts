@@ -72,6 +72,11 @@ class DayGameUI extends game.BaseUI {
     }
 
     public show(v?){
+        if(UM.day_game.level == 10)
+        {
+            Alert('已通关，明天继续')
+            return;
+        }
         this.quickStart = v
         var self = this;
         DayGameManager.getInstance().getDayGame(function(){

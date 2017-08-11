@@ -259,22 +259,46 @@ class PKDressUI extends game.BaseUI {
         if(this.changeBtn.label == '过关提示')
         {
             var self = this;
-            if(UM.main_game.show_pass)
+
+            if(this.pkType == PKManager.PKType.MAIN)
             {
-                MainGameTipsUI.getInstance().show();
-                return;
-            }
-            var cost = MainGameManager.getInstance().getTipsCost();
-            Confirm('确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石查看本关提示吗？',function(v){
-                if(v == 1)
+                if(UM.main_game.show_pass)
                 {
-                    if(!UM.testDiamond(cost))
-                    {
-                        return;
-                    }
                     MainGameTipsUI.getInstance().show();
+                    return;
                 }
-            })
+                var cost = MainGameManager.getInstance().getTipsCost();
+                Confirm('确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石查看本关提示吗？',function(v){
+                    if(v == 1)
+                    {
+                        if(!UM.testDiamond(cost))
+                        {
+                            return;
+                        }
+                        MainGameTipsUI.getInstance().show();
+                    }
+                })
+            }
+            else if(this.pkType == PKManager.PKType.DAY)
+            {
+                if(UM.day_game.show_pass)
+                {
+                    MainGameTipsUI.getInstance().show(true);
+                    return;
+                }
+                var cost = DayGameManager.getInstance().getTipsCost();
+                Confirm('确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石查看本关提示吗？',function(v){
+                    if(v == 1)
+                    {
+                        if(!UM.testDiamond(cost))
+                        {
+                            return;
+                        }
+                        MainGameTipsUI.getInstance().show(true);
+                    }
+                })
+            }
+
             return;
         }
         this.index ++;
@@ -677,7 +701,7 @@ class PKDressUI extends game.BaseUI {
         else
         {
             this.topUI.setTitle('布阵');
-            if(this.pkType == PKManager.PKType.MAIN)
+            if(this.pkType == PKManager.PKType.MAIN || this.pkType == PKManager.PKType.DAY)
             {
                 this.upBtnGroup.addChild(this.changeBtn);
                 this.changeBtn.label = '过关提示';

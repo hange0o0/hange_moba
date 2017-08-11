@@ -130,7 +130,7 @@ class CreateTeamUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.nameText.text = SharedObjectManager.instance.getValue('team_name') || '';
+        this.nameText.text = SharedObjectManager.instance.getMyValue('team_name') || '';
         this.onHideSort();
         this.renewSelect();
 
