@@ -13,6 +13,7 @@ class DebugInput extends game.BaseWindow {
 
     private fun
     private title
+    private input
 
     public constructor() {
         super();
@@ -25,23 +26,24 @@ class DebugInput extends game.BaseWindow {
         this.addBtnEvent(this.okBtn,this.onClick);
     }
 
-    public show(fun?,title?)
+    public show(fun?,title?,input?)
     {
         this.fun = fun;
         this.title = title || '';
+        this.input = input || '';
         super.show();
     }
 
     public onShow(){
         this.titleText.text = this.title;
-        this.inputText.text = '';
+        this.inputText.text = this.input;
     }
 
     public onClick()
     {
         if(this.fun)
         {
-            this.fun(this.inputText.text.split('#'));
+            this.fun(this.inputText.text);
         }
         this.hide();
     }

@@ -21,7 +21,7 @@ class MainGameManager{
         var list = this.logList;
         list.unshift(data);
         if(list.length > 20)
-            list.length = 0;
+            list.length = 20;
         SharedObjectManager.instance.setMyValue('pk_main_log',list);
     }
 
@@ -386,7 +386,7 @@ class MainGameManager{
         for(var i=0;i<myList.length;i++)
         {
             var mid = myList[i];
-            dataIn.team1.tec[mid] = UM.getTecMonsterAdd(mid);
+            dataIn.team1.tec[mid] = UM.getTecAdd('monster',UM.getMonsterLevel(mid));
         }
 
         var arr = MainGameVO.getObject(UM.main_game.level+1).list;

@@ -5,7 +5,7 @@
 	<e:Image id="bottomMV" source="main_bottom_mv_png" x="0" bottom="80" alpha="0.5" locked="true"/>
 	<e:Group id="starGroup" height="300" width="100%" x="0" y="120"/>
 	<e:Group x="0" bottom="260" top="130">
-		<e:Group x="0" height="540" verticalCenter="30">
+		<e:Group id="scrollGroup" x="0" height="540" verticalCenter="30">
 			<ns1:MainMainItem skinName="MainMainItemSkin" id="mainGame" x="0" y="0" scaleX="1" scaleY="1"/>
 			<ns1:MainDayItem id="dayGame" skinName="MainDayItemSkin" x="0" y="0" scaleX="1" scaleY="1"/>
 			<ns1:MainMapItem id="mapGame" x="0" skinName="MainMapItemSkin" y="0" scaleX="1" scaleY="1"/>

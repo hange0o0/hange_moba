@@ -34,7 +34,7 @@ class TeamPVEManager {
         var list = this.logList;
         list.unshift(data);
         if(list.length > 20)
-            list.length = 0;
+            list.length = 20;
         SharedObjectManager.instance.setMyValue('pk_pve_log',list);
     }
 

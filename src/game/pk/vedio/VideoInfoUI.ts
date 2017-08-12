@@ -100,7 +100,7 @@ class VideoInfoUI extends game.BaseContainer {
                 this.teamText.text = '3号位'
                 break
             default:
-                this.teamText.text = '无出战'
+                this.teamText.text = '已出局'
                 break
         }
     }

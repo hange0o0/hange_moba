@@ -14,6 +14,7 @@ class MainPageUI extends game.BaseUI {
     private bg: eui.Image;
     private bottomMV: eui.Image;
     private starGroup: eui.Group;
+    private scrollGroup: eui.Group;
     private mainGame: MainMainItem;
     private dayGame: MainDayItem;
     private mapGame: MainMapItem;
@@ -85,6 +86,7 @@ class MainPageUI extends game.BaseUI {
 
 
 
+
     private bgTW
 
     private itemX = 320
@@ -92,6 +94,7 @@ class MainPageUI extends game.BaseUI {
 
     private gameItems = [];
     private pageArray = [];
+    private startPos;
     public currentPage= 0;
 
     public childrenCreated() {
@@ -155,6 +158,10 @@ class MainPageUI extends game.BaseUI {
         EM.addEvent(GameEvent.client.friend_red_change,this.renewFriendRed,this);
 
 
+
+
+        this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onBegin,this)
+        this.scrollGroup.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTouchTap,this,true)
 
         //this.guideText.addEventListener(egret.TextEvent.LINK,this.onTextLink,this)
         //this.guideText.touchEnabled =  true
@@ -612,6 +619,7 @@ class MainPageUI extends game.BaseUI {
     public clickPage(page){
          if(this.currentPage == page)
             return;
+
         this.currentPage = page
         this.renewPage();
         this.scrollToCurrentPage();
@@ -694,6 +702,8 @@ class MainPageUI extends game.BaseUI {
     }
 
     public scrollToCurrentPage(nomovie=false){
+        egret.Tween.removeTweens(this.scrollGroup)
+        this.scrollGroup.x = 0;
         SharedObjectManager.instance.setMyValue('main_page',this.currentPage);
         var pageSize = 320
         var targetX = -this.currentPage * pageSize;
@@ -752,5 +762,172 @@ class MainPageUI extends game.BaseUI {
     //    RankManager.getInstance().renewPageHead(this.topPlayerTips);
     //}
 
+    private onBegin(e:egret.TouchEvent){
+        if(GuideManager.getInstance().isGuiding)
+            return;
+        //if(this.scrollGroup.x>=0)
+        //    return;
+        //if(this.scrollGroup.x <= (-4 * 360))
+        //    return;
+        //if(this.scroller.viewport.contentHeight > this.scroller.viewport.height)//有垂直滚动
+        //{
+        //    return;
+        //}
 
+        this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+        this.scrollGroup.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+
+        this.startPos = {x:e.stageX,tx:this.scrollGroup.x};
+
+    }
+
+    private onMove(e:egret.TouchEvent){
+
+        if(!this.startPos.drag)
+        {
+            if(Math.abs(e.stageX - this.startPos.x) > 10)
+            {
+                this.startPos.drag = true;
+            }
+        }
+        if(this.startPos.drag)
+        {
+            //if(this.scrollGroup.x>=0 && e.stageX-this.startPos.x > 0)
+            //    return;
+            //if(this.scrollGroup.x <= (-(this.gameItems.length - 1) * 640)  && e.stageX-this.startPos.x < 0)
+            //    return;
+            this.scrollGroup.x = this.startPos.tx + e.stageX-this.startPos.x;
+            this.renewGameItemShow();
+        }
+    }
+
+    private onEnd(e:egret.TouchEvent){
+        this.scrollGroup.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.onMove,this)
+        this.scrollGroup.stage.removeEventListener(egret.TouchEvent.TOUCH_END,this.onEnd,this)
+        if(Math.abs(this.scrollGroup.x - this.startPos.tx) > 150)//可翻页
+        {
+            if(this.scrollGroup.x > this.startPos.tx)//手指左移
+            {
+                if(this.currentPage > 0)
+                {
+                    this.scrollToCurrentPage2(this.currentPage - 1);
+                    return;
+                }
+            }
+            else
+            {
+                if(this.currentPage < this.pageArray.length - 1)
+                {
+                    this.scrollToCurrentPage2(this.currentPage + 1);
+                    return;
+                }
+            }
+        }
+
+        this.scrollToCurrentPage2(this.currentPage);
+    }
+
+    //滚动后防止按钮事件被触发
+    private onTouchTap(e:egret.TouchEvent){
+        if(this.startPos && this.startPos.drag)
+        {
+            e.stopPropagation();
+        }
+    }
+
+    public scrollToCurrentPage2(newPage) {
+
+        egret.Tween.removeTweens(this.scrollGroup)
+        var pageSize = 640
+        var targetX = 0;
+        if(newPage > this.currentPage)
+        {
+            targetX = - pageSize
+        }
+        else  if(newPage < this.currentPage)
+        {
+            targetX = pageSize
+        }
+
+        var tw:egret.Tween = egret.Tween.get(this.scrollGroup, {
+            onChange: this.renewGameItemShow,
+            onChangeObj: this
+        });
+        tw.to({x: targetX}, Math.abs(targetX - this.scrollGroup.x)/2).call(function(){
+            this.currentPage = newPage;
+            this.resetCurrentPage2();
+            this.renewPage();
+            SharedObjectManager.instance.setMyValue('main_page', this.currentPage);
+        },this);
+    }
+
+    private resetCurrentPage2(){
+        for(var i=0;i<this.gameItems.length;i++)
+        {
+            var item = this.gameItems[i]
+            //item.visible = i==this.currentPage;
+            item.x = this.itemX
+            item.alpha=1;
+            item.scaleX = item.scaleY = 1
+        }
+
+        egret.Tween.removeTweens(this.scrollGroup)
+        this.scrollGroup.x = 0;
+    }
+
+    private renewGameItemShow(){
+        //var start = Math.round(-this.scrollGroup.x/320);
+        var item1 = this.gameItems[this.currentPage];
+        var item2;
+        var targetPos// = -start*320
+        if(this.scrollGroup.x > 10)
+        {
+            item2 = this.gameItems[this.currentPage - 1];
+            if(item2) {
+                item2.x = this.itemX -640;
+                item2.y = this.itemY;
+                targetPos = 640
+            }
+        }
+        else if(this.scrollGroup.x < -10)
+        {
+            item2 = this.gameItems[this.currentPage + 1];
+            if(item2)
+            {
+                item2.x = this.itemX + 640;
+                item2.y = this.itemY;
+                targetPos = -640
+            }
+
+        }
+
+
+        var rate = Math.abs(targetPos - this.scrollGroup.x)/640
+        if(item1)
+        {
+            item1.visible = true
+            //item1.scaleX = item1.scaleY = rate/2 + 0.5
+            //item1.alpha = rate;
+            if(!item1.haveRenew)
+                item1.renew()
+        }
+
+        if(item2)
+        {
+            item2.visible = true
+            //item2.scaleX = item2.scaleY = (1-rate)/2 + 0.5
+            //item2.alpha = (1-rate);
+            if(!item2.haveRenew)
+                item2.renew()
+        }
+        for(var i=0;i<this.gameItems.length;i++)
+        {
+            if(this.gameItems[i] == item1)
+                continue
+            if(this.gameItems[i] == item2)
+                continue
+            this.gameItems[i].visible = false
+        }
+
+    }
 }

@@ -35,6 +35,42 @@ class DayLogItem extends game.BaseItem {
         //this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
         //this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
         this.addEventListener(PKResultItem3.VIEW_EVENT,this.onMonsterClick,this)
+
+        if(Config.isDebug)
+        {
+            this.addBtnEvent(this.resultIcon,this.onVideoMsg)
+        }
+    }
+
+    private onVideoMsg(){
+        var dataIn:any = {}
+
+        var team = this.data.team1Base;
+        var list = team.list;
+        dataIn.team1 = {"list":list,"fight":team.f,"tec":{}}
+        for(var i=0;i<list.length;i++)
+        {
+            var mid = list[i];
+            dataIn.team1.tec[mid] = UM.getTecAdd('monster',team.mb[mid].lv);
+        }
+
+        var team = this.data.team2Base;
+        var list = team.list;
+        dataIn.team2 = {"list":list,"fight":team.f,"tec":{}}
+        for(var i=0;i<list.length;i++)
+        {
+            var mid = list[i];
+            dataIn.team2.tec[mid] = UM.getTecAdd('monster',team.mb[mid].lv);
+        }
+
+        dataIn.isequal = this.data.videoData.isequal
+
+        var str = JSON.stringify(dataIn);
+        DebugInput.getInstance().show(function(data){
+            DM.debugFromFile(dataIn);
+        },'!!!',str);
+        //document.execCommand(str);
+        //alert(str)
     }
 
     private onMonsterClick(e){
@@ -129,7 +165,7 @@ class DayLogItem extends game.BaseItem {
             this.infoBtn.visible = false;
         }
 
-        if(this.data.sp.type = PKManager.PKType.MAIN)
+        if(this.data.sp.type == PKManager.PKType.MAIN)
         {
             this.titleText.text = '第 '+(this.data.sp.round+1)+' 关';
             this.nickGroup.visible = false;

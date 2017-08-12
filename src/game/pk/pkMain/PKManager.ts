@@ -1124,9 +1124,16 @@ class PKManager {
         //    pk_version:Config.pk_version
         //}
 
+        var videoData = ObjectUtil.clone(this.pkResult);
+        for(var s in this.pkResult)
+        {
+            var ss = s.toLowerCase();
+            if(ss.indexOf('award') != -1 || ss.indexOf('sync_') != -1)
+                delete videoData[s];
+        }
         return {
             sp:data,
-            videoData:this.pkResult,
+            videoData:videoData,
             team1Base:team1Base,
             team2Base:team2Base,
             info1:info1,

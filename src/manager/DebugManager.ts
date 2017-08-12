@@ -525,8 +525,11 @@ class DebugManager {
             var msg = data.msg;
             msg.info = {};
 
-            var key = _get['test']
+            var key = 'test';//_get['test']
             PKManager.getInstance().onPK(key,msg) ;
+            PKMainUI.getInstance().show(null);
+
+            return;
 
             console.log('team1 cost:' +  PKManager.getInstance().getCost(dataIn.team1.list) + '     ' + dataIn.team1.list.join(','));
             console.log('team2 cost:' +  PKManager.getInstance().getCost(dataIn.team2.list) + '     ' + dataIn.team2.list.join(','));

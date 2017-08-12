@@ -1173,7 +1173,10 @@ class PKMainUI extends game.BaseUI {
 
             if(VideoUI.getInstance().stage)
             {
-                VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,VideoUI.getInstance().currentVideoIndex);
+
+                VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.pkStep - 1);
+                VideoUI.getInstance().onShow();
+
             }
 
 
@@ -1464,8 +1467,8 @@ class PKMainUI extends game.BaseUI {
                 var mc:any = this['statList'+index].getChildAt(7-i);
 
 
-
-            mc.data = list[i];
+            if(mc)
+                mc.data = list[i];
         }
 
         //this['statList'+index].dataProvider = new eui.ArrayCollection();
