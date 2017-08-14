@@ -61,6 +61,10 @@ class PKJumpWindow extends game.BaseWindow {
         }
         self.hide();
         self.fun();
+
+        if(PKManager.getInstance().pkAward && PKManager.getInstance().pkAward.desArr)
+            PKManager.getInstance().pkAward.desArr.push('剩余跳过次数：' + (UM.pk_common.pk_jump-1))
+
         PKManager.getInstance().PKJumpAction(function(){
              //无条件跳，只是发个信息给服务器同步一下
         });

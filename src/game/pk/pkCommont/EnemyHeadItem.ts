@@ -115,6 +115,7 @@ class EnemyHeadItem extends game.BaseItem {
             {
                 var mlevel = UM.getMonsterLevel(this.data.id);
                 MyTool.changeGray(this.headMC2,this.data.disable)
+                MyTool.changeGray(this.headBG,this.data.disable)
                 var textColor = 0xCCB48E;
                 if(!this.lvText.text)
                     this.lvText.text = 'LV.0';

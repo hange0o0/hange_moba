@@ -1524,8 +1524,8 @@ class PKMainUI extends game.BaseUI {
             }
         }
         return{
-            atk:atk,
-            speed:speed,
+            atk:Math.max(1,atk),
+            speed:Math.max(1,speed),
             def:def,
         }
     }

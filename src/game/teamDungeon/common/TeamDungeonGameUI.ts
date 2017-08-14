@@ -158,8 +158,8 @@ class TeamDungeonGameUI extends game.BaseUI {
     public onShow(){
         var name = TeamDungeonManager.DungeonName[this.type] + ' - ' + this.data.index;
         this.topUI.setTitle(name);
-        var hard = TeamPVEManager.getInstance().data.game_data.hard;
-        this.desText.text = '敌方战力：' + TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
+        //var hard = TeamPVEManager.getInstance().data.game_data.hard;
+        //this.desText.text = '敌方战力：' + TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
         this.renewEnemy();
         this.renewSelf();
@@ -167,10 +167,28 @@ class TeamDungeonGameUI extends game.BaseUI {
         this.scroller.viewport.scrollV = 0;
     }
 
+    public renewForce(){
+
+        var enemyForce = MainGameManager.getInstance().getMainForce()
+        var myForce = UM.getForce();
+
+        var hard = TeamPVEManager.getInstance().data.game_data.hard;
+        var str = '[关卡战力:]' + TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
+
+        if(enemyForce < myForce)
+            str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)
+        else if(enemyForce > myForce)
+            str += this.createHtml('(-'+(enemyForce-myForce)+')',0x00cc00)
+
+        MyTool.setColorText(this.desText,str);
+    }
+
     private renewSelf(){
         var hard = TeamPVEManager.getInstance().data.game_data.hard;
         this.myCardGroup.renew({hard:hard});
+        this.renewForce();
     }
+
     private renewHistory(){
         var arr = TeamPVEManager.getInstance().logList;
         var list = [];

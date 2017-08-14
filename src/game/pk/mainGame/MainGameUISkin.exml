@@ -15,13 +15,11 @@
 					<e:Image source="book_bg2_jpg" scale9Grid="40,25,240,289" y="0" height="100%" x="0"/>
 				</e:Group>
 				<e:Rect height="65" width="620" x="10" y="0" fillAlpha="0.4"/>
-				<e:Group id="forceGroup" y="10.000000000000014" right="15">
+				<e:Group id="forceGroup" y="15" height="40" right="15">
 					<e:Label id="forceText" y="9.999999999999986" textColor="0xCCB48E" text="贿赂价格：" size="26" x="95.00000000000006"/>
-					<e:Group id="awardGroup" x="136" y="0">
-						<e:Rect anchorOffsetX="0" anchorOffsetY="0" top="0" bottom="0" left="0" right="0" strokeWeight="1" strokeColor="0xce9a10" ellipseWidth="10" ellipseHeight="10"/>
-						<e:Image source="icon_power_png" x="0" scaleX="0.8" scaleY="0.8" y="1"/>
-						<e:Label id="awardForceText" y="0" textColor="0xCCB48E" text="-10" size="26" height="40" left="40" right="10" verticalAlign="middle"/>
-						<e:Image id="forceRedMC" source="red_point_png" right="-15" top="-5"/>
+					<e:Group id="awardGroup" x="136" y="0" width="28" height="41">
+						<e:Image id="awardMC" x="0" y="1" source="card_battle_png"/>
+						<e:Image id="forceRedMC" source="red_point_png" right="-15" top="-13"/>
 					</e:Group>
 					<e:layout>
 						<e:HorizontalLayout verticalAlign="middle" gap="10"/>

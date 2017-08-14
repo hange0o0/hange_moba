@@ -13,7 +13,7 @@ class MainGameUI extends game.BaseUI {
     private forceGroup: eui.Group;
     private forceText: eui.Label;
     private awardGroup: eui.Group;
-    private awardForceText: eui.Label;
+    private awardMC: eui.Image;
     private forceRedMC: eui.Image;
     private coinGroup: eui.Group;
     private coinRect: eui.Rect;
@@ -23,6 +23,7 @@ class MainGameUI extends game.BaseUI {
     private historyList: eui.List;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
+
 
 
 
@@ -127,7 +128,7 @@ class MainGameUI extends game.BaseUI {
     public renewPrice(){
         var cost = MainGameManager.getInstance().getKillCost();
         if(cost > UM.coin)
-            this.setHtml(this.moneyText, '<font color="#ff0000">' + cost + '</font>');
+            this.setHtml(this.moneyText, '<font color="#ff0000">' + cost + ' </font>');
         else
             this.moneyText.text = '' + cost;
         this.coinRect.width = 130 * Math.min(1,cost/UM.coin);
@@ -228,15 +229,16 @@ class MainGameUI extends game.BaseUI {
         var awardForce = MainGameManager.getInstance().getAwardForce()
 
         var str = '[关卡战力:]' + enemyForce;
-        this.awardForceText.text = '+' + awardForce
-        MyTool.changeGray(this.awardGroup,enemyForce<myForce);
-        //if(enemyForce<myForce)
-        //    str += this.createHtml(' 【+'+awardForce+'】',0x888888)
-        //else
-        //    str += this.createHtml(' 【+'+awardForce+'】',0xDDDD00)
+        //this.awardForceText.text = '+' + awardForce
+        MyTool.changeGray(this.awardMC,enemyForce<myForce);
+        if(enemyForce < myForce)
+            str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)
+        else if(enemyForce > myForce)
+            str += this.createHtml('(-'+(enemyForce-myForce)+')',0x00cc00)
+
         MyTool.setColorText(this.forceText,str)
 
-        this.forceRedMC.visible = !SharedObjectManager.instance.getMyValue('main_force_red') && enemyForce >= myForce;
+        this.forceRedMC.visible = enemyForce >= myForce && (SharedObjectManager.instance.getMyValue('main_force_red') || 0) <awardForce
         this.myCardGroup.renew();
     }
     private renewHistory(){

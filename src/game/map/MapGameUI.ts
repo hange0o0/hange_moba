@@ -161,7 +161,7 @@ class MapGameUI extends game.BaseUI {
             });
         }
         this.enemyList.dataProvider = new eui.ArrayCollection(enemyList);
-        this.setHtml(this.desText,this.createHtml('敌方战力：',0xE0A44A) + MD.enemy.force);
+
 
 
         if(enemyList.length <4)
@@ -182,6 +182,22 @@ class MapGameUI extends game.BaseUI {
         return enemyList;
     }
 
+    public renewForce(){
+        var MD = MapData.getInstance();
+
+        var enemyForce = MainGameManager.getInstance().getMainForce()
+        var myForce = UM.getForce();
+
+        var str = '[关卡战力:]' + MD.enemy.force;
+
+        if(enemyForce < myForce)
+            str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)
+        else if(enemyForce > myForce)
+            str += this.createHtml('(-'+(enemyForce-myForce)+')',0x00cc00)
+
+        MyTool.setColorText(this.desText,str);
+    }
+
     public onShow(){
         this.renewEnemy();
         this.renewSelf();
@@ -191,6 +207,7 @@ class MapGameUI extends game.BaseUI {
 
     private renewSelf(){
         this.myCardGroup.renew();
+        this.renewForce();
     }
     private renewHistory(){
         var MD =  MapData.getInstance();

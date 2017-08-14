@@ -728,33 +728,41 @@ class DebugManager {
         console.log('noUse:  ' + noUse.length + '   ' + noUse.join(','))
     }
 
-    public getGuessList(begin = 0){
+    public getGuessList(begin = 1){
         var arr = []
-        for(var i=0;i<begin;i++)
-        {
-            arr.push(0);
-        }
+        //begin = (begin - 1) * 100
+        //for(var i=0;i<begin;i++)
+        //{
+        //    arr.push(0);
+        //}
+        this.MML = begin
         var key = 'guess_card_' + TM.now();
         var self = this;
         Net.getInstance().outPut = false;
         var testOne = function(){
-            self.MML = self.getGuessLevel(arr.length);
-            //self.MML = Math.floor(arr.length/100) +1
-            if(self.MML > 30)
+            if(arr.length >= 100)
             {
-                console.log('Done!')
                 for(var i=0;i<arr.length;i++)
                 {
                     arr[i] = 'array('+arr[i].join(',')+')';
                 }
-                SharedObjectManager.instance.setMyValue(key,'array('+arr.join(',')+')');
-                Net.getInstance().outPut = true;
-                return;
+                SharedObjectManager.instance.setMyValue(key + '_' + self.MML,'array('+arr.join(',')+')');
+
+
+                self.MML ++;
+                arr = []
+                if(self.MML > 30)
+                {
+                    console.log('Done!' + (self.MML - 1))
+                    Net.getInstance().outPut = true;
+                    return;
+                }
             }
+
             self.testOneCard(2048,null,function(card){
                 arr.push(card)
                 console.log(arr.length)
-                SharedObjectManager.instance.setMyValue(key,arr);
+                SharedObjectManager.instance.setMyValue(key + '_' + self.MML,arr);
                 testOne();
             })
         }

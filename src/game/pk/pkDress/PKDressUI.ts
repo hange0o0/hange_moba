@@ -262,7 +262,7 @@ class PKDressUI extends game.BaseUI {
 
             if(this.pkType == PKManager.PKType.MAIN)
             {
-                if(UM.main_game.show_pass)
+                if(UM.main_game.show_pass || MainGameManager.getInstance().freeShowPass())
                 {
                     MainGameTipsUI.getInstance().show();
                     return;
@@ -689,6 +689,7 @@ class PKDressUI extends game.BaseUI {
 
         this.upBtnGroup.removeChildren()
 
+        this.changeBtn.skinName = 'Btn_b2Skin'
         if(this.dataIn.data.length > 1)
         {
             var nextIndex = this.index+1;
@@ -705,6 +706,12 @@ class PKDressUI extends game.BaseUI {
             {
                 this.upBtnGroup.addChild(this.changeBtn);
                 this.changeBtn.label = '过关提示';
+
+
+                if((this.pkType == PKManager.PKType.MAIN && (UM.main_game.show_pass || MainGameManager.getInstance().freeShowPass())) ||
+                    (this.pkType == PKManager.PKType.DAY && UM.day_game.show_pass))
+                    this.changeBtn.skinName = 'Btn_r2Skin'
+
             }
         }
         if(this.dataIn.enemy)

@@ -74,6 +74,11 @@ class TaskVO {
             if(this.level > UM.level)
                 return false
         }
+        if(this.line == 3)
+        {
+            if(this.level > UM.main_game.level)
+                return false
+        }
         if(this.type == 'map_game_pk')
         {
             var MD = MapData.getInstance();
@@ -346,7 +351,7 @@ class TaskVO {
                 if(this.value1 < 0)
                     return '开始清剿野外势力'
                 else
-                    return '清剿野外据点[' +this.value1 + ']'
+                    return '进入野外据点[' +this.value1 + ']'
                 break;
             case 'main_award':
                 return '领取卡士补助'

@@ -79,6 +79,7 @@ class UserManager {
 
 
         this.initActive();
+         DayGameManager.getInstance().resetDay();
 
         this.friendtime = data.friendtime || 1;
         if(TM.now() - this.friendtime > 3600*24*3)

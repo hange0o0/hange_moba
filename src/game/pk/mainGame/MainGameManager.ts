@@ -34,9 +34,10 @@ class MainGameManager{
 
     public stepName = ['卡士','卡使','卡将','卡帅','卡师','卡神','卡圣','卡皇','卡帝','卡君','卡尊','卡主','卡宗'];
 
-    public getMainStep(lv?){
-        var level = lv || UM.main_game.level;
-        return  Math.floor((level+5)/10)
+    public getMainStep(lv = -1){
+        if(lv == -1)
+            lv = UM.main_game.level;
+        return  Math.floor((lv+5)/10)
     }
 
     public getStepName(lv?){
@@ -53,9 +54,10 @@ class MainGameManager{
     }
 
     //下一阶分数
-    public getNextStep(lv?){
-        var level = lv || UM.main_game.level;
-        return this.getStepLevel(this.getMainStep(level) + 1)
+    public getNextStep(lv = -1){
+        if(lv == -1)
+            lv = UM.main_game.level;
+        return this.getStepLevel(this.getMainStep(lv) + 1)
     }
 
     public getHeadByLevel(level){
@@ -71,9 +73,14 @@ class MainGameManager{
         return level*300*(UM.main_game.kill.length+1);
     }
 
-    public getLocalAward(level){
-        level =  level || UM.main_game.level;
-        return {coin:level*300,card:Math.floor(level/20+1)};
+    public getLocalAward(lv = -1){
+        if(lv == -1)
+            lv = UM.main_game.level;
+        return {coin:lv*300,card:Math.floor(lv/20+1)};
+    }
+
+    public freeShowPass(){
+        return (UM.main_game.level < 100 && (UM.main_game.fail || 0) > 5 + Math.floor(UM.main_game.level/10))
     }
 
     //
@@ -277,7 +284,10 @@ class MainGameManager{
             var msg = data.msg;
             if(msg.fail == -1)
             {
-                Alert('暂时还没有收录，赶快加油帮助后来者吧！\n(并没有扣除玩家钻石)');
+                if(self.freeShowPass())
+                    Alert('暂时还没有收录');
+                else
+                    Alert('暂时还没有收录，赶快加油帮助后来者吧！\n(并没有扣除玩家钻石)');
                 return;
             }
             if(msg.fail == 1)

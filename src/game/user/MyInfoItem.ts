@@ -40,12 +40,18 @@ class MyInfoItem extends game.BaseItem {
         {
              if(this.data.myValue > this.data.otherValue)
              {
-                 this.addText.text = '+' + (this.data.myValue - this.data.otherValue)
+                 if(this.data.isRate)
+                     this.addText.text = '+' + MyTool.toFixed((this.data.myValue - this.data.otherValue)*100,1)  + '%'
+                 else
+                     this.addText.text = '+' + (this.data.myValue - this.data.otherValue)
                  this.addText.textColor = 0xFFFF00
              }
              else if(this.data.myValue < this.data.otherValue)
              {
-                 this.addText.text = '' + (this.data.myValue - this.data.otherValue)
+                 if(this.data.isRate)
+                     this.addText.text = '-' + MyTool.toFixed(Math.abs(this.data.myValue - this.data.otherValue)*100,1)  + '%'
+                 else
+                     this.addText.text = '' + (this.data.myValue - this.data.otherValue)
                  this.addText.textColor = 0xFF0000
              }
             else
