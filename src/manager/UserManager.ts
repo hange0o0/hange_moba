@@ -91,6 +91,8 @@ class UserManager {
     public initActive(){
         if(this.active)
         {
+            if(!this.active.guess)
+                this.active.guess = {}
             if(this.active.team_pve)
             {
                 if(!DateUtil.isSameDay(this.active.team_pve.lasttime))
@@ -351,7 +353,19 @@ class UserManager {
             return false;
         }
         return true;
-
+    }
+    public testCard(v){
+        if(UM.card < v)
+        {
+            Confirm('碎片不足！\n需要：' +v+'\n当前：'+UM.card + '\n是否前往购买碎片？',function(v){
+                if(v == 1)
+                {
+                    ShopUI.getInstance().show('card');
+                }
+            },['取消','购买'])
+            return false;
+        }
+        return true;
     }
     public testEnergy(v){
         if(UM.getEnergy() < v)

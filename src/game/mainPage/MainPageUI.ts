@@ -60,12 +60,16 @@ class MainPageUI extends game.BaseUI {
     private diamonDrawBtn: eui.Group;
     private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
+    private guessBtn: eui.Group;
+    private guessText: eui.Label;
+    private guessRed: eui.Image;
     private mainTask: MainTaskUI;
     private page0: MainPageItem;
     private page1: MainPageItem;
     private page2: MainPageItem;
     private page3: MainPageItem;
     private page4: MainPageItem;
+
 
 
 
@@ -119,6 +123,7 @@ class MainPageUI extends game.BaseUI {
         this.addBtnEvent(this.rankBtn, this.onRank);
         this.addBtnEvent(this.team, this.onTeam);
         this.addBtnEvent(this.diamonDrawBtn, this.onDraw);
+        this.addBtnEvent(this.guessBtn, this.onGuess);
 
 
         //this.addBtnEvent(this.img, this.onMain);
@@ -167,6 +172,7 @@ class MainPageUI extends game.BaseUI {
         //this.guideText.touchEnabled =  true
 
 
+        this.helpGroup.visible = false
         this.helpText.mask = this.helpMask;
 
         for(var i=0;i<=4;i++)
@@ -223,6 +229,14 @@ class MainPageUI extends game.BaseUI {
     //    //];
     //}
 
+
+    private onGuess(){
+        //if(UM.getNextDrawCD())
+        //{
+        //    return;
+        //}
+        GuessUI.getInstance().show();
+    }
 
     private onDraw(){
         if(UM.getNextDrawCD())
@@ -609,11 +623,11 @@ class MainPageUI extends game.BaseUI {
     }
 
     public renewHelp(){
-        this.helpText.x = 360;
+        this.helpText.x = this.helpMask.width;
         this.setHtml(this.helpText,HelpManager.getInstance().getInfoText());
         egret.Tween.removeTweens(this.helpText);
         var tw:egret.Tween = egret.Tween.get(this.helpText);
-        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + 360+100)*20).call(this.renewHelp,this);
+        tw.to({x:-this.helpText.textWidth-100}, (this.helpText.textWidth + this.helpMask.width +100)*20).call(this.renewHelp,this);
     }
 
     public clickPage(page){

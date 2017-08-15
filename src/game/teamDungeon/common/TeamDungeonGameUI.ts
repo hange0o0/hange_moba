@@ -169,11 +169,11 @@ class TeamDungeonGameUI extends game.BaseUI {
 
     public renewForce(){
 
-        var enemyForce = MainGameManager.getInstance().getMainForce()
+        var enemyForce = TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
         var myForce = UM.getForce();
 
         var hard = TeamPVEManager.getInstance().data.game_data.hard;
-        var str = '[关卡战力:]' + TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
+        var str = '[关卡战力:]' + enemyForce;
 
         if(enemyForce < myForce)
             str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)

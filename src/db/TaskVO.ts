@@ -64,7 +64,8 @@ class TaskVO {
     }
 
     public getNextTaskVO(){
-        return TaskVO.lineData[this.line][this.index];
+        var index = TaskVO.lineData[this.line].indexOf(this);
+        return TaskVO.lineData[this.line][index + 1];
     }
 
     public isEnable(){

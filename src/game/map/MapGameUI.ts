@@ -185,10 +185,10 @@ class MapGameUI extends game.BaseUI {
     public renewForce(){
         var MD = MapData.getInstance();
 
-        var enemyForce = MainGameManager.getInstance().getMainForce()
+        var enemyForce = MD.enemy.force;
         var myForce = UM.getForce();
 
-        var str = '[关卡战力:]' + MD.enemy.force;
+        var str = '[关卡战力:]' + enemyForce;
 
         if(enemyForce < myForce)
             str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)

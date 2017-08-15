@@ -1,7 +1,7 @@
-class EnemyHeadItem extends game.BaseItem {
+class MainGameTipsHeadItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "EnemyHeadItemSkin";
+        this.skinName = "MainGameTipsHeadItemSkin";
     }
 
     private chooseGroup: eui.Group;
@@ -28,8 +28,8 @@ class EnemyHeadItem extends game.BaseItem {
     public index;
 
     public childrenCreated() {
-          this.addBtnEvent(this.closeBtn,this.onKill);
-          this.addBtnEvent(this,this.onClick);
+        this.addBtnEvent(this.closeBtn,this.onKill);
+        this.addBtnEvent(this,this.onClick);
 
         this.teamGroupBG.visible = false;
         this.chooseGroupBG.visible = false;
@@ -52,18 +52,18 @@ class EnemyHeadItem extends game.BaseItem {
         var self = this;
         var cost = MainGameManager.getInstance().getKillCost();
         Confirm('确定花费'+ cost +'金币对该单位进行贿赂吗？',function(value){
-             if(value == 1)
-             {
-                 if(!UM.testCoin(cost))
-                 {
-                     return;
-                 }
-                 MainGameManager.getInstance().kill(self.data.index,function(){
-                     MainGameUI.getInstance().renewPrice();
-                     self.data.isKill = true;
-                     self.dataChanged();
-                 })
-             }
+            if(value == 1)
+            {
+                if(!UM.testCoin(cost))
+                {
+                    return;
+                }
+                MainGameManager.getInstance().kill(self.data.index,function(){
+                    MainGameUI.getInstance().renewPrice();
+                    self.data.isKill = true;
+                    self.dataChanged();
+                })
+            }
         })
 
     }

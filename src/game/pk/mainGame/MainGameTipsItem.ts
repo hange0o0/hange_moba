@@ -88,7 +88,7 @@ class MainGameTipsItem extends game.BaseItem {
                     disable:!myCardObj[id],
                     compare:true,
                     id: id,
-                    index: i,
+                    //index: i,
                     specialData: {lv:teamData.mlevel[id]},
                     list:arr
                 })

@@ -7,6 +7,7 @@ class PKManager {
         SERVER:'server_game',
         SERVER_EQUAL:'server_game_equal',
         DAY:'day_game',
+        GUESS:'guess',
         REPLAY:'replay',
         FRIEND:'friend',  //包括ask 和 answer
         FRIEND_ASK:'friend_ask',

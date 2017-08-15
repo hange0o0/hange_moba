@@ -54,6 +54,7 @@ class GameManager {
             UM.initActive();
             TeamPVEManager.getInstance().passDay();
             DayGameManager.getInstance().passDay();
+            GuessManager.getInstance().passDay();
 
             EM.dispatch(GameEvent.client.pass_day);
         }
@@ -118,11 +119,11 @@ if (url.indexOf(splitStr) != -1) {
 }
 
 onerror=handleErr;
-function handleErr(msg,url)
+function handleErr(msg,url, line, col, errorObj)
 {
     if(!Net.getInstance().serverHost)
         return;
-    var txt = (url|| '').substr(-15,12) + ':' + msg + '|';
+    var txt = (url|| '').substr(-30,27) + ':' + msg + '|' + line + "--" + col+ "--" + (errorObj && errorObj.stack);
     var str = MyTool.getBtnPath(GameManager.getInstance().lastTouchMC);
     if(str)
         txt += str;

@@ -78,6 +78,11 @@ class GameEvent {
         levelup_tec:'levelup_tec'
     }
 
+    public static guess = {
+        guess_answer:'guess_answer',
+        get_guess:'get_guess'
+    }
+
 
     public static team = {
         team_dungeon_info:'team_dungeon_info',
