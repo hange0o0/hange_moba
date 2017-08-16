@@ -57,7 +57,7 @@ class ServerGameEqualUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn, this.onChoose);
         this.addBtnEvent(this.headMC, this.onOtherInfo);
-        this.historyList.itemRenderer =  DayLogItem;
+        this.historyList.itemRenderer =  DayLogItem2;
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="DayLogItemSkin" width="640" height="360" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="DayLogItemSkin" width="640" height="360" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,loss" >
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<e:Rect id="titleBG" width="100%" y="0" height="60" x="0" fillColor="0x300000"/>
 	<e:Rect x="0" width="100%" height="1" bottom="0" fillColor="0x444444"/>
@@ -18,8 +18,9 @@
 	<e:Label id="timeText" y="20" text="第1回合" size="24" right="15" textColor="0xCCCCCC" stroke="2"/>
 	<e:Image id="resultIcon" y="7" source="lose_icon_png" horizontalCenter="0"/>
 	<e:Label id="resultText" text="标签" x="20" size="24" textColor="0xCCCCCC" y="312.32"/>
-	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="296" width="140" right="15"/>
-	<e:Button id="infoBtn" label="详情" y="296" width="140" right="170" skinName="Btn_b2Skin"/>
+	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="296" width="140" right="15" skinName.loss="Btn_r2Skin" width.loss="110"/>
+	<e:Button id="infoBtn" label="详情" y="296" width="140" right="170" skinName="Btn_b2Skin" width.loss="110" right.loss="135"/>
+	<e:Button id="useBtn" label="重试" y="296" width="110" right="255" skinName="Btn_b2Skin" includeIn="loss"/>
 	<e:Group id="nickGroup" y="2" x="5">
 		<e:Image source="border2_png" width="56" y="0" height="56" x="0"/>
 		<e:Image source="head_png" y="3" id="headMC0" width="50" height="50" x="3"/>

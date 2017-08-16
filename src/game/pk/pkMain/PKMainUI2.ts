@@ -734,10 +734,21 @@ class PKMainUI extends game.BaseUI {
     private addOneItem(data,team,index){
         var item =this.getItem();
         item.data = {vo:MonsterVO.getObject(data),team:team,index:index};
-        if(team == 1)
-            item.id = 10 + index;
+        if(PKManager.getInstance().teamChange)
+        {
+            if(team == 1)
+                item.id = 30 + index;
+            else
+                item.id = 10 + index;
+        }
         else
-            item.id = 30 + index;
+        {
+            if(team == 1)
+                item.id = 10 + index;
+            else
+                item.id = 30 + index;
+        }
+
 
         item.visible = false;
         this.itemArray.push(item);

@@ -95,7 +95,7 @@ class SettingUI extends game.BaseWindow {
             {text: "1624431545@qq.com", style: {"underline": true}}
         ];
         this.versionText.textFlow = <Array<egret.ITextElement>>[
-            {text: 'V' + Config.version + '.' + Config.m_version, style: {"underline": true}}
+            {text: '1.' + Config.version + '.' + Config.m_version, style: {"underline": true}}
         ];
 
         this.logBtn.visible = LoginManager.getInstance().logText.text;

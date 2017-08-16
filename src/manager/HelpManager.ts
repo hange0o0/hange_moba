@@ -149,6 +149,16 @@ class HelpManager {
         }
 
 
+        this.helpObj['guess'] = {
+            title:'竞猜说明',
+            list:[
+                '在竞猜系统中，玩家需从两组卡兵队伍中，选择你认为胜利的那一组进行下注',
+                '在竞猜系统中，玩家可使用[金币]或[碎片]进行下注，猜中胜利方后会得到双倍返还，猜错则失去所有本金',
+                '在竞猜系统中，玩家可调节投注的金额，金额上限与玩家等级挂钩',
+                '在竞猜系统中，玩家每天可进行多次竞猜，竞猜次数与玩家等级挂钩，跨天次数会被重置'
+            ]
+        }
+
         this.helpObj['temp'] = {
             list:[
                 '当前服务器的卡兵等级上限是['+TecManager.getInstance().maxLevel+'级]，玩家的等级上限是['+UM.maxLevel+'级]',
@@ -208,6 +218,9 @@ class HelpManager {
         HelpUI.getInstance().show(this.helpObj['tec']);
     }
 
+    public guessHelp(){
+        HelpUI.getInstance().show(this.helpObj['guess']);
+    }
     public mapHelp(){
         HelpUI.getInstance().show(this.helpObj['map']);
     }

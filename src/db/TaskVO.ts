@@ -117,6 +117,14 @@ class TaskVO {
                 }
                 return false;
                 break;
+            case 'guess':
+                if(UM.active.guess.lasttime)
+                {
+                    this.currentValue = 1;
+                    return true;
+                }
+                return false;
+                break;
             case 'main_game':
                 this.currentValue = UM.main_game.level;
                 return this.currentValue >= this.value1
@@ -246,6 +254,9 @@ class TaskVO {
             case 'draw':
                 TM.showGuideMC(MainPageUI.getInstance()['diamonDrawBtn'])
                 break;
+            case 'guess':
+                TM.showGuideMC(MainPageUI.getInstance()['guessBtn'])
+                break;
             case 'main_game':
                 TM.nowAction = this.type;
                 if(MainPageUI.getInstance().currentPage == 0)
@@ -342,6 +353,9 @@ class TaskVO {
             case 'draw':
                 return '抽取一次钻石'
                 break;
+            case 'guess':
+                return '进行一次竞猜'
+                break;
             case 'main_game':
                 return '职业评分达到[' +this.value1 + ']'
                 break;
@@ -411,6 +425,7 @@ class TaskVO {
         switch(this.type)
         {
             case 'draw':
+            case 'guess':
             case 'main_award':
             case 'map_game_buy':
             case 'map_game_next':

@@ -13,6 +13,7 @@ class DayLogItem extends game.BaseItem {
     private resultText: eui.Label;
     private videoBtn: eui.Button;
     private infoBtn: eui.Button;
+    private useBtn: eui.Button;
     private nickGroup: eui.Group;
     private headMC0: eui.Image;
     private nickText: eui.Label;
@@ -22,6 +23,7 @@ class DayLogItem extends game.BaseItem {
 
 
 
+    public logType = 1;
     public index;
 
     public childrenCreated() {

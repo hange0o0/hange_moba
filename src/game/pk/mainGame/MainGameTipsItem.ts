@@ -25,7 +25,7 @@ class MainGameTipsItem extends game.BaseItem {
         this.addBtnEvent(this.videoBtn,this.onClick);
         this.addBtnEvent(this.resultText,this.onNickClick);
 
-        this.enemyList.itemRenderer = EnemyHeadItem
+        this.enemyList.itemRenderer = MainGameTipsHeadItem
 
         //this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
         //this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
@@ -43,7 +43,8 @@ class MainGameTipsItem extends game.BaseItem {
 
     private onClick(){
         PKDressUI.getInstance().changeChooseList(this.list)
-        ShowTips('已复制到你的出战布阵中')
+        MainGameTipsUI.getInstance().hide();
+        //ShowTips('已复制到你的出战布阵中')
     }
 
     public dataChanged() {
@@ -54,6 +55,7 @@ class MainGameTipsItem extends game.BaseItem {
         var ok = true;
 
         var arr = [];
+        var viewList = [];
         this.list = teamData.list;
         if(MainGameTipsUI.getInstance().isDay)
         {
@@ -66,8 +68,10 @@ class MainGameTipsItem extends game.BaseItem {
                     id: id,
                     index: i,
                     specialData: {isEqual:true},
-                    list:arr
+                    list:viewList
                 })
+                if(id)
+                    viewList.push(arr[i]);
             }
             this.titleText.text = '通关时间：' + DateUtil.formatDate('yyyy-MM-dd hh:mm:ss',DateUtil.timeToChineseDate(this.data.time));
         }
@@ -79,7 +83,7 @@ class MainGameTipsItem extends game.BaseItem {
             for(var i=0;i<myCard.list.length;i++) {
                 myCardObj[myCard.list[i]] = true;
             }
-            for(var i=0;i<teamData.list.length;i++)
+            for(var i=0;i<6;i++)
             {
                 var id = teamData.list[i];
                 arr.push({
@@ -88,14 +92,18 @@ class MainGameTipsItem extends game.BaseItem {
                     disable:!myCardObj[id],
                     compare:true,
                     id: id,
-                    //index: i,
+                    index: i,
                     specialData: {lv:teamData.mlevel[id]},
-                    list:arr
+                    list:viewList
                 })
 
-                if(!myCardObj[id])
+                if(id)
+                    viewList.push(arr[i]);
+                if(id && !myCardObj[id])
                     ok = false;
             }
+
+
 
             var myForce = UM.getForce()
             this.titleText.text = '通关战力：' + teamData.force + '('+myForce+')';
@@ -111,20 +119,6 @@ class MainGameTipsItem extends game.BaseItem {
 
 
         this.enemyList.dataProvider = new eui.ArrayCollection(arr);
-        if(arr.length <4)
-        {
-            (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 0;
-            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 1
-        }
-        else
-        {
-            (<eui.TileLayout>this.enemyList.layout).requestedRowCount = 2;
-            if(arr.length ==4)
-                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 2
-            else
-                (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
-        }
-
         MyTool.setColorText(this.resultText,'本布阵由 ['+nick+'] 提供');
 
 

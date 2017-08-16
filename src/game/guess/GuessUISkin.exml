@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="GuessUISkin" width="640" height="670" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="GuessUISkin" width="640" height="680" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:BasePanel y="0" skinName="BasePanelSkin" width="640" height="100%" horizontalCenter="0"/>
-	<e:List id="teamInfo1" y="120" x="35" width="306" itemRendererSkinName="PKResultItem4_Skin" height="210" scaleX="0.9" scaleY="0.9">
+	<e:List id="teamInfo1" y="125" x="35" width="306" itemRendererSkinName="PKResultItem4_Skin" height="210" scaleX="0.9" scaleY="0.9">
 		<e:layout>
 		<e:TileLayout horizontalGap="3" requestedColumnCount="3"/>
 		</e:layout>
 	</e:List>
-	<e:List id="teamInfo2" width="306" itemRendererSkinName="PKResultItem4Skin" y="120" height="210" scaleX="0.9" scaleY="0.9" right="35">
+	<e:List id="teamInfo2" width="306" itemRendererSkinName="PKResultItem4Skin" y="125" height="210" scaleX="0.9" scaleY="0.9" right="38">
 		<e:layout>
 		<e:TileLayout horizontalGap="3" requestedColumnCount="3"/>
 		</e:layout>
 	</e:List>
-	<e:Group y="330" horizontalCenter="0">
+	<e:Group y="340" horizontalCenter="0">
 		<e:Group x="0" y="0" height="160" width="280">
 			<e:Rect id="bg1" width="105%" height="105%" fillAlpha="0.2" strokeColor="0xedb91e" strokeWeight="1" horizontalCenter="0" verticalCenter="0" ellipseWidth="5" ellipseHeight="5"/>
 			<e:Group horizontalCenter="0" bottom="110">
@@ -57,16 +57,14 @@
 		</e:layout>
 	</e:Group>
 	<e:Group horizontalCenter="0" bottom="40">
-		<e:Button id="team1Btn" label="队伍 1 胜" x="0" y="0" skinName="Btn_r2Skin"/>
+		<e:Button id="team1Btn" label="进攻方 胜" x="0" y="0" skinName="Btn_r2Skin"/>
 		<e:Button id="backBtn" label="返回" x="330" y="4" skinName="Btn_b2Skin"/>
-		<e:Button id="team2Btn" label="队伍 2 胜" x="340" y="14" skinName="Btn_r2Skin"/>
+		<e:Button id="team2Btn" label="防守方 胜" x="340" y="14" skinName="Btn_r2Skin"/>
 		<e:layout>
 			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
 	<e:Label id="desText" text="答对后获得双倍返还" textColor="0xCCB48E" size="24" bottom="125" left="35"/>
-	<e:Label text="队伍1" textColor="0xCCB48E" size="24" horizontalCenter="-145" y="85"/>
-	<e:Label text="队伍2" textColor="0xCCB48E" size="24" horizontalCenter="145" y="85"/>
 	<e:Group id="helpBtn" bottom="115" right="90">
 		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
 		<e:Label text="?" y="10" textColor="0xF8D05A" horizontalCenter="0"/>
@@ -74,5 +72,20 @@
 	<e:Group id="videoBtn" right="35" bottom="115">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
+	</e:Group>
+	<e:Image source="line_png" y="320" width="580" horizontalCenter="0"/>
+	<e:Group y="80" horizontalCenter="-150">
+		<e:Image source="card_battle2_png" x="0" y="0"/>
+		<e:Label text="进攻方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="27.479999999999976"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+	<e:Group y="80" horizontalCenter="150">
+		<e:Image x="0" y="0" source="card_battle_png"/>
+		<e:Label text="防守方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="35.06"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
 	</e:Group>
 </e:Skin>

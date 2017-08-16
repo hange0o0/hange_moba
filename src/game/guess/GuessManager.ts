@@ -24,7 +24,7 @@ class GuessManager {
     }
 
     public passDay(){
-         if(!DateUtil.isSameDay(UM.active.guess.lasttime))
+         if(UM.active.guess.lasttime && !DateUtil.isSameDay(UM.active.guess.lasttime))
          {
              UM.active.guess.lasttime = TM.now();
              UM.active.guess.num = 0;
@@ -47,8 +47,7 @@ class GuessManager {
         Net.addUser(oo);
         Net.send(GameEvent.guess.get_guess,oo,function(data){
             var msg = data.msg;
-            if(!UM.active.guess)
-                UM.active.guess = {};
+
 
             UM.active.guess.list1 = msg.list1;
             UM.active.guess.list2 = msg.list2;
@@ -73,11 +72,24 @@ class GuessManager {
             UM.active.guess.list1 = null;
             UM.active.guess.list2 = null;
             UM.active.guess.num ++;
+            UM.active.guess.total ++
             UM.active.guess.lasttime = TM.now()
 
+            if(!msg.info)
+                msg.info = {};
+            msg.info.teamChange = !iswin;
             msg.info.type = PKManager.PKType.GUESS;
             PKManager.getInstance().onPK(PKManager.PKType.GUESS,msg);
-            self.addLogList(PKManager.getInstance().getLogData({guess:oo.iswin == msg.result,guessType:type,guessValue:num,type:PKManager.PKType.GUESS}));
+            PKMainUI.getInstance().show();
+
+
+            var str = type == 'coin'?'金币':'碎片'
+            if(msg.guess_win)
+                PKManager.getInstance().pkAward.desArr.push('竞猜成功，'+str+'：+' + oo.num);
+            else
+                PKManager.getInstance().pkAward.desArr.push('竞猜失败，'+str+'：-' + oo.num);
+
+            self.addLogList(PKManager.getInstance().getLogData({guessChoose:iswin,guessWin:msg.guess_win,guessType:type,guessValue:num,type:PKManager.PKType.GUESS}));
             if(fun)
                 fun();
         });

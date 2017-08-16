@@ -58,8 +58,8 @@ class MainPageUI extends game.BaseUI {
     private feeText: eui.Label;
     private addFreeBtn: eui.Group;
     private diamonDrawBtn: eui.Group;
-    private diamondDrawLight: eui.Image;
     private diamonDrawText: eui.Label;
+    private diamondDrawRed: eui.Image;
     private guessBtn: eui.Group;
     private guessText: eui.Label;
     private guessRed: eui.Image;
@@ -69,6 +69,7 @@ class MainPageUI extends game.BaseUI {
     private page2: MainPageItem;
     private page3: MainPageItem;
     private page4: MainPageItem;
+
 
 
 
@@ -235,6 +236,11 @@ class MainPageUI extends game.BaseUI {
         //{
         //    return;
         //}
+        var guessData = UM.active.guess || {};
+        var current = guessData.num || 0;
+        var max = GuessManager.getInstance().getMaxTimes();
+        if(current >= max)
+            return;
         GuessUI.getInstance().show();
     }
 
@@ -300,22 +306,44 @@ class MainPageUI extends game.BaseUI {
     private onTimer(){
         var cd = UM.getNextDrawCD()
         var b = cd <= 0;
-        if(b != this.diamondDrawLight.visible)
-        {
-            this.diamondDrawLight.visible = b;
-            egret.Tween.removeTweens(this.diamondDrawLight)
-            if(b)
-            {
-                var tw = egret.Tween.get(this.diamondDrawLight,{loop:true})
-                this.diamondDrawLight.alpha = 0;
-                tw.to({alpha:0.6},1000).to({alpha:0},1000).wait(1000);
-            }
-
-        }
+        //if(b != this.diamondDrawLight.visible)
+        //{
+        //    this.diamondDrawLight.visible = b;
+        //    egret.Tween.removeTweens(this.diamondDrawLight)
+        //    if(b)
+        //    {
+        //        var tw = egret.Tween.get(this.diamondDrawLight,{loop:true})
+        //        this.diamondDrawLight.alpha = 0;
+        //        tw.to({alpha:0.6},1000).to({alpha:0},1000).wait(1000);
+        //    }
+        //
+        //}
         if(cd)
+        {
             this.diamonDrawText.text = DateUtil.getStringBySecond(cd);
+            this.diamondDrawRed.visible = false;
+        }
         else
+        {
             this.diamonDrawText.text = '可翻牌'
+            this.diamondDrawRed.visible = true;
+        }
+
+        var guessData = UM.active.guess || {};
+        var current = guessData.num || 0;
+        var max = GuessManager.getInstance().getMaxTimes();
+        if(max > current)
+        {
+            this.guessRed.visible = true
+            this.guessText.text = (max - current) + '/' + max;
+        }
+        else
+        {
+            this.guessRed.visible = false
+            this.guessText.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now());
+        }
+
+
 
         this.renewEnergy();
 
@@ -485,7 +513,10 @@ class MainPageUI extends game.BaseUI {
         TeamPVEManager.getInstance().initData();
         TaskManager.getInstance().initData();
         PKManager.getInstance().initData();
-        this.diamondDrawLight.visible = false;
+        GuessManager.getInstance().initData();
+
+
+        //this.diamondDrawLight.visible = false;
 
         this.renewTop();
 

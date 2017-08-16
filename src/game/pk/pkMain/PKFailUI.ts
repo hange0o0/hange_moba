@@ -87,6 +87,10 @@ class PKFailUI extends PKResultBase {
                 TeamPVEManager.getInstance().pkAgain();
             PKResultUI.getInstance().hide();
         }
+        else if(PKM.pkType == PKManager.PKType.GUESS){
+            PKResultUI.getInstance().hide();
+            GuessUI.getInstance().show();
+        }
 
         function onOpenPKView(){
            self.onBack();
@@ -110,6 +114,19 @@ class PKFailUI extends PKResultBase {
         else if(PKM.pkType == PKManager.PKType.PVE && !TeamPVEManager.getInstance().canPK())
         {
             MyTool.removeMC(this.okBtn)
+        }
+        else if(PKM.pkType == PKManager.PKType.GUESS)
+        {
+            var guessData = UM.active.guess || {};
+            var current = guessData.num || 0;
+            var max = GuessManager.getInstance().getMaxTimes();
+            if(max > current)
+            {
+                this.btnGroup.addChildAt(this.okBtn,1);
+                this.okBtn.label = '继续竞猜';
+            }
+            else
+                MyTool.removeMC(this.okBtn)
         }
         else
         {

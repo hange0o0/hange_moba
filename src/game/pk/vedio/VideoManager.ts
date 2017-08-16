@@ -153,14 +153,7 @@ class VideoManager {
         function play(){
             self.baseData = ObjectUtil.clone(baseData);
 
-            if(PKManager.getInstance().teamChange)
-            {
-                ObjectUtil.swapKey(self.baseData,'player1','player2')
-                ObjectUtil.swapKey(self.baseData,'team1','team2')
-                ObjectUtil.swapKey(self.baseData,'team1base','team2base')
-                self.baseData.result.w =  self.baseData.result.w == 1?2:1;
-            }
-
+            //这个不用变，因为与施法者ID有关
             self.leaderSkill1 = []
             self.leaderSkill2 = []
             for(var i=0;i<self.baseData.team1.ac.length;i++)
@@ -171,6 +164,17 @@ class VideoManager {
             {
                 self.leaderSkill2.push(self.decodeLeaderSkill(self.baseData.team2.ac[i]))
             }
+
+
+            if(PKManager.getInstance().teamChange)
+            {
+                ObjectUtil.swapKey(self.baseData,'player1','player2')
+                ObjectUtil.swapKey(self.baseData,'team1','team2')
+                ObjectUtil.swapKey(self.baseData,'team1base','team2base')
+                self.baseData.result.w =  self.baseData.result.w == 1?2:1;
+            }
+
+
 
 
             self.type = type;

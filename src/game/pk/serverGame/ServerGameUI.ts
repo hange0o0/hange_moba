@@ -61,7 +61,7 @@ class ServerGameUI extends game.BaseUI {
         this.addBtnEvent(this.startBtn, this.onStart);
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
-        this.historyList.itemRenderer =  DayLogItem;
+        this.historyList.itemRenderer =  DayLogItem2;
 
 
         this.scroller.bounces = false;

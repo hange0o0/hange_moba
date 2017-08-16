@@ -621,6 +621,10 @@ class PKManager {
             this.team2Head = MainGameManager.getInstance().getHeadByLevel(info.level);
             this.team2Nick = MainGameManager.getInstance().getNickByLevel(info.level);
         }
+        else if(type == PKManager.PKType.GUESS)
+        {
+            this.teamChange = info.teamChange;
+        }
         else if(type == PKManager.PKType.SERVER || type == PKManager.PKType.SERVER_EQUAL)
         {
             this.team2Head = info.head || 0;
@@ -698,7 +702,7 @@ class PKManager {
 
 
         this.pkAward = null;
-        if(!data.dealAward)
+        if(!data.dealAward && type != PKManager.PKType.REPLAY)
         {
             this.pkAward = {
                 levelUp:false,
@@ -1068,20 +1072,20 @@ class PKManager {
 
     //返回日志相关格式
     public getLogData(data,time?){
-        if(this.teamChange)
-        {
-            var team1Base = this.team2Base
-            var team2Base = this.team1Base
-            var team1ID = 30
-            var team2ID = 10
-        }
-        else
-        {
+        //if(this.teamChange)
+        //{
+        //    var team1Base = this.team2Base
+        //    var team2Base = this.team1Base
+        //    var team1ID = 30
+        //    var team2ID = 10
+        //}
+        //else
+        //{
             var team1Base = this.team1Base
             var team2Base = this.team2Base
             var team1ID = 10
             var team2ID = 30
-        }
+        //}
 
 
         var info1 = [];
@@ -1137,6 +1141,7 @@ class PKManager {
             videoData:videoData,
             team1Base:team1Base,
             team2Base:team2Base,
+            teamChange:this.teamChange,
             info1:info1,
             info2:info2,
             isWin:this.isWin,
