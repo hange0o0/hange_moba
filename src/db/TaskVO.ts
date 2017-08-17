@@ -118,7 +118,7 @@ class TaskVO {
                 return false;
                 break;
             case 'guess':
-                if(UM.active.guess.lasttime)
+                if(UM.active.guess.total)
                 {
                     this.currentValue = 1;
                     return true;

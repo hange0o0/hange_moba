@@ -329,12 +329,13 @@ class MainPageUI extends game.BaseUI {
             this.diamondDrawRed.visible = true;
         }
 
+        GuessManager.getInstance().passDay();
         var guessData = UM.active.guess || {};
         var current = guessData.num || 0;
         var max = GuessManager.getInstance().getMaxTimes();
         if(max > current)
         {
-            this.guessRed.visible = true
+            this.guessRed.visible = current == 0;
             this.guessText.text = (max - current) + '/' + max;
         }
         else

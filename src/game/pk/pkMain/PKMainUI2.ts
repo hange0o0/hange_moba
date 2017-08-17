@@ -507,8 +507,8 @@ class PKMainUI extends game.BaseUI {
         var des = (this.stageHeight - this.conHeight)/2;
         this.topMC.y = -itemHeight+des
         this.bottomMC.y = this.stageHeight-des
-        this.jumpBtn.y =  des + 700;
-        this.jumpBtn2.y =  des + 700;
+        this.jumpBtn.y =  des + 670;
+        this.jumpBtn2.y =  des + 670;
 
 
         MyTool.changeGray(this.jumpBtn2,false)

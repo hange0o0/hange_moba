@@ -85,7 +85,10 @@ class GuessManager {
 
             var str = type == 'coin'?'金币':'碎片'
             if(msg.guess_win)
+            {
                 PKManager.getInstance().pkAward.desArr.push('竞猜成功，'+str+'：+' + oo.num);
+                UM.active.guess.win ++
+            }
             else
                 PKManager.getInstance().pkAward.desArr.push('竞猜失败，'+str+'：-' + oo.num);
 
