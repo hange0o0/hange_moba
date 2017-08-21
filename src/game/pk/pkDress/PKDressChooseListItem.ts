@@ -5,6 +5,7 @@ class PKDressChooseListItem extends game.BaseItem {
     }
 
     private headMC: eui.Image;
+    private leaderText: eui.Label;
     private redMC: eui.Image;
     private typeMC: eui.Image;
     private nameGroup: eui.Group;
@@ -20,6 +21,7 @@ class PKDressChooseListItem extends game.BaseItem {
     private atkText: eui.Label;
     private speedBar: eui.Rect;
     private speedText: eui.Label;
+
 
 
 

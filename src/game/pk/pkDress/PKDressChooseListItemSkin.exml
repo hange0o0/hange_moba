@@ -20,6 +20,7 @@
 	<e:Group x="0" y="-2" right.right="0">
 		<e:Image source="card_bg_png" y="1" height="200" x="0" width="150" scale9Grid="72,75,87,71"/>
 		<e:Image y="9" x="7" width="150" height="200" id="headMC" scaleX="0.9" scaleY="0.9" source=""/>
+		<e:Label text="+5" x="44" y="11" id="leaderText" size="24" stroke.left="1"/>
 		<e:Rect height="35" fillAlpha="0.75" bottom="10" left="7" right="7"/>
 		<e:Image id="redMC" source="arrow5_png" x="121" y="10"/>
 		<e:Image id="typeMC" x="6" y="5" source="monster_type1_png"/>

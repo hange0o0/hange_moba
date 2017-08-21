@@ -9,9 +9,11 @@ class MainGameTipsHeadItem extends game.BaseItem {
     private addMC: eui.Label;
     private headMC: eui.Image;
     private headBG: eui.Image;
+    private leaderText: eui.Label;
     private lvText: eui.Label;
     private levelGroup: eui.Group;
     private levelText: eui.Label;
+
 
 
 
@@ -30,6 +32,8 @@ class MainGameTipsHeadItem extends game.BaseItem {
         this.stateMC.visible = false;
         this.levelGroup.visible = false;
         addBtnTips(this,this.onTips);
+
+
 
         //MyTool.addTestBlock(this);
     }

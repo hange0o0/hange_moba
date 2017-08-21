@@ -41,6 +41,8 @@ class TouchTipsUI extends game.BaseContainer{
             this.x = 630 - this.width;
         }
 
+        GameManager.stage.once(egret.TouchEvent.TOUCH_CANCEL,this.hide,this)
+
     }
 
     public hide(){

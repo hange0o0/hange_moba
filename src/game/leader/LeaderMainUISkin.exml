@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="LeaderMainUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="leader_bg_jpg" x="0" y="40"/>
+	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" fillAlpha="0.7"/>
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="77" id="tab" height="62" width="640" x="0">
+		<e:ArrayCollection>
+		<e:Array>
+			<e:Object label="统帅培养"/>
+			<e:Object label="队伍技能"/>
+		</e:Array>
+		</e:ArrayCollection>
+	</e:TabBar>
+	<ns1:BookBG width="640" x="0" skinName="BookBGSkin" top="640" bottom="-20"/>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
+	<e:Group y="150" height="380" width="640" horizontalCenter="0">
+		<e:List id="chooseList" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
+			<e:layout>
+			<e:TileLayout horizontalGap="30" verticalGap="20"/>
+			</e:layout>
+		</e:List>
+		<e:Group id="mainGroup" horizontalCenter="0" verticalCenter="20">
+			<e:Group x="0" y="0" width="200">
+				<e:Image source="border2_png" y="34" scale9Grid="11,11,68,68" width="140" height="140" horizontalCenter="0"/>
+				<e:Image source="book_1_jpg" y="44" width="120" height="120" horizontalCenter="0"/>
+				<e:Button id="btn1" label="学　习" y="218" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				<e:Label id="des1" text="AAAAX123" y="186" size="20" horizontalCenter="0" textColor="0xcbc08a"/>
+				<e:Label id="des2" text="AAAAX123" y="280" size="20" horizontalCenter="0" textColor="0xcbc08a"/>
+				<e:Label text="初级学习" y="0" size="26" horizontalCenter="0" textColor="0xb29d94" stroke="1" strokeColor="0x765541" bold="true"/>
+			</e:Group>
+			<e:Group x="0" y="0" width="200">
+				<e:Image source="border2_png" y="34" scale9Grid="11,11,68,68" width="140" height="140" horizontalCenter="0"/>
+				<e:Image y="44" width="120" height="120" horizontalCenter="0" source="book_2_jpg"/>
+				<e:Button id="btn2" label="学　习" y="218" skinName="Btn_r2Skin" horizontalCenter="0"/>
+				<e:Label id="des3" text="AAAAX123" y="186" size="20" horizontalCenter="0" textColor="0xcbc08a"/>
+				<e:Label id="des4" text="AAAAX123" y="280" size="20" horizontalCenter="0" textColor="0xcbc08a"/>
+				<e:Label text="高级学习" y="0" size="26" horizontalCenter="0" textColor="0xc98b54" stroke="1" strokeColor="0x672f0c" bold="true"/>
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout gap="80"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+	<e:Scroller id="scroller" width="600" x="20" top="700" bottom="0">
+		<e:Group>
+			<e:List id="list" width="200" height="200" x="32" y="40"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Image source="lock_icon_png" x="390" y="88"/>
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="660" id="tab0" width="600" horizontalCenter="0">
+		<e:ArrayCollection>
+		<e:Array>
+			<e:Object label="全部"/>
+			<e:Object label="攻 X1"/>
+			<e:Object label="防 X2"/>
+			<e:Object label="辅 X3"/>
+		</e:Array>
+		</e:ArrayCollection>
+	</e:TabBar>
+	<e:Label id="desText" text="Label" y="535" textColor="0xcbc08a" stroke="2" horizontalCenter="0"/>
+	<e:Button id="continueBtn" label="继续学习" y="570" horizontalCenter="0" skinName="Btn_r3Skin"/>
+</e:Skin>

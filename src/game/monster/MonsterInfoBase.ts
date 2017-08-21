@@ -13,6 +13,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private coinText: eui.Label;
     private headMC: eui.Image;
     private typeMC: eui.Image;
+    private leaderText: eui.Label;
     private skillGroup: eui.Group;
     private fightGroup: eui.Group;
     private totalNumText: eui.Label;
@@ -31,6 +32,7 @@ class MonsterInfoBase extends game.BaseContainer {
     private levelDes: eui.Label;
     private talkText: eui.Label;
     private talkBtn: eui.Group;
+
 
 
 

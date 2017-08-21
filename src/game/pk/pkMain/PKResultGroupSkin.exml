@@ -18,7 +18,7 @@
 						</e:List>
 						<e:Label y="-10" size="24" id="selfText0" stroke="1" x="20"/>
 						<e:Group id="selfForceGroup" x="11" y="15">
-							<e:Label id="selfText" text="战力：1234" y="13" size="24" stroke="1" x="49"/>
+							<e:Label id="selfText" text="战力：1234" y="12" size="24" stroke="1" x="49"/>
 							<e:Image source="icon_atk_png" x="0" y="0"/>
 						</e:Group>
 					</e:Group>
@@ -30,7 +30,7 @@
 						</e:List>
 						<e:Label y="-10" size="24" right="20" stroke="1" id="enemyText0" x="10"/>
 						<e:Group id="enemyForceGroup" x="78" y="15">
-							<e:Label id="enemyText" y="13" size="24" text="我方战力：1234" stroke="1" right="49"/>
+							<e:Label id="enemyText" y="12" size="24" text="我方战力：1234" stroke="1" right="49"/>
 							<e:Image source="icon_atk_png" y="0" x="173"/>
 						</e:Group>
 					</e:Group>

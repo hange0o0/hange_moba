@@ -255,6 +255,11 @@ class PKDressUI extends game.BaseUI {
         this.scroller.scrollPolicyV = eui.ScrollPolicy.ON;
         //console.log('onDragAfter')
     }
+
+    public onTipsGet()
+    {
+        this.changeBtn.skinName = 'Btn_r2Skin'
+    }
     private changeCardIndex(){
         if(this.changeBtn.label == '过关提示')
         {

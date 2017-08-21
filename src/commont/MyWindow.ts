@@ -43,7 +43,7 @@ function addBtnTips(mc,str){
                 TouchTipsUI.getInstance().show(e,str);
             else
                 TouchTipsUI.getInstance().show(e,str.apply(mc.thisObj || mc));
-        },this,300)
+        },this,100)
 
     }
     function onTouchEnd(){

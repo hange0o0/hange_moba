@@ -80,7 +80,11 @@ class MainGameManager{
     }
 
     public freeShowPass(){
-        return (UM.main_game.level < 100 && (UM.main_game.fail || 0) > 5 + Math.floor(UM.main_game.level/10))
+        return UM.main_game.level < 5 || (UM.main_game.level < 100 && (UM.main_game.fail || 0) > 5 + Math.floor(UM.main_game.level/10))
+    }
+    public getTipsCost(level?){
+        level = level || (UM.main_game.level - 5 + 1)
+        return Math.ceil(level/10);
     }
 
     //
@@ -124,10 +128,7 @@ class MainGameManager{
     }
 
 
-    public getTipsCost(level?){
-        level = level || (UM.main_game.level + 1)
-        return Math.ceil(level/10);
-    }
+
 
     public getAwardForce(level?){
         level = level || (UM.main_game.level + 1)
@@ -300,6 +301,7 @@ class MainGameManager{
                 time:TM.now()
             }
             UM.main_game.show_pass = true
+            PKDressUI.getInstance().onTipsGet();
             if(fun)
                 fun();
         });
