@@ -31,7 +31,8 @@ class LeaderMainUI extends game.BaseUI {
 
 
 
-
+    public selectArr = [];
+    private type
     public constructor() {
         super();
         this.skinName = "LeaderMainUISkin";
@@ -53,15 +54,37 @@ class LeaderMainUI extends game.BaseUI {
 
         this.addBtnEvent(this.btn1,this.onClick1)
         this.addBtnEvent(this.btn2,this.onClick2)
+        this.addBtnEvent(this.continueBtn,this.onClick3)
 
     }
 
     private onClick1(){
-
+        var self = this;
+        var TCM = TecManager.getInstance();
+        TCM.leaderGet(1,function(){
+            self.mvShow();
+        })
     }
 
     private onClick2(){
+        var num = PropManager.getInstance().getNum(32);
+        if(!num && !UM.testDiamond(500))
+            return;
 
+        var self = this;
+        var TCM = TecManager.getInstance();
+        TCM.leaderGet(2,function(){
+            self.mvShow();
+        })
+    }
+
+    private onClick3(){
+        var self = this;
+        var TCM = TecManager.getInstance();
+        TCM.leaderAward(this.selectArr,function(){
+            self.renewMain();
+            ShowTips('学习成功！');
+        })
     }
 
     private typeBarClick(){
@@ -71,15 +94,13 @@ class LeaderMainUI extends game.BaseUI {
 
 
     public beforeHide(){
-        this.clearList([this.list])
+        this.clearList([this.list,this.chooseList])
     }
 
 
     public show(){
         var self = this;
-        HonorManager.getInstance().getHonorMore(function(){
-            self.superShow();
-        })
+        self.superShow();
     }
 
     private superShow(){
@@ -89,7 +110,6 @@ class LeaderMainUI extends game.BaseUI {
     public onShow(){
         this.scroller.viewport.scrollV = 0;
         this.renew();
-
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
 
     }
@@ -98,14 +118,14 @@ class LeaderMainUI extends game.BaseUI {
         if(this.mainGroup.visible)
         {
             this.btn1.touchChildren = this.btn1.touchEnabled = true;
-            var num = 0;
-            var haveDone = 0;
+            var num = PropManager.getInstance().getNum(31);
+            var haveDone = DateUtil.isSameDay(UM.tec.leader.lasttime);
             if(num == 0)
             {
                 this.des2.text = ''
                 if(haveDone)
                 {
-                    this.des1.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now())+'后免费';
+                    this.des1.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now())+' 后免费';
                     this.btn1.skinName = 'Btn_d2Skin'
                     this.btn1.label = '学　习'
                     this.btn1.touchChildren = this.btn1.touchEnabled = false;
@@ -121,27 +141,28 @@ class LeaderMainUI extends game.BaseUI {
             {
                 if(haveDone)
                 {
-                    this.des2.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now())+'后免费';
-                    this.des1.text = '初级学习卡X' + num;
+                    this.des2.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now())+' 后免费';
+                    this.des1.text = '初级学习卡 X' + num;
                     this.btn1.skinName = 'Btn_r2Skin'
                     this.btn1.label = '学　习'
                 }
                 else
                 {
                     this.des1.text = '可免费学习一次'
-                    this.des2.text = '初级学习卡X' + num
+                    this.des2.text = '初级学习卡 X' + num
                     this.btn1.label = '免费学习'
                     this.btn1.skinName = 'Btn_r2Skin'
                 }
             }
-
         }
     }
 
     private renew(){
-         this.renewMain();
-
-
+        if(UM.tec.leader.list)
+            this.renewChoose();
+        else
+            this.renewMain();
+        this.typeBarClick();
     }
 
     private renewMain(){
@@ -153,11 +174,11 @@ class LeaderMainUI extends game.BaseUI {
         this.desText.text = ''
 
 
-        var num = 0;
+        var num = PropManager.getInstance().getNum(32);
         if(num)
-            this.des3.text = '高级学习卡X' + num;
+            this.des3.text = '高级学习卡 X' + num;
         else
-            this.des3.text = '钻石X' + 500;
+            this.des3.text = '钻石 X' + 500;
 
         this.des4.text = ''
 
@@ -169,24 +190,67 @@ class LeaderMainUI extends game.BaseUI {
         this.chooseList.visible = true;
         this.chooseList.scaleX = this.chooseList.scaleY = 1;
         this.bg.visible = false
+        this.selectArr.length = 0
 
         this.continueBtn.visible = true
 
-        var arr = [];
-        this.chooseList.dataProvider = new eui.ArrayCollection(arr)
-        this.chooseList.selectedIndex = -1;
 
-        if(arr.length  == 2)
+        if(UM.tec.leader.list.length  == 2)
         {
+            this.type = 1;
             (<eui.TileLayout>this.chooseList.layout).requestedColumnCount = 2;
             (<eui.TileLayout>this.chooseList.layout).horizontalGap = 60;
-            this.desText.text = '你可以选取其中一项进行提升'
         }
         else
         {
+            this.type = 2;
             (<eui.TileLayout>this.chooseList.layout).requestedColumnCount = 3;
             (<eui.TileLayout>this.chooseList.layout).horizontalGap = 20;
-            this.desText.text = '你可以选取其中两项进行提升'
+        }
+
+        var arr = [];
+        for(var i=0;i<UM.tec.leader.list.length;i++)
+        {
+            arr.push({
+                id: UM.tec.leader.list[i],
+                type: this.type == 1?1:(i==0?3:2)
+            })
+        }
+        this.chooseList.dataProvider = new eui.ArrayCollection(arr)
+
+        this.renewSelect();
+    }
+
+    private renewSelect(){
+        var btnEnable = false
+        if(this.type == 1)
+        {
+            MyTool.setColorText(this.desText,'你可以选取其中一项进行提升[（'+this.selectArr.length+'/1）]')
+            if(this.selectArr.length == 1)
+                btnEnable = true;
+        }
+        else
+        {
+            MyTool.setColorText(this.desText,'你可以选取其中两项进行提升[（'+this.selectArr.length+'/2）]');
+            if(this.selectArr.length == 2)
+                btnEnable = true;
+        }
+
+        if(btnEnable)
+        {
+            this.continueBtn.touchEnabled = true
+            this.continueBtn.skinName = 'Btn_r2Skin'
+        }
+        else
+        {
+            this.continueBtn.touchEnabled = false
+            this.continueBtn.skinName = 'Btn_d2Skin'
+        }
+
+        for(var i=0;i<this.chooseList.numChildren;i++)
+        {
+            var item:any = this.chooseList.getChildAt(i);
+            item.renewChoose();
         }
     }
 
@@ -197,15 +261,29 @@ class LeaderMainUI extends game.BaseUI {
             this.mainGroup.visible = false;
         },this);
 
+        this.renewChoose();
         this.desText.text = ''
         this.continueBtn.visible = false
         this.chooseList.scaleX = this.chooseList.scaleY = 0
         this.chooseList.visible = true;
         var tw = egret.Tween.get(this.chooseList);
-        tw.wait(500).to({scaleX:1.1,scaleY:1.1},300).to({scaleX:1,scaleY:11},300).call(function(){
-            this.desText.text = '你可以选取其中两项进行提升'
+        tw.wait(500).to({scaleX:1.1,scaleY:1.1},300).to({scaleX:1,scaleY:1},300).call(function(){
+            this.renewSelect();
             this.continueBtn.visible = true
         },this);
+    }
+
+    public onSelect(mid){
+        var index = this.selectArr.indexOf(mid);
+        if(index != -1)
+            this.selectArr.splice(index,1);
+        else
+        {
+            this.selectArr.push(mid);
+            while(this.selectArr.length >  this.type)
+                this.selectArr.shift();
+        }
+        this.renewSelect();
     }
 
 

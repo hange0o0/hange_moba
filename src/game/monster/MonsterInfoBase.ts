@@ -190,6 +190,7 @@ class MonsterInfoBase extends game.BaseContainer {
         //战力表现相关
         var fightData;
         var isFromPK = false
+        this.leaderText.text = '';
         if(specialData.isNPC)//有战力加成节点，表示是用战力加成值
         {
             var v = specialData.fight || 0;
@@ -228,7 +229,6 @@ class MonsterInfoBase extends game.BaseContainer {
                 nameStr += '  <font color="#cc9900" size="22">(修正)</font>';
                 //this.levelGroup.visible = false;
             }
-
             else if(specialData.isBase)   {
 
                 //this.levelGroup.visible = false;

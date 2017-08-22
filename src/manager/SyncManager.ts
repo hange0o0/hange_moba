@@ -47,6 +47,12 @@ class SyncManager{
                     }
                     EM.dispatch(GameEvent.client.prop_change);
                     break;
+                case 'sync_leader':
+                    for(ss in value)
+                    {
+                        UM.tec.leader[ss] = value[ss];
+                    }
+                    break;
                 case 'sync_tec_main':
                     for(ss in value)
                     {

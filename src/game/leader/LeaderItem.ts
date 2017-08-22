@@ -29,28 +29,90 @@ class LeaderItem extends game.BaseItem {
 
     public childrenCreated(){
         super.childrenCreated();
-        this.bar0.mask = this.maskMC0
-        this.bar1.mask = this.maskMC1
+        this.bar0.mask = this.maskMC0;
+        this.bar1.mask = this.maskMC1;
 
         this.addBtnEvent(this,this.onClick);
 
     }
 
     private onClick(){
-
+         LeaderMainUI.getInstance().onSelect(this.data.id)
     }
 
 
 
     public dataChanged(){
         var vo =  MonsterVO.getObject(this.data.id)
-        this.barMC0.rotation = 10;
-        this.barMC1.rotation = 10;
+
         this.headMC.source = vo.thumbRound
         this.typeMC.source = vo.typeIcon
-        this.headBG.source = 'leader_item_bg1_png'
-        this.expText.text = '经验+1000'
-        this.leaderText.text = '经验+1000'
+
+
+        var addExp = 0
+        if(this.data.type == 1)
+        {
+            this.headBG.source = 'leader_item_bg1_png'
+            addExp = 50;
+        }
+        else if(this.data.type == 2)
+        {
+            this.headBG.source = 'leader_item_bg2_png'
+            addExp = 150;
+        }
+        else
+        {
+            this.headBG.source = 'leader_item_bg3_png'
+            addExp = 300;
+
+        }
+
+        this.expText.text = '经验 +' + addExp
+
+        var level = UM.getLeaderLevel(vo.id)
+        var level2 = UM.getLeaderLevel(vo.id,addExp)
+        if(vo.mtype == 1)
+        {
+            this.leaderText.text = '+' + level;
+            this.leaderText.textColor = 0xFDC04F
+        }
+        else if(vo.mtype == 2)
+        {
+            this.leaderText.text = '+' + level;
+            this.leaderText.textColor = 0xFF4747
+        }
+        else if(vo.mtype == 3)
+        {
+            this.leaderText.text = '+' + level;
+            this.leaderText.textColor = 0x747DFF
+        }
+
+        var currentExp = UM.getLeaderExp(vo.id);
+        var levelExp = UM.getLeaderExpByLevel(level);
+        var nextExp = UM.getLeaderExp(level + 1);
+
+        if(level >= TecManager.getInstance().maxLevel)
+        {
+            this.barMC1.rotation = 0;
+        }
+        else
+        {
+            this.barMC1.rotation = 180 + (currentExp-nextExp)/(nextExp - nextExp)*180;
+            this.barMC1.rotation = 180 + 0.5*180;
+            if(level == level2)
+            {
+                this.barMC0.rotation = 180 + (currentExp-nextExp + addExp)/(nextExp - nextExp)*180;
+            }
+            else
+            {
+                this.barMC0.rotation = 0
+            }
+        }
+    }
+
+    public renewChoose(){
+        var b = LeaderMainUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        this.currentState = b?'selected':'normal';
     }
 
 }

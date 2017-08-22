@@ -497,7 +497,8 @@ class MainPageUI extends game.BaseUI {
 
     }
     private onLeader(){
-        Alert('领队系统尚未开放')
+        LeaderMainUI.getInstance().show();
+        //Alert('领队系统尚未开放')
     }
 
 

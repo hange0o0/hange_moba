@@ -78,6 +78,9 @@ class UserManager {
 
 
 
+        if(!UM.tec.leader)
+            UM.tec.leader = {};
+
         this.initActive();
          DayGameManager.getInstance().resetDay();
 
@@ -206,7 +209,7 @@ class UserManager {
             {
                 for(var i=1;i<=data[s];i ++)
                 {
-                    count += i;//ceil(($i + 1)/10);
+                    count += i;//ceil((i + 1)/10);
                 }
             }
             return count;
@@ -247,6 +250,29 @@ class UserManager {
             }
             return count;
         }
+    }
+    
+    public getLeaderExp(id){
+        if(!this.tec.leader)
+            this.tec.leader = {};
+        return this.tec.leader[id] || 0
+    }
+    public getLeaderLevel(id,addExp=0){
+        var leaderExp = this.getLeaderExp(id) + addExp;
+        if(leaderExp)
+        {
+            for(var i=1;i<=30;i++)
+            {
+                var exp = this.getLeaderExpByLevel(i);
+                if(leaderExp < exp)
+                    return i - 1;
+            }
+            return 30;
+        }
+        return 0;
+    }
+    public getLeaderExpByLevel(level){
+        return Math.floor(Math.pow(level,10/3.5) + 40*level);
     }
 
 

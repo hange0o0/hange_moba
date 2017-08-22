@@ -15,7 +15,7 @@
 	<e:Group y="150" height="380" width="640" horizontalCenter="0">
 		<e:List id="chooseList" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
 			<e:layout>
-			<e:TileLayout horizontalGap="30" verticalGap="20"/>
+			<e:TileLayout horizontalGap="30" verticalGap="10"/>
 			</e:layout>
 		</e:List>
 		<e:Group id="mainGroup" horizontalCenter="0" verticalCenter="20">
@@ -56,6 +56,6 @@
 		</e:Array>
 		</e:ArrayCollection>
 	</e:TabBar>
-	<e:Label id="desText" text="Label" y="535" textColor="0xcbc08a" stroke="2" horizontalCenter="0"/>
-	<e:Button id="continueBtn" label="继续学习" y="570" horizontalCenter="0" skinName="Btn_r3Skin"/>
+	<e:Label id="desText" size="24" text="Label" y="535" textColor="0xcbc08a" stroke="3" horizontalCenter="0"/>
+	<e:Button id="continueBtn" label="开始学习" y="570" horizontalCenter="0" skinName="Btn_r2Skin"/>
 </e:Skin>

@@ -7,6 +7,7 @@ class TecManager{
     }
 
     public maxLevel = 30;
+    public leaderDiamond = 500;
 
     public list1;
     public list2;
@@ -159,7 +160,6 @@ class TecManager{
         return arr;
     }
 
-    //取更详细的碎片数据
     public levelUp(type,id,fun?){
         var self = this;
         var oo:any = {};
@@ -198,6 +198,64 @@ class TecManager{
             }
             SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
             ShowTips('升级成功，战力' + MyTool.createHtml('　+'+(UM.getForce() - force),0xE0A44A))
+            if(fun)
+                fun();
+        });
+    }
+
+    public leaderGet(type,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.type = type;
+
+        Net.addUser(oo);
+        Net.send(GameEvent.tec.leader_get,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('时间未到');
+                return;
+            }
+            if(msg.fail == 2)
+            {
+                Alert('钻石不够');
+                return;
+            }
+            if(msg.fail == 3)
+            {
+                Alert('已有列表');
+            }
+            else if(msg.isFree)
+            {
+                UM.tec.leader.lasttime = TM.now();
+            }
+            UM.tec.leader.list = msg.list;
+
+            if(fun)
+                fun();
+        });
+    }
+
+    public leaderAward(ids,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.ids = ids;
+
+        Net.addUser(oo);
+        Net.send(GameEvent.tec.leader_award,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('找不到原始数据');
+                return;
+            }
+            if(msg.fail == 2)
+            {
+                Alert('选择数量不对');
+                return;
+            }
+            UM.tec.leader.list = null;
+
             if(fun)
                 fun();
         });

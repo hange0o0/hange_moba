@@ -75,7 +75,9 @@ class GameEvent {
     }
 
     public static tec = {
-        levelup_tec:'levelup_tec'
+        levelup_tec:'levelup_tec',
+        leader_get:'leader_get',
+        leader_award:'leader_award'
     }
 
     public static guess = {
