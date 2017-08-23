@@ -80,7 +80,7 @@ class MainMainItem extends game.BaseItem {
             var lastLevel = MM.getStepLevel(MM.getMainStep());
             var nextLevel = MM.getStepLevel(MM.getMainStep() + 1);
             this.nextText.text = MainGameManager.getInstance().getStepName(nextLevel) + '：';
-            this.rateText.text = (level - lastLevel) + '/' +(nextLevel - lastLevel);;
+            this.rateText.text = (level - lastLevel) + '/' +(nextLevel - lastLevel);
             this.barMC.width = 200 *(level - lastLevel)/(nextLevel - lastLevel);
         }
 

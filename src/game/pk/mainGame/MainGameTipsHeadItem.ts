@@ -29,6 +29,7 @@ class MainGameTipsHeadItem extends game.BaseItem {
     public childrenCreated() {;
         this.addBtnEvent(this,this.onClick);
 
+        this.leaderText.visible = false;
         this.stateMC.visible = false;
         this.levelGroup.visible = false;
         addBtnTips(this,this.onTips);

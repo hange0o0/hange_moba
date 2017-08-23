@@ -12,7 +12,7 @@ class MonsterManager{
 
     }
 
-    public getEnemyMonsterLevel(force){
+    public getEnemyMonsterLevel(force,hard?){
         force = Math.pow(force,0.62)-6;
         var level = 0;
         var levelForce = 0;
@@ -21,7 +21,33 @@ class MonsterManager{
             levelForce += level;
             level ++;
         }
-        return Math.max(0,level-1);
+        var mLevel = Math.max(0,level-1)
+        if(hard)
+        {
+            var hardData = TeamDungeonManager.getInstance().hardData[hard-1];
+            if(mLevel > hardData.level)
+                mLevel = hardData.level;
+        }
+        return mLevel;
+    }
+
+    public getEnemyMonsterLeader(force,hard?){
+        force = Math.pow(Math.max(0,force-450),0.64);
+        var level = 0;
+        var levelForce = 0;
+        while(levelForce + level < force)
+        {
+            levelForce += level;
+            level ++;
+        }
+        var mLeader = Math.max(0,level-1)
+        if(hard)
+        {
+            var hardData = TeamDungeonManager.getInstance().hardData[hard-1];
+            if(mLeader > hardData.leader)
+                mLeader = hardData.leader;
+        }
+        return mLeader;
     }
 
     public getMonsterValue(monsterID){

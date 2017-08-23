@@ -140,6 +140,7 @@ class PKResultGroup extends game.BaseContainer {
         var info1 = [];
         var info2 = [];
 
+
         this.selfText.text = '战力:' +  (Math.floor(team1Base.f) + commonAdd);
         for(var i=0;i<team1Base.list.length;i++)
         {
@@ -215,12 +216,74 @@ class PKResultGroup extends game.BaseContainer {
         else
             this.rateBG.source = 'bar_pvp_1_png'
 
-        this.selfText0.text = ''
-        this.enemyText0.text = ''
-        //this.selfForceGroup.y = 15
-        //this.enemyForceGroup.y = 15
-        this.selfForceGroup.y = -5
-        this.enemyForceGroup.y = -5
+        var leader1 = [];
+        var leader2 = [];
+        if(!team2Base.ld)
+            team2Base.ld = {}
+        if(!team1Base.ld)
+            team1Base.ld = {}
+        for(var s in team1Base.ld)
+        {
+            if(team1Base.ld[s])
+            {
+                var str = team1Base.ld[s] > (team2Base.ld[s] || 0)? this.createHtml('+' + team1Base.ld[s],0xffff00):('+' + team1Base.ld[s])
+                switch(s)
+                {
+                    case '1':
+                        leader1.push(this.createHtml('攻',UM.getLeaderWorldColor(1))  + str);
+                        break;
+                    case '2':
+                        leader1.push(this.createHtml('血',UM.getLeaderWorldColor(2))  + str);
+                        break;
+                    case '3':
+                        leader1.push(this.createHtml('速',UM.getLeaderWorldColor(3))  + str);
+                        break;
+                }
+            }
+        }
+        for(var s in team2Base.ld)
+        {
+            if(team2Base.ld[s])
+            {
+                var str = team2Base.ld[s] > (team1Base.ld[s] || 0)? this.createHtml('+' + team2Base.ld[s],0xffff00):('+' + team2Base.ld[s])
+                switch(s)
+                {
+                    case '1':
+                        leader2.push(this.createHtml('攻',UM.getLeaderWorldColor(1))  + str);
+                        break;
+                    case '2':
+                        leader2.push(this.createHtml('血',UM.getLeaderWorldColor(2))  + str);
+                        break;
+                    case '3':
+                        leader2.push(this.createHtml('速',UM.getLeaderWorldColor(3))  + str );
+                        break;
+                }
+            }
+        }
+
+        if(leader1.length > 0)
+        {
+            this.setHtml(this.selfText0, leader1.join(' ') );
+            this.selfForceGroup.y = 15
+        }
+        else
+        {
+            this.selfText0.text = ''
+            this.selfForceGroup.y = -5
+        }
+
+        if(leader2.length > 0)
+        {
+            this.setHtml(this.enemyText0, leader2.join(' ') );
+            this.enemyForceGroup.y = 15
+        }
+        else
+        {
+            this.enemyText0.text = ''
+            this.enemyForceGroup.y = -5
+        }
+
+
 
 
         //totalData.hp = hp;

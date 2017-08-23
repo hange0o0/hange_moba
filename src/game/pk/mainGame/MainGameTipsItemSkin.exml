@@ -11,7 +11,8 @@
 	<e:Rect id="titleBG" width="100%" y="0" height="60" x="0" fillColor="0x300000"/>
 	<e:Rect x="0" width="100%" height="1" bottom="0" fillColor="0x444444"/>
 	<e:Rect width="100%" x="0" bottom="0" height="70" fillColor="0x212020"/>
-	<e:Label id="titleText" text="第1回合" y="15" size="26" stroke="2" horizontalCenter="0" textColor="0xcccccc"/>
+	<e:Label id="titleText" text="第1回合" y="15" size="26" stroke="2" textColor="0xcccccc" x="20"/>
+	<e:Label id="leaderText" text="第1回合" y="15" size="26" stroke="2" textColor="0xCCCCCC" right="20"/>
 	<e:Label id="resultText" text="标签" x="15" size="24" textColor="0xCCCCCC" bottom="24"/>
 	<e:Button id="videoBtn" label="使用此阵" skinName="Btn_r2Skin" width="140" right="15" bottom="8"/>
 	<e:Image source="line_png" x="-1" width="650" bottom="-5"/>

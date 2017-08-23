@@ -71,21 +71,9 @@ class LeaderItem extends game.BaseItem {
 
         var level = UM.getLeaderLevel(vo.id)
         var level2 = UM.getLeaderLevel(vo.id,addExp)
-        if(vo.mtype == 1)
-        {
-            this.leaderText.text = '+' + level;
-            this.leaderText.textColor = 0xFDC04F
-        }
-        else if(vo.mtype == 2)
-        {
-            this.leaderText.text = '+' + level;
-            this.leaderText.textColor = 0xFF4747
-        }
-        else if(vo.mtype == 3)
-        {
-            this.leaderText.text = '+' + level;
-            this.leaderText.textColor = 0x747DFF
-        }
+
+        this.leaderText.text = '+' + level;
+        this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype)
 
         var currentExp = UM.getLeaderExp(vo.id);
         var levelExp = UM.getLeaderExpByLevel(level);

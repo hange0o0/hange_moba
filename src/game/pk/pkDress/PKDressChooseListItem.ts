@@ -105,6 +105,7 @@ class PKDressChooseListItem extends game.BaseItem {
         this.infoStr = ''//this.createHtml(vo.name,0xE0A44A,16);
         this.typeMC.source = vo.typeIcon;
 
+        this.leaderText.text = ''
 
         //var fightData;
         if(this.data.specialData.isEqual)
@@ -114,12 +115,14 @@ class PKDressChooseListItem extends game.BaseItem {
             this.redMC.visible = false;
             this.levelGroup.visible = false;
         }
-        else  //我自己
+        else
         {
-            var lv = UM.getMonsterLevel(vo.id);
+            var lv = UM.getMonsterLevel(vo.id,this.data.specialData.hard);
             this.levelGroup.visible = true;
             this.levelText.text = '' + lv
             this.redMC.visible = vo.canLevelUp(this.data.specialData.hard)
+
+
             //this.infoStr += '(LV.'+lv+')'
 
             //var force = (UM.award_force + UM.tec_force);
@@ -173,6 +176,12 @@ class PKDressChooseListItem extends game.BaseItem {
         this.hpText.text = '' +  fightData.hp
         this.atkText.text = '' +  fightData.atk
         this.speedText.text = '' +  fightData.speed
+
+        if(fightData.leader)
+        {
+            this.leaderText.text = '+' + fightData.leader;
+            this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype)
+        }
 
         var width = 105;
        this.hpBar.width = width*fightData.hp/atkData.hp[0]

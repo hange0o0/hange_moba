@@ -787,7 +787,7 @@ class PKDressUI extends game.BaseUI {
             {
                 fightData = {atk:Config.equalValue,hp:Config.equalValue,speed:0};
             }
-            else  //我自己
+            else
             {
                 var force = (UM.award_force + UM.tec_force);
                 var levelLimit = 999;
@@ -806,6 +806,8 @@ class PKDressUI extends game.BaseUI {
             temp.atk =  Math.round(vo.atk * (1+fightData.atk/100));
             temp.speed =  Math.round(vo.speed * (1+fightData.speed/100));
             temp.cost =  PKManager.getInstance().getCostByNum(vo.id,this.getMonsterNum(vo.id))
+            temp.leader = UM.getMyLeaderLevel(vo.id,this.specialData.hard);
+
             this.atkData.hp.push(temp.hp);
             this.atkData.atk.push(temp.atk);
             this.atkData.speed.push(temp.speed);

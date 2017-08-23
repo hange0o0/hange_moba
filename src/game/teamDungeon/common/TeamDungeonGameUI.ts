@@ -113,7 +113,8 @@ class TeamDungeonGameUI extends game.BaseUI {
             //};
 
             var fight = TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)
-            var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight);
+            var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight,PVEM.data.game_data.hard);
+            var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight,PVEM.data.game_data.hard);
 
             for(var i=0;i<this.data.list.length;i++)
             {
@@ -127,6 +128,7 @@ class TeamDungeonGameUI extends game.BaseUI {
                         isNPC:true,
                         fight:fight,
                         lv:lv,
+                        leader:leader
                     },
                     index: i,
                     list:enemyList

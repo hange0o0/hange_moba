@@ -55,7 +55,7 @@
 		<e:Image source="card_bg_png" x="0" y="0" height="350" scale9Grid="72,75,87,71" width="270"/>
 		<e:Image id="headMC" x="15" y="13" width="240" height="320" source=""/>
 		<e:Image id="typeMC" x="12.06" y="8.03" scaleX="1.5" scaleY="1.5" source="monster_type1_png"/>
-		<e:Label id="leaderText" text="+5" x="73" y="21" stroke="1"/>
+		<e:Label id="leaderText" text="+5" x="73" y="21" stroke="3" size="30" bold="true"/>
 	</e:Group>
 	<e:Rect width="580" horizontalCenter="0" top="510" bottom="20" ellipseHeight="10" ellipseWidth="10" strokeWeight="1" fillColor="0x180802" strokeColor="0xc2a87d"/>
 	<e:Group id="skillGroup" top="520" bottom="30" left="40" right="40">

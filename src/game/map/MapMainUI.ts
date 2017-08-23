@@ -653,7 +653,7 @@ class MapMainUI extends game.BaseUI {
 
     private renewInfo(){
         var MD = MapData.getInstance();
-        if(MD.level<MD.maxLevel || MD.maxBossTimes == MD.step)
+        if(MD.level<MD.maxLevel || MD.maxBossTimes <= MD.step)
         {
             this.desText.text = '已通关';
             this.setBtnEnable('left',MD.level > 1 && MD.maxLevel - MD.level < 2)

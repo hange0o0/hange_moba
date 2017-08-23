@@ -40,12 +40,13 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Scroller id="scroller" width="600" x="20" top="700" bottom="0">
+	<e:Scroller id="scroller" width="600" x="20" top="710" bottom="0">
 		<e:Group>
 			<e:List id="list" width="200" height="200" x="32" y="40"/>
 		</e:Group>
 	</e:Scroller>
 	<e:Image source="lock_icon_png" x="390" y="88"/>
+	<e:Image source="line_png" y="700" width="620" horizontalCenter="0"/>
 	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="660" id="tab0" width="600" horizontalCenter="0">
 		<e:ArrayCollection>
 		<e:Array>
@@ -58,4 +59,5 @@
 	</e:TabBar>
 	<e:Label id="desText" size="24" text="Label" y="535" textColor="0xcbc08a" stroke="3" horizontalCenter="0"/>
 	<e:Button id="continueBtn" label="开始学习" y="570" horizontalCenter="0" skinName="Btn_r2Skin"/>
+	<e:Image source="line_png" y="140" width="650" horizontalCenter="0"/>
 </e:Skin>

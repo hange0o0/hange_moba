@@ -7,8 +7,10 @@ class MainGameTipsItem extends game.BaseItem {
     private enemyList: eui.List;
     private titleBG: eui.Rect;
     private titleText: eui.Label;
+    private leaderText: eui.Label;
     private resultText: eui.Label;
     private videoBtn: eui.Button;
+
 
 
 
@@ -106,13 +108,46 @@ class MainGameTipsItem extends game.BaseItem {
 
 
             var myForce = UM.getForce()
-            this.titleText.text = '通关战力：' + teamData.force + '('+myForce+')';
-            if(myForce > teamData.force)
-                this.titleBG.fillColor = 0x4F2900
-            else if(myForce < teamData.force)
-                this.titleBG.fillColor = 0x0F243A
-            else
-                this.titleBG.fillColor = 0x300000
+            var des:any = (myForce - teamData.force)
+            var str = '通关战力：' + teamData.force + ' ';
+            if(des > 0)
+                str += this.createHtml('(+'+des+')',0xCC0000)
+            else if(des < 0)
+                str += this.createHtml('('+des+')',0x00cc00)
+            this.setHtml(this.titleText,str);
+            //if(myForce > teamData.force)
+            //    this.titleBG.fillColor = 0x4F2900
+            //else if(myForce < teamData.force)
+            //    this.titleBG.fillColor = 0x0F243A
+            //else
+            //    this.titleBG.fillColor = 0x300000
+
+            this.leaderText.text = ''
+            if(teamData.leader)
+            {
+                var leaderlist = []
+                for(var s in teamData.leader)
+                {
+                    if(teamData.leader[s])
+                    {
+                        var str = '+' + teamData.leader[s];
+                        switch(s)
+                        {
+                            case '1':
+                                leaderlist.push(this.createHtml('攻',UM.getLeaderWorldColor(1))  + str);
+                                break;
+                            case '2':
+                                leaderlist.push(this.createHtml('血',UM.getLeaderWorldColor(2))  + str);
+                                break;
+                            case '3':
+                                leaderlist.push(this.createHtml('速',UM.getLeaderWorldColor(3))  + str );
+                                break;
+                        }
+                    }
+                }
+                if(leaderlist.length)
+                    this.setHtml(this.leaderText,leaderlist.join(' '))
+            }
         }
 
 

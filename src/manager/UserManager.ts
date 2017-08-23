@@ -257,6 +257,12 @@ class UserManager {
             this.tec.leader = {};
         return this.tec.leader[id] || 0
     }
+    public getMyLeaderLevel(id,hard?){
+        var lv = this.getLeaderLevel(id);
+         if(hard)
+            return Math.min(lv,TeamDungeonManager.getInstance().hardData[hard - 1].leader);
+        return lv;
+    }
     public getLeaderLevel(id,addExp=0){
         var leaderExp = this.getLeaderExp(id) + addExp;
         if(leaderExp)
@@ -274,6 +280,17 @@ class UserManager {
     public getLeaderExpByLevel(level){
         return Math.floor(Math.pow(level,10/3.5) + 40*level);
     }
+    public getLeaderWorldColor(type) {
+        switch (type) {
+            case 1:
+                return 0xFDC04F;
+            case 2:
+                return 0xFF4747;
+            case 3:
+                return 0x747DFF;
+        }
+        return 0xFDC04F;
+    }
 
 
     public getRingLevel(id){
@@ -282,7 +299,9 @@ class UserManager {
     public getMainLevel(id){
         return this.tec.main[id] || 0;
     }
-    public getMonsterLevel(id){
+    public getMonsterLevel(id,hard?){
+        if(hard)
+            return Math.min(this.getMonsterLevel(id),TeamDungeonManager.getInstance().hardData[hard - 1].level);
         return this.tec.monster[id] || 0;
     }
 

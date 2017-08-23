@@ -23,8 +23,8 @@
 
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image y="0" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
-		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="335" height="36" lineSpacing="8" textColor="0xCCB48E" x="73"/>
-		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24" visible="false"/>
+		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="420" height="36" lineSpacing="8" textColor="0xCCB48E" horizontalCenter="0"/>
+		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect height="1" width="400" x="48" y="74" fillColor="0x494747"/>
 		<e:Group id="barGroup" y="104" horizontalCenter="0">
 			<e:Group x="110" y="1">

@@ -141,6 +141,7 @@ class MapGameUI extends game.BaseUI {
 
         var fight = MD.enemy.force;
         var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight);
+        var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
@@ -153,6 +154,7 @@ class MapGameUI extends game.BaseUI {
                     isNPC:true,
                     fight:fight,
                     lv:lv,
+                    leader:leader,
                 },
 
                 index: i,

@@ -46,7 +46,7 @@ class MainGameManager{
         var step2 = step%10
         if(step2==0)
             return this.stepName[index];
-        return this.stepName[index] + StringUtil.numToStr(step) + '阶';
+        return this.stepName[index] + StringUtil.numToStr(step2) + '阶';
     }
 
     public getStepLevel(step){
@@ -300,6 +300,12 @@ class MainGameManager{
                 list:msg.list,
                 time:TM.now()
             }
+            for(var i=0;i<msg.list.length;i++)
+            {
+                msg.list[i].score = parseInt(msg.list[i].score);
+                msg.list[i].time = parseInt(msg.list[i].time);
+            }
+            ArrayUtil.sortByField(msg.list,['score','time'],[0,1])
             UM.main_game.show_pass = true
             PKDressUI.getInstance().onTipsGet();
             if(fun)
@@ -404,8 +410,11 @@ class MainGameManager{
         var arr = MainGameVO.getObject(UM.main_game.level+1).list;
         var fight = this.getMainForce();
         var lv = this.getMainMonsterLevel();
+        var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
         var lvAdd = UM.getTecAdd('monster',lv);
         dataIn.team2 = {"list":arr,"fight":fight,"tec":{}}
+        if(leader)
+            dataIn.team2.leader = {1:leader,2:leader,3:leader};
         for(var i=0;i<arr.length;i++)
         {
             var mid = arr[i];

@@ -111,6 +111,8 @@ class TeamInfoUI extends game.BaseWindow {
         this.hardText.text = '【' + hardData.name + '】难度：'
         this.setHtml(this.forceText,this.createHtml('卡士战力上限：',0xE0A44A) + hardData.force);
         this.setHtml(this.levelText,this.createHtml('卡兵等级上限：',0xE0A44A) + hardData.level + '级');
+        //this.setHtml(this.levelText,this.createHtml('统帅等级上限：',0xE0A44A) + hardData.leader + '级');
+
 
         this.setHtml(this.nameText,this.createHtml('队伍名称：',0xE0A44A) + data.nick);
 

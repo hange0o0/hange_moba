@@ -731,6 +731,7 @@ class PKDressChooseUI extends game.BaseContainer {
         //this.atkData.hp.push(temp.hp);
         //this.atkData.atk.push(temp.atk);
         //this.atkData.speed.push(temp.speed);
+        var leaderData = {}
         for(var i=0;i<this.mcArray.length;i++) {
             var mc = this.mcArray[i];
             if(mc.data)
@@ -741,6 +742,10 @@ class PKDressChooseUI extends game.BaseContainer {
                 this.atkData.hp.push(temp.hp);
                 this.atkData.atk.push(temp.atk);
                 this.atkData.speed.push(temp.speed);
+
+                var vo = MonsterVO.getObject(mc.data.id)
+                if(!leaderData[vo.mtype] || leaderData[vo.mtype] < temp.leader)
+                    leaderData[vo.mtype] = temp.leader;
             }
         }
 
@@ -756,6 +761,7 @@ class PKDressChooseUI extends game.BaseContainer {
         for(var i=0;i<this.mcArray.length;i++) {
             var mc = this.mcArray[i];
             mc.dataChanged();
+            mc.renewLeader(leaderData)
         }
     }
 

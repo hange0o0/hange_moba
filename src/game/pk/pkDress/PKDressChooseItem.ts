@@ -69,6 +69,7 @@ class PKDressChooseItem extends game.BaseItem {
 
         //this.noteIcon.visible = false;
         this.lvText.text = '';
+        this.leaderText.text = '';
         //this.pGroup.removeChildren()
         if(!this.data)
         {
@@ -117,7 +118,7 @@ class PKDressChooseItem extends game.BaseItem {
             //str += '\n' + arr[0].v +','+ arr[1].v+',' + arr[2].v;
         }
         this.lvText.x = 5;
-        var lv = UM.getMonsterLevel(this.data.id);
+        var lv = UM.getMonsterLevel(this.data.id,this.data.specialData.hard);
         if(!this.data.specialData.isEqual && lv)
         {
             if(str)
@@ -130,5 +131,29 @@ class PKDressChooseItem extends game.BaseItem {
         }
 
         this.setHtml(this.lvText,str);
+    }
+
+    public renewLeader(leaderData){
+        if(!this.data)
+            return;
+        var vo = MonsterVO.getObject(this.data.id);
+        var atkData = PKDressUI.getInstance().atkData[this.data.id];
+        if(atkData && leaderData[vo.mtype] && leaderData[vo.mtype] == atkData.leader)
+        {
+            leaderData[vo.mtype] = null;
+            this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype);
+            switch(vo.mtype)
+            {
+                case 1:
+                    this.leaderText.text = '攻+' + atkData.leader;
+                    break;
+                case 2:
+                    this.leaderText.text = '血+' + atkData.leader;
+                    break;
+                case 3:
+                    this.leaderText.text = '速+' + atkData.leader;
+                    break;
+            }
+        }
     }
 }

@@ -189,17 +189,25 @@ class MonsterInfoBase extends game.BaseContainer {
 
         //战力表现相关
         var fightData;
+        var leaderCount = 0;
         var isFromPK = false
         this.leaderText.text = '';
         if(specialData.isNPC)//有战力加成节点，表示是用战力加成值
         {
             var v = specialData.fight || 0;
-            fightData = {atk:v,hp:v,speed:v};
+            fightData = {atk:v,hp:v,speed:0};
             if(specialData.lv)
             {
                 var levelAdd = UM.getTecAdd('monster',specialData.lv);
                 fightData.atk += levelAdd;
                 fightData.hp += levelAdd;
+            }
+
+            if(specialData.leader)
+            {
+                leaderCount = specialData.leader;
+                this.leaderText.text = '+' + specialData.leader;
+                this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype)
             }
 
             isMe = false;
@@ -240,15 +248,23 @@ class MonsterInfoBase extends game.BaseContainer {
             {
                 var force = (UM.award_force + UM.tec_force);
                 var levelLimit = 999;
+                var leaderLevel = UM.getLeaderLevel(monsterID);
                 if(specialData.hard)//带难度的
                 {
                       var hardData = TeamDungeonManager.getInstance().hardData[specialData.hard - 1];
                     levelLimit = hardData.level;
+                    leaderLevel = Math.min(leaderLevel,hardData.leader)
                     force = Math.min(hardData.force,force);
                 }
                 fightData = UM.getTecMonsterAdd(monsterID,levelLimit);
                 fightData.atk += force;
                 fightData.hp += force;
+
+                if(leaderLevel)
+                {
+                    this.leaderText.text = '+' + leaderLevel;
+                    this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype)
+                }
 
                 if(UM.level >= vo.level)
                 {
@@ -292,6 +308,13 @@ class MonsterInfoBase extends game.BaseContainer {
             var atk = Math.round(vo.atk * (1+fightData.atk/100));
             var hp = Math.round(vo.hp * (1+fightData.hp/100));
             var speed = Math.round(vo.speed * (1+fightData.speed/100));
+        }
+
+        if(leaderCount)
+        {
+            atk = Math.round(atk * (1+leaderCount/100));
+            hp = Math.round(hp * (1+leaderCount/100));
+            speed = Math.round(speed * (1+leaderCount/100));
         }
 
         if(this.levelUpCon.visible)

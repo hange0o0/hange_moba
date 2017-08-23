@@ -112,6 +112,11 @@ class DayGameManager{
                 list:msg.list,
                 time:TM.now()
             }
+            for(var i=0;i<msg.list.length;i++)
+            {
+                msg.list[i].time = parseInt(msg.list[i].time);
+            }
+            ArrayUtil.sortByField(msg.list,['time'],[0])
             UM.day_game.show_pass = true
             if(fun)
                 fun();

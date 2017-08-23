@@ -19,10 +19,12 @@ class MainGameUI extends game.BaseUI {
     private coinRect: eui.Rect;
     private moneyText: eui.Label;
     private enemyList: eui.List;
+    private leaderText: eui.Label;
     private myCardGroup: MyCardGroupUI;
     private historyList: eui.List;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
+
 
 
 
@@ -145,6 +147,11 @@ class MainGameUI extends game.BaseUI {
         var killNum = 0;
         var fight = MM.getMainForce();
         var lv = MM.getMainMonsterLevel();
+        var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
+        if(leader)
+            MyTool.setColorText(this.leaderText,'[统\n帅\n▼]\n'+ leader);
+        else
+            this.leaderText.text = '';
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
@@ -162,6 +169,7 @@ class MainGameUI extends game.BaseUI {
                 specialData: {
                     isNPC:true,
                     fight:fight,
+                    leader:leader,
                     lv:lv,
                 },
 

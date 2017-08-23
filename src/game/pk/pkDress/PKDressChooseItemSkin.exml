@@ -8,7 +8,7 @@
 		<e:Label id="addMC" text="6" size="40" horizontalCenter="-0.5" y="36" strokeColor="0x471c01" textColor="0x632e0b"/>
 		<e:Image id="headMC" x="8" y="4" width="100" height="100" source=""/>
 		<e:Image id="headBG" x="0" y="0" source="head_border1_png"/>
-		<e:Label text="+5" x="44" y="-10" id="leaderText" size="24" stroke="1"/>
+		<e:Label text="+5" y="-5" id="leaderText" size="22" stroke="3" horizontalCenter="0.5"/>
 		<e:Label id="lvText" textColor="0xCCB48E" text="地地地" textAlign="left" size="18" stroke="2" x="4" bottom="5" lineSpacing="5"/>
 		<e:Group id="levelGroup" y="87" x="65">
 			<e:Image source="fu2_png" x="0" y="0" scaleY="0.6" scaleX="0.6"/>
