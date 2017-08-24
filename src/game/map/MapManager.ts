@@ -20,40 +20,40 @@ class MapManager{
     //public sweepData;
     //public enemy;
 
-    public getMaxPKNum(level){
-        return Math.min(10,level+2);
-    }
+    //public getMaxPKNum(level){
+    //    return Math.min(10,level+2);
+    //}
 
-    public getLevelMap(level){
-        var arr = [2, 11, 20, 29, 38, 46, 53, 74]
-        for(var i=0;i<arr.length;i++)
-        {
-            if(level-1 <= arr[i])   //在这个地图上
-            {
-                switch(i)
-                {
-                    case 0:
-                        return 'pk_bg9_jpg';
-                    case 1:
-                        return 'pk_bg3_jpg';
-                    case 2:
-                        return 'pk_bg4_jpg';
-                    case 3:
-                        return 'pk_bg10_jpg';
-                    case 4:
-                        return 'pk_bg8_jpg';
-                    case 5:
-                        return 'pk_bg13_jpg';
-                    case 6:
-                        return 'pk_bg16_jpg';
-                    case 7:
-                        return 'pk_bg12_jpg';
-                }
-                break;
-            }
-        }
-
-    }
+    //public getLevelMap(level){
+    //    var arr = [2, 11, 20, 29, 38, 46, 53, 74]
+    //    for(var i=0;i<arr.length;i++)
+    //    {
+    //        if(level-1 <= arr[i])   //在这个地图上
+    //        {
+    //            switch(i)
+    //            {
+    //                case 0:
+    //                    return 'pk_bg9_jpg';
+    //                case 1:
+    //                    return 'pk_bg3_jpg';
+    //                case 2:
+    //                    return 'pk_bg4_jpg';
+    //                case 3:
+    //                    return 'pk_bg10_jpg';
+    //                case 4:
+    //                    return 'pk_bg8_jpg';
+    //                case 5:
+    //                    return 'pk_bg13_jpg';
+    //                case 6:
+    //                    return 'pk_bg16_jpg';
+    //                case 7:
+    //                    return 'pk_bg12_jpg';
+    //            }
+    //            break;
+    //        }
+    //    }
+    //
+    //}
 
      //public passDay(){
      //    this.sweepData = {};

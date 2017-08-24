@@ -77,7 +77,7 @@ class LeaderItem extends game.BaseItem {
 
         var currentExp = UM.getLeaderExp(vo.id);
         var levelExp = UM.getLeaderExpByLevel(level);
-        var nextExp = UM.getLeaderExp(level + 1);
+        var nextExp = UM.getLeaderExpByLevel(level + 1);
 
         if(level >= TecManager.getInstance().maxLevel)
         {
@@ -85,11 +85,11 @@ class LeaderItem extends game.BaseItem {
         }
         else
         {
-            this.barMC1.rotation = 180 + (currentExp-nextExp)/(nextExp - nextExp)*180;
+            this.barMC1.rotation = 180 + (currentExp-levelExp)/(nextExp - levelExp)*180;
             this.barMC1.rotation = 180 + 0.5*180;
             if(level == level2)
             {
-                this.barMC0.rotation = 180 + (currentExp-nextExp + addExp)/(nextExp - nextExp)*180;
+                this.barMC0.rotation = 180 + (currentExp-levelExp + addExp)/(nextExp - levelExp)*180;
             }
             else
             {

@@ -18,9 +18,12 @@ class LeaderMainUI extends game.BaseUI {
     private des4: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
-    private tab0: eui.TabBar;
     private desText: eui.Label;
     private continueBtn: eui.Button;
+    private sortBtn: eui.Image;
+    private sortText: eui.Label;
+    private sortGroup: eui.Group;
+    private sortList: eui.List;
 
 
 
@@ -47,15 +50,55 @@ class LeaderMainUI extends game.BaseUI {
         this.tab.touchChildren = this.tab.touchEnabled = false;
 
         this.scroller.viewport = this.list;
+        this.list.itemRenderer = LeaderListItem
 
         this.chooseList.itemRenderer = LeaderItem
 
-        this.tab0.addEventListener(eui.ItemTapEvent.CHANGE, this.typeBarClick, this);
 
         this.addBtnEvent(this.btn1,this.onClick1)
         this.addBtnEvent(this.btn2,this.onClick2)
         this.addBtnEvent(this.continueBtn,this.onClick3)
 
+
+        this.addBtnEvent(this.sortBtn,this.onSort);
+        this.addBtnEvent(this.sortText,this.onSort);
+        this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
+        this.sortList.addEventListener(egret.Event.CHANGE,this.renewList,this)
+        this.sortGroup.visible = false;
+    }
+
+    private renewList(){
+        var arr = [];
+        var mList = MonsterVO.getListByLevel(UM.level)
+        for(var i=0;i<mList.length;i++)
+        {
+            var vo = mList[i];
+            if(this.sortList.selectedIndex == 0 || this.sortList.selectedIndex == vo.mtype)
+            {
+                arr.push({
+                    vo:vo,
+                    mtyle:vo.mtype,
+                    id:vo.id,
+                    exp:UM.getLeaderExp(vo.id)
+                });
+            }
+        }
+        ArrayUtil.sortByField(arr,['exp','mtyle','id'],[1,0,0]);
+        this.list.dataProvider = new eui.ArrayCollection(arr);
+        this.sortText.text =  this.sortList.selectedItem.label
+    }
+
+    private onSort(){
+        GameManager.stage.once(egret.TouchEvent.TOUCH_TAP,this.onHideSort,this,true);
+        this.sortGroup.visible = true;
+
+
+    }
+
+    private onHideSort(e?){
+        if(e)
+            e.stopImmediatePropagation()
+        this.sortGroup.visible = false;
     }
 
     private onClick1(){
@@ -84,14 +127,10 @@ class LeaderMainUI extends game.BaseUI {
         TCM.leaderAward(this.selectArr,function(){
             self.renewMain();
             ShowTips('学习成功！');
+            self.selectArr.length = 0
+            self.renewList();
         })
     }
-
-    private typeBarClick(){
-
-    }
-
-
 
     public beforeHide(){
         this.clearList([this.list,this.chooseList])
@@ -99,6 +138,12 @@ class LeaderMainUI extends game.BaseUI {
 
 
     public show(){
+        if(UM.main_game.level < Config.leaderLevel)
+        {
+            Alert('需达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderLevel),0xE0A44A)+'('+Config.leaderLevel+'分)才可进入')
+            return;
+        }
+
         var self = this;
         self.superShow();
     }
@@ -109,9 +154,24 @@ class LeaderMainUI extends game.BaseUI {
 
     public onShow(){
         this.scroller.viewport.scrollV = 0;
-        this.renew();
-        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
 
+
+        var arr = [];
+        var mList = MonsterVO.getListByLevel(UM.level)
+        var typeObj = {1:0,2:0,3:0};
+        for(var i=0;i<mList.length;i++)
+        {
+            var vo = mList[i];
+            typeObj[vo.mtype] ++;
+        }
+        arr.push({label:'全部 ×' + mList.length})
+        arr.push({label:'　攻 ×' + typeObj[1]})
+        arr.push({label:'　盾 ×' + typeObj[2]})
+        arr.push({label:'　辅 ×' + typeObj[3]})
+        this.sortList.dataProvider = new eui.ArrayCollection(arr)
+        this.renew();
+
+        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
     }
 
     private onTimer(){
@@ -162,7 +222,7 @@ class LeaderMainUI extends game.BaseUI {
             this.renewChoose();
         else
             this.renewMain();
-        this.typeBarClick();
+        this.renewList();
     }
 
     private renewMain(){
@@ -252,6 +312,11 @@ class LeaderMainUI extends game.BaseUI {
             var item:any = this.chooseList.getChildAt(i);
             item.renewChoose();
         }
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            var item:any = this.list.getChildAt(i);
+            item.renewSelect();
+        }
     }
 
     //动画表现
@@ -267,7 +332,7 @@ class LeaderMainUI extends game.BaseUI {
         this.chooseList.scaleX = this.chooseList.scaleY = 0
         this.chooseList.visible = true;
         var tw = egret.Tween.get(this.chooseList);
-        tw.wait(500).to({scaleX:1.1,scaleY:1.1},300).to({scaleX:1,scaleY:1},300).call(function(){
+        tw.wait(500).to({scaleX:1.1,scaleY:1.1},200).to({scaleX:1,scaleY:1},300).call(function(){
             this.renewSelect();
             this.continueBtn.visible = true
         },this);

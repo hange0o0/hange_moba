@@ -113,7 +113,7 @@ class PKResultItem2 extends game.BaseItem {
             this.b0.width = barWidth * after
             this.f0.width = barWidth * before
         }
-        this.hpText0.text =  player.after + ' / ' + player.afterMax;
+        this.hpText0.text =  player.after + '/' + player.afterMax;
         if(player.after == 0)
             this.hpText0.textColor = 0xAAAAAA
         else
@@ -152,7 +152,7 @@ class PKResultItem2 extends game.BaseItem {
             this.b1.width = barWidth * after
             this.f1.width = barWidth * before
         }
-        this.hpText1.text =  player.after + ' / ' + player.afterMax;
+        this.hpText1.text =  player.after + '/' + player.afterMax;
         if(player.after == 0)
             this.hpText1.textColor = 0xCCCCCC
         else

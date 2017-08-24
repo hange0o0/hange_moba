@@ -28,8 +28,8 @@
 		<e:Image id="headMC1" source="head_png" y="5" x="5" width="80" height="80"/>
 	</e:Group>
 	<e:Image id="winIcon" x="132" y="60" rotation="15" source="card_star_png" scaleX="1.2" scaleY="1.2"/>
-	<e:Label id="hpText0" text="12345/6758" x="125" y="32" size="22" textColor="0xEA4E4E" stroke="1"/>
+	<e:Label id="hpText0" text="12345/6758" x="120" y="32" size="22" textColor="0xEA4E4E" stroke="1"/>
 	<e:Label id="decText0" y="73" textColor="0xC54040" text="985" size="30" right="340" stroke="1"/>
 	<e:Label y="73" textColor="0xC54040" text="14567" size="30" id="decText1" left="340" stroke="1"/>
-	<e:Label id="hpText1" y="32" size="22" text="12345/6758" right="125" textColor="0xEA4E4E" stroke="1"/>
+	<e:Label id="hpText1" y="32" size="22" text="12345/6758" right="120" textColor="0xEA4E4E" stroke="1"/>
 </e:Skin>

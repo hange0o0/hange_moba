@@ -38,12 +38,12 @@
 			<e:Group id="team" x="300.4166666666667" y="10.833333333333371" width="100">
 				<e:Image y="0" scaleX="0.85" scaleY="0.85" horizontalCenter="0" source="menu_icon_10_png"/>
 				<e:Image id="teamLockMC" source="lock_icon_png" x="61" y="42"/>
-				<e:Label y="92" text="战队" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:Label y="92" text="战队" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
 			</e:Group>
 			<e:Group id="leaderBtn" x="290.4166666666667" y="0.8333333333333712" width="100">
 				<e:Image source="menu_icon_3_png" y="0" scaleX="0.85" scaleY="0.85" horizontalCenter="0"/>
 				<e:Image id="leaderRed" source="red_point_png" y="6" x="67"/>
-				<e:Label y="92" text="领队" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:Label y="92" text="学院" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
 				<e:Image id="leaderLockMC" source="lock_icon_png" x="61" y="42"/>
 			</e:Group>
 			<e:Group id="rankBtn" x="0" y="13.750000000000114" width="100">
@@ -52,18 +52,18 @@
 					<e:Image y="13" x="0" source="menu_icon_1_png"/>
 				</e:Group>
 				<e:Image id="rankRed" source="red_point_png" y="-8" x="65"/>
-				<e:Label text="排行" y="79" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:Label text="排行" y="79" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
 			</e:Group>
 			<e:Group id="collectBtn" x="135.83333333333334" y="0" width="100">
 				<e:Image source="menu_icon_2_png" y="0" horizontalCenter="0"/>
 				<e:Image id="collectRed" source="red_point_png" y="5" x="65"/>
-				<e:Label y="93" text="卡兵" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:Label y="93" text="卡兵" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
 			</e:Group>
 			<e:Group id="friendBtn" y="5.000000000000114" x="435" width="100">
 				<e:Image y="-9" horizontalCenter="0" source="menu_icon_7_png"/>
 				<e:Image id="friendRed" source="red_point_png" y="3" x="70"/>
 				<e:Image id="friendLockMC" source="lock_icon_png" x="61" y="42"/>
-				<e:Label y="94" text="好友" textColor="0xCCB48E" horizontalCenter="0"/>
+				<e:Label y="94" text="好友" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
 			</e:Group>
 			<e:layout>
 				<e:HorizontalLayout verticalAlign="bottom" gap="20"/>

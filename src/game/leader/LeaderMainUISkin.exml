@@ -2,7 +2,8 @@
 <e:Skin class="LeaderMainUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="leader_bg_jpg" x="0" y="40"/>
 	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" fillAlpha="0.7"/>
-	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="77" id="tab" height="62" width="640" x="0">
+	<e:Image source="line_png" y="135" width="650" horizontalCenter="0"/>
+	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="75" id="tab" height="62" width="640" x="0">
 		<e:ArrayCollection>
 		<e:Array>
 			<e:Object label="统帅培养"/>
@@ -10,9 +11,9 @@
 		</e:Array>
 		</e:ArrayCollection>
 	</e:TabBar>
-	<ns1:BookBG width="640" x="0" skinName="BookBGSkin" top="640" bottom="-20"/>
+	<ns1:BookBG width="640" x="0" skinName="BookBGSkin" top="650" bottom="-20"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Group y="150" height="380" width="640" horizontalCenter="0">
+	<e:Group y="160" height="380" width="640" horizontalCenter="0">
 		<e:List id="chooseList" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
 			<e:layout>
 			<e:TileLayout horizontalGap="30" verticalGap="10"/>
@@ -40,24 +41,29 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Scroller id="scroller" width="600" x="20" top="710" bottom="0">
+	<e:Scroller id="scroller" width="600" x="20" top="665" bottom="0" bounces="false">
 		<e:Group>
-			<e:List id="list" width="200" height="200" x="32" y="40"/>
+			<e:List id="list" width="100%" height="200" x="0" y="0">
+				<e:layout>
+					<e:VerticalLayout gap="0" paddingTop="10"/>
+				</e:layout>
+			</e:List>
 		</e:Group>
 	</e:Scroller>
 	<e:Image source="lock_icon_png" x="390" y="88"/>
-	<e:Image source="line_png" y="700" width="620" horizontalCenter="0"/>
-	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="660" id="tab0" width="600" horizontalCenter="0">
-		<e:ArrayCollection>
-		<e:Array>
-			<e:Object label="全部"/>
-			<e:Object label="攻 X1"/>
-			<e:Object label="防 X2"/>
-			<e:Object label="辅 X3"/>
-		</e:Array>
-		</e:ArrayCollection>
-	</e:TabBar>
-	<e:Label id="desText" size="24" text="Label" y="535" textColor="0xcbc08a" stroke="3" horizontalCenter="0"/>
-	<e:Button id="continueBtn" label="开始学习" y="570" horizontalCenter="0" skinName="Btn_r2Skin"/>
-	<e:Image source="line_png" y="140" width="650" horizontalCenter="0"/>
+	<e:Label id="desText" size="24" text="Label" y="545" textColor="0xcbc08a" stroke="3" horizontalCenter="0"/>
+	<e:Button id="continueBtn" label="开始学习" y="580" horizontalCenter="0" skinName="Btn_r2Skin"/>
+	<e:Group x="421" y="600">
+		<e:Image source="border6_png" y="0" scale9Grid="14,6,88,18" width="210" height="41" x="0"/>
+		<e:Image source="icon_add_png" y="4" x="169" id="sortBtn"/>
+		<e:Label id="sortText" y="7" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="3"/>
+	</e:Group>
+	<e:Group id="sortGroup" y="640" x="421">
+		<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="210" height="100%" x="0"/>
+		<e:List id="sortList" width="200" x="5" top="6" bottom="6" itemRendererSkinName="HonorSortItemSkin">
+		<e:layout>
+			<e:VerticalLayout gap="0" horizontalAlign="justify"/>
+		</e:layout>
+		</e:List>
+	</e:Group>
 </e:Skin>

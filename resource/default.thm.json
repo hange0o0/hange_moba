@@ -59,6 +59,7 @@
     "src/game/honor/HonorUISkin.exml",
     "src/game/honor/HonorUISkin_bak2.exml",
     "src/game/leader/LeaderItemSkin.exml",
+    "src/game/leader/LeaderListItemSkin.exml",
     "src/game/leader/LeaderMainUISkin.exml",
     "src/game/mainPage/MainDayItemSkin.exml",
     "src/game/mainPage/MainHeadSkin.exml",

@@ -27,6 +27,7 @@ class Config {
     public static dayLevel = 15;
     public static serverLevel = 25;//卡士二阶
     public static serverEqualLevel = 45;  //卡士五阶
+    public static leaderLevel = 95;  //卡士五阶
 
 
     public static platform = '';

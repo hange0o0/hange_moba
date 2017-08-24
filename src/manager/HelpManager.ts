@@ -135,6 +135,15 @@ class HelpManager {
             ]
         }
 
+        this.helpObj['leader'] = {
+            title:'升级说明',
+            list:[
+                '当收集到足够的卡兵[碎片]和[金币]后，玩家就可以对该卡兵进行[升级]',
+                '升级卡兵后，该卡兵的单兵战力就会得到极大提升。同时，玩家的[总战力]也会得到相应的[提升]',
+                '由于卡兵的出战战力是由玩家战力和卡兵单兵战力[共同构成的]，所以每次升级卡兵，[所有卡兵]的出战战力也会有所提升，只是被升级的那个卡兵能得到更多的提升'
+            ]
+        }
+
         var name = TeamDungeonManager.DungeonName.pve + '副本';
         this.helpObj['pve'] = {
             title:name + '说明',
