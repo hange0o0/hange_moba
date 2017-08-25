@@ -18,12 +18,16 @@ class LeaderMainUI extends game.BaseUI {
     private des4: eui.Label;
     private scroller: eui.Scroller;
     private list: eui.List;
+    private desGroup: eui.Group;
     private desText: eui.Label;
     private continueBtn: eui.Button;
     private sortBtn: eui.Image;
     private sortText: eui.Label;
     private sortGroup: eui.Group;
     private sortList: eui.List;
+    private helpBtn: eui.Group;
+
+
 
 
 
@@ -44,7 +48,7 @@ class LeaderMainUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.topUI.setTitle('卡将系统')
+        this.topUI.setTitle('军校系统')
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.tab.touchChildren = this.tab.touchEnabled = false;
@@ -58,6 +62,7 @@ class LeaderMainUI extends game.BaseUI {
         this.addBtnEvent(this.btn1,this.onClick1)
         this.addBtnEvent(this.btn2,this.onClick2)
         this.addBtnEvent(this.continueBtn,this.onClick3)
+        this.addBtnEvent(this.helpBtn,this.onHelp)
 
 
         this.addBtnEvent(this.sortBtn,this.onSort);
@@ -65,6 +70,10 @@ class LeaderMainUI extends game.BaseUI {
         this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.renewList,this)
         this.sortGroup.visible = false;
+    }
+
+    private onHelp(){
+        HelpManager.getInstance().leaderHelp();
     }
 
     private renewList(){
@@ -125,8 +134,8 @@ class LeaderMainUI extends game.BaseUI {
         var self = this;
         var TCM = TecManager.getInstance();
         TCM.leaderAward(this.selectArr,function(){
-            self.renewMain();
-            ShowTips('学习成功！');
+            self.mvShow2();
+            //ShowTips('学习成功！');
             self.selectArr.length = 0
             self.renewList();
         })
@@ -165,9 +174,9 @@ class LeaderMainUI extends game.BaseUI {
             typeObj[vo.mtype] ++;
         }
         arr.push({label:'全部 ×' + mList.length})
-        arr.push({label:'　攻 ×' + typeObj[1]})
-        arr.push({label:'　盾 ×' + typeObj[2]})
-        arr.push({label:'　辅 ×' + typeObj[3]})
+        arr.push({label:'攻将 ×' + typeObj[1]})
+        arr.push({label:'盾将 ×' + typeObj[2]})
+        arr.push({label:'辅将 ×' + typeObj[3]})
         this.sortList.dataProvider = new eui.ArrayCollection(arr)
         this.renew();
 
@@ -218,6 +227,8 @@ class LeaderMainUI extends game.BaseUI {
     }
 
     private renew(){
+        egret.Tween.removeTweens(this.mainGroup)
+        egret.Tween.removeTweens(this.chooseList)
         if(UM.tec.leader.list)
             this.renewChoose();
         else
@@ -231,7 +242,7 @@ class LeaderMainUI extends game.BaseUI {
         this.mainGroup.scaleX = this.mainGroup.scaleY = 1;
         this.bg.visible = true
         this.continueBtn.visible = false
-        this.desText.text = ''
+        this.desGroup.visible = false
 
 
         var num = PropManager.getInstance().getNum(32);
@@ -249,10 +260,12 @@ class LeaderMainUI extends game.BaseUI {
         this.mainGroup.visible = false;
         this.chooseList.visible = true;
         this.chooseList.scaleX = this.chooseList.scaleY = 1;
+        this.chooseList.verticalCenter = 0;
         this.bg.visible = false
         this.selectArr.length = 0
 
         this.continueBtn.visible = true
+        this.desGroup.visible = true
 
 
         if(UM.tec.leader.list.length  == 2)
@@ -319,15 +332,19 @@ class LeaderMainUI extends game.BaseUI {
         }
     }
 
-    //动画表现
+    //动画表现抽取
     private mvShow(){
-       var tw = egret.Tween.get(this.mainGroup);
+        this.renewChoose();
+
+
+        this.mainGroup.visible = true;
+        var tw = egret.Tween.get(this.mainGroup);
         tw.to({scaleX:0,scaleY:0},300).call(function(){
             this.mainGroup.visible = false;
         },this);
 
-        this.renewChoose();
-        this.desText.text = ''
+
+        this.desGroup.visible = false
         this.continueBtn.visible = false
         this.chooseList.scaleX = this.chooseList.scaleY = 0
         this.chooseList.visible = true;
@@ -335,7 +352,31 @@ class LeaderMainUI extends game.BaseUI {
         tw.wait(500).to({scaleX:1.1,scaleY:1.1},200).to({scaleX:1,scaleY:1},300).call(function(){
             this.renewSelect();
             this.continueBtn.visible = true
+            this.desGroup.visible = true
         },this);
+    }
+
+    //动画表现学习
+    private mvShow2(){
+        this.desGroup.visible = false
+        this.continueBtn.visible = false
+
+        for(var i=0;i<this.chooseList.numChildren;i++)
+        {
+            var item:any = this.chooseList.getChildAt(i);
+            item.movieOut();
+        }
+
+        var tw = egret.Tween.get(this.chooseList);
+        tw.wait(800).to({verticalCenter:-50,scaleX:1.1,scaleY:1.1},200).to({verticalCenter:150,scaleX:0,scaleY:0},200).call(function(){
+            SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
+        })
+
+        var tw = egret.Tween.get(this.mainGroup);
+        this.mainGroup.alpha = 0;
+        tw.wait(1500).call(function(){
+            this.renewMain();
+        },this).to({alpha:1},500)
     }
 
     public onSelect(mid){

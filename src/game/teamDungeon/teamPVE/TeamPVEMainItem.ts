@@ -57,7 +57,10 @@ class TeamPVEMainItem extends game.BaseItem {
         this.roundText.text = this.data.index;
 
         var enemyList = [];
-        var specialData = {isNPC:true,fight:TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)}
+        var fight = TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index);
+        var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight,PVEM.data.game_data.hard);
+        var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight,PVEM.data.game_data.hard);
+        var specialData = {isNPC:true,fight:fight,lv:lv,leader:leader}
         for(var i=0;i<this.data.list.length;i++)
         {
             var id = this.data.list[i];
@@ -65,6 +68,7 @@ class TeamPVEMainItem extends game.BaseItem {
                 vo: MonsterVO.getObject(id),
                 isTeam:true,
 
+                stopOffset:true,
                 id: id,
                 specialData: specialData,
                 index: i,

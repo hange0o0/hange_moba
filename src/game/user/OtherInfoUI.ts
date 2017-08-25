@@ -149,7 +149,7 @@ class OtherInfoUI extends game.BaseUI {
             var fail =0;
             if(info)
             {
-                if(info.friend_key.indexOf(dataIn.gameid) == 0)
+                if(info.friend_key.indexOf(UM.gameid) == 0)
                 {
                     win = Math.floor(info.win1);
                     fail = Math.floor(info.win2);

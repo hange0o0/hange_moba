@@ -103,7 +103,7 @@ class EnemyHeadItem extends game.BaseItem {
                 this.lvText.text = 'LV.' + this.data.specialData.lv;
 
 
-            if(this.data.index && this.data.index > 2 && this.data.list.length == 5)
+            if(this.data.index && !this.data.stopOffset &&this.data.index > 2 && this.data.list.length == 5)
             {
                 this.teamGroup.horizontalCenter= 80
                 this.nameGroup.horizontalCenter= 80

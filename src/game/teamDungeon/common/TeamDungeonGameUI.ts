@@ -170,17 +170,17 @@ class TeamDungeonGameUI extends game.BaseUI {
     }
 
     public renewForce(){
+        var hard = TeamPVEManager.getInstance().data.game_data.hard;
 
         var enemyForce = TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
         var myForce = UM.getForce();
 
-        var hard = TeamPVEManager.getInstance().data.game_data.hard;
         var str = '[关卡战力:]' + enemyForce;
 
         if(enemyForce < myForce)
-            str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)
+            str += this.createHtml('(+'+(myForce - enemyForce)+')',0x00cc00)
         else if(enemyForce > myForce)
-            str += this.createHtml('(-'+(enemyForce-myForce)+')',0x00cc00)
+            str += this.createHtml('(-'+(enemyForce-myForce)+')',0xCC0000)
 
         MyTool.setColorText(this.desText,str);
     }

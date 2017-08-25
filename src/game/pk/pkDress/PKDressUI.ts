@@ -479,12 +479,13 @@ class PKDressUI extends game.BaseUI {
                 }
             }
         }
-        var chooseData = {list:this.chooseList,index:this.dataIn.index}
+        var chooseData = {list:this.chooseList,index:this.index}
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
             //self.closeRelate();
             if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
             {
                 ShowTips('PK请求已发送');
+                this.hide();
             }
             else
             {

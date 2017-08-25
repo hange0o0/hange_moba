@@ -203,6 +203,12 @@ class TecManager{
         });
     }
 
+
+
+
+
+
+
     public leaderGet(type,fun?){
         var self = this;
         var oo:any = {};

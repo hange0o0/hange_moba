@@ -145,7 +145,7 @@ class TeamPVEMain extends game.BaseUI {
     public renewTimes(){
         var PVEM = TeamPVEManager.getInstance();
         var finishNum = PVEM.getFinishNum()
-        MyTool.setColorText(this.rateText,'[进度：]' + finishNum + '/25');
+        MyTool.setColorText(this.rateText,'[进度:]' + finishNum + '/25');
         var player = PVEM.getMyData();
         var current = player.pk_time;
         var max = player.buy_time*5 + 10

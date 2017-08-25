@@ -523,6 +523,8 @@ class MainPageUI extends game.BaseUI {
         this.renewTop();
 
         this.renewHelp();
+
+        this.leaderLockMC.visible = UM.main_game.level < Config.leaderLevel
         this.renewPage();
         this.onLevelChange();//内含this.scrollToCurrentPage();
 
@@ -632,10 +634,10 @@ class MainPageUI extends game.BaseUI {
     public onLevelChange(){
         this.friendLockMC.visible = UM.level < Config.friendLevel;
         this.teamLockMC.visible = UM.level < Config.friendLevel;
-        this.renewPage();
         this.scrollToCurrentPage(true);
     }
     public onMainLevelChange(){
+        this.leaderLockMC.visible = UM.main_game.level < Config.leaderLevel
         this.renewPage();
         this.scrollToCurrentPage(true);
     }

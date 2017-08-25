@@ -610,6 +610,18 @@
 				{
 					"compress":false,
 					"key":"jump_icon2_png"
+				},
+				{
+					"compress":false,
+					"key":"leader_item_bg1_png"
+				},
+				{
+					"compress":false,
+					"key":"leader_item_bg2_png"
+				},
+				{
+					"compress":false,
+					"key":"leader_item_bg3_png"
 				}
 			],
 			"sort":0
@@ -657,6 +669,14 @@
 				{
 					"compress":false,
 					"key":"prop_score_jpg"
+				},
+				{
+					"compress":false,
+					"key":"book_1_jpg"
+				},
+				{
+					"compress":false,
+					"key":"book_2_jpg"
 				}
 			],
 			"sort":0
@@ -1311,6 +1331,10 @@
 		{
 			"compress":false,
 			"key":"main_bg_jpg"
+		},
+		{
+			"compress":false,
+			"key":"leader_bg_jpg"
 		}
 	]
 }

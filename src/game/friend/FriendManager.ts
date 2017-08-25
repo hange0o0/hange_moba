@@ -149,7 +149,7 @@ class FriendManager{
 
     public getPKArray(){
         var arr = ObjectUtil.objToArray(this.pkObject);
-        ArrayUtil.sortByField(arr,['id'],[1])
+        ArrayUtil.sortByField(arr,['time'],[1])
         this.removeTimeOut(arr);
         return  arr;
     }

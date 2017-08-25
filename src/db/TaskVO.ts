@@ -117,6 +117,14 @@ class TaskVO {
                 }
                 return false;
                 break;
+            case 'leader':
+                if(ObjectUtil.objLength(UM.tec.leader) > 0)
+                {
+                    this.currentValue = 1;
+                    return true;
+                }
+                return false;
+                break;
             case 'guess':
                 if(UM.active.guess.total)
                 {
@@ -339,6 +347,10 @@ class TaskVO {
                 TM.nowAction = this.type;
                 TM.showGuideMC(MainPageUI.getInstance()['friendBtn'])
                 break;
+            case 'leader':
+                TM.nowAction = this.type;
+                TM.showGuideMC(MainPageUI.getInstance()['leaderBtn'])
+                break;
             case 'friend_dungeon':
                 TM.nowAction = this.type;
                 TM.showGuideMC(MainPageUI.getInstance()['team'])
@@ -352,6 +364,9 @@ class TaskVO {
         {
             case 'draw':
                 return '抽取一次钻石'
+                break;
+            case 'leader':
+                return '进行一次统帅学习'
                 break;
             case 'guess':
                 return '进行一次竞猜'
@@ -425,6 +440,7 @@ class TaskVO {
         switch(this.type)
         {
             case 'draw':
+            case 'leader':
             case 'guess':
             case 'main_award':
             case 'map_game_buy':

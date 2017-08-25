@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LeaderListItemSkin" width="600" height="50" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect id="chooseMC" width="100%" height="100%" x="0" y="0" fillAlpha="0.6" fillColor="0x000000"/>
-	<e:Label id="nameText" text="LaLaLaLaLa(LA)" x="10" y="10" size="25" stroke="1" strokeColor="0x000000" textColor="0xccb48e"/>
+	<e:Label id="nameText" text="LaLaLaLaLa" x="50" y="10" size="25" stroke="1" strokeColor="0x000000" textColor="0xccb48e"/>
 	<e:Label id="levelText" text="+10" y="10" size="26" x="530" textColor="0xccb48e" stroke="1"/>
 	<e:Group x="210" y="13">
 		<e:Rect width="306" height="20" x="0" y="0" ellipseWidth="10" ellipseHeight="10" strokeWeight="2" strokeColor="0x5B2C0A" fillColor="0x7F4418"/>
@@ -9,4 +9,5 @@
 		<e:Label id="rateText" text="10/12345" size="20" textColor="0xccb48e" stroke="2" y="-6" horizontalCenter="0"/>
 	</e:Group>
 	<e:Rect width="100%" height="1" x="0" bottom="0" fillColor="0x5b2c0a"/>
+	<e:Image id="typeMC" x="5" source="monster_type1_png" verticalCenter="-2"/>
 </e:Skin>

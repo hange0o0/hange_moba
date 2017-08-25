@@ -102,5 +102,13 @@ class LeaderItem extends game.BaseItem {
         var b = LeaderMainUI.getInstance().selectArr.indexOf(this.data.id) != -1;
         this.currentState = b?'selected':'normal';
     }
+    public movieOut(){
+        var b = LeaderMainUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        if(!b)
+        {
+             var tw = egret.Tween.get(this);
+            tw.to({alpha:0},500);
+        }
+    }
 
 }
