@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="GuessUISkin" width="640" height="680" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<ns1:BasePanel y="0" skinName="BasePanelSkin" width="640" height="100%" horizontalCenter="0"/>
-	<e:List id="teamInfo1" y="125" x="35" width="306" itemRendererSkinName="PKResultItem4_Skin" height="210" scaleX="0.9" scaleY="0.9">
+<e:Skin class="GuessUISkin" width="640" height="850" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<ns1:BasePanel y="0" skinName="BasePanelSkin" width="640" height="100%" horizontalCenter="0" locked="true"/>
+	<e:List id="teamInfo1" y="150" width="206" itemRendererSkinName="PKResultItem4_Skin" height="320" horizontalCenter="-160">
 		<e:layout>
-		<e:TileLayout horizontalGap="3" requestedColumnCount="3"/>
+		<e:TileLayout horizontalGap="10" requestedColumnCount="2" verticalGap="10"/>
 		</e:layout>
 	</e:List>
-	<e:List id="teamInfo2" width="306" itemRendererSkinName="PKResultItem4Skin" y="125" height="210" scaleX="0.9" scaleY="0.9" right="38">
+	<e:List id="teamInfo2" width="210" itemRendererSkinName="PKResultItem4Skin" y="150" height="320" horizontalCenter="160">
 		<e:layout>
-		<e:TileLayout horizontalGap="3" requestedColumnCount="3"/>
+		<e:TileLayout horizontalGap="10" requestedColumnCount="2" verticalGap="10"/>
 		</e:layout>
 	</e:List>
-	<e:Group y="340" horizontalCenter="0">
+	<e:Group y="500" horizontalCenter="0">
 		<e:Group x="0" y="0" height="160" width="280">
 			<e:Rect id="bg1" width="105%" height="105%" fillAlpha="0.2" strokeColor="0xedb91e" strokeWeight="1" horizontalCenter="0" verticalCenter="0" ellipseWidth="5" ellipseHeight="5"/>
 			<e:Group horizontalCenter="0" bottom="110">
@@ -73,19 +73,20 @@
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
-	<e:Image source="line_png" y="320" width="580" horizontalCenter="0"/>
-	<e:Group y="80" horizontalCenter="-150">
+	<e:Image source="line_png" y="347.27" width="580" horizontalCenter="0" visible="false"/>
+	<e:Group y="101.21" horizontalCenter="-160">
 		<e:Image source="card_battle2_png" x="0" y="0"/>
 		<e:Label text="进攻方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="27.479999999999976"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="80" horizontalCenter="150">
+	<e:Group y="101.21" horizontalCenter="160">
 		<e:Image x="0" y="0" source="card_battle_png"/>
 		<e:Label text="防守方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="35.06"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
+	<e:Label text="VS" y="294.21" horizontalCenter="0.5" textColor="0xe0a44a"/>
 </e:Skin>

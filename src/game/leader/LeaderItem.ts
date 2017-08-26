@@ -4,17 +4,17 @@ class LeaderItem extends game.BaseItem {
         this.skinName = "LeaderItemSkin";
     }
 
-    private barMC0: eui.Group;
-    private maskMC0: eui.Rect;
-    private bar0: eui.Rect;
-    private barMC1: eui.Group;
-    private maskMC1: eui.Rect;
-    private bar1: eui.Rect;
     private headMC: eui.Image;
     private headBG: eui.Image;
-    private expText: eui.Label;
     private leaderText: eui.Label;
     private typeMC: eui.Image;
+    private starGroup: eui.Group;
+    private s0: eui.Image;
+    private s1: eui.Image;
+    private s2: eui.Image;
+    private expText: eui.Label;
+    private upMC: eui.Image;
+
 
 
 
@@ -29,9 +29,6 @@ class LeaderItem extends game.BaseItem {
 
     public childrenCreated(){
         super.childrenCreated();
-        this.bar0.mask = this.maskMC0;
-        this.bar1.mask = this.maskMC1;
-
         this.addBtnEvent(this,this.onClick);
 
     }
@@ -50,21 +47,24 @@ class LeaderItem extends game.BaseItem {
 
 
         var addExp = 0
+        this.starGroup.removeChildren();
         if(this.data.type == 1)
         {
-            this.headBG.source = 'leader_item_bg1_png'
             addExp = 50;
+            this.starGroup.addChild(this.s0)
         }
         else if(this.data.type == 2)
         {
-            this.headBG.source = 'leader_item_bg2_png'
             addExp = 150;
+            this.starGroup.addChild(this.s0)
+            this.starGroup.addChild(this.s1)
         }
         else
         {
-            this.headBG.source = 'leader_item_bg3_png'
             addExp = 300;
-
+            this.starGroup.addChild(this.s0)
+            this.starGroup.addChild(this.s1)
+            this.starGroup.addChild(this.s2)
         }
 
         this.expText.text = '经验 +' + addExp
@@ -75,26 +75,33 @@ class LeaderItem extends game.BaseItem {
         this.leaderText.text = '+' + level;
         this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype)
 
-        var currentExp = UM.getLeaderExp(vo.id);
-        var levelExp = UM.getLeaderExpByLevel(level);
-        var nextExp = UM.getLeaderExpByLevel(level + 1);
-
         if(level >= TecManager.getInstance().maxLevel)
         {
-            this.barMC1.rotation = 0;
+            this.upMC.visible = false
         }
         else
         {
-            this.barMC1.rotation = 180 + (currentExp-levelExp)/(nextExp - levelExp)*180;
-            this.barMC1.rotation = 180 + 0.5*180;
             if(level == level2)
             {
-                this.barMC0.rotation = 180 + (currentExp-levelExp + addExp)/(nextExp - levelExp)*180;
+                this.upMC.visible = false
             }
             else
             {
-                this.barMC0.rotation = 0
+                this.upMC.visible = true
             }
+        }
+
+        egret.Tween.removeTweens(this.upMC);
+        if(this.upMC.visible)
+        {
+            this.once(egret.Event.REMOVED_FROM_STAGE,function(){
+                egret.Tween.removeTweens(this.upMC);
+                console.log('remove')
+            },this)
+
+            var tw = egret.Tween.get(this.upMC,{loop:true});
+            tw.to({y:this.upMC.y-10},300).to({y:this.upMC.y},300).wait(400);
+
         }
     }
 

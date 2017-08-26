@@ -183,7 +183,7 @@ class MainPageUI extends game.BaseUI {
             this.pageArray.push(mc);
         }
 
-        this.leaderRed.visible = false
+
 
 
         this.gameItems.push(this.mainGame);
@@ -300,7 +300,12 @@ class MainPageUI extends game.BaseUI {
     }
 
     private onPassDay(){
+        this.renewLeaderRed();
         this.rankRed.visible = true;
+    }
+
+    public renewLeaderRed(){
+        this.leaderRed.visible = UM.main_game.level >= Config.leaderLevel  && !DateUtil.isSameDay(UM.tec.leader.lasttime|| 0)
     }
 
     private onTimer(){
@@ -536,6 +541,7 @@ class MainPageUI extends game.BaseUI {
         this.renewTask();
 
         this.rankRed.visible = !DateUtil.isSameDay(SharedObjectManager.instance.getMyValue('rank_red') || 0) && RankManager.getInstance().isRankOpen()
+        this.renewLeaderRed();
 
         this.mainTask.visible = !GuideManager.getInstance().isGuiding;
         this.helpGroup.visible = !GuideManager.getInstance().isGuiding;

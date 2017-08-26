@@ -401,11 +401,24 @@ class MainGameManager{
     private testCardNet(myList,fun){
         var dataIn:any = {}
         dataIn.team1 = {"list":myList,"fight":UM.getForce(),"tec":{}}
+        var leaderData = {1:0,2:0,3:0}
+        dataIn.team1.leader = leaderData;
         for(var i=0;i<myList.length;i++)
         {
             var mid = myList[i];
             dataIn.team1.tec[mid] = UM.getTecAdd('monster',UM.getMonsterLevel(mid));
+
+            var leaderLevel = UM.getMyLeaderLevel(mid);
+            if(leaderLevel)
+            {
+                var mvo = MonsterVO.getObject(mid);
+                leaderData[mvo.mtype] = Math.max(leaderData[mvo.mtype],leaderLevel);
+            }
         }
+
+
+
+
 
         var arr = MainGameVO.getObject(UM.main_game.level+1).list;
         var fight = this.getMainForce();

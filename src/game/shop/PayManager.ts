@@ -69,7 +69,7 @@ class PayManager{
     }
 
     public buy(id,fun){
-        if(this.shopItemObj[id].type == 'rmb')
+        if(id == 104 || this.shopItemObj[id].type == 'rmb')
         {
             //if(Config.platform == 'egret')
             //    EgretManager.getInstance().pay(id,fun);

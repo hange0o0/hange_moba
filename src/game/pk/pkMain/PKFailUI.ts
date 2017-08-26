@@ -105,7 +105,7 @@ class PKFailUI extends PKResultBase {
         MyTool.removeMC(this.noteGroup);
         MyTool.removeMC(this.btnGroup);
 
-
+        this.okBtn.label = '再试一次'
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND)
         {

@@ -173,7 +173,7 @@ class TeamDungeonGameUI extends game.BaseUI {
         var hard = TeamPVEManager.getInstance().data.game_data.hard;
 
         var enemyForce = TeamDungeonManager.getInstance().getEnemyForce(hard,this.data.index);
-        var myForce = UM.getForce();
+        var myForce = Math.min(UM.getForce(),TeamDungeonManager.getInstance().hardData[hard-1].force);
 
         var str = '[关卡战力:]' + enemyForce;
 

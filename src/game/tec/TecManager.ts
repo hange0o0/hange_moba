@@ -234,6 +234,7 @@ class TecManager{
             else if(msg.isFree)
             {
                 UM.tec.leader.lasttime = TM.now();
+                MainPageUI.getInstance().renewLeaderRed();
             }
             UM.tec.leader.list = msg.list;
 

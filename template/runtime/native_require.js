@@ -128,7 +128,7 @@ var game_file_list = [
 	"bin-debug/game/pk/pkDress/PKDressChooseListItem.js",
 	"bin-debug/game/pk/pkDress/PKDressChooseUI.js",
 	"bin-debug/game/pk/pkDress/PKDressEnemyItem.js",
-	"bin-debug/commont/GameEvent.js",
+	"bin-debug/util/StringUtil.js",
 	"bin-debug/game/pk/pkDress/PKDressSettingUI.js",
 	"bin-debug/game/pk/pkDress/PKDressSimpleItem.js",
 	"bin-debug/game/pk/pkDress/PKDressUI.js",
@@ -247,7 +247,7 @@ var game_file_list = [
 	"bin-debug/util/ObjectUtil.js",
 	"bin-debug/util/PopUpManager.js",
 	"bin-debug/util/ShapeObject.js",
-	"bin-debug/util/StringUtil.js",
+	"bin-debug/commont/GameEvent.js",
 	//----auto game_file_list end----
 ];
 

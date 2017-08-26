@@ -67,7 +67,7 @@ class LeaderMainUI extends game.BaseUI {
 
         this.addBtnEvent(this.sortBtn,this.onSort);
         this.addBtnEvent(this.sortText,this.onSort);
-        this.sortList.selectedIndex = SharedObjectManager.instance.getValue('collect_list_sort') || 0;
+        this.sortList.selectedIndex = 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.renewList,this)
         this.sortGroup.visible = false;
     }
@@ -181,6 +181,11 @@ class LeaderMainUI extends game.BaseUI {
         this.renew();
 
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+
+        if(TaskManager.getInstance().nowAction == 'leader')
+        {
+            TaskManager.getInstance().showGuideMC(this.btn1)
+        }
     }
 
     private onTimer(){
@@ -240,7 +245,7 @@ class LeaderMainUI extends game.BaseUI {
         this.mainGroup.visible = true;
         this.chooseList.visible = false;
         this.mainGroup.scaleX = this.mainGroup.scaleY = 1;
-        this.bg.visible = true
+        this.bg.visible = false
         this.continueBtn.visible = false
         this.desGroup.visible = false
 
@@ -261,7 +266,7 @@ class LeaderMainUI extends game.BaseUI {
         this.chooseList.visible = true;
         this.chooseList.scaleX = this.chooseList.scaleY = 1;
         this.chooseList.verticalCenter = 0;
-        this.bg.visible = false
+        this.bg.visible = true
         this.selectArr.length = 0
 
         this.continueBtn.visible = true
@@ -360,6 +365,7 @@ class LeaderMainUI extends game.BaseUI {
     private mvShow2(){
         this.desGroup.visible = false
         this.continueBtn.visible = false
+        this.bg.visible = false
 
         for(var i=0;i<this.chooseList.numChildren;i++)
         {
