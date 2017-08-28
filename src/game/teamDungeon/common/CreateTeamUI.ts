@@ -44,7 +44,7 @@ class CreateTeamUI extends game.BaseWindow {
         this.nameText.restrict = "a-zA-Z0-9_\u0391-\uFFE5";
         this.nameText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
         this.sortList.itemRenderer = HonorSortItem;
-        this.sortList.dataProvider = new eui.ArrayCollection(TeamDungeonManager.getInstance().hardData)
+
     }
 
     private onChange(){
@@ -133,6 +133,17 @@ class CreateTeamUI extends game.BaseWindow {
         this.nameText.text = SharedObjectManager.instance.getMyValue('team_name') || '';
         this.onHideSort();
         this.renewSelect();
+
+        var arr = [];
+        for(var i=0;i<TeamDungeonManager.getInstance().hardData.length;i++)
+        {
+            var oo = TeamDungeonManager.getInstance().hardData[i];
+             if(i<2)
+                arr.push(oo)
+            else if(oo.force < UM.getForce()*2)
+                 arr.push(oo)
+        }
+        this.sortList.dataProvider = new eui.ArrayCollection(arr)
 
 
         if(TaskManager.getInstance().nowAction == 'friend_dungeon')

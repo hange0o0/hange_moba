@@ -16,6 +16,7 @@ class TeamPVEManager {
         this.data = null;
         this.listData = null;
         this.pkLevelData = null;
+        TeamDungeonManager.getInstance().invideList['pve'] = {};
         if(TeamPVEMain.getInstance().stage)
         {
             TeamPVEMain.getInstance().hide();

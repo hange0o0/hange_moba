@@ -69,7 +69,7 @@ class MapGameUI extends game.BaseUI {
 
     private onEnemy(){
         var self = this;
-        Confirm('重新搜寻敌人需花费1个通辑令，是否继续？',function(type){
+        Confirm('重新搜寻敌人需花费'+this.createHtml('1',0xE0A44A)+'个通辑令，是否继续？',function(type){
             if(type == 1)
             {
                 var MM = MapManager.getInstance();

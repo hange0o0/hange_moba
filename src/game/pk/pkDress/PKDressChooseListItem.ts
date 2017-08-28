@@ -177,7 +177,7 @@ class PKDressChooseListItem extends game.BaseItem {
         this.atkText.text = '' +  fightData.atk
         this.speedText.text = '' +  fightData.speed
 
-        if(fightData.leader)
+        if(!this.data.specialData.isEqual &&  fightData.leader)
         {
             this.leaderText.text = '+' + fightData.leader;
             this.leaderText.textColor = UM.getLeaderWorldColor(vo.mtype)

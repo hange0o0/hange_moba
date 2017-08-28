@@ -26,6 +26,7 @@ class PKDressChooseItem extends game.BaseItem {
 
     public stopDrag;
     public stopMove = true;
+    public lastLeaderData;
 
     public childrenCreated(){
         //MyTool.addDoubleTouch(this,this.onDoubleClick,this)
@@ -131,11 +132,20 @@ class PKDressChooseItem extends game.BaseItem {
         }
 
         this.setHtml(this.lvText,str);
+        this.renewLeader();
     }
 
-    public renewLeader(leaderData){
-        if(!this.data)
+    public renewLeader(leaderData?){
+        if(!this.data || this.data.specialData.isEqual)
             return;
+
+        if(!leaderData)
+        {
+            if(this.lastLeaderData)
+                this.leaderText.text = this.lastLeaderData;
+            return;
+        }
+        this.leaderText.text = '';
         var vo = MonsterVO.getObject(this.data.id);
         var atkData = PKDressUI.getInstance().atkData[this.data.id];
         if(atkData && leaderData[vo.mtype] && leaderData[vo.mtype] == atkData.leader)
@@ -155,5 +165,7 @@ class PKDressChooseItem extends game.BaseItem {
                     break;
             }
         }
+
+        this.lastLeaderData = this.leaderText.text;
     }
 }
