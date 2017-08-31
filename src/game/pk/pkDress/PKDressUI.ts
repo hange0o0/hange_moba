@@ -332,6 +332,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.touchChildren = this.touchEnabled = true;
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
 
@@ -480,16 +481,18 @@ class PKDressUI extends game.BaseUI {
             }
         }
         var chooseData = {list:this.chooseList,index:this.index}
+        var self = this;
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
             //self.closeRelate();
             if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
             {
                 ShowTips('PK请求已发送');
-                this.hide();
+                self.hide();
             }
             else
             {
                 PKMainUI.getInstance().show();
+                self.touchChildren = self.touchEnabled = false;
             }
 
         })

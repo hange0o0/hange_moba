@@ -53,7 +53,14 @@ class PKResultItem3 extends game.BaseItem {
         }
         else
         {
-            this.levelText.text = ''
+            if(this.data.showIndex)
+            {
+                this.levelText.text = '' + this.data.showIndex
+            }
+            else
+            {
+                this.levelText.text = ''
+            }
         }
 
         var win = this.data.win || 0;

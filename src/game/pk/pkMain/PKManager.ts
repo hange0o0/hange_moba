@@ -3,6 +3,7 @@ class PKManager {
     public static PKType = {
         MAIN:'main_game',
         MAP:'map_game',
+        MAP_FIGHT:'map_fight',
         PVE:'pve_game',
         SERVER:'server_game',
         SERVER_EQUAL:'server_game_equal',
@@ -622,6 +623,10 @@ class PKManager {
             this.team2Nick = MainGameManager.getInstance().getNickByLevel(info.level);
         }
         else if(type == PKManager.PKType.GUESS)
+        {
+            this.teamChange = info.teamChange;
+        }
+        else if(type == PKManager.PKType.MAP_FIGHT)
         {
             this.teamChange = info.teamChange;
         }

@@ -32,15 +32,17 @@ class MonsterManager{
     }
 
     public getEnemyMonsterLeader(force,hard?){
-        force = Math.pow(Math.max(0,force-450),0.64);
-        var level = 0;
-        var levelForce = 0;
-        while(levelForce + level < force)
-        {
-            levelForce += level;
-            level ++;
-        }
-        var mLeader = Math.max(0,level-1)
+        //force = Math.pow(Math.max(0,force-450),0.64);
+        //var level = 0;
+        //var levelForce = 0;
+        //while(levelForce + level < force)
+        //{
+        //    levelForce += level;
+        //    level ++;
+        //}
+        if(force < 450)
+            return 0
+        var mLeader = Math.floor(Math.pow((force-450)/10,0.42));
         if(hard)
         {
             var hardData = TeamDungeonManager.getInstance().hardData[hard-1];

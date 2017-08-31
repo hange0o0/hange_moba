@@ -220,6 +220,7 @@ class GuessUI extends game.BaseWindow {
                 list:list1,
                 specialData:specialData,
                 index:i,
+                showIndex:i+1,
             }
             list1.push(oo)
         }
@@ -234,6 +235,7 @@ class GuessUI extends game.BaseWindow {
                 list:list2,
                 specialData:specialData,
                 index:i,
+                showIndex:i+1,
             }
             list2.push(oo)
         }

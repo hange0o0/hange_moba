@@ -374,7 +374,7 @@ class LeaderMainUI extends game.BaseUI {
         }
 
         var tw = egret.Tween.get(this.chooseList);
-        tw.wait(800).to({verticalCenter:-50,scaleX:1.1,scaleY:1.1},200).to({verticalCenter:150,scaleX:0,scaleY:0},200).call(function(){
+        tw.wait(800).to({verticalCenter:-50,scaleX:1.2,scaleY:1.2},200).wait(100).to({verticalCenter:150,scaleX:0,scaleY:0},200).call(function(){
             SoundManager.getInstance().playEffect(SoundConfig.effect_m_up);
         })
 

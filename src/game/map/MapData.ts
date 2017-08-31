@@ -41,6 +41,15 @@ class MapData {
     public enemy; //通辑令数据
 
 
+    public get_fight_time
+    public get_fight_enemy
+    public fight_times
+
+    public maxFightTimes = 10;
+    public fightCD = 30*60;
+
+
+
 
     public constructor() {
         //this.initData(null);
@@ -70,6 +79,29 @@ class MapData {
         this.enemy = map.enemy;
 
         this.serverBossCD = map.cd || 0;
+
+
+        this.get_fight_time = map.get_fight_time || 0;
+        this.get_fight_enemy = map.get_fight_enemy;
+        this.fight_times = map.fight_times || 0;
+    }
+
+    public getNextFightCD(){
+        if(this.get_fight_time)
+        {
+            var cd = this.get_fight_time + this.fightCD - TM.now();
+            if(!DateUtil.isSameDay(this.get_fight_time))
+                this.fight_times = 0;
+            if(this.fight_times >= this.maxFightTimes)
+            {
+                return Math.max(cd,DateUtil.getNextDateTimeByHours(0) - TM.now())
+            }
+            return Math.max(cd,0);
+        }
+        else
+        {
+             return 0
+        }
     }
 
     ////重置怪物池

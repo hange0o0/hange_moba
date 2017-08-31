@@ -16,6 +16,7 @@ class Net extends egret.EventDispatcher{
     }
 
 
+    private msgIndex = 0;
 
     public modeNum = 0;
     public serverID = 1;
@@ -30,6 +31,12 @@ class Net extends egret.EventDispatcher{
         var variables = new egret.URLVariables('a=1');
         var oo:any = {};
         oo.head = head;
+        if(msg.gameid)
+        {
+            oo.msg_index = this.msgIndex;
+            this.msgIndex ++;
+        }
+
         oo.msg = JSON.stringify(msg);
         oo.debug_client =  Config.isDebug;
         if(serverType == 1)
@@ -45,6 +52,8 @@ class Net extends egret.EventDispatcher{
         //(<any>variables.variables).msg = JSON.stringify(msg);
         //(<any>variables.variables).debug_client = Config.isDebug;
         //(<any>variables.variables).version = Config.version;
+
+
         return variables;
     }
 

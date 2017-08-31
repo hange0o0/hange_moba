@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MapFightUISkin" width="420" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" height="480">
+	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin" locked="true"/>
+	<e:Label id="desText" text="仍然]赢得3场胜利使用[基地枯" verticalAlign="top" textAlign="left" size="26" lineSpacing="8" horizontalCenter="1" maxWidth="440" y="240" stroke="2" textColor="0xccb48e"/>
+	<e:Button id="refreshBtn" label="重新搜寻" y="293.94" horizontalCenter="0" skinName="Btn_r2Skin"/>
+
+
+	<e:Group bottom="40" horizontalCenter="0">
+		<e:Button id="closeBtn" label="关闭" x="10" y="10" width="140" skinName="Btn_b2Skin"/>
+		<e:Button id="okBtn" label="掠　夺" skinName="Btn_r2Skin" x="0" y="0" width="140"/>
+		<e:layout>
+			<e:HorizontalLayout gap="20"/>
+		</e:layout>
+	</e:Group>
+	<e:Group y="110" horizontalCenter="0">
+		<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="100" height="100"/>
+		<e:Image source="head_bg2_jpg" y="3" x="3.0000000000000284" width="94" height="94"/>
+		<e:Image id="headMC" source="head_png" y="3" x="3.0000000000000284" width="94" height="94"/>
+	</e:Group>
+</e:Skin>

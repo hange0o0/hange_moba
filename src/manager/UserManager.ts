@@ -214,8 +214,8 @@ class UserManager {
             }
             return count;
         }
-        tec_force += getTecAdd(this.tec.main);
-        tec_force += getTecAdd(this.tec.ring);
+        //tec_force += getTecAdd(this.tec.main);
+        //tec_force += getTecAdd(this.tec.ring);
         tec_force += getTecAdd(this.tec.monster);
         return tec_force;
     }

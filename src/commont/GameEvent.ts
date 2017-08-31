@@ -133,6 +133,12 @@ class GameEvent {
     }
 
     public static mapGame = {
+        map_fight_get:'map_fight_get',
+        map_fight_pk:'map_fight_pk',
+        map_fight_pk_back:'map_fight_pk_back',
+        map_fight_pk_log:'map_fight_pk_log',
+
+
         get_map_enemy:'get_map_enemy',
         sweep:'map_sweep',
         exchange:'map_exchange',

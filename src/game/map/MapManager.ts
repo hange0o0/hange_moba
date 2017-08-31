@@ -12,6 +12,8 @@ class MapManager{
 
 
     public logList
+    public fightLogList
+    public fightLogVideo = {};
     //public value;
     //public lasttime;
     //public level;  //正在进行的关卡
@@ -61,6 +63,8 @@ class MapManager{
 
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_map_log') || [];
+        this.fightLogList = SharedObjectManager.instance.getMyValue('pk_map_fight_log') || [];
+
         MapData.getInstance().initData()
 
         //var data = UM.pk_common.map || {};
@@ -77,6 +81,18 @@ class MapManager{
         //    this.sweepData = {};
         //}
 
+    }
+
+    public resetFightLogList(){
+        var t = TM.now() - 3600*24*3;
+        for(var i=0;i<this.fightLogList.length;i++)
+        {
+              if(this.fightLogList[i].time < t)
+              {
+                  this.fightLogList.splice(i,1);
+                  i--;
+              }
+        }
     }
 
     //public getRate(level){
@@ -252,6 +268,7 @@ class MapManager{
             if(msg.fail == 2)
             {
                 Alert('体力不足');
+                return;
             }
             if(msg.fail == 1 || msg.fail == 3)
             {
@@ -350,6 +367,120 @@ class MapManager{
     }
 
 
+
+
+    //取掠夺对象
+    public fightGet(fun?){
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.map_fight_get,oo,function(data){
+            var msg = data.msg;
+            if(fun)
+                fun();
+        });
+    }
+    //挑战掠夺对象
+    public fightPK(choose,fun?){
+        var self = this;
+        var oo:any = {};
+        if(!UM.testEnergy(1))
+        {
+            return;
+        }
+        oo.choose = choose;
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.map_fight_pk,oo,function(data){
+            var msg = data.msg;
+            if(!self.onFightPK(msg))
+                return;
+            if(fun)
+                fun();
+        });
+    }
+
+    private onFightPK(msg){
+        return true;
+    }
+    //反击
+    public fightPKBack(logid,choose,fun?){
+        var self = this;
+        var oo:any = {};
+        if(!UM.testEnergy(1))
+        {
+            return;
+        }
+        oo.logid = logid;
+        oo.choose = choose;
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.map_fight_pk_back,oo,function(data){
+            var msg = data.msg;
+            if(fun)
+                fun();
+        });
+    }
+
+    //日志
+    public fightLog(fun?){
+        var self = this;
+        var oo:any = {};
+        oo.logid = 0;
+        if(this.fightLogList.length > 0)
+            oo.logid = this.fightLogList[0].id;
+        Net.addUser(oo);
+        Net.send(GameEvent.mapGame.map_fight_pk_log,oo,function(data){
+            var msg = data.msg;
+            if(msg.list.length > 0)
+            {
+                self.fightLogList = self.fightLogList.concat(msg.list);
+                ArrayUtil.sortByField(self.fightLogList,['id'],[1])
+                SharedObjectManager.instance.setMyValue('pk_map_fight_log',self.fightLogList)
+            }
+            if(fun)
+                fun();
+        });
+        this.resetFightLogList();
+    }
+
+    public playBack(logData,fun?){
+        if(this.fightLogVideo[logData.id])
+        {
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.fightLogVideo[logData.id]);
+            if(fun)
+                fun();
+            return;
+        }
+
+        var self = this;
+        var oo:any = {};
+        var content = JSON.parse(logData.content);
+        oo.team1 = content.team1;
+        oo.team2 = content.team2;
+        oo.pk_version = content.pk_version;
+
+        if(Math.floor(content.pk_version) < Config.pk_version){
+            Alert('录像已过期');
+            return;
+        }
+        Net.send(GameEvent.pkCore.pk_result,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 2)
+            {
+                Config.pk_version = Math.floor(msg.pk_version);
+                Alert('录像已过期');
+                return;
+            }
+            self.fightLogVideo[logData.id] = msg//.pkdata;
+
+            var info:any = msg.info = {};
+            info.type = PKManager.PKType.MAP_FIGHT;
+            info.teamChange = logData.to_gameid == UM.gameid;
+
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,msg);
+            if(fun)
+                fun();
+        });
+    }
 
 
     ////取商店列表

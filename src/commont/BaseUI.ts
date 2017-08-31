@@ -131,6 +131,7 @@ module game {
         public loadUI = null;
 
         public hideVisible = false;
+        public showFinishFunList = []; //显示成功后回调的方法
 
         private panelEvents: any = {};
 
@@ -158,6 +159,19 @@ module game {
                 this.onShow.apply(this,this._arguments);
             else
                 this.onShow();
+
+            this.runShowFinish();
+        }
+
+        private runShowFinish(){
+            while(this.showFinishFunList.length > 0)
+            {
+                this.showFinishFunList.shift()();
+            }
+        }
+
+        public addShowFinishFun(fun){
+            this.showFinishFunList.push(fun);
         }
                     
         public partAdded(partName:string, instance:any):void {
@@ -260,6 +274,8 @@ module game {
                     this.onShow.apply(this,this._arguments);
                 else
                     this.onShow();
+
+                this.runShowFinish();
             }
             BaseUI.setStopEevent();
         }

@@ -469,10 +469,16 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.bgGroup);
         egret.Tween.removeTweens(this.bg0);
         egret.Tween.removeTweens(this.bg1);
+        egret.Tween.removeTweens(this.hpGroup);
+        egret.Tween.removeTweens(this.playerGroup1);
+        egret.Tween.removeTweens(this.playerGroup2);
+        egret.Tween.removeTweens(this.resultMC);
+        egret.Tween.removeTweens(this.resultBG);
         egret.Tween.removeTweens(this.topMC);
         egret.Tween.removeTweens(this.bottomMC);
         egret.Tween.removeTweens(this.jumpBtn);
         egret.Tween.removeTweens(this.jumpBtn2);
+        egret.Tween.removeTweens(this.monsterGroup);
         egret.Tween.removeTweens(this.roundGroup);
         egret.Tween.removeTweens(this.skillGroup);
         egret.Tween.removeTweens(this.upGroup);

@@ -23,7 +23,7 @@ class RankItem extends game.BaseItem {
     }
 
     private onClick(){
-        if(this.data.gameid != UM.gameid)
+        if(!this.data.info)
         {
             OtherInfoUI.getInstance().showID(this.data.gameid);
         }

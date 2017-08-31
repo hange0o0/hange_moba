@@ -33,8 +33,13 @@ class MapMainUI extends game.BaseUI {
     private exchangeBtn: eui.Button;
     private pkText: eui.Label;
     private pkBtn: eui.Button;
+    private fightText: eui.Label;
+    private fightBtn: eui.Button;
     private videoBtn: eui.Group;
+    private logBtn: eui.Group;
     private timeText: eui.Label;
+
+
 
     private con1 = new eui.Group()
     private con2 = new eui.Group()
@@ -78,6 +83,8 @@ class MapMainUI extends game.BaseUI {
         this.addBtnEvent(this.exchangeBtn,this.onExchange)
         this.addBtnEvent(this.pkBtn,this.onPK)
         this.addBtnEvent(this.getBtn,this.onGet)
+        this.addBtnEvent(this.fightBtn,this.onFight)
+        this.addBtnEvent(this.logBtn,this.onLog)
         this.addBtnEvent(this.videoBtn,this.onVideo)
 
 
@@ -122,6 +129,13 @@ class MapMainUI extends game.BaseUI {
         }
         this.posData = {}
         AniManager.getInstance().removeAllMV();
+    }
+
+    private onFight(){
+        MapFightUI.getInstance().show();
+    }
+    private onLog(){
+         MapLogUI.getInstance().show();
     }
 
     private onLeft(){
@@ -383,6 +397,40 @@ class MapMainUI extends game.BaseUI {
             this.timeText.text = ('功勋背包已满载')
         if(egret.getTimer() - this.cloudTimer > 1000*10)
             this.showCound();
+
+
+        var cd = MD.getNextFightCD();
+        if(cd == 0)
+        {
+            MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n' + MD.fight_times + '/' + MD.maxFightTimes);
+            this.fightBtn.touchEnabled = true;
+            if(MD.get_fight_enemy)
+            {
+                this.fightBtn.label = '掠　夺'
+                this.fightBtn.skinName = 'Btn_b2Skin'
+            }
+            else
+            {
+                this.fightBtn.label = '搜　寻'
+                this.fightBtn.skinName = 'Btn_r2Skin'
+            }
+        }
+        else
+        {
+            MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n' + DateUtil.getStringBySecond(cd));
+            if(MD.get_fight_enemy)
+            {
+                this.fightBtn.touchEnabled = true
+                this.fightBtn.label = '掠　夺';
+                this.fightBtn.skinName = 'Btn_b2Skin'
+            }
+            else
+            {
+                this.fightBtn.touchEnabled = false
+                this.fightBtn.label = '搜　寻'
+                this.fightBtn.skinName = 'Btn_d2Skin'
+            }
+        }
 
 
         //console.log('map running')
@@ -668,9 +716,10 @@ class MapMainUI extends game.BaseUI {
             this.setBtnEnable('right',false)
         }
 
-        MyTool.setColorText(this.awardText,'[功勋背包：]\n' + MD.bag + '/' + MD.getAwardMax());
-        MyTool.setColorText(this.valueText,'[功勋积累：]\n' + MD.value);
-        MyTool.setColorText(this.pkText,'[通缉令：]\n' + MD.pkValue);
+        MyTool.setColorText(this.awardText,'[- 功勋背包 -]\n' + MD.bag + '/' + MD.getAwardMax());
+        MyTool.setColorText(this.valueText,'[- 功勋积累 -]\n' + MD.value);
+        MyTool.setColorText(this.pkText,'[- 通缉令 -]\n' + MD.pkValue);
+
         this.redMC.visible = MD.bag >= MD.getAwardMax();
 
         if(MD.enemy && MD.enemy.level == MD.level && !MD.enemy.is_pk)
@@ -846,6 +895,7 @@ class MapMainUI extends game.BaseUI {
         }
         else
         {
+            egret.Tween.removeTweens(this.bf)
             this.bf.width = 640*rate;
             this.bb.width = this.bf.width
         }

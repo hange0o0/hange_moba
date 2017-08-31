@@ -337,9 +337,21 @@ class VideoCode{
     private onRoundOver(){
         if(!this.skillData)
             return;
-        var oo:any = this.skillData.result = {player1:{},player2:{}};
-        oo.player1.lhp = this.orginHP.hp1;
-        oo.player1.lmhp = this.orginHP.mhp1;
+        if(this.skillData.result)
+        {
+            var oo:any = this.skillData.result
+        }
+        else
+        {
+            var oo:any = this.skillData.result = {player1:{},player2:{}};
+            oo.player1.lhp = this.orginHP.hp1;
+            oo.player1.lmhp = this.orginHP.mhp1;
+
+            oo.player2.lhp = this.orginHP.hp2;
+            oo.player2.lmhp = this.orginHP.mhp2;
+        }
+
+
         oo.player1.hp = this.player1.hp;
         oo.player1.mp = this.player1.mp;
         oo.player1.ap = this.player1.actionCount;
@@ -347,8 +359,7 @@ class VideoCode{
         oo.player1.maxMp = this.player1.maxMp;
         oo.player1.buffList = JSON.stringify(this.player1.buffList);
 
-        oo.player2.lhp = this.orginHP.hp2;
-        oo.player2.lmhp = this.orginHP.mhp2;
+
         oo.player2.hp = this.player2.hp;
         oo.player2.mp = this.player2.mp;
         oo.player2.ap = this.player2.actionCount;
