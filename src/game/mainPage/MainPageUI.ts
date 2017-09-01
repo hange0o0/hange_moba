@@ -673,7 +673,12 @@ class MainPageUI extends game.BaseUI {
 
     public clickPage(page){
          if(this.currentPage == page)
-            return;
+         {
+             var item = this.gameItems[this.currentPage];
+             if(item.btnGroup.visible && item.startBtn.stage)
+                item.onStart()
+             return;
+         }
 
         this.currentPage = page
         this.renewPage();

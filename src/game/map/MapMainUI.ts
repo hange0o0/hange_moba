@@ -418,7 +418,7 @@ class MapMainUI extends game.BaseUI {
         var cd = MD.getNextFightCD();
         if(cd == 0)
         {
-            MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n' + MD.fight_times + '/' + MD.maxFightTimes);
+            MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n' + (MD.maxFightTimes - MD.fight_times) + '/' + MD.maxFightTimes);
             this.fightBtn.touchEnabled = true;
             if(MD.get_fight_enemy)
             {

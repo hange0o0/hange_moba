@@ -312,7 +312,7 @@ class MapData {
 
     //每胜一场奖励积分
     public getCurrentAward(){
-       return Math.floor(2+this.level*1.2)//Math.ceil(Math.pow(this.level,1.3));
+       return Math.floor(2+this.level + this.level/3)//Math.ceil(Math.pow(this.level,1.3));
     }
 
     //奖励上限
