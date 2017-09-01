@@ -480,7 +480,9 @@ class PKDressUI extends game.BaseUI {
                 }
             }
         }
-        var chooseData = {list:this.chooseList,index:this.index}
+        var chooseData:any = {list:this.chooseList,index:this.index}
+        if(this.dataIn.logData)
+            chooseData.logData = this.dataIn.logData
         var self = this;
         PKManager.getInstance().startPK(PKDressUI.getInstance().pkType,chooseData,function(){
             //self.closeRelate();
@@ -494,7 +496,10 @@ class PKDressUI extends game.BaseUI {
                 PKMainUI.getInstance().show();
                 self.touchChildren = self.touchEnabled = false;
             }
-
+            if(self.dataIn.fun)
+            {
+                self.dataIn.fun();
+            }
         })
     }
 

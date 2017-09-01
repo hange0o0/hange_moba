@@ -249,6 +249,12 @@ module game {
             
             return this;
         }
+
+        //public showToTop(){
+        //    if(this.stage)
+        //        PopUpManager.addPopUp(this,this.isWindow);
+        //}
+
         
         private showFun():void{
             this.isStartLoad = false;

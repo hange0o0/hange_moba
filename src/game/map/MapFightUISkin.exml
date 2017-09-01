@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MapFightUISkin" width="420" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" height="480">
 	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin" locked="true"/>
-	<e:Label id="desText" text="仍然]赢得3场胜利使用[基地枯" verticalAlign="top" textAlign="left" size="26" lineSpacing="8" horizontalCenter="1" maxWidth="440" y="240" stroke="2" textColor="0xccb48e"/>
+	<e:Label id="desText" text="仍然]赢得3场胜利使用[基地枯" verticalAlign="top" textAlign="center" size="26" lineSpacing="8" maxWidth="440" y="240" stroke="2" textColor="0xccb48e" horizontalCenter="0"/>
 	<e:Button id="refreshBtn" label="重新搜寻" y="293.94" horizontalCenter="0" skinName="Btn_r2Skin"/>
 
 

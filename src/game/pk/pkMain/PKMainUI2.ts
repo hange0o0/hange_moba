@@ -1707,7 +1707,7 @@ class PKMainUI extends game.BaseUI {
                 var atkerItem = this.getMonster(data.atker);
                 this.showItemWord(atkerItem,{text:'绝杀',textColor:0xFF0000},0,'name');
                 this.setTimeout(function(){
-                    this.decode_atk(data,{arr:arr,index:index,type:0});
+                    this.killAction(data,{arr:arr,index:index,type:0});
                 },500);
 
                 break;
@@ -1721,6 +1721,31 @@ class PKMainUI extends game.BaseUI {
 
         if(this.random() < 0.2)
             this.showPKWord()
+    }
+
+    private killAction(data,roundeData){
+        var count = 2;
+        var self = this;
+        roundeData.killFun = function(){
+            count --;
+            if(count <= 0)
+            {
+                roundeData.killFun = null;
+            }
+            var atker = data.atker;
+            var defender = data.defender;
+            var atkerItem = self.getMonster(atker)
+            var defendItem = self.getMonster(defender[0].defender);
+
+            var rota = PKMainMV.getInstance().getRota(atkerItem,defendItem)*Math.PI/180 + 0.5*Math.PI*(self.random()-0.5);
+            var newPos = {x:defendItem.x + Math.sin(rota)*150,y:defendItem.y + Math.cos(rota)*150}
+            var tw = egret.Tween.get(atkerItem);
+            tw.to({alpha:0}).to(newPos).to({alpha:1},200).call(function(){
+                self.nearAtk(data,roundeData)
+            })
+
+        }
+        this.nearAtk(data,roundeData)
     }
 
     private actionBefore(data){
@@ -1814,6 +1839,11 @@ class PKMainUI extends game.BaseUI {
             var xy = VM.behitMoveBack(atkerItem,defenderItem,function(){
                 roundeData.stopNext = false;
                 roundeData.notEffect = selfList.concat(playList);
+                if(roundeData.killFun)
+                {
+                    roundeData.killFun();
+                    return;
+                }
                 this.addEffectList(data,roundeData);
             },this)
 
@@ -1827,7 +1857,7 @@ class PKMainUI extends game.BaseUI {
                     this.addEffectList(data,roundeData);
                 },this);
             }
-            else
+            else if(!roundeData.killFun)
             {
                 roundeData.stopNext = true;
                 roundeData.notEffect = enemyList.concat(playList);
@@ -1846,7 +1876,7 @@ class PKMainUI extends game.BaseUI {
 
 
         },this,waitCD)
-        if(atkerItem.isPKing)
+        if(atkerItem.isPKing && !roundeData.killFun)
             PPM.jumpOut(atkerItem,xy,[defenderItem]);
     }
 

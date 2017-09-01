@@ -14,73 +14,13 @@ class MapManager{
     public logList
     public fightLogList
     public fightLogVideo = {};
-    //public value;
-    //public lasttime;
-    //public level;  //正在进行的关卡
-    //public step;  //完成关卡进度
-    //public pkLevel;
-    //public sweepData;
-    //public enemy;
 
-    //public getMaxPKNum(level){
-    //    return Math.min(10,level+2);
-    //}
-
-    //public getLevelMap(level){
-    //    var arr = [2, 11, 20, 29, 38, 46, 53, 74]
-    //    for(var i=0;i<arr.length;i++)
-    //    {
-    //        if(level-1 <= arr[i])   //在这个地图上
-    //        {
-    //            switch(i)
-    //            {
-    //                case 0:
-    //                    return 'pk_bg9_jpg';
-    //                case 1:
-    //                    return 'pk_bg3_jpg';
-    //                case 2:
-    //                    return 'pk_bg4_jpg';
-    //                case 3:
-    //                    return 'pk_bg10_jpg';
-    //                case 4:
-    //                    return 'pk_bg8_jpg';
-    //                case 5:
-    //                    return 'pk_bg13_jpg';
-    //                case 6:
-    //                    return 'pk_bg16_jpg';
-    //                case 7:
-    //                    return 'pk_bg12_jpg';
-    //            }
-    //            break;
-    //        }
-    //    }
-    //
-    //}
-
-     //public passDay(){
-     //    this.sweepData = {};
-     //}
 
     public initData(){
         this.logList = SharedObjectManager.instance.getMyValue('pk_map_log') || [];
         this.fightLogList = SharedObjectManager.instance.getMyValue('pk_map_fight_log') || [];
 
         MapData.getInstance().initData()
-
-        //var data = UM.pk_common.map || {};
-        //this.value = data.value || 0;
-        //this.level = data.level || 1;
-        //this.step = data.step || 0;
-        //this.lasttime = data.lasttime || 0;
-        //this.sweepData = data.sweep || {};
-        //this.enemy = data.enemy
-        //if(this.enemy)
-        //    this.pkLevel = this.enemy.level;
-        //if(!DateUtil.isSameDay(this.lasttime ))
-        //{
-        //    this.sweepData = {};
-        //}
-
     }
 
     public resetFightLogList(){
@@ -95,21 +35,7 @@ class MapManager{
         }
     }
 
-    //public getRate(level){
-    //    if(this.level == level)
-    //    {
-    //        return this.step;
-    //    }
-    //    else
-    //    {
-    //        return this.getSweepNum(level)
-    //    }
-    //}
-    //
-    //public getSweepNum(id){
-    //    return this.sweepData[id] || 0
-    //
-    //}
+
     public addLogList(data){
         var list = this.logList;
         list.unshift(data);
@@ -117,25 +43,6 @@ class MapManager{
             list.length = 20;
         SharedObjectManager.instance.setMyValue('pk_map_log',list);
     }
-
-    //public addValue(v){
-    //    if(!v)
-    //        return;
-    //    this.value += v;
-    //    EM.dispatchEventWith(GameEvent.client.map_value_change)
-    //}
-    //
-    //public getExCoin(v){
-    //    return Math.floor(v*10);
-    //}
-    //
-    //public getExCard(v){
-    //    return Math.floor(v/10);
-    //}
-    //
-    //public getExCardNeed(v){
-    //    return Math.floor(v*10);
-    //}
 
     ////打开PK对战内容的表现
     public pkAgain(fun?){
@@ -229,6 +136,10 @@ class MapManager{
         Net.send(GameEvent.mapGame.map_award,oo,function(data){
             var msg = data.msg;
             MD.fillData(msg.data);
+            if(msg.fail)
+            {
+                Alert('你已被人抢光了资源')
+            }
             if(fun)
                 fun();
         });
@@ -283,7 +194,6 @@ class MapManager{
             if(!msg.info)
                 msg.info = {};
             msg.info.type = PKManager.PKType.MAP;
-            MD.addValue(msg.award.g_exp)
 
             PKManager.getInstance().onPK(PKManager.PKType.MAP,msg);
             self.addLogList(PKManager.getInstance().getLogData({round:MD.level,type:PKManager.PKType.MAP}));
@@ -371,17 +281,21 @@ class MapManager{
 
     //取掠夺对象
     public fightGet(fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.map_fight_get,oo,function(data){
             var msg = data.msg;
+            MD.get_fight_enemy = msg.data;
+            MD.get_fight_time = TM.now();
             if(fun)
                 fun();
         });
     }
     //挑战掠夺对象
     public fightPK(choose,fun?){
+        var MD = MapData.getInstance();
         var self = this;
         var oo:any = {};
         if(!UM.testEnergy(1))
@@ -392,29 +306,67 @@ class MapManager{
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.map_fight_pk,oo,function(data){
             var msg = data.msg;
-            if(!self.onFightPK(msg))
+            if(!self.onFightPK(msg,choose))
                 return;
+            MD.get_fight_enemy = null
             if(fun)
                 fun();
         });
     }
 
-    private onFightPK(msg){
+    private onFightPK(msg,choose){
+        var MD = MapData.getInstance();
+        if(PKManager.getInstance().pkError(msg))
+            return false;
+        if(msg.fail == 2)
+        {
+            Alert('体力不足');
+            return;
+        }
+        if(msg.fail == 5)
+        {
+            Alert('无法插入日志');
+            return;
+        }
+        if(msg.fail == 1 || msg.fail == 3 || msg.fail == 4)
+        {
+            MD.enemy = null;
+            Alert('找不到敌人数据' + msg.fail);
+            PKDressUI.getInstance().hide();
+            MapGameUI.getInstance().hide();
+            return;
+        }
+
+        UM.addHistory(choose.list.join(','));
+        if(!msg.info)
+            msg.info = {};
+        msg.info.type = PKManager.PKType.MAP_FIGHT;
+
+        MD.addValue(msg.award.g_exp)
+
+
+        MD.getFightTimes();
+        MD.fight_times ++
+
+        PKManager.getInstance().onPK(PKManager.PKType.MAP_FIGHT,msg);
         return true;
     }
     //反击
-    public fightPKBack(logid,choose,fun?){
+    public fightPKBack(logData,choose,fun?){
         var self = this;
         var oo:any = {};
         if(!UM.testEnergy(1))
         {
             return;
         }
-        oo.logid = logid;
+        oo.logid = logData.id;
         oo.choose = choose;
         Net.addUser(oo);
         Net.send(GameEvent.mapGame.map_fight_pk_back,oo,function(data){
             var msg = data.msg;
+            if(!self.onFightPK(msg,choose))
+                return;
+            logData.type = 1;
             if(fun)
                 fun();
         });

@@ -29,12 +29,21 @@ class MapLogItem extends game.BaseItem {
         OtherInfoUI.getInstance().showID(e.text);
     }
 
-    private createName(openid,nick){
+    private createName(nick,openid){
         return this.createHtml('<a href="event:'+openid+'">' + nick + '</a>',0xE0A44A)
     }
 
     private onPK(){
-        PKDressUI.getInstance().show({pktype:'map_fight',data:UM.pk_common.my_card,logData:this.data})
+        var MD = MapData.getInstance();
+        if(MD.getFightTimes() >= MD.maxFightTimes)
+        {
+            Alert('今日掠夺次数已达上限')
+            return;
+        }
+        var self = this;
+        PKDressUI.getInstance().show({pktype:'map_fight',data:UM.pk_common.my_card,logData:this.data,fun:function(){
+             self.dataChanged();
+        }})
 
     }
     private onVideo(){
@@ -44,15 +53,14 @@ class MapLogItem extends game.BaseItem {
     }
 
     public dataChanged() {
-        this.dayText.text = DateUtil.formatDate('yyyy-MM-dd hh:mm',this.data.time)
-        MyTool.setColorText(this.text,this.data.text)
+        this.dayText.text = DateUtil.formatDate('yyyy-MM-dd hh:mm',DateUtil.timeToChineseDate(this.data.time))
         this.bg.visible = this.data.index%2 == 0;
 
         this.currentState = 'normal'
         var content = JSON.parse(this.data.content);
         var str = ''
-        var formNick = this.createName(Base64.decode(content.from_nick),this.data.from_gamid);
-        var toNick = this.createName(Base64.decode(content.to_nick),this.data.to_gamid);
+        var formNick = this.createName(Base64.decode(content.from_nick),this.data.from_gameid);
+        var toNick = this.createName(Base64.decode(content.to_nick),this.data.to_gameid);
         if(content.result)
         {
             if(this.data.to_gameid == UM.gameid)//我被抢
@@ -77,7 +85,7 @@ class MapLogItem extends game.BaseItem {
                 str = '你想从'+toNick+'身上夺取功勋，但遗憾失败'
             }
         }
-        MyTool.setColorText(this.text,str);
+        MyTool.setColorText(this.text,'' + str);
     }
 
 

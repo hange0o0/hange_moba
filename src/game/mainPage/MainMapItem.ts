@@ -86,7 +86,7 @@ class MainMapItem extends game.BaseItem {
 
                 this.desText.text = '';
                 this.barGroup.visible = true;
-                this.barMC.width = 200 * MD.bag/awardMax
+                this.barMC.width = 200 * Math.max(0,MD.bag)/awardMax
                 this.nextText.text = MD.bag + '/' + awardMax
             }
             else

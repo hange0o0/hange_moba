@@ -40,6 +40,7 @@ class PKWinUI extends PKResultBase {
     }
 
     private onBack(){
+        PopUpManager.testShape(true);
         PKResultUI.getInstance().hide();
 
         if(GuideManager.getInstance().isGuiding)
@@ -49,10 +50,9 @@ class PKWinUI extends PKResultBase {
 
         }
 
-        var PKM = PKManager.getInstance();
-        if(PKM.pkType == PKManager.PKType.MAP)
-            MapMainUI.getInstance().show();
-
+        //var PKM = PKManager.getInstance();
+        //if(PKM.pkType == PKManager.PKType.MAP || PKM.pkType == PKManager.PKType.MAP_FIGHT)
+        //    MapMainUI.getInstance().show();
     }
     private onContinue(){
         var self = this;
@@ -106,7 +106,7 @@ class PKWinUI extends PKResultBase {
         this.btnGroup.visible = false;
 
         var PKM = PKManager.getInstance();
-        if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND)
+        if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND || PKM.pkType == PKManager.PKType.MAP_FIGHT)
         {
             MyTool.removeMC(this.okBtn)
         }

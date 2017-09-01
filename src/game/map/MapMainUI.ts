@@ -183,13 +183,13 @@ class MapMainUI extends game.BaseUI {
         if(MD.enemy && MD.enemy.level == MD.level && !MD.enemy.is_pk)
         {
             MapGameUI.getInstance().show();
-            this.hide()
+            //this.hide()
             return;
         }
         var self = this;
         MM.getEnemy(function(){
             MapGameUI.getInstance().show();
-            self.hide()
+            //self.hide()
         })
     }
     private onGet(){
@@ -212,7 +212,7 @@ class MapMainUI extends game.BaseUI {
     }
     private onVideo(){
         DayLogUI.getInstance().show(MapManager.getInstance().logList,'据点挑战日志','map');
-        this.hide();
+        //this.hide();
     }
 
 
@@ -262,6 +262,17 @@ class MapMainUI extends game.BaseUI {
         TaskManager.getInstance().cleanNowAcrion('map_game_pk');
         TaskManager.getInstance().cleanNowAcrion('map_game_next');
         super.hide();
+    }
+
+     public onVisibleChange(){
+         if(this.visible)
+         {
+             this.onMapChange();
+         }
+         else
+         {
+             this.stopAll();
+         }
     }
 
     public show(data?){
@@ -337,6 +348,8 @@ class MapMainUI extends game.BaseUI {
     private onActive(){
         if(this.openTime && egret.getTimer() - this.openTime < 1000)
             return;
+        if(!this.visible)
+            return;
         this.onMapChange();
     }
 
@@ -345,7 +358,7 @@ class MapMainUI extends game.BaseUI {
         this.stopAll();
     }
 
-    private onMapChange(){
+    public onMapChange(){
         var MD = MapData.getInstance();
         this.topUI.setTitle('第'+MD.level+'据点')
         this.bg.source = 'pk_bg'+(MD.level%20 || 20)+'_jpg';
@@ -388,11 +401,14 @@ class MapMainUI extends game.BaseUI {
     }
 
     private onTimer(){
+        if(!this.visible)
+            return;
+
         var MD = MapData.getInstance();
         var pkTime = Math.floor((MD.getAwardMax() - MD.bag)/MD.getCurrentAward() - 1)*MD.getCurrentCD()
         pkTime +=  MD.getCurrentCD() - (TM.now() - MD.lastTime);
         if(pkTime > 0)
-            MyTool.setColorText(this.timeText,'[功勋背包满载：]' + DateUtil.getStringBySeconds(pkTime,false,2))
+            MyTool.setColorText(this.timeText,'[功勋背包满载：]' + DateUtil.getStringBySeconds(pkTime,false,2) + (MD.getCurrentCD()<= MD.minBossCD?'(效率到顶)':''))
         else
             this.timeText.text = ('功勋背包已满载')
         if(egret.getTimer() - this.cloudTimer > 1000*10)
@@ -716,7 +732,7 @@ class MapMainUI extends game.BaseUI {
             this.setBtnEnable('right',false)
         }
 
-        MyTool.setColorText(this.awardText,'[- 功勋背包 -]\n' + MD.bag + '/' + MD.getAwardMax());
+        MyTool.setColorText(this.awardText,'[- 功勋背包 -]\n' + (MD.bag >=0?MD.bag:this.createHtml(MD.bag,0xFF0000)) + '/' + MD.getAwardMax());
         MyTool.setColorText(this.valueText,'[- 功勋积累 -]\n' + MD.value);
         MyTool.setColorText(this.pkText,'[- 通缉令 -]\n' + MD.pkValue);
 

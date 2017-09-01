@@ -58,7 +58,7 @@ class RegisterServerUI extends game.BaseWindow {
 
     private onClick(){
         var LM = LoginManager.getInstance();
-        if(!this.nameText.text || BadWordsFilter.validateName(this.nameText.text))
+        if(!this.nameText.text || this.nameText.text == '神秘人' || BadWordsFilter.validateName(this.nameText.text))
         {
             Alert('名字中含有非法字符');
             return;

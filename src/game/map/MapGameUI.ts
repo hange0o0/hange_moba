@@ -62,7 +62,7 @@ class MapGameUI extends game.BaseUI {
         //    if(type == 1)
         //    {
                 self.hide();
-                MapMainUI.getInstance().show();
+                //MapMainUI.getInstance().show();
         //    }
         //});
     }

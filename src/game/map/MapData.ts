@@ -18,6 +18,7 @@ class MapData {
     public monsterHurts:any = {};//每个怪对BOSS造成的伤害
     public monsterValues:any = {};//每个怪对BOSS造成的伤害
     public bossCD = 0;
+    public minBossCD = 3*60;
 
     //public pkList = []//pk中的队列(打完这个BOSS用的卡兵)
     //public bakList = []//接着出场的队列(不参与打完这个BOSS)
@@ -84,6 +85,12 @@ class MapData {
         this.get_fight_time = map.get_fight_time || 0;
         this.get_fight_enemy = map.get_fight_enemy;
         this.fight_times = map.fight_times || 0;
+    }
+
+    public getFightTimes(){
+        if(!DateUtil.isSameDay(this.get_fight_time))
+            this.fight_times = 0;
+        return this.fight_times;
     }
 
     public getNextFightCD(){
@@ -276,7 +283,7 @@ class MapData {
             totalHurt += hurt;
         }
         totalHurt /= list.length;//平均伤害值
-        this.bossCD = Math.max(30,Math.ceil(bossData.hp/totalHurt) * this.showCD)
+        this.bossCD = Math.max(this.minBossCD,Math.ceil(bossData.hp/totalHurt) * this.showCD)
 
         return this.bossCD;
     }
@@ -296,7 +303,7 @@ class MapData {
              hp:600,
              speed:50,
          }
-        var force =Math.pow(1+this.level/2,1.3);
+        var force =Math.pow(1+this.level/2,1.5);
         base.atk = Math.floor(force*base.atk);
         base.hp = Math.floor(force*20*base.hp);
 
@@ -305,12 +312,12 @@ class MapData {
 
     //每胜一场奖励积分
     public getCurrentAward(){
-       return Math.ceil(Math.pow(this.level,1.3));
+       return Math.floor(2+this.level*1.2)//Math.ceil(Math.pow(this.level,1.3));
     }
 
     //奖励上限
     public getAwardMax(){
-        return (140 +this.level *10) * this.getCurrentAward();
+        return (120) * this.getCurrentAward(); // +this.level *10
     }
 
     public getExCoin(v){

@@ -213,7 +213,7 @@ class PKMainMV {
 
 
     //转角度，由A指向B，A原来是指向Y轴
-    private getRota(begin,end){
+    public getRota(begin,end){
         return Math.atan2(end.y - begin.y,end.x - begin.x)* 180/3.14 + 90
     }
 

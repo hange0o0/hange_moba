@@ -36,8 +36,8 @@ class DayLogUI extends game.BaseUI {
 
     public hide(){
         super.hide();
-        if(this.type == 'map')
-            MapMainUI.getInstance().show();
+        //if(this.type == 'map')
+        //    MapMainUI.getInstance().show();
     }
 
     public beforeHide(){

@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MapLogItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="pk,normal"  width="500">
 	<e:Rect id="bg" height="100%" width="100%" x="0" fillAlpha="0.1" fillColor="0x725834"/>
-	<e:Label textColor="0xCCB48E" text="1235555" id="text" size="24" textAlign="left" top="45" bottom="15" lineSpacing="5" left="10" verticalAlign="middle" right.pk="140" right.normal="80"/>
-	<e:Label id="dayText" text="1235555" size="22" textAlign="left" top="10" lineSpacing="5" left="10" verticalAlign="middle" height="34" textColor="0xcecece"/>
+	<e:Label textColor="0xCCB48E" text="1235555" id="text" size="24" textAlign="left" top="40" bottom="10" lineSpacing="5" left="20" verticalAlign="middle" right.pk="140" right.normal="70"/>
+	<e:Label id="dayText" text="1235555" size="22" textAlign="left" top="10" lineSpacing="5" left="10" verticalAlign="middle" textColor="0xcecece"/>
 
-	<e:Group id="videoBtn" right="10" bottom="8">
+	<e:Group id="videoBtn" right="10" verticalCenter="0">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
-	<e:Group id="pkBtn" right="65" includeIn="pk" bottom="8">
+	<e:Group id="pkBtn" right="65" includeIn="pk" verticalCenter="0">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image scaleX="0.55" scaleY="0.55" horizontalCenter="0" verticalCenter="0" source="pk_log_icon_png"/>
 	</e:Group>

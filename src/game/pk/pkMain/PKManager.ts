@@ -15,7 +15,7 @@ class PKManager {
         FRIEND_ANSWER:'friend_answer'
     };
     public static PKCost = 88;
-    public static ApMax = 20;
+    public static ApMax = 15;
 
     public static getInstance():PKManager {
         if (!this._instance)
@@ -326,6 +326,7 @@ class PKManager {
         switch(type)
         {
             case PKManager.PKType.MAP:
+            case PKManager.PKType.MAP_FIGHT:
                 var MD = MapData.getInstance();
                 sceneID =  (MD.level %20) || 20;
                 break;
@@ -371,6 +372,7 @@ class PKManager {
                 sceneID = 4;
                 break;
             case PKManager.PKType.MAP:
+            case PKManager.PKType.MAP_FIGHT:
                 sceneID = 5;
                 break;
             default:
@@ -457,6 +459,12 @@ class PKManager {
                 break
             case PKManager.PKType.MAP:
                 MapManager.getInstance().pk(choose,fun);
+                break
+            case PKManager.PKType.MAP_FIGHT:
+                if(choose.logData)
+                    MapManager.getInstance().fightPKBack(choose.logData,choose,fun);
+                else
+                    MapManager.getInstance().fightPK(choose,fun);
                 break
             case PKManager.PKType.PVE:
                 TeamPVEManager.getInstance().pk(choose,fun);

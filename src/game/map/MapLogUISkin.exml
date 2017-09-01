@@ -5,8 +5,8 @@
 
 
 	<e:Button bottom="40" label="知道了" skinName="Btn_r2Skin" id="okBtn" y="10" right="50"/>
-	<e:Label text="只保留最近3天的记录" textColor="0x999999" size="22" bottom="50" x="50"/>
-	<e:Scroller id="scroller" width="520" top="77" bottom="120" horizontalCenter="0" bounces="false" locked="true">
+	<e:Label text="只保留最近3天的记录" size="22" bottom="50" x="50" textColor="0xccb48e"/>
+	<e:Scroller id="scroller" width="520" top="80" bottom="120" horizontalCenter="0" bounces="false">
 		<e:Group>
 			<e:List id="list" x="0" y="0" itemRendererSkinName="HelpItemSkin">
 				<e:ArrayCollection>

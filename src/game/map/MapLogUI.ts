@@ -36,7 +36,14 @@ class MapLogUI extends game.BaseWindow {
     }
 
     public show(data?){
-        MapManager.getInstance().fightLog(()=>{super.show();})
+        MapManager.getInstance().fightLog(()=>{
+            if( MapManager.getInstance().fightLogList.length == 0)
+            {
+                Alert('暂无掠夺日志')
+                return;
+            }
+            super.show();
+        })
     }
 
     public onShow(){

@@ -106,8 +106,8 @@ class PopUpManager {
         }
     }
 
-    public static testShape(){
-        if(this.shape.parent)
+    public static testShape(strong?){
+        if(this.shape.parent || strong)
         {
             MyTool.removeMC(this.shape)
             //找到最上一个BaseUI,放到其下方
