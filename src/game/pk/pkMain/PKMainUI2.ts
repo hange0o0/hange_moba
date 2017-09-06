@@ -1881,7 +1881,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     //远攻型
-    private bulletAtk(data,roundeData,mvType?,skillID1?,skillID2?,fun?){
+    private bulletAtk(data,roundeData,mvType?,skillID1?,skillID2?,fun?,noJump?){
         var VM = PKMainMV.getInstance();
         var PPM = PKPosManager.getInstance();
 
@@ -1891,13 +1891,13 @@ class PKMainUI extends game.BaseUI {
         var atkerItem = this.getMonster(atker)
         var defenderItem = this.getMonster(defender[0].defender);
 
-        if(atkerItem.isPKing && this.getDis(atkerItem,defenderItem) < 200)
+        if(!noJump && atkerItem.isPKing && this.getDis(atkerItem,defenderItem) < 200)
         {
             var newPos = PPM.findFightEmpty(atkerItem,PPM.getCurrentMap(),defenderItem,200) //,enemy,enemyDis
             if(newPos)
             {
                 VM.jumpToXY(atkerItem,newPos,function(){
-                    this.bulletAtk(data,roundeData,mvType,skillID1,skillID2,fun);
+                    this.bulletAtk(data,roundeData,mvType,skillID1,skillID2,fun,true);
                 },this,100);
                 return;
             }
@@ -2241,6 +2241,10 @@ class PKMainUI extends game.BaseUI {
         else if(effect.key == 'miss')
         {
             this.showItemWord(item,{text:'闪避',textColor:0xFF0000},delay)
+        }
+        else if(effect.key == 'nomagic')
+        {
+            this.showItemWord(item,{text:'魔免',textColor:0xFF0000},delay)
         }
         else if(effect.key == 'die')
         {

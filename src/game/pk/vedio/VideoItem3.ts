@@ -602,15 +602,19 @@ class VideoItem3 extends game.BaseItem {
         }
         else if(effect.key == 'nohurt')
         {
-            group.addChild(this.getWordText('【免伤】',0xFF0000))
+            group.addChild(this.getWordText('【免伤】',0xF4B170,24))
         }
         else if(effect.key == 'miss')
         {
-            group.addChild(this.getWordText('【闪避】',0xFF0000))
+            group.addChild(this.getWordText('【闪避】',0xDCB7FF,24))
+        }
+        else if(effect.key == 'nomagic')
+        {
+            group.addChild(this.getWordText('【魔免】',0xF4E770,24))
         }
         else if(effect.key == 'die')
         {
-            group.addChild(this.getWordText('【死亡】',0xFF0000))
+            group.addChild(this.getWordText('【死亡】',0xFF0000,24))
         }
         else if(effect.key == 'stat')
         {

@@ -552,6 +552,11 @@ class VideoCode{
                 this.defenderMV('manahp',value.value)
                 break;
             }
+            case 'f':
+            {
+                this.defenderMV('nomagic',1)
+                break;
+            }
         }
     }
 }

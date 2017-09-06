@@ -420,6 +420,7 @@ class MapMainUI extends game.BaseUI {
         {
             MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n' + (MD.maxFightTimes - MD.fight_times) + '/' + MD.maxFightTimes);
             this.fightBtn.touchEnabled = true;
+            this.fightText.lineSpacing = 20
             if(MD.get_fight_enemy)
             {
                 this.fightBtn.label = '掠　夺'
@@ -433,7 +434,8 @@ class MapMainUI extends game.BaseUI {
         }
         else
         {
-            MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n' + DateUtil.getStringBySecond(cd));
+            this.fightText.lineSpacing = -2
+            MyTool.setColorText(this.fightText,'[- 掠夺资源 -]\n\n' + DateUtil.getStringBySecond(cd) + '\n(' + (MD.maxFightTimes - MD.fight_times) + '/' + MD.maxFightTimes + ')');
             if(MD.get_fight_enemy)
             {
                 this.fightBtn.touchEnabled = true

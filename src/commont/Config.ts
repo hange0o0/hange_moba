@@ -11,7 +11,7 @@ class Config {
     public static host: string = 'hangegame.com';
     //public static host: string = '172.17.196.195:90';
     public static user_version: number = 1;
-    public static version: number = 10;
+    public static version: number = 11;
     public static m_version: number = 1;
     public static pk_version: number = 4;
     public static cdn: string = "";
@@ -27,7 +27,8 @@ class Config {
     public static dayLevel = 15;
     public static serverLevel = 25;//卡士二阶
     public static serverEqualLevel = 45;  //卡士五阶
-    public static leaderLevel = 95;  //卡士五阶
+    public static leaderLevel = 95;  //
+    public static leaderSkillLevel = 145;  //
 
 
     public static platform = '';

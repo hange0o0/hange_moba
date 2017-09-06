@@ -61,11 +61,11 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="videoBtn" right="10" y="180">
+	<e:Group id="videoBtn" right="10" y="240">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
-	<e:Group id="logBtn" right="10" y="240">
+	<e:Group id="logBtn" right="10" y="180">
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image scaleX="0.55" scaleY="0.55" horizontalCenter="0" verticalCenter="0" source="pk_log_icon_png"/>
 	</e:Group>

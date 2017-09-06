@@ -68,6 +68,6 @@ class LeaderListItem extends game.BaseItem {
     }
 
     public renewSelect(){
-        this.chooseMC.visible = LeaderMainUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        this.chooseMC.visible = LeaderStudyUI.getInstance().selectArr.indexOf(this.data.id) != -1;
     }
 }

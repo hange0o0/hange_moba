@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="LeaderMainUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="leader_bg_jpg" x="0" y="40"/>
-	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" fillAlpha="0.7"/>
+	<ns1:LeaderStudyUI id="studyUI" x="0" skinName="LeaderStudyUISkin" top="0" bottom="0"/>
+	<ns1:LeaderDrawMainUI id="drawUI" x="0" skinName="LeaderDrawMainUISkin" top="0" bottom="0"/>
 	<e:Image source="line_png" y="135" width="650" horizontalCenter="0"/>
 	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="75" id="tab" height="62" width="640" x="0">
 		<e:ArrayCollection>
@@ -11,65 +11,9 @@
 		</e:Array>
 		</e:ArrayCollection>
 	</e:TabBar>
-	<ns1:BookBG width="640" x="0" skinName="BookBGSkin" top="650" bottom="-20"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
-	<e:Group y="160" height="380" width="640" horizontalCenter="0">
-		<e:List id="chooseList" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
-			<e:layout>
-			<e:TileLayout horizontalGap="30" verticalGap="10"/>
-			</e:layout>
-		</e:List>
-		<e:Group id="mainGroup" horizontalCenter="0" verticalCenter="20">
-			<e:Group x="0" y="0" width="200">
-				<e:Image source="border2_png" y="34" scale9Grid="11,11,68,68" width="140" height="140" horizontalCenter="0"/>
-				<e:Image source="book_1_jpg" y="44" width="120" height="120" horizontalCenter="0"/>
-				<e:Button id="btn1" label="学　习" y="218" skinName="Btn_r2Skin" horizontalCenter="0"/>
-				<e:Label id="des1" text="AAAAX123" y="186" size="20" horizontalCenter="0" textColor="0xcbc08a" stroke="2"/>
-				<e:Label id="des2" text="AAAAX123" y="280" size="20" horizontalCenter="0" textColor="0xcbc08a" stroke="2"/>
-				<e:Label text="初级学习" y="0" size="26" horizontalCenter="0" textColor="0xb29d94" stroke="1" strokeColor="0x765541" bold="true"/>
-			</e:Group>
-			<e:Group x="0" y="0" width="200">
-				<e:Image source="border2_png" y="34" scale9Grid="11,11,68,68" width="140" height="140" horizontalCenter="0"/>
-				<e:Image y="44" width="120" height="120" horizontalCenter="0" source="book_2_jpg"/>
-				<e:Button id="btn2" label="学　习" y="218" skinName="Btn_r2Skin" horizontalCenter="0"/>
-				<e:Label id="des3" text="AAAAX123" y="186" size="20" horizontalCenter="0" textColor="0xcbc08a" stroke="2"/>
-				<e:Label id="des4" text="AAAAX123" y="280" size="20" horizontalCenter="0" textColor="0xcbc08a" stroke="2"/>
-				<e:Label text="高级学习" y="0" size="26" horizontalCenter="0" textColor="0xc98b54" stroke="1" strokeColor="0x672f0c" bold="true"/>
-			</e:Group>
-			<e:layout>
-				<e:HorizontalLayout gap="80"/>
-			</e:layout>
-		</e:Group>
-	</e:Group>
-	<e:Scroller id="scroller" width="600" x="20" top="665" bottom="0" bounces="false">
-		<e:Group>
-			<e:List id="list" width="100%" height="200" x="0" y="0">
-				<e:layout>
-					<e:VerticalLayout gap="0" paddingTop="10"/>
-				</e:layout>
-			</e:List>
-		</e:Group>
-	</e:Scroller>
 	<e:Image source="lock_icon_png" x="390" y="88"/>
-	<e:Group id="desGroup" y="536" horizontalCenter="0">
-		<e:Image source="black_bg2_png" y="0" height="40" width="480" scale9Grid="35,13,353,78" x="0"/>
-		<e:Label id="desText" size="24" text="Label" textColor="0xcbc08a" stroke="3" verticalCenter="0" horizontalCenter="0"/>
-	</e:Group>
-	<e:Button id="continueBtn" label="开始学习" y="580" horizontalCenter="0" skinName="Btn_r2Skin"/>
-	<e:Group x="421" y="600">
-		<e:Image source="border6_png" y="0" scale9Grid="14,6,88,18" width="210" height="41" x="0"/>
-		<e:Image source="icon_add_png" y="4" x="169" id="sortBtn"/>
-		<e:Label id="sortText" y="7" textColor="0xCCB48E" text="标签标签标签" textAlign="center" width="167" size="26" x="3"/>
-	</e:Group>
-	<e:Group id="sortGroup" y="640" x="421">
-		<e:Image source="border6_png" y="0" scale9Grid="14,4,88,24" width="210" height="100%" x="0"/>
-		<e:List id="sortList" width="200" x="5" top="6" bottom="6" itemRendererSkinName="HonorSortItemSkin">
-		<e:layout>
-			<e:VerticalLayout gap="0" horizontalAlign="justify"/>
-		</e:layout>
-		</e:List>
-	</e:Group>
-	<e:Group id="helpBtn" y="590" x="15">
+	<e:Group id="helpBtn" y="10" right="80">
 		<e:Image source="main_border_png" x="0" y="0" scaleX="0.42" scaleY="0.42"/>
 		<e:Label text="?" y="10" textColor="0xF8D05A" horizontalCenter="0"/>
 	</e:Group>

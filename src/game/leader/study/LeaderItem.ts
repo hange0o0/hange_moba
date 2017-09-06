@@ -34,7 +34,7 @@ class LeaderItem extends game.BaseItem {
     }
 
     private onClick(){
-         LeaderMainUI.getInstance().onSelect(this.data.id)
+         LeaderStudyUI.getInstance().onSelect(this.data.id)
     }
 
 
@@ -61,7 +61,7 @@ class LeaderItem extends game.BaseItem {
         }
         else
         {
-            addExp = 300;
+            addExp = 200;
             this.starGroup.addChild(this.s0)
             this.starGroup.addChild(this.s1)
             this.starGroup.addChild(this.s2)
@@ -106,11 +106,11 @@ class LeaderItem extends game.BaseItem {
     }
 
     public renewChoose(){
-        var b = LeaderMainUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        var b = LeaderStudyUI.getInstance().selectArr.indexOf(this.data.id) != -1;
         this.currentState = b?'selected':'normal';
     }
     public movieOut(){
-        var b = LeaderMainUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        var b = LeaderStudyUI.getInstance().selectArr.indexOf(this.data.id) != -1;
         if(!b)
         {
              var tw = egret.Tween.get(this);

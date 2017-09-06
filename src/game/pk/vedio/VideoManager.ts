@@ -189,10 +189,10 @@ class VideoManager {
         }
     }
 
-    public showVideoPlay(){
-        VideoPlayUI.getInstance().show();
-        //VideoUI.getInstance().show()
-    }
+    //public showVideoPlay(){
+    //    VideoPlayUI.getInstance().show();
+    //    //VideoUI.getInstance().show()
+    //}
 
     public initVideo(data){
         var array = data.split(',');

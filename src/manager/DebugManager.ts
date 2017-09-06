@@ -64,7 +64,7 @@ class DebugManager {
     }
 
     //随机卡
-    public randomCard(testCard){
+    public randomCard(testCard?){
         testCard = testCard || [];
         //先出8张卡
         var card1= []; //低
@@ -391,9 +391,20 @@ class DebugManager {
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
             if(msg.result==1)
-                fun(card1);
+                fun(card1,msg);
             else
-                fun(card2)
+                fun(card2,msg)
+        })
+    }
+
+    //测试动画
+    public testVideo(){
+        EM.once(GameEvent.client.pk_end,this.testVideo,this);
+        this.testCard(this.randomCard(),this.randomCard(),function(a,b){
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,b);
+            PKMainUI.getInstance().show(null,true);
+            PKManager.getInstance().pkAward = {};
+
         })
     }
 
@@ -597,6 +608,35 @@ class DebugManager {
             //	//console.log(VideoManager.getInstance().dataArray);
             //});
         });
+    }
+
+    //根据动画再请求一次服务器数据
+    public recallPK(videoData){
+        var dataIn:any = {}
+        var teamBase = videoData.team1base
+        dataIn.team1 = {"list":teamBase.list,"fight":teamBase.f + (videoData.isequal?Config.equalValue:0),"tec":{}}
+        dataIn.team1.leader = teamBase.ld
+        for(var i=0;i<teamBase.list.length;i++)
+        {
+            var mid = teamBase.list[i];
+            dataIn.team1.tec[mid] = UM.getTecAdd('monster',teamBase.mb[mid].lv);
+        }
+
+
+        var teamBase = videoData.team2base
+        dataIn.team2 = {"list":teamBase.list,"fight":teamBase.f + (videoData.isequal?Config.equalValue:0),"tec":{}}
+        dataIn.team2.leader = teamBase.ld
+        for(var i=0;i<teamBase.list.length;i++)
+        {
+            var mid = teamBase.list[i];
+            dataIn.team2.tec[mid] = UM.getTecAdd('monster',teamBase.mb[mid].lv);
+        }
+
+        Net.send('test',dataIn,function(data) {
+            var msg = data.msg;
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,msg);
+            PKMainUI.getInstance().show(null,true)
+        })
     }
 
     //显示真正的动画（数据库配的）
