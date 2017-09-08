@@ -4,7 +4,10 @@ class LeaderDrawLogItem extends game.BaseItem {
         this.skinName = "LeaderDrawLogItemSkin";
     }
 
-    public index;
+    private headMC: eui.Image;
+    private desText: eui.Label;
+    private timeText: eui.Label;
+
 
     public childrenCreated(){
         super.childrenCreated();

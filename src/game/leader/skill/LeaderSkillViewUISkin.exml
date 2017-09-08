@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="LeaderSkillViewUISkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="LeaderSkillViewUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="640" height="800" states="normal,selected" >
+	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" locked="true"/>
+	<e:Scroller id="scroller" width="640" x="0" top="80" bottom="0" top.normal="80" top.selected="245">
+		<e:Group>
+			<e:List id="list" width="200" height="200" x="108" y="122"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Group id="selectGroup" x="0" y="80" width="640" visible.normal="false">
+		<ns1:BookBG width="640" x="0" skinName="BookBGSkin" height="165" y="0"/>
+		<e:Group x="30" verticalCenter="0">
+			<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="110" height="110"/>
+			<e:Image id="img" width="100" height="100" x="5" y="5"/>
+		</e:Group>
+		<e:Label id="nameText" text="Label" x="160" y="25"/>
+		<e:Label id="desText" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" y="60" size="24" left="160" right="30" lineSpacing="5"/>
+		<e:Button id="btn" label="拥有者名单" right="20" bottom="13" skinName="Btn_r2Skin"/>
+	</e:Group>
+	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 </e:Skin>

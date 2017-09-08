@@ -16,6 +16,9 @@ class LeaderDrawMainUI extends game.BaseContainer {
     private doorNpc: eui.Image;
     private desGroup: eui.Group;
     private desText: eui.Label;
+    private awardList: eui.List;
+
+
 
 
     public constructor() {

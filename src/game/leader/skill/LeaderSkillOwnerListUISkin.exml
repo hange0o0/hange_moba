@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="LeaderSkillChangeUISkin" width="580" height="780" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="LeaderSkillOwnerListUISkin" width="580" height="780" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:BasePanel y="0" skinName="BasePanelSkin" width="100%" height="100%" x="0"/>
 	<e:Scroller id="scroller" width="520" x="30" top="240" bottom="110">
 		<e:Group>

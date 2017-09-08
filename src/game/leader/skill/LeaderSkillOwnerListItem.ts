@@ -1,12 +1,12 @@
-class LeaderDrawItem extends game.BaseItem {
+class LeaderSkillOwnerListItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "LeaderDrawItemSkin";
+        this.skinName = "LeaderSkillOwnerListItemSkin";
     }
 
-    private lightMC: eui.Image;
-    private itemMC: AwardItem;
-
+    private img: eui.Image;
+    private nameGroup: eui.Group;
+    private nameText: eui.Label;
 
 
 

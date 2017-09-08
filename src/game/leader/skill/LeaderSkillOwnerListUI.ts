@@ -1,13 +1,13 @@
-class LeaderSkillChangeUI extends game.BaseWindow {
-    private static instance:LeaderSkillChangeUI;
+class LeaderSkillOwnerListUI extends game.BaseWindow {
+    private static instance:LeaderSkillOwnerListUI;
     public static getInstance() {
-        if (!this.instance) this.instance = new LeaderSkillChangeUI();
+        if (!this.instance) this.instance = new LeaderSkillOwnerListUI();
         return this.instance;
     }
 
     public constructor() {
         super();
-        this.skinName = "LeaderSkillChangeUISkin";
+        this.skinName = "LeaderSkillOwnerListUISkin";
     }
 
     private scroller: eui.Scroller;
@@ -71,8 +71,6 @@ class LeaderSkillChangeUI extends game.BaseWindow {
 
     public renew(){
 
-
-        this.onTimer();
 
     }
 }

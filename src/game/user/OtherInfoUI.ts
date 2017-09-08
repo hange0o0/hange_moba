@@ -176,6 +176,8 @@ class OtherInfoUI extends game.BaseUI {
         oo = {title:'职业称号',icon:'icon_main_png',des: MainGameManager.getInstance().getStepName(dataIn.main_game.level) + '　[评分:]'+ dataIn.main_game.level+'',
             myValue:UM.main_game.level, otherValue:dataIn.main_game.level}
         list.push(oo)
+        oo = {title:'获得通关战力',icon:'icon_main_png',des: dataIn.main_game.award_force + '',myValue:UM.main_game.award_force, otherValue:dataIn.main_game.award_force}
+        list.push(oo)
 
         var myData = dataIn.day_game;
         var myData2 = UM.day_game;
@@ -183,7 +185,7 @@ class OtherInfoUI extends game.BaseUI {
         oo = {title:'10胜通关次数',icon:'icon_day_png',des: myData.times + '次',myValue:myData2.times, otherValue:myData.times}
         list.push(oo)
 
-        oo = {title:'获得研究积分',icon:'icon_day_png',des: myData.score + '分',myValue:myData2.score, otherValue:myData.score}
+        oo = {title:'获得研究战力',icon:'icon_day_png',des: myData.score + '',myValue:myData2.score, otherValue:myData.score}
         list.push(oo)
 
 

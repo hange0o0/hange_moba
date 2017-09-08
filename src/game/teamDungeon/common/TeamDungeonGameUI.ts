@@ -15,6 +15,8 @@ class TeamDungeonGameUI extends game.BaseUI {
     private enemyList: eui.List;
     private historyList: eui.List;
     private myCardGroup: MyCardGroupUI;
+    private leaderText: eui.Label;
+
 
 
 
@@ -115,6 +117,10 @@ class TeamDungeonGameUI extends game.BaseUI {
             var fight = TeamDungeonManager.getInstance().getEnemyForce(PVEM.data.game_data.hard,this.data.index)
             var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight,PVEM.data.game_data.hard);
             var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight,PVEM.data.game_data.hard);
+            if(leader)
+                MyTool.setColorText(this.leaderText,'[统\n帅\n▼]\n'+ leader);
+            else
+                this.leaderText.text = '';
 
             for(var i=0;i<this.data.list.length;i++)
             {

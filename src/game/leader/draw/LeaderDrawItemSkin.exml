@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="LeaderDrawItemSkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="LeaderDrawItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="120" height="146">
+	<e:Image id="lightMC" source="main_light_png" y="57.45" scaleX="0.5" scaleY="0.5" anchorOffsetX="179" anchorOffsetY="179" x="60"/>
+	<ns1:AwardItem id="itemMC" x="0" y="0" skinName="AwardItemSkin"/>
 </e:Skin>

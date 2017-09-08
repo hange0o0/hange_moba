@@ -399,12 +399,17 @@ class DebugManager {
 
     //测试动画
     public testVideo(){
-        EM.once(GameEvent.client.pk_end,this.testVideo,this);
+        EM.addEventListener(GameEvent.client.pk_end,this._testVideo,this);
+        this._testVideo();
+    }
+
+    private _testVideo(){
         this.testCard(this.randomCard(),this.randomCard(),function(a,b){
             PKManager.getInstance().onPK(PKManager.PKType.REPLAY,b);
             PKMainUI.getInstance().show(null,true);
-            PKManager.getInstance().pkAward = {};
-
+            setTimeout(function(){
+                PKManager.getInstance().pkAward = {};
+            },1000*10)
         })
     }
 

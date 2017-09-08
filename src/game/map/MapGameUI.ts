@@ -17,6 +17,8 @@ class MapGameUI extends game.BaseUI {
     private helpBtn: eui.Group;
     private historyList: eui.List;
     private myCardGroup: MyCardGroupUI;
+    private leaderText: eui.Label;
+
 
 
 
@@ -142,6 +144,10 @@ class MapGameUI extends game.BaseUI {
         var fight = MD.enemy.force;
         var lv = MonsterManager.getInstance().getEnemyMonsterLevel(fight);
         var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
+        if(leader)
+            MyTool.setColorText(this.leaderText,'[统\n帅\n▼]\n'+ leader);
+        else
+            this.leaderText.text = '';
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]

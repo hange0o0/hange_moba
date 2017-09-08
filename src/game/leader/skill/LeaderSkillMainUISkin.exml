@@ -1,3 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="LeaderSkillMainUISkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="LeaderSkillMainUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="640" height="800">
+	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" locked="true"/>
+	<e:Scroller id="scroller" width="640" x="0" top="305" bottom="100" locked="true">
+		<e:Group>
+			<e:List id="list" width="200" height="200" x="108" y="122"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Group id="selectGroup" x="0" y="140" width="640">
+		<ns1:BookBG width="640" x="0" skinName="BookBGSkin" height="165" y="0"/>
+		<e:Group x="30" verticalCenter="0">
+			<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="110" height="110"/>
+			<e:Image id="img" width="100" height="100" x="5" y="5"/>
+		</e:Group>
+		<e:Label id="nameText" text="Label" x="160" y="25"/>
+		<e:Label id="desText" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" y="60" size="24" left="160" right="30" lineSpacing="5"/>
+		<e:Button id="btn" label="装备" right="20" bottom="10" skinName="Btn_r1Skin"/>
+	</e:Group>
+	<e:Image source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="123" bottom="-20" height="120"/>
+	<e:Group bottom="20" horizontalCenter="0">
+		<e:Button id="getBtn" label="获取技能" y="0" x="289" skinName="Btn_r2Skin"/>
+		<e:Button id="viewBtn" label="技能图鉴" y="85" x="0" skinName="Btn_r2Skin"/>
+		<e:layout>
+		<e:HorizontalLayout verticalAlign="middle" gap="40"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="emptyGroup" y="300" horizontalCenter="0">
+		<e:Label text="暂无技能，赶快去获取吧" y="0" textColor="0xffffff" horizontalCenter="0"/>
+		<e:Button id="getBtn2" label="获取技能" y="50" skinName="Btn_r2Skin" horizontalCenter="0"/>
+	</e:Group>
 </e:Skin>

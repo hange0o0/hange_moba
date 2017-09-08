@@ -33,7 +33,7 @@
 						</e:Array>
 					</e:ArrayCollection>
 				</e:List>
-
+                  <e:Label id="leaderText" y="80" textColor="0xCCB48E" text="X" size="26" x="25" textAlign="center" lineSpacing="5"/>
 			</e:Group>
 			<ns1:MyCardGroupUI id="myCardGroup" x="-25" y="387" skinName="MyCardGroupSkin"/>
 			<e:List id="historyList" width="640" x="133" y="923"/>

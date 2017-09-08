@@ -6,10 +6,19 @@ class LeaderSkillMainUI extends game.BaseUI {
         return this.instance;
     }
 
-    private topUI: TopUI;
+    private bg: eui.Rect;
     private scroller: eui.Scroller;
     private list: eui.List;
-    private emptyText: eui.Label;
+    private selectGroup: eui.Group;
+    private img: eui.Image;
+    private nameText: eui.Label;
+    private desText: eui.Label;
+    private btn: eui.Button;
+    private getBtn: eui.Button;
+    private viewBtn: eui.Button;
+    private emptyGroup: eui.Group;
+    private getBtn2: eui.Button;
+
 
 
     private data;
@@ -18,14 +27,13 @@ class LeaderSkillMainUI extends game.BaseUI {
 
     public constructor() {
         super();
-        this.skinName = "DayLogUISkin";
+        this.skinName = "LeaderSkillMainUISkin";
     }
 
 
     public childrenCreated() {
         super.childrenCreated();
-        this.topUI.setTitle('挑战日志')
-        this.topUI.addEventListener('hide', this.hide, this);
+
 
         this.list.itemRenderer = DayLogItem;
         this.scroller.viewport = this.list;
@@ -57,10 +65,7 @@ class LeaderSkillMainUI extends game.BaseUI {
         //var DM = DayGameManager.getInstance();
         var list = this.data;//DM.getLogList();
         this.list.dataProvider = new eui.ArrayCollection(list);
-        this.emptyText.visible = list.length == 0;
-
-
-        this.topUI.setTitle(this.title || '挑战日志')
+        this.emptyGroup.visible = list.length == 0;
     }
 
 

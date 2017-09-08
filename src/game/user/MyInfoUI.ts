@@ -117,7 +117,7 @@ class MyInfoUI extends game.BaseUI {
         //list.push(oo)
 
         oo = {title:'奖励战力',icon:'icon_power_png',des:UM.award_force}
-        oo.fun = function(){Alert('低战通关卡士公公，研究院积分提升，节日活动中都有可能获得')}
+        oo.fun = function(){Alert('低战通关卡士公公，参与研究院活动，节日活动中都有可能获得')}
         list.push(oo)
 
 
@@ -131,6 +131,8 @@ class MyInfoUI extends game.BaseUI {
         if (level < MainGameManager.getInstance().maxLevel)
             oo.fun = function(){MainGameUI.getInstance().show()}
         list.push(oo)
+        oo = {title:'获得通关战力',icon:'icon_main_png',des: mainData.award_force + ''}
+        list.push(oo)
 
         var myData = UM.day_game;
         oo = {title:'研究院进度',icon:'icon_day_png',des: myData.level + '/10'}
@@ -141,7 +143,7 @@ class MyInfoUI extends game.BaseUI {
         oo = {title:'10胜通关次数',icon:'icon_day_png',des: myData.times + '次'}
         list.push(oo)
 
-        oo = {title:'获得研究积分',icon:'icon_day_png',des: myData.score + '分'}
+        oo = {title:'获得研究战力',icon:'icon_day_png',des: myData.score + ''}
         list.push(oo)
 
 

@@ -1,19 +1,12 @@
 class LeaderSkillItem extends game.BaseItem {
     public constructor() {
         super();
-        this.skinName = "LeaderItemSkin";
+        this.skinName = "LeaderSkillItemSkin";
     }
 
-    private headMC: eui.Image;
-    private headBG: eui.Image;
-    private leaderText: eui.Label;
-    private typeMC: eui.Image;
-    private starGroup: eui.Group;
-    private s0: eui.Image;
-    private s1: eui.Image;
-    private s2: eui.Image;
-    private expText: eui.Label;
-    private upMC: eui.Image;
+    private img: eui.Image;
+    private nameGroup: eui.Group;
+    private nameText: eui.Label;
 
 
 
