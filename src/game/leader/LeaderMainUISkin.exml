@@ -2,6 +2,7 @@
 <e:Skin class="LeaderMainUISkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:LeaderStudyUI id="studyUI" x="0" skinName="LeaderStudyUISkin" top="0" bottom="0"/>
 	<ns1:LeaderDrawMainUI id="drawUI" x="0" skinName="LeaderDrawMainUISkin" top="0" bottom="0"/>
+	<ns1:LeaderSkillMainUI id="skillUI" x="0" skinName="LeaderSkillMainUISkin" top="0" bottom="0"/>
 	<e:Image source="line_png" y="135" width="650" horizontalCenter="0"/>
 	<e:TabBar itemRendererSkinName="MyTabItemSkin" y="75" id="tab" height="62" width="640" x="0">
 		<e:ArrayCollection>

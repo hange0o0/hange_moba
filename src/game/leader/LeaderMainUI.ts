@@ -7,9 +7,11 @@ class LeaderMainUI extends game.BaseUI {
 
     private studyUI: LeaderStudyUI;
     private drawUI: LeaderDrawMainUI;
+    private skillUI: LeaderSkillMainUI;
     private tab: eui.TabBar;
     private topUI: TopUI;
     private helpBtn: eui.Group;
+
 
 
     public constructor() {
@@ -37,8 +39,8 @@ class LeaderMainUI extends game.BaseUI {
     }
 
     private typeBarClick(){
-        MyTool.removeMC(this.studyUI)
-        MyTool.removeMC(this.drawUI)
+        this.studyUI.hide();
+        this.drawUI.hide();
         if(this.tab.selectedIndex == 0)
         {
             this.addChildAt(this.studyUI,0)
@@ -51,13 +53,21 @@ class LeaderMainUI extends game.BaseUI {
             this.drawUI.onShow()
             return;
         }
+        if(this.tab.selectedIndex == 2)
+        {
+            this.addChildAt(this.skillUI,0)
+            this.skillUI.onShow()
+            return;
+        }
     }
 
 
 
 
     public beforeHide(){
-        this.studyUI.beforeHide()
+        this.studyUI.hide();
+        this.drawUI.hide();
+        this.skillUI.hide();
     }
 
 
@@ -79,8 +89,15 @@ class LeaderMainUI extends game.BaseUI {
     public onShow(){
         this.typeBarClick()
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+        this.addPanelOpenEvent(GameEvent.client.prop_change,this.onPropChange)
     }
 
+    private onPropChange(){
+        if(this.studyUI.stage)
+            this.studyUI.onTimer()
+        else if(this.drawUI.stage)
+            this.drawUI.onPropChange()
+    }
     private onTimer(){
         if(this.studyUI.stage)
             this.studyUI.onTimer()

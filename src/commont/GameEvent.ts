@@ -76,6 +76,14 @@ class GameEvent {
 
     public static tec = {
         levelup_tec:'levelup_tec',
+
+        leader_skill_compose:'leader_skill_compose',
+        leader_skill_draw:'leader_skill_draw',
+        leader_skill_draw_log:'leader_skill_draw_log',
+        leader_skill_set:'leader_skill_set',
+        leader_skill_view:'leader_skill_view',
+        leader_skill_view_list:'leader_skill_view_list',
+
         leader_get:'leader_get',
         leader_award:'leader_award'
     }

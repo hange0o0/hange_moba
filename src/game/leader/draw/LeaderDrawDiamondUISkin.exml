@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="LeaderDrawDiamondUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="560">
+	<e:Image y="0" width="560" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
+	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422B08" horizontalCenter="0"/>
+
+
+	<e:Label y="31" size="24" text="命运石数理不足" textColor="0xE3D1B6" horizontalCenter="0" stroke="2"/>
+	<e:Group horizontalCenter="0" bottom="40" locked="true">
+		<e:Button id="backBtn" y="0" skinName="Btn_b2Skin" label="取消" x="0"/>
+		<e:Button id="okBtn" y="0" skinName="Btn_r2Skin" label="使用钻石" x="176"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>
+	<e:Label text="可使用钻石补充命运石" y="110" textColor="0xccb48e" size="26" lineSpacing="5" textAlign="left" horizontalCenter="0" anchorOffsetY="0" height="26"/>
+	<e:CheckBox id="autoCB" label="24小时内自动补充" y="260" skinName="MyCheckBoxSkin" horizontalCenter="0"/>
+	<e:Group y="180" horizontalCenter="0">
+		<e:Label text="需要钻石：" y="0" textColor="0xCCB48E" size="26" lineSpacing="5" textAlign="left" x="15"/>
+		<e:Group id="diamondGroup" y="52" x="0">
+		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="120" height="40" x="22"/>
+			<e:Rect id="diamondRect" width="100" height="25" x="34" y="6" fillColor="0x380000"/>
+		<e:Image source="icon_token_png" y="0" x="0"/>
+		<e:Label id="diamondText" y="7" textColor="0xCCCCCC" text="12345" size="24" x="45"/>
+		</e:Group>
+		<e:layout>
+		<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

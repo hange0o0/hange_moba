@@ -17,10 +17,13 @@ class PKDressUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private pkDressChooseUI: PKDressChooseUI;
-    private pkDressSettingUI: PKDressSettingUI;
     private taskGroup: eui.Group;
     private taskText: eui.Label;
     private taskRateText: eui.Label;
+    private skillGroup: eui.Group;
+    private skillIcon: eui.Image;
+    private skillText: eui.Label;
+    private pkDressSettingUI: PKDressSettingUI;
     private list: eui.List;
     private monsterInfo: MonsterInfoBase;
     private topGroup: eui.Group;
@@ -32,6 +35,7 @@ class PKDressUI extends game.BaseUI {
     private monsterScroller: eui.Scroller;
     private enemyMonsterInfo: MonsterInfoBase;
     private topUI: TopUI;
+
 
 
 

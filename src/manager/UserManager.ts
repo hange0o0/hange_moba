@@ -80,6 +80,8 @@ class UserManager {
 
         if(!UM.tec.leader)
             UM.tec.leader = {};
+        if(!UM.tec.skill)
+            UM.tec.skill = [];
 
         this.initActive();
          DayGameManager.getInstance().resetDay();

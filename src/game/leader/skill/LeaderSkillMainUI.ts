@@ -1,8 +1,6 @@
 class LeaderSkillMainUI extends game.BaseUI {
     private static instance:LeaderSkillMainUI;
-
     public static getInstance() {
-        if (!this.instance) this.instance = new LeaderSkillMainUI();
         return this.instance;
     }
 
@@ -28,6 +26,7 @@ class LeaderSkillMainUI extends game.BaseUI {
     public constructor() {
         super();
         this.skinName = "LeaderSkillMainUISkin";
+        LeaderSkillMainUI.instance = this;
     }
 
 

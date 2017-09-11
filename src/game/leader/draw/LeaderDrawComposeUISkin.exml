@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="LeaderDrawComposeUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="560">
+	<e:Image y="0" width="560" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
+	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422B08" horizontalCenter="0"/>
+
+
+	<e:Label y="33" size="24" text="命运石合成" textColor="0xE3D1B6" horizontalCenter="0" stroke="2"/>
+	<e:Group horizontalCenter="0" bottom="40">
+		<e:Button id="backBtn" y="0" skinName="Btn_b2Skin" label="取消" x="0"/>
+		<e:Button id="okBtn" y="0" skinName="Btn_r2Skin" label="一键合成" x="176"/>
+		<e:layout>
+			<e:HorizontalLayout gap="30"/>
+		</e:layout>
+	</e:Group>
+	<e:Label id="desText" text="Label" y="110" textColor="0xccb48e" size="26" lineSpacing="5" textAlign="left" horizontalCenter="0"/>
+</e:Skin>

@@ -25,13 +25,18 @@
 	<e:Scroller id="scroller" x="0" width="640" top="150" bottom="0" top.open="450" bottom.open="0">
 		<e:Group id="scrollerGroup" height="279" width="360">
 			<ns1:PKDressChooseUI id="pkDressChooseUI" x="0" y="135" skinName="PKDressChooseUISkin"/>
-			<ns1:PKDressSettingUI id="pkDressSettingUI" x="-1000" y="1592" skinName="PKDressSettingSkin"/>
 			<e:Group id="taskGroup" width="640" height="70" x="-2" y="421">
 				<e:Image source="border6_png" scale9Grid="14,8,88,16" top="10" bottom="0" left="10" right="10"/>
-				<e:Image source="note_icon_png" x="30" verticalCenter="5" scaleX="0.8" scaleY="0.8"/>
-				<e:Label id="taskText" text="Label" x="80" size="24" textColor="0xccb48e" verticalCenter="5"/>
+				<e:Image source="note_icon_png" x="20" verticalCenter="5" scaleX="0.8" scaleY="0.8"/>
+				<e:Label id="taskText" text="Label" x="70" size="24" textColor="0xccb48e" verticalCenter="5"/>
 				<e:Label id="taskRateText" text="Label" size="24" textColor="0xCCB48E" verticalCenter="5" right="30"/>
 			</e:Group>
+			<e:Group id="skillGroup" width="640" height="70" x="8" y="431">
+				<e:Image source="border6_png" scale9Grid="14,8,88,16" top="10" bottom="0" left="10" right="10"/>
+				<e:Image id="skillIcon" source="note_icon_png" x="20" width="40" height="40" verticalCenter="0"/>
+				<e:Label id="skillText" text="Label" x="70" size="24" textColor="0xCCB48E" verticalCenter="5"/>
+			</e:Group>
+			<ns1:PKDressSettingUI id="pkDressSettingUI" x="-1000" y="1592" skinName="PKDressSettingSkin"/>
 			<e:List id="list" width="640" x="0" y="0" itemRendererSkinName="PKDressChooseListItemSkin">
 				<e:layout>
 					<e:TileLayout paddingLeft="10" verticalGap="20" horizontalGap="20" paddingTop="10"/>
@@ -81,7 +86,7 @@
 			</e:layout>
 		</e:List>
 	</e:Group>
-	<e:Group id="enemyScrollerGroup" x="0" width="640" top="370" bottom="0">
+	<e:Group id="enemyScrollerGroup" x="0" width="640" top="370" bottom="0" visible="false">
 		<e:Scroller id="monsterScroller" width="640" x="0" top="0" bottom="0" bounces="false">
 		<e:Group>
 			<ns1:MonsterInfoBase id="enemyMonsterInfo" x="0" y="0" skinName="MonsterInfoBaseSkin" scaleX="1" scaleY="1"/>

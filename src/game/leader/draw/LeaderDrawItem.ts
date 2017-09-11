@@ -7,22 +7,10 @@ class LeaderDrawItem extends game.BaseItem {
     private lightMC: eui.Image;
     private itemMC: AwardItem;
 
-
-
-
-
-
-
-
-
-
-
-
-    public index;
-
     public childrenCreated(){
         super.childrenCreated();
-        this.addBtnEvent(this,this.onClick);
+        //this.addBtnEvent(this,this.onClick);
+        this.lightMC.visible = false;
 
     }
 
@@ -33,7 +21,17 @@ class LeaderDrawItem extends game.BaseItem {
 
 
     public dataChanged(){
-
+        this.data.des = '×' + (this.data.value || 1)
+         this.itemMC.data = this.data
+        if(this.data.type == 'skill')
+        {
+            this.lightMC.visible = true;
+            this.once(egret.Event.REMOVED_FROM_STAGE,function(){
+                egret.Tween.removeTweens(this.lightMC);
+            },this)
+            var tw = egret.Tween.get(this.lightMC,{loop:true});
+            tw.to({rotation:360},2000).to({rotation:0});
+        }
     }
 
 

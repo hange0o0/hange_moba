@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LeaderDrawMainUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="0" y="140" source="leader_draw_bg_jpg"/>
+	<e:Image x="0" y="140" source="leader_draw_bg_jpg" locked="true"/>
 	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" fillAlpha="0.7" visible="false"/>
 	<ns1:BookBG width="640" x="0" skinName="BookBGSkin" top="620" bottom="-20"/>
-	<e:List id="chooseList" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
-		<e:layout>
-		<e:TileLayout horizontalGap="30" verticalGap="10"/>
-		</e:layout>
-	</e:List>
 	<e:Scroller id="scroller" width="600" x="20" top="665" bottom="0" bounces="false" locked="true">
 		<e:Group>
 		<e:List id="list" width="100%" height="200" x="0" y="0">
@@ -18,6 +13,10 @@
 		</e:Group>
 	</e:Scroller>
 	<e:Group y="550" horizontalCenter="0">
+		<e:Group x="0" y="0">
+			<e:Button id="btn0" label="命运石合成" y="0" skinName="Btn_r2Skin" x="0"/>
+			<e:Image id="redPoint" source="red_point_png" right="0" top="0"/>
+		</e:Group>
 		<e:Button id="btn1" label="开启1次" y="0" skinName="Btn_r2Skin" x="0"/>
 		<e:Button id="btn2" label="开启8次" y="0" skinName="Btn_r2Skin" x="0"/>
 		<e:layout>
@@ -28,13 +27,14 @@
 		<e:Image source="leader_draw_door_png" x="0" y="0"/>
 		<e:Image id="doorNpc" source="leader_draw_door_npc_png" horizontalCenter="0" y="39"/>
 	</e:Group>
-	<e:Group id="desGroup" y="500" horizontalCenter="0" locked="true">
+	<e:Group id="desGroup" y="500" horizontalCenter="0">
 		<e:Image source="black_bg2_png" y="0" height="40" width="480" scale9Grid="35,13,353,78" x="0"/>
-		<e:Label id="desText" size="24" text="Label" textColor="0xCBC08A" stroke="3" verticalCenter="0" horizontalCenter="0"/>
+		<e:Group verticalCenter="0" horizontalCenter="0">
+			<e:Label id="desText" size="24" text="命运石数量：12" textColor="0xCBC08A" stroke="3" x="138" y="0"/>
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle"/>
+			</e:layout>
+		</e:Group>
 	</e:Group>
-	<e:List id="awardList" verticalCenter="-100" horizontalCenter="0">
-		<e:layout>
-			<e:TileLayout horizontalGap="20" verticalGap="10"/>
-		</e:layout>
-	</e:List>
+	<e:Label id="emptyText" text="暂时还没有人取得技能" y="726" horizontalCenter="0" textColor="0xcbc08a"/>
 </e:Skin>

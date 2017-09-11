@@ -12,8 +12,8 @@
 			<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="110" height="110"/>
 			<e:Image id="img" width="100" height="100" x="5" y="5"/>
 		</e:Group>
-		<e:Label id="nameText" text="Label" x="160" y="25"/>
-		<e:Label id="desText" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" y="60" size="24" left="160" right="30" lineSpacing="5"/>
+		<e:Label id="nameText" text="Label" x="160" y="25" textColor="0xe0a44a"/>
+		<e:Label id="desText" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" y="60" size="24" left="160" right="30" lineSpacing="5" textColor="0xccb48e"/>
 		<e:Button id="btn" label="装备" right="20" bottom="10" skinName="Btn_r1Skin"/>
 	</e:Group>
 	<e:Image source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="123" bottom="-20" height="120"/>
@@ -25,7 +25,7 @@
 		</e:layout>
 	</e:Group>
 	<e:Group id="emptyGroup" y="300" horizontalCenter="0">
-		<e:Label text="暂无技能，赶快去获取吧" y="0" textColor="0xffffff" horizontalCenter="0"/>
+		<e:Label text="暂无技能，赶快去获取吧" y="0" horizontalCenter="0" textColor="0xccb48e"/>
 		<e:Button id="getBtn2" label="获取技能" y="50" skinName="Btn_r2Skin" horizontalCenter="0"/>
 	</e:Group>
 </e:Skin>

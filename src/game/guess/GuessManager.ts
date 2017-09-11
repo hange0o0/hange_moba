@@ -57,11 +57,11 @@ class GuessManager {
         });
     }
 
-    public guess(type,num,iswin,fun?){
+    public guess(iswin,fun?){
         var self = this;
         var oo:any = {};
-        oo.type = type
-        oo.num = num
+        //oo.type = type
+        //oo.num = num
         oo.iswin = iswin?1:0
 
         Net.addUser(oo);
@@ -83,16 +83,16 @@ class GuessManager {
             PKMainUI.getInstance().show();
 
 
-            var str = type == 'coin'?'金币':'碎片'
+            var str// = type == 'coin'?'金币':'碎片'
             if(msg.guess_win)
             {
-                PKManager.getInstance().pkAward.desArr.push('竞猜成功，'+str+'：+' + oo.num);
+                //PKManager.getInstance().pkAward.desArr.push('竞猜成功，'+str+'：+' + oo.num);
                 UM.active.guess.win ++
             }
-            else
-                PKManager.getInstance().pkAward.desArr.push('竞猜失败，'+str+'：-' + oo.num);
+            //else
+            //    PKManager.getInstance().pkAward.desArr.push('竞猜失败，'+str+'：-' + oo.num);
 
-            self.addLogList(PKManager.getInstance().getLogData({guessChoose:iswin,guessWin:msg.guess_win,guessType:type,guessValue:num,type:PKManager.PKType.GUESS}));
+            self.addLogList(PKManager.getInstance().getLogData({guessChoose:iswin,guessWin:msg.guess_win,type:PKManager.PKType.GUESS}));
             if(fun)
                 fun();
         });

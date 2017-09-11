@@ -108,8 +108,7 @@ class LeaderStudyUI extends game.BaseContainer {
 
     private onClick1(){
         var self = this;
-        var TCM = TecManager.getInstance();
-        TCM.leaderGet(1,function(){
+        LeaderManager.getInstance().leaderGet(1,function(){
             self.mvShow();
         })
     }
@@ -120,16 +119,14 @@ class LeaderStudyUI extends game.BaseContainer {
             return;
 
         var self = this;
-        var TCM = TecManager.getInstance();
-        TCM.leaderGet(2,function(){
+        LeaderManager.getInstance().leaderGet(2,function(){
             self.mvShow();
         })
     }
 
     private onClick3(){
         var self = this;
-        var TCM = TecManager.getInstance();
-        TCM.leaderAward(this.selectArr,function(){
+        LeaderManager.getInstance().leaderAward(this.selectArr,function(){
             self.mvShow2();
             //ShowTips('学习成功！');
             self.selectArr.length = 0
@@ -139,6 +136,11 @@ class LeaderStudyUI extends game.BaseContainer {
 
     public beforeHide(){
         this.clearList([this.list,this.chooseList])
+    }
+
+    public hide(){
+        this.beforeHide();
+        MyTool.removeMC(this)
     }
 
 
