@@ -10,6 +10,7 @@ class LeaderStudyUI extends game.BaseContainer {
     private btn1: eui.Button;
     private des1: eui.Label;
     private des2: eui.Label;
+    private redMC: eui.Image;
     private btn2: eui.Button;
     private des3: eui.Label;
     private des4: eui.Label;
@@ -22,17 +23,6 @@ class LeaderStudyUI extends game.BaseContainer {
     private sortText: eui.Label;
     private sortGroup: eui.Group;
     private sortList: eui.List;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -161,6 +151,8 @@ class LeaderStudyUI extends game.BaseContainer {
         arr.push({label:'盾将 ×' + typeObj[2]})
         arr.push({label:'辅将 ×' + typeObj[3]})
         this.sortList.dataProvider = new eui.ArrayCollection(arr)
+        if(this.sortList.selectedIndex == -1)
+            this.sortList.selectedIndex = 0;
         this.renew();
 
 
@@ -181,6 +173,7 @@ class LeaderStudyUI extends game.BaseContainer {
                 this.des2.text = ''
                 if(haveDone)
                 {
+                    this.redMC.visible = false;
                     this.des1.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now())+' 后免费';
                     this.btn1.skinName = 'Btn_d2Skin'
                     this.btn1.label = '学　习'
@@ -188,6 +181,7 @@ class LeaderStudyUI extends game.BaseContainer {
                 }
                 else
                 {
+                    this.redMC.visible = true;
                     this.des1.text = '可免费学习一次'
                     this.btn1.label = '免费学习'
                     this.btn1.skinName = 'Btn_r2Skin'
@@ -197,6 +191,7 @@ class LeaderStudyUI extends game.BaseContainer {
             {
                 if(haveDone)
                 {
+                    this.redMC.visible = false;
                     this.des2.text = DateUtil.getStringBySecond(DateUtil.getNextDateTimeByHours(0) - TM.now())+' 后免费';
                     this.des1.text = '初级学习卡 X' + num;
                     this.btn1.skinName = 'Btn_r2Skin'
@@ -204,6 +199,7 @@ class LeaderStudyUI extends game.BaseContainer {
                 }
                 else
                 {
+                    this.redMC.visible = true;
                     this.des1.text = '可免费学习一次'
                     this.des2.text = '初级学习卡 X' + num
                     this.btn1.label = '免费学习'

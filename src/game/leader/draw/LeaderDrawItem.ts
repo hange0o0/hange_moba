@@ -11,12 +11,14 @@ class LeaderDrawItem extends game.BaseItem {
         super.childrenCreated();
         //this.addBtnEvent(this,this.onClick);
         this.lightMC.visible = false;
+        this.anchorOffsetX = 60
+        this.anchorOffsetY = 60
 
     }
 
-    private onClick(){
-
-    }
+    //private onClick(){
+    //
+    //}
 
 
 

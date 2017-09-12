@@ -15,7 +15,6 @@ class LeaderSkillMainUI extends game.BaseContainer {
     private getBtn: eui.Button;
     private viewBtn: eui.Button;
     private emptyGroup: eui.Group;
-    private getBtn2: eui.Button;
 
 
 
@@ -42,7 +41,7 @@ class LeaderSkillMainUI extends game.BaseContainer {
         this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
 
         this.addBtnEvent(this.getBtn,this.onGet)
-        this.addBtnEvent(this.getBtn2,this.onGet)
+        //this.addBtnEvent(this.getBtn2,this.onGet)
         this.addBtnEvent(this.viewBtn,this.onView)
         this.addBtnEvent(this.btn,this.onClick)
 
@@ -54,11 +53,17 @@ class LeaderSkillMainUI extends game.BaseContainer {
     private onClick(){
         if(UM.tec.use_skill == this.list.selectedItem)
         {
-              LeaderManager.getInstance().skillSet(0,()=>{this.onListChange()})
+              LeaderManager.getInstance().skillSet(0,()=>{
+                  this.onListChange();
+                  this.renewList();
+              })
         }
         else
         {
-            LeaderManager.getInstance().skillSet(this.list.selectedItem,()=>{this.onListChange()})
+            LeaderManager.getInstance().skillSet(this.list.selectedItem,()=>{
+                this.onListChange();
+                this.renewList();
+            })
         }
     }
     private onGet(){
@@ -94,6 +99,14 @@ class LeaderSkillMainUI extends game.BaseContainer {
         this.clearList([this.list])
     }
 
+    private renewList(){
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            var item:any = this.list.getChildAt(i)
+            item.dataChanged()
+        }
+    }
+
     public onShow(){
         //var DM = DayGameManager.getInstance();
         var list = UM.tec.skill
@@ -109,6 +122,8 @@ class LeaderSkillMainUI extends game.BaseContainer {
             {
                  this.onListChange();
             }
+            else
+                this.currentState = 'normal'
         }
         else
         {

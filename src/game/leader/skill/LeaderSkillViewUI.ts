@@ -43,16 +43,16 @@ class LeaderSkillViewUI extends game.BaseUI {
 
     private onListChange(){
         this.currentState = 'selected'
-        var skillID = this.list.selectedItem;
-        var skillVO = LeaderSkillVO.getObject(skillID);
+        var skillVO = this.list.selectedItem;
         this.img.source = skillVO.thumb;
-        this.nameText.text = skillVO.name
+        var num = LeaderManager.getInstance().skillTotal[skillVO.id] || 0
+        this.nameText.text = skillVO.name  + ' ('+num+ '/' + skillVO.num  + ')'
         this.setHtml(this.desText,skillVO.getDes())
     }
 
 
     public onClick(){
-        LeaderSkillOwnerListUI.getInstance().show(this.list.selectedItem)
+        LeaderSkillOwnerListUI.getInstance().show(this.list.selectedItem.id)
     }
 
     public beforeHide(){
@@ -66,7 +66,18 @@ class LeaderSkillViewUI extends game.BaseUI {
 
 
     public onShow(){
-        var list = LeaderManager.getInstance().skillTotal.list
+        var list = ObjectUtil.objToArray( LeaderSkillVO.data)
+        ArrayUtil.sortByField(list,['day'],[0])
+        for(var i=0;i<list.length;i++)
+        {
+
+            if(!list[i].isOpen())
+            {
+                list.length = i+1;
+                break;
+            }
+        }
+        list.reverse();
         this.list.dataProvider = new eui.ArrayCollection(list);
         this.list.selectedIndex = -1;
         this.scroller.viewport.scrollV = 0;

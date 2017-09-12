@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="LeaderDrawDiamondUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="560">
-	<e:Image y="0" width="560" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
-	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
-	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422B08" horizontalCenter="0"/>
+<e:Skin class="LeaderDrawDiamondUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="520">
+	<e:Image y="0" height="400" source="card_bg_png" scale9Grid="52,70,120,88" left="0" right="0"/>
+	<e:Image source="line_png" y="71" left="15" right="15"/>
+	<e:Rect y="13" fillAlpha="1" height="60" left="15" right="15" fillColor="0x261302"/>
 
 
 	<e:Label y="31" size="24" text="命运石数理不足" textColor="0xE3D1B6" horizontalCenter="0" stroke="2"/>
@@ -14,8 +14,8 @@
 		</e:layout>
 	</e:Group>
 	<e:Label text="可使用钻石补充命运石" y="110" textColor="0xccb48e" size="26" lineSpacing="5" textAlign="left" horizontalCenter="0" anchorOffsetY="0" height="26"/>
-	<e:CheckBox id="autoCB" label="24小时内自动补充" y="260" skinName="MyCheckBoxSkin" horizontalCenter="0"/>
-	<e:Group y="180" horizontalCenter="0">
+	<e:CheckBox id="autoCB" label="24小时内自动补充" y="248" skinName="MyCheckBoxSkin" horizontalCenter="0"/>
+	<e:Group y="168" horizontalCenter="0">
 		<e:Label text="需要钻石：" y="0" textColor="0xCCB48E" size="26" lineSpacing="5" textAlign="left" x="15"/>
 		<e:Group id="diamondGroup" y="52" x="0">
 		<e:Image source="border1_png" y="0" scale9Grid="21,15,70,9" width="120" height="40" x="22"/>

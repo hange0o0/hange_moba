@@ -37,7 +37,7 @@
 			"name":"preload2_png32"
 		},
 		{
-			"keys":"prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,book_bg1_jpg,book_bg2_jpg,item_bg_jpg,prop_card_jpg,prop_score_jpg,window_bg_icon_jpg,leader_bg_jpg,book_1_jpg,book_2_jpg,leader_draw_bg_jpg",
+			"keys":"prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,book_bg1_jpg,book_bg2_jpg,item_bg_jpg,prop_card_jpg,prop_score_jpg,window_bg_icon_jpg,leader_bg_jpg,leader_draw_bg_jpg,prop_thumb_31_jpg,prop_thumb_32_jpg,prop_thumb_41_jpg,prop_thumb_42_jpg",
 			"name":"preload2_jpg"
 		},
 		{
@@ -1841,16 +1841,6 @@
 			"url":"game_assets/preload2_jpg/leader_bg.jpg"
 		},
 		{
-			"name":"book_1_jpg",
-			"type":"image",
-			"url":"game_assets/preload2_jpg/book_1.jpg"
-		},
-		{
-			"name":"book_2_jpg",
-			"type":"image",
-			"url":"game_assets/preload2_jpg/book_2.jpg"
-		},
-		{
 			"name":"pk_log_icon_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/pk_log_icon.png"
@@ -1869,6 +1859,26 @@
 			"name":"leader_draw_door_npc_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/leader_draw_door_npc.png"
+		},
+		{
+			"name":"prop_thumb_31_jpg",
+			"type":"image",
+			"url":"game_assets/preload2_jpg/prop_thumb_31.jpg"
+		},
+		{
+			"name":"prop_thumb_32_jpg",
+			"type":"image",
+			"url":"game_assets/preload2_jpg/prop_thumb_32.jpg"
+		},
+		{
+			"name":"prop_thumb_41_jpg",
+			"type":"image",
+			"url":"game_assets/preload2_jpg/prop_thumb_41.jpg"
+		},
+		{
+			"name":"prop_thumb_42_jpg",
+			"type":"image",
+			"url":"game_assets/preload2_jpg/prop_thumb_42.jpg"
 		}
 	]
 }

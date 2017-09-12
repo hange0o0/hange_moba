@@ -8,7 +8,7 @@ class LeaderManager {
     }
 
     public skillViewListData = {};
-    public skillTotal = {time:0,list:[]};
+    public skillTotal = {time:0};
 
     public getSkillLog(id){
         return this.skillViewListData[id].list
@@ -103,6 +103,10 @@ class LeaderManager {
                 if(oo.type == 'skill')
                 {
                     UM.tec.skill.push(oo.id);
+
+                    self.skillTotal[oo.id] = (self.skillTotal[oo.id] || 0) + 1
+                    this.skillViewListData[0].time = 0
+                    this.skillViewListData[oo.id].time = 0
                 }
             }
             if(fun)
@@ -112,7 +116,7 @@ class LeaderManager {
 
     public skillDrawLog(fun?){
         var self = this;
-        if(this.skillViewListData[0] && TM.now() - this.skillViewListData[0].time < 60)
+        if(this.skillViewListData[0] && TM.now() - this.skillViewListData[0].time < 60*5)
         {
             if(fun)
                 fun();
@@ -155,15 +159,15 @@ class LeaderManager {
         var oo:any = {};
         Net.send(GameEvent.tec.leader_skill_view,oo,function(data){
             var msg = data.msg;
+            self.skillTotal = ObjectUtil.arrayToObj(msg.list,'id','num')
             self.skillTotal.time = TM.now();
-            self.skillTotal.list = msg.list;
             if(fun)
                 fun();
         });
     }
 
     public skillViewList(skillid,fun?){
-        if(this.skillViewListData[skillid] && TM.now() - this.skillViewListData[skillid].time < 60)
+        if(this.skillViewListData[skillid] && TM.now() - this.skillViewListData[skillid].time < 60*5)
         {
             if(fun)
                 fun();
@@ -179,6 +183,7 @@ class LeaderManager {
                 time:TM.now(),
                 list:msg.list
             }
+            self.skillTotal[skillid] = msg.list.length;
             if(fun)
                 fun();
         });

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LeaderSkillItemSkin" width="120" height="160" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="up,down" >
-	<e:Image source="border_light_png" x="-14.66" y="-14.66" scaleX="1.5" scaleY="1.5" visible.up="false"/>
+	<e:Image source="border_light_png" y="-19.22" scaleX="1.6" scaleY="1.6" visible.up="false" horizontalCenter="0.5"/>
 	<e:Group x="5" y="5">
 		<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="110" height="110"/>
 		<e:Image id="img" width="100" height="100" x="5" y="5"/>
@@ -9,4 +9,5 @@
 		<e:Image source="black_bg2_png" x="0" y="0" width="120" height="34"/>
 		<e:Label id="nameText" text="贿赂贿赂" size="20" textColor="0xFADEA2" verticalCenter="0" horizontalCenter="0"/>
 	</e:Group>
+	<e:Image id="haveBtn" source="choose_icon_png" x="91" y="-1"/>
 </e:Skin>

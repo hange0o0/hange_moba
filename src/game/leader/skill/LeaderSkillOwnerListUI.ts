@@ -45,10 +45,10 @@ class LeaderSkillOwnerListUI extends game.BaseWindow {
 
     public renew(){
         var LM = LeaderManager.getInstance();
-        var arr = LM.getSkillLog(0);
+        var arr = LM.getSkillLog(this.skillID);
 
 
-        var skillID = this.list.selectedItem;
+        var skillID = this.skillID;
         var skillVO = LeaderSkillVO.getObject(skillID);
         this.img.source = skillVO.thumb;
         this.nameText.text = skillVO.name  + '('+arr.length+ '/' + skillVO.num  + ')'

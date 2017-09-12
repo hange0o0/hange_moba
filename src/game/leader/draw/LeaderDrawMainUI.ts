@@ -15,7 +15,7 @@ class LeaderDrawMainUI extends game.BaseContainer {
     private doorNpc: eui.Image;
     private desGroup: eui.Group;
     private desText: eui.Label;
-    private emptyText: eui.Label;
+    //private emptyText: eui.Label;
 
 
 
@@ -117,13 +117,13 @@ class LeaderDrawMainUI extends game.BaseContainer {
         this.onPropChange();
 
         var tw = egret.Tween.get(this.doorGroup,{loop:true})
-        this.doorGroup.y = 200;
+        this.doorGroup.y = 180;
         this.doorGroup.scaleX = this.doorGroup.scaleY = 1;
-        tw.to({y:180},800).to({y:200},800)
+        tw.to({y:170},1500,egret.Ease.sineInOut).to({y:180},1500,egret.Ease.sineInOut)
 
         this.doorNpc.alpha = 0;
         var tw = egret.Tween.get(this.doorNpc,{loop:true})
-        tw.wait(5000).to({alpha:1},1000).wait(1000).to({alpha:0},800)
+        tw.wait(4000).to({alpha:1},1500).wait(1000).to({alpha:0},1500)
     }
 
     public onPropChange(){
@@ -137,7 +137,6 @@ class LeaderDrawMainUI extends game.BaseContainer {
             this.scroller.viewport.scrollV = 0;
             var arr = LM.getSkillLog(0);
             this.list.dataProvider = new eui.ArrayCollection(arr)
-            this.emptyText.visible = arr.length == 0;
         })
     }
 
@@ -152,10 +151,10 @@ class LeaderDrawMainUI extends game.BaseContainer {
         {
             egret.Tween.removeTweens(this.doorGroup);
             var tw = egret.Tween.get(this.doorGroup)
-            tw.to({scaleX:0.5,scaleY:0.5,y:100},500).call(function(){
+            tw.to({scaleX:0.5,scaleY:0.5,y:280},300).call(function(){
                 egret.Tween.removeTweens(this.doorGroup);
                 var tw = egret.Tween.get(this.doorGroup,{loop:true})
-                tw.to({y:90},800).to({y:100},800);
+                tw.to({y:270},1500,egret.Ease.sineInOut).to({y:280},1500,egret.Ease.sineInOut);
             },this).wait(500)
         }
         else
@@ -177,12 +176,19 @@ class LeaderDrawMainUI extends game.BaseContainer {
             }
             this.lastItems.length = 0;
 
+            var haveSkill = false
+            console.log(data);
             for(var i=0;i<data.length;i++)
             {
                 this.showItem(data[i],i,data.length)
+                if(data[i].type == 'skill')
+                    haveSkill  = true
             }
 
-        },this).wait(data.length * 200).call(function(){
+            if(haveSkill)
+                this.renewLog();
+
+        },this).wait(data.length * 100 + 500).call(function(){
             this.btn0.touchEnabled = true
             this.btn1.touchEnabled = true
             this.btn2.touchEnabled = true
@@ -201,16 +207,17 @@ class LeaderDrawMainUI extends game.BaseContainer {
         this.addChild(item);
         item.scaleX = item.scaleY = 0;
         item.x = 320
-        item.y = 100
+        item.y = 400
+        item.data = data;
         var tw = egret.Tween.get(item);
-        tw.wait(index*200);
+        tw.wait(index*100);
          if(maxNum == 1) //1次
          {
-             tw.to({scaleX:1.1,scaleY:1.1,y:120},300).to({scaleX:1,scaleY:1},300)
+             tw.to({scaleX:1.1,scaleY:1.1,y:320},200).to({scaleX:1,scaleY:1},300)
          }
         else
          {
-             tw.to({scaleX:1.1,scaleY:1.1,y:Math.floor(index/4)*120 + 100,x:(index%4) * 120 + 100},300).to({scaleX:1,scaleY:1},300)
+             tw.to({scaleX:1.1,scaleY:1.1,y:Math.floor(index/4)*170 + 220,x:(index%4) * 140 + 50 + 60},200).to({scaleX:1,scaleY:1},300)
          }
     }
 

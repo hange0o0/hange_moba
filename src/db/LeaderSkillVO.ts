@@ -4,6 +4,9 @@ class LeaderSkillVO {
     public static getObject(id: number): LeaderSkillVO{
         return CM.table[this.dataKey][id];
     }
+    public static get data(){
+        return CM.table[this.dataKey];
+    }
 
 
     public id

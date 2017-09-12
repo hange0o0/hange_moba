@@ -2,7 +2,7 @@
 <e:Skin class="RegisterUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,guest" >
 	<e:Image x="0" y="0" width="560" height="380" source="card_bg_png" scale9Grid="52,33,122,125" height.guest="400"/>
 	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
-	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422b08" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x261302" horizontalCenter="0"/>
 
 
 

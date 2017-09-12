@@ -12,15 +12,16 @@
 		<e:Group id="mainGroup" horizontalCenter="0" verticalCenter="20">
 		<e:Group x="0" y="0" width="200">
 			<e:Image source="border2_png" y="34" scale9Grid="11,11,68,68" width="140" height="140" horizontalCenter="0"/>
-			<e:Image source="book_1_jpg" y="44" width="120" height="120" horizontalCenter="0"/>
+			<e:Image y="44" width="120" height="120" horizontalCenter="0" source="prop_thumb_31_jpg"/>
 			<e:Button id="btn1" label="学　习" y="218" skinName="Btn_r2Skin" horizontalCenter="0"/>
 			<e:Label id="des1" text="AAAAX123" y="186" size="20" horizontalCenter="0" textColor="0xCBC08A" stroke="2"/>
 			<e:Label id="des2" text="AAAAX123" y="280" size="20" horizontalCenter="0" textColor="0xCBC08A" stroke="2"/>
 			<e:Label text="初级学习" y="0" size="26" horizontalCenter="0" textColor="0xB29D94" stroke="1" strokeColor="0x765541" bold="true"/>
+			<e:Image id="redMC" source="red_point_png" x="156.61" y="216"/>
 		</e:Group>
 		<e:Group x="0" y="0" width="200">
 			<e:Image source="border2_png" y="34" scale9Grid="11,11,68,68" width="140" height="140" horizontalCenter="0"/>
-			<e:Image y="44" width="120" height="120" horizontalCenter="0" source="book_2_jpg"/>
+			<e:Image y="44" width="120" height="120" horizontalCenter="0" source="prop_thumb_32_jpg"/>
 			<e:Button id="btn2" label="学　习" y="218" skinName="Btn_r2Skin" horizontalCenter="0"/>
 			<e:Label id="des3" text="AAAAX123" y="186" size="20" horizontalCenter="0" textColor="0xCBC08A" stroke="2"/>
 			<e:Label id="des4" text="AAAAX123" y="280" size="20" horizontalCenter="0" textColor="0xCBC08A" stroke="2"/>

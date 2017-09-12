@@ -3,7 +3,11 @@
 	<ns1:BasePanel y="0" skinName="BasePanelSkin" width="100%" height="100%" x="0"/>
 	<e:Scroller id="scroller" width="520" x="30" top="240" bottom="110">
 		<e:Group>
-		<e:List id="list" width="200" height="200" x="108" y="122"/>
+		<e:List id="list" width="200" height="200" x="108" y="122">
+			<e:layout>
+				<e:TileLayout requestedColumnCount="3"/>
+			</e:layout>
+		</e:List>
 		</e:Group>
 	</e:Scroller>
 	<e:Group y="76" width="520" x="30">

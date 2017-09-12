@@ -13,30 +13,37 @@ class LeaderSkillViewItem extends game.BaseItem {
     private lockText: eui.Label;
 
 
-
-
-
-
-
-
-
-
-
-    public index;
-
     public childrenCreated(){
         super.childrenCreated();
-        this.addBtnEvent(this,this.onClick);
+        //this.addBtnEvent(this,this.onClick);
 
     }
 
-    private onClick(){
-
-    }
+    //private onClick(){
+    //
+    //}
 
 
 
     public dataChanged(){
+         this.img.source = this.data.thumb
+        this.nameText.text = this.data.name
+        if(this.data.isOpen())
+        {
+            var num = LeaderManager.getInstance().skillTotal[this.data.id] || 0
+            this.numText.text = num + '/' + this.data.num;
+            this.lockGroup.visible = false
+            this.haveBtn.visible = UM.tec.skill.indexOf(this.data.id) != -1;
+        }
+        else
+        {
+            this.haveBtn.visible = false;
+            this.lockGroup.visible = true
+            this.numText.text = ''
+
+            var date = DateUtil.timeToChineseDate(UM.opentime + 24*3600*this.data.day)
+            this.lockText.text = DateUtil.formatDate('MM-dd',date)
+        }
 
     }
 

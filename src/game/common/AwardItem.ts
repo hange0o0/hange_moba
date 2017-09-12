@@ -95,6 +95,13 @@ class AwardItem extends game.BaseItem {
                 this.infoGroup.visible = false;
                 break;
             }
+            case 'skill':
+            {
+                var svo = LeaderSkillVO.getObject(this.data.id);
+                this.mc.source = svo.thumb;
+                this.desText.text = svo.name;
+                break;
+            }
             default:    //prop
             {
                 var pvo = PropVO.getObject(this.data.id);

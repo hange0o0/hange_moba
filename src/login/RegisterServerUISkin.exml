@@ -2,7 +2,7 @@
 <e:Skin class="RegisterServerUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="560">
 	<e:Image y="0" width="560" height="420" x="0" source="card_bg_png" scale9Grid="52,70,120,88"/>
 	<e:Image source="line_png" y="71" width="530" horizontalCenter="0"/>
-	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x422B08" horizontalCenter="0"/>
+	<e:Rect y="13" width="530" fillAlpha="1" height="60" fillColor="0x261302" horizontalCenter="0"/>
 
 
 	<e:Label y="33" size="24" text="角色注册" textColor="0xE3D1B6" horizontalCenter="0" stroke="2"/>

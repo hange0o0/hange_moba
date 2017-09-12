@@ -11,6 +11,9 @@ class LeaderMainUI extends game.BaseUI {
     private tab: eui.TabBar;
     private topUI: TopUI;
     private helpBtn: eui.Group;
+    private lock1: eui.Group;
+    private lock2: eui.Group;
+
 
 
 
@@ -26,15 +29,27 @@ class LeaderMainUI extends game.BaseUI {
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp)
+        this.addBtnEvent(this.lock1,this.onLock1)
+        this.addBtnEvent(this.lock2,this.onLock2)
 
         //this.tab.touchChildren = this.tab.touchEnabled = false;
         this.tab.addEventListener(eui.ItemTapEvent.ITEM_TAP, this.typeBarClick, this);
+        this.tab.selectedIndex = 0;
+    }
+
+    private onLock1(){
+        Alert('职积达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderSkillLevel),0xE0A44A)+'('+Config.leaderSkillLevel+'分)后开放')
+    }
+    private onLock2(){
+        Alert('职积达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderSkillLevel),0xE0A44A)+'('+Config.leaderSkillLevel+'分)后开放')
     }
 
     private onHelp(){
         if(this.tab.selectedIndex == 0)
             HelpManager.getInstance().leaderHelp();
         else if(this.tab.selectedIndex == 1)
+            HelpManager.getInstance().leaderHelp();
+        else if(this.tab.selectedIndex == 2)
             HelpManager.getInstance().leaderHelp();
     }
 
@@ -93,6 +108,7 @@ class LeaderMainUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.lock1.visible = this.lock2.visible = UM.main_game.level < Config.leaderSkillLevel
         this.typeBarClick()
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.prop_change,this.onPropChange)

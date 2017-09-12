@@ -36,5 +36,4 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Label id="emptyText" text="暂时还没有人取得技能" y="726" horizontalCenter="0" textColor="0xcbc08a"/>
 </e:Skin>
