@@ -21,4 +21,5 @@
 		<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
+	<e:Label id="emptyText" text="暂无人获得该技能" y="400" horizontalCenter="0" textColor="0xCCB48E" size="24"/>
 </e:Skin>

@@ -16,7 +16,7 @@ class GuessLogItem extends game.BaseItem {
     private resultText: eui.Label;
     private videoBtn: eui.Button;
     private infoBtn: eui.Button;
-    private chooseMC: eui.Image;
+
 
 
 
@@ -62,23 +62,22 @@ class GuessLogItem extends game.BaseItem {
 
         this.timeText.text =  DateUtil.getStringBySeconds(TM.now() - this.data.time,false,2) + '前';
 
-        var str = sp.guessType == 'coin'?'金币':'碎片'
+        this.resultText.text = '';
         if(sp.guessWin)
         {
-            this.resultText.text = str+'：+' + sp.guessValue;
+            if(sp.award)
+                this.resultText.text = '获得：' + GuessManager.getInstance().getGuessAwardStr(sp.award);
             this.titleBG.fillColor = 0x4F2900
             this.titleText.text = '竞猜成功'
         }
         else
         {
-            this.resultText.text = str+'：-' + sp.guessValue;
+            this.resultText.text = '';
             this.titleBG.fillColor = 0x0F243A
             this.titleText.text = '竞猜失败'
         }
 
-        this.chooseMC.x = sp.guessChoose?10:600
-        this.chooseMC.source = sp.guessType == 'coin'?'coin_icon_png':'card_icon_png'
-        //MyTool.setColorText(this.titleText, this.titleText.text + (sp.guessChoose?'(投[进攻方]胜)':'(投[防守方]胜)'))
+
 
         var isWin = this.data.isWin;
         if(this.data.teamChange)

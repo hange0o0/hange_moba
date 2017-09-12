@@ -27,7 +27,9 @@ class LeaderSkillItem extends game.BaseItem {
     }
 
     private onClick(){
-
+       var vo = LeaderSkillVO.getObject(this.data);
+        this.img.source = vo.thumb
+        this.nameText.text = vo.name;
     }
 
 

@@ -15,64 +15,70 @@ class LeaderSkillChangeUI extends game.BaseWindow {
     private img: eui.Image;
     private nameText: eui.Label;
     private desText: eui.Label;
+    private noSkillBtn: eui.Button;
     private backBtn: eui.Button;
+
 
 
 
     private nick;
     public childrenCreated() {
         super.childrenCreated();
-        //this.addBtnEvent(this.closeBtn, this.hide);
+        this.addBtnEvent(this.backBtn, this.onChoose);
+        this.addBtnEvent(this.noSkillBtn, this.onNoSkill);
         //this.addBtnEvent(this.okBtn, this.onPK);
         //this.addBtnEvent(this.refreshBtn, this.onRefresh);
-        this.setTitle('掠夺');
+        this.setTitle('技能选择');
 
+        this.list.itemRenderer = LeaderSkillItem;
+        this.scroller.viewport = this.list;
+        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        this.scroller.bounces = false;
+
+        this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
 
     }
 
-    public onPK(){
-        var MD = MapData.getInstance();
-        if(MD.getFightTimes() >= MD.maxFightTimes)
+    private onChoose(){
+        if(UM.tec.use_skill != this.list.selectedItem)
         {
-            Alert('今日掠夺次数已达上限')
+            LeaderManager.getInstance().skillSet(this.list.selectedItem,()=>{this.hide()})
             return;
         }
-        PKDressUI.getInstance().show({pktype:'map_fight',data:UM.pk_common.my_card})
+        this.hide()
+    }
+    private onNoSkill(){
+        if(UM.tec.use_skill)
+        {
+            LeaderManager.getInstance().skillSet(0,()=>{this.hide()})
+            return;
+        }
         this.hide()
     }
 
-    public onRefresh(){
-        MapManager.getInstance().fightGet(()=>{this.renew();})
+    public onListChange(){
+        var skillID = this.list.selectedItem;
+        var skillVO = LeaderSkillVO.getObject(skillID);
+        this.img.source = skillVO.thumb;
+        this.nameText.text = skillVO.name
+        this.setHtml(this.desText,skillVO.getDes())
     }
 
-    public show(){
-        var MD = MapData.getInstance();
-        if(MD.get_fight_enemy)
-        {
-            super.show();
-            return;
-        }
-        MapManager.getInstance().fightGet(()=>{this.superShow()})
-
-    }
-
-    private superShow(){
-        super.show();
-    }
 
     public onShow(){
         this.renew();
-        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
     }
 
-    private onTimer(){
-
-    }
 
     public renew(){
-
-
-        this.onTimer();
+        var list = UM.tec.skill
+        this.list.dataProvider = new eui.ArrayCollection(list);
+        var index = list.indexOf(UM.tec.use_skill)
+        if(index == -1)
+            this.list.selectedIndex = 0;
+        else
+            this.list.selectedIndex = index;
+        this.onListChange();
 
     }
 }

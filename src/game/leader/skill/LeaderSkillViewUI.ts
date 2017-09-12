@@ -28,20 +28,31 @@ class LeaderSkillViewUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.topUI.setTitle('挑战日志')
+        this.topUI.setTitle('技能图鉴')
         this.topUI.addEventListener('hide', this.hide, this);
 
-        this.list.itemRenderer = DayLogItem;
+        this.list.itemRenderer = LeaderSkillViewItem;
         this.scroller.viewport = this.list;
         this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
         this.scroller.bounces = false;
 
+        this.addBtnEvent(this.btn,this.onClick)
+        this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
+
     }
 
-    public hide(){
-        super.hide();
-        //if(this.type == 'map')
-        //    MapMainUI.getInstance().show();
+    private onListChange(){
+        this.currentState = 'selected'
+        var skillID = this.list.selectedItem;
+        var skillVO = LeaderSkillVO.getObject(skillID);
+        this.img.source = skillVO.thumb;
+        this.nameText.text = skillVO.name
+        this.setHtml(this.desText,skillVO.getDes())
+    }
+
+
+    public onClick(){
+        LeaderSkillOwnerListUI.getInstance().show(this.list.selectedItem)
     }
 
     public beforeHide(){
@@ -49,21 +60,17 @@ class LeaderSkillViewUI extends game.BaseUI {
     }
 
 
-    public show(v?,title?,type?){
-        this.data = v;
-        this.title = title;
-        this.type = type;
-        super.show();
+    public show(){
+        LeaderManager.getInstance().skillView(()=>{super.show()})
     }
 
 
     public onShow(){
-        //var DM = DayGameManager.getInstance();
-        var list = this.data;//DM.getLogList();
+        var list = LeaderManager.getInstance().skillTotal.list
         this.list.dataProvider = new eui.ArrayCollection(list);
-
-
-        this.topUI.setTitle(this.title || '挑战日志')
+        this.list.selectedIndex = -1;
+        this.scroller.viewport.scrollV = 0;
+        this.currentState = 'normal';
     }
 
 

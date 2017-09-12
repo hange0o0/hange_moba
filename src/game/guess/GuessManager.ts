@@ -32,11 +32,11 @@ class GuessManager {
     }
 
     public getMaxTimes(){
-        return 9 + UM.level;
+        return 3 + Math.floor(UM.level/3);
     }
 
     public getGuess(fun?){
-        if(UM.active.guess && UM.active.guess.list1)
+        if(UM.active.guess && UM.active.guess.award)
         {
             if(fun)
                 fun();
@@ -51,10 +51,28 @@ class GuessManager {
 
             UM.active.guess.list1 = msg.list1;
             UM.active.guess.list2 = msg.list2;
+            UM.active.guess.award = msg.award;
 
             if(fun)
                 fun();
         });
+    }
+
+    public getGuessAwardStr(data){
+         switch(data.type)
+         {
+             case 'coin':
+                 return '金币×' + data.value;
+             case 'card':
+                 return '碎片×' + data.value;
+             case 'energy':
+                 return '体力×' + data.value;
+             case 'diamond':
+                 return '钻石×' + data.value;
+             case 'prop':
+                 return PropVO.getObject(data.id).propname + '×' + data.value;
+         }
+        return '未知'
     }
 
     public guess(iswin,fun?){
@@ -69,8 +87,10 @@ class GuessManager {
             var msg = data.msg;
 
             self.passDay();
+            var award = UM.active.guess.award;
             UM.active.guess.list1 = null;
             UM.active.guess.list2 = null;
+            UM.active.guess.award = null;
             UM.active.guess.num ++;
             UM.active.guess.total ++
             UM.active.guess.lasttime = TM.now()
@@ -92,7 +112,7 @@ class GuessManager {
             //else
             //    PKManager.getInstance().pkAward.desArr.push('竞猜失败，'+str+'：-' + oo.num);
 
-            self.addLogList(PKManager.getInstance().getLogData({guessChoose:iswin,guessWin:msg.guess_win,type:PKManager.PKType.GUESS}));
+            self.addLogList(PKManager.getInstance().getLogData({guessChoose:iswin,guessWin:msg.guess_win,type:PKManager.PKType.GUESS,award:award}));
             if(fun)
                 fun();
         });

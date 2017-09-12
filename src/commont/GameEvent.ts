@@ -32,6 +32,8 @@ class GameEvent {
 
         PVE_CHANGE:'PVE_CHANGE',
 
+        leader_skill_change:'leader_skill_change',
+
 
 
         pass_day:'pass_day',

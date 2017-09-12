@@ -138,6 +138,7 @@ class LeaderManager {
         Net.send(GameEvent.tec.leader_skill_set,oo,function(data){
             var msg = data.msg;
             UM.tec.use_skill = skillid;
+            EM.dispatchEventWith(GameEvent.client.leader_skill_change)
             if(fun)
                 fun();
         });

@@ -41,6 +41,7 @@ class LeaderMainUI extends game.BaseUI {
     private typeBarClick(){
         this.studyUI.hide();
         this.drawUI.hide();
+        this.skillUI.hide();
         if(this.tab.selectedIndex == 0)
         {
             this.addChildAt(this.studyUI,0)
@@ -59,6 +60,11 @@ class LeaderMainUI extends game.BaseUI {
             this.skillUI.onShow()
             return;
         }
+    }
+
+    public showDraw(){
+        this.tab.selectedIndex = 1
+        this.typeBarClick();
     }
 
 

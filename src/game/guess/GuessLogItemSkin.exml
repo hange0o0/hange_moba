@@ -24,5 +24,4 @@
 	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="315" width="140" right="15"/>
 	<e:Button id="infoBtn" label="详情" y="315" width="140" right="170" skinName="Btn_b2Skin"/>
 	<e:Image source="line_png" x="-1" width="650" bottom="-5"/>
-	<e:Image id="chooseMC" source="coin_icon_png" y="70" x="600"/>
 </e:Skin>

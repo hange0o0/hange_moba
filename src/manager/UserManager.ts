@@ -24,6 +24,7 @@ class UserManager {
     public uid: number;
     public next_exp: number;
     public level: number;
+    public opentime: number;
     public tec_force:number;
     public award_force:number;
     public last_land: number;
@@ -56,6 +57,7 @@ class UserManager {
         this.head = data.head;
         this.coin = data.coin;
         this.exp = data.exp;
+        this.opentime = data.opentime;
         this.next_exp = data.next_exp;
         this.level = data.level;
         this.tec_force = data.tec_force;

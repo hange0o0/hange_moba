@@ -16,61 +16,48 @@ class LeaderSkillOwnerListUI extends game.BaseWindow {
     private nameText: eui.Label;
     private desText: eui.Label;
     private backBtn: eui.Button;
+    private emptyText: eui.Label;
 
 
 
-    private nick;
+
+    private skillID;
     public childrenCreated() {
         super.childrenCreated();
-        //this.addBtnEvent(this.closeBtn, this.hide);
-        //this.addBtnEvent(this.okBtn, this.onPK);
-        //this.addBtnEvent(this.refreshBtn, this.onRefresh);
-        this.setTitle('掠夺');
+        this.addBtnEvent(this.backBtn, this.hide);
+        this.setTitle('技能拥有者');
 
-
+        this.list.itemRenderer = LeaderSkillOwnerListItem;
+        this.scroller.viewport = this.list;
+        this.scroller.scrollPolicyH = eui.ScrollPolicy.OFF;
+        this.scroller.bounces = false;
     }
 
-    public onPK(){
-        var MD = MapData.getInstance();
-        if(MD.getFightTimes() >= MD.maxFightTimes)
-        {
-            Alert('今日掠夺次数已达上限')
-            return;
-        }
-        PKDressUI.getInstance().show({pktype:'map_fight',data:UM.pk_common.my_card})
-        this.hide()
-    }
+    public show(v?){
+        this.skillID = v;
+        LeaderManager.getInstance().skillViewList(this.skillID,()=>{super.show()})
 
-    public onRefresh(){
-        MapManager.getInstance().fightGet(()=>{this.renew();})
-    }
-
-    public show(){
-        var MD = MapData.getInstance();
-        if(MD.get_fight_enemy)
-        {
-            super.show();
-            return;
-        }
-        MapManager.getInstance().fightGet(()=>{this.superShow()})
-
-    }
-
-    private superShow(){
-        super.show();
     }
 
     public onShow(){
         this.renew();
-        this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
-    }
-
-    private onTimer(){
-
     }
 
     public renew(){
+        var LM = LeaderManager.getInstance();
+        var arr = LM.getSkillLog(0);
 
+
+        var skillID = this.list.selectedItem;
+        var skillVO = LeaderSkillVO.getObject(skillID);
+        this.img.source = skillVO.thumb;
+        this.nameText.text = skillVO.name  + '('+arr.length+ '/' + skillVO.num  + ')'
+        this.setHtml(this.desText,skillVO.getDes())
+
+        this.scroller.viewport.scrollV = 0;
+
+        this.list.dataProvider = new eui.ArrayCollection(arr)
+        this.emptyText.visible = arr.length == 0;
 
     }
 }

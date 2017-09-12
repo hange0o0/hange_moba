@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="LeaderSkillMainUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="640" height="800">
+<e:Skin class="LeaderSkillMainUISkin" currentState="choose" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" width="640" height="800" states="normal,choose" >
 	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" locked="true"/>
-	<e:Scroller id="scroller" width="640" x="0" top="305" bottom="100" locked="true">
+	<e:Scroller id="scroller" width="640" x="0" top="305" bottom="100" top.normal="140">
 		<e:Group>
 			<e:List id="list" width="200" height="200" x="108" y="122"/>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="selectGroup" x="0" y="140" width="640">
+	<e:Group id="selectGroup" x="0" y="140" width="640" visible.normal="false">
 		<ns1:BookBG width="640" x="0" skinName="BookBGSkin" height="165" y="0"/>
 		<e:Group x="30" verticalCenter="0">
 			<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="110" height="110"/>

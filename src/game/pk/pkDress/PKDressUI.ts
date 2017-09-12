@@ -23,6 +23,7 @@ class PKDressUI extends game.BaseUI {
     private skillGroup: eui.Group;
     private skillIcon: eui.Image;
     private skillText: eui.Label;
+    private noSkillText: eui.Label;
     private pkDressSettingUI: PKDressSettingUI;
     private list: eui.List;
     private monsterInfo: MonsterInfoBase;
@@ -35,6 +36,7 @@ class PKDressUI extends game.BaseUI {
     private monsterScroller: eui.Scroller;
     private enemyMonsterInfo: MonsterInfoBase;
     private topUI: TopUI;
+
 
 
 
@@ -95,6 +97,7 @@ class PKDressUI extends game.BaseUI {
         this.addBtnEvent(this.topBtn, this.scrollToTop);
         this.addBtnEvent(this.changeBtn, this.changeCardIndex);
         this.addBtnEvent(this.taskGroup, this.onTask);
+        this.addBtnEvent(this.skillGroup, this.onSkill);
 
         this.taskGroup.touchChildren = false
 
@@ -142,6 +145,7 @@ class PKDressUI extends game.BaseUI {
 
     }
     private onDressSettingChoose(e){
+        this.testAddSkill();
         if(this.taskGroup.parent)
             this.taskGroup.parent.addChild(this.taskGroup)
         if(e.data)
@@ -205,6 +209,27 @@ class PKDressUI extends game.BaseUI {
         }
     }
 
+    private renewSkill(){
+        if(UM.tec.use_skill)
+        {
+            this.skillIcon.visible = true
+            this.noSkillText.visible = false
+
+            var skillVO = LeaderSkillVO.getObject(UM.tec.use_skill);
+            this.skillIcon.source = skillVO.thumb;
+            MyTool.setColorText(this.skillText,'['+skillVO.name+']:' + skillVO.getDes())
+        }
+        else
+        {
+            this.skillIcon.visible = false
+            this.skillText.text = ''
+            this.noSkillText.visible = true
+        }
+    }
+
+    private onSkill(){
+        LeaderSkillChangeUI.getInstance().show();
+    }
     private onTask(){
         MyCardTaskUI.getInstance().show();
     }
@@ -340,6 +365,8 @@ class PKDressUI extends game.BaseUI {
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
 
+        this.testAddSkill();
+        this.renewSkill();
         this.renewTask();
         MyTool.removeMC(this.pkDressSettingUI);
         this.scrollerGroup.addChildAt(this.pkDressChooseUI,0);
@@ -349,6 +376,7 @@ class PKDressUI extends game.BaseUI {
         this.reInitData();
 
         this.addPanelOpenEvent(GameEvent.client.main_kill,this.mainGameChange)
+        this.addPanelOpenEvent(GameEvent.client.leader_skill_change,this.renewSkill)
 
 
 
@@ -583,10 +611,23 @@ class PKDressUI extends game.BaseUI {
 
         GuideManager.getInstance().showGuide(this);
     }
+
+    private testAddSkill(){
+        if(!this.isEqual && UM.tec.skill.length > 0)
+        {
+            this.scrollerGroup.addChild(this.skillGroup)
+        }
+        else
+        {
+            MyTool.removeMC(this.skillGroup)
+        }
+    }
+
     private onChooseItem(e){
         e = e || {};
         var infoStr;
 
+        this.testAddSkill();
         if(this.taskGroup.parent)
             this.taskGroup.parent.addChild(this.taskGroup)
         if(e.data)
@@ -736,7 +777,7 @@ class PKDressUI extends game.BaseUI {
             this.upBtnGroup.addChild(this.viewBtn);
 
 
-
+        this.testAddSkill();
         if(this.taskGroup.parent)
             this.taskGroup.parent.addChild(this.taskGroup)
         MyTool.removeMC(this.monsterInfo);
