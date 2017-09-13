@@ -183,6 +183,9 @@ class VideoUI extends game.BaseUI {
    public showSkill(data,svo){
        this.videoInfo.showSkill(data,svo)
    }
+   public showLeaderSkill(data,svo){
+       this.videoInfo.showLeaderSkill(data,svo)
+   }
 
     private playerClick1(){
         this.showPlayer(1)

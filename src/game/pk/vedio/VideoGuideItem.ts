@@ -100,11 +100,19 @@ class VideoGuideItem extends game.BaseItem {
         {
             var VM = VideoManager.getInstance()
             if(base.atker == 1)
-                var oo = VM.leaderSkill1[base.skillID - 2]
+                var oo = VM.leaderSkill1[base.skillID]
             else
-                var oo = VM.leaderSkill2[base.skillID - 2]
-            var mvo = oo.mvo;
-            this.headMC.source = mvo.thumb
+                var oo = VM.leaderSkill2[base.skillID]
+            if(oo.leaderSkill)//队伍技能
+            {
+                this.headMC.source = LeaderSkillVO.getObject(oo.id).thumb
+            }
+            else
+            {
+                var mvo = oo.mvo;
+                this.headMC.source = mvo.thumb
+            }
+
         }
         else
             this.headMC.source = atker.mvo.thumb

@@ -118,7 +118,7 @@ class GuessUI extends game.BaseWindow {
         this.teamInfo2.dataProvider = new eui.ArrayCollection(list2)
 
 
-        var str = '[成功奖励：]' + GM.getGuessAwardStr(guessData.award)
+        var str = '[奖励:]' + GM.getGuessAwardStr(guessData.award)
         MyTool.setColorText(this.awardText,str)
 
     }

@@ -25,7 +25,7 @@
 		<e:Image source="main_border_png" y="0" scaleY="0.42" x="0" scaleX="0.42"/>
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
-	<e:Image source="line_png" y="140" width="580" horizontalCenter="0"/>
+	<e:Image source="line_png" y="140" width="580" horizontalCenter="0" alpha="0.5"/>
 	<e:Group y="171.21" horizontalCenter="-160">
 		<e:Image source="card_battle2_png" x="0" y="0"/>
 		<e:Label text="进攻方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="27.479999999999976"/>
@@ -41,7 +41,7 @@
 		</e:layout>
 	</e:Group>
 	<e:Label text="VS" y="364.21" horizontalCenter="0.5" textColor="0xe0a44a"/>
-	<e:Button id="team1Btn" label="进攻方 胜" y="550" skinName="Btn_r2Skin" horizontalCenter="-160"/>
-	<e:Button id="team2Btn" label="防守方 胜" y="550" skinName="Btn_r2Skin" horizontalCenter="160"/>
-	<e:Label id="awardText" text="奖励：金币+3600" textColor="0xccb48e" y="92" horizontalCenter="0.5"/>
+	<e:Button id="team1Btn" label="进攻方 胜" y="560" skinName="Btn_r2Skin" horizontalCenter="-160"/>
+	<e:Button id="team2Btn" label="防守方 胜" y="560" skinName="Btn_r2Skin" horizontalCenter="160"/>
+	<e:Label id="awardText" text="奖励：金币+3600" textColor="0xccb48e" y="92" horizontalCenter="0"/>
 </e:Skin>

@@ -105,8 +105,10 @@ class LeaderManager {
                     UM.tec.skill.push(oo.id);
 
                     self.skillTotal[oo.id] = (self.skillTotal[oo.id] || 0) + 1
-                    this.skillViewListData[0].time = 0
-                    this.skillViewListData[oo.id].time = 0
+                    if(self.skillViewListData[0])
+                        self.skillViewListData[0].time = 0
+                    if(self.skillViewListData[oo.id])
+                        self.skillViewListData[oo.id].time = 0
                 }
             }
             if(fun)
@@ -129,6 +131,12 @@ class LeaderManager {
                 time:TM.now(),
                 list:msg.list
             }
+            for(var i=0;i<msg.list.length;i++)
+            {
+                msg.list[i].time = parseInt(msg.list[i].time);
+            }
+            ArrayUtil.sortByField(msg.list,['time'],[1])
+            console.log(msg.list)
             if(fun)
                 fun();
         });
@@ -183,6 +191,12 @@ class LeaderManager {
                 time:TM.now(),
                 list:msg.list
             }
+            for(var i=0;i<msg.list.length;i++)
+            {
+                msg.list[i].time = parseInt(msg.list[i].time);
+            }
+            ArrayUtil.sortByField(msg.list,['time'],[1])
+
             self.skillTotal[skillid] = msg.list.length;
             if(fun)
                 fun();

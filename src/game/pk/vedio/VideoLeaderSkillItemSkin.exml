@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="VideoLeaderSkillItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="60" height="56">
+	<e:Image y="3" id="headMC" width="50" height="50" x="3" source="head_png"/>
+	<e:Rect id="bg" height="56" width="56" x="0" y="0" ellipseHeight="15" ellipseWidth="15" fillAlpha="0" strokeWeight="3"/>
+
+
+</e:Skin>

@@ -6,7 +6,7 @@
 		<e:Image source="book_bg2_jpg" x="0" width="100%" scale9Grid="40,44,240,266" height="50%" bottom="0"/>
 		<e:Scroller id="scroller" top="10" bottom="10" left="10" right="0">
 			<e:Group id="scrollerGroup">
-			<e:Group id="infoGroup" y="330" horizontalCenter="0" x="40" scaleX="1" scaleY="1" width="340">
+			<e:Group id="infoGroup" y="330" horizontalCenter="0" x="40" scaleX="1" scaleY="1" width="340" locked="true">
 				<e:Group id="hpGroup" x="-3.552713678800501e-14" y="10">
 				<e:Group x="0" y="0">
 					<e:Label text="血量：" x="0" size="24" verticalCenter="0" textColor="0xE0A44A"/>
@@ -48,7 +48,7 @@
 				<e:VerticalLayout gap="15" paddingTop="10" paddingBottom="25" horizontalAlign="center"/>
 				</e:layout>
 			</e:Group>
-			<e:Group id="headGroup" y="40" horizontalCenter="0" x="84" scaleX="1" scaleY="1">
+			<e:Group id="headGroup" y="40" horizontalCenter="0" x="84" scaleX="1" scaleY="1" locked="true">
 				<e:Image source="card_bg_png" scale9Grid="72,75,87,71" y="0" height="306" x="0" scaleX="0.8" scaleY="0.8"/>
 				<e:Image id="headMC" y="8" x="11" width="168" height="224" source=""/>
 				<e:Image id="teamIcon" source="card_battle2_png" x="10.59" y="7.57"/>
@@ -59,6 +59,7 @@
 				</e:Group>
 			</e:Group>
 				<ns1:MonsterInfoBaseItem id="skillMC" y="330" skinName="VideoInfoSkillItemSkin" horizontalCenter="0" width="360" locked="true"/>
+				<e:Label id="leaderSkillText" text="标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标签标11签标签标签标签" textColor="0xCBC08A" size="24" lineSpacing="10" y="350" scaleX="1" scaleY="1" left="30" right="30"/>
 			</e:Group>
 		</e:Scroller>
 	</e:Group>

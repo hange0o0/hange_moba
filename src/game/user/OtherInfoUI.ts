@@ -176,6 +176,9 @@ class OtherInfoUI extends game.BaseUI {
         oo = {title:'职业称号',icon:'icon_main_png',des: MainGameManager.getInstance().getStepName(dataIn.main_game.level) + '　[评分:]'+ dataIn.main_game.level+'',
             myValue:UM.main_game.level, otherValue:dataIn.main_game.level}
         list.push(oo)
+
+        if(!dataIn.main_game.award_force)
+            dataIn.main_game.award_force = 0
         oo = {title:'获得通关战力',icon:'icon_main_png',des: dataIn.main_game.award_force + '',myValue:UM.main_game.award_force, otherValue:dataIn.main_game.award_force}
         list.push(oo)
 

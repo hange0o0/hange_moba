@@ -154,8 +154,10 @@ class VideoManager {
             self.baseData = ObjectUtil.clone(baseData);
 
             //这个不用变，因为与施法者ID有关
-            self.leaderSkill1 = []
-            self.leaderSkill2 = []
+            self.leaderSkill1 = [null]
+            self.leaderSkill2 = [null]
+            self.leaderSkill1.push({leaderSkill:true,id:PKManager.getInstance().pkResult.team1base.s})
+            self.leaderSkill2.push({leaderSkill:true,id:PKManager.getInstance().pkResult.team2base.s})
             for(var i=0;i<self.baseData.team1.ac.length;i++)
             {
                 self.leaderSkill1.push(self.decodeLeaderSkill(self.baseData.team1.ac[i]))

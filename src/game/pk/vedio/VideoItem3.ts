@@ -332,16 +332,34 @@ class VideoItem3 extends game.BaseItem {
         {
             var VM = VideoManager.getInstance()
             if(data.atker == 1)
-                var oo = VM.leaderSkill1[data.skillID - 2]
+                var oo = VM.leaderSkill1[data.skillID]
             else
-                var oo = VM.leaderSkill2[data.skillID - 2]
-            var mvo = oo.mvo;
-            var svo = oo.svo;
-            atker.mid = mvo.id;
+                var oo = VM.leaderSkill2[data.skillID]
+            if(oo.leaderSkill)
+            {
+                var svo = LeaderSkillVO.getObject(oo.id);
+            }
+            else
+            {
+                var mvo = oo.mvo;
+                var svo = oo.svo;
+                atker.mid = mvo.id;
+            }
+
 
         }
 
-        if(svo.mv == 'atk')
+        if(svo.leaderSkill)
+        {
+            var group = this.addGroup();
+            this.addLeaderSkillClick(this.getLeaderSkill(data.atker,group,svo),atker,svo)
+            var nameText = this.getWordText('【'+svo.name + '】',color,26)
+            group.addChild(nameText)
+            group.addChild(this.getWordText('生效'))
+            this.addEffectList(data);
+
+        }
+        else if(svo.mv == 'atk')
         {
             this.decode_atk(data,svo);
         }
@@ -424,8 +442,19 @@ class VideoItem3 extends game.BaseItem {
         this.addBtnEvent(mc,onDetail);
     }
 
+    private addLeaderSkillClick(mc,data,svo){
+        var self = this;
+        var onDetail = function(e){
+            if(self.isChoose)
+                e.stopImmediatePropagation();
+            VideoUI.getInstance().showLeaderSkill({team:data.teamID},svo)
+        }
+
+        this.addBtnEvent(mc,onDetail);
+    }
+
     private addInfoClick(mc,data){
-        if(this.stopClick )
+        if(this.stopClick)
             return;
         var self = this;
         var onDetail = function(e){
@@ -749,6 +778,18 @@ class VideoItem3 extends game.BaseItem {
             playerVO.headVO = null;
         mc.data = playerVO;
         this.addInfoClick(mc,playerVO)
+        return mc
+    }
+
+    private getLeaderSkill(id,group,svo){
+        var VC = VideoCode.getInstance();
+        var mc = new VideoLeaderSkillItem()
+        group.addChild(mc);
+        var playerVO = VC.getPlayerByID(id);
+        mc.data = {
+            teamID:playerVO.teamID,
+            svo:svo
+        };
         return mc
     }
 }

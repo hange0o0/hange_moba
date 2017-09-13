@@ -2029,9 +2029,9 @@ class PKMainUI extends game.BaseUI {
         {
             var VDOM = VideoManager.getInstance()
             if(data.atker == 1)
-                var oo = VDOM.leaderSkill1[data.skillID - 2]
+                var oo = VDOM.leaderSkill1[data.skillID]
             else
-                var oo = VDOM.leaderSkill2[data.skillID - 2]
+                var oo = VDOM.leaderSkill2[data.skillID]
             var mvo = oo.mvo;
             var svo = oo.svo;
             data.atker = oo.orginOwnerID;

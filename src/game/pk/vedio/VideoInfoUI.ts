@@ -26,6 +26,8 @@ class VideoInfoUI extends game.BaseContainer {
     private teamText: eui.Label;
     private nameText: eui.Label;
     private skillMC: MonsterInfoBaseItem;
+    private leaderSkillText: eui.Label;
+
 
 
 
@@ -46,7 +48,8 @@ class VideoInfoUI extends game.BaseContainer {
     }
 
     private onHead(){
-        MonsterList.getInstance().show([this.clickObj],0)
+        if(this.clickObj)
+            MonsterList.getInstance().show([this.clickObj],0)
     }
 
     private onVideo(){
@@ -105,10 +108,32 @@ class VideoInfoUI extends game.BaseContainer {
         }
     }
 
+    public showLeaderSkill(data,svo) {
+        this.show();
+        MyTool.removeMC(this.infoGroup)
+        MyTool.removeMC(this.skillMC)
+        this.scrollerGroup.addChild(this.leaderSkillText)
+
+        var PKM = PKManager.getInstance();
+        this.headMC.source =  svo.thumb;
+        this.nameText.text =  svo.name;
+        if(PKM.teamChange)
+        {
+            this.teamIcon.source = data.team == 2?'card_battle2_png':'card_battle_png'
+        }
+        else
+        {
+            this.teamIcon.source = data.team == 1?'card_battle2_png':'card_battle_png'
+        }
+        this.clickObj = null
+        this.teamText.text = ''
+    }
+
     public showSkill(data,svo) {
         this.show();
         this.renewHead(data);
         MyTool.removeMC(this.infoGroup)
+        MyTool.removeMC(this.leaderSkillText)
         this.scrollerGroup.addChild(this.skillMC)
         this.skillMC.data = svo;
     }
@@ -117,6 +142,7 @@ class VideoInfoUI extends game.BaseContainer {
         this.show();
         this.renewHead(data);
         MyTool.removeMC(this.skillMC)
+        MyTool.removeMC(this.leaderSkillText)
         this.scrollerGroup.addChild(this.infoGroup)
 
 

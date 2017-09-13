@@ -8,7 +8,7 @@ class LeaderSkillVO {
         return CM.table[this.dataKey];
     }
 
-
+   public leaderSkill = true;
     public id
     public name //arr
     public des

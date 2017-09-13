@@ -131,7 +131,7 @@
 		</e:Group>
 		<e:Rect height="185" width="5" y="0" fillColor="0x272422" x="318"/>
 	</e:Group>
-	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="515">
+	<e:Group id="resultGroup" x="0" y="195" width="640" anchorOffsetY="0" height="515" visible="false">
 		<e:Rect id="resultBG" width="100%" x="0" top="-2" bottom="0"/>
 		<e:Group id="resultMC" horizontalCenter="0" verticalCenter="-72.5">
 		<e:Image id="rbg0" y="0" x="0" source="pk_fail_png"/>
@@ -155,7 +155,7 @@
 			<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="32" stroke="5" strokeColor="0x000000" bold="true" y="260" scaleX="1" scaleY="1" horizontalCenter="0"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="jumpBtn" anchorOffsetX="36" anchorOffsetY="36" x="36" y="720">
+	<e:Group id="jumpBtn" anchorOffsetX="36" anchorOffsetY="36" x="36" y="720" locked="true">
 		<e:Image source="main_border_png" x="0" y="0" width="72" height="72"/>
 		<e:Group id="jumpCon" y="21" horizontalCenter="2">
 			<e:Image source="arrow7_png" x="0" y="0" rotation="-90"/>
@@ -165,7 +165,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group id="jumpBtn2" anchorOffsetX="36" anchorOffsetY="36" y="720" x="604">
+	<e:Group id="jumpBtn2" anchorOffsetX="36" anchorOffsetY="36" y="720" x="604" locked="true">
 		<e:Image source="main_border_png" x="0" y="0" width="72" height="72"/>
 		<e:Image id="jumpIcon" scaleX="1.4" scaleY="1.4" horizontalCenter="0" verticalCenter="0" source="jump_icon2_png"/>
 	</e:Group>
@@ -176,4 +176,5 @@
 		<e:Image id="roundMC2" source="pk_round_bg_png" y="100" x="360" scaleX="-1" anchorOffsetY="100"/>
 		<e:Label id="roundText" y="95" textColor="0xEB911B" text="ROUND 11" size="22" horizontalCenter="0.5"/>
 	</e:Group>
+	<ns1:LeaderSkillItem x="12.42" y="233.58" skinName="LeaderSkillItemSkin"/>
 	</e:Skin>

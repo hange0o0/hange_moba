@@ -48,9 +48,9 @@ class LeaderMainUI extends game.BaseUI {
         if(this.tab.selectedIndex == 0)
             HelpManager.getInstance().leaderHelp();
         else if(this.tab.selectedIndex == 1)
-            HelpManager.getInstance().leaderHelp();
+            HelpManager.getInstance().leaderDrawHelp();
         else if(this.tab.selectedIndex == 2)
-            HelpManager.getInstance().leaderHelp();
+            HelpManager.getInstance().leaderSkillHelp();
     }
 
     private typeBarClick(){
