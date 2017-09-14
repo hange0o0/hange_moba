@@ -15,7 +15,7 @@
 			<e:Button id="okBtn" label="继续挑战" y="0" skinName="Btn_r2Skin" x="0"/>
 			<e:Button id="reviewBtn" label="回　放" x="20.00000000000003" y="20" skinName="Btn_b2Skin"/>
 			<e:layout>
-				<e:HorizontalLayout gap="20"/>
+				<e:HorizontalLayout gap="20" paddingTop="0"/>
 			</e:layout>
 		</e:Group>
 		<e:layout>

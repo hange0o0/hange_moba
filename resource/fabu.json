@@ -614,6 +614,14 @@
 				{
 					"compress":false,
 					"key":"pk_log_icon_png"
+				},
+				{
+					"compress":false,
+					"key":"leader_draw_door_png"
+				},
+				{
+					"compress":false,
+					"key":"leader_draw_door_npc_png"
 				}
 			],
 			"sort":0
@@ -664,11 +672,19 @@
 				},
 				{
 					"compress":false,
-					"key":"book_1_jpg"
+					"key":"prop_thumb_31_jpg"
 				},
 				{
 					"compress":false,
-					"key":"book_2_jpg"
+					"key":"prop_thumb_32_jpg"
+				},
+				{
+					"compress":false,
+					"key":"prop_thumb_41_jpg"
+				},
+				{
+					"compress":false,
+					"key":"prop_thumb_42_jpg"
 				}
 			],
 			"sort":0
@@ -1327,6 +1343,10 @@
 		{
 			"compress":false,
 			"key":"leader_bg_jpg"
+		},
+		{
+			"compress":false,
+			"key":"leader_draw_bg_jpg"
 		}
 	]
 }

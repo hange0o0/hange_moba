@@ -323,10 +323,11 @@ class VideoItem3 extends game.BaseItem {
     private decode_skill(data){
         var VC = VideoCode.getInstance();
         var atker = VC.getPlayerByID(data.atker);
+        var svo:any
         if(data.atker >= 10)
         {
             var mvo = atker.mvo;
-            var svo = mvo.getSkillByID(data.skillID,atker.isPKing);
+            svo = mvo.getSkillByID(data.skillID,atker.isPKing);
         }
         else
         {
@@ -337,25 +338,25 @@ class VideoItem3 extends game.BaseItem {
                 var oo = VM.leaderSkill2[data.skillID]
             if(oo.leaderSkill)
             {
-                var svo = LeaderSkillVO.getObject(oo.id);
+                svo = LeaderSkillVO.getObject(oo.id);
             }
             else
             {
                 var mvo = oo.mvo;
-                var svo = oo.svo;
+                svo = oo.svo;
                 atker.mid = mvo.id;
             }
-
-
         }
 
         if(svo.leaderSkill)
         {
             var group = this.addGroup();
             this.addLeaderSkillClick(this.getLeaderSkill(data.atker,group,svo),atker,svo)
-            var nameText = this.getWordText('【'+svo.name + '】',color,26)
+            group.addChild(this.getWordText('触发队伍技能 '))
+            var nameText = this.getWordText('【'+svo.name + '】',0xE68FFC,26)
+            this.addLeaderSkillClick(nameText,atker,svo)
             group.addChild(nameText)
-            group.addChild(this.getWordText('生效'))
+
             this.addEffectList(data);
 
         }
@@ -631,7 +632,10 @@ class VideoItem3 extends game.BaseItem {
         }
         else if(effect.key == 'nohurt')
         {
-            group.addChild(this.getWordText('【免伤】',0xF4B170,24))
+            if(effect.value == -1)
+                group.addChild(this.getWordText('免伤 +1',0xF4B170,24))
+            else
+                group.addChild(this.getWordText('【免伤】',0xF4B170,24))
         }
         else if(effect.key == 'miss')
         {

@@ -29,6 +29,11 @@ class AwardItem extends game.BaseItem {
             MonsterList.getInstance().show([this.data]);
             return;
         }
+        if(this.data.type == 'skill')
+        {
+            LeaderSkillInfoUI.getInstance().show(this.data.id)
+            return;
+        }
         //this.infoGroup.visible = true;
         //this.timer = egret.setTimeout(function(){
         //    this.infoGroup.visible = false;
@@ -37,9 +42,10 @@ class AwardItem extends game.BaseItem {
 
     public dataChanged() {
         this.newIcon.visible = false;
-        this.infoGroup.visible = true;
+        //this.infoGroup.visible = true;
+        this.infoGroup.visible = false;
         egret.clearTimeout(this.timer);
-        this.desText.text = this.data.des;
+
         if(this.data.color == 'red')
         {
             this.desText.textColor = 0xFF0000
@@ -53,37 +59,43 @@ class AwardItem extends game.BaseItem {
             case 'diamond':
             {
                 this.mc.source = 'prop_diamond_jpg'
-                this.infoText.text = '钻石';
+                this.desText.text = '钻石\n' + this.data.des;
+                //this.infoText.text = '钻石';
                 break;
             }
             case 'coin':
             {
                 this.mc.source = 'prop_coin_jpg'
-                this.infoText.text = '金币';
+                //this.infoText.text = '金币';
+                this.desText.text = '金币\n' + this.data.des;
                 break;
             }
             case 'energy':
             {
                 this.mc.source = 'prop_energy_jpg'
-                this.infoText.text = '体力';
+                //this.infoText.text = '体力';
+                this.desText.text = '体力\n' + this.data.des;
                 break;
             }
             case 'exp':
             {
                 this.mc.source = 'prop_exp_jpg'
-                this.infoText.text = '经验';
+                //this.infoText.text = '经验';
+                this.desText.text = '经验\n' + this.data.des;
                 break;
             }
             case 'card':
             {
                 this.mc.source = 'prop_card_jpg'
-                this.infoText.text = '碎片';
+                //this.infoText.text = '碎片';
+                this.desText.text = '碎片\n' + this.data.des;
                 break;
             }
             case 'g_exp':
             {
                 this.mc.source = 'prop_score_jpg'
-                this.infoText.text = '积分';
+                //this.infoText.text = '积分';
+                this.desText.text = '积分\n' + this.data.des;
                 break;
             }
             case 'monster':
@@ -107,7 +119,10 @@ class AwardItem extends game.BaseItem {
             {
                 var pvo = PropVO.getObject(this.data.id);
                 this.mc.source = pvo.thumb;
-                this.infoText.text = pvo.propname;
+                //this.infoText.text = pvo.propname;
+                this.desText.text = pvo.propname + '\n' + this.data.des;
+
+                addBtnTips(this,pvo.propdes,true);
                 break;
             }
 

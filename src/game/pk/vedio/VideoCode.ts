@@ -93,11 +93,11 @@ class VideoCode{
         this.playerObject[2].teamID = 1;
         this.playerObject[2].index = -1;
 
-        //if(PKM.teamChange)
-        //{
-        //    this.playerObject[1].id = 2;
-        //    this.playerObject[2].id = 1;
-        //}
+        if(PKM.teamChange)
+        {
+            this.playerObject[1].teamID = 2;
+            this.playerObject[2].teamID = 1;
+        }
 
 
         this.index = 0;

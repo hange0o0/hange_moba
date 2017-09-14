@@ -59,6 +59,8 @@ class PKMainUI extends game.BaseUI {
     private speedText1: eui.Label;
     private atkText1: eui.Label;
     private statList1: eui.Group;
+    private leaderSkill0: PKSkillItem;
+    private leaderSkill1: PKSkillItem;
     private resultGroup: eui.Group;
     private resultBG: eui.Rect;
     private resultMC: eui.Group;
@@ -85,6 +87,7 @@ class PKMainUI extends game.BaseUI {
     private roundMC1: eui.Image;
     private roundMC2: eui.Image;
     private roundText: eui.Label;
+
 
 
 
@@ -385,6 +388,9 @@ class PKMainUI extends game.BaseUI {
                     group.push('m_thumbr_' + s);
                 this.loadGroup2.push('m_thumb_' + s);
             }
+
+
+
         }
 
 
@@ -485,6 +491,8 @@ class PKMainUI extends game.BaseUI {
         egret.Tween.removeTweens(this.con);
         egret.Tween.removeTweens(this.mpBar0);
         egret.Tween.removeTweens(this.mpBar1);
+        egret.Tween.removeTweens(this.leaderSkill0);
+        egret.Tween.removeTweens(this.leaderSkill1);
 
         var arr = this.itemArray;
         for(var i=0;i<arr.length;i++)
@@ -506,6 +514,8 @@ class PKMainUI extends game.BaseUI {
         this.con.visible = false;
         this.roundGroup.visible = false;
         this.skillGroup.visible = false;
+        this.leaderSkill0.visible = false;
+        this.leaderSkill1.visible = false;
 
         this.resultGroup.visible = false;
 
@@ -666,6 +676,7 @@ class PKMainUI extends game.BaseUI {
         MainPageUI.getInstance().visible = false;
         if(this.pkJump)
         {
+            this.touchChildren = this.touchEnabled = true;
             this.showResult()
             return;
         }
@@ -1162,6 +1173,8 @@ class PKMainUI extends game.BaseUI {
         this.roundGroup.visible = false;
         this.resultGroup.visible = false;
         this.skillGroup.visible = false;
+        this.leaderSkill0.visible = false;
+        this.leaderSkill1.visible = false;
 
 
 
@@ -2018,12 +2031,15 @@ class PKMainUI extends game.BaseUI {
 
     private decode_skill(data,roundeData,stopMainSkill?){
         var VC = VideoCode.getInstance();
+        var VM = PKMainMV.getInstance();
         //var atkerPlayerVO = VC.getPlayerByID(data.atker);
         var atkerItem = this.getMonster(data.atker);
+        var defender = data.defender;
+        var svo:any
         if(data.atker >= 10)
         {
             var mvo = atkerItem.data.vo;
-            var svo = mvo.getSkillByID(data.skillID,atkerItem.isPKing);
+            svo = mvo.getSkillByID(data.skillID,atkerItem.isPKing);
         }
         else
         {
@@ -2032,10 +2048,23 @@ class PKMainUI extends game.BaseUI {
                 var oo = VDOM.leaderSkill1[data.skillID]
             else
                 var oo = VDOM.leaderSkill2[data.skillID]
-            var mvo = oo.mvo;
-            var svo = oo.svo;
-            data.atker = oo.orginOwnerID;
-            atkerItem = this.getMonster(data.atker);
+
+            if(oo.leaderSkill)//队伍技能
+            {
+                svo = LeaderSkillVO.getObject(oo.id);
+            }
+            else
+            {
+                var mvo = oo.mvo;
+                svo = oo.svo;
+                data.atker = oo.orginOwnerID;
+                atkerItem = this.getMonster(data.atker);
+            }
+
+
+
+
+
         }
 
 
@@ -2048,8 +2077,29 @@ class PKMainUI extends game.BaseUI {
             return;
         }
 
-
-        if(!svo.mvType)
+        if(svo.leaderSkill)
+        {
+            var atkerPlayerVO = VC.getPlayerByID(data.atker);
+            var mc =  atkerPlayerVO.teamID == 1?this.leaderSkill0:this.leaderSkill1
+            mc.data = svo.id;
+            mc.visible = true;
+            mc.alpha = 0;
+            mc.y = this.upGroup.y + 270;
+            var tw = egret.Tween.get(mc);
+            tw.to({alpha:1,y:this.upGroup.y + 240},this.speed?200:300).call(function(){
+                for(var i=0;i<defender.length;i++)
+                {
+                    var defenderItem = this.getMonster(defender[i].defender)
+                    var skillID = svo.skillmv;
+                    VM.playOnItem(skillID,defenderItem,null,null);
+                }
+            },this).wait(this.speed?400:800).call(function(){
+                this.addEffectList(data,roundeData);
+            },this).to({alpha:0,y:this.upGroup.y + 210},this.speed?200:300).call(function(){
+                mc.visible = false;
+            },this);
+        }
+        else if(!svo.mvType)
         {
             roundeData.svo = svo;
             if(svo.mv == 'atk')
@@ -2080,8 +2130,8 @@ class PKMainUI extends game.BaseUI {
         }
         else
         {
-            var defender = data.defender;
-            var VM = PKMainMV.getInstance();
+
+
 
 
 
@@ -2236,7 +2286,10 @@ class PKMainUI extends game.BaseUI {
         }
         else if(effect.key == 'nohurt')
         {
-            this.showItemWord(item,{text:'免伤',textColor:0xFF0000},delay)
+            if(effect.value == -1)
+                this.showItemWord(item,{text:'免伤+1',textColor:0xB9ED8E},delay)
+            else
+                this.showItemWord(item,{text:'免伤',textColor:0xFF0000},delay)
         }
         else if(effect.key == 'miss')
         {

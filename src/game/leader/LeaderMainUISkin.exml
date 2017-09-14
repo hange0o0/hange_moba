@@ -19,9 +19,9 @@
 		<e:Label text="?" y="10" textColor="0xF8D05A" horizontalCenter="0"/>
 	</e:Group>
 	<e:Group id="lock1" width="214" height="62" x="214" y="76">
-		<e:Image source="lock_icon_png" x="20" y="12" scaleX="1" scaleY="1"/>
+		<e:Image source="lock_icon_png" x="20" y="10" scaleX="1" scaleY="1"/>
 	</e:Group>
 	<e:Group id="lock2" width="214" height="62" x="428" y="76">
-		<e:Image source="lock_icon_png" x="20" y="12" scaleX="1" scaleY="1"/>
+		<e:Image source="lock_icon_png" x="20" y="10" scaleX="1" scaleY="1"/>
 	</e:Group>
 </e:Skin>

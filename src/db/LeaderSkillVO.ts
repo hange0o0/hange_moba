@@ -14,6 +14,7 @@ class LeaderSkillVO {
     public des
     public day
     public num
+    public skillmv
     public constructor(data?: any) {
         if(data)
             this.fill(data);
@@ -26,6 +27,7 @@ class LeaderSkillVO {
         this.des = data.des;
         this.day = data.day;
         this.num = data.num;
+        this.skillmv = data.skillmv;
     }
 
     public get thumb(){

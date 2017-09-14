@@ -655,6 +655,7 @@ class PKManager {
             this.team2Head = 2;
             this.team2Nick = 'team2Head';
         }
+        //this.teamChange = true
 
     }
 

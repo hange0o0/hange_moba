@@ -77,6 +77,7 @@ class VideoInfoUI extends game.BaseContainer {
         var PKM = PKManager.getInstance();
         var mvo = MonsterVO.getObject(data.mid);
         this.headMC.source =  mvo.url;
+        this.headMC.height =  224;
         this.nameText.text =  mvo.name;
         if(PKM.teamChange)
         {
@@ -116,7 +117,9 @@ class VideoInfoUI extends game.BaseContainer {
 
         var PKM = PKManager.getInstance();
         this.headMC.source =  svo.thumb;
+        this.headMC.height =  168;
         this.nameText.text =  svo.name;
+        this.setHtml(this.leaderSkillText,svo.getDes());
         if(PKM.teamChange)
         {
             this.teamIcon.source = data.team == 2?'card_battle2_png':'card_battle_png'

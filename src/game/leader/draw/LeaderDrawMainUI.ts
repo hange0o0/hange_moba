@@ -53,9 +53,9 @@ class LeaderDrawMainUI extends game.BaseContainer {
         this.draw(8)
     }
 
-    public draw(times){
+    public draw(times,needDiamnd?){
        var LM = LeaderManager.getInstance();
-        var diamond =TM.now() - (SharedObjectManager.instance.getMyValue('skillDrawDiamond') || 0) < 24*3600
+        var diamond =needDiamnd || TM.now() - (SharedObjectManager.instance.getMyValue('skillDrawDiamond') || 0) < 24*3600
         var propNum = UM.getPropNum(41);
         if(propNum < times)
         {

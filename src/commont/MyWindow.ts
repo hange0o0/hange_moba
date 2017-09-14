@@ -20,11 +20,17 @@ function ShowTips(msg,cd=1000){
     TipsUI.getInstance().show(msg,cd);
 }
 
-function addBtnTips(mc,str){
+function addBtnTips(mc,str,addStageRemove?){
     var timer;
     mc.touchEnabled = true;
 
     mc.addEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,mc.thisObj || mc);
+    if(addStageRemove)
+    {
+        GameManager.stage.once(egret.Event.REMOVED_FROM_STAGE,function(){
+            mc.removeEventListener(egret.TouchEvent.TOUCH_BEGIN,onTouchStart,mc.thisObj || mc);
+        },this)
+    }
     function onTouchStart(e){
         var stageX = e.stageX
         var stageY = e.stageY

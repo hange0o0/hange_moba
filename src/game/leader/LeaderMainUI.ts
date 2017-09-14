@@ -25,7 +25,7 @@ class LeaderMainUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.topUI.setTitle('军校系统')
+        this.topUI.setTitle('卡将系统')
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp)
@@ -38,10 +38,10 @@ class LeaderMainUI extends game.BaseUI {
     }
 
     private onLock1(){
-        Alert('职积达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderSkillLevel),0xE0A44A)+'('+Config.leaderSkillLevel+'分)后开放')
+        Alert('职积达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderSkillLevel),0xE0A44A)+'(评分'+Config.leaderSkillLevel+')后开放')
     }
     private onLock2(){
-        Alert('职积达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderSkillLevel),0xE0A44A)+'('+Config.leaderSkillLevel+'分)后开放')
+        Alert('职积达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderSkillLevel),0xE0A44A)+'(评分'+Config.leaderSkillLevel+')后开放')
     }
 
     private onHelp(){
@@ -95,7 +95,7 @@ class LeaderMainUI extends game.BaseUI {
     public show(){
         if(UM.main_game.level < Config.leaderLevel)
         {
-            Alert('需达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderLevel),0xE0A44A)+'('+Config.leaderLevel+'分)才可进入')
+            Alert('需达到'+this.createHtml(MainGameManager.getInstance().getStepName(Config.leaderLevel),0xE0A44A)+'(评分'+Config.leaderLevel+')才可进入')
             return;
         }
 

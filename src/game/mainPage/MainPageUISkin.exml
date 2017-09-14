@@ -43,7 +43,7 @@
 			<e:Group id="leaderBtn" x="290.4166666666667" y="0.8333333333333712" width="100">
 				<e:Image source="menu_icon_3_png" y="0" scaleX="0.85" scaleY="0.85" horizontalCenter="0"/>
 				<e:Image id="leaderRed" source="red_point_png" y="6" x="67"/>
-				<e:Label y="92" text="军校" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
+				<e:Label y="92" text="卡将" textColor="0xCCB48E" horizontalCenter="0" size="24"/>
 				<e:Image id="leaderLockMC" source="lock_icon_png" x="61" y="42"/>
 			</e:Group>
 			<e:Group id="rankBtn" x="0" y="13.750000000000114" width="100">

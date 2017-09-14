@@ -72,6 +72,20 @@ class VideoManager {
             mArr = mArr.concat(vo.mvList)
         }
 
+        if(PKM.team1Base.s)
+        {
+            var mid = LeaderSkillVO.getObject(PKM.team1Base.s).skillmv
+            mArr.push('skill'+mid+'_png')
+            mArr.push('skill'+mid+'_json')
+        }
+        if(PKM.team2Base.s)
+        {
+            var mid = LeaderSkillVO.getObject(PKM.team2Base.s).skillmv
+            mArr.push('skill'+mid+'_png')
+            mArr.push('skill'+mid+'_json')
+        }
+
+
         //for(var i=0;i<this.leaderSkill1.length;i++)
         //{
         //    mArr.push(this.leaderSkill1[i].mv);

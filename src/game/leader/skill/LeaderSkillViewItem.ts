@@ -34,6 +34,8 @@ class LeaderSkillViewItem extends game.BaseItem {
             this.numText.text = num + '/' + this.data.num;
             this.lockGroup.visible = false
             this.haveBtn.visible = UM.tec.skill.indexOf(this.data.id) != -1;
+
+            this.touchChildren = this.touchEnabled = true
         }
         else
         {
@@ -41,8 +43,10 @@ class LeaderSkillViewItem extends game.BaseItem {
             this.lockGroup.visible = true
             this.numText.text = ''
 
+            this.touchChildren = this.touchEnabled = false
+
             var date = DateUtil.timeToChineseDate(UM.opentime + 24*3600*this.data.day)
-            this.lockText.text = DateUtil.formatDate('MM-dd',date)
+            this.lockText.text = DateUtil.formatDate('MM-dd',date)  + '\n12:00:00'
         }
 
     }

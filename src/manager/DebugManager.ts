@@ -385,8 +385,8 @@ class DebugManager {
             fun(card2);
             return;
         }
-        dataIn.team1 = {"list":card1,"ring":{"id":1,"level":1}}
-        dataIn.team2 = {"list":card2,"ring":{"id":1,"level":1}}
+        dataIn.team1 = {"list":card1,"skill":Math.floor(Math.random()*6)}
+        dataIn.team2 = {"list":card2,"skill":Math.floor(Math.random()*6)}
         //dataIn.need_server = needServer
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;

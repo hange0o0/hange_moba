@@ -18,4 +18,8 @@
 	<e:Image source="line_png" x="-1" width="650" bottom="-5"/>
 	<e:Image source="line_png" y="55" width="650" horizontalCenter="0"/>
 	<e:Image source="line_png" width="650" horizontalCenter="0" bottom="65"/>
+	<e:Group id="skillGroup" y="70" right="10">
+		<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="70" height="70"/>
+		<e:Image id="img" width="60" height="60" x="5" y="5"/>
+	</e:Group>
 </e:Skin>

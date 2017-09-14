@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PKSkillItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width="90" height="120">
+	<e:Group x="0" y="0">
+		<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="90" height="90"/>
+		<e:Image id="img" width="80" height="80" x="5" y="5"/>
+	</e:Group>
+	<e:Label id="nameText" text="贿赂贿赂" size="20" textColor="0xFADEA2" y="95" scaleX="1" scaleY="1" horizontalCenter="0" stroke="3"/>
+</e:Skin>

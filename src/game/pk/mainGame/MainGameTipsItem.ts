@@ -10,6 +10,9 @@ class MainGameTipsItem extends game.BaseItem {
     private leaderText: eui.Label;
     private resultText: eui.Label;
     private videoBtn: eui.Button;
+    private skillGroup: eui.Group;
+    private img: eui.Image;
+
 
 
 
@@ -21,11 +24,13 @@ class MainGameTipsItem extends game.BaseItem {
     public index;
     private gameid
     private list
+    private skillID
 
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this.videoBtn,this.onClick);
         this.addBtnEvent(this.resultText,this.onNickClick);
+        this.addBtnEvent(this.skillGroup,this.onSkillClick);
 
         this.enemyList.itemRenderer = MainGameTipsHeadItem
 
@@ -34,7 +39,9 @@ class MainGameTipsItem extends game.BaseItem {
         //this.addEventListener(PKResultItem3.VIEW_EVENT,this.onMonsterClick,this)
     }
 
-
+    private onSkillClick(){
+         LeaderSkillInfoUI.getInstance().show(this.skillID);
+    }
 
     private onNickClick(e){
         e.stopImmediatePropagation();
@@ -46,6 +53,10 @@ class MainGameTipsItem extends game.BaseItem {
     private onClick(){
         PKDressUI.getInstance().changeChooseList(this.list)
         MainGameTipsUI.getInstance().hide();
+        if(this.skillID && UM.tec.skill.indexOf(this.skillID) != -1 && UM.tec.use_skill != this.skillID)
+        {
+            LeaderManager.getInstance().skillSet(this.skillID)
+        }
         //ShowTips('已复制到你的出战布阵中')
     }
 
@@ -147,6 +158,17 @@ class MainGameTipsItem extends game.BaseItem {
                 }
                 if(leaderlist.length)
                     this.setHtml(this.leaderText,leaderlist.join(' '))
+            }
+
+            if(teamData.skill)
+            {
+                this.skillID = teamData.skill;
+                this.skillGroup.visible = true
+                this.img.source = LeaderSkillVO.getObject(teamData.skill).thumb
+            }
+            else
+            {
+                this.skillGroup.visible = false
             }
         }
 

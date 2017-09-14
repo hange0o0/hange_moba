@@ -43,7 +43,9 @@ class LeaderDrawDiamondUI extends game.BaseWindow {
         if(!UM.testDiamond(this.needDiamond))
             return;
         this.hide()
-        LeaderDrawMainUI.getInstance().draw(this.times);
+        LeaderDrawMainUI.getInstance().draw(this.times,true);
+        if(this.autoCB.selected)
+            SharedObjectManager.instance.setMyValue('skillDrawDiamond',TM.now())
     }
 
     public show(v?){

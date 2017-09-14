@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="PKResultItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Group id="group" x="0" y="0" width="120" height="146">
-		<ns1:AwardItem id="awardItem" skinName="AwardItemSkin" verticalCenter="0" horizontalCenter="0"/>
+	<e:Group id="group" x="0" y="0" width="120" height="170">
+		<ns1:AwardItem id="awardItem" skinName="AwardItemSkin" horizontalCenter="0" y="60" anchorOffsetY="60"/>
+
+
+
 	</e:Group>
 </e:Skin>
