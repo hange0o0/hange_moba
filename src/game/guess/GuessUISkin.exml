@@ -43,5 +43,5 @@
 	<e:Label text="VS" y="364.21" horizontalCenter="0.5" textColor="0xe0a44a"/>
 	<e:Button id="team1Btn" label="进攻方 胜" y="560" skinName="Btn_r2Skin" horizontalCenter="-160"/>
 	<e:Button id="team2Btn" label="防守方 胜" y="560" skinName="Btn_r2Skin" horizontalCenter="160"/>
-	<e:Label id="awardText" text="奖励：金币+3600" textColor="0xccb48e" y="92" horizontalCenter="0"/>
+	<e:Label id="awardText" text="奖励：金币+3600" textColor="0xccb48e" y="95" horizontalCenter="0.5"/>
 </e:Skin>

@@ -25,7 +25,7 @@ class FriendLogItem extends game.BaseItem {
         this.addBtnEvent(this.agreeBtn,this.onAgree)
         this.addBtnEvent(this.refuseBtn,this.onRefuse)
         this.addBtnEvent(this.headMC,this.onClick)
-        //this.addBtnEvent(this.headMC,this.onClick)
+        this.addBtnEvent(this.talkText,this.onTalk)
     }
 
     private onClick(){
@@ -62,10 +62,7 @@ class FriendLogItem extends game.BaseItem {
 
         if(this.data.type == 3)  //聊天
         {
-            if(UM.gameid == this.data.from_gameid)
-                 FriendTalkUI.getInstance().show(this.data.to_gameid);
-            else
-                 FriendTalkUI.getInstance().show(this.data.from_gameid);
+            this.showTalk();
         }
         else
         {
@@ -74,6 +71,20 @@ class FriendLogItem extends game.BaseItem {
                 self.btnGroup.visible = false;
             })
         }
+    }
+
+    private onTalk(){
+        if(this.data.type == 3)  //聊天
+        {
+            this.showTalk();
+        }
+    }
+
+    private showTalk(){
+        if(UM.gameid == this.data.from_gameid)
+            FriendTalkUI.getInstance().show(this.data.to_gameid);
+        else
+            FriendTalkUI.getInstance().show(this.data.from_gameid);
     }
 
     public dataChanged(){

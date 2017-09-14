@@ -22,10 +22,10 @@
 	</e:Group>
 	<e:Image source="fire_top_jpg" x="0" scaleY="-1" anchorOffsetY="123" bottom="-20" height="120"/>
 	<e:Group bottom="20" horizontalCenter="0">
-		<e:Button id="getBtn" label="获取技能" y="0" x="289" skinName="Btn_r2Skin"/>
-		<e:Button id="viewBtn" label="技能图鉴" y="85" x="0" skinName="Btn_r2Skin"/>
+		<e:Button id="getBtn" label="获取技能" y="0" x="289" skinName="Btn_r3Skin"/>
+		<e:Button id="viewBtn" label="技能图鉴" y="85" x="0" skinName="Btn_r3Skin"/>
 		<e:layout>
-		<e:HorizontalLayout verticalAlign="middle" gap="40"/>
+		<e:HorizontalLayout verticalAlign="middle" gap="50"/>
 		</e:layout>
 	</e:Group>
 	<e:Group id="emptyGroup" y="300" horizontalCenter="0">

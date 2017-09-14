@@ -404,7 +404,7 @@ class PKDressUI extends game.BaseUI {
 
     private renewTask(){
         this.taskMid = null
-        if(this.pkType == 'day_game')
+        if(this.pkType == 'day_game' || this.pkType == PKManager.PKType.FRIEND_ANSWER  || this.pkType == PKManager.PKType.FRIEND_ASK)
         {
             MyTool.removeMC(this.taskGroup)
             return
@@ -521,6 +521,7 @@ class PKDressUI extends game.BaseUI {
             if(PKDressUI.getInstance().pkType == PKManager.PKType.FRIEND_ASK)
             {
                 ShowTips('PK请求已发送');
+                FriendPKAskUI.getInstance().hide()
                 self.hide();
             }
             else

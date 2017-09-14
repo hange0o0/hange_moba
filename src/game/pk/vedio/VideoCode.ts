@@ -90,7 +90,7 @@ class VideoCode{
         this.playerObject[2] = new PlayerVO();
         this.playerObject[2].id = 2;
         //this.playerObject[2].displayMC = VideoUI.getInstance().getRelateMC(2,3);
-        this.playerObject[2].teamID = 1;
+        this.playerObject[2].teamID = 2;
         this.playerObject[2].index = -1;
 
         if(PKM.teamChange)
