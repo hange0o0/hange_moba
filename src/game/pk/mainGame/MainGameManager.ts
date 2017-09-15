@@ -79,11 +79,14 @@ class MainGameManager{
         return {coin:lv*300,card:Math.floor(lv/20+1)};
     }
 
+    public getFreeMax(){
+        return Math.ceil(UM.main_game.level/5);
+    }
     public freeShowPass(){
-        return UM.main_game.level < 5 || (UM.main_game.level < 100 && (UM.main_game.fail || 0) > 5 + Math.floor(UM.main_game.level/10))
+        return UM.main_game.level < 5 || (UM.main_game.level < 100 && (UM.main_game.fail || 0) >= this.getFreeMax())
     }
     public getTipsCost(level?){
-        level = level || (UM.main_game.level - 5 + 1)
+        level = ((UM.main_game.level || level) - 5 + 1)
         return Math.ceil(level/10);
     }
 

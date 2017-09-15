@@ -29,6 +29,7 @@ class LeaderStudyUI extends game.BaseContainer {
 
 
     public selectArr = [];
+    public addExp = {};
     private type
     public constructor() {
         super();
@@ -64,23 +65,55 @@ class LeaderStudyUI extends game.BaseContainer {
 
     private renewList(){
         var arr = [];
-        var mList = MonsterVO.getListByLevel(UM.level)
-        for(var i=0;i<mList.length;i++)
+        var vo:any
+        if(this.sortList.selectedIndex == 4)
         {
-            var vo = mList[i];
-            if(this.sortList.selectedIndex == 0 || this.sortList.selectedIndex == vo.mtype)
+             if(UM.tec.leader.list)
+             {
+                 for(var i=0;i<UM.tec.leader.list.length;i++)
+                 {
+                     vo = MonsterVO.getObject(UM.tec.leader.list[i]);
+                     arr.push({
+                         vo:vo,
+                         mtyle:vo.mtype,
+                         id:vo.id,
+                         exp:UM.getLeaderExp(vo.id)
+                     });
+                 }
+             }
+        }
+        else
+        {
+            var mList = MonsterVO.getListByLevel(UM.level)
+            for(var i=0;i<mList.length;i++)
             {
-                arr.push({
-                    vo:vo,
-                    mtyle:vo.mtype,
-                    id:vo.id,
-                    exp:UM.getLeaderExp(vo.id)
-                });
+                vo = mList[i];
+
+                if(this.sortList.selectedIndex == 0 || this.sortList.selectedIndex == vo.mtype)
+                {
+                    arr.push({
+                        vo:vo,
+                        mtyle:vo.mtype,
+                        id:vo.id,
+                        exp:UM.getLeaderExp(vo.id)
+                    });
+                }
             }
         }
+
         ArrayUtil.sortByField(arr,['exp','mtyle','id'],[1,0,0]);
         this.list.dataProvider = new eui.ArrayCollection(arr);
         this.sortText.text =  this.sortList.selectedItem.label
+    }
+
+    private renewSort4(){
+        var current = UM.tec.leader.list?UM.tec.leader.list.length:0
+        this.sortList.dataProvider.getItemAt(4).label = '当前 ×' + current
+        this.sortText.text =  this.sortList.selectedItem.label
+        //var scrollV = this.scroller.viewport.scrollV;
+        this.renewList();
+        //this.scroller.validateNow();
+        //this.scroller.viewport.scrollV = scrollV
     }
 
     private onSort(){
@@ -120,6 +153,8 @@ class LeaderStudyUI extends game.BaseContainer {
             self.mvShow2();
             //ShowTips('学习成功！');
             self.selectArr.length = 0
+            self.addExp = {}
+            self.renewSort4();
             self.renewList();
         })
     }
@@ -150,6 +185,8 @@ class LeaderStudyUI extends game.BaseContainer {
         arr.push({label:'攻将 ×' + typeObj[1]})
         arr.push({label:'盾将 ×' + typeObj[2]})
         arr.push({label:'辅将 ×' + typeObj[3]})
+        var current = UM.tec.leader.list?UM.tec.leader.list.length:0
+        arr.push({label:'当前 ×' + current})
         this.sortList.dataProvider = new eui.ArrayCollection(arr)
         if(this.sortList.selectedIndex == -1)
             this.sortList.selectedIndex = 0;
@@ -161,6 +198,8 @@ class LeaderStudyUI extends game.BaseContainer {
             TaskManager.getInstance().showGuideMC(this.btn1)
         }
     }
+
+
 
     public onTimer(){
         if(this.mainGroup.visible)
@@ -220,6 +259,7 @@ class LeaderStudyUI extends game.BaseContainer {
     }
 
     private renewMain(){
+        this.addExp = {};
         this.mainGroup.visible = true;
         this.chooseList.visible = false;
         this.mainGroup.scaleX = this.mainGroup.scaleY = 1;
@@ -265,12 +305,15 @@ class LeaderStudyUI extends game.BaseContainer {
         }
 
         var arr = [];
+        this.addExp = {};
         for(var i=0;i<UM.tec.leader.list.length;i++)
         {
-            arr.push({
+            var oo = {
                 id: UM.tec.leader.list[i],
                 type: this.type == 1?1:(i==0?3:2)
-            })
+            };
+            arr.push(oo)
+            this.addExp[oo.id] = LeaderManager.getInstance().getAddExpByType(oo.type);
         }
         this.chooseList.dataProvider = new eui.ArrayCollection(arr)
 
@@ -317,6 +360,7 @@ class LeaderStudyUI extends game.BaseContainer {
 
     //动画表现抽取
     private mvShow(){
+        this.renewSort4();
         this.renewChoose();
 
 
@@ -372,6 +416,17 @@ class LeaderStudyUI extends game.BaseContainer {
             this.selectArr.push(mid);
             while(this.selectArr.length >  this.type)
                 this.selectArr.shift();
+
+            var arr = this.list.dataProvider['source']
+            var index = ArrayUtil.indexOfByKey(arr,'id',mid)
+            if(index != -1)
+            {
+                var scrollV = 50 * index
+                if(scrollV + this.scroller.viewport.height > this.scroller.viewport.contentHeight)
+                    scrollV =  Math.max(0,this.scroller.viewport.contentHeight - this.scroller.viewport.height);
+                var tw = egret.Tween.get(this.scroller.viewport)
+                tw.to({scrollV:scrollV},Math.pow(Math.abs(scrollV - this.scroller.viewport.scrollV),0.5)*10)
+            }
         }
         this.renewSelect();
     }

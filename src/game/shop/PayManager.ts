@@ -9,6 +9,12 @@ class PayManager{
     public shopItem;
     public shopItemObj;
 
+    public getDrawTimes(){
+        if(UM.isVip(202))
+            return 5;
+        return 3;
+    }
+
     public constructor() {
         if(FromManager.getInstance().isTapTap)
         {
@@ -28,7 +34,12 @@ class PayManager{
         else
         {
             this.shopItem = [
-                {id:1,word:'回复体力速度+20%（永久）',type:'rmb',cost:12,shopType:'energy',img:'pay_energy_png'},
+
+                {id:201,word:'体力恢复快20%，8折买体力',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
+                {id:202,word:'每天可额外多抽2次钻石',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
+                {id:203,word:'PK跳过免费',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
+
+
                 {id:2,word:'30点体力',type:'diamond',cost:60,shopType:'energy',img:'shop_energy_png'},
 
                 {id:11,word:'小量金币',type:'diamond',cost:60,rate:1,shopType:'coin',img:'shop_money_png'},    //相当于当前试练关卡的奖劢
@@ -45,7 +56,10 @@ class PayManager{
                 {id:101,word:'100钻石',type:'rmb',cost:6,shopType:'diamond',img:'box0_png',value:100},
                 {id:102,word:'520钻石',type:'rmb',cost:30,shopType:'diamond',img:'box1_png',value:520},
                 {id:103,word:'2650钻石',type:'rmb',cost:150,shopType:'diamond',img:'box2_png',value:2650},
-                {id:104,word:'10650钻石',type:'rmb',cost:600,shopType:'diamond',img:'box3_png',value:10650}
+                {id:104,word:'10650钻石',type:'rmb',cost:600,shopType:'diamond',img:'box3_png',value:10650},
+
+
+
 
             ];
         }
@@ -56,7 +70,7 @@ class PayManager{
 
     public getCoin(id)
     {
-        var level = UM.level+3;
+        var level = UM.level+4;
         var rate = this.shopItemObj[id].rate
         return Math.round(Math.pow(1.2,level)*1000*rate);
     }
@@ -143,15 +157,21 @@ class PayManager{
             ShowTips('购买成功')
             SoundManager.getInstance().playEffect(SoundConfig.effect_buy);
 
+            if(id > 200)
+            {
+                UM.tec.vip.push(id);
+                EM.dispatch(GameEvent.client.energy_change);
+            }
+
             if(fun)
                 fun();
         });
     }
 
     public onBuyFinish(goodsid,fun){
-        if(goodsid == 1)
+        if(goodsid > 200)
         {
-            UM.energy.vip = 1;
+            UM.tec.vip.push(goodsid);
             EM.dispatch(GameEvent.client.energy_change);
         }
         else

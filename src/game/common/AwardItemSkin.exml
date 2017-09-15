@@ -4,7 +4,7 @@
 	<e:Group id="group" y="2" width="120" horizontalCenter="0">
 		<e:Image source="border2_png" y="0" x="5" scale9Grid="11,11,68,68" width="110" height="110"/>
 		<e:Image id="mc" source="head_png" y="5" x="10" width="100" height="100"/>
-		<e:Label id="desText" y="115" size="24" text="标签" textColor="0xCCB48E" horizontalCenter="0" stroke="2" textAlign="center"/>
+		<e:Label id="desText" y="115" size="24" text="标签" textColor="0xCCB48E" horizontalCenter="0" stroke="3" textAlign="center"/>
 		<e:Group id="infoGroup" y="75" horizontalCenter="0">
 			<e:Rect height="30" width="100" x="0" y="0" fillAlpha="0.6"/>
 			<e:Label id="infoText" text="标签标签签" horizontalCenter="0" size="18" verticalCenter="0" stroke="2" textColor="0xcbc08a"/>

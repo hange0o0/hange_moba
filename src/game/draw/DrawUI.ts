@@ -52,7 +52,7 @@ class DrawUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.timeText.text = '今天翻牌次数：' + (UM.active.draw_num || 0) +'/3';
+        this.timeText.text = '今天翻牌次数：' + (UM.active.draw_num || 0) +'/' + PayManager.getInstance().getDrawTimes();
         for(var i=0;i<this.itemArr.length;i++)
         {
             this.itemArr[i].reInit();
@@ -84,5 +84,6 @@ class DrawUI extends game.BaseWindow {
                 item.showOtherDraw(arr.shift())
             }
         }
+        this.timeText.text = '今天翻牌次数：' + (UM.active.draw_num || 0) +'/' + PayManager.getInstance().getDrawTimes();
     }
 }

@@ -13,6 +13,13 @@ class LeaderManager {
     public getSkillLog(id){
         return this.skillViewListData[id].list
     }
+    public getAddExpByType(type){
+        if(type == 1)
+            return 50;
+        if(type == 2)
+            return 150;
+        return 200;
+    }
 
 
     public leaderGet(type,fun?){
@@ -184,7 +191,7 @@ class LeaderManager {
         var self = this;
         var oo:any = {};
         oo.skillid = skillid;
-        Net.addUser(oo);
+        //Net.addUser(oo);
         Net.send(GameEvent.tec.leader_skill_view_list,oo,function(data){
             var msg = data.msg;
             self.skillViewListData[skillid] = {

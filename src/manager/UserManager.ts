@@ -137,6 +137,10 @@ class UserManager {
         return this.tec_force + this.award_force;
     }
 
+    public isVip(id){
+        return this.tec.vip.indexOf(id) != -1
+    }
+
     public getEnergy(){
         var v = this.getEnergyStep();
         var t = TM.now();
@@ -151,7 +155,9 @@ class UserManager {
     }
 
     public getEnergyStep(){
-        return (this.energy.vip?24:30)*60;
+        if(this.isVip(201))
+            return 24*60;
+        return 30*60;
     }
 
     public getNextEnergyCD(){
@@ -369,7 +375,7 @@ class UserManager {
         if(!DateUtil.isSameDay(time))
             num = 0;
         var nextTime = 0;
-        if(num == 3)
+        if(num >= PayManager.getInstance().getDrawTimes())
             nextTime =  DateUtil.getNextDateTimeByHours(0) - TM.now()
         if(TM.now() - time < 3600*4)
         {

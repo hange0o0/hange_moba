@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LeaderDrawLogItemSkin" width="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group x="0" top="10" bottom="10">
-		<e:Image source="border2_png" y="0" width="60" height="60" x="0"/>
-		<e:Rect y="5" width="50" height="50" x="6"/>
-		<e:Image id="headMC" source="head_png" y="5" width="50" height="50" x="6"/>
-	</e:Group>
-	<e:Label id="desText" text="abelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" y="12" size="26" anchorOffsetX="0" left="70" right="0" textColor="0xccb48e" lineSpacing="5"/>
-	<e:Label id="timeText" text="Label" right="0" size="22" textColor="0x7c7c7c" y="10"/>
+	<e:Label id="timeText" text="Label" right="0" size="22" textColor="0x7c7c7c" verticalCenter="0"/>
 	<e:Rect width="100%" height="1" x="0" bottom="0" fillColor="0xccb48e"/>
+	<e:Group x="0" top="10" bottom="10">
+		<e:Group x="0" y="0">
+			<e:Image source="border2_png" y="0" width="60" height="60" x="0"/>
+			<e:Rect y="5" width="50" height="50" x="6"/>
+			<e:Image id="headMC" source="head_png" y="5" width="50" height="50" x="6"/>
+		</e:Group>
+		<e:Label id="desText" text="ABCDEFG" y="1.9999999999999911" size="26" anchorOffsetX="0" textColor="0xccb48e" lineSpacing="5" x="70"/>
+		<e:Group id="skillGroup" y="0" x="530">
+			<e:Image source="border2_png" y="0" x="0" scale9Grid="11,11,68,68" width="60" height="60"/>
+			<e:Image id="img" width="50" height="50" x="5" y="5"/>
+		</e:Group>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle"/>
+		</e:layout>
+	</e:Group>
 </e:Skin>

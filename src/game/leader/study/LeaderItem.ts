@@ -46,22 +46,22 @@ class LeaderItem extends game.BaseItem {
         this.typeMC.source = vo.typeIcon
 
 
-        var addExp = 0
+        var addExp = LeaderManager.getInstance().getAddExpByType(this.data.type);
         this.starGroup.removeChildren();
         if(this.data.type == 1)
         {
-            addExp = 50;
+            //addExp = 50;
             this.starGroup.addChild(this.s0)
         }
         else if(this.data.type == 2)
         {
-            addExp = 150;
+            //addExp = 150;
             this.starGroup.addChild(this.s0)
             this.starGroup.addChild(this.s1)
         }
         else
         {
-            addExp = 200;
+            //addExp = 200;
             this.starGroup.addChild(this.s0)
             this.starGroup.addChild(this.s1)
             this.starGroup.addChild(this.s2)

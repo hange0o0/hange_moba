@@ -190,6 +190,11 @@ class PKMainUI extends game.BaseUI {
                 Alert('新手过程中不能跳过')
                 return;
             }
+            if(UM.isVip(203))
+            {
+                this.onJump();
+                return;
+            }
             var self = this;
             PKJumpWindow.getInstance().show(function(){
                 self.onJump();

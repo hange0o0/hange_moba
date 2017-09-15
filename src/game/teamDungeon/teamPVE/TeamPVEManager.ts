@@ -67,7 +67,7 @@ class TeamPVEManager {
         return Math.ceil(Math.pow(1.5+hard/2,1.6+index/2));
     }
     public getAwardCoin(hard,index){
-        return this.getAwardCard(hard,index)*100;
+        return this.getAwardCard(hard,index)*100 + Math.ceil(Math.pow(2+hard/2,2+index));
     }
 
     //完成关卡数

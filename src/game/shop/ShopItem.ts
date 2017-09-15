@@ -39,7 +39,7 @@ class ShopItem extends game.BaseItem {
         //    return;
         //}
         PayManager.getInstance().buy(this.data.id,function(){
-              if(self.data.id == 1)
+              if(self.data.id > 200)
               {
                   ShopUI.getInstance().onShow();
               }

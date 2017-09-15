@@ -60,18 +60,44 @@ class ShopUI extends game.BaseUI {
     }
 
     public onShow(){
+        if(PayManager.getInstance().shopItemObj[2])  //体力特权
+        {
+            if(UM.isVip(201))
+                PayManager.getInstance().shopItemObj[2].cost = 48
+            else
+                PayManager.getInstance().shopItemObj[2].cost = 60
+        }
+
         this.resourceUI.renew();
 
         var arr = PayManager.getInstance().shopItem.slice();
-        if(UM.energy.vip)
-            arr.shift();
         var dataArr = this.dataArr = [];
-        var listObj = {txt:'购买体力',wType:'energy',list:[]};
+        var listObj = {txt:'特权',wType:'vip',list:[]};
         dataArr.push(listObj);
         for(var i=0;i<arr.length;i++)
         {
+            if(arr[i].id > 200)
+            {
+                if(UM.tec.vip.indexOf(arr[i].id) == -1)
+                {
+                    listObj.list.push(arr[i]);
+                }
+                arr.splice(i,1);
+                i--;
+            }
+        }
+        if(listObj.list.length == 0)
+            dataArr.pop();
+
+        for(var i=0;i<arr.length;i++)
+        {
             var oo = arr[i];
-            if(oo.id == 11)
+            if(oo.id == 2)
+            {
+                listObj = {txt:'购买体力',wType:'energy',list:[]};
+                dataArr.push(listObj);
+            }
+            else if(oo.id == 11)
             {
                 listObj = {txt:'购买金币',wType:'coin',list:[]};
                 dataArr.push(listObj);

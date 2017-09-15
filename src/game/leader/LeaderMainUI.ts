@@ -47,9 +47,9 @@ class LeaderMainUI extends game.BaseUI {
     private onHelp(){
         if(this.tab.selectedIndex == 0)
             HelpManager.getInstance().leaderHelp();
-        else if(this.tab.selectedIndex == 1)
-            HelpManager.getInstance().leaderDrawHelp();
         else if(this.tab.selectedIndex == 2)
+            HelpManager.getInstance().leaderDrawHelp();
+        else if(this.tab.selectedIndex == 1)
             HelpManager.getInstance().leaderSkillHelp();
     }
 
@@ -63,13 +63,13 @@ class LeaderMainUI extends game.BaseUI {
             this.studyUI.onShow()
             return;
         }
-        if(this.tab.selectedIndex == 1)
+        if(this.tab.selectedIndex == 2)
         {
             this.addChildAt(this.drawUI,0)
             this.drawUI.onShow()
             return;
         }
-        if(this.tab.selectedIndex == 2)
+        if(this.tab.selectedIndex == 1)
         {
             this.addChildAt(this.skillUI,0)
             this.skillUI.onShow()
@@ -78,7 +78,7 @@ class LeaderMainUI extends game.BaseUI {
     }
 
     public showDraw(){
-        this.tab.selectedIndex = 1
+        this.tab.selectedIndex = 2
         this.typeBarClick();
     }
 

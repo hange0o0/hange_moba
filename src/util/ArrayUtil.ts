@@ -87,4 +87,17 @@ class ArrayUtil {
         }
         itemList = [];
     }
+
+    public static indexOfByKey(arr:Array<any>, key:string | number, value:any):number{
+        if(arr) {
+            for(var i = 0;i < arr.length;i++) {
+                var item:any = arr[i];
+                if(item[key] == value){
+                    return i;
+                }
+            }
+            return -1;
+        }
+        return -1;
+    }
 }

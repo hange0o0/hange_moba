@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="AwardUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" width="600" height="428">
+<e:Skin class="AwardUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" width="600">
 	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 
 
 	<e:Button bottom="40" label="确定" skinName="Btn_r2Skin" horizontalCenter="0" id="okBtn" x="10" y="10"/>
-	<e:List top="120" bottom="160" horizontalCenter="0" id="list" x="10" y="10" itemRendererSkinName="AwardItemSkin" maxWidth="510">
+	<e:List top="100" bottom="160" horizontalCenter="0" id="list" x="10" y="10" itemRendererSkinName="AwardItemSkin" maxWidth="510">
 		<e:layout>
 			<e:TileLayout horizontalGap="10" orientation="rows" requestedColumnCount="4"/>
 		</e:layout>

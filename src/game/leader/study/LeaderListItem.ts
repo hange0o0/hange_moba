@@ -7,9 +7,13 @@ class LeaderListItem extends game.BaseItem {
     private chooseMC: eui.Rect;
     private nameText: eui.Label;
     private levelText: eui.Label;
+    private upMC: eui.Image;
+    private barMC2: eui.Rect;
     private barMC: eui.Rect;
     private rateText: eui.Label;
     private typeMC: eui.Image;
+
+
 
 
 
@@ -50,6 +54,8 @@ class LeaderListItem extends game.BaseItem {
         var nextExp = UM.getLeaderExpByLevel(level + 1);
 
         this.levelText.text = '+' + level;
+        this.upMC.visible = false
+        this.barMC2.visible = false
 
         var w = 300;
         if(level >= TecManager.getInstance().maxLevel)
@@ -63,11 +69,17 @@ class LeaderListItem extends game.BaseItem {
             var t1 = nextExp - levelExp;
             this.barMC.width = w * t0/t1
             this.rateText.text = t0 + '/' +  t1
+            var add = LeaderStudyUI.getInstance().addExp[vo.id] || 0;
+            this.barMC2.width = w * Math.min(1,(t0 + add)/t1)
+
+            this.barMC2.visible = true
+            this.upMC.visible = (t0 + add) >= t1
         }
         this.renewSelect();
     }
 
     public renewSelect(){
-        this.chooseMC.visible = LeaderStudyUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        var b = LeaderStudyUI.getInstance().selectArr.indexOf(this.data.id) != -1;
+        this.chooseMC.visible = b;
     }
 }

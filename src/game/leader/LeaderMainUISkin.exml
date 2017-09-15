@@ -8,8 +8,8 @@
 		<e:ArrayCollection>
 		<e:Array>
 			<e:Object label="统帅培养"/>
-			<e:Object label="命运之门"/>
 			<e:Object label="队伍技能"/>
+			<e:Object label="命运之门"/>
 		</e:Array>
 		</e:ArrayCollection>
 	</e:TabBar>

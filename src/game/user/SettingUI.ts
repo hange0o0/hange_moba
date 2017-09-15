@@ -80,7 +80,7 @@ class SettingUI extends game.BaseWindow {
     }
 
     public onShow(){
-        this.PKCB.visible = Config.isDebug;//5级才有跳过功能
+        this.PKCB.visible = Config.isDebug || UM.isVip(203);//5级才有跳过功能
         this.musicCB.selected = SoundManager.getInstance().bgPlaying
         this.soundCB.selected = SoundManager.getInstance().soundPlaying
         this.friendCB.selected = UM.friends.stop;

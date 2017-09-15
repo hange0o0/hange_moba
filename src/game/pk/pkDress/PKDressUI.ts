@@ -77,6 +77,7 @@ class PKDressUI extends game.BaseUI {
 
     private isRemoveHistory = false
 
+    private clickTips = false
     private randomSetting
     public constructor() {
         super();
@@ -271,6 +272,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public beforeHide(){
+        egret.Tween.removeTweens(this.changeBtn);
         this.clearList([this.list,this.simpleList,this.enemyList])
     }
 
@@ -290,9 +292,13 @@ class PKDressUI extends game.BaseUI {
         this.changeBtn.skinName = 'Btn_r2Skin'
     }
     private changeCardIndex(){
-        if(this.changeBtn.label == '过关提示')
+        if(this.changeBtn.label.indexOf('提示') != -1)
         {
             var self = this;
+
+            this.clickTips = true;
+            egret.Tween.removeTweens(this.changeBtn);
+            this.changeBtn.alpha = 1;
 
             if(this.pkType == PKManager.PKType.MAIN)
             {
@@ -302,7 +308,7 @@ class PKDressUI extends game.BaseUI {
                     return;
                 }
                 var cost = MainGameManager.getInstance().getTipsCost();
-                Confirm('确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石查看本关提示吗？',function(v){
+                Confirm('确定消耗 '+MyTool.createHtml(cost,0xE0A44A)+' 钻石马上查看本关提示吗？',function(v){
                     if(v == 1)
                     {
                         if(!UM.testDiamond(cost))
@@ -361,6 +367,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public onShow(){
+        this.clickTips = false
         this.touchChildren = this.touchEnabled = true;
         GuideManager.getInstance().enableScrollV(this.scroller);
         this.history = SharedObjectManager.instance.getMyValue('dress_history') || {}
@@ -750,6 +757,8 @@ class PKDressUI extends game.BaseUI {
         this.upBtnGroup.removeChildren()
 
         this.changeBtn.skinName = 'Btn_b2Skin'
+        egret.Tween.removeTweens(this.changeBtn);
+        this.changeBtn.alpha = 1;
         if(this.dataIn.data.length > 1)
         {
             var nextIndex = this.index+1;
@@ -766,11 +775,25 @@ class PKDressUI extends game.BaseUI {
             {
                 this.upBtnGroup.addChild(this.changeBtn);
                 this.changeBtn.label = '过关提示';
+                if(this.pkType == PKManager.PKType.MAIN &&  UM.main_game.level < 100 &&
+                    !(UM.main_game.show_pass || MainGameManager.getInstance().freeShowPass())
+                )
+                {
+                    this.changeBtn.label = '提示 ('+((UM.main_game.fail || 0))+'/'+MainGameManager.getInstance().getFreeMax()+')';
+                }
 
 
                 if((this.pkType == PKManager.PKType.MAIN && (UM.main_game.show_pass || MainGameManager.getInstance().freeShowPass())) ||
                     (this.pkType == PKManager.PKType.DAY && UM.day_game.show_pass))
+                {
                     this.changeBtn.skinName = 'Btn_r2Skin'
+                    if(!this.clickTips)
+                    {
+                        var tw = egret.Tween.get(this.changeBtn,{loop:true});
+                        tw.wait(5000).to({alpha:0.5},250).to({alpha:1},250).to({alpha:0.5},250).to({alpha:1},250).wait(5000)
+                    }
+
+                }
 
             }
         }
