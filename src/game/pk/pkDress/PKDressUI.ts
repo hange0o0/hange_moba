@@ -211,8 +211,15 @@ class PKDressUI extends game.BaseUI {
     }
 
     private renewSkill(){
+        if(!this.skillGroup.stage)
+            return;
         if(UM.tec.use_skill)
         {
+            if(!LeaderManager.getInstance().testLeaderSkill())
+            {
+                LeaderManager.getInstance().skillSet(0,()=>{this.renewSkill();})
+                return;
+            }
             this.skillIcon.visible = true
             this.noSkillText.visible = false
 
@@ -500,6 +507,12 @@ class PKDressUI extends game.BaseUI {
         if(this.chooseList.length == 0)
         {
             Alert('请先选择出战单位');
+            return;
+        }
+        if(this.skillGroup.stage && UM.tec.use_skill && !LeaderManager.getInstance().testLeaderSkill())
+        {
+            Alert('技能分身时间已到');
+            LeaderManager.getInstance().skillSet(0,()=>{this.renewSkill();})
             return;
         }
         if(!confirm && this.chooseList.length < 6  && !GuideManager.getInstance().isGuiding)

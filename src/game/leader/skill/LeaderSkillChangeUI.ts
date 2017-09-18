@@ -21,7 +21,7 @@ class LeaderSkillChangeUI extends game.BaseWindow {
 
 
 
-    private nick;
+    private haveCopySkill = false;
     public childrenCreated() {
         super.childrenCreated();
         this.addBtnEvent(this.backBtn, this.onChoose);
@@ -67,11 +67,22 @@ class LeaderSkillChangeUI extends game.BaseWindow {
 
     public onShow(){
         this.renew();
+        if(this.haveCopySkill)
+            this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
+    }
+
+    private onTimer(){
+         for(var i=0;i<this.list.numChildren;i++)
+         {
+             var item:any = this.list.getChildAt(i);
+             item.onTimer();
+         }
     }
 
 
     public renew(){
-        var list = UM.tec.skill
+        var copyList = LeaderManager.getInstance().getCopySkillList();
+        var list = copyList.concat(UM.tec.skill);
         this.list.dataProvider = new eui.ArrayCollection(list);
         var index = list.indexOf(UM.tec.use_skill)
         if(index == -1)
@@ -79,6 +90,7 @@ class LeaderSkillChangeUI extends game.BaseWindow {
         else
             this.list.selectedIndex = index;
         this.onListChange();
+        this.haveCopySkill = copyList.length > 0;
 
     }
 }

@@ -25,7 +25,7 @@ class LeaderMainUI extends game.BaseUI {
 
     public childrenCreated() {
         super.childrenCreated();
-        this.topUI.setTitle('卡将系统')
+        this.topUI.setTitle('技能系统')
         this.topUI.addEventListener('hide',this.hide,this);
 
         this.addBtnEvent(this.helpBtn,this.onHelp)
@@ -112,6 +112,7 @@ class LeaderMainUI extends game.BaseUI {
         this.typeBarClick()
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.prop_change,this.onPropChange)
+        this.addPanelOpenEvent(GameEvent.client.leader_skill_change,this.renewSkill)
     }
 
     private onPropChange(){
@@ -123,6 +124,13 @@ class LeaderMainUI extends game.BaseUI {
     private onTimer(){
         if(this.studyUI.stage)
             this.studyUI.onTimer()
+        if(this.skillUI.stage)
+            this.skillUI.onTimer()
+    }
+
+    private renewSkill(){
+        if(this.skillUI.stage)
+            this.skillUI.renew()
     }
 
 

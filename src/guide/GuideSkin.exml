@@ -5,10 +5,10 @@
 
 	<e:Rect id="tipsBg" height="150" width="150" x="230" y="388" strokeColor="0x000000" strokeAlpha="0.4" fillAlpha="0" strokeWeight="50"/>
 	<e:Group id="tipsGroup" y="82" horizontalCenter="0">
-		<e:Image source="card_bg_png" x="37" y="80" height="240" scale9Grid="30,61,180,112" width="560"/>
-		<e:Image source="guide1_png" x="-10" y="7"/>
-		<e:Label id="tipTxt" x="255" y="102" size="25" textColor="0xDEE0E0" width="320" lineSpacing="10" text="123456"/>
-		<e:Label id="anyClick" size="18" text="点击屏幕继续" lineSpacing="5" right="25" bottom="25" textColor="0x87792F"/>
+		<e:Image source="card_bg_png" x="37" y="80" height="240" width="740" scale9Grid="60,61,115,112"/>
+		<e:Image source="guide1_png" x="54.54" y="7"/>
+		<e:Label id="tipTxt" y="102" size="25" lineSpacing="10" text="123456" left="340" right="90" textColor="0xccb48e"/>
+		<e:Label id="anyClick" size="20" text="点击屏幕继续" lineSpacing="5" right="90" bottom="25" textColor="0x87792F"/>
 	</e:Group>
 
 	<e:Image id="handMC" x="106" y="33" source="guide2_png" anchorOffsetX="70" anchorOffsetY="10"/>

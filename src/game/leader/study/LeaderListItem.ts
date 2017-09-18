@@ -33,6 +33,8 @@ class LeaderListItem extends game.BaseItem {
         var vo = this.data.vo;
         //var str = ''
         this.typeMC.source = vo.typeIcon;
+        egret.Tween.removeTweens(this.typeMC)
+        this.typeMC.scaleX = this.typeMC.scaleY = 1;
         //switch(vo.mtype)
         //{
         //    case 1:
@@ -81,5 +83,11 @@ class LeaderListItem extends game.BaseItem {
     public renewSelect(){
         var b = LeaderStudyUI.getInstance().selectArr.indexOf(this.data.id) != -1;
         this.chooseMC.visible = b;
+    }
+
+    public flash(){
+        egret.Tween.removeTweens(this.typeMC)
+       var tw = egret.Tween.get(this.typeMC)
+        tw.to({scaleX:1.5,scaleY:1.5},0).wait(200).to({scaleX:1,scaleY:1},200)
     }
 }

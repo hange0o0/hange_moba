@@ -21,6 +21,60 @@ class LeaderManager {
         return 200;
     }
 
+    //测试已配技能是否正常
+    public testLeaderSkill(){
+        var skillID = UM.tec.use_skill;
+        if(skillID)
+        {
+            if(UM.tec.skill.indexOf(skillID) != -1)   //有这个技能
+                return true
+            if(!UM.tec.copy_skill[skillID] || UM.tec.copy_skill[skillID] < TM.now())
+            {
+                delete UM.tec.copy_skill[skillID];
+                return false
+            }
+        }
+        return true
+    }
+
+    //取分身技能
+    public getCopySkillList(){
+        var t = TM.now();
+        var arr = [];
+        var deleteArr = [];
+        for(var s in UM.tec.copy_skill)
+        {
+            var skillID = parseInt(s);
+            if(t > UM.tec.copy_skill[skillID] || UM.tec.skill.indexOf(skillID) != -1)   //有这个技能
+            {
+                deleteArr.push(skillID)
+            }
+            else
+            {
+                arr.push({id:skillID,t:UM.tec.copy_skill[s]})
+            }
+        }
+        ArrayUtil.sortByField(arr,['t'],[0])
+        for(var i=0;i<arr.length;i++)
+            arr[i] = arr[i].id;
+        while(deleteArr.length > 0)
+        {
+            delete UM.tec.copy_skill[deleteArr.pop()];
+        }
+        return arr;
+    }
+
+    //技能无效
+    public isSkillOverTime(skillID){
+        if(UM.tec.skill.indexOf(skillID) != -1)
+            return false;
+        if(!UM.tec.copy_skill[skillID])
+            return true
+        if(TM.now() > UM.tec.copy_skill[skillID])
+            return true
+        return false;
+   }
+
 
     public leaderGet(type,fun?){
         var self = this;
@@ -103,6 +157,16 @@ class LeaderManager {
         Net.addUser(oo);
         Net.send(GameEvent.tec.leader_skill_draw,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 1)
+            {
+                Alert('命运石不足')
+                return;
+            }
+            if(msg.fail == 2)
+            {
+                Alert('钻石不足')
+                return;
+            }
             var award = msg.award;
             for(var i=0;i<award.length;i++)
             {
@@ -152,12 +216,92 @@ class LeaderManager {
     public skillSet(skillid,fun?){
         var self = this;
         var oo:any = {};
+        if(skillid && this.isSkillOverTime(skillid))
+        {
+            Alert('技能分身已失效')
+            return;
+        }
         oo.skillid = skillid;
         Net.addUser(oo);
         Net.send(GameEvent.tec.leader_skill_set,oo,function(data){
             var msg = data.msg;
+            if(msg.fail)
+            {
+                Alert('设置技能失败')
+                return;
+            }
             UM.tec.use_skill = skillid;
             EM.dispatchEventWith(GameEvent.client.leader_skill_change)
+            if(fun)
+                fun();
+        });
+    }
+    public skillCopy(logData,type,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.logid = logData.id;
+        oo.type = type;
+        Net.addUser(oo);
+        Net.send(GameEvent.tec.leader_skill_copy,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail == 2)
+            {
+                Alert('技能分身卷轴不足')
+                return;
+            }
+            if(msg.fail == 1)
+            {
+                Alert('钻石不足')
+                return;
+            }
+            if(msg.fail == 3)
+            {
+                Alert('找不到复制对象')
+                return;
+            }
+            if(msg.fail == 4)
+            {
+                Alert('已被别人捷足先登了！')
+                logData.copy_time = msg.copy_time;
+                return;
+            }
+            UM.tec.copy_skill[logData.skillid] = msg.skillendtime;
+            logData.copy_time  = msg.logendtime;
+            EM.dispatchEventWith(GameEvent.client.leader_skill_change)
+            if(fun)
+                fun();
+        });
+    }
+
+    public skillCopyAward(fun?){
+        var self = this;
+        var oo:any = {};
+        Net.addUser(oo);
+        Net.send(GameEvent.tec.leader_skill_copy_award,oo,function(data){
+            var msg = data.msg;
+            if(msg.coin || msg.propnum)
+            {
+                var arr = []
+                var oo:any = {};
+                if(msg.coin)
+                {
+                    arr.push('卷轴分身：' + Math.round(msg.coin/100) + '次')
+                    oo.coin = msg.coin;
+                }
+                if(msg.propnum)
+                {
+                    arr.push('钻石分身：' + msg.propnum + '次')
+                    oo.prop = {};
+                    oo.prop[42] = msg.propnum
+                }
+                oo.title = '获得分身收益'
+                oo.des = arr.join('，')
+                AwardUI.getInstance().show(oo);
+            }
+            else
+            {
+                Alert('暂无收益')
+            }
             if(fun)
                 fun();
         });
@@ -181,8 +325,8 @@ class LeaderManager {
         });
     }
 
-    public skillViewList(skillid,fun?){
-        if(this.skillViewListData[skillid] && TM.now() - this.skillViewListData[skillid].time < 60*5)
+    public skillViewList(skillid,fun?,cd=300){
+        if(this.skillViewListData[skillid] && TM.now() - this.skillViewListData[skillid].time < cd)
         {
             if(fun)
                 fun();

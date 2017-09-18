@@ -85,6 +85,8 @@ class GameEvent {
         leader_skill_set:'leader_skill_set',
         leader_skill_view:'leader_skill_view',
         leader_skill_view_list:'leader_skill_view_list',
+        leader_skill_copy:'leader_skill_copy',
+        leader_skill_copy_award:'leader_skill_copy_award',
 
         leader_get:'leader_get',
         leader_award:'leader_award'

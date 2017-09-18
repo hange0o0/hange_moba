@@ -12,15 +12,19 @@ class LeaderSkillMainUI extends game.BaseContainer {
     private nameText: eui.Label;
     private desText: eui.Label;
     private btn: eui.Button;
+    private btnGroup: eui.Group;
+    private copyBtn: eui.Button;
+    private getGroup: eui.Group;
     private getBtn: eui.Button;
+    private redMC: eui.Image;
     private viewBtn: eui.Button;
     private emptyGroup: eui.Group;
 
 
 
-    private data;
-    private title;
-    private type;
+
+    private haveCopySkill = false;
+    private awardTime = 0;
 
     public constructor() {
         super();
@@ -41,14 +45,23 @@ class LeaderSkillMainUI extends game.BaseContainer {
         this.list.addEventListener(egret.Event.CHANGE,this.onListChange,this)
 
         this.addBtnEvent(this.getBtn,this.onGet)
-        //this.addBtnEvent(this.getBtn2,this.onGet)
+        this.addBtnEvent(this.copyBtn,this.onCopy)
         this.addBtnEvent(this.viewBtn,this.onView)
         this.addBtnEvent(this.btn,this.onClick)
 
     }
-
+    private onGet(){
+        LeaderManager.getInstance().skillCopyAward(()=>{
+            this.getBtn.touchEnabled = false;
+            this.redMC.visible = false;
+            this.awardTime = TM.now();
+        })
+    }
     private onView(){
          LeaderSkillViewUI.getInstance().show()
+    }
+    private onCopy(){
+         LeaderSkillCopyUI.getInstance().show()
     }
     private onClick(){
         if(UM.tec.use_skill == this.list.selectedItem)
@@ -66,9 +79,7 @@ class LeaderSkillMainUI extends game.BaseContainer {
             })
         }
     }
-    private onGet(){
-        LeaderMainUI.getInstance().showDraw()
-    }
+
 
     private onListChange(){
         this.currentState = 'choose'
@@ -106,13 +117,42 @@ class LeaderSkillMainUI extends game.BaseContainer {
             item.dataChanged()
         }
     }
-
     public onShow(){
-        //var DM = DayGameManager.getInstance();
-        var list = UM.tec.skill
+        this.renew();
+    }
+
+    public onTimer(){
+        if(this.getGroup.stage)
+        {
+            var cd = 60*3 - (TM.now() - this.awardTime);
+            if( cd>0)
+            {
+                 this.getBtn.touchEnabled = false;
+                this.getBtn.skinName = 'Btn_d2Skin'
+                this.getBtn.label = DateUtil.getStringBySecond(cd).substr(-5)
+            }
+            else
+            {
+                 this.getBtn.touchEnabled = true;
+                this.getBtn.skinName = 'Btn_r2Skin'
+                this.getBtn.label = '技能收益'
+            }
+        }
+
+        if(!this.haveCopySkill)
+            return;
+        for(var i=0;i<this.list.numChildren;i++)
+        {
+            var item:any = this.list.getChildAt(i);
+            item.onTimer();
+        }
+    }
+
+    public renew(){
+        var copyList =  LeaderManager.getInstance().getCopySkillList();
+        var list = copyList.concat(UM.tec.skill);
         this.list.dataProvider = new eui.ArrayCollection(list);
         this.emptyGroup.visible = list.length == 0;
-
         if(list.length)
         {
             var index = list.indexOf(UM.tec.use_skill)
@@ -120,7 +160,7 @@ class LeaderSkillMainUI extends game.BaseContainer {
             this.scroller.viewport.scrollV = 0;
             if(index != -1)
             {
-                 this.onListChange();
+                this.onListChange();
             }
             else
                 this.currentState = 'normal'
@@ -130,6 +170,13 @@ class LeaderSkillMainUI extends game.BaseContainer {
             this.currentState = 'normal'
         }
 
+        this.haveCopySkill = copyList.length > 0
+        this.redMC.visible = false;
+        if(copyList.length)
+            this.btnGroup.addChildAt(this.getGroup,0)
+        else
+            MyTool.removeMC(this.getGroup)
+        this.onTimer();
     }
 
 

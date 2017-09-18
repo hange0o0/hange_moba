@@ -37,7 +37,7 @@
 			"name":"preload2_png32"
 		},
 		{
-			"keys":"prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,book_bg1_jpg,book_bg2_jpg,item_bg_jpg,prop_card_jpg,prop_score_jpg,window_bg_icon_jpg,leader_bg_jpg,leader_draw_bg_jpg,prop_thumb_31_jpg,prop_thumb_32_jpg,prop_thumb_41_jpg,prop_thumb_42_jpg",
+			"keys":"prop_coin_jpg,prop_diamond_jpg,prop_energy_jpg,prop_exp_jpg,prop_thumb_21_jpg,book_bg1_jpg,book_bg2_jpg,item_bg_jpg,prop_card_jpg,prop_score_jpg,window_bg_icon_jpg,leader_bg_jpg,leader_draw_bg_jpg,prop_thumb_31_jpg,prop_thumb_32_jpg,prop_thumb_41_jpg,prop_thumb_42_jpg,prop_thumb_22_jpg",
 			"name":"preload2_jpg"
 		},
 		{
@@ -1879,6 +1879,11 @@
 			"name":"prop_thumb_42_jpg",
 			"type":"image",
 			"url":"game_assets/preload2_jpg/prop_thumb_42.jpg"
+		},
+		{
+			"name":"prop_thumb_22_jpg",
+			"type":"image",
+			"url":"game_assets/preload2_jpg/prop_thumb_22.jpg"
 		}
 	]
 }

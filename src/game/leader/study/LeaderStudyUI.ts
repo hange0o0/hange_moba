@@ -425,7 +425,17 @@ class LeaderStudyUI extends game.BaseContainer {
                 if(scrollV + this.scroller.viewport.height > this.scroller.viewport.contentHeight)
                     scrollV =  Math.max(0,this.scroller.viewport.contentHeight - this.scroller.viewport.height);
                 var tw = egret.Tween.get(this.scroller.viewport)
-                tw.to({scrollV:scrollV},Math.pow(Math.abs(scrollV - this.scroller.viewport.scrollV),0.5)*10)
+                tw.to({scrollV:scrollV},200).call(function(){
+                    for(var i=0;i<this.list.numChildren;i++)
+                    {
+                        var item:any = this.list.getChildAt(i);
+                        if(item.data.id == mid)
+                        {
+                            item.flash();
+                            break;
+                        }
+                    }
+                },this)
             }
         }
         this.renewSelect();
