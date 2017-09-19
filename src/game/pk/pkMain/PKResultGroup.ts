@@ -55,7 +55,7 @@ class PKResultGroup extends game.BaseContainer {
         for(var i=0;i<list.numChildren;i++)
         {
             var item:any = list.getChildAt(i);
-            if(item.data.index == data.index)
+            if(item.data && item.data.index == data.index)
                 item.setChoose(1);
             else
                 item.setChoose(0);
@@ -199,8 +199,14 @@ class PKResultGroup extends game.BaseContainer {
         }
 
         //PKM.resetInfoData(info1,info2);
-        this.selfList.dataProvider = new eui.ArrayCollection(info1)
-        this.enemyList.dataProvider = new eui.ArrayCollection(info2)
+        var _info1 = info1.concat();
+        var _info2 = info2.concat();
+        while(_info1.length < 6)
+            _info1.push(null)
+        while(_info2.length < 6)
+            _info2.push(null)
+        this.selfList.dataProvider = new eui.ArrayCollection(_info1)
+        this.enemyList.dataProvider = new eui.ArrayCollection(_info2)
 
         this.selfText.textColor = 0xFFFFFF
         this.enemyText.textColor = 0xFFFFFF
@@ -264,23 +270,23 @@ class PKResultGroup extends game.BaseContainer {
         if(leader1.length > 0)
         {
             this.setHtml(this.selfText0, leader1.join(' ') );
-            this.selfForceGroup.y = 15
+            //this.selfForceGroup.y = 15
         }
         else
         {
             this.selfText0.text = ''
-            this.selfForceGroup.y = -5
+            //this.selfForceGroup.y = -5
         }
 
         if(leader2.length > 0)
         {
             this.setHtml(this.enemyText0, leader2.join(' ') );
-            this.enemyForceGroup.y = 15
+            //this.enemyForceGroup.y = 15
         }
         else
         {
             this.enemyText0.text = ''
-            this.enemyForceGroup.y = -5
+            //this.enemyForceGroup.y = -5
         }
 
 
@@ -308,16 +314,20 @@ class PKResultGroup extends game.BaseContainer {
     }
 
     public showMore(){
-        this.titleBG.scaleY = 0;
-        this.rateText.visible = false;
-        this.rateText.alpha = 0;
+        //this.titleBG.scaleY = 0;
+        //this.rateText.visible = false;
+        //this.rateText.alpha = 0;
         //var tw:egret.Tween = egret.Tween.get(this.moreGroup);
         //tw.to({alpha:1},300).call(function(){
+        //var tw:egret.Tween = egret.Tween.get(this.titleBG);
+        //tw.wait(300).to({scaleY:1},200)
+        //var tw:egret.Tween = egret.Tween.get(this.rateText);
+        //tw.wait(450).call(function(){
+        //    this.rateText.visible = true;
+        //},this).to({alpha:1},200)
+
+        this.titleBG.alpha = 0;
         var tw:egret.Tween = egret.Tween.get(this.titleBG);
-        tw.wait(300).to({scaleY:1},200)
-        var tw:egret.Tween = egret.Tween.get(this.rateText);
-        tw.wait(450).call(function(){
-            this.rateText.visible = true;
-        },this).to({alpha:1},200)
+        tw.wait(300).to({alpha:1},500)
     }
 }

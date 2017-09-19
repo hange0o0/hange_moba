@@ -11,7 +11,9 @@ class PKDressUI extends game.BaseUI {
     private coinText: eui.Label;
     private forceText: eui.Label;
     private upBtnGroup: eui.Group;
+    private changeGroup: eui.Group;
     private changeBtn: eui.Button;
+    private redMC: eui.Image;
     private viewBtn: eui.Button;
     private helpBtn: eui.Group;
     private scroller: eui.Scroller;
@@ -36,6 +38,7 @@ class PKDressUI extends game.BaseUI {
     private monsterScroller: eui.Scroller;
     private enemyMonsterInfo: MonsterInfoBase;
     private topUI: TopUI;
+
 
 
 
@@ -279,7 +282,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        egret.Tween.removeTweens(this.changeBtn);
+        egret.Tween.removeTweens(this.redMC);
         this.clearList([this.list,this.simpleList,this.enemyList])
     }
 
@@ -304,8 +307,8 @@ class PKDressUI extends game.BaseUI {
             var self = this;
 
             this.clickTips = true;
-            egret.Tween.removeTweens(this.changeBtn);
-            this.changeBtn.alpha = 1;
+            egret.Tween.removeTweens(this.redMC);
+            this.redMC.visible = false;
 
             if(this.pkType == PKManager.PKType.MAIN)
             {
@@ -770,15 +773,15 @@ class PKDressUI extends game.BaseUI {
         this.upBtnGroup.removeChildren()
 
         this.changeBtn.skinName = 'Btn_b2Skin'
-        egret.Tween.removeTweens(this.changeBtn);
-        this.changeBtn.alpha = 1;
+        egret.Tween.removeTweens(this.redMC);
+        this.redMC.visible = false;
         if(this.dataIn.data.length > 1)
         {
             var nextIndex = this.index+1;
             if(nextIndex >= this.dataIn.data.length)
                 nextIndex = 0;
             this.topUI.setTitle('布阵-卡组' + (this.index + 1) + '');
-            this.upBtnGroup.addChild(this.changeBtn);
+            this.upBtnGroup.addChild(this.changeGroup);
             this.changeBtn.label = '切换卡组' + (nextIndex + 1);
         }
         else
@@ -786,7 +789,7 @@ class PKDressUI extends game.BaseUI {
             this.topUI.setTitle('布阵');
             if(this.pkType == PKManager.PKType.MAIN || this.pkType == PKManager.PKType.DAY)
             {
-                this.upBtnGroup.addChild(this.changeBtn);
+                this.upBtnGroup.addChild(this.changeGroup);
                 this.changeBtn.label = '过关提示';
                 if(this.pkType == PKManager.PKType.MAIN &&  UM.main_game.level < 100 &&
                     !(UM.main_game.show_pass || MainGameManager.getInstance().freeShowPass())
@@ -802,8 +805,9 @@ class PKDressUI extends game.BaseUI {
                     this.changeBtn.skinName = 'Btn_r2Skin'
                     if(!this.clickTips)
                     {
-                        var tw = egret.Tween.get(this.changeBtn,{loop:true});
-                        tw.wait(5000).to({alpha:0.5},250).to({alpha:1},250).to({alpha:0.5},250).to({alpha:1},250).wait(5000)
+                        this.redMC.visible = true;
+                        var tw = egret.Tween.get(this.redMC,{loop:true});
+                        tw.wait(5000).to({alpha:0},250).to({alpha:1},250).to({alpha:0},250).to({alpha:1},250).wait(5000)
                     }
 
                 }

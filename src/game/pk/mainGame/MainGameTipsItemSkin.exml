@@ -15,6 +15,7 @@
 	<e:Label id="leaderText" text="第1回合" y="15" size="26" stroke="2" textColor="0xCCCCCC" right="20"/>
 	<e:Label id="resultText" text="标签" x="15" size="24" textColor="0xCCCCCC" bottom="24"/>
 	<e:Button id="videoBtn" label="使用此阵" skinName="Btn_r2Skin" width="140" right="15" bottom="8"/>
+	<e:Button id="playBtn" label="查看录像" skinName="Btn_r2Skin" width="140" right="160" bottom="8"/>
 	<e:Image source="line_png" x="-1" width="650" bottom="-5"/>
 	<e:Image source="line_png" y="55" width="650" horizontalCenter="0"/>
 	<e:Image source="line_png" width="650" horizontalCenter="0" bottom="65"/>

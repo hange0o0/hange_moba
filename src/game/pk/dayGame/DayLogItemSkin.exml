@@ -1,30 +1,35 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="DayLogItemSkin" width="640" height="360" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,loss" >
+<e:Skin class="DayLogItemSkin" width="640" height="370" currentState="normal" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="normal,loss" >
 	<e:Rect height="100%" width="100%" x="0" y="0"/>
 	<e:Rect id="titleBG" width="100%" y="0" height="60" x="0" fillColor="0x300000"/>
 	<e:Rect x="0" width="100%" height="1" bottom="0" fillColor="0x444444"/>
 	<e:Rect width="100%" x="0" top="290" bottom="0" fillColor="0x110a03"/>
-	<e:List id="teamInfo1" y="70" x="15" width="300" itemRendererSkinName="PKResultItem4_Skin" height="210">
+	<e:Rect width="640" height="120" x="0" y="60" fillColor="0x001333"/>
+	<e:Rect width="640" height="120" x="0" y="180" fillColor="0x2d0002"/>
+	<e:Rect x="0" width="100%" height="1" y="60" fillColor="0x000000"/>
+	<e:List id="teamInfo1" y="70" width="620" itemRendererSkinName="PKResultItem4_Skin" height="100" horizontalCenter="0">
 		<e:layout>
-			<e:TileLayout horizontalGap="0" requestedColumnCount="3"/>
+			<e:HorizontalLayout gap="4"/>
 		</e:layout>
 	</e:List>
-	<e:List id="teamInfo2" x="325" width="300" itemRendererSkinName="PKResultItem4Skin" y="70" height="210">
+	<e:List id="teamInfo2" width="620" itemRendererSkinName="PKResultItem4Skin" y="190" height="100" horizontalCenter="0">
 		<e:layout>
-			<e:TileLayout horizontalGap="0" requestedColumnCount="3"/>
+			<e:HorizontalLayout gap="4"/>
 		</e:layout>
 	</e:List>
 	<e:Label id="titleText" text="第1回合" y="15" size="28" x="15" stroke="2" textColor="0xFFFFFF"/>
 	<e:Label id="timeText" y="20" text="第1回合" size="24" right="15" textColor="0xCCCCCC" stroke="2"/>
 	<e:Image id="resultIcon" y="7" source="lose_icon_png" horizontalCenter="0"/>
-	<e:Label id="resultText" text="标签" x="20" size="24" textColor="0xCCCCCC" y="312.32"/>
-	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="296" width="140" right="15" skinName.loss="Btn_r2Skin" width.loss="110"/>
-	<e:Button id="infoBtn" label="详情" y="296" width="140" right="170" skinName="Btn_b2Skin" width.loss="110" right.loss="135"/>
-	<e:Button id="useBtn" label="重试" y="296" width="110" right="255" skinName="Btn_b2Skin" includeIn="loss"/>
+	<e:Label id="resultText" text="标签" x="20" size="24" textColor="0xCCCCCC" y="322.32"/>
+	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="304" width="140" right="15" skinName.loss="Btn_r2Skin" width.loss="110"/>
+	<e:Button id="infoBtn" label="详情" y="304" width="140" right="170" skinName="Btn_b2Skin" width.loss="110" right.loss="135"/>
+	<e:Button id="useBtn" label="重试" y="304" width="110" right="255" skinName="Btn_b2Skin" includeIn="loss"/>
 	<e:Group id="nickGroup" y="2" x="5">
 		<e:Image source="border2_png" width="56" y="0" height="56" x="0"/>
 		<e:Image source="head_png" y="3" id="headMC0" width="50" height="50" x="3"/>
 		<e:Label id="nickText" textColor="0xFFFFFF" size="28" text="第1回合" x="70" stroke="2" verticalCenter="0"/>
 	</e:Group>
 	<e:Image source="line_png" x="-1" width="650" bottom="-5"/>
+	<e:Image x="0" y="60" source="card_battle2_png"/>
+	<e:Image y="180" x="0" source="card_battle_png"/>
 </e:Skin>

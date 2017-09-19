@@ -10,8 +10,10 @@ class MainGameTipsItem extends game.BaseItem {
     private leaderText: eui.Label;
     private resultText: eui.Label;
     private videoBtn: eui.Button;
+    private playBtn: eui.Button;
     private skillGroup: eui.Group;
     private img: eui.Image;
+
 
 
 
@@ -29,6 +31,7 @@ class MainGameTipsItem extends game.BaseItem {
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this.videoBtn,this.onClick);
+        this.addBtnEvent(this.playBtn,this.onPlay);
         this.addBtnEvent(this.resultText,this.onNickClick);
         this.addBtnEvent(this.skillGroup,this.onSkillClick);
 
@@ -37,6 +40,16 @@ class MainGameTipsItem extends game.BaseItem {
         //this.teamInfo1.touchChildren =  this.teamInfo1.touchEnabled = false
         //this.teamInfo2.touchChildren =  this.teamInfo2.touchEnabled = false
         //this.addEventListener(PKResultItem3.VIEW_EVENT,this.onMonsterClick,this)
+    }
+
+    private onPlay(){
+        var data = JSON.parse(this.data.data);
+        var teamData =  data.pkdata;
+        MainGameManager.getInstance().getPlayResult(teamData,(msg)=>{
+            msg.info = {};
+            PKManager.getInstance().onPK('test',msg) ;
+            PKMainUI.getInstance().show(null);
+        })
     }
 
     private onSkillClick(){
@@ -72,6 +85,7 @@ class MainGameTipsItem extends game.BaseItem {
         this.list = teamData.list;
         if(MainGameTipsUI.getInstance().isDay)
         {
+            this.playBtn.visible = false
             for(var i=0;i<teamData.list.length;i++)
             {
                 var id = teamData.list[i];
@@ -90,6 +104,7 @@ class MainGameTipsItem extends game.BaseItem {
         }
         else
         {
+            this.playBtn.visible = true;
             var myCard = UM.getMyCard();
             var myCardObj = {};
 

@@ -1182,7 +1182,6 @@ class PKManager {
             {
                 teamBase.list.splice(i,1);
                 i--;
-                console.log(999999999999)
                 continue;
             }
             var specialData = teamBase.mb[mid];
@@ -1201,6 +1200,9 @@ class PKManager {
             }
             infoArr.push(oo)
         }
+        infoArr = infoArr.concat();
+        while(infoArr.length < 6)
+            infoArr.push(null);
         return infoArr
     }
 

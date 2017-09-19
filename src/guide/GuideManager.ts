@@ -52,51 +52,51 @@ class GuideManager {
             text:'亲爱的['+UM.nick+']，欢迎来到卡士世界！',
         })
 
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'你想成为世界上最强大的卡士吗？卡卡现在将带领你踏上这成为[至强王者]之路！',
-        })
-
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'但在这之前，我们必需得弄清一个问题：[什么是卡士?]',
-        })
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'在卡卡看来，所谓的卡士，可以比作是卡兵中的[司令]。',
-        })
-
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'他利用手中有限的卡兵进行[排兵布阵]，制定出战顺序后，就让队伍按照他的计划作战，最终为他取得胜利',
-        })
-
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'他[不需要参与]到具体的战斗，但却影响了整个的战斗流程，最考验其[运筹帷幄]的能力了',
-        })
-
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'不是每个人都有能力做好这件事情，到底你适不适合这样的工作，卡卡要对你进行一下[考查]',
-        })
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'你想成为世界上最强大的卡士吗？卡卡现在将带领你踏上这成为[至强王者]之路！',
+        //})
+        //
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'但在这之前，我们必需得弄清一个问题：[什么是卡士?]',
+        //})
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'在卡卡看来，所谓的卡士，可以比作是卡兵中的[司令]。',
+        //})
+        //
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'他利用手中有限的卡兵进行[排兵布阵]，制定出战顺序后，就让队伍按照他的计划作战，最终为他取得胜利',
+        //})
+        //
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'他[不需要参与]到具体的战斗，但却影响了整个的战斗流程，最考验其[运筹帷幄]的能力了',
+        //})
+        //
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'不是每个人都有能力做好这件事情，到底你适不适合这样的工作，卡卡要对你进行一下[考查]',
+        //})
 
 
         this.addGuideObj({
             mc:"MainPageUI.getInstance()['mainGame']['startBtn']",
-            text:'[卡士公会]是卡士世界最权威的认证机构，我们就从这里开始吧！',
+            text:'[卡士公会]是卡士世界最权威的认证机构，让我们先在这里作个职业认证吧！',
         })
 
         this.addGuideObj({
@@ -348,63 +348,67 @@ class GuideManager {
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'[究极研究院]的老怪物们最喜欢挑战高难度的事情了，他们每天都会发布[10]个题目让全世界玩家[共同]挑战。',
+            text:'参与[究极研究院]的活动，会获得[永久的战力]奖励。',
             hideHand:true,
             toBottom:true,
-            fun:function(){
-                self.showGuide()
-
-            }
-        })
-
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            mc:"this.getMainRect()",
-            hideHand:true,
-            toBottom:true,
-            text:'因为经常参与他们的活动，会获得[永久的战力]奖励。所以卡卡建议你[每天]都来冲刺一下自己的极限！',
-        })
-
-        this.addGuideObj({
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 2;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
             },
-            mc:"this.getMainRect()",
-            hideHand:true,
-            toBottom:true,
-            text:'如果实在打不过，也可以与[其它卡士]交流一下，因为你们的题目是[一样的]！',
         })
+
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    mc:"this.getMainRect()",
+        //    hideHand:true,
+        //    toBottom:true,
+        //    text:'因为经常参与他们的活动，会获得[永久的战力]奖励。所以卡卡建议你[每天]都来冲刺一下自己的极限！',
+        //})
+        //
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //        MainPageUI.getInstance()['currentPage'] = 2;
+        //        MainPageUI.getInstance().scrollToCurrentPage();
+        //        MainPageUI.getInstance().renewPage();
+        //    },
+        //    mc:"this.getMainRect()",
+        //    hideHand:true,
+        //    toBottom:true,
+        //    text:'如果实在打不过，也可以与[其它卡士]交流一下，因为你们的题目是[一样的]！',
+        //})
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
             mc:"this.getMainRect()",
-            text:'[野外势力]布满的卡士世界黑暗势力的据点，他们的存在严重威胁了卡士世界的和平与稳定，作为正义的一方，我们有义务把他清理干净！',
+            text:'你的士兵们会不停地清剿[野外势力]，为你赢取功勋！',
             hideHand:true,
             toBottom:true,
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-
-            }
-        })
-
-        this.addGuideObj({
             fun:function(){
                 self.showGuide(MainPageUI.getInstance())
                 MainPageUI.getInstance()['currentPage'] = 3;
                 MainPageUI.getInstance().scrollToCurrentPage();
                 MainPageUI.getInstance().renewPage();
-            },
-            ui:"MainPageUI.getInstance()",
-            mc:"this.getMainRect()",
-            hideHand:true,
-            toBottom:true,
-            text:'但这种体力活并[不需要]你来[亲自出手]，交给你的卡兵吧，只要他们足够[强大]，清剿起来速度还是会[很快]的',
+            }
         })
+
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //        MainPageUI.getInstance()['currentPage'] = 3;
+        //        MainPageUI.getInstance().scrollToCurrentPage();
+        //        MainPageUI.getInstance().renewPage();
+        //    },
+        //    ui:"MainPageUI.getInstance()",
+        //    mc:"this.getMainRect()",
+        //    hideHand:true,
+        //    toBottom:true,
+        //    text:'但这种体力活并[不需要]你来[亲自出手]，交给你的卡兵吧，只要他们足够[强大]，清剿起来速度还是会[很快]的',
+        //})
 
         this.addGuideObj({
             ui:"MainPageUI.getInstance()",
@@ -431,27 +435,27 @@ class GuideManager {
             }
         })
 
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'哦，对了，还有一个重要的事情得提醒你一下：[不要]专注于升级某几个卡兵，[全面发展]才是卡士世界的主题！',
+        //})
+        //this.addGuideObj({
+        //    fun:function(){
+        //        self.showGuide()
+        //    },
+        //    text:'这可是很多新手卡士都会犯的错误哦，卡卡希望你能[避开]。',
+        //})
         this.addGuideObj({
             fun:function(){
                 self.showGuide()
             },
-            text:'哦，对了，还有一个重要的事情得提醒你一下：[不要]专注于升级某几个卡兵，[全面发展]才是卡士世界的主题！',
-        })
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'这可是很多新手卡士都会犯的错误哦，卡卡希望你能[避开]。',
-        })
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide()
-            },
-            text:'虽然你相处的时间时间不长，但我能感受到你有成为[强大卡士]的天赋，希望以后能在[更高]的地方看到你的名字',
+            text:'卡士世界的介绍到这里就暂告一段落了，当然还有很多未知的[区域]和[技巧]需要玩家你来好好探索',
         })
 
         this.addGuideObj({
-            text:'卡卡就此别过，我会想念你的，88~',
+            text:'卡卡希望你能在这里找到属于你的快乐，我会想念你的，88~',
             fun:function(){
                 self.isGuiding = false;
                 GuideUI.getInstance().hide();

@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="PKResultGroupSkin" width="640" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 <e:Group id="moreGroup" x="0" y="0">
-				<e:Group x="0" y="0" height="82" width="640">
+				<e:Group x="0" y="0" height="75" width="640">
 					<ns1:BookBG x="0" y="35" skinName="BookBGSkin" height="850"/>
-					<e:Group id="titleBG" y="54.99999999999999" horizontalCenter="0">
-						<e:Image id="rateBG" y="1" x="0" source="bar_pvp_1_png"/>
-						<e:Label id="rateText" text="99" y="30" stroke="2" horizontalCenter="0" size="26"/>
-					</e:Group>
 					<e:Image source="pk_result_line_png" y="0" horizontalCenter="0"/>
+					<e:Group id="titleBG" y="24.24" horizontalCenter="0">
+						<e:Image id="rateBG" y="1" x="0" source="bar_pvp_1_png" visible="false"/>
+						<e:Label id="rateText" text="99" y="30" stroke="5" horizontalCenter="0" size="26"/>
+					</e:Group>
 				</e:Group>
 				<e:Group x="10" y="88">
 					<e:Group x="0" y="0">
-						<e:List id="selfList" width="310" top="65" bottom="10">
+						<e:List id="selfList" width="620" top="45" bottom="10" scaleX="0.95" scaleY="0.95">
 							<e:layout>
-								<e:TileLayout paddingLeft="5" requestedColumnCount="3" horizontalGap="0"/>
+								<e:HorizontalLayout gap="6"/>
 							</e:layout>
 						</e:List>
-						<e:Label y="-10" size="24" id="selfText0" stroke="1" x="20"/>
-						<e:Group id="selfForceGroup" x="11" y="15">
-							<e:Label id="selfText" text="战力：1234" y="12" size="24" stroke="1" x="49"/>
-							<e:Image source="icon_atk_png" x="0" y="0"/>
+						<e:Label y="10" size="24" id="selfText0" stroke="1" text="123" right="15"/>
+						<e:Group id="selfForceGroup" x="10" y="0">
+							<e:Label id="selfText" text="战力：1234" size="24" stroke="1" x="35" verticalCenter="0"/>
+							<e:Image x="0" y="0" source="card_battle2_png"/>
 						</e:Group>
 					</e:Group>
 					<e:Group x="10" y="10">
-						<e:List id="enemyList" x="0" width="310" top="65" bottom="10">
+						<e:List id="enemyList" x="0" width="620" top="45" bottom="10" scaleX="0.95" scaleY="0.95">
 							<e:layout>
-								<e:TileLayout requestedColumnCount="3" paddingLeft="5" horizontalGap="0"/>
+								<e:HorizontalLayout/>
 							</e:layout>
 						</e:List>
-						<e:Label y="-10" size="24" right="20" stroke="1" id="enemyText0" x="10"/>
-						<e:Group id="enemyForceGroup" x="78" y="15">
-							<e:Label id="enemyText" y="12" size="24" text="我方战力：1234" stroke="1" right="49"/>
-							<e:Image source="icon_atk_png" y="0" x="173"/>
+						<e:Label y="10" size="24" right="15" stroke="1" id="enemyText0" x="10" text="333"/>
+						<e:Group id="enemyForceGroup" x="10" y="0">
+							<e:Image y="0" x="0" source="card_battle_png"/>
+							<e:Label id="enemyText" size="24" text="我方战力：1234" stroke="1" x="35" verticalCenter="0"/>
 						</e:Group>
 					</e:Group>
 					<e:layout>
-						<e:HorizontalLayout gap="0"/>
+						<e:VerticalLayout/>
 					</e:layout>
 				</e:Group>
 	<ns1:PKResultMVP id="mvpMC" x="113" y="249" skinName="PKResultMVPSkin"/>

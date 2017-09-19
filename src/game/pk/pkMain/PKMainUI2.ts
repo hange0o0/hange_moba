@@ -187,7 +187,7 @@ class PKMainUI extends game.BaseUI {
         {
             if(GuideManager.getInstance().isGuiding)
             {
-                Alert('新手过程中不能跳过')
+                //Alert('新手过程中不能跳过')
                 return;
             }
             if(UM.isVip(203))
@@ -449,7 +449,7 @@ class PKMainUI extends game.BaseUI {
         //return;
         PKPosManager.getInstance().controller = this;
         this.speed = SharedObjectManager.instance.getMyValue('pk_speed') || false;
-        if(GuideManager.getInstance().isGuiding)
+        if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideStep < 20)
             this.speed = false;
         this.renewJumpBtn();
 

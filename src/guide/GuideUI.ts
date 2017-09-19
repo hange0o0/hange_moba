@@ -77,7 +77,7 @@ class GuideUI extends game.BaseContainer{
             this.anyClick.visible = true;
             this.anyClick.alpha = 0;
             var tw = egret.Tween.get(this.anyClick,{loop:true});
-            tw.to({alpha:1},500).wait(300).to({alpha:0},500)
+            tw.to({alpha:1},500).wait(500).to({alpha:0},500)
         }
     }
 

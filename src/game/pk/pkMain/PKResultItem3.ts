@@ -5,12 +5,14 @@ class PKResultItem3 extends game.BaseItem {
         this.skinName = "PKResultItem3Skin";
     }
 
-    private chooseMC: eui.Rect;
     private headMC: eui.Image;
+    private chooseMC: eui.Rect;
     private s3: eui.Image;
     private s2: eui.Image;
     private s1: eui.Image;
     private levelText: eui.Label;
+    private emptyMC: eui.Image;
+
 
     //private dieText: eui.Label;
 
@@ -37,12 +39,25 @@ class PKResultItem3 extends game.BaseItem {
     }
 
     public dataChanged() {
+        if(!this.data)
+        {
+            this.levelText.text = ''
+            this.chooseMC.visible = false;
+            this.headMC.visible = false;
+            this.emptyMC.visible = true;
+            this.touchChildren = this.touchEnabled = false;
+            for(var i=0;i<3;i++)
+            {
+                this['s' + (i+1)].visible = false;
+            }
+            return;
+        }
 
         //mid:mid,
         //    level:team1Base.mb[mid].lv,
         //    win: PKM.winCount[i+team1ID]
 
-
+        this.emptyMC.visible = false;
         this.chooseMC.visible = false;
         this.chooseType = 0;
 

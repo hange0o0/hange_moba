@@ -81,7 +81,7 @@ class MainGameUI extends game.BaseUI {
             var myForceStr = this.createHtml(myForce,0xFF0000)
         else
             var myForceStr = myForce + ''
-        Alert('通关时若我方战力[不高于]关卡战力\n则获得 ['+awardForce+'点] 战力奖励！\n　　[我方战力：]'+myForceStr+']\n　　[敌方战力：]'+enemyForce+'\n\n注：使用贿赂技能后[不能]获得奖励',null,'知道了')
+        Alert('通关时若我方战力[不高于]关卡战力\n则获得 ['+awardForce+'点] 战力奖励！\n　　[当前我方战力：]'+myForceStr+']\n　　[本关敌方战力：]'+enemyForce+'\n\n注：使用贿赂技能后[不能]获得奖励',null,'知道了')
     }
 
 

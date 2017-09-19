@@ -10,6 +10,7 @@
 		<e:Image id="s1" source="card_star_png" x="0" y="0"/>
 	</e:Group>
 	<e:Label id="levelText" textColor="0xCCB48E" text="Lv60" textAlign="center" size="20" right="5" stroke="2" y="5"/>
+	<e:Image id="emptyMC" source="btn_close3_png" horizontalCenter="0" verticalCenter="0"/>
 
 
 

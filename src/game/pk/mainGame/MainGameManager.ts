@@ -368,8 +368,8 @@ class MainGameManager{
         var card = this.getTestCard()
         if(card)
         {
-            this.testCardNet(card,function(b){
-                if(b)   //win
+            this.testCardNet(card,function(msg){
+                if(msg.result)   //win
                 {
                     PKDressUI.getInstance().changeChooseList(card)
                     Alert('Done!')
@@ -402,14 +402,13 @@ class MainGameManager{
     }
 
     private testCardNet(myList,fun){
-        var dataIn:any = {}
-        dataIn.team1 = {"list":myList,"fight":UM.getForce(),"tec":{}}
+        var team1:any = {"list":myList,"fight":UM.getForce(),"tec":{}}
         var leaderData = {1:0,2:0,3:0}
-        dataIn.team1.leader = leaderData;
+        team1.leader = leaderData;
         for(var i=0;i<myList.length;i++)
         {
             var mid = myList[i];
-            dataIn.team1.tec[mid] = UM.getTecAdd('monster',UM.getMonsterLevel(mid));
+            team1.tec[mid] = UM.getTecAdd('monster',UM.getMonsterLevel(mid));
 
             var leaderLevel = UM.getMyLeaderLevel(mid);
             if(leaderLevel)
@@ -419,10 +418,12 @@ class MainGameManager{
             }
         }
 
+        this.getPlayResult(team1,fun);
+    }
 
-
-
-
+    public getPlayResult(team1,fun){
+        var dataIn:any = {};
+        dataIn.team1 = team1;
         var arr = MainGameVO.getObject(UM.main_game.level+1).list;
         var fight = this.getMainForce();
         var lv = this.getMainMonsterLevel();
@@ -439,7 +440,7 @@ class MainGameManager{
         PKDressUI.getInstance()['coinText'].text = ('find...' + ObjectUtil.objLength(this.testCardObj))
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
-            fun(msg.result);
+            fun(msg);
         })
     }
 
