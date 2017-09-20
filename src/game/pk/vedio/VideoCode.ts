@@ -508,7 +508,7 @@ class VideoCode{
             }
             case '7':
             {
-                this.defenderMV('miss',1)
+                this.defenderMV('miss',value.value)
                 break;
             }
             case '8':

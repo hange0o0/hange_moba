@@ -382,7 +382,7 @@ class VideoUI extends game.BaseUI {
         var valueAdd = this.getValueAdd(buff);
         if(valueAdd.atk)
         {
-            this.setHtml(this.atkText1,this.createHtml(valueAdd.atk + VC.player2.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
+            this.setHtml(this.atkText1,this.createHtml(Math.max(1,valueAdd.atk + VC.player2.atk),valueAdd.atk>0?0x00FF00:0xFF0000));
         }
         else
         {
@@ -391,7 +391,7 @@ class VideoUI extends game.BaseUI {
 
         if(valueAdd.speed)
         {
-            this.setHtml(this.speedText1,this.createHtml(valueAdd.speed + VC.player2.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
+            this.setHtml(this.speedText1,this.createHtml(Math.max(1,valueAdd.speed + VC.player2.speed),valueAdd.speed>0?0x00FF00:0xFF0000));
         }
         else
         {

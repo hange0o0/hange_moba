@@ -28,6 +28,8 @@ class MainGameTipsItem extends game.BaseItem {
     private list
     private skillID
 
+    private videoResult = {};
+
     public childrenCreated() {
         //MyTool.addTestBlock(this);
         this.addBtnEvent(this.videoBtn,this.onClick);
@@ -43,11 +45,20 @@ class MainGameTipsItem extends game.BaseItem {
     }
 
     private onPlay(){
+        var self = this;
         var data = JSON.parse(this.data.data);
         var teamData =  data.pkdata;
+        var key = md5.incode(JSON.stringify(teamData))
+        if(this.videoResult[key])
+        {
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,this.videoResult[key]) ;
+            PKMainUI.getInstance().show(null);
+            return;
+        }
         MainGameManager.getInstance().getPlayResult(teamData,(msg)=>{
-            msg.info = {};
-            PKManager.getInstance().onPK('test',msg) ;
+            self.videoResult[key] = msg;
+            msg.info = {type:PKManager.PKType.MAIN};
+            PKManager.getInstance().onPK(PKManager.PKType.REPLAY,msg) ;
             PKMainUI.getInstance().show(null);
         })
     }
@@ -86,6 +97,7 @@ class MainGameTipsItem extends game.BaseItem {
         if(MainGameTipsUI.getInstance().isDay)
         {
             this.playBtn.visible = false
+            this.skillGroup.visible = false
             for(var i=0;i<teamData.list.length;i++)
             {
                 var id = teamData.list[i];

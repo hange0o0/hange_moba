@@ -73,19 +73,28 @@ class MainGameTipsHeadItem extends game.BaseItem {
         if(this.data.specialData.lv)
             this.lvText.text = 'LV.' + this.data.specialData.lv;
 
-        if(this.data.compare)
+        if(!this.data.disable)
         {
-            var mlevel = UM.getMonsterLevel(this.data.id);
-            MyTool.changeGray(this.headMC,this.data.disable)
-            MyTool.changeGray(this.headBG,this.data.disable)
-            var textColor = 0xCCB48E;
-            if(!this.lvText.text)
-                this.lvText.text = 'LV.0';
-            if(this.data.specialData.lv < mlevel)
-                this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml('+'+( mlevel-this.data.specialData.lv),0xFF0000)+')');
-            else if(this.data.specialData.lv > mlevel)
-                this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml(mlevel-this.data.specialData.lv,0x00FF00)+')');
+            if(this.data.compare)
+            {
+                var mlevel = UM.getMonsterLevel(this.data.id);
+                var textColor = 0xCCB48E;
+                if(!this.lvText.text)
+                    this.lvText.text = 'LV.0';
+                if(this.data.specialData.lv < mlevel)
+                    this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml('+'+( mlevel-this.data.specialData.lv),0xFF0000)+')');
+                else if(this.data.specialData.lv > mlevel)
+                    this.setHtml(this.lvText,this.lvText.text+ ' ('+this.createHtml(mlevel-this.data.specialData.lv,0x00FF00)+')');
+            }
         }
+        else
+        {
+            MyTool.changeGray(this.headBG,true)
+            this.lvText.text = '卡组无此兵'
+            this.lvText.horizontalCenter= -2
+            this.lvText.left = null
+        }
+
 
 
     }

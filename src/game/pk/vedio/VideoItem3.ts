@@ -639,7 +639,12 @@ class VideoItem3 extends game.BaseItem {
         }
         else if(effect.key == 'miss')
         {
-            group.addChild(this.getWordText('【闪避】',0xDCB7FF,24))
+            if(effect.value == -1)
+                group.addChild(this.getWordText('闪避 +1',0xDCB7FF,24))
+            else if(effect.value == -2)
+                group.addChild(this.getWordText('命中 ++',0xDCB7FF,24))
+            else
+                group.addChild(this.getWordText('【闪避】',0xDCB7FF,24))
         }
         else if(effect.key == 'nomagic')
         {

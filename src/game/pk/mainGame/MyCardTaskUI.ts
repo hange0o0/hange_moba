@@ -52,7 +52,7 @@ class MyCardTaskUI extends game.BaseWindow {
             return;
         }
         this.awardMC.visible = task.current >= task.num;
-        this.setText(this.useText,'[卡组使用：]'+(10-myCard.num)+'/10');
+        this.setText(this.useText,'[卡组使用：]'+(myCard.num)+'/10');
         this.setText(this.rateText,'[任务进度：]'+Math.min(task.current,task.num)+'/'+task.num);
         switch(task.award_type)
         {

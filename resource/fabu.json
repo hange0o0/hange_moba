@@ -685,6 +685,10 @@
 				{
 					"compress":false,
 					"key":"prop_thumb_42_jpg"
+				},
+				{
+					"compress":false,
+					"key":"prop_thumb_22_jpg"
 				}
 			],
 			"sort":0

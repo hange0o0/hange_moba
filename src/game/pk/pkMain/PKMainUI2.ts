@@ -1463,7 +1463,7 @@ class PKMainUI extends game.BaseUI {
         var valueAdd = this.getValueAdd(buff);
         if(valueAdd.atk)
         {
-            this.setHtml(this['atkText'+index],this.createHtml(valueAdd.atk + player.atk,valueAdd.atk>0?0x00FF00:0xFF0000));
+            this.setHtml(this['atkText'+index],this.createHtml(Math.max(1,valueAdd.atk + player.atk),valueAdd.atk>0?0x00FF00:0xFF0000));
         }
         else
         {
@@ -1472,7 +1472,7 @@ class PKMainUI extends game.BaseUI {
 
         if(valueAdd.speed)
         {
-            this.setHtml(this['speedText'+index],this.createHtml(valueAdd.speed + player.speed,valueAdd.speed>0?0x00FF00:0xFF0000));
+            this.setHtml(this['speedText'+index],this.createHtml(Math.max(1,valueAdd.speed + player.speed),valueAdd.speed>0?0x00FF00:0xFF0000));
         }
         else
         {
@@ -1559,8 +1559,8 @@ class PKMainUI extends game.BaseUI {
             }
         }
         return{
-            atk:Math.max(1,atk),
-            speed:Math.max(1,speed),
+            atk:atk,
+            speed:speed,
             def:def,
         }
     }
@@ -2298,7 +2298,12 @@ class PKMainUI extends game.BaseUI {
         }
         else if(effect.key == 'miss')
         {
-            this.showItemWord(item,{text:'闪避',textColor:0xFF0000},delay)
+            if(effect.value == -1)
+                this.showItemWord(item,{text:'闪避+1',textColor:0xB9ED8E},delay)
+            else if(effect.value == -2)
+                this.showItemWord(item,{text:'命中++',textColor:0xB9ED8E},delay)
+            else
+                this.showItemWord(item,{text:'闪避',textColor:0xFF0000},delay)
         }
         else if(effect.key == 'nomagic')
         {

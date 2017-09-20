@@ -1,20 +1,14 @@
 class PKResultGroup extends game.BaseContainer {
     private moreGroup: eui.Group;
-    private titleBG: eui.Group;
-    private rateBG: eui.Image;
-    private rateText: eui.Label;
     private selfList: eui.List;
     private selfText0: eui.Label;
-    private selfForceGroup: eui.Group;
     private selfText: eui.Label;
     private enemyList: eui.List;
     private enemyText0: eui.Label;
-    private enemyForceGroup: eui.Group;
     private enemyText: eui.Label;
-    //private teamInfo1: eui.List;
-    //private teamInfo2: eui.List;
     private mvpMC: PKResultMVP;
     private list: eui.List;
+
 
 
 
@@ -141,7 +135,10 @@ class PKResultGroup extends game.BaseContainer {
         var info2 = [];
 
 
-        this.selfText.text = '战力:' +  (Math.floor(team1Base.f) + commonAdd);
+        var force = (Math.floor(team1Base.f) + commonAdd)
+        var str =  '战力:' + (team1Base.f > team2Base.f?this.createHtml(force,0xFFFF00):force) +
+            (PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0x9FFF82,20):'')
+        this.setHtml(this.selfText,str)
         for(var i=0;i<team1Base.list.length;i++)
         {
             var mid = team1Base.list[i]
@@ -168,8 +165,15 @@ class PKResultGroup extends game.BaseContainer {
             //speed2 = Math.min(specialData.speed,speed2)
         }
 
+        var force = (Math.floor(team2Base.f) + commonAdd)
+        var str =  '战力:' + (team1Base.f < team2Base.f?this.createHtml(force,0xFFFF00):force) +
+            (!PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0xFF8282,20):'')
+        this.setHtml(this.enemyText,str)
 
-        this.enemyText.text = '战力:' +  (Math.floor(team2Base.f) + commonAdd);;
+        //
+        //this.enemyText.text = '战力:' +  (Math.floor(team2Base.f) + commonAdd);
+        //if(!PKM.isWin)
+        //    this.enemyText.text += ' (剩余血量：'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%)'
         for(var i=0;i<team2Base.list.length;i++)
         {
             var mid = team2Base.list[i]
@@ -208,19 +212,14 @@ class PKResultGroup extends game.BaseContainer {
         this.selfList.dataProvider = new eui.ArrayCollection(_info1)
         this.enemyList.dataProvider = new eui.ArrayCollection(_info2)
 
-        this.selfText.textColor = 0xFFFFFF
-        this.enemyText.textColor = 0xFFFFFF
-        if(team1Base.f > team2Base.f)
-            this.selfText.textColor = 0xffff00
-        else if(team1Base.f < team2Base.f)
-            this.enemyText.textColor = 0xffff00
+        //this.selfText.textColor = 0xFFFFFF
+        //this.enemyText.textColor = 0xFFFFFF
+        //if(team1Base.f > team2Base.f)
+        //    this.selfText.textColor = 0xffff00
+        //else if(team1Base.f < team2Base.f)
+        //    this.enemyText.textColor = 0xffff00
 
 
-        this.rateText.text = Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100))) + '';
-        if(PKM.isWin)
-            this.rateBG.source = 'bar_pvp_2_png'
-        else
-            this.rateBG.source = 'bar_pvp_1_png'
 
         var leader1 = [];
         var leader2 = [];
@@ -297,9 +296,6 @@ class PKResultGroup extends game.BaseContainer {
         //totalData.speed = speed;
         //totalData.speed2 = speed2;
 
-        this.titleBG.scaleY = 1;
-        this.rateText.visible = true;
-        this.rateText.alpha = 1;
 
         if(PKM.mvpList)
         {
@@ -326,8 +322,8 @@ class PKResultGroup extends game.BaseContainer {
         //    this.rateText.visible = true;
         //},this).to({alpha:1},200)
 
-        this.titleBG.alpha = 0;
-        var tw:egret.Tween = egret.Tween.get(this.titleBG);
-        tw.wait(300).to({alpha:1},500)
+        //this.titleBG.alpha = 0;
+        //var tw:egret.Tween = egret.Tween.get(this.titleBG);
+        //tw.wait(300).to({alpha:1},500)
     }
 }

@@ -69,6 +69,13 @@ class ServerGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
+        this.historyList.addEventListener('use_card',this.onUseHistory,this)
+    }
+
+    private onUseHistory(e){
+        var list = e.data
+        this.onChoose();
+        PKDressUI.getInstance().changeChooseList(list)
     }
 
 
