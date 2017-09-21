@@ -49,7 +49,7 @@ class DayLogItem extends game.BaseItem {
 
         var team = this.data.team1Base;
         var list = team.list;
-        dataIn.team1 = {"list":list,"fight":team.f,"tec":{}}
+        dataIn.team1 = {"list":list,"fight":team.f,"tec":{},leader:team.ld,skill:team.s}
         for(var i=0;i<list.length;i++)
         {
             var mid = list[i];
@@ -58,7 +58,7 @@ class DayLogItem extends game.BaseItem {
 
         var team = this.data.team2Base;
         var list = team.list;
-        dataIn.team2 = {"list":list,"fight":team.f,"tec":{}}
+        dataIn.team2 = {"list":list,"fight":team.f,"tec":{},leader:team.ld,skill:team.s}
         for(var i=0;i<list.length;i++)
         {
             var mid = list[i];
@@ -91,19 +91,19 @@ class DayLogItem extends game.BaseItem {
         {
             var item:any = myList.getChildAt(i);
             if(item.data == data)
-                item.setChoose(1);
+                item.setKillType(1);
             else
-                item.setChoose(0);
+                item.setKillType(0);
         }
         for(var i=0;i<enemyList.numChildren;i++)
         {
             var item:any = enemyList.getChildAt(i);
             if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
-                item.setChoose(2);
+                item.setKillType(2);
             else if(data.die && data.die == i+1)
-                item.setChoose(3);
+                item.setKillType(3);
             else
-                item.setChoose(0);
+                item.setKillType(0);
         }
         //console.log(e.data);
     }

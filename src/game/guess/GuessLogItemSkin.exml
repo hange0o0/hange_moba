@@ -18,8 +18,8 @@
 	</e:List>
 	<e:Label id="titleText" text="第1回合" y="15" size="28" x="15" stroke="2" textColor="0xFFFFFF"/>
 	<e:Label id="timeText" y="20" text="第1回合" size="24" right="15" textColor="0xCCCCCC" stroke="2"/>
-	<e:Image id="win1" y="101" source="win_icon_png" x="-3"/>
-	<e:Image id="win2" y="212" source="win_icon_png" x="-3"/>
+	<e:Image id="win1" source="win_icon_png" x="-3" y="67"/>
+	<e:Image id="win2" y="175" source="win_icon_png" x="-3"/>
 	<e:Label id="resultText" text="标签" x="20" size="24" textColor="0xCCCCCC" y="330.32"/>
 	<e:Button id="videoBtn" label="回放" skinName="Btn_r2Skin" y="315" width="140" right="15"/>
 	<e:Button id="infoBtn" label="详情" y="315" width="140" right="170" skinName="Btn_b2Skin"/>

@@ -385,8 +385,8 @@ class DebugManager {
             fun(card2);
             return;
         }
-        dataIn.team1 = {"list":card1,"skill":Math.floor(Math.random()*6)}
-        dataIn.team2 = {"list":card2,"skill":Math.floor(Math.random()*6)}
+        dataIn.team1 = {"list":card1}
+        dataIn.team2 = {"list":card2}
         //dataIn.need_server = needServer
         Net.send('test',dataIn,function(data) {
             var msg = data.msg;
@@ -396,6 +396,61 @@ class DebugManager {
                 fun(card2,msg)
         })
     }
+
+    private skillResult = {}
+    private skillTestList = [];
+    public testLeaderSkill(){
+        this.skillResult = {}
+        this.skillTestList = []
+        this.stop = 0;
+        Net.getInstance().outPut = false;
+        this.testOneSkill();
+    }
+
+    private testOneSkill(){
+        var length = ObjectUtil.objLength(LeaderSkillVO.data)
+        if(this.skillTestList.length == 0)
+        {
+             if(this.stop)
+             {
+                 var arr = [];
+                 for(var s in this.skillResult)
+                 {
+                     arr.push({vo:LeaderSkillVO.getObject(parseInt(s)),num:this.skillResult[s]})
+                 }
+                 ArrayUtil.sortByField(arr,['num'],[1]);
+                 for(var i=0;i<arr.length;i++)
+                 {
+                     var oo = arr[i];
+                     console.log(oo.vo.id +'\t\t'+oo.vo.name +'\t\tnum:'+oo.num)
+                 }
+                  return;
+             }
+            var card1 = this.randomCard()
+            var card2 = this.randomCard()
+            for(var i=1;i<=length;i++) {
+                for (var j = 1; j <= length; j++) {
+                    var dataIn:any = {}
+                    dataIn.team1 = {"list": card1, skill: i}
+                    dataIn.team2 = {"list": card2, skill: j}
+                    this.skillTestList.push(dataIn);
+                }
+            }
+        }
+        var self = this;
+        var testData = this.skillTestList.pop();
+        Net.send('test',testData,function(data) {
+            var msg = data.msg;
+            if(msg.result==1)
+                var skillID = testData.team1.skill;
+            else
+                var skillID = testData.team2.skill;
+            self.skillResult[skillID] = (self.skillResult[skillID] || 0) + 1
+            self.testOneSkill();
+        })
+    }
+
+
 
     //测试动画
     public testVideo(){

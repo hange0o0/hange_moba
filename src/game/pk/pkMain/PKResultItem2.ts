@@ -193,11 +193,13 @@ class PKResultItem2 extends game.BaseItem {
                 this.decText1.textColor = 0x00FF00;
         }
 
-
+        this.winIcon.visible = true;
         if(this.data.player1.isWin)
             this.winIcon.x = 140;
-        else
+        else if(this.data.player2.isWin)
             this.winIcon.x = 640-130-50;
+        else
+            this.winIcon.visible = false;
 
     }
 }

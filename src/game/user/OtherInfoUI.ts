@@ -199,13 +199,13 @@ class OtherInfoUI extends game.BaseUI {
 
         var serverData = dataIn.server_game;
         var serverData2 = UM.server_game;
-        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分:]'+serverData.exp+'',myValue:myData2.exp, otherValue:myData.exp}
+        oo = {title:'竞技场段位',icon:'icon_pvp_2_png',des: ServerGameManager.getInstance().getStepName(serverData.exp) + '　[积分:]'+serverData.exp+'',myValue:serverData2.exp, otherValue:serverData.exp}
         list.push(oo)
 
-        oo = {title:'历史最高积分',icon:'icon_pvp_2_png',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
+        oo = {title:'历史最高积分',icon:'icon_pvp_2_png',des: serverData.top + '分',myValue:serverData2.top, otherValue:serverData.top}
         list.push(oo)
 
-        oo = {title:'胜利次数',icon:'icon_pvp_2_png',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
+        oo = {title:'胜利次数',icon:'icon_pvp_2_png',des: serverData.win + '次',myValue:serverData2.win, otherValue:serverData.win}
         list.push(oo)
 
         oo = {title:'胜率',icon:'icon_pvp_2_png',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',isRate:true,myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
@@ -215,19 +215,19 @@ class OtherInfoUI extends game.BaseUI {
         var serverData = dataIn.server_game_equal;
         serverData2 = UM.server_game_equal;
 
-        oo = {title:'修正场评价',icon:'icon_pvp_3_png',des: ServerGameEqualManager.getInstance().getStepName(serverData.exp) + '　[评分:]'+serverData.exp+'',myValue:myData2.exp, otherValue:myData.exp}
+        oo = {title:'修正场评价',icon:'icon_pvp_3_png',des: ServerGameEqualManager.getInstance().getStepName(serverData.exp) + '　[评分:]'+serverData.exp+'',myValue:serverData2.exp, otherValue:serverData.exp}
         list.push(oo)
 
-        oo = {title:'历史最高评分',icon:'icon_pvp_3_png',des: serverData.top + '分',myValue:myData2.top, otherValue:myData.top}
+        oo = {title:'历史最高评分',icon:'icon_pvp_3_png',des: serverData.top + '分',myValue:serverData2.top, otherValue:serverData.top}
         list.push(oo)
 
-        oo = {title:'胜利次数',icon:'icon_pvp_3_png',des: serverData.win + '次',myValue:myData2.win, otherValue:myData.win}
+        oo = {title:'胜利次数',icon:'icon_pvp_3_png',des: serverData.win + '次',myValue:serverData2.win, otherValue:serverData.win}
         list.push(oo)
 
         oo = {title:'胜率',icon:'icon_pvp_3_png',des: MyTool.toFixed(serverData.win/(serverData.total||1)*100,1) + '%',isRate:true,myValue:serverData2.win/(serverData2.total||1), otherValue:serverData.win/(serverData.total||1)}
         list.push(oo)
 
-        oo = {title:'最高连胜',icon:'icon_pvp_3_png',des: serverData.max + '次',myValue:myData2.max, otherValue:myData.max}
+        oo = {title:'最高连胜',icon:'icon_pvp_3_png',des: serverData.max + '次',myValue:serverData2.max, otherValue:serverData.max}
         list.push(oo)
 
         this.list.dataProvider = new eui.ArrayCollection(list)

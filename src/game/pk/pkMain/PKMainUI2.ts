@@ -210,6 +210,8 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onChangeSpeed(){
+        if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideKey == 'pk')
+            return;
          this.speed = !this.speed
          this.renewJumpBtn();
         SharedObjectManager.instance.setMyValue('pk_speed',this.speed)
@@ -449,7 +451,7 @@ class PKMainUI extends game.BaseUI {
         //return;
         PKPosManager.getInstance().controller = this;
         this.speed = SharedObjectManager.instance.getMyValue('pk_speed') || false;
-        if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideStep < 20)
+        if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideKey == 'pk')
             this.speed = false;
         this.renewJumpBtn();
 
@@ -533,6 +535,7 @@ class PKMainUI extends game.BaseUI {
 
 
         MyTool.changeGray(this.jumpBtn2,false)
+        MyTool.changeGray(this.jumpBtn,false)
         if(PKManager.getInstance().pkAward)
         {
             this.jumpIcon.source = 'jump_icon_png'
@@ -714,6 +717,9 @@ class PKMainUI extends game.BaseUI {
             if(GuideManager.getInstance().isGuiding)
             {
                 MyTool.changeGray(this.jumpBtn2,true)
+                if(GuideManager.getInstance().guideKey == 'pk')
+                    MyTool.changeGray(this.jumpBtn,true)
+
             }
             this.touchChildren = this.touchEnabled = true;
         },this)
@@ -826,12 +832,28 @@ class PKMainUI extends game.BaseUI {
     }
 
     private playOneRound(){
+        var GM = GuideManager.getInstance();
+        if(GM.isGuiding && GM.guideKey == 'pk')
+        {
+            if(GM.guidePK == 0)
+                GM.guidePK ++;
+            else if(GM.guidePK == 3)
+            {
+                GM.guidePK ++;
+                GM.showGuide()
+                return;
+            }
+        }
+
         this.pkStep ++;
         if(!PKManager.getInstance().getVedioBase(this.pkStep - 1))
         {
             this.showResult();
             return;
         }
+
+
+
 
         VideoManager.getInstance().playVideo(PKManager.getInstance().pkType,this.pkStep - 1);
         this.listArray = VideoCode.getInstance().listArray;
@@ -932,7 +954,34 @@ class PKMainUI extends game.BaseUI {
             this.setTimeout(this.showRoundMovie,2000)
     }
 
+    public continueGuide(){
+        var GM = GuideManager.getInstance();
+        if(GM.guidePK == 2)
+        {
+            this.decode_skill(GM.temp.data,GM.temp.roundeData,GM.temp.stopMainSkill);
+            GM.guidePK ++;
+        }
+        else if(GM.guidePK == 4)
+        {
+            this.playOneRound();
+            GM.guidePK ++;
+        }
+    }
+
     private showRoundMovie(){
+
+        //var GM = GuideManager.getInstance();
+        //if(GM.isGuiding && GM.guideKey == 'pk')
+        //{
+        //    if(GM.guidePK == 0)
+        //        GM.guidePK ++;
+        //    else if(GM.guidePK == 3)
+        //    {
+        //        GM.guidePK ++;
+        //        GM.showGuide()
+        //        return;
+        //    }
+        //}
         if(this.speed)
         {
             this.pkOne();
@@ -2070,6 +2119,22 @@ class PKMainUI extends game.BaseUI {
 
 
 
+        }
+
+        if(svo.type == 1)
+        {
+            var GM = GuideManager.getInstance();
+            if(GM.isGuiding && GM.guideKey == 'pk' && GM.guidePK == 1)
+            {
+                GM.guidePK ++;
+                GM.showGuide();
+                GM.temp = {
+                    data:data,
+                    roundeData:roundeData,
+                    stopMainSkill:stopMainSkill,
+                }
+                return
+            }
         }
 
 

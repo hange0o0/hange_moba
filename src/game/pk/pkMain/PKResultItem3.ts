@@ -7,11 +7,14 @@ class PKResultItem3 extends game.BaseItem {
 
     private headMC: eui.Image;
     private chooseMC: eui.Rect;
+    private killMC: eui.Rect;
     private s3: eui.Image;
     private s2: eui.Image;
     private s1: eui.Image;
     private levelText: eui.Label;
     private emptyMC: eui.Image;
+    private dieTogether: eui.Image;
+
 
 
     //private dieText: eui.Label;
@@ -22,27 +25,41 @@ class PKResultItem3 extends game.BaseItem {
     public index = 0;
     public chooseType = 0;
 
+    private downTimer = 0;
+
     public childrenCreated() {
-        this.addBtnEvent(this,this.onClose);
+        this.touchChildren = false;
+        this.addBtnEvent(this,this.onClick);
+
+        this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onMouseDown, this);
+        this.addEventListener(egret.TouchEvent.TOUCH_END, this.onMouseUp, this);
+        this.addEventListener(egret.TouchEvent.TOUCH_CANCEL, this.onMouseUp, this);
     }
 
-    private onClose() {
-        //if(this.chooseType == 1)
-        //{
-            MonsterList.getInstance().show(this.data.list,this.data.index)
-        //    this.chooseMC.visible = false;
-        //    this.chooseType = 0;
-        //    this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,{});
-        //}
-        //else
-        //    this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,this.data);
+    private onMouseDown(){
+        this.downTimer = egret.getTimer();
+        this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,this.data);
+    }
+    private onMouseUp(){
+        //egret.callLater(function(){
+            this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,{});
+        //},this)
+
+    }
+
+    private onClick() {
+        if(egret.getTimer() - this.downTimer > 400)
+            return;
+        MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
     public dataChanged() {
+        this.dieTogether.visible = false;
         if(!this.data)
         {
             this.levelText.text = ''
             this.chooseMC.visible = false;
+            this.killMC.visible = false;
             this.headMC.visible = false;
             this.emptyMC.visible = true;
             this.touchChildren = this.touchEnabled = false;
@@ -59,9 +76,10 @@ class PKResultItem3 extends game.BaseItem {
 
         this.emptyMC.visible = false;
         this.chooseMC.visible = false;
+        this.killMC.visible = false;
         this.chooseType = 0;
 
-
+        this.dieTogether.visible = this.data.totalDie
         if(this.data.level)
         {
             this.levelText.text = 'Lv' + this.data.level
@@ -106,6 +124,22 @@ class PKResultItem3 extends game.BaseItem {
         //    this.chooseMC.fillColor = 0xFF0000
         //else if(type == 3)
         //    this.chooseMC.fillColor = 0x00FFFF
+
+    }
+
+    public setKillType(type){
+        if(!type)
+        {
+            this.killMC.visible = false
+            return;
+        }
+        this.killMC.visible = true
+        if(type == 1)
+            this.killMC.fillColor = 0xFFFF00
+        else if(type == 2)
+            this.killMC.fillColor = 0xFF0000
+        else if(type == 3)
+            this.killMC.fillColor = 0x00FFFF
 
     }
 }

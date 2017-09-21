@@ -13,8 +13,8 @@
 	<e:Label id="levelText" text="LV.60" size="22" stroke="3" y="12" textColor="0xEED1A7" left="13"/>
 
 	<e:Label id="nameText" text="Label" size="20" horizontalCenter="0.5" stroke="3" textColor="0xFADEA2" bottom="20"/>
-	<e:Image id="desBG" source="black_bg2_png" y="147" height="30" width="140" horizontalCenter="0" scale9Grid="35,13,353,78"/>
-	<e:Label id="desText" text="Label" size="20" horizontalCenter="1" stroke="3" bottom="58" textColor="0xfadea2"/>
+	<e:Image id="desBG" source="black_bg2_png" y="151.56" height="30" width="140" horizontalCenter="0" scale9Grid="35,13,353,78"/>
+	<e:Label id="desText" text="Label" size="18" horizontalCenter="1.5" stroke="3" bottom="54" textColor="0xfadea2"/>
 	<e:Rect id="chooseBG" width="100%" x="0" fillColor="0xffff00" ellipseWidth="10" ellipseHeight="10" strokeWeight="5" strokeColor="0xff8300" fillAlpha="0" top="0" bottom="0" locked="true"/>
 	
 	

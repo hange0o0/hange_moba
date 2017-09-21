@@ -100,6 +100,7 @@ class PKManager {
     public winCount//胜利的次数
     public action//是否有出战
     public kill//杀对方的ID列表
+    public totalDie//同归的ID
     public die//是否失败
     public winnerRate//胜利者剩余血量百分比
     public isWin//胜利
@@ -836,6 +837,7 @@ class PKManager {
             this.mvpList = null;
         var action = this.action = {};
         this.kill = {};
+        this.totalDie = {};
         var die = this.die = {};
         this.pkList.length = 0;
         var mvpDeal = {};
@@ -1027,6 +1029,10 @@ class PKManager {
             }
             else
             {
+                if(result.w == 0)//同归
+                {
+                    self.totalDie[p.id] = true;
+                }
                 oo.after = 0;
                 die[p.id] = enemyIndex;
             }
@@ -1120,6 +1126,7 @@ class PKManager {
                 //id:mid,
                 win: this.winCount[i+team1ID] || 0,
                 die: this.die[i+team1ID],
+                totalDie: this.totalDie[i+team1ID],
                 kill:this.kill[i+team1ID]
             }
             info1.push(oo)
@@ -1131,6 +1138,7 @@ class PKManager {
                 //id:mid,
                 win: this.winCount[i+team2ID] || 0,
                 die: this.die[i+team2ID],
+                totalDie: this.totalDie[i+team1ID],
                 kill:this.kill[i+team2ID]
             }
             info2.push(oo)
@@ -1197,6 +1205,7 @@ class PKManager {
                 win: infoData[i].win,
                 die: infoData[i].die,
                 kill: infoData[i].kill,
+                totalDie: infoData[i].totalDie
             }
             infoArr.push(oo)
         }

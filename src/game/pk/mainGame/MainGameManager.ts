@@ -405,6 +405,7 @@ class MainGameManager{
         var team1:any = {"list":myList,"fight":UM.getForce(),"tec":{}}
         var leaderData = {1:0,2:0,3:0}
         team1.leader = leaderData;
+        team1.skill = UM.tec.use_skill;
         for(var i=0;i<myList.length;i++)
         {
             var mid = myList[i];

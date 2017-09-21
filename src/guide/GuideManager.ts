@@ -8,10 +8,16 @@ class GuideManager {
     public currentStepId: Number;
     public isGuiding:boolean=true;
 
+    public temp;
+
 
     public guideKey;
     public guideStep = 0;
+
     public guideRandom = 0;
+    public guidePK = 0;
+
+
     private guideArr = [];
     public constructor() {
         this.init();
@@ -39,6 +45,7 @@ class GuideManager {
 
     public reInit(){
         this.guideRandom = 0;
+        this.guidePK = 0;
         this.guideArr[0].text = '亲爱的['+UM.nick+']，欢迎来到卡士世界！'
     }
 
@@ -170,6 +177,27 @@ class GuideManager {
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['pkBtn']",
             text:'好了，是时候让对手见识一下我们的厉害了，GO！GO！GO！',
+            guideKey:'pk',
+        })
+
+        this.addGuideObj({
+            text:'当怒气值满后，将会释放怒气技',
+            mc:"PKMainUI.getInstance().mpBar1",
+            hideHand:true,
+            guideKey:'pk',
+            fun:function(){
+                PKMainUI.getInstance().continueGuide();
+                GuideUI.getInstance().hide()
+            }
+        })
+
+        this.addGuideObj({
+            text:'战斗过程采用的是车轮战方式，当一方出战单位败亡后，由下一单位顶上',
+            guideKey:'pk',
+            fun:function(){
+               PKMainUI.getInstance().continueGuide();
+                GuideUI.getInstance().hide()
+            }
         })
 
         this.addGuideObj({

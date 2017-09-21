@@ -30,7 +30,7 @@ class PKResultGroup extends game.BaseContainer {
         //this.teamInfo1.itemRenderer = PKResultItem4
         //this.teamInfo2.itemRenderer = PKResultItem4
         this.mvpMC.addEventListener('choose_monster',this.onChooseMvpMonster,this)
-
+        this.addEventListener(PKResultItem3.VIEW_EVENT,this.onMonsterClick,this)
     }
 
     private onChooseMvpMonster(e){
@@ -61,38 +61,38 @@ class PKResultGroup extends game.BaseContainer {
         }
     }
 
-    //private onMonsterClick(e){
-    //    var data = e.data;
-    //    if(data.teamID == 1)
-    //    {
-    //        var myList = this.selfList
-    //        var enemyList = this.enemyList
-    //    }
-    //    else
-    //    {
-    //        var myList = this.enemyList
-    //        var enemyList = this.selfList
-    //    }
-    //    for(var i=0;i<myList.numChildren;i++)
-    //    {
-    //        var item:any = myList.getChildAt(i);
-    //        if(item.data == data)
-    //            item.setChoose(1);
-    //        else
-    //            item.setChoose(0);
-    //    }
-    //    for(var i=0;i<enemyList.numChildren;i++)
-    //    {
-    //        var item:any = enemyList.getChildAt(i);
-    //        if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
-    //            item.setChoose(2);
-    //        else if(data.die && data.die == i+1)
-    //            item.setChoose(3);
-    //        else
-    //            item.setChoose(0);
-    //    }
-    //    //console.log(e.data);
-    //}
+    private onMonsterClick(e){
+        var data = e.data;
+        if(data.teamID == 1)
+        {
+            var myList = this.selfList
+            var enemyList = this.enemyList
+        }
+        else
+        {
+            var myList = this.enemyList
+            var enemyList = this.selfList
+        }
+        for(var i=0;i<myList.numChildren;i++)
+        {
+            var item:any = myList.getChildAt(i);
+            if(item.data == data)
+                item.setKillType(1);
+            else
+                item.setKillType(0);
+        }
+        for(var i=0;i<enemyList.numChildren;i++)
+        {
+            var item:any = enemyList.getChildAt(i);
+            if(data.kill && data.kill.length > 0 && data.kill.indexOf(i+1) != -1)
+                item.setKillType(2);
+            else if(data.die && data.die == i+1)
+                item.setKillType(3);
+            else
+                item.setKillType(0);
+        }
+        //console.log(e.data);
+    }
 
 
 
@@ -134,93 +134,8 @@ class PKResultGroup extends game.BaseContainer {
         var info1 = [];
         var info2 = [];
 
-
-        var force = (Math.floor(team1Base.f) + commonAdd)
-        var str =  '战力:' + (team1Base.f > team2Base.f?this.createHtml(force,0xFFFF00):force) +
-            (PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0x9FFF82,20):'')
-        this.setHtml(this.selfText,str)
-        for(var i=0;i<team1Base.list.length;i++)
-        {
-            var mid = team1Base.list[i]
-            var specialData = team1Base.mb[mid];
-            var oo = {
-                id:mid,
-                list:info1,
-                specialData:specialData,
-                index:i,
-                teamID:1,
-
-                //totalData:totalData,
-                level:team1Base.mb[mid].lv,
-                win: PKM.winCount[i+team1ID],
-                die: PKM.die[i+team1ID],
-                kill: PKM.kill[i+team1ID],
-                action: PKM.action[i+team1ID]
-            }
-            info1.push(oo)
-
-            //hp = Math.max(specialData.hp,hp)
-            //atk = Math.max(specialData.atk,atk)
-            //speed = Math.max(specialData.speed,speed)
-            //speed2 = Math.min(specialData.speed,speed2)
-        }
-
-        var force = (Math.floor(team2Base.f) + commonAdd)
-        var str =  '战力:' + (team1Base.f < team2Base.f?this.createHtml(force,0xFFFF00):force) +
-            (!PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0xFF8282,20):'')
-        this.setHtml(this.enemyText,str)
-
-        //
-        //this.enemyText.text = '战力:' +  (Math.floor(team2Base.f) + commonAdd);
-        //if(!PKM.isWin)
-        //    this.enemyText.text += ' (剩余血量：'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%)'
-        for(var i=0;i<team2Base.list.length;i++)
-        {
-            var mid = team2Base.list[i]
-            var specialData = team2Base.mb[mid];
-            specialData.id = mid;
-            specialData.isOther = true;
-            var oo = {
-                id:mid,
-                teamID:2,
-                list:info2,
-                specialData:specialData,
-                index:i,
-
-                //totalData:totalData,
-                level:team2Base.mb[mid].lv,
-                win: PKM.winCount[i+team2ID],
-                die: PKM.die[i+team2ID],
-                kill: PKM.kill[i+team2ID],
-                action: PKM.action[i+team2ID]
-            }
-            info2.push(oo)
-
-            //hp = Math.max(specialData.hp,hp)
-            //atk = Math.max(specialData.atk,atk)
-            //speed = Math.max(specialData.speed,speed)
-            //speed2 = Math.min(specialData.speed,speed2)
-        }
-
-        //PKM.resetInfoData(info1,info2);
-        var _info1 = info1.concat();
-        var _info2 = info2.concat();
-        while(_info1.length < 6)
-            _info1.push(null)
-        while(_info2.length < 6)
-            _info2.push(null)
-        this.selfList.dataProvider = new eui.ArrayCollection(_info1)
-        this.enemyList.dataProvider = new eui.ArrayCollection(_info2)
-
-        //this.selfText.textColor = 0xFFFFFF
-        //this.enemyText.textColor = 0xFFFFFF
-        //if(team1Base.f > team2Base.f)
-        //    this.selfText.textColor = 0xffff00
-        //else if(team1Base.f < team2Base.f)
-        //    this.enemyText.textColor = 0xffff00
-
-
-
+        var leaderStr1 = ''
+        var leaderStr2 = ''
         var leader1 = [];
         var leader2 = [];
         if(!team2Base.ld)
@@ -268,25 +183,108 @@ class PKResultGroup extends game.BaseContainer {
 
         if(leader1.length > 0)
         {
-            this.setHtml(this.selfText0, leader1.join(' ') );
-            //this.selfForceGroup.y = 15
-        }
-        else
-        {
-            this.selfText0.text = ''
-            //this.selfForceGroup.y = -5
+            leaderStr1 =  '　' + leader1.join(' /');
         }
 
         if(leader2.length > 0)
         {
-            this.setHtml(this.enemyText0, leader2.join(' ') );
-            //this.enemyForceGroup.y = 15
+            leaderStr2 =  '　' + leader2.join(' /');
         }
-        else
+
+
+
+
+        var force = (Math.floor(team1Base.f) + commonAdd)
+        var str =  '战力:' + (team1Base.f > team2Base.f?this.createHtml(force,0xFFFF00):force) + leaderStr1
+
+        this.setHtml(this.selfText,str)
+        this.setHtml(this.selfText0,(PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0x9FFF82):''))
+
+        for(var i=0;i<team1Base.list.length;i++)
         {
-            this.enemyText0.text = ''
-            //this.enemyForceGroup.y = -5
+            var mid = team1Base.list[i]
+            var specialData = team1Base.mb[mid];
+            var oo = {
+                id:mid,
+                list:info1,
+                specialData:specialData,
+                index:i,
+                teamID:1,
+
+                //totalData:totalData,
+                level:team1Base.mb[mid].lv,
+                win: PKM.winCount[i+team1ID],
+                die: PKM.die[i+team1ID],
+                kill: PKM.kill[i+team1ID],
+                totalDie: PKM.totalDie[i+team1ID],
+                action: PKM.action[i+team1ID]
+            }
+            info1.push(oo)
+
+            //hp = Math.max(specialData.hp,hp)
+            //atk = Math.max(specialData.atk,atk)
+            //speed = Math.max(specialData.speed,speed)
+            //speed2 = Math.min(specialData.speed,speed2)
         }
+
+        var force = (Math.floor(team2Base.f) + commonAdd)
+        var str =  '战力:' + (team1Base.f < team2Base.f?this.createHtml(force,0xFFFF00):force) +  leaderStr2
+            //(!PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0xFF8282,20):'')
+        this.setHtml(this.enemyText,str)
+        this.setHtml(this.enemyText0,(!PKM.isWin?this.createHtml(' 剩余血量:'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%',0xFF8282):''))
+        //
+        //this.enemyText.text = '战力:' +  (Math.floor(team2Base.f) + commonAdd);
+        //if(!PKM.isWin)
+        //    this.enemyText.text += ' (剩余血量：'+Math.max(1,Math.min(100,Math.ceil(PKM.winnerRate*100)))+'%)'
+        for(var i=0;i<team2Base.list.length;i++)
+        {
+            var mid = team2Base.list[i]
+            var specialData = team2Base.mb[mid];
+            specialData.id = mid;
+            specialData.isOther = true;
+            var oo = {
+                id:mid,
+                teamID:2,
+                list:info2,
+                specialData:specialData,
+                index:i,
+
+                //totalData:totalData,
+                level:team2Base.mb[mid].lv,
+                win: PKM.winCount[i+team2ID],
+                die: PKM.die[i+team2ID],
+                kill: PKM.kill[i+team2ID],
+                totalDie: PKM.totalDie[i+team2ID],
+                action: PKM.action[i+team2ID]
+            }
+            info2.push(oo)
+
+            //hp = Math.max(specialData.hp,hp)
+            //atk = Math.max(specialData.atk,atk)
+            //speed = Math.max(specialData.speed,speed)
+            //speed2 = Math.min(specialData.speed,speed2)
+        }
+
+        //PKM.resetInfoData(info1,info2);
+        var _info1 = info1.concat();
+        var _info2 = info2.concat();
+        while(_info1.length < 6)
+            _info1.push(null)
+        while(_info2.length < 6)
+            _info2.push(null)
+        this.selfList.dataProvider = new eui.ArrayCollection(_info1)
+        this.enemyList.dataProvider = new eui.ArrayCollection(_info2)
+
+        //this.selfText.textColor = 0xFFFFFF
+        //this.enemyText.textColor = 0xFFFFFF
+        //if(team1Base.f > team2Base.f)
+        //    this.selfText.textColor = 0xffff00
+        //else if(team1Base.f < team2Base.f)
+        //    this.enemyText.textColor = 0xffff00
+
+
+
+
 
 
 

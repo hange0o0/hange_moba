@@ -64,7 +64,7 @@ class MonsterSkillVO {
                 patt2.lastIndex = 0
                 var result2 =patt2.exec(str2);
                 var hp = Math.floor(parseInt(result2[0])*atk/100);
-                var newStr = str2.replace('伤害','('+hp+')伤害')
+                var newStr = str2.replace('伤害',MyTool.createHtml('('+hp+')',0xE0A44A)+'伤害')
                 returnStr = returnStr.replace(str2,newStr);
             }
 
@@ -73,7 +73,7 @@ class MonsterSkillVO {
                 patt2.lastIndex = 0
                 var result2 =patt2.exec(str2);
                 var hp = Math.floor(parseInt(result2[0])*atk/100);
-                var newStr = str2.replace('攻击力]','攻击力]('+hp+')')
+                var newStr = str2.replace('攻击力]','攻击力]'+ MyTool.createHtml('('+hp+')',0xE0A44A))
                 returnStr = returnStr.replace(str2,newStr);
             }
         }
