@@ -40,7 +40,7 @@
 	<script egret="game" src="bin-debug/game/pk/dayGame/DayLogItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkCommont/EnemyHeadItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkMain/PKResultBase.js"></script>
-	<script egret="game" src="bin-debug/game/pk/mainGame/MainGameUI.js"></script>
+	<script egret="game" src="bin-debug/game/pk/mainGame/MyCardGroupUI.js"></script>
 	<script egret="game" src="bin-debug/commont/MyWindow.js"></script>
 	<script egret="game" src="bin-debug/commont/Net.js"></script>
 	<script egret="game" src="bin-debug/commont/skin/BasePanel.js"></script>
@@ -167,8 +167,8 @@
 	<script egret="game" src="bin-debug/game/pk/mainGame/MainGameTipsHeadItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/mainGame/MainGameTipsItem.js"></script>
 	<script egret="game" src="bin-debug/game/pk/mainGame/MainGameTipsUI.js"></script>
+	<script egret="game" src="bin-debug/game/pk/mainGame/MainGameUI.js"></script>
 	<script egret="game" src="bin-debug/commont/Config.js"></script>
-	<script egret="game" src="bin-debug/game/pk/mainGame/MyCardGroupUI.js"></script>
 	<script egret="game" src="bin-debug/game/pk/mainGame/MyCardTaskUI.js"></script>
 	<script egret="game" src="bin-debug/commont/GameEvent.js"></script>
 	<script egret="game" src="bin-debug/game/pk/pkCommont/MyHeadItem.js"></script>
@@ -274,7 +274,6 @@
 	<script egret="game" src="bin-debug/manager/DragManager.js"></script>
 	<script egret="game" src="bin-debug/manager/EgretManager.js"></script>
 	<script egret="game" src="bin-debug/manager/EventManager.js"></script>
-	<script egret="game" src="bin-debug/manager/FromManager.js"></script>
 	<script egret="game" src="bin-debug/manager/GameManager.js"></script>
 	<script egret="game" src="bin-debug/manager/HelpManager.js"></script>
 	<script egret="game" src="bin-debug/manager/RedPointManager.js"></script>
@@ -285,6 +284,8 @@
 	<script egret="game" src="bin-debug/manager/TimeManager.js"></script>
 	<script egret="game" src="bin-debug/manager/UserManager.js"></script>
 	<script egret="game" src="bin-debug/MsgingUI.js"></script>
+	<script egret="game" src="bin-debug/platform/FromManager.js"></script>
+	<script egret="game" src="bin-debug/platform/QunHeiManager.js"></script>
 	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
 	<script egret="game" src="bin-debug/util/ArrayUtil.js"></script>
 	<script egret="game" src="bin-debug/util/BadWords.js"></script>
@@ -317,6 +318,8 @@
          data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
     </div>
     <script>
+
+
 		var ua = navigator.userAgent.toLowerCase();
 		var isWindow = ua.indexOf('windows') != -1 || ua.indexOf('macintosh') != -1;
 		if(isWindow){

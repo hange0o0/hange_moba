@@ -74,6 +74,8 @@ class PKResultItem3 extends game.BaseItem {
         //    level:team1Base.mb[mid].lv,
         //    win: PKM.winCount[i+team1ID]
 
+        this.touchChildren = this.touchEnabled = true;
+        this.headMC.visible = true;
         this.emptyMC.visible = false;
         this.chooseMC.visible = false;
         this.killMC.visible = false;

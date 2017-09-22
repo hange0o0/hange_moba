@@ -134,8 +134,15 @@ class DayLogItem extends game.BaseItem {
         var team1 =PKM.getLogTeamData(this.data.team1Base,this.data.info1);
         var team2 =PKM.getLogTeamData(this.data.team2Base,this.data.info2);
         //PKM.resetInfoData(team1,team2);
-        this.teamInfo1.dataProvider = new eui.ArrayCollection(team1)
-        this.teamInfo2.dataProvider = new eui.ArrayCollection(team2)
+        if(this.teamInfo1.dataProvider)
+            this.teamInfo1.dataProvider['replaceAll'](team1)
+        else
+            this.teamInfo1.dataProvider = new eui.ArrayCollection(team1)
+
+        if(this.teamInfo2.dataProvider)
+            this.teamInfo2.dataProvider['replaceAll'](team2)
+        else
+            this.teamInfo2.dataProvider = new eui.ArrayCollection(team2)
         var hpText = Math.max(1,Math.min(100,Math.ceil(this.data.rate*100))) + '';
         if(this.data.isWin)
         {

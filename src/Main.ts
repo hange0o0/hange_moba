@@ -61,6 +61,7 @@ class Main extends eui.UILayer {
         EM = EventManager.getInstance();
         CM = CacheManager.getInstance();
         DM = DebugManager.getInstance();
+        FromManager.getInstance().initData();
     }
     /**
      * 配置文件加载完成,开始预加载皮肤主题资源和preload资源组。
@@ -187,6 +188,8 @@ class Main extends eui.UILayer {
         GameManager.container = this;
         GameManager.getInstance().init();
         SoundManager.getInstance().preLoad();
+        if(FromManager.getInstance().login())
+            return;
 
 
         if(_get['debug'] == 100)
