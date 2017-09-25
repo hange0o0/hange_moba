@@ -38,14 +38,15 @@
 			</e:layout>
 		</e:Group>
 	</e:Group>
-	<e:Group horizontalCenter="0" id="btnGroup" bottom="5" locked="true">
+	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
+		<e:Button id="hardBtn" y="20" skinName="Btn_r2Skin" label="精英挑战" x="20"/>
 		<e:Group id="awardBtn" x="180" y="0" width="160" height="56">
 			<e:Button skinName="Btn_r2Skin" y="0" label="补助" x="0"/>
 			<e:Image source="red_point_png" y="0" x="134"/>
 		</e:Group>
 		<e:layout>
-			<e:HorizontalLayout gap="20"/>
+			<e:HorizontalLayout gap="10"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

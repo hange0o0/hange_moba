@@ -130,7 +130,7 @@ class MainGameTipsItem extends game.BaseItem {
                     vo: MonsterVO.getObject(id),
                     isTeam:true,
                     disable:!myCardObj[id],
-                    compare:true,
+                    //compare:true,
                     id: id,
                     index: i,
                     specialData: {lv:teamData.mlevel[id]},
@@ -146,12 +146,12 @@ class MainGameTipsItem extends game.BaseItem {
 
 
             var myForce = UM.getForce()
-            var des:any = (myForce - teamData.force)
+            //var des:any = (myForce - teamData.force)
             var str = '通关战力：' + teamData.force + ' ';
-            if(des > 0)
-                str += this.createHtml('(+'+des+')',0xCC0000)
-            else if(des < 0)
-                str += this.createHtml('('+des+')',0x00cc00)
+            //if(des > 0)
+            //    str += this.createHtml('(+'+des+')',0xCC0000)
+            //else if(des < 0)
+            //    str += this.createHtml('('+des+')',0x00cc00)
             this.setHtml(this.titleText,str);
             //if(myForce > teamData.force)
             //    this.titleBG.fillColor = 0x4F2900

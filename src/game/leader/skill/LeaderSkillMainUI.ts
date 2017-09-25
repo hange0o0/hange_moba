@@ -172,7 +172,7 @@ class LeaderSkillMainUI extends game.BaseContainer {
 
         this.haveCopySkill = copyList.length > 0
         this.redMC.visible = false;
-        if(copyList.length)
+        if(UM.tec.skill.length)
             this.btnGroup.addChildAt(this.getGroup,0)
         else
             MyTool.removeMC(this.getGroup)

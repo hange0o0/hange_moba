@@ -5,15 +5,17 @@ class MainMainItem extends game.BaseItem {
     }
 
     private bgGroup: eui.Group;
-    private barGroup: eui.Group;
     private scoreText: eui.Label;
     private desText: eui.Label;
-    private barMC: eui.Rect;
+    private barGroup: eui.Group;
     private nextText: eui.Label;
+    private barMC: eui.Rect;
     private rateText: eui.Label;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
+    private hardBtn: eui.Button;
     private awardBtn: eui.Group;
+
 
 
 
@@ -27,6 +29,7 @@ class MainMainItem extends game.BaseItem {
     public childrenCreated() {
         this.addBtnEvent(this.awardBtn, this.onAward);
         this.addBtnEvent(this.startBtn, this.onStart,true);
+        this.addBtnEvent(this.hardBtn, this.onHard,true);
         //this.addBtnEvent(this.scoreText, this.onScore);
         EM.addEvent(GameEvent.client.pass_day,this.renew,this)
 
@@ -51,6 +54,9 @@ class MainMainItem extends game.BaseItem {
     }
     private onStart(){
         MainGameManager.getInstance().openPKView();
+    }
+    private onHard(){
+        MainGameManager.getInstance().openPKView(true);
     }
 
     private onScore(){
@@ -97,6 +103,11 @@ class MainMainItem extends game.BaseItem {
         {
             this.btnGroup.addChildAt(this.awardBtn,0);
         }
+
+        if(UM.main_game.hlevel < UM.main_game.level)
+            this.btnGroup.addChild(this.hardBtn);
+        else
+            MyTool.removeMC(this.hardBtn);
 
         //if(UM.main_game.choose)
         //{

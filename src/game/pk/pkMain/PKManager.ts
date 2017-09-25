@@ -802,7 +802,7 @@ class PKManager {
 
             if(!data.g_level_up && data.result)
             {
-                if(this.pkType == PKManager.PKType.MAIN)
+                if(this.pkType == PKManager.PKType.MAIN && !this.pkResult.hard)
                     this.pkAward.desArr.push('职业评分升至：' + UM.main_game.level)
                 else if(this.pkType == PKManager.PKType.DAY)
                     this.pkAward.desArr.push('今日研究进度：' + UM.day_game.level + '/10')

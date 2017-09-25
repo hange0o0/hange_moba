@@ -10,11 +10,10 @@ class MainGameUI extends game.BaseUI {
     private scroller: eui.Scroller;
     private scrollerGroup: eui.Group;
     private enemyGroup: eui.Group;
+    private hardText: eui.Label;
+    private mainGroup: eui.Group;
     private forceGroup: eui.Group;
     private forceText: eui.Label;
-    private awardGroup: eui.Group;
-    private awardMC: eui.Image;
-    private forceRedMC: eui.Image;
     private coinGroup: eui.Group;
     private coinRect: eui.Rect;
     private moneyText: eui.Label;
@@ -36,7 +35,10 @@ class MainGameUI extends game.BaseUI {
 
 
 
+
+
     public enemyArray;
+    public isHard = false;
 
     public constructor() {
         super();
@@ -52,7 +54,7 @@ class MainGameUI extends game.BaseUI {
 
         this.addBtnEvent(this.chooseBtn0, this.onChoose1);
         this.addBtnEvent(this.coinGroup, this.onCoin);
-        this.addBtnEvent(this.forceGroup, this.onTips);
+        //this.addBtnEvent(this.forceGroup, this.onTips);
 
 
         this.enemyList.itemRenderer =  EnemyHeadItem;
@@ -78,18 +80,18 @@ class MainGameUI extends game.BaseUI {
         PKManager.getInstance().reChooseMyCard()
     }
 
-    private onTips(){
-        this.forceRedMC.visible = false;
-        SharedObjectManager.instance.setMyValue('main_force_red',MainGameManager.getInstance().getAwardForce());
-        var myForce = UM.getForce();
-        var enemyForce = MainGameManager.getInstance().getMainForce()
-        var awardForce = MainGameManager.getInstance().getAwardForce()
-        if(myForce > enemyForce)
-            var myForceStr = this.createHtml(myForce,0xFF0000)
-        else
-            var myForceStr = myForce + ''
-        Alert('通关时若我方战力[不高于]关卡战力\n则获得 ['+awardForce+'点] 战力奖励！\n　　[当前我方战力：]'+myForceStr+']\n　　[本关敌方战力：]'+enemyForce+'\n\n注：使用贿赂技能后[不能]获得奖励',null,'知道了')
-    }
+    //private onTips(){
+    //    //this.forceRedMC.visible = false;
+    //    SharedObjectManager.instance.setMyValue('main_force_red',MainGameManager.getInstance().getAwardForce());
+    //    var myForce = UM.getForce();
+    //    var enemyForce = MainGameManager.getInstance().getMainForce()
+    //    var awardForce = MainGameManager.getInstance().getAwardForce()
+    //    if(myForce > enemyForce)
+    //        var myForceStr = this.createHtml(myForce,0xFF0000)
+    //    else
+    //        var myForceStr = myForce + ''
+    //    Alert('通关时若我方战力[不高于]关卡战力\n则获得 ['+awardForce+'点] 战力奖励！\n　　[当前我方战力：]'+myForceStr+']\n　　[本关敌方战力：]'+enemyForce+'\n\n注：使用贿赂技能后[不能]获得奖励',null,'知道了')
+    //}
 
 
     public scrollToEnd(){
@@ -111,9 +113,11 @@ class MainGameUI extends game.BaseUI {
         ShopUI.getInstance().show('coin');
     }
 
-    public show(){
+    public show(isHard?){
         var self = this
-        MainGameManager.getInstance().loadCache(UM.main_game.level+1,function(){
+        this.isHard = isHard;
+        var level = isHard?UM.main_game.hlevel+1:UM.main_game.level+1
+        MainGameManager.getInstance().loadCache(level,function(){
             self.superShow();
         })
     }
@@ -150,10 +154,11 @@ class MainGameUI extends game.BaseUI {
         //    isNPC:true
         //};
         var enemyList = this.enemyArray = [];
-        var arr = MainGameVO.getObject(UM.main_game.level+1).list;
+        var level = this.isHard?UM.main_game.hlevel+1:UM.main_game.level+1
+        var arr = MainGameVO.getObject(level).list;
         var killNum = 0;
-        var fight = MM.getMainForce();
-        var lv = MM.getMainMonsterLevel();
+        var fight = MM.getMainForce(level);
+        var lv = MM.getMainMonsterLevel(level);
         var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
         if(leader)
             MyTool.setColorText(this.leaderText,'[统\n帅\n▼]\n'+ leader);
@@ -162,14 +167,14 @@ class MainGameUI extends game.BaseUI {
         for(var i=0;i<arr.length;i++)
         {
             var id = arr[i]
-            if(MM.isKill(i))
+            if(!this.isHard && MM.isKill(i))
             {
                 killNum ++;
                 continue;
             }
             enemyList.push({
                 vo: MonsterVO.getObject(id),
-                isMain:true,
+                isMain:!this.isHard,
                 isTeam:true,
 
                 id: id,
@@ -208,6 +213,27 @@ class MainGameUI extends game.BaseUI {
                 (<eui.TileLayout>this.enemyList.layout).requestedColumnCount = 3
         }
 
+        if(this.isHard)
+        {
+            this.hardText.visible = true;
+            this.mainGroup.visible = false;
+
+            var hardData = MM.getHardValue(level)
+            var temp = []
+            temp.push('[战力:]' + hardData.force)
+            temp.push('[卡兵:]LV.' + hardData.level)
+            if(UM.main_game.level >= Config.leaderLevel)
+                temp.push('[统帅:]LV.' + hardData.leader)
+            if(UM.main_game.level >= Config.leaderSkillLevel && level < Config.leaderSkillLevel)
+                temp.push('[无技能]')
+            MyTool.setColorText(this.hardText,'限制=> ' + temp.join('　'));
+        }
+        else
+        {
+            this.hardText.visible = false;
+            this.mainGroup.visible = true;
+        }
+
 
         return enemyList;
     }
@@ -215,7 +241,10 @@ class MainGameUI extends game.BaseUI {
     public onShow(){
         GuideManager.getInstance().enableScrollV(this.scroller);
         SoundManager.getInstance().playEffect(SoundConfig.effect_button);
-        this.topUI.setTitle('公会评定-第'+(UM.main_game.level+1)+'关');
+        if(this.isHard)
+            this.topUI.setTitle('精英挑战-第'+(UM.main_game.hlevel+1)+'关');
+        else
+            this.topUI.setTitle('公会评定-第'+(UM.main_game.level+1)+'关');
 
 
 
@@ -245,7 +274,7 @@ class MainGameUI extends game.BaseUI {
 
         var str = '[关卡战力:]' + enemyForce;
         //this.awardForceText.text = '+' + awardForce
-        MyTool.changeGray(this.awardMC,enemyForce<myForce);
+        //MyTool.changeGray(this.awardMC,enemyForce<myForce);
         if(enemyForce < myForce)
             str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)
         else if(enemyForce > myForce)
@@ -253,8 +282,15 @@ class MainGameUI extends game.BaseUI {
 
         MyTool.setColorText(this.forceText,str)
 
-        this.forceRedMC.visible = enemyForce >= myForce && (SharedObjectManager.instance.getMyValue('main_force_red') || 0) <awardForce
-        this.myCardGroup.renew();
+        //this.forceRedMC.visible = enemyForce >= myForce && (SharedObjectManager.instance.getMyValue('main_force_red') || 0) <awardForce
+
+        if(this.isHard)
+        {
+            var hardData = MainGameManager.getInstance().getHardValue();
+            this.myCardGroup.renew({hardData:hardData});
+        }
+        else
+            this.myCardGroup.renew();
     }
     private renewHistory(){
         var arr = MainGameManager.getInstance().logList;
@@ -262,7 +298,7 @@ class MainGameUI extends game.BaseUI {
         for(var i=0;i<arr.length;i++)
         {
             var data = arr[i];
-             if(data.sp.round == UM.main_game.level)
+             if(data.sp.round == UM.main_game.level && data.sp.hard == this.isHard)
                 list.push(data)
         }
         if(list.length > 5)
@@ -272,7 +308,14 @@ class MainGameUI extends game.BaseUI {
 
     private onChoose1(){
         //this.hide();
-        PKDressUI.getInstance().show({pktype:'main_game',data:UM.pk_common.my_card,enemy: this.enemyArray})
+        var oo:any = {pktype:PKManager.PKType.MAIN,data:UM.pk_common.my_card,enemy: this.enemyArray,hard:this.isHard,hardData:null}
+        if(this.isHard)
+        {
+            oo.hardData = MainGameManager.getInstance().getHardValue(UM.main_game.hlevel+1);
+            oo.noSkill = UM.main_game.hlevel < Config.leaderSkillLevel;
+        }
+        PKDressUI.getInstance().show(oo)
+
     }
 
 }

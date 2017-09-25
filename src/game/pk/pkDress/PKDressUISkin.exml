@@ -61,7 +61,7 @@
 			</e:layout>
 		</e:Group>
 	</e:Scroller>
-	<e:Group id="topGroup" x="0" y="145" y.open="440" height="80" x.open="-3" visible="false">
+	<e:Group id="topGroup" x="0" y="145" y.open="440" height="80" x.open="-3">
 		<e:Rect height="100%" width="100%" x="0" y="0" fillAlpha="1" fillColor="0x150B05"/>
 		<e:List id="simpleList" width="470" itemRendererSkinName="PKDressSimpleItemSkin" x="25" verticalCenter="0">
 			<e:layout>
@@ -82,7 +82,7 @@
 		<e:Image source="line_png" x="-5" width="650" bottom="0"/>
 		<e:Image source="line_png" width="650" top="0" x="-5" height="8"/>
 	</e:Group>
-	<e:Group x="0" y="80" height="290" width="640" id="enemyGroup" visible.normal="false" visible="false">
+	<e:Group x="0" y="80" height="290" width="640" id="enemyGroup" visible.normal="false">
 		<ns1:BookBG width="100%" height="100%" x="0" y="0" skinName="BookBGSkin"/>
 		<e:List itemRendererSkinName="EnemyHeadItemSkin" id="enemyList"  horizontalCenter="0" verticalCenter="0" scaleX="0.85" scaleY="0.85">
 			<e:layout>
@@ -90,7 +90,7 @@
 			</e:layout>
 		</e:List>
 	</e:Group>
-	<e:Group id="enemyScrollerGroup" x="0" width="640" top="370" bottom="0" visible="false">
+	<e:Group id="enemyScrollerGroup" x="0" width="640" top="370" bottom="0">
 		<e:Scroller id="monsterScroller" width="640" x="0" top="0" bottom="0" bounces="false">
 		<e:Group>
 			<ns1:MonsterInfoBase id="enemyMonsterInfo" x="0" y="0" skinName="MonsterInfoBaseSkin" scaleX="1" scaleY="1"/>

@@ -176,7 +176,10 @@ class DayLogItem extends game.BaseItem {
 
         if(this.data.sp.type == PKManager.PKType.MAIN)
         {
-            this.titleText.text = '第 '+(this.data.sp.round+1)+' 关';
+            if(this.data.sp.hard)
+                this.titleText.text = '精英 - 第 '+(this.data.sp.round+1)+' 关';
+            else
+                this.titleText.text = '第 '+(this.data.sp.round+1)+' 关';
             this.nickGroup.visible = false;
         }
         else if(this.data.sp.round)

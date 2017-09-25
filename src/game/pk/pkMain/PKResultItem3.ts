@@ -28,19 +28,21 @@ class PKResultItem3 extends game.BaseItem {
     private downTimer = 0;
 
     public childrenCreated() {
-        this.touchChildren = false;
         this.addBtnEvent(this,this.onClick);
-
         this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onMouseDown, this);
-        this.addEventListener(egret.TouchEvent.TOUCH_END, this.onMouseUp, this);
-        this.addEventListener(egret.TouchEvent.TOUCH_CANCEL, this.onMouseUp, this);
+        this.touchChildren = false;
     }
 
     private onMouseDown(){
         this.downTimer = egret.getTimer();
         this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,this.data);
+
+        this.stage.once(egret.TouchEvent.TOUCH_END, this.onMouseUp, this);
+        this.stage.once(egret.TouchEvent.TOUCH_CANCEL, this.onMouseUp, this);
     }
     private onMouseUp(){
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onMouseUp, this);
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_CANCEL, this.onMouseUp, this);
         //egret.callLater(function(){
             this.dispatchEventWith(PKResultItem3.VIEW_EVENT,true,{});
         //},this)
@@ -49,7 +51,9 @@ class PKResultItem3 extends game.BaseItem {
 
     private onClick() {
         if(egret.getTimer() - this.downTimer > 400)
+        {
             return;
+        }
         MonsterList.getInstance().show(this.data.list,this.data.index)
     }
 
@@ -62,7 +66,7 @@ class PKResultItem3 extends game.BaseItem {
             this.killMC.visible = false;
             this.headMC.visible = false;
             this.emptyMC.visible = true;
-            this.touchChildren = this.touchEnabled = false;
+            this.touchEnabled = false;
             for(var i=0;i<3;i++)
             {
                 this['s' + (i+1)].visible = false;
@@ -74,7 +78,7 @@ class PKResultItem3 extends game.BaseItem {
         //    level:team1Base.mb[mid].lv,
         //    win: PKM.winCount[i+team1ID]
 
-        this.touchChildren = this.touchEnabled = true;
+        this.touchEnabled = true;
         this.headMC.visible = true;
         this.emptyMC.visible = false;
         this.chooseMC.visible = false;

@@ -119,7 +119,7 @@ class PKDressChooseItem extends game.BaseItem {
             //str += '\n' + arr[0].v +','+ arr[1].v+',' + arr[2].v;
         }
         this.lvText.x = 5;
-        var lv = UM.getMonsterLevel(this.data.id,this.data.specialData.hard);
+        var lv = UM.getMonsterLevel(this.data.id,this.data.specialData.hardData);
         if(!this.data.specialData.isEqual && lv)
         {
             if(str)

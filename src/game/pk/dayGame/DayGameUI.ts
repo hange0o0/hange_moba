@@ -194,9 +194,9 @@ class DayGameUI extends game.BaseUI {
         var upFun = function(){
             PKDressUI.getInstance().show({pktype:'day_game',data:[DayGameManager.getInstance().data.choose],enemy: self.enemyArray,isEqual:true})
         }
-        var addForce = 1
-        if(MainGameManager.getInstance().testMainAdd(addForce,'挑战胜利后',upFun))
-            return;
+        //var addForce = 1
+        //if(MainGameManager.getInstance().testMainAdd(addForce,'挑战胜利后',upFun))
+        //    return;
         upFun();
     }
 

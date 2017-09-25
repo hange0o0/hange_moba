@@ -199,8 +199,8 @@ class TeamDungeonGameUI extends game.BaseUI {
     }
 
     private renewSelf(){
-        var hard = TeamPVEManager.getInstance().data.game_data.hard;
-        this.myCardGroup.renew({hard:hard});
+        var hardData = TeamDungeonManager.getInstance().hardData[TeamPVEManager.getInstance().data.game_data.hard - 1];
+        this.myCardGroup.renew({hardData:hardData});
         this.renewForce();
     }
 
@@ -220,8 +220,8 @@ class TeamDungeonGameUI extends game.BaseUI {
 
     private onChoose1(){
         //this.hide();
-        var hard = TeamPVEManager.getInstance().data.game_data.hard;
-        PKDressUI.getInstance().show({pktype:'pve_game',data:UM.pk_common.my_card,enemy: this.enemyArray,hard:hard})
+        var hardData = TeamDungeonManager.getInstance().hardData[TeamPVEManager.getInstance().data.game_data.hard - 1];
+        PKDressUI.getInstance().show({pktype:'pve_game',data:UM.pk_common.my_card,enemy: this.enemyArray,hardData:hardData})
     }
 
 }

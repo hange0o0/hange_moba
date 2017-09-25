@@ -96,8 +96,8 @@ class MonsterInfoBase extends game.BaseContainer {
                 GuideManager.getInstance().showGuide(CollectUI.getInstance());
             });
         }
-        if(MainGameManager.getInstance().testMainAdd(this.levelUpForce - UM.getForce(),'升级该卡怪后',upFun))
-            return;
+        //if(MainGameManager.getInstance().testMainAdd(this.levelUpForce - UM.getForce(),'升级该卡怪后',upFun))
+        //    return;
         upFun();
     }
 
@@ -249,9 +249,9 @@ class MonsterInfoBase extends game.BaseContainer {
                 var force = (UM.award_force + UM.tec_force);
                 var levelLimit = 999;
                 var leaderLevel = UM.getLeaderLevel(monsterID);
-                if(specialData.hard)//带难度的
+                if(specialData.hardData)//带难度的
                 {
-                      var hardData = TeamDungeonManager.getInstance().hardData[specialData.hard - 1];
+                      var hardData = specialData.hardData;
                     levelLimit = hardData.level;
                     leaderLevel = Math.min(leaderLevel,hardData.leader)
                     force = Math.min(hardData.force,force);
@@ -268,12 +268,12 @@ class MonsterInfoBase extends game.BaseContainer {
 
                 if(UM.level >= vo.level)
                 {
-                    if(specialData.hard)
+                    if(specialData.hardData)
                         nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + '/'+levelLimit+')</font>'
                     else
                         nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
 
-                    if(specialData.hard)
+                    if(specialData.hardData)
                     {
                          if(vo.level < levelLimit)
                              this.renewLevelUp();

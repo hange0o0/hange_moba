@@ -294,10 +294,9 @@ class MonsterVO {
     }
 
     //可以升级
-    public canLevelUp(hard?){
-        if(hard)
+    public canLevelUp(hardData?){
+        if(hardData)
         {
-            var hardData = TeamDungeonManager.getInstance().hardData[hard - 1];
             var lv = UM.getMonsterLevel(this.id);
             if(lv >= hardData.level)
                 return false;

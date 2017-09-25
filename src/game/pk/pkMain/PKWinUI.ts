@@ -66,7 +66,7 @@ class PKWinUI extends PKResultBase {
             ServerGameEqualManager.getInstance().openPKView(false,onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.MAIN){
-            MainGameManager.getInstance().openPKView(onOpenPKView);
+            MainGameManager.getInstance().openPKView(PKM.pkResult.hard,onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.DAY){
             DayGameUI.getInstance().show();
@@ -127,8 +127,17 @@ class PKWinUI extends PKResultBase {
             else
                 MyTool.removeMC(this.okBtn)
         }
+        else if(PKM.pkType == PKManager.PKType.MAIN && PKM.pkResult.hard)
+        {
+            if(UM.main_game.hlevel < UM.main_game.level)
+                this.btnGroup.addChildAt(this.okBtn,1);
+            else
+                MyTool.removeMC(this.okBtn)
+            this.okBtn.label = '继续挑战';
+        }
         else
         {
+
             this.btnGroup.addChildAt(this.okBtn,1);
             this.okBtn.label = '继续挑战';
         }

@@ -56,7 +56,7 @@ class MyHeadItem extends game.BaseItem {
             if(this.data.stopRed)
                 this.redMC.visible = false;
             else
-                this.redMC.visible = vo.canLevelUp(this.data.specialData.hard);
+                this.redMC.visible = vo.canLevelUp(this.data.specialData.hardData);
         }
 
 

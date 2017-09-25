@@ -67,6 +67,19 @@ class MainGameManager{
          return '守卫' + level;
     }
 
+    //精英限制
+    public getHardValue(level?){
+        level = level || UM.main_game.hlevel + 1;
+        var oo:any = {};
+        var fight = this.getMainForce(level);
+        var lv = this.getMainMonsterLevel(level);
+        var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
+        oo.force = fight;
+        oo.level = lv;
+        oo.leader = Math.ceil(Math.pow(leader,0.9));
+        return oo;
+    }
+
     //杀一个敌人的花费
     public getKillCost(){
         var level = UM.main_game.level + 1;
@@ -91,22 +104,22 @@ class MainGameManager{
     }
 
     //
-    public testMainAdd(addForce,str,fun){
-        var myForce = UM.getForce();
-        var enemyForce = MainGameManager.getInstance().getMainForce()
-        if(myForce <= enemyForce && (myForce + addForce) > enemyForce)
-        {
-            var add = (myForce + addForce) - enemyForce
-            Confirm(str + '，玩家战力将[超过]公会关卡战力(+'+add+')，[无法]获得关卡奖励战力，是否继续？',function(v){
-                if(v == 1)
-                {
-                    fun && fun();
-                }
-            },['取消','继续'])
-            return true;
-        }
-        return false
-    }
+    //public testMainAdd(addForce,str,fun){
+    //    var myForce = UM.getForce();
+    //    var enemyForce = MainGameManager.getInstance().getMainForce()
+    //    if(myForce <= enemyForce && (myForce + addForce) > enemyForce)
+    //    {
+    //        var add = (myForce + addForce) - enemyForce
+    //        Confirm(str + '，玩家战力将[超过]公会关卡战力(+'+add+')，[无法]获得关卡奖励战力，是否继续？',function(v){
+    //            if(v == 1)
+    //            {
+    //                fun && fun();
+    //            }
+    //        },['取消','继续'])
+    //        return true;
+    //    }
+    //    return false
+    //}
 
     //该位置是否被杀了
     public isKill(index){
@@ -139,13 +152,13 @@ class MainGameManager{
     }
 
     ////打开PK对战内容的表现
-    public openPKView(fun?){
+    public openPKView(isHard?,fun?){
         if(UM.getEnergy()<1)
         {
             Alert('体力不足1点，无法进行挑战');
             return;
         }
-        MainGameUI.getInstance().show();
+        MainGameUI.getInstance().show(isHard);
         fun && fun();
     }
 
@@ -186,7 +199,7 @@ class MainGameManager{
     //}
 
     //choose :{list[],ring}   choose_index
-    public pk(choose,fun?){
+    public pk(choose,hard?,fun?){
         var self = this;
         var oo:any = {};
         if(!UM.testEnergy(1))
@@ -194,9 +207,10 @@ class MainGameManager{
             return;
         }
         oo.choose = choose;
+        oo.hard = hard;
 
-        var nowLevel =  UM.main_game.level;
-        if(UM.main_game.level > 1 && UM.main_game.level < 50)
+        var nowLevel =  hard?UM.main_game.hlevel:UM.main_game.level;
+        if(!hard && UM.main_game.level > 1 && UM.main_game.level < 50)
         {
             oo.data_key = md5.incode(JSON.stringify(choose)).substr(-16);
         }
@@ -209,19 +223,28 @@ class MainGameManager{
             UM.addHistory(choose.list.join(','));
             self.lastPKData = msg;
             msg.info.type = PKManager.PKType.MAIN;
-            for(var i=0;i<msg.team2base.list.length;i++){
-                if(!msg.team2base.list[i])
-                {
-                    msg.team2base.list.splice(i,1);
-                    i--;
+
+
+            if(hard)
+            {
+                msg.hard = hard
+                if(nowLevel != UM.main_game.hlevel)
+                    self.mainPass = null
+            }
+            else
+            {
+                for(var i=0;i<msg.team2base.list.length;i++){
+                    if(!msg.team2base.list[i])
+                    {
+                        msg.team2base.list.splice(i,1);
+                        i--;
+                    }
                 }
             }
-
             PKManager.getInstance().onPK(PKManager.PKType.MAIN,msg);
             UM.main_game.pkdata = Config.pk_version;
-            self.addLogList(PKManager.getInstance().getLogData({round:nowLevel,type:PKManager.PKType.MAIN}));
-            if(nowLevel != UM.main_game.level)
-                self.mainPass = null
+            self.addLogList(PKManager.getInstance().getLogData({round:nowLevel,type:PKManager.PKType.MAIN,hard:hard}));
+
             if(fun)
                 fun();
         });
@@ -348,7 +371,7 @@ class MainGameManager{
                 self.lastPKData = data;
                 PKManager.getInstance().onPK(PKManager.PKType.REPLAY,self.lastPKData);
                 var level = data.info.level;
-                self.addLogList(PKManager.getInstance().getLogData({round:level-1 || "??",type:PKManager.PKType.MAIN},UM.main_game.pkdata.time));
+                self.addLogList(PKManager.getInstance().getLogData({round:level-1 || "??",type:PKManager.PKType.MAIN,hard:data.hard},UM.main_game.pkdata.time));
                 if(fun)
                     fun();
             })
@@ -406,19 +429,28 @@ class MainGameManager{
         var leaderData = {1:0,2:0,3:0}
         team1.leader = leaderData;
         team1.skill = UM.tec.use_skill;
+
+        var hardData:any = {leader:99999,level:99999}
+        if(PKDressUI.getInstance().dataIn.hard)  //有限制
+        {
+            hardData = this.getHardValue();
+            if(team1.fight > hardData.fight)
+                team1.fight = hardData.fight
+        }
+
+
         for(var i=0;i<myList.length;i++)
         {
             var mid = myList[i];
-            team1.tec[mid] = UM.getTecAdd('monster',UM.getMonsterLevel(mid));
+            team1.tec[mid] = UM.getTecAdd('monster',Math.min(UM.getMonsterLevel(mid),hardData.level));
 
-            var leaderLevel = UM.getMyLeaderLevel(mid);
+            var leaderLevel = Math.min(UM.getMyLeaderLevel(mid),hardData.leader);
             if(leaderLevel)
             {
                 var mvo = MonsterVO.getObject(mid);
                 leaderData[mvo.mtype] = Math.max(leaderData[mvo.mtype],leaderLevel);
             }
         }
-
         this.getPlayResult(team1,fun);
     }
 

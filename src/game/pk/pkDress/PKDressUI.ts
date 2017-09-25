@@ -62,7 +62,7 @@ class PKDressUI extends game.BaseUI {
 
 
     public isEqual = false;
-    public specialData = {isEqual:false,hard:0};
+    public specialData = {isEqual:false,hardData:null};
     public dataIn;
     public orginData; //卡组的原始数据
     public pkType; //PK类型
@@ -282,7 +282,6 @@ class PKDressUI extends game.BaseUI {
     }
 
     public beforeHide(){
-        egret.Tween.removeTweens(this.redMC);
         this.clearList([this.list,this.simpleList,this.enemyList])
     }
 
@@ -307,7 +306,6 @@ class PKDressUI extends game.BaseUI {
             var self = this;
 
             this.clickTips = true;
-            egret.Tween.removeTweens(this.redMC);
             this.redMC.visible = false;
 
             if(this.pkType == PKManager.PKType.MAIN)
@@ -367,7 +365,7 @@ class PKDressUI extends game.BaseUI {
         this.index = data.index || 0
         this.isEqual = data.isEqual || false;
         this.specialData.isEqual = this.isEqual;
-        this.specialData.hard = data.hard;
+        this.specialData.hardData = data.hardData;
 
         this.randomSetting = null;
 
@@ -637,7 +635,7 @@ class PKDressUI extends game.BaseUI {
     }
 
     private testAddSkill(){
-        if(!this.isEqual && UM.tec.skill.length > 0)
+        if(!this.isEqual && UM.tec.skill.length > 0 && !this.dataIn.noSkill)
         {
             this.scrollerGroup.addChild(this.skillGroup)
         }
@@ -773,7 +771,6 @@ class PKDressUI extends game.BaseUI {
         this.upBtnGroup.removeChildren()
 
         this.changeBtn.skinName = 'Btn_b2Skin'
-        egret.Tween.removeTweens(this.redMC);
         this.redMC.visible = false;
         if(this.dataIn.data.length > 1)
         {
@@ -787,7 +784,7 @@ class PKDressUI extends game.BaseUI {
         else
         {
             this.topUI.setTitle('布阵');
-            if(this.pkType == PKManager.PKType.MAIN || this.pkType == PKManager.PKType.DAY)
+            if((this.pkType == PKManager.PKType.MAIN && this.dataIn.hard) || this.pkType == PKManager.PKType.DAY)
             {
                 this.upBtnGroup.addChild(this.changeGroup);
                 this.changeBtn.label = '过关提示';
@@ -806,8 +803,6 @@ class PKDressUI extends game.BaseUI {
                     if(!this.clickTips)
                     {
                         this.redMC.visible = true;
-                        var tw = egret.Tween.get(this.redMC,{loop:true});
-                        tw.wait(5000).to({alpha:0},250).to({alpha:1},250).to({alpha:0},250).to({alpha:1},250).wait(5000)
                     }
 
                 }
@@ -886,9 +881,9 @@ class PKDressUI extends game.BaseUI {
             {
                 var force = (UM.award_force + UM.tec_force);
                 var levelLimit = 999;
-                if(this.specialData.hard)//带难度的
+                if(this.specialData.hardData)//带难度的
                 {
-                    var hardData = TeamDungeonManager.getInstance().hardData[this.specialData.hard - 1];
+                    var hardData = this.specialData.hardData
                     levelLimit = hardData.level;
                     force = Math.min(hardData.force,force);
                 }
@@ -901,7 +896,7 @@ class PKDressUI extends game.BaseUI {
             temp.atk =  Math.round(vo.atk * (1+fightData.atk/100));
             temp.speed =  Math.round(vo.speed * (1+fightData.speed/100));
             temp.cost =  PKManager.getInstance().getCostByNum(vo.id,this.getMonsterNum(vo.id))
-            temp.leader = UM.getMyLeaderLevel(vo.id,this.specialData.hard);
+            temp.leader = UM.getMyLeaderLevel(vo.id,this.specialData.hardData);
 
             this.atkData.hp.push(temp.hp);
             this.atkData.atk.push(temp.atk);

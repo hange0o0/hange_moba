@@ -177,9 +177,9 @@ class OtherInfoUI extends game.BaseUI {
             myValue:UM.main_game.level, otherValue:dataIn.main_game.level}
         list.push(oo)
 
-        if(!dataIn.main_game.award_force)
-            dataIn.main_game.award_force = 0
-        oo = {title:'获得通关战力',icon:'icon_main_png',des: dataIn.main_game.award_force + '',myValue:UM.main_game.award_force, otherValue:dataIn.main_game.award_force}
+        if(!dataIn.main_game.hlevel)
+            dataIn.main_game.hlevel = 0
+        oo = {title:'精英挑战',icon:'icon_main_png',des: '第' + dataIn.main_game.hlevel + '关',myValue:UM.main_game.hlevel, otherValue:dataIn.main_game.hlevel}
         list.push(oo)
 
         var myData = dataIn.day_game;

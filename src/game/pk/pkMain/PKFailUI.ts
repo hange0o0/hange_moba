@@ -76,7 +76,7 @@ class PKFailUI extends PKResultBase {
 
         }
         else if(PKM.pkType == PKManager.PKType.MAIN){
-            MainGameManager.getInstance().openPKView(onOpenPKView);
+            MainGameManager.getInstance().openPKView(PKM.pkResult.hard,onOpenPKView);
         }
         else if(PKM.pkType == PKManager.PKType.DAY){
             DayGameUI.getInstance().show();

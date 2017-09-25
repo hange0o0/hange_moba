@@ -86,8 +86,8 @@ class UserManager {
             UM.tec.skill = [];
         if(!UM.tec.copy_skill)
             UM.tec.copy_skill = {};
-        if(!UM.main_game.award_force)
-            UM.main_game.award_force = 0;
+        if(!UM.main_game.hlevel)
+            UM.main_game.hlevel = 0;
 
         this.initActive();
          DayGameManager.getInstance().resetDay();
@@ -271,10 +271,10 @@ class UserManager {
             this.tec.leader = {};
         return this.tec.leader[id] || 0
     }
-    public getMyLeaderLevel(id,hard?){
+    public getMyLeaderLevel(id,hardData?){
         var lv = this.getLeaderLevel(id);
-         if(hard)
-            return Math.min(lv,TeamDungeonManager.getInstance().hardData[hard - 1].leader);
+         if(hardData)
+            return Math.min(lv,hardData.leader);
         return lv;
     }
     public getLeaderLevel(id,addExp=0){
@@ -313,9 +313,9 @@ class UserManager {
     public getMainLevel(id){
         return this.tec.main[id] || 0;
     }
-    public getMonsterLevel(id,hard?){
-        if(hard)
-            return Math.min(this.getMonsterLevel(id),TeamDungeonManager.getInstance().hardData[hard - 1].level);
+    public getMonsterLevel(id,hardData?){
+        if(hardData)
+            return Math.min(this.getMonsterLevel(id),hardData.level);
         return this.tec.monster[id] || 0;
     }
 
