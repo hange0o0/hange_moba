@@ -11,10 +11,14 @@ class MainMainItem extends game.BaseItem {
     private nextText: eui.Label;
     private barMC: eui.Rect;
     private rateText: eui.Label;
+    private awardBtn: eui.Group;
+    private awardMC0: eui.Image;
+    private awardMC1: eui.Image;
     private btnGroup: eui.Group;
     private startBtn: eui.Button;
     private hardBtn: eui.Button;
-    private awardBtn: eui.Group;
+
+
 
 
 
@@ -94,18 +98,10 @@ class MainMainItem extends game.BaseItem {
 
 
 
-        MyTool.removeMC(this.awardBtn);
-        if(mainData.awardtime && DateUtil.isSameDay(mainData.awardtime))//已领过奖
-        {
-           //do nothing
-        }
-        else
-        {
-            this.btnGroup.addChildAt(this.awardBtn,0);
-        }
+        this.setAwardBtnVisible(!(mainData.awardtime && DateUtil.isSameDay(mainData.awardtime)))
 
-        if(UM.main_game.hlevel < UM.main_game.level)
-            this.btnGroup.addChild(this.hardBtn);
+        if(UM.main_game.hlevel < UM.main_game.level && UM.main_game.hlevel < MainGameManager.getInstance().maxLevel)
+            this.btnGroup.addChildAt(this.hardBtn,0);
         else
             MyTool.removeMC(this.hardBtn);
 
@@ -157,6 +153,31 @@ class MainMainItem extends game.BaseItem {
         //}
 
     }
+
+    private setAwardBtnVisible(b){
+        this.awardBtn.visible = b;
+        egret.Tween.removeTweens(this.awardMC0)
+        egret.Tween.removeTweens(this.awardMC1)
+        if(b)
+        {
+            this.playOne(this.awardMC0)
+            this.playOne(this.awardMC1)
+        }
+    }
+
+    private playOne(mc)
+    {
+        mc.scaleX = 0
+        mc.scaleY = 0
+        mc.rotation = Math.random()*90
+        var scale = (0.5 + Math.random()*0.5);
+        var cd = 100/scale/scale + Math.random()*700 + 500;
+        var tw:egret.Tween = egret.Tween.get(mc);
+        tw.to({scaleX:scale,scaleY:scale,rotation:mc.rotation + 180},cd).to({scaleX:0,scaleY:0,rotation:mc.rotation + 360},cd).wait(3000 + Math.random()*5000).call(function(){
+            this.playOne(mc);
+        },this)
+    }
+
 
 
 }

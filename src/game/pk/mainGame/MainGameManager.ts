@@ -199,13 +199,15 @@ class MainGameManager{
     //}
 
     //choose :{list[],ring}   choose_index
-    public pk(choose,hard?,fun?){
+    public pk(choose,fun?){
         var self = this;
         var oo:any = {};
         if(!UM.testEnergy(1))
         {
             return;
         }
+        var hard = choose.hard
+        delete choose.hard;
         oo.choose = choose;
         oo.hard = hard;
 
@@ -434,8 +436,8 @@ class MainGameManager{
         if(PKDressUI.getInstance().dataIn.hard)  //有限制
         {
             hardData = this.getHardValue();
-            if(team1.fight > hardData.fight)
-                team1.fight = hardData.fight
+            if(team1.fight > hardData.force)
+                team1.fight = hardData.force
         }
 
 
@@ -457,9 +459,14 @@ class MainGameManager{
     public getPlayResult(team1,fun){
         var dataIn:any = {};
         dataIn.team1 = team1;
-        var arr = MainGameVO.getObject(UM.main_game.level+1).list;
-        var fight = this.getMainForce();
-        var lv = this.getMainMonsterLevel();
+        var level = 0;
+        if(PKDressUI.getInstance().dataIn.hard)
+            level = UM.main_game.hlevel+1;
+        else
+            level = UM.main_game.level+1;
+        var arr = MainGameVO.getObject(level).list;
+        var fight = this.getMainForce(level);
+        var lv = this.getMainMonsterLevel(level);
         var leader = MonsterManager.getInstance().getEnemyMonsterLeader(fight);
         var lvAdd = UM.getTecAdd('monster',lv);
         dataIn.team2 = {"list":arr,"fight":fight,"tec":{}}

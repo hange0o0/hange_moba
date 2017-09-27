@@ -59,9 +59,9 @@ class PKDressChooseItem extends game.BaseItem {
 
     public setChoosing(b){
        if(b)
-           this.monsterGroup.scaleX =this.monsterGroup.scaleY = 1.1;
+           this.monsterGroup.scaleX =this.monsterGroup.scaleY = 1;
         else
-           this.monsterGroup.scaleX =this.monsterGroup.scaleY = 1.3;
+           this.monsterGroup.scaleX =this.monsterGroup.scaleY = 1.1;
 
     }
 
@@ -132,7 +132,7 @@ class PKDressChooseItem extends game.BaseItem {
         }
 
         this.setHtml(this.lvText,str);
-        this.renewLeader();
+        //this.renewLeader();
     }
 
     public renewLeader(leaderData?){

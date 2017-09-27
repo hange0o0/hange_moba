@@ -225,7 +225,7 @@ class MainGameUI extends game.BaseUI {
             if(UM.main_game.level >= Config.leaderLevel)
                 temp.push('[统帅:]LV.' + hardData.leader)
             if(UM.main_game.level >= Config.leaderSkillLevel && level < Config.leaderSkillLevel)
-                temp.push('[无技能]')
+                temp.push('[禁队技]')
             MyTool.setColorText(this.hardText,'限制=> ' + temp.join('　'));
         }
         else
@@ -295,10 +295,11 @@ class MainGameUI extends game.BaseUI {
     private renewHistory(){
         var arr = MainGameManager.getInstance().logList;
         var list = [];
+        var level = this.isHard?UM.main_game.hlevel:UM.main_game.level
         for(var i=0;i<arr.length;i++)
         {
             var data = arr[i];
-             if(data.sp.round == UM.main_game.level && data.sp.hard == this.isHard)
+             if(data.sp.round == level && data.sp.hard == this.isHard)
                 list.push(data)
         }
         if(list.length > 5)

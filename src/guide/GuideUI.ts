@@ -206,6 +206,7 @@ class GuideUI extends game.BaseContainer{
                     var p2 = mc.localToGlobal(rect.x + rect.width,rect.y + rect.height);
 
                 }
+                //console.log(p1,p2)
                 this.setBG(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y,fun == null);
                 if(toBottom)
                     this.tipsGroup.y = GameManager.stage.stageHeight - this.tipsGroup.height;
@@ -238,7 +239,6 @@ class GuideUI extends game.BaseContainer{
                     var tw:egret.Tween = egret.Tween.get(this.handMC);
                     tw.to({x:toX,y:toY,rotation:toRotation},200).call(this.handMove,this)
                 }
-                console.log(toRotation)
 
 
             }
@@ -248,6 +248,7 @@ class GuideUI extends game.BaseContainer{
                 this.handMC.visible = false;
             }
 
+            this.addChild(this.soundBtn);
         },this)
 
     }
@@ -266,10 +267,10 @@ class GuideUI extends game.BaseContainer{
         if(itemClick)
         {
             this.addChild(this.stopClickGroup);
-            this.topRect.height = y;
-            this.leftRect.width = x;
-            this.rightRect.width = x2;
-            this.bottomRect.height = y2;
+            this.topRect.height = Math.max(0,y);
+            this.leftRect.width = Math.max(0,x);
+            this.rightRect.width = Math.max(0,x2);
+            this.bottomRect.height = Math.max(0,y2);
             this.touchEnabled = false;
         }
         else

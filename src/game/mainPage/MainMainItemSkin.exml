@@ -23,7 +23,7 @@
 
 	<e:Group y="300" horizontalCenter="0">
 		<e:Image y="0" x="0" width="480" height="160" source="card_bg_png" scale9Grid="69,75,108,98"/>
-		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="420" height="36" lineSpacing="8" textColor="0xCCB48E" horizontalCenter="0"/>
+		<e:Label id="scoreText" y="30" text="当前等级：1234" textAlign="center" width="420" height="36" lineSpacing="8" textColor="0xCCB48E" horizontalCenter="-10"/>
 		<e:Label id="desText" lineSpacing="8" y="85" textColor="0xCCB48E" text="当前等级：1234" textAlign="center" width="335" horizontalCenter="0.5" height="60" x="10" verticalAlign="middle" size="24"/>
 		<e:Rect height="1" width="400" x="48" y="74" fillColor="0x494747"/>
 		<e:Group id="barGroup" y="104" horizontalCenter="0">
@@ -37,16 +37,17 @@
 				<e:HorizontalLayout/>
 			</e:layout>
 		</e:Group>
+		<e:Group id="awardBtn" x="410" y="15.150000000000091" width="52" height="52">
+			<e:Image x="0" y="0" source="icon_money_many_png"/>
+			<e:Image id="awardMC0" source="coin_mv2_png" x="38.48" y="14.77" anchorOffsetX="50" anchorOffsetY="50"/>
+			<e:Image source="coin_mv2_png" x="18" y="34.85" id="awardMC1" anchorOffsetX="50" anchorOffsetY="50"/>
+		</e:Group>
 	</e:Group>
 	<e:Group horizontalCenter="0" id="btnGroup" bottom="5">
 		<e:Button id="startBtn" y="10" skinName="Btn_r2Skin" label="进入" x="10"/>
-		<e:Button id="hardBtn" y="20" skinName="Btn_r2Skin" label="精英挑战" x="20"/>
-		<e:Group id="awardBtn" x="180" y="0" width="160" height="56">
-			<e:Button skinName="Btn_r2Skin" y="0" label="补助" x="0"/>
-			<e:Image source="red_point_png" y="0" x="134"/>
-		</e:Group>
+		<e:Button id="hardBtn" y="20" label="精英挑战" x="20" skinName="Btn_b2Skin"/>
 		<e:layout>
-			<e:HorizontalLayout gap="10"/>
+			<e:HorizontalLayout gap="20"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

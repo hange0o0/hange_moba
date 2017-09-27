@@ -251,7 +251,7 @@ class MonsterInfoBase extends game.BaseContainer {
                 var leaderLevel = UM.getLeaderLevel(monsterID);
                 if(specialData.hardData)//带难度的
                 {
-                      var hardData = specialData.hardData;
+                    var hardData = specialData.hardData;
                     levelLimit = hardData.level;
                     leaderLevel = Math.min(leaderLevel,hardData.leader)
                     force = Math.min(hardData.force,force);
@@ -268,14 +268,15 @@ class MonsterInfoBase extends game.BaseContainer {
 
                 if(UM.level >= vo.level)
                 {
+                    var mLevel = UM.getMonsterLevel(monsterID);
                     if(specialData.hardData)
-                        nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + '/'+levelLimit+')</font>'
+                        nameStr += '  <font color="#cc9900" size="22">(LV.' + mLevel + '/'+levelLimit+')</font>'
                     else
-                        nameStr += '  <font color="#cc9900" size="22">(LV.' + UM.getMonsterLevel(monsterID) + ')</font>';
+                        nameStr += '  <font color="#cc9900" size="22">(LV.' + mLevel + ')</font>';
 
                     if(specialData.hardData)
                     {
-                         if(vo.level < levelLimit)
+                         if(mLevel < levelLimit)
                              this.renewLevelUp();
                     }
                     else
@@ -322,6 +323,10 @@ class MonsterInfoBase extends game.BaseContainer {
             //先模拟升一级
             UM.tec.monster[monsterID] = (UM.tec.monster[monsterID] || 0) + 1
             var force = UM.award_force + UM.getTecForce()// + UM.getLevelForce());
+            if(hardData)
+            {
+                force = Math.min(force,hardData.force);
+            }
             this.levelUpForce = force;
             fightData = UM.getTecMonsterAdd(monsterID);
             fightData.atk += force;

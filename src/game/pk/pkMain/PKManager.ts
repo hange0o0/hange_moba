@@ -788,7 +788,7 @@ class PKManager {
 
             if(data.main_award)
             {
-                this.pkAward.desArr.push('低战通关战力+' + data.main_award)
+                this.pkAward.desArr.push('精英挑战成功，战力+' + data.main_award)
             }
 
             if(this.pkType == PKManager.PKType.MAP && data.result)

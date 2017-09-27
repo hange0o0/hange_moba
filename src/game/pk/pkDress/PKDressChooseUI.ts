@@ -23,18 +23,33 @@ class PKDressChooseUI extends game.BaseContainer {
     private a7: eui.Image;
     private a8: eui.Image;
     private pkBtn: eui.Button;
-    private randomBtn: eui.Group;
+    private skillGroup: eui.Group;
+    private skillMask: eui.Rect;
+    private skillImg: eui.Image;
+    private addSkillBtn: eui.Image;
     private randomSet: eui.Group;
+    private randomBtn: eui.Group;
     private randomBG: eui.Image;
     private randomIcon: eui.Image;
     private resetBtn: eui.Group;
     private sortBtn: eui.Group;
-    private sortText: eui.Label;
+    private sortMC: eui.Image;
     private cb: eui.CheckBox;
     private desText: eui.Label;
     private deleteBtn: eui.Button;
     private removeGroup: eui.Group;
     private removeText: eui.Label;
+    private leaderGroup: eui.Group;
+    private atkGroup: eui.Group;
+    private atkText: eui.Label;
+    private hpGroup: eui.Group;
+    private hpText: eui.Label;
+    private speedGroup: eui.Group;
+    private speedText: eui.Label;
+
+
+
+
 
 
 
@@ -96,10 +111,10 @@ class PKDressChooseUI extends game.BaseContainer {
 
     public sortIndex = 0;
     private sortArr = [
-        {w:'费用排序',c:0xCCB48E},
-        {w:'血量排序',c:0xFF4747},
-        {w:'攻击排序',c:0xFDC04F},
-        {w:'速度排序',c:0x747DFF}
+        {w:'fu2_png',c:0xCCB48E},
+        {w:'card_icon_0_png',c:0xFF4747},
+        {w:'card_icon_1_png',c:0xFDC04F},
+        {w:'card_icon_3_png',c:0x747DFF}
     ];
     public childrenCreated() {
         super.childrenCreated();
@@ -110,6 +125,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.itemGroup.addChild(this.mvItem);
         this.mvItem.visible = false;
         this.randomSet.visible = false;
+        this.skillImg.mask = this.skillMask
         var des = 126;
         for(var i=1;i<=6;i++)
         {
@@ -159,6 +175,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.addBtnEvent(this.randomBtn, this.onRandom);
         this.addBtnEvent(this.resetBtn, this.onReset);
         this.addBtnEvent(this.sortBtn, this.onSort);
+        this.addBtnEvent(this.skillGroup, this.onSkill);
 
         this.sortBtn.touchChildren = false;
 
@@ -181,6 +198,37 @@ class PKDressChooseUI extends game.BaseContainer {
         this.randomBtn.addEventListener('start_drag',this.onRandomDragStart,this);
         this.randomBtn.addEventListener('move_drag',this.onRandomDragMove,this);
         this.randomBtn.addEventListener('end_drag',this.onRandomDragEnd,this);
+    }
+
+    private onSkill(){
+        LeaderSkillChangeUI.getInstance().show();
+    }
+
+    public setSkillVisible(b){
+        this.skillGroup.visible = b;
+    }
+
+    public renewSkill(){
+        if(!this.skillGroup.visible)
+            return;
+        if(UM.tec.use_skill)
+        {
+            if(!LeaderManager.getInstance().testLeaderSkill())
+            {
+                LeaderManager.getInstance().skillSet(0,()=>{this.renewSkill();})
+                return;
+            }
+            this.skillImg.visible = true
+            this.addSkillBtn.visible = false
+
+            var skillVO = LeaderSkillVO.getObject(UM.tec.use_skill);
+            this.skillImg.source = skillVO.thumb;
+        }
+        else
+        {
+            this.skillImg.visible = false
+            this.addSkillBtn.visible = true
+        }
     }
 
     private onRandomDragStart(){
@@ -233,8 +281,19 @@ class PKDressChooseUI extends game.BaseContainer {
                 cbSelect = true;
             this.cb.selected =  cbSelect;
         }
-        this.sortText.text = this.sortArr[this.sortIndex].w;
-        this.sortText.textColor = this.sortArr[this.sortIndex].c;
+        this.renewSort();
+    }
+
+    private renewSort(){
+        this.sortMC.source = this.sortArr[this.sortIndex].w
+        if(this.sortIndex == 0)
+        {
+            this.sortMC.scaleX = this.sortMC.scaleY = 0.9
+        }
+        else
+        {
+            this.sortMC.scaleX = this.sortMC.scaleY = 0.7
+        }
     }
 
     private onCBChange(){
@@ -246,8 +305,7 @@ class PKDressChooseUI extends game.BaseContainer {
         this.sortIndex ++
         if(this.sortIndex >= this.sortArr.length)
             this.sortIndex = 0;
-        this.sortText.text = this.sortArr[this.sortIndex].w;
-        this.sortText.textColor = this.sortArr[this.sortIndex].c;
+        this.renewSort();
         SharedObjectManager.instance.setValue('monster_sort',this.sortIndex)
         this.dispatchEventWith('sort');
     }
@@ -761,8 +819,30 @@ class PKDressChooseUI extends game.BaseContainer {
         for(var i=0;i<this.mcArray.length;i++) {
             var mc = this.mcArray[i];
             mc.dataChanged();
-            mc.renewLeader(leaderData)
+            //mc.renewLeader(leaderData)
         }
+
+        this.renewLeader(leaderData);
+    }
+
+    public renewLeader(leaderData){
+        this.leaderGroup.removeChildren();
+        if(leaderData[1])
+        {
+            this.leaderGroup.addChild(this.atkGroup);
+            this.atkText.text = '+' + leaderData[1];
+        }
+        if(leaderData[2])
+        {
+            this.leaderGroup.addChild(this.hpGroup);
+            this.hpText.text = '+' + leaderData[2];
+        }
+        if(leaderData[3])
+        {
+            this.leaderGroup.addChild(this.speedGroup);
+            this.speedText.text = '+' + leaderData[3];
+        }
+
     }
 
 }

@@ -154,7 +154,7 @@
 		<e:Group id="monsterGroup" x="240" y="250" anchorOffsetX="133" anchorOffsetY="173" width="266" height="346">
 		<e:Image source="border2_png" x="0" y="0" anchorOffsetX="0" width="266" anchorOffsetY="0" height="346" scale9Grid="11,11,68,68"/>
 		<e:Image id="monsterMC" width="225" height="300" x="8.699999999999989" y="7.449999999999989" scaleX="1.1" scaleY="1.1"/>
-			<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="32" stroke="5" strokeColor="0x000000" bold="true" y="260" scaleX="1" scaleY="1" horizontalCenter="0"/>
+			<e:Label id="skillText" text="奇才顶替" textColor="0xEB911B" size="32" stroke="5" strokeColor="0x000000" bold="true" y="280" scaleX="1" scaleY="1" horizontalCenter="0"/>
 		</e:Group>
 	</e:Group>
 	<e:Group id="jumpBtn" anchorOffsetX="36" anchorOffsetY="36" x="36" y="720" locked="true">

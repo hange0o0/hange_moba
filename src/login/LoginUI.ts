@@ -56,7 +56,8 @@ class LoginUI extends game.BaseUI {
         this.nameText.text = ''
         this.nameText.addEventListener(egret.FocusEvent.FOCUS_OUT,this.onFocusOut,this)
 
-        MyTool.removeMC(this.quickRegisterBtn)
+        if(!Config.isDebug)
+            MyTool.removeMC(this.quickRegisterBtn)
     }
 
     private onMC1(){
