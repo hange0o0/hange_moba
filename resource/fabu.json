@@ -348,6 +348,10 @@
 				{
 					"compress":false,
 					"key":"v19_png"
+				},
+				{
+					"compress":false,
+					"key":"icon_money_many_png"
 				}
 			],
 			"sort":0

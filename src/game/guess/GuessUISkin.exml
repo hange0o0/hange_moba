@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="GuessUISkin" width="640" height="620" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
 	<ns1:BasePanel y="0" skinName="BasePanelSkin" width="640" height="100%" horizontalCenter="0" locked="true"/>
+	<e:Group width="580" horizontalCenter="0" top="150" bottom="120" locked="true">
+		<e:Rect width="100%" height="50%" x="0" y="0" fillColor="0x001333"/>
+		<e:Rect width="100%" height="50%" x="0" fillColor="0x2D0002" bottom="0"/>
+	</e:Group>
 	<e:List id="teamInfo1" y="220" width="630" itemRendererSkinName="PKResultItem4_Skin" height="100" horizontalCenter="0" scaleX="0.9" scaleY="0.9">
 		<e:layout>
-			<e:HorizontalLayout/>
+		<e:HorizontalLayout/>
 		</e:layout>
 	</e:List>
-	<e:List id="teamInfo2" width="630" itemRendererSkinName="PKResultItem4Skin" y="390" height="100" scaleX="0.9" scaleY="0.9" horizontalCenter="0.5">
+	<e:List id="teamInfo2" width="630" itemRendererSkinName="PKResultItem4Skin" y="340" height="100" scaleX="0.9" scaleY="0.9" horizontalCenter="0.5">
 		<e:layout>
 			<e:HorizontalLayout/>
 		</e:layout>
@@ -26,21 +30,21 @@
 		<e:Image source="replay_mc_png" y="8" x="11"/>
 	</e:Group>
 	<e:Image source="line_png" y="140" width="580" horizontalCenter="0" alpha="0.5"/>
-	<e:Group y="170" x="40">
+	<e:Group y="168" x="40">
 		<e:Image source="card_battle2_png" x="0" y="0"/>
 		<e:Label text="进攻方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="27.479999999999976"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="340" x="40">
+	<e:Group y="448" x="40">
 		<e:Image x="0" y="0" source="card_battle_png"/>
 		<e:Label text="防守方" textColor="0xCCB48E" size="24" y="9.999999999999986" x="35.06"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>
 		</e:layout>
 	</e:Group>
-	<e:Button id="team1Btn" label="进攻方 胜" y="160" skinName="Btn_b2Skin" right="35"/>
-	<e:Button id="team2Btn" label="防守方 胜" y="330" skinName="Btn_r2Skin" right="35"/>
+	<e:Button id="team1Btn" label="进攻方 胜" y="160" skinName="Btn_b2Skin" x="445"/>
+	<e:Button id="team2Btn" label="防守方 胜" y="440" skinName="Btn_r2Skin" x="445"/>
 	<e:Label id="awardText" text="奖励：金币+3600" textColor="0xccb48e" y="95" horizontalCenter="0.5"/>
 </e:Skin>

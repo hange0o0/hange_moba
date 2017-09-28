@@ -276,9 +276,9 @@ class MainGameUI extends game.BaseUI {
         //this.awardForceText.text = '+' + awardForce
         //MyTool.changeGray(this.awardMC,enemyForce<myForce);
         if(enemyForce < myForce)
-            str += this.createHtml('(+'+(myForce - enemyForce)+')',0xCC0000)
+            str += this.createHtml('(+'+(myForce - enemyForce)+')',0x00cc00)
         else if(enemyForce > myForce)
-            str += this.createHtml('(-'+(enemyForce-myForce)+')',0x00cc00)
+            str += this.createHtml('(-'+(enemyForce-myForce)+')',0xCC0000)
 
         MyTool.setColorText(this.forceText,str)
 

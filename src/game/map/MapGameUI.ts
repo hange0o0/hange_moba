@@ -210,6 +210,9 @@ class MapGameUI extends game.BaseUI {
         else if(enemyForce > myForce)
             str += this.createHtml('(-'+(enemyForce-myForce)+')',0xCC0000)
 
+        if(MD.enemy.skill)
+            str += '　[队伍技能:]' + LeaderSkillVO.getObject(MD.enemy.skill).name;
+
         MyTool.setColorText(this.desText,str);
     }
 

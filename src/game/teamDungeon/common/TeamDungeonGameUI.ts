@@ -195,7 +195,10 @@ class TeamDungeonGameUI extends game.BaseUI {
         else if(enemyForce > myForce)
             str += this.createHtml('(-'+(enemyForce-myForce)+')',0xCC0000)
 
-        MyTool.setColorText(this.desText,str);
+        if(this.data.skill)
+            str += '　[队伍技能:]' + LeaderSkillVO.getObject(this.data.skill).name;
+
+      MyTool.setColorText(this.desText,str);
     }
 
     private renewSelf(){

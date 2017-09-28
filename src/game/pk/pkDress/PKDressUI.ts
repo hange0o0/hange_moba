@@ -758,12 +758,12 @@ class PKDressUI extends game.BaseUI {
         else
         {
             this.topUI.setTitle('布阵');
-            if((this.pkType == PKManager.PKType.MAIN && this.dataIn.hard) || this.pkType == PKManager.PKType.DAY)
+            if((this.pkType == PKManager.PKType.MAIN && (this.dataIn.hard) || UM.main_game.level <5) || this.pkType == PKManager.PKType.DAY)
             {
                 this.upBtnGroup.addChild(this.changeGroup);
                 this.changeBtn.label = '过关提示';
-                if(this.pkType == PKManager.PKType.MAIN &&  UM.main_game.level < 100 &&
-                    !(UM.main_game.show_pass || MainGameManager.getInstance().freeShowPass())
+                if(this.pkType == PKManager.PKType.MAIN &&  UM.main_game.hlevel < 100 &&
+                    !(UM.main_game.show_pass || UM.main_game.level < 5 || MainGameManager.getInstance().freeShowPass())
                 )
                 {
                     this.changeBtn.label = '提示 ('+((UM.main_game.fail || 0))+'/'+MainGameManager.getInstance().getFreeMax()+')';

@@ -93,13 +93,13 @@ class MainGameManager{
     }
 
     public getFreeMax(){
-        return Math.ceil(UM.main_game.level/5);
+        return Math.ceil(UM.main_game.hlevel/5);
     }
     public freeShowPass(){
-        return UM.main_game.level < 5 || (UM.main_game.level < 100 && (UM.main_game.fail || 0) >= this.getFreeMax())
+        return UM.main_game.hlevel < 5 || (UM.main_game.hlevel < 100 && (UM.main_game.fail || 0) >= this.getFreeMax())
     }
     public getTipsCost(level?){
-        level = ((UM.main_game.level || level) - 5 + 1)
+        level = ((UM.main_game.hlevel || level) - 5 + 1)
         return Math.ceil(level/10);
     }
 
@@ -141,6 +141,22 @@ class MainGameManager{
     public getMainMonsterLevel(level?){
         var force = this.getMainForce(level);
         return MonsterManager.getInstance().getEnemyMonsterLevel(force);
+    }
+
+    //只有100个技能
+    public getMainSkill(level){
+         if(level<=200)
+            return 0;
+        var dec = level - 200
+
+        for(var i=0;i<10;i++)
+        {
+            var temp = 100 + i*100;
+            var skillRate = 10 + i*10;
+            if(dec <= temp)
+                return dec%skillRate || skillRate
+        }
+        return dec%100 || 100;
     }
 
 
@@ -301,13 +317,15 @@ class MainGameManager{
     }
 
     public getMainPass(fun?){
-        if(this.mainPass && TM.now() - this.mainPass.time < 5*60)
+        var self = this;
+        var oo:any = {};
+        oo.level = PKDressUI.getInstance().dataIn.hard ? UM.main_game.hlevel+1 : UM.main_game.level+1
+        if(this.mainPass && this.mainPass.level == oo.level && TM.now() - this.mainPass.time < 5*60)
         {
             fun && fun();
             return;
         }
-        var self = this;
-        var oo:any = {};
+
         Net.addUser(oo);
         Net.send(GameEvent.mainGame.get_main_pass,oo,function(data){
             var msg = data.msg;
@@ -326,6 +344,7 @@ class MainGameManager{
             }
             self.mainPass = {
                 list:msg.list,
+                level:oo.level,
                 time:TM.now()
             }
             for(var i=0;i<msg.list.length;i++)
@@ -438,6 +457,8 @@ class MainGameManager{
             hardData = this.getHardValue();
             if(team1.fight > hardData.force)
                 team1.fight = hardData.force
+            if(UM.main_game.hlevel < Config.leaderSkillLevel)
+                team1.skill = 0;
         }
 
 

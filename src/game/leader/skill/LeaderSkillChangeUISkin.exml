@@ -20,10 +20,10 @@
 		<e:Label id="desText" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" y="60" size="24" left="160" right="30" lineSpacing="5" textColor="0xccb48e"/>
 	</e:Group>
 	<e:Group horizontalCenter="0" bottom="40">
-		<e:Button id="noSkillBtn" label="不使用技能" x="340" y="14" skinName="Btn_b2Skin"/>
-		<e:Button id="backBtn" label="确定" x="330" y="4" skinName="Btn_r2Skin"/>
+		<e:Button id="noSkillBtn" label="不使用技能" x="340" y="14" skinName="Btn_b2Skin" width="200"/>
+		<e:Button id="backBtn" label="确定" x="330" y="4" skinName="Btn_r2Skin" width="200"/>
 		<e:layout>
-		<e:HorizontalLayout gap="20"/>
+		<e:HorizontalLayout gap="50"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>
