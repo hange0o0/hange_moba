@@ -7,6 +7,17 @@ class FromManager {
     }
 
     public from = 'abs'
+    public h5Form = false
+
+    public setForm(from){
+        this.from = from;
+        this.h5Form = true
+
+
+        _get['host'] = 'com'
+        _get['debug_server'] = '1'
+        _get['debug'] = '1'
+    }
 
     public get isTapTap(){
         return _get['from'] == 'taptap';
@@ -23,12 +34,75 @@ class FromManager {
        }
     }
 
-    public login(){
+    public getManager():any{
         if(this.isQunHei)
         {
-            QunHeiManager.getInstance().login()
+            return QunHeiManager.getInstance();
+        }
+    }
+
+
+
+
+
+    /////////////////////////////////////////
+    public getDefaultNick(){
+        var mgr = this.getManager()
+        if(mgr && mgr.getDefaultNick)
+        {
+            return mgr.getDefaultNick();
+        }
+        return null;
+    }
+
+
+    //登录
+    public login(){
+        var mgr = this.getManager()
+        if(mgr && mgr.login)
+        {
+            mgr.login();
             return true;
         }
         return false;
     }
+
+    //取登录数据
+    public getLoginBase(){
+        var mgr = this.getManager()
+        if(mgr && mgr.getLoginBase)
+        {
+            return mgr.getLoginBase();
+        }
+        return null;
+    }
+
+    //创角上服
+    public newRole(){
+        var mgr = this.getManager()
+        if(mgr && mgr.newRole)
+        {
+            mgr.newRole();
+        }
+    }
+
+    //登录上服
+    public loginRole(){
+        var mgr = this.getManager()
+        if(mgr && mgr.loginRole)
+        {
+            mgr.loginRole();
+        }
+    }
+
+    //登录上服
+    public pay(id,successFun){
+        var mgr = this.getManager()
+        if(mgr && mgr.pay)
+        {
+            mgr.pay(id,successFun);
+        }
+    }
+
+
 }

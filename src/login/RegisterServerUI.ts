@@ -31,6 +31,9 @@ class RegisterServerUI extends game.BaseWindow {
 
         this.nameText.restrict = "a-zA-Z0-9_\u0391-\uFFE5";
         this.nameText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
+
+
+
     }
 
     private onChange(){
@@ -50,6 +53,15 @@ class RegisterServerUI extends game.BaseWindow {
     public onShow(){
         this.chooseHead = false;
         this.onRandom();
+        if(FromManager.getInstance().h5Form)
+        {
+            var nick = FromManager.getInstance().getDefaultNick()
+            if(nick)
+                this.nameText.text = nick;
+            MyTool.removeMC(this.backBtn);
+        }
+
+
         //if(Config.platform == 'egret' && EgretManager.getInstance().nickName)
         //{
         //    this.nameText.text = EgretManager.getInstance().nickName;

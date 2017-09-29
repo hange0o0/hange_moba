@@ -368,6 +368,10 @@ class LoginManager{
     public loginServer(serverid,fun?){
         var self = this;
         var oo:any = {};
+        if(FromManager.getInstance().h5Form)
+        {
+            oo = FromManager.getInstance().getLoginBase();
+        }
         //oo.serverid = serverid;
         oo.id = this.gameid;
         oo.cdkey = this.openKey;
@@ -410,10 +414,11 @@ class LoginManager{
 
 
             MainPageUI.getInstance().show();
-            if(!self.isAuto)
+            if(!self.isAuto && !FromManager.getInstance().h5Form)
                 PopUpManager.movieChange(LoginServerUI.getInstance(),MainPageUI.getInstance(),1)
             self.isAuto = false;
             MainLoadingUI.getInstance().hide();
+            FromManager.getInstance().loginRole()
             //LoginServerUI.getInstance().hide();
             if(fun)
                 fun();
@@ -487,6 +492,10 @@ class LoginManager{
     public registerServer(nick,head,serverid,fun?){
         var self = this;
         var oo:any = {};
+        if(FromManager.getInstance().h5Form)
+        {
+            oo = FromManager.getInstance().getLoginBase();
+        }
         oo.nick = nick;
         oo.head = head;
         oo.id = this.gameid;
@@ -519,11 +528,24 @@ class LoginManager{
             }
 
             //UM.fill(msg.data);
+            if(FromManager.getInstance().h5Form)
+            {
+                FromManager.getInstance().newRole()
+                UM.nick = nick;
+                self.myServer[serverid] = nick;
+                self.lastServer = serverid;
+                self.loginServer(serverid)
+            }
+            else
+            {
+                self.addUserServer(serverid,nick);
+                self.myServer[serverid] = nick;
+                self.lastServer = serverid;
+                LoginServerUI.getInstance().onShow();
+            }
 
-            self.addUserServer(serverid,nick);
-            self.myServer[serverid] = nick;
-            self.lastServer = serverid;
-            LoginServerUI.getInstance().onShow();
+
+
             RegisterServerUI.getInstance().hide();
             //self.lastServer = serverid;
             //self.writeDB();
