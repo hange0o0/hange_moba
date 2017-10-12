@@ -99,6 +99,8 @@ class SettingUI extends game.BaseWindow {
         ];
 
         this.logBtn.visible = LoginManager.getInstance().logText.text;
+        if(FromManager.getInstance().h5Form)
+            MyTool.removeMC(this.loginBtn)
     }
 
 

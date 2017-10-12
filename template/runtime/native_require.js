@@ -9,9 +9,9 @@ var game_file_list = [
 	"libs/modules/game/game.js",
 	"libs/modules/tween/tween.js",
 	"bin-debug/commont/BaseUI.js",
-	"bin-debug/game/pk/dayGame/DayLogItem.js",
 	"bin-debug/game/pk/pkCommont/EnemyHeadItem.js",
 	"bin-debug/game/pk/pkMain/PKResultBase.js",
+	"bin-debug/game/pk/dayGame/DayLogItem.js",
 	"bin-debug/game/pk/mainGame/MyCardGroupUI.js",
 	"bin-debug/commont/MyWindow.js",
 	"bin-debug/commont/Net.js",
@@ -140,7 +140,7 @@ var game_file_list = [
 	"bin-debug/game/pk/mainGame/MainGameTipsItem.js",
 	"bin-debug/game/pk/mainGame/MainGameTipsUI.js",
 	"bin-debug/game/pk/mainGame/MainGameUI.js",
-	"bin-debug/commont/Config.js",
+	"bin-debug/util/StringUtil.js",
 	"bin-debug/game/pk/mainGame/MyCardTaskUI.js",
 	"bin-debug/commont/GameEvent.js",
 	"bin-debug/game/pk/pkCommont/MyHeadItem.js",
@@ -200,6 +200,7 @@ var game_file_list = [
 	"bin-debug/game/rank/RankItem.js",
 	"bin-debug/game/rank/RankManager.js",
 	"bin-debug/game/rank/RankUI.js",
+	"bin-debug/game/shop/PayingUI.js",
 	"bin-debug/game/shop/PayManager.js",
 	"bin-debug/game/shop/ShopItem.js",
 	"bin-debug/game/shop/ShopItem2.js",
@@ -271,7 +272,7 @@ var game_file_list = [
 	"bin-debug/util/ObjectUtil.js",
 	"bin-debug/util/PopUpManager.js",
 	"bin-debug/util/ShapeObject.js",
-	"bin-debug/util/StringUtil.js",
+	"bin-debug/commont/Config.js",
 	//----auto game_file_list end----
 ];
 

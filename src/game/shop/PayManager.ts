@@ -190,22 +190,23 @@ class PayManager{
             fun();
     }
 
-    ////买体力
-    //public buyEnergy(fun?){
-    //    var self = this;
-    //    var oo:any = {};
-    //    Net.addUser(oo);
-    //    Net.send(GameEvent.pay.buy_energy,oo,function(data){
-    //        var msg = data.msg;
-    //        if(msg.fail == 1)
-    //        {
-    //            Alert('钻石不够');
-    //            return;
-    //        }
-    //
-    //        if(fun)
-    //            fun();
-    //    });
-    //}
+    public pay_confirm(order,goodsid,fun?){
+        var self = this;
+        var oo:any = {};
+        oo.order = order;
+        Net.addUser(oo);
+        Net.send(GameEvent.pay.pay_confirm,oo,function(data){
+            var msg = data.msg;
+            if(msg.fail)
+            {
+                Alert('未找到订单记录');
+                return;
+            }
+            self.onBuyFinish(goodsid,fun);
+
+            //if(fun)
+            //    fun();
+        });
+    }
 
 }

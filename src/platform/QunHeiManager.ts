@@ -37,7 +37,7 @@ class QunHeiManager {
     public login(){
         var LM = LoginManager.getInstance();
         var baseServerID = parseInt(_get['serverid']);
-        var serverid = baseServerID// + 100;
+        var serverid = baseServerID + 100;
         LM.getServerList(function(){
             LM.gameid = 'qh'+_get['username'];
             LM.loginServer(serverid,null)
@@ -58,8 +58,9 @@ class QunHeiManager {
 
     //支付
     public pay(goodsid,onSuccess){
+        var localOrder = (TM.now() + '').substr(-5);
         var goodData = PayManager.getInstance().shopItemObj[goodsid];
-        var ext = UM.gameid+'|'+Net.getInstance().serverID+'|' + goodsid;
+        var ext = UM.gameid+'|'+Net.getInstance().serverID+'|' + goodsid + '|' + localOrder;
         var paydata = {
             "userId":_get['username'],
             "gid":'3697',
@@ -82,5 +83,7 @@ class QunHeiManager {
             else
                 alert(code+','+msg);
         });
+
+        PayingUI.getInstance().show(localOrder,goodsid)
     }
 }

@@ -81,6 +81,8 @@ class LoginManager{
         var oo = {my:[],other:[]};
         for(var s in this.serverList)
         {
+            if(this.serverList[s].hide)
+                continue;
             if(this.serverList[s].timeNum > TM.now())
                 continue;
             if(this.myServer[s])//有号

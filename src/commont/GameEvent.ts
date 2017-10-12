@@ -116,6 +116,7 @@ class GameEvent {
     }
     public static pay = {
         buy_local:'buy_local',
+        pay_confirm:'pay_confirm',
         buy_rmb:'buy_rmb'
     }
 

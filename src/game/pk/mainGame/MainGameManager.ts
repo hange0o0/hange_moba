@@ -143,20 +143,21 @@ class MainGameManager{
         return MonsterManager.getInstance().getEnemyMonsterLevel(force);
     }
 
-    //只有100个技能
+    //只有50个技能
     public getMainSkill(level){
          if(level<=200)
             return 0;
         var dec = level - 200
+        var maxSkill = 50;
 
         for(var i=0;i<10;i++)
         {
             var temp = 100 + i*100;
-            var skillRate = 10 + i*10;
+            var skillRate = Math.min(maxSkill,5 + i*5);
             if(dec <= temp)
                 return dec%skillRate || skillRate
         }
-        return dec%100 || 100;
+        return dec%maxSkill || maxSkill;
     }
 
 

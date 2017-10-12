@@ -167,6 +167,7 @@
     "src/game/pk/vedio/VideoUI2Skin.exml",
     "src/game/rank/RankItemSkin.exml",
     "src/game/rank/RankUISkin.exml",
+    "src/game/shop/PayingUISkin.exml",
     "src/game/shop/ShopItem2Skin.exml",
     "src/game/shop/ShopItemSkin.exml",
     "src/game/shop/ShopUISkin.exml",
