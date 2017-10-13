@@ -15,7 +15,7 @@ class Config {
     public static m_version: number = 1;
     public static pk_version: number = 4;
     public static cdn: string = "";
-    public static localResRoot:string = "resource/";
+    public static localResRoot:string = "resource2/";
 
 
 

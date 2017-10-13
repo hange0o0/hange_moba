@@ -361,6 +361,7 @@ class MapMainUI extends game.BaseUI {
     public onMapChange(){
         var MD = MapData.getInstance();
         this.topUI.setTitle('第'+MD.level+'据点')
+        //this.bg.source = Config.localResRoot + 'pk_bg/pk_bg'+(MD.level%20 || 20)+'.jpg';
         this.bg.source = 'pk_bg'+(MD.level%20 || 20)+'_jpg';
 
 

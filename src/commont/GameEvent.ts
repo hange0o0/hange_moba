@@ -33,6 +33,7 @@ class GameEvent {
         PVE_CHANGE:'PVE_CHANGE',
 
         leader_skill_change:'leader_skill_change',
+        leader_skill_copy:'leader_skill_copy',
 
 
 

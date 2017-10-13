@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="MapMainUISkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing" height="1100" width="640">
-	<e:Image id="bg" x="0" y="0" source="pk_bg10_jpg" locked="true"/>
+	<e:Image id="bg" x="0" y="0" source="" locked="true"/>
 	<e:Group id="con" width="640" x="0" top="110" bottom="300"/>
 	<ns1:TopUI id="topUI" x="0" y="0" skinName="TopUISkin"/>
 	<e:Image source="black_bg_png" x="0" y="104" height="50" width="560"/>

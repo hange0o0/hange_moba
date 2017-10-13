@@ -63,7 +63,7 @@ class MainLoadingUI extends egret.Sprite {
 
         this.icon = new eui.Image();
         this.addChild(this.icon)
-        this.icon.source =  Config.localResRoot + 'game_assets/logo/logo_180.png';
+        this.icon.source = 'resource/game_assets/logo/logo_180.png';
         this.icon.x = 230;
 
     }

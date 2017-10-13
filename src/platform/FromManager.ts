@@ -6,17 +6,21 @@ class FromManager {
         return this._instance;
     }
 
-    public from = 'abs'
+    public from = 'none'
     public h5Form = false
 
     public setForm(from){
         this.from = from;
         this.h5Form = true
+        if(from == 'test')
+            this.h5Form = false
+        Config.localResRoot = '../' + Config.localResRoot
 
 
-        _get['host'] = 'com'
-        _get['debug_server'] = '1'
-        _get['debug'] = '1'
+        //本地测试用
+        //_get['host'] = 'com'
+        //_get['debug_server'] = '1'
+        //_get['debug'] = '1'
     }
 
     public get isTapTap(){

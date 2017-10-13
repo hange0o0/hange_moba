@@ -42,7 +42,7 @@ class DayGameManager{
     }
 
     public resetDay(){
-        if(!DateUtil.isSameDay(UM.day_game.lasttime))
+        if(UM.day_game && !DateUtil.isSameDay(UM.day_game.lasttime))
         {
             UM.day_game.lasttime = TM.now()
             UM.day_game.level = 0;

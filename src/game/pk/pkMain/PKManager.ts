@@ -351,6 +351,7 @@ class PKManager {
                 break;
         }
 
+        //return  Config.localResRoot + 'pk_bg/pk_bg'+sceneID+'.jpg';
         return 'pk_bg'+sceneID+'_jpg';
     }
 

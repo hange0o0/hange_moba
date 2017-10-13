@@ -58,6 +58,48 @@ class AniManager {
            16:[11,24,25,26,28,29,34,106,112,115,116,118,120,121,122,123,140,141,142,161,175],
         }
 
+        var aniList = [6, 8, 10, 14, 16, 21, 24, 28, 29, 30, 34, 39, 103, 104, 106, 107, 108, 111, 112, 113, 114, 115, 116, 117, 118, 120, 122, 123, 126, 127, 128, 133, 140, 149, 153];
+        var data = {groups:[],resources:[]}
+        var arr = data.resources;
+        var addResources = function(name){
+            var path = "ani/skill" + name+'.'
+            arr.push({
+                "name":"skill" + name + "_json",
+                "type":"json",
+                "url": path + 'json'
+            })
+            arr.push({
+                "name":"skill" + name + "_png",
+                "type":"image",
+                "url": path + 'png'
+            })
+        }
+        for(var i=0;i<aniList.length;i++)
+        {
+            addResources(aniList[i]);
+            this.aniList.push('skill' + aniList[i]);
+        }
+        for(var i=1;i<=8;i++)
+        {
+            arr.push({
+                "name":"bullet" + i + "_png",
+                "type":"image",
+                "url": "ani/bullet" + i+'.png'
+            })
+        }
+        for(var i=1;i<=20;i++)
+        {
+            arr.push({
+                "name":"pk_bg" + i + "_jpg",
+                "type":"image",
+                "url": "pk_bg/pk_bg" + i+'.jpg'
+            })
+        }
+        RES.parseConfig(data, Config.localResRoot);
+
+
+
+
         for(var s in sound)
         {
             var temp = sound[s];
@@ -70,12 +112,12 @@ class AniManager {
             }
         }
 
-        for(var i=1;i<180;i++)
-        {
-            if(!RES.hasRes('skill' + i + '_json'))
-                continue;
-            this.aniList.push('skill' + i);
-        }
+        //for(var i=1;i<180;i++)
+        //{
+        //    if(!RES.hasRes('skill' + i + '_json'))
+        //        continue;
+        //    this.aniList.push('skill' + i);
+        //}
     }
 
     public getImg(source){

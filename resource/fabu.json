@@ -251,23 +251,11 @@
 				},
 				{
 					"compress":false,
-					"key":"map_item2_png"
-				},
-				{
-					"compress":false,
-					"key":"map_item1_png"
-				},
-				{
-					"compress":false,
 					"key":"menu_icon_9_png"
 				},
 				{
 					"compress":false,
 					"key":"menu_icon_8_png"
-				},
-				{
-					"compress":false,
-					"key":"map_item3_png"
 				},
 				{
 					"compress":false,
@@ -1026,130 +1014,6 @@
 		},
 		{
 			"compress":false,
-			"key":"skill16_png"
-		},
-		{
-			"compress":false,
-			"key":"skill28_png"
-		},
-		{
-			"compress":false,
-			"key":"skill6_png"
-		},
-		{
-			"compress":false,
-			"key":"skill108_png"
-		},
-		{
-			"compress":false,
-			"key":"skill113_png"
-		},
-		{
-			"compress":false,
-			"key":"skill116_png"
-		},
-		{
-			"compress":false,
-			"key":"skill149_png"
-		},
-		{
-			"compress":false,
-			"key":"skill120_png"
-		},
-		{
-			"compress":false,
-			"key":"skill112_png"
-		},
-		{
-			"compress":false,
-			"key":"skill111_png"
-		},
-		{
-			"compress":false,
-			"key":"skill126_png"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg2_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg3_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg4_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg5_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg6_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg7_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg8_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg10_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg11_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg12_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg13_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg14_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg15_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg16_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg18_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg19_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg20_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg1_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg9_jpg"
-		},
-		{
-			"compress":false,
-			"key":"pk_bg17_jpg"
-		},
-		{
-			"compress":false,
 			"key":"fire_top_jpg"
 		},
 		{
@@ -1166,158 +1030,6 @@
 		},
 		{
 			"compress":false,
-			"key":"skill122_png"
-		},
-		{
-			"compress":false,
-			"key":"skill123_png"
-		},
-		{
-			"compress":false,
-			"key":"skill127_png"
-		},
-		{
-			"compress":false,
-			"key":"skill128_png"
-		},
-		{
-			"compress":false,
-			"key":"skill133_png"
-		},
-		{
-			"compress":false,
-			"key":"skill140_png"
-		},
-		{
-			"compress":false,
-			"key":"skill153_png"
-		},
-		{
-			"compress":false,
-			"key":"skill24_png"
-		},
-		{
-			"compress":false,
-			"key":"skill29_png"
-		},
-		{
-			"compress":false,
-			"key":"skill34_png"
-		},
-		{
-			"compress":false,
-			"key":"skill106_png"
-		},
-		{
-			"compress":false,
-			"key":"skill107_png"
-		},
-		{
-			"compress":false,
-			"key":"skill114_png"
-		},
-		{
-			"compress":false,
-			"key":"skill115_png"
-		},
-		{
-			"compress":false,
-			"key":"skill117_png"
-		},
-		{
-			"compress":false,
-			"key":"skill118_png"
-		},
-		{
-			"compress":false,
-			"key":"m0_jpg"
-		},
-		{
-			"compress":false,
-			"key":"m1_jpg"
-		},
-		{
-			"compress":false,
-			"key":"m2_jpg"
-		},
-		{
-			"compress":false,
-			"key":"m3_jpg"
-		},
-		{
-			"compress":false,
-			"key":"m4_jpg"
-		},
-		{
-			"compress":false,
-			"key":"m5_jpg"
-		},
-		{
-			"compress":false,
-			"key":"m6_jpg"
-		},
-		{
-			"compress":false,
-			"key":"skill10_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet3_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet4_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet1_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet2_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet5_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet6_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet7_png"
-		},
-		{
-			"compress":false,
-			"key":"bullet8_png"
-		},
-		{
-			"compress":false,
-			"key":"skill8_png"
-		},
-		{
-			"compress":false,
-			"key":"skill21_png"
-		},
-		{
-			"compress":false,
-			"key":"skill30_png"
-		},
-		{
-			"compress":false,
-			"key":"skill103_png"
-		},
-		{
-			"compress":false,
-			"key":"skill104_png"
-		},
-		{
-			"compress":false,
-			"key":"skill14_png"
-		},
-		{
-			"compress":false,
 			"key":"bg2_jpg"
 		},
 		{
@@ -1331,10 +1043,6 @@
 		{
 			"compress":false,
 			"key":"main_bottom_mv_png"
-		},
-		{
-			"compress":false,
-			"key":"skill39_png"
 		},
 		{
 			"compress":false,

@@ -1,20 +1,12 @@
 {
 	"groups":[
 		{
-			"keys":"main_game1_json,main_game2_json,main_game3_json",
+			"keys":"main_game1_json,main_game2_json,main_game3_json,main_game4_json,main_game5_json,main_game6_json,main_game7_json,main_game8_json",
 			"name":"js"
 		},
 		{
 			"keys":"main4_png,main1_png,main2_png,main3_png,team1_jpg,main5_png,team2_jpg",
 			"name":"build"
-		},
-		{
-			"keys":"skill28_json,skill28_png,skill6_json,skill6_png,skill108_png,skill113_png,skill116_png,skill149_png,skill120_png,skill112_png,skill111_png,skill126_png,skill108_json,skill113_json,skill116_json,skill149_json,skill126_json,skill120_json,skill112_json,skill111_json,skill16_json,skill16_png,skill122_json,skill122_png,skill123_json,skill123_png,skill127_json,skill127_png,skill128_json,skill128_png,skill133_json,skill133_png,skill140_json,skill140_png,skill153_json,skill153_png,skill24_json,skill24_png,skill29_json,skill29_png,skill34_json,skill34_png,skill106_json,skill106_png,skill107_json,skill107_png,skill114_json,skill114_png,skill115_json,skill115_png,skill117_json,skill117_png,skill118_json,skill118_png,skill10_png,skill10_json,bullet3_png,bullet4_png,bullet1_png,bullet2_png,bullet5_png,bullet6_png,bullet7_png,bullet8_png,skill8_png,skill8_json,skill21_png,skill21_json,skill30_json,skill30_png,skill103_json,skill103_png,skill104_json,skill104_png,skill14_json,skill14_png,skill39_json,skill39_png",
-			"name":"ani"
-		},
-		{
-			"keys":"pk_bg2_jpg,pk_bg3_jpg,pk_bg4_jpg,pk_bg5_jpg,pk_bg6_jpg,pk_bg7_jpg,pk_bg8_jpg,pk_bg10_jpg,pk_bg11_jpg,pk_bg12_jpg,pk_bg13_jpg,pk_bg14_jpg,pk_bg15_jpg,pk_bg16_jpg,pk_bg18_jpg,pk_bg19_jpg,pk_bg20_jpg,pk_bg1_jpg,pk_bg9_jpg,pk_bg17_jpg",
-			"name":"pk_bg"
 		},
 		{
 			"keys":"data_json,test_data_json,loading_ani_json,loading_ani_png,login_bg_jpg,main_mc_png,title_png,ui_loading_png,border5_png,btn_r2_png,btn_r2__png,fire_top_jpg,icon_server_png,coin_mv2_png,coin_mv1_png,arrow1_png,btn_b2_png,btn_b2__png",
@@ -43,10 +35,6 @@
 		{
 			"keys":"video_atk4_png,bar_bg_png,bar1_png,bar2_png,bar3_png,bar4_png,fight_fail_1_png,fight_win_png,pk_fail_png,pk_result_line_png,pk_win_png,video_atk1_png,video_atk2_png,video_atk3_png,card_battle_png,talk_bg_png,bar_pvp_1_png,bar_pvp_2_png,pk_e_11_png,pk_e_12_png,pk_e_13_png,pk_e_14_png,pk_e_15_png,pk_e_16_png,pk_e_17_png,pk_e_2_png,pk_e_3_png,pk_e_4_png,pk_e_5_png,pk_e_6_png,pk_e_7_png,pk_e_8_png,pk_e_1_png,pk_e_18_png,pk_e_19_png,pk_e_20_png,pk_e_9_png,pk_e_10_png,enemy_title_png,self_title_png,pk_round_bg_png,card_battle2_png,mvp_png",
 			"name":"pk"
-		},
-		{
-			"keys":"map_item2_png,m0_jpg,m1_jpg,m2_jpg,m3_jpg,m4_jpg,m5_jpg,m6_jpg,map_item1_png,map_item3_png",
-			"name":"map"
 		}
 	],
 	"resources":[
@@ -99,106 +87,6 @@
 			"name":"main3_png",
 			"type":"image",
 			"url":"game_assets/build/main3.png"
-		},
-		{
-			"name":"skill28_json",
-			"type":"json",
-			"url":"ani/skill28.json"
-		},
-		{
-			"name":"skill28_png",
-			"type":"image",
-			"url":"ani/skill28.png"
-		},
-		{
-			"name":"skill6_json",
-			"type":"json",
-			"url":"ani/skill6.json"
-		},
-		{
-			"name":"skill6_png",
-			"type":"image",
-			"url":"ani/skill6.png"
-		},
-		{
-			"name":"skill108_png",
-			"type":"image",
-			"url":"ani/skill108.png"
-		},
-		{
-			"name":"skill113_png",
-			"type":"image",
-			"url":"ani/skill113.png"
-		},
-		{
-			"name":"skill116_png",
-			"type":"image",
-			"url":"ani/skill116.png"
-		},
-		{
-			"name":"skill149_png",
-			"type":"image",
-			"url":"ani/skill149.png"
-		},
-		{
-			"name":"skill120_png",
-			"type":"image",
-			"url":"ani/skill120.png"
-		},
-		{
-			"name":"skill112_png",
-			"type":"image",
-			"url":"ani/skill112.png"
-		},
-		{
-			"name":"skill111_png",
-			"type":"image",
-			"url":"ani/skill111.png"
-		},
-		{
-			"name":"skill126_png",
-			"type":"image",
-			"url":"ani/skill126.png"
-		},
-		{
-			"name":"skill108_json",
-			"type":"json",
-			"url":"ani/skill108.json"
-		},
-		{
-			"name":"skill113_json",
-			"type":"json",
-			"url":"ani/skill113.json"
-		},
-		{
-			"name":"skill116_json",
-			"type":"json",
-			"url":"ani/skill116.json"
-		},
-		{
-			"name":"skill149_json",
-			"type":"json",
-			"url":"ani/skill149.json"
-		},
-		{
-			"name":"skill126_json",
-			"type":"json",
-			"url":"ani/skill126.json"
-		},
-		{
-			"name":"skill120_json",
-			"type":"json",
-			"url":"ani/skill120.json"
-		},
-		{
-			"name":"skill112_json",
-			"type":"json",
-			"url":"ani/skill112.json"
-		},
-		{
-			"name":"skill111_json",
-			"type":"json",
-			"url":"ani/skill111.json"
 		},
 		{
 			"name":"buff_1_png",
@@ -269,106 +157,6 @@
 			"name":"buff_42_png",
 			"type":"image",
 			"url":"game_assets/buff/buff_42.png"
-		},
-		{
-			"name":"pk_bg2_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg2.jpg"
-		},
-		{
-			"name":"pk_bg3_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg3.jpg"
-		},
-		{
-			"name":"pk_bg4_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg4.jpg"
-		},
-		{
-			"name":"pk_bg5_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg5.jpg"
-		},
-		{
-			"name":"pk_bg6_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg6.jpg"
-		},
-		{
-			"name":"pk_bg7_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg7.jpg"
-		},
-		{
-			"name":"pk_bg8_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg8.jpg"
-		},
-		{
-			"name":"pk_bg10_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg10.jpg"
-		},
-		{
-			"name":"pk_bg11_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg11.jpg"
-		},
-		{
-			"name":"pk_bg12_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg12.jpg"
-		},
-		{
-			"name":"pk_bg13_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg13.jpg"
-		},
-		{
-			"name":"pk_bg14_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg14.jpg"
-		},
-		{
-			"name":"pk_bg15_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg15.jpg"
-		},
-		{
-			"name":"pk_bg16_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg16.jpg"
-		},
-		{
-			"name":"pk_bg18_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg18.jpg"
-		},
-		{
-			"name":"pk_bg19_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg19.jpg"
-		},
-		{
-			"name":"pk_bg20_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg20.jpg"
-		},
-		{
-			"name":"pk_bg1_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg1.jpg"
-		},
-		{
-			"name":"pk_bg9_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg9.jpg"
-		},
-		{
-			"name":"pk_bg17_jpg",
-			"type":"image",
-			"url":"pk_bg/pk_bg17.jpg"
 		},
 		{
 			"name":"loading_ani_json",
@@ -1056,16 +844,6 @@
 			"url":"game_assets/preload2_jpg/prop_score.jpg"
 		},
 		{
-			"name":"skill16_json",
-			"type":"json",
-			"url":"ani/skill16.json"
-		},
-		{
-			"name":"skill16_png",
-			"type":"image",
-			"url":"ani/skill16.png"
-		},
-		{
 			"name":"note_icon_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/note_icon.png"
@@ -1099,166 +877,6 @@
 			"name":"shop_card_png",
 			"type":"image",
 			"url":"game_assets/preload_png/shop_card.png"
-		},
-		{
-			"name":"skill122_json",
-			"type":"json",
-			"url":"ani/skill122.json"
-		},
-		{
-			"name":"skill122_png",
-			"type":"image",
-			"url":"ani/skill122.png"
-		},
-		{
-			"name":"skill123_json",
-			"type":"json",
-			"url":"ani/skill123.json"
-		},
-		{
-			"name":"skill123_png",
-			"type":"image",
-			"url":"ani/skill123.png"
-		},
-		{
-			"name":"skill127_json",
-			"type":"json",
-			"url":"ani/skill127.json"
-		},
-		{
-			"name":"skill127_png",
-			"type":"image",
-			"url":"ani/skill127.png"
-		},
-		{
-			"name":"skill128_json",
-			"type":"json",
-			"url":"ani/skill128.json"
-		},
-		{
-			"name":"skill128_png",
-			"type":"image",
-			"url":"ani/skill128.png"
-		},
-		{
-			"name":"skill133_json",
-			"type":"json",
-			"url":"ani/skill133.json"
-		},
-		{
-			"name":"skill133_png",
-			"type":"image",
-			"url":"ani/skill133.png"
-		},
-		{
-			"name":"skill140_json",
-			"type":"json",
-			"url":"ani/skill140.json"
-		},
-		{
-			"name":"skill140_png",
-			"type":"image",
-			"url":"ani/skill140.png"
-		},
-		{
-			"name":"skill153_json",
-			"type":"json",
-			"url":"ani/skill153.json"
-		},
-		{
-			"name":"skill153_png",
-			"type":"image",
-			"url":"ani/skill153.png"
-		},
-		{
-			"name":"skill24_json",
-			"type":"json",
-			"url":"ani/skill24.json"
-		},
-		{
-			"name":"skill24_png",
-			"type":"image",
-			"url":"ani/skill24.png"
-		},
-		{
-			"name":"skill29_json",
-			"type":"json",
-			"url":"ani/skill29.json"
-		},
-		{
-			"name":"skill29_png",
-			"type":"image",
-			"url":"ani/skill29.png"
-		},
-		{
-			"name":"skill34_json",
-			"type":"json",
-			"url":"ani/skill34.json"
-		},
-		{
-			"name":"skill34_png",
-			"type":"image",
-			"url":"ani/skill34.png"
-		},
-		{
-			"name":"skill106_json",
-			"type":"json",
-			"url":"ani/skill106.json"
-		},
-		{
-			"name":"skill106_png",
-			"type":"image",
-			"url":"ani/skill106.png"
-		},
-		{
-			"name":"skill107_json",
-			"type":"json",
-			"url":"ani/skill107.json"
-		},
-		{
-			"name":"skill107_png",
-			"type":"image",
-			"url":"ani/skill107.png"
-		},
-		{
-			"name":"skill114_json",
-			"type":"json",
-			"url":"ani/skill114.json"
-		},
-		{
-			"name":"skill114_png",
-			"type":"image",
-			"url":"ani/skill114.png"
-		},
-		{
-			"name":"skill115_json",
-			"type":"json",
-			"url":"ani/skill115.json"
-		},
-		{
-			"name":"skill115_png",
-			"type":"image",
-			"url":"ani/skill115.png"
-		},
-		{
-			"name":"skill117_json",
-			"type":"json",
-			"url":"ani/skill117.json"
-		},
-		{
-			"name":"skill117_png",
-			"type":"image",
-			"url":"ani/skill117.png"
-		},
-		{
-			"name":"skill118_json",
-			"type":"json",
-			"url":"ani/skill118.json"
-		},
-		{
-			"name":"skill118_png",
-			"type":"image",
-			"url":"ani/skill118.png"
 		},
 		{
 			"name":"menu_icon_7_png",
@@ -1386,51 +1004,6 @@
 			"url":"game_assets/preload_png/main_light.png"
 		},
 		{
-			"name":"map_item2_png",
-			"type":"image",
-			"url":"game_assets/map/map_item2.png"
-		},
-		{
-			"name":"m0_jpg",
-			"type":"image",
-			"url":"game_assets/map/m0.jpg"
-		},
-		{
-			"name":"m1_jpg",
-			"type":"image",
-			"url":"game_assets/map/m1.jpg"
-		},
-		{
-			"name":"m2_jpg",
-			"type":"image",
-			"url":"game_assets/map/m2.jpg"
-		},
-		{
-			"name":"m3_jpg",
-			"type":"image",
-			"url":"game_assets/map/m3.jpg"
-		},
-		{
-			"name":"m4_jpg",
-			"type":"image",
-			"url":"game_assets/map/m4.jpg"
-		},
-		{
-			"name":"m5_jpg",
-			"type":"image",
-			"url":"game_assets/map/m5.jpg"
-		},
-		{
-			"name":"m6_jpg",
-			"type":"image",
-			"url":"game_assets/map/m6.jpg"
-		},
-		{
-			"name":"map_item1_png",
-			"type":"image",
-			"url":"game_assets/map/map_item1.png"
-		},
-		{
 			"name":"menu_icon_9_png",
 			"type":"image",
 			"url":"game_assets/preload_png/menu_icon_9.png"
@@ -1439,11 +1012,6 @@
 			"name":"menu_icon_8_png",
 			"type":"image",
 			"url":"game_assets/preload_png/menu_icon_8.png"
-		},
-		{
-			"name":"map_item3_png",
-			"type":"image",
-			"url":"game_assets/map/map_item3.png"
 		},
 		{
 			"name":"cloud3_png",
@@ -1484,116 +1052,6 @@
 			"name":"card_back_bg_png",
 			"type":"image",
 			"url":"game_assets/preload_png/card_back_bg.png"
-		},
-		{
-			"name":"skill10_png",
-			"type":"image",
-			"url":"ani/skill10.png"
-		},
-		{
-			"name":"skill10_json",
-			"type":"json",
-			"url":"ani/skill10.json"
-		},
-		{
-			"name":"bullet3_png",
-			"type":"image",
-			"url":"ani/bullet3.png"
-		},
-		{
-			"name":"bullet4_png",
-			"type":"image",
-			"url":"ani/bullet4.png"
-		},
-		{
-			"name":"bullet1_png",
-			"type":"image",
-			"url":"ani/bullet1.png"
-		},
-		{
-			"name":"bullet2_png",
-			"type":"image",
-			"url":"ani/bullet2.png"
-		},
-		{
-			"name":"bullet5_png",
-			"type":"image",
-			"url":"ani/bullet5.png"
-		},
-		{
-			"name":"bullet6_png",
-			"type":"image",
-			"url":"ani/bullet6.png"
-		},
-		{
-			"name":"bullet7_png",
-			"type":"image",
-			"url":"ani/bullet7.png"
-		},
-		{
-			"name":"bullet8_png",
-			"type":"image",
-			"url":"ani/bullet8.png"
-		},
-		{
-			"name":"skill8_png",
-			"type":"image",
-			"url":"ani/skill8.png"
-		},
-		{
-			"name":"skill8_json",
-			"type":"json",
-			"url":"ani/skill8.json"
-		},
-		{
-			"name":"skill21_png",
-			"type":"image",
-			"url":"ani/skill21.png"
-		},
-		{
-			"name":"skill21_json",
-			"type":"json",
-			"url":"ani/skill21.json"
-		},
-		{
-			"name":"skill30_json",
-			"type":"json",
-			"url":"ani/skill30.json"
-		},
-		{
-			"name":"skill30_png",
-			"type":"image",
-			"url":"ani/skill30.png"
-		},
-		{
-			"name":"skill103_json",
-			"type":"json",
-			"url":"ani/skill103.json"
-		},
-		{
-			"name":"skill103_png",
-			"type":"image",
-			"url":"ani/skill103.png"
-		},
-		{
-			"name":"skill104_json",
-			"type":"json",
-			"url":"ani/skill104.json"
-		},
-		{
-			"name":"skill104_png",
-			"type":"image",
-			"url":"ani/skill104.png"
-		},
-		{
-			"name":"skill14_json",
-			"type":"json",
-			"url":"ani/skill14.json"
-		},
-		{
-			"name":"skill14_png",
-			"type":"image",
-			"url":"ani/skill14.png"
 		},
 		{
 			"name":"bg2_jpg",
@@ -1674,16 +1132,6 @@
 			"name":"dungeon_bg_png",
 			"type":"image",
 			"url":"game_assets/preload2_png/dungeon_bg.png"
-		},
-		{
-			"name":"skill39_json",
-			"type":"json",
-			"url":"ani/skill39.json"
-		},
-		{
-			"name":"skill39_png",
-			"type":"image",
-			"url":"ani/skill39.png"
 		},
 		{
 			"name":"window_bg_icon_jpg",
@@ -1894,6 +1342,31 @@
 			"name":"icon_money_many_png",
 			"type":"image",
 			"url":"game_assets/preload_png/icon_money_many.png"
+		},
+		{
+			"name":"main_game4_json",
+			"type":"json",
+			"url":"data/main_game4.json"
+		},
+		{
+			"name":"main_game5_json",
+			"type":"json",
+			"url":"data/main_game5.json"
+		},
+		{
+			"name":"main_game6_json",
+			"type":"json",
+			"url":"data/main_game6.json"
+		},
+		{
+			"name":"main_game7_json",
+			"type":"json",
+			"url":"data/main_game7.json"
+		},
+		{
+			"name":"main_game8_json",
+			"type":"json",
+			"url":"data/main_game8.json"
 		}
 	]
 }

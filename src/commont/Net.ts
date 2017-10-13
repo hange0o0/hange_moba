@@ -43,10 +43,13 @@ class Net extends egret.EventDispatcher{
             oo.version = Config.version;
         else
             oo.version = Config.user_version;
+
         if(_get['debug_server'])
             oo.debug_server = 1;
         if(_get['new_version'])
             oo.new_version = _get['new_version'];
+        if(FromManager.getInstance().h5Form)
+            oo.h5 =  FromManager.getInstance().from
 
         variables.variables = oo;
         //(<any>variables.variables).msg = JSON.stringify(msg);
@@ -145,7 +148,7 @@ class Net extends egret.EventDispatcher{
                     if(_get['app'])
                         Alert('游戏已更新，请重新下载');
                     else
-                        Alert('游戏已更新，请登陆重进',this.refresh,'重新登陆');
+                        Alert('游戏已更新，请退出重进',this.refresh,'重新登陆');
                     GameManager.getInstance().stopTimer();
                     break;
                 case 2:

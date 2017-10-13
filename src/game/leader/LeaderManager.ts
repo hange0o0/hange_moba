@@ -267,7 +267,7 @@ class LeaderManager {
             }
             UM.tec.copy_skill[logData.skillid] = msg.skillendtime;
             logData.copy_time  = msg.logendtime;
-            EM.dispatchEventWith(GameEvent.client.leader_skill_change)
+            EM.dispatchEventWith(GameEvent.client.leader_skill_copy)
             if(fun)
                 fun();
         });

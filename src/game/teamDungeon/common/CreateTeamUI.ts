@@ -39,7 +39,7 @@ class CreateTeamUI extends game.BaseWindow {
         this.addBtnEvent(this.sortBtn, this.onOpen);
         this.addBtnEvent(this.sortText, this.onOpen);
 
-        this.sortList.selectedIndex = SharedObjectManager.instance.getValue('team_hard') || 0;
+        this.sortList.selectedIndex = SharedObjectManager.instance.getMyValue('team_hard') || 0;
         this.sortList.addEventListener(egret.Event.CHANGE,this.onSelect,this)
         this.nameText.restrict = "a-zA-Z0-9_\u0391-\uFFE5";
         this.nameText.addEventListener(egret.TextEvent.CHANGE,this.onChange,this);
@@ -57,7 +57,7 @@ class CreateTeamUI extends game.BaseWindow {
     }
 
     private onSelect(){
-        SharedObjectManager.instance.setValue('team_hard',this.sortList.selectedIndex)
+        SharedObjectManager.instance.setMyValue('team_hard',this.sortList.selectedIndex)
         this.renewSelect()
         this.sortGroup.visible = false;
     }

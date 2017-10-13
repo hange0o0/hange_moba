@@ -58,7 +58,7 @@ class LeaderSkillCopyUI extends game.BaseUI {
 
     public onShow(){
         this.renew();
-        this.addPanelOpenEvent(GameEvent.client.leader_skill_change,this.renew)
+        this.addPanelOpenEvent(GameEvent.client.leader_skill_copy,this.renew)
     }
 
     private renew(){

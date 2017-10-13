@@ -410,9 +410,10 @@ class LoginManager{
             if(msg.logtext)
             {
                 self.logText = msg.logtext;
+                if(self.logText.time < UM.opentime)
+                    self.logText.cb = true
                 self.saveLogText();
             }
-
 
 
             MainPageUI.getInstance().show();
@@ -479,14 +480,16 @@ class LoginManager{
                 return;
             }
 
-
+            UM.fill(msg.data);
             if(msg.logtext)
             {
                 self.logText = msg.logtext;
+                if(self.logText.time < UM.opentime)
+                    self.logText.cb = true
                 self.saveLogText();
             }
 
-            UM.fill(msg.data);
+
             PopUpManager.showToMain()
         });
     }

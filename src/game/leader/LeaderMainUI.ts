@@ -112,7 +112,7 @@ class LeaderMainUI extends game.BaseUI {
         this.typeBarClick()
         this.addPanelOpenEvent(GameEvent.client.timer,this.onTimer)
         this.addPanelOpenEvent(GameEvent.client.prop_change,this.onPropChange)
-        this.addPanelOpenEvent(GameEvent.client.leader_skill_change,this.renewSkill)
+        this.addPanelOpenEvent(GameEvent.client.leader_skill_copy,this.renewSkill)
     }
 
     private onPropChange(){
