@@ -82,7 +82,7 @@ class FriendAddUI extends game.BaseWindow {
     public renew(){
         var FM = FriendManager.getInstance();
         this.onTimer();
-        var stat =  UM.active.stat || {};
+        var stat =  UM.active.task.stat || {};
         if(!stat['friend'])
         {
             var arr = FM.missArray

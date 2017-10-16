@@ -242,14 +242,14 @@ class GuideManager {
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'看到这个[随机]按钮没，点一下它，系统会给我们组成[尽可能用尽卡符]的队伍配置，试试看吧',
+            text:'看到这个[随机]按钮没，点一下它，系统会给我们随机配置[卡符使用最大化]的队伍，试试看吧',
         })
 
         this.addGuideObj({
             toBottom:true,
             ui:"PKDressUI.getInstance()",
             mc:"PKDressUI.getInstance()['pkDressChooseUI']['randomBtn']",
-            text:'卡卡感觉这个布阵不咋样的，再点一下看有没更好的选择',
+            text:'卡卡感觉这个布阵组成不咋样的，再点一下看有没更好的选择',
         })
 
         this.addGuideObj({
@@ -287,7 +287,7 @@ class GuideManager {
         this.addGuideObj({
             toBottom:true,
             ui:"PKDressUI.getInstance()",
-            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h2']['decBtn']",
+            mc:"PKDressUI.getInstance()['pkDressSettingUI']['h3']['decBtn']",
             text:'卡卡觉得[【暗影杀手】]不太适合我们这次战斗，就不要出战了吧。点击[-]号，系统将不会为我们出战[【暗影杀手】]',
         })
 

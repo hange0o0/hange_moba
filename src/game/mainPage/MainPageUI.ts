@@ -206,6 +206,9 @@ class MainPageUI extends game.BaseUI {
         this.bg.x = 0;
         var tw = this.bgTW = egret.Tween.get(this.bg,{loop:true});
         tw.to({x:-1280},1000*300).to({x:0})
+
+
+        AniManager.getInstance();
     }
 
     public onVisibleChange(){

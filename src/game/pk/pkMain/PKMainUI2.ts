@@ -210,7 +210,7 @@ class PKMainUI extends game.BaseUI {
     }
 
     private onChangeSpeed(){
-        if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideKey == 'pk')
+        if(GuideManager.getInstance().isGuiding && GuideManager.getInstance().guideKey == 'pk' && GuideManager.getInstance().guidePK <= 4)
             return;
          this.speed = !this.speed
          this.renewJumpBtn();
@@ -965,6 +965,7 @@ class PKMainUI extends game.BaseUI {
         {
             this.playOneRound();
             GM.guidePK ++;
+            MyTool.changeGray(this.jumpBtn,false)
         }
     }
 

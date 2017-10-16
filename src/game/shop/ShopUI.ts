@@ -110,7 +110,8 @@ class ShopUI extends game.BaseUI {
             else if(oo.id == 31)
             {
                 listObj = {txt:'购买修正币',wType:'ticket',list:[]};
-                dataArr.push(listObj);
+                if(UM.main_game.level >= Config.serverEqualLevel)
+                    dataArr.push(listObj);
             }
             else if(oo.id == 101)
             {
@@ -127,7 +128,7 @@ class ShopUI extends game.BaseUI {
         {
             if(FromManager.getInstance().isTapTap && this.dataIn == 'diamond')
             {
-                MyInfoUI.getInstance().show(1);
+                HonorUI.getInstance().show();
                 this.hide();
             }
             this.renewScroll(this.dataIn);
@@ -162,7 +163,7 @@ class ShopUI extends game.BaseUI {
 
                 }
 
-                v = Math.min(v,this.scroller.viewport.contentHeight - this.scroller.height);
+                v = Math.max(0,Math.min(v,this.scroller.viewport.contentHeight - this.scroller.height));
                 if(mv)
                 {
                     var tw:egret.Tween = egret.Tween.get(this.scroller.viewport);

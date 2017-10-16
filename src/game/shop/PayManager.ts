@@ -125,6 +125,7 @@ class PayManager{
     }
 
     public localBuy(id,fun){
+
         var self = this;
         var oo:any = {};
         oo.id = id;
@@ -147,6 +148,11 @@ class PayManager{
     }
 
     public rmbBuy(id,fun){
+        if(!Config.isDebug)
+        {
+            Alert('暂未开放')
+            return;
+        }
         var self = this;
         var oo:any = {};
         oo.id = id;

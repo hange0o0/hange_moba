@@ -27,7 +27,7 @@ class ShopItem extends game.BaseItem {
 
     private onBuy(){
         var self = this;
-        var free = this.data.id == 31 && !(UM.active.stat || {})['ticket']
+        var free = this.data.id == 31 && !(UM.active.task.stat || {})['ticket']
         if(!free && this.data.type == 'diamond' && UM.getDiamond() < this.data.cost)
         {
             Alert('钻石不足！')
@@ -67,6 +67,7 @@ class ShopItem extends game.BaseItem {
             this.rmbMC.visible = true;
             this.icon.source = 'icon_empty_png';
             this.text2.text = '￥' + this.data.cost;
+
         }  
         //else if(this.data.type == 'free')
         //{
@@ -77,6 +78,9 @@ class ShopItem extends game.BaseItem {
         {
             this.text2.text = '钻石:' + this.data.cost;
             this.icon.source = 'icon_token_png';
+
+            if(this.data.id == 31 && !(UM.active.task.stat || {})['ticket'])
+                this.text2.text = '首次免费'
         }
 
         this.img.source = this.data.img;

@@ -46,6 +46,7 @@ class PKDressChooseUI extends game.BaseContainer {
     private hpText: eui.Label;
     private speedGroup: eui.Group;
     private speedText: eui.Label;
+    private sortText: eui.Label;
 
 
 
@@ -111,10 +112,10 @@ class PKDressChooseUI extends game.BaseContainer {
 
     public sortIndex = 0;
     private sortArr = [
-        {w:'fu2_png',c:0xCCB48E},
-        {w:'card_icon_0_png',c:0xFF4747},
-        {w:'card_icon_1_png',c:0xFDC04F},
-        {w:'card_icon_3_png',c:0x747DFF}
+        {w:'fu2_png',c:0xCCB48E,t:'费用'},
+        {w:'card_icon_0_png',c:0xFF4747,t:'血量'},
+        {w:'card_icon_1_png',c:0xFDC04F,t:'攻击'},
+        {w:'card_icon_3_png',c:0x747DFF,t:'速度'}
     ];
     public childrenCreated() {
         super.childrenCreated();
@@ -286,6 +287,7 @@ class PKDressChooseUI extends game.BaseContainer {
 
     private renewSort(){
         this.sortMC.source = this.sortArr[this.sortIndex].w
+        this.sortText.text = this.sortArr[this.sortIndex].t
         if(this.sortIndex == 0)
         {
             this.sortMC.scaleX = this.sortMC.scaleY = 0.9
