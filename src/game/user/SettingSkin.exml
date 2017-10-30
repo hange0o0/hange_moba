@@ -1,25 +1,26 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="SettingSkin" width="580" height="650" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+<e:Skin class="SettingSkin" width="580" height="680" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" states="normal,h5" >
 	<ns1:BasePanel left="0" right="0" top="0" bottom="0" skinName="BasePanelSkin"/>
 	<e:CheckBox id="musicCB" label="音乐" x="73" y="115" skinName="MyCheckBoxSkin"/>
 	<e:CheckBox id="friendCB" x="300" label="拒绝好友请求" y="115" skinName="MyCheckBoxSkin"/>
-	<e:CheckBox id="soundCB" x="73" y="180" label="音效" skinName="MyCheckBoxSkin"/>
-	<e:CheckBox id="PKCB" x="300" y="180" label="跳过PK动画" skinName="MyCheckBoxSkin"/>
-	<e:Group horizontalCenter="0" bottom="40">
+	<e:CheckBox id="soundCB" x="73" y="178" label="音效" skinName="MyCheckBoxSkin"/>
+	<e:CheckBox id="modeCB" x="300" y="178" label="兼容模式" skinName="MyCheckBoxSkin"/>
+	<e:CheckBox id="PKCB" x="73" y="240" label="跳过PK动画" skinName="MyCheckBoxSkin"/>
+	<e:Group horizontalCenter="0" bottom="40" locked="true">
 		<e:Button id="loginBtn" label="登出" x="0" y="0" skinName="Btn_b2Skin"/>
 		<e:Button id="closeBtn" label="确定" skinName="Btn_r2Skin" x="0" y="0"/>
 		<e:layout>
 			<e:HorizontalLayout gap="50"/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="63" y="266">
+	<e:Group x="63" y="320">
 		<e:Label y="2" textColor="0xEFE5AD" size="24" text="玩家ID：" x="0"/>
 		<e:Label id="idText" y="0" textColor="0xEDCB24" size="24" text="1624431545@qq.com" x="98"/>
 		<e:layout>
 			<e:HorizontalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="460" x="63">
+	<e:Group y="514" x="63" y.h5="378">
 		<e:Label y="2" textColor="0xEFE5AD" size="24" text="游戏版本：" x="0"/>
 		<e:Label id="versionText" y="0" textColor="0xEDCB24" text="V1.1" size="24" x="98"/>
 		<e:Label id="logBtn" y="10" text="[更新日志]" size="24" x="108" textColor="0xEFE5AD" width="130" textAlign="right"/>
@@ -27,16 +28,16 @@
 			<e:HorizontalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="63" y="324">
+	<e:Group x="63" y="378" includeIn="normal">
 		<e:Label y="4" textColor="0xEFE5AD" size="24" text="游戏官方QQ群：" x="0"/>
 		<e:Label id="qqText" y="0" textColor="0xEDCB24" size="24" text="1624431545" x="192"/>
 		<e:layout>
 			<e:HorizontalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="63" y="375">
+	<e:Group x="63" y="429" includeIn="normal">
 		<e:Label text="如遇到BUG或有好的建议，可发送邮件至：" x="0" y="0" textColor="0xEFE5AD" size="24"/>
 		<e:Label id="emailText" y="43" size="24" text="1624431545@qq.com" textColor="0xEDCB24" x="50"/>
 	</e:Group>
-	<e:Rect width="500" y="240" height="1" horizontalCenter="0" fillColor="0x95612D"/>
+	<e:Rect width="500" y="294" height="1" horizontalCenter="0" fillColor="0x95612D"/>
 </e:Skin>

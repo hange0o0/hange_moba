@@ -9,6 +9,7 @@ class SettingUI extends game.BaseWindow {
     private musicCB: eui.CheckBox;
     private friendCB: eui.CheckBox;
     private soundCB: eui.CheckBox;
+    private modeCB: eui.CheckBox;
     private PKCB: eui.CheckBox;
     private loginBtn: eui.Button;
     private closeBtn: eui.Button;
@@ -17,6 +18,7 @@ class SettingUI extends game.BaseWindow {
     private logBtn: eui.Label;
     private qqText: eui.Label;
     private emailText: eui.Label;
+
 
 
 
@@ -38,6 +40,7 @@ class SettingUI extends game.BaseWindow {
         this.addBtnEvent(this.musicCB,this.onMusic);
         this.addBtnEvent(this.soundCB,this.onSound);
         this.addBtnEvent(this.friendCB,this.onFriend);
+        this.addBtnEvent(this.modeCB,this.onMode);
         this.addBtnEvent(this.PKCB,this.onPK);
         this.addBtnEvent(this.closeBtn,this.hide);
         this.addBtnEvent(this.loginBtn,this.onLoginOut);
@@ -45,6 +48,21 @@ class SettingUI extends game.BaseWindow {
         //this.addBtnEvent(this.qqBtn,this.onQQ);
 
         //this.addBtnEvent(this.okBtn, this.onChoose);
+    }
+
+    private onMode(){
+          var oldMode = SharedObjectManager.instance.getValue("renderMode") || 'webgl'
+        if(oldMode == 'webgl')
+            var str = '切换成兼容模式，会对游戏性能有一些影响，是否继续'
+        else
+            var str = '停用兼容模式后，游戏在部分机型上可能会出现异常，是否继续'
+        Confirm(str,function(value){
+            if(value == 1)
+            {
+                SharedObjectManager.instance.setValue("renderMode",oldMode=='webgl'?'canvas':'webgl')
+                MyTool.refresh();
+            }
+        },['取消','继续'])
     }
 
     private onLog(){
@@ -80,10 +98,12 @@ class SettingUI extends game.BaseWindow {
     }
 
     public onShow(){
+        this.currentState = FromManager.getInstance().h5Form?'h5':'normal'
         this.PKCB.visible = Config.isDebug || UM.isVip(203);//5级才有跳过功能
         this.musicCB.selected = SoundManager.getInstance().bgPlaying
         this.soundCB.selected = SoundManager.getInstance().soundPlaying
         this.friendCB.selected = UM.friends.stop;
+        this.modeCB.selected = SharedObjectManager.instance.getValue("renderMode") == 'canvas';
         this.PKCB.selected = PKManager.getInstance().pkJump;
         this.idText.textFlow = <Array<egret.ITextElement>>[
             {text: UM.gameid + "", style: {"underline": true}}

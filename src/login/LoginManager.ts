@@ -30,7 +30,7 @@ class LoginManager{
         this.lastUser = oo.user;
         this.quickPassword = oo.password;
         //this.lastServer = oo.lastServer;
-        this.myServer = oo.myServer;
+        this.myServer = oo.myServer || {};
 
         if(this.lastUser)
         {

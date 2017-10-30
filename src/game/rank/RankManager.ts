@@ -15,7 +15,7 @@ class RankManager{
          return this.rankData[rankType].data;
     }
     public isRankOpen(){
-        var serverTime = LoginManager.getInstance().serverList[Net.getInstance().serverID].timeNum;
+        var serverTime = UM.opentime;
         return (TM.now()>serverTime && !DateUtil.isSameDay(serverTime))
     }
 
@@ -27,6 +27,7 @@ class RankManager{
                 fun();
             return;
         }
+
         var self = this;
         var oo:any = {};
         oo.rank_type = rankType
