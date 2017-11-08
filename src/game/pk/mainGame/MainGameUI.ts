@@ -20,9 +20,12 @@ class MainGameUI extends game.BaseUI {
     private enemyList: eui.List;
     private leaderText: eui.Label;
     private myCardGroup: MyCardGroupUI;
+    private historyBtn: eui.Group;
+    private historyText: eui.Label;
     private historyList: eui.List;
     private resetBtn: eui.Button;
     private chooseBtn0: eui.Button;
+
 
 
 
@@ -67,6 +70,25 @@ class MainGameUI extends game.BaseUI {
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
         this.historyList.addEventListener('use_card',this.onUseHistory,this)
+
+        this.addBtnEvent(this.historyBtn,this.onHistory);
+    }
+
+    private onHistory(){
+        if(this.historyList.parent)
+        {
+            var toV = (this.scroller.viewport.contentHeight - this.historyList.height) -this.scroller.viewport.height
+            MyTool.removeMC(this.historyList)
+            this.historyText.text = '挑战记录'
+            this.scroller.viewport.scrollV = toV;
+        }
+        else
+        {
+
+            this.scrollerGroup.addChild(this.historyList)
+            this.historyText.text = '收起记录'
+
+        }
     }
 
     private onUseHistory(e){
@@ -305,9 +327,19 @@ class MainGameUI extends game.BaseUI {
         if(list.length > 5)
             list.length = 5;
         this.historyList.dataProvider = new eui.ArrayCollection(list);
+
+
+        if(list.length)
+        {
+            this.scrollerGroup.addChild(this.historyBtn)
+        }
+        else
+            MyTool.removeMC(this.historyBtn)
+        MyTool.removeMC(this.historyList)
+        this.historyText.text = '挑战记录'
     }
 
-    private onChoose1(){
+    public onChoose1(){
         //this.hide();
         var oo:any = {pktype:PKManager.PKType.MAIN,data:UM.pk_common.my_card,enemy: this.enemyArray,hard:this.isHard,hardData:null}
         if(this.isHard)

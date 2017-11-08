@@ -226,10 +226,48 @@ class GuideManager {
 
         this.addGuideObj({
             ui:"PKFailUI.getInstance()",
-            mc:"PKFailUI.getInstance()['okBtn']",
+            mc:"PKFailUI.getInstance()['backBtn']",
             text:'但我们就这样子认输了吗？不！我们刚才只是大意了而已！我们的目标是成为至强王者，这样的小失败并[不能]阻挡我们的脚步',
         })
             ////////
+
+        this.addGuideObj({
+            fun:function(){
+                self.showGuide(MainPageUI.getInstance())
+            },
+            text:'将军的强大固然是取胜的关键，但没有[强大的士兵]，胜利也是遥不可及的',
+        })
+
+
+        this.addGuideObj({
+            ui:"MainPageUI.getInstance()",
+            mc:"MainPageUI.getInstance()['collectBtn']",
+            text:'我们在对战中会获得了一些[卡兵碎片]和[金币]，我们可以用它来对卡兵进行[升级]。',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
+        })
+
+        this.addGuideObj({
+            ui:"CollectUI.getInstance()",
+            mc:"CollectUI.getInstance()['list'].getChildAt(1)",
+            text:'卡卡觉得[【人鱼战士】]真的挺厉害的，我强烈建议我们要把第一次送给了它，让它变得更厉害一点吧',
+        })
+
+        this.addGuideObj({
+            ui:"CollectUI.getInstance()",
+            mc:"CollectUI.getInstance()['monsterBase']['levelUpBtn']",
+            text:'虽然我们只升级单个卡兵，但我们的[总战力]也是会得到同步提升，这可是会增强[所有卡兵]的对战实力的哦',
+        })
+
+        this.addGuideObj({
+            ui:"CollectUI.getInstance()",
+            mc:"CollectUI.getInstance()['topUI']['closeBtn']",
+            text:'升完级是不是觉得自己强大了很多呢，让我们再去重新挑战一下吧',
+        })
+
+
+        this.addGuideObj({
+            mc:"MainPageUI.getInstance()['mainGame']['startBtn']",
+            text:'卡卡相信我们这次必定能通过职业考核的',
+        })
 
         this.addGuideObj({
             ui:"MainGameUI.getInstance()",
@@ -322,50 +360,20 @@ class GuideManager {
         this.addGuideObj({
             ui:"PKResultUI.getInstance()",
             mc:"PKWinUI.getInstance()['backBtn']",
-            text:'看来你还是挺有本事的，卡卡相信你能成为强大的卡士。现在我们再去其它地方逛逛吧！',
+            text:'看来你还是挺有本事的，卡卡相信你能成为强大的卡士。',
         })
 
-        this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"MainPageUI.getInstance().videoBtn",
-            text:'哎呀，刚才太兴奋忘了看战报数据了！但不用担心，我们还可以在[PK记录]找到刚才的对战记录的。',
-            hideHand:true,
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-            }
-        })
-
-        this.addGuideObj({
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-            },
-            text:'将军的强大固然是取胜的关键，但没有[强大的士兵]，胜利也是遥不可及的',
-        })
+        //this.addGuideObj({
+        //    ui:"MainPageUI.getInstance()",
+        //    mc:"MainPageUI.getInstance().videoBtn",
+        //    text:'哎呀，刚才太兴奋忘了看战报数据了！但不用担心，我们还可以在[PK记录]找到刚才的对战记录的。',
+        //    hideHand:true,
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //    }
+        //})
 
 
-        this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"MainPageUI.getInstance()['collectBtn']",
-            text:'刚才我们在对战中获得了一些[卡兵碎片]和[金币]，我们可以用它来对卡兵进行[升级]。',   //只有战力上去了，你才能在试练场和竞技场中走得更远！
-        })
-
-        this.addGuideObj({
-            ui:"CollectUI.getInstance()",
-            mc:"CollectUI.getInstance()['list'].getChildAt(1)",
-            text:'卡卡觉得[【人鱼战士】]真的挺厉害的，我强烈建议我们要把第一次送给了它，让它变得更厉害一点吧',
-        })
-
-        this.addGuideObj({
-            ui:"CollectUI.getInstance()",
-            mc:"CollectUI.getInstance()['monsterBase']['levelUpBtn']",
-            text:'虽然我们只升级单个卡兵，但我们的[总战力]也是会得到同步提升，这可是会增强[所有卡兵]的对战实力的哦',
-        })
-
-        this.addGuideObj({
-            ui:"CollectUI.getInstance()",
-            mc:"CollectUI.getInstance()['topUI']['closeBtn']",
-            text:'升完级是不是觉得自己强大了很多呢，想再去挑战一下其它卡士吧？没问题让我们再看看[其它]的对战功能吧',
-        })
 
         //this.addGuideObj({
         //    ui:"CollectUI.getInstance()",
@@ -373,19 +381,19 @@ class GuideManager {
         //    text:'我们可是要回到世界首页哦',
         //})
 
-        this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"this.getMainRect()",
-            text:'参与[究极研究院]的活动，会获得[永久的战力]奖励。',
-            hideHand:true,
-            toBottom:true,
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-                MainPageUI.getInstance()['currentPage'] = 2;
-                MainPageUI.getInstance().scrollToCurrentPage();
-                MainPageUI.getInstance().renewPage();
-            },
-        })
+        //this.addGuideObj({
+        //    ui:"MainPageUI.getInstance()",
+        //    mc:"this.getMainRect()",
+        //    text:'参与[究极研究院]的活动，会获得[永久的战力]奖励。',
+        //    hideHand:true,
+        //    toBottom:true,
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //        MainPageUI.getInstance()['currentPage'] = 2;
+        //        MainPageUI.getInstance().scrollToCurrentPage();
+        //        MainPageUI.getInstance().renewPage();
+        //    },
+        //})
 
         //this.addGuideObj({
         //    fun:function(){
@@ -410,19 +418,19 @@ class GuideManager {
         //    text:'如果实在打不过，也可以与[其它卡士]交流一下，因为你们的题目是[一样的]！',
         //})
 
-        this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"this.getMainRect()",
-            text:'你的士兵们会不停地清剿[野外势力]，为你赢取功勋！',
-            hideHand:true,
-            toBottom:true,
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-                MainPageUI.getInstance()['currentPage'] = 3;
-                MainPageUI.getInstance().scrollToCurrentPage();
-                MainPageUI.getInstance().renewPage();
-            }
-        })
+        //this.addGuideObj({
+        //    ui:"MainPageUI.getInstance()",
+        //    mc:"this.getMainRect()",
+        //    text:'你的士兵们会不停地清剿[野外势力]，为你赢取功勋！',
+        //    hideHand:true,
+        //    toBottom:true,
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //        MainPageUI.getInstance()['currentPage'] = 3;
+        //        MainPageUI.getInstance().scrollToCurrentPage();
+        //        MainPageUI.getInstance().renewPage();
+        //    }
+        //})
 
         //this.addGuideObj({
         //    fun:function(){
@@ -438,30 +446,30 @@ class GuideManager {
         //    text:'但这种体力活并[不需要]你来[亲自出手]，交给你的卡兵吧，只要他们足够[强大]，清剿起来速度还是会[很快]的',
         //})
 
-        this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"this.getMainRect()",
-            text:'在[天梯竞技场]中，系统会为你匹配实力相当[真实玩家]作为对手！你的选择是战力碾压还是智慧征服？卡卡是比较喜欢碾压带来的快感的..',
-            hideHand:true,
-            toBottom:true,
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-                MainPageUI.getInstance()['currentPage'] = 4;
-                MainPageUI.getInstance().scrollToCurrentPage();
-                MainPageUI.getInstance().renewPage();
-            }
-        })
-
-        this.addGuideObj({
-            ui:"MainPageUI.getInstance()",
-            mc:"this.getMainRect()",
-            text:'[虚空修正场]要挑选出最有天赋的卡士，在里面的PK将[不会受到]卡士真实战力的影响，只要有能力，卡士一样能打败卡皇！',
-            hideHand:true,
-            toBottom:true,
-            fun:function(){
-                self.showGuide(MainPageUI.getInstance())
-            }
-        })
+        //this.addGuideObj({
+        //    ui:"MainPageUI.getInstance()",
+        //    mc:"this.getMainRect()",
+        //    text:'在[天梯竞技场]中，系统会为你匹配实力相当[真实玩家]作为对手！你的选择是战力碾压还是智慧征服？卡卡是比较喜欢碾压带来的快感的..',
+        //    hideHand:true,
+        //    toBottom:true,
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //        MainPageUI.getInstance()['currentPage'] = 4;
+        //        MainPageUI.getInstance().scrollToCurrentPage();
+        //        MainPageUI.getInstance().renewPage();
+        //    }
+        //})
+        //
+        //this.addGuideObj({
+        //    ui:"MainPageUI.getInstance()",
+        //    mc:"this.getMainRect()",
+        //    text:'[虚空修正场]要挑选出最有天赋的卡士，在里面的PK将[不会受到]卡士真实战力的影响，只要有能力，卡士一样能打败卡皇！',
+        //    hideHand:true,
+        //    toBottom:true,
+        //    fun:function(){
+        //        self.showGuide(MainPageUI.getInstance())
+        //    }
+        //})
 
         //this.addGuideObj({
         //    fun:function(){
@@ -487,11 +495,11 @@ class GuideManager {
             fun:function(){
                 self.isGuiding = false;
                 GuideUI.getInstance().hide();
-                MainPageUI.getInstance()['currentPage'] = 0;
+                //MainPageUI.getInstance()['currentPage'] = 0;
                 MainPageUI.getInstance()['mainTask'].visible = true;
                 MainPageUI.getInstance()['helpGroup'].visible = true;
-                MainPageUI.getInstance().scrollToCurrentPage();
-                MainPageUI.getInstance().renewPage();
+                //MainPageUI.getInstance().scrollToCurrentPage();
+                //MainPageUI.getInstance().renewPage();
                 GuideUI.getInstance().showHand(MainPageUI.getInstance()['mainTask'])
                 MyCardTaskUI.getInstance().testShow();
             }

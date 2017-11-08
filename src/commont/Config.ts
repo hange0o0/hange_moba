@@ -15,7 +15,7 @@ class Config {
     public static m_version: number = 1;
     public static pk_version: number = 4;
     public static cdn: string = "";
-    public static localResRoot:string = "resource2/";
+    public static localResRoot:string = "resource/resource2/";
 
 
 
@@ -24,8 +24,8 @@ class Config {
 
 
     public static mapLevel = 5;
-    public static dayLevel = 15;
-    public static serverLevel = 25;//卡士二阶
+    public static dayLevel = 0;
+    public static serverLevel = 0;//卡士二阶
     public static serverEqualLevel = 45;  //卡士五阶
     public static leaderLevel = 95;  //
     public static leaderSkillLevel = 145;  //

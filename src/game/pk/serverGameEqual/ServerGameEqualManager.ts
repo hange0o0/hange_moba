@@ -89,7 +89,7 @@ class ServerGameEqualManager{
         var oo:any = {};
         if(!serverData.open && UM.getPropNum(21) < 1)
         {
-            Confirm('修正币数量不足！\n在天梯竞技场、究极研究院中取得胜利，都有机会获得修正币\n你也可以通过使用钻石进行购买，是否前往？',function(v){
+            Confirm('修正币数量不足！\n在天梯竞技场、每日任务中取得胜利，都有机会获得修正币\n你也可以通过使用钻石进行购买，是否前往？',function(v){
                 if(v == 1)
                 {
                     ShopUI.getInstance().show('ticket');

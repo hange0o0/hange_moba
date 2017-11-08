@@ -12,7 +12,9 @@ class RankManager{
     }
 
     public getRankList(rankType){
-         return this.rankData[rankType].data;
+        if(this.rankData[rankType])
+            return this.rankData[rankType].data;
+        return [];
     }
     public isRankOpen(){
         var serverTime = UM.opentime;

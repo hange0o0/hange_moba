@@ -282,6 +282,11 @@ class PKDressChooseUI extends game.BaseContainer {
                 cbSelect = true;
             this.cb.selected =  cbSelect;
         }
+        else
+        {
+            this.sortIndex = 0
+            this.cb.selected =  true;
+        }
         this.renewSort();
     }
 

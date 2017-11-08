@@ -60,17 +60,17 @@ class MainPageItem extends game.BaseItem {
     }
     //是否锁住
     private isLock(){
-        switch(this.index)
-        {
-            case 1:
-                return UM.main_game.level < Config.dayLevel
-            case 2:
-                return UM.main_game.level < Config.mapLevel
-            case 3:
-                return UM.main_game.level < Config.serverLevel
-            case 4:
-                return UM.main_game.level < Config.serverEqualLevel
-        }
+        //switch(this.index)
+        //{
+        //    case 1:
+        //        return UM.main_game.level < Config.dayLevel
+        //    case 2:
+        //        return UM.main_game.level < Config.mapLevel
+        //    case 3:
+        //        return UM.main_game.level < Config.serverLevel
+        //    case 4:
+        //        return UM.main_game.level < Config.serverEqualLevel
+        //}
          return false
     }
 }

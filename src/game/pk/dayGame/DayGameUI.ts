@@ -15,6 +15,8 @@ class DayGameUI extends game.BaseUI {
     private myGroup0: eui.Group;
     private myList0: eui.List;
     private historyList: eui.List;
+    private historyBtn: eui.Group;
+    private historyText: eui.Label;
     private chooseBtn0: eui.Button;
 
 
@@ -49,6 +51,24 @@ class DayGameUI extends game.BaseUI {
         this.addBtnEvent(this.helpBtn,this.onHelp);
 
         this.historyList.addEventListener('use_card',this.onUseHistory,this)
+        this.addBtnEvent(this.historyBtn,this.onHistory);
+    }
+
+    private onHistory(){
+        if(this.historyList.parent)
+        {
+            var toV = (this.scroller.viewport.contentHeight - this.historyList.height) -this.scroller.viewport.height
+            MyTool.removeMC(this.historyList)
+            this.historyText.text = '挑战记录'
+            this.scroller.viewport.scrollV = toV;
+        }
+        else
+        {
+
+            this.scrollerGroup.addChild(this.historyList)
+            this.historyText.text = '收起记录'
+
+        }
     }
 
     private onUseHistory(e){
@@ -186,6 +206,15 @@ class DayGameUI extends game.BaseUI {
         if(list.length > 5)
             list.length = 5;
         this.historyList.dataProvider = new eui.ArrayCollection(list);
+
+        if(list.length)
+        {
+            this.scrollerGroup.addChild(this.historyBtn)
+        }
+        else
+            MyTool.removeMC(this.historyBtn)
+        MyTool.removeMC(this.historyList)
+        this.historyText.text = '挑战记录'
     }
 
     private onChoose1(){

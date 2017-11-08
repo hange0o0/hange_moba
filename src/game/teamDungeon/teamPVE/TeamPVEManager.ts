@@ -126,6 +126,8 @@ class TeamPVEManager {
 
     public pkAgain(){
         TeamDungeonGameUI.getInstance().show(this.pkLevelData,'pve')
+        TeamDungeonGameUI.getInstance().onChoose1();
+        TeamDungeonGameUI.getInstance().hide();
     }
 
     public canPK(){

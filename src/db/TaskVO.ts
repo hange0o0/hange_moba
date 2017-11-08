@@ -421,9 +421,9 @@ class TaskVO {
                 break;
             case 'day_game':
                 if(this.value1 < 0)
-                    return '参加究极研究院活动'
+                    return '参加每日任务活动'
                 else
-                    return '今天在研究院完成[' +this.value1  + '题]'
+                    return '每日任务中达到第[' +this.value1  + '题]'
                 break;
             case 'friend':
                 return '添加好友'

@@ -60,6 +60,8 @@ class MapManager{
             MD.enemy.is_pk = false;
             PKResultUI.getInstance().hide();
             MapGameUI.getInstance().show();
+            MapGameUI.getInstance().onChoose1();
+            MapGameUI.getInstance().hide();
             if(fun)
                 fun();
         });

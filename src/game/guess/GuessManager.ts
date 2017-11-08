@@ -85,6 +85,12 @@ class GuessManager {
         Net.addUser(oo);
         Net.send(GameEvent.guess.guess_answer,oo,function(data){
             var msg = data.msg;
+            if(msg.fail == 4)
+            {
+                 Alert('竞猜次数已满')
+                UM.active.guess.num = self.getMaxTimes();
+                return;
+            }
 
             self.passDay();
             var award = UM.active.guess.award;

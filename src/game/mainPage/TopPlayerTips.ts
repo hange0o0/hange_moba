@@ -35,7 +35,7 @@ class TopPlayerTips extends game.BaseItem {
 
 
     public dataChanged() {
-        var typeName = ['','战力榜','等级榜','职业榜','研究榜','竞技榜','天赋榜'];
+        var typeName = ['','战力榜','等级榜','职业榜','任务榜','竞技榜','天赋榜'];
         var nick:any
         if(this.data.gameid == UM.gameid)
         {

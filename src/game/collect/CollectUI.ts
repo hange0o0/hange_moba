@@ -154,9 +154,9 @@ class CollectUI extends game.BaseUI {
         if(GuideManager.getInstance().isGuiding)
         {
             GuideManager.getInstance().showGuide(MainPageUI.getInstance());
-            MainPageUI.getInstance()['currentPage'] = 1;
-            MainPageUI.getInstance().scrollToCurrentPage();
-            MainPageUI.getInstance().renewPage();
+            //MainPageUI.getInstance()['currentPage'] = 1;
+            //MainPageUI.getInstance().scrollToCurrentPage();
+            //MainPageUI.getInstance().renewPage();
         }
     }
     public show(mid?){

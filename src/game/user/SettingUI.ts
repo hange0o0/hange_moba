@@ -108,9 +108,20 @@ class SettingUI extends game.BaseWindow {
         this.idText.textFlow = <Array<egret.ITextElement>>[
             {text: UM.gameid + "", style: {"underline": true}}
         ];
-        this.qqText.textFlow = <Array<egret.ITextElement>>[
-            {text: "347331204", style: {"underline": true}}
-        ];
+        if(FromManager.getInstance().isQunHei)          //群号 246970435
+        {
+            this.qqText.textFlow = <Array<egret.ITextElement>>[
+                {text: "246970435", style: {"underline": true}}
+            ];
+        }
+        else
+        {
+            this.qqText.textFlow = <Array<egret.ITextElement>>[
+                {text: "347331204", style: {"underline": true}}
+            ];
+        }
+
+
         this.emailText.textFlow = <Array<egret.ITextElement>>[
             {text: "1624431545@qq.com", style: {"underline": true}}
         ];

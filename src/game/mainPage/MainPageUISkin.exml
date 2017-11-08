@@ -75,7 +75,7 @@
 			<e:Label y="89" text="背包" x="16" textColor="0xCCB48E"/>
 		</e:Group>
 	</e:Group>
-	<e:Group x="-2" y="0" locked="true">
+	<e:Group x="-2" y="0">
 		<e:Image source="fire_top_jpg" x="2" y="0" locked="true"/>
 		<e:Image source="border_head_png" x="10" y="6"/>
 		<e:Image source="head_bg2_jpg" y="11" x="15" width="90" height="90"/>
@@ -83,9 +83,10 @@
 		<e:Image id="honorRed" source="red_point_png" y="0" x="0"/>
 		<e:Image id="expBar" source="main_exp_jpg" x="2" y="116" width="640"/>
 		<e:Image source="icon_empty_png" x="0" y="76"/>
-		<e:Label id="nameText" text="项目共计编译耗" x="124" y="23" size="24"/>
-		<e:Group x="124" y="63">
-		<e:Label y="10" text="战力:" x="10" size="26" textColor="0xF9D988"/>
+		<e:Label id="nameText" text="项目共计编译耗" x="124" y="15" size="24"/>
+		<e:Label id="mainLevelText" text="项目共计编译耗" x="124" y="45" size="22" textColor="0xf9d988"/>
+		<e:Group x="124" y="71">
+		<e:Label y="10" text="战力:" x="10" size="26" textColor="0xe0a44a" bold="true"/>
 		<e:Label id="forceText" y="0" size="36" text="12345" x="0" textColor="0xF8B602" italic="true"/>
 		<e:layout>
 			<e:HorizontalLayout verticalAlign="middle"/>

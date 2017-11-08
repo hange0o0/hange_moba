@@ -188,7 +188,7 @@ class OtherInfoUI extends game.BaseUI {
         oo = {title:'10胜通关次数',icon:'icon_day_png',des: myData.times + '次',myValue:myData2.times, otherValue:myData.times}
         list.push(oo)
 
-        oo = {title:'获得研究战力',icon:'icon_day_png',des: myData.score + '',myValue:myData2.score, otherValue:myData.score}
+        oo = {title:'获得任务战力',icon:'icon_day_png',des: myData.score + '',myValue:myData2.score, otherValue:myData.score}
         list.push(oo)
 
 

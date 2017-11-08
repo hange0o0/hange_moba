@@ -43,6 +43,7 @@ class MainPageUI extends game.BaseUI {
     private honorRed: eui.Image;
     private expBar: eui.Image;
     private nameText: eui.Label;
+    private mainLevelText: eui.Label;
     private forceText: eui.Label;
     private levelText: eui.Label;
     private coinGroup: eui.Group;
@@ -69,6 +70,7 @@ class MainPageUI extends game.BaseUI {
     private page2: MainPageItem;
     private page3: MainPageItem;
     private page4: MainPageItem;
+
 
 
 
@@ -421,7 +423,7 @@ class MainPageUI extends game.BaseUI {
             case 1:
 
                 PM.playBack(PKManager.PKType.DAY,function(){
-                    DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'研究院挑战日志');
+                    DayLogUI.getInstance().show(DayGameManager.getInstance().logList,'任务挑战日志');
                 });
                 break;
             case 3:
@@ -555,6 +557,8 @@ class MainPageUI extends game.BaseUI {
 
 
         egret.setTimeout(function() {
+            this.currentPage = 0;
+            this.scrollToCurrentPage(true);
             MainPageUI.getInstance().renewPage();
             GuideManager.getInstance().guideStep = 0;
             GuideManager.getInstance().reInit();
@@ -620,6 +624,7 @@ class MainPageUI extends game.BaseUI {
         this.renewEnergy();
         this.renewCard();
 
+        MyTool.setColorText(this.mainLevelText,'[称号：]' + MainGameManager.getInstance().getStepName());
         this.nameText.text = UM.nick;
         this.headMC.source = MyTool.getHeadUrl(UM.head);
     }
@@ -646,6 +651,7 @@ class MainPageUI extends game.BaseUI {
         this.scrollToCurrentPage(true);
     }
     public onMainLevelChange(){
+        MyTool.setColorText(this.mainLevelText,'[称号：]' + MainGameManager.getInstance().getStepName());
         this.leaderLockMC.visible = UM.main_game.level < Config.leaderLevel
         this.renewPage();
         this.scrollToCurrentPage(true);

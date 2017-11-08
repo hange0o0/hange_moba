@@ -35,9 +35,9 @@ class PayManager{
         {
             this.shopItem = [
 
-                {id:201,word:'体力恢复快20%，8折买体力',name:'体力VIP',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
-                {id:202,word:'每天可额外多抽2次钻石',name:'钻石VIP',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
-                {id:203,word:'PK跳过免费',name:'PK_VIP',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
+                {id:201,word:'体力恢复快20%，8折买体力',name:'体力特权',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
+                {id:202,word:'每天可额外多抽2次钻石',name:'翻翻乐特权',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
+                {id:203,word:'PK跳过免费',name:'PK跳过特权',type:'rmb',cost:12,shopType:'vip',img:'pay_energy_png'},
 
 
                 {id:2,word:'30点体力',type:'diamond',cost:60,shopType:'energy',img:'shop_energy_png'},
@@ -58,7 +58,7 @@ class PayManager{
                 {id:102,word:'520钻石',type:'rmb',cost:30,shopType:'diamond',img:'box1_png',value:520},
                 {id:103,word:'2650钻石',type:'rmb',cost:150,shopType:'diamond',img:'box2_png',value:2650},
                 {id:104,word:'10650钻石',type:'rmb',cost:600,shopType:'diamond',img:'box3_png',value:10650},
-                {id:105,word:'test',type:'rmb',cost:1,shopType:'diamond',img:'box0_png',value:1},
+                //{id:105,word:'test',type:'rmb',cost:1,shopType:'diamond',img:'box0_png',value:1},
 
 
 

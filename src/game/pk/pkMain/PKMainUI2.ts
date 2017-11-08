@@ -1069,7 +1069,7 @@ class PKMainUI extends game.BaseUI {
                         x = 150;
                         this.selfPKing = item
                         this.headMC0.source = data.mvo.thumb;
-                        this.nameText0.text = data.mvo.name;
+                        this.nameText0.text = PKManager.getInstance().team1Nick//data.mvo.name;
                         this.renewTop(data.orginData,data,0)
                     }
                     else
@@ -1077,7 +1077,7 @@ class PKMainUI extends game.BaseUI {
                         x = 640-150;
                         this.enemyPKing = item;
                         this.headMC1.source = data.mvo.thumb;
-                        this.nameText1.text = data.mvo.name;
+                        this.nameText1.text = PKManager.getInstance().team2Nick//data.mvo.name;
                         this.renewTop(data.orginData,data,1)
                     }
                     item.isPKing = true;

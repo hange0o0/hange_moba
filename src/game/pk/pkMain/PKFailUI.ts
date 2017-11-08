@@ -44,6 +44,8 @@ class PKFailUI extends PKResultBase {
     private onBack(){
         PopUpManager.testShape(true);
         PKResultUI.getInstance().hide();
+        GuideManager.getInstance().showGuide()
+
 
         //var PKM = PKManager.getInstance();
         //if(PKM.pkType == PKManager.PKType.MAP || PKM.pkType == PKManager.PKType.MAP_FIGHT)
@@ -62,24 +64,37 @@ class PKFailUI extends PKResultBase {
             //        ServerGameManager.getInstance().openPKView(true,onOpenPKView);
             //    }
             //});
-            ServerGameManager.getInstance().openPKView(true,onOpenPKView);
+            ServerGameManager.getInstance().openPKView(true,()=>{
+                onOpenPKView();
+                ServerGameUI.getInstance().onChoose();
+                ServerGameUI.getInstance().hide();
+            });
         }
         else if(PKM.pkType == PKManager.PKType.SERVER_EQUAL)
         {
             var num = UM.getPropNum(21);
-            Confirm('当前拥有修正币数量：' + num + '\n再次挑战需要花费1个修正币，是否继续？',function(type){
+            Confirm('再次挑战需要再次缴纳修正币！\n当前拥有修正币数量：' + num + '\n，是否继续？',function(type){
                 if(type == 1)
                 {
-                    ServerGameEqualManager.getInstance().openPKView(true,onOpenPKView);
+                    ServerGameEqualManager.getInstance().openPKView(true,()=>{
+                        onOpenPKView();
+                        ServerGameEqualUI.getInstance().onChoose();
+                        ServerGameEqualUI.getInstance().hide();
+                    });
                 }
             });
 
         }
         else if(PKM.pkType == PKManager.PKType.MAIN){
-            MainGameManager.getInstance().openPKView(PKM.pkResult.hard,onOpenPKView);
+            MainGameManager.getInstance().openPKView(PKM.pkResult.hard,function(){
+                onOpenPKView();
+                MainGameUI.getInstance().onChoose1();
+                MainGameUI.getInstance().hide();
+            });
+
         }
         else if(PKM.pkType == PKManager.PKType.DAY){
-            DayGameUI.getInstance().show();
+            DayGameUI.getInstance().show(true);
             PKResultUI.getInstance().hide();
         }
         else if(PKM.pkType == PKManager.PKType.MAP){
@@ -108,7 +123,7 @@ class PKFailUI extends PKResultBase {
         MyTool.removeMC(this.noteGroup);
         MyTool.removeMC(this.btnGroup);
 
-        this.okBtn.label = '再试一次'
+        this.okBtn.label = '重新布阵'
         var PKM = PKManager.getInstance();
         if(PKM.pkType == PKManager.PKType.REPLAY || PKM.pkType == PKManager.PKType.FRIEND || PKM.pkType == PKManager.PKType.MAP_FIGHT)
         {

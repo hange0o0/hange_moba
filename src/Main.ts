@@ -117,6 +117,12 @@ class Main extends eui.UILayer {
                 }
             }
 
+            if(FromManager.getInstance().h5Form)
+            {
+                RES.loadGroup("preload_png"); //预加载第一阶段
+                return;
+            }
+
             this.removeLoadEvent();
             this.createScene();
         }

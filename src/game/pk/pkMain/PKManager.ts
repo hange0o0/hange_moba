@@ -635,15 +635,17 @@ class PKManager {
         else if(type == PKManager.PKType.GUESS)
         {
             this.teamChange = info.teamChange;
+            this.team2Nick = '你的对手';
         }
         else if(type == PKManager.PKType.MAP_FIGHT)
         {
             this.teamChange = info.teamChange;
+            this.team2Nick = '你的对手';
         }
         else if(type == PKManager.PKType.SERVER || type == PKManager.PKType.SERVER_EQUAL)
         {
             this.team2Head = info.head || 0;
-            this.team2Nick = info.nick || 0;
+            this.team2Nick = Base64.decode(info.nick);
         }
         else if(type == PKManager.PKType.DAY)
         {
@@ -652,10 +654,10 @@ class PKManager {
         }
         else
         {
-            this.team1Head = 1;
-            this.team1Nick = 'team1Head';
+            //this.team1Head = 1;
+            //this.team1Nick = 'team1Head';
             this.team2Head = 2;
-            this.team2Nick = 'team2Head';
+            this.team2Nick = '你的对手';
         }
         //this.teamChange = true
 
@@ -806,7 +808,7 @@ class PKManager {
                 if(this.pkType == PKManager.PKType.MAIN && !this.pkResult.hard)
                     this.pkAward.desArr.push('职业评分升至：' + UM.main_game.level)
                 else if(this.pkType == PKManager.PKType.DAY)
-                    this.pkAward.desArr.push('今日研究进度：' + UM.day_game.level + '/10')
+                    this.pkAward.desArr.push('每日任务进度：' + UM.day_game.level + '/10')
                 else if(this.pkType == PKManager.PKType.SERVER)
                 {
                     var level = ServerGameManager.getInstance().getPKTableLevel(UM.server_game.exp)

@@ -18,7 +18,7 @@
 				<e:Object label="战力榜"/>
 				<e:Object label="等级榜"/>
 				<e:Object label="职业榜"/>
-				<e:Object label="研究榜"/>
+				<e:Object label="任务榜"/>
 				<e:Object label="竞技榜"/>
 				<e:Object label="天赋榜"/>
 			</e:Array>

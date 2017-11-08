@@ -25,6 +25,8 @@ class ServerGameUI extends game.BaseUI {
     private desText: eui.Label;
     private myCardGroup: MyCardGroupUI;
     private historyList: eui.List;
+    private historyBtn: eui.Group;
+    private historyText: eui.Label;
     private resetBtn: eui.Button;
     private chooseBtn: eui.Button;
 
@@ -70,6 +72,24 @@ class ServerGameUI extends game.BaseUI {
         this.addBtnEvent(this.resetBtn, this.onReset);
         //this.addBtnEvent(this.logBtn, this.onLog);
         this.historyList.addEventListener('use_card',this.onUseHistory,this)
+        this.addBtnEvent(this.historyBtn,this.onHistory);
+    }
+
+    private onHistory(){
+        if(this.historyList.parent)
+        {
+            var toV = (this.scroller.viewport.contentHeight - this.historyList.height) -this.scroller.viewport.height
+            MyTool.removeMC(this.historyList)
+            this.historyText.text = '挑战记录'
+            this.scroller.viewport.scrollV = toV;
+        }
+        else
+        {
+
+            this.scrollerGroup.addChild(this.historyList)
+            this.historyText.text = '收起记录'
+
+        }
     }
 
     private onUseHistory(e){
@@ -304,9 +324,18 @@ class ServerGameUI extends game.BaseUI {
         if(list.length > 5)
             list.length = 5;
         this.historyList.dataProvider = new eui.ArrayCollection(list);
+
+        if(list.length)
+        {
+            this.scrollerGroup.addChild(this.historyBtn)
+        }
+        else
+            MyTool.removeMC(this.historyBtn)
+        MyTool.removeMC(this.historyList)
+        this.historyText.text = '挑战记录'
     }
 
-    private onChoose(){
+    public onChoose(){
         //this.hide();
         PKDressUI.getInstance().show({pktype:'server_game',data:UM.pk_common.my_card,enemy:this.enemyArray})
     }

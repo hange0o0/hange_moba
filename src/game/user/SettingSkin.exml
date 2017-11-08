@@ -20,7 +20,7 @@
 			<e:HorizontalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group y="514" x="63" y.h5="378">
+	<e:Group y="514" x="63" y.h5="435.58">
 		<e:Label y="2" textColor="0xEFE5AD" size="24" text="游戏版本：" x="0"/>
 		<e:Label id="versionText" y="0" textColor="0xEDCB24" text="V1.1" size="24" x="98"/>
 		<e:Label id="logBtn" y="10" text="[更新日志]" size="24" x="108" textColor="0xEFE5AD" width="130" textAlign="right"/>
@@ -28,7 +28,7 @@
 			<e:HorizontalLayout/>
 		</e:layout>
 	</e:Group>
-	<e:Group x="63" y="378" includeIn="normal">
+	<e:Group x="63" y="378">
 		<e:Label y="4" textColor="0xEFE5AD" size="24" text="游戏官方QQ群：" x="0"/>
 		<e:Label id="qqText" y="0" textColor="0xEDCB24" size="24" text="1624431545" x="192"/>
 		<e:layout>

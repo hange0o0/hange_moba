@@ -14,7 +14,7 @@ class FromManager {
         this.h5Form = true
         if(from == 'test')
             this.h5Form = false
-        Config.localResRoot = '../' + Config.localResRoot
+        Config.localResRoot = '../resource2/'
 
 
         //本地测试用

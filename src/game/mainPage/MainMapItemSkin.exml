@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="MainMapItemSkin" width="640" height="540" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Group y="200" id="bgGroup" anchorOffsetY="200" width="640" anchorOffsetX="320" height="400" x="320">
-		<e:Image id="bg" x="105" y="-114.48" source="main5_png"/>
+		<e:Image id="bg" x="69" y="-196.48" source="main5_png"/>
 	</e:Group>
 	<e:Group y="263" width="300" horizontalCenter="0">
 		<e:Image source="black_bg_png" y="0" height="60" width="50%" right="0"/>
